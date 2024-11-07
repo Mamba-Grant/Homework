@@ -1,0 +1,226 @@
+\newpage 
+\begin{homeworkProblem}
+    (Taylor 2.6) 
+    \begin{enumerate}[(a)]
+        \item Equation (2.33) gives the velocity of an object dropped from rest. At first, when $v_y$ is small, air resistance should be unimportant and (2.33) should agree with the elementary result $v_y=g t$ for free fall in a vacuum. Prove that this is the case. [Hint: Remember the Taylor series for $e^x=$ $1+x+x^2 / 2!+x^3 / 3!+\cdots$, for which the first two or three terms are certainly a good approximation when $x$ is small.]
+            \begin{callout}{Solution:}
+                
+                We have previously derived that for something in free fall when using linear drag, it obeys:
+                \begin{align*} \dot{q}_y(t) = v_{\textrm{ter}}(1-e^{-t/\tau}) \tag{2.33} \end{align*}
+
+                Taylor expansion around the right hand side of the equation gives 
+                \begin{align*}
+                    \dot{q}_{y}(t) &= v_{\textrm{ter}}\left[1-1+\left( \frac{t}{\tau} \right) + \mathcal{O}^{2}\right] \\
+                     &=  \frac{\cancel{m}g}{\cancel{b}} \left[0+\left( \frac{t}{\cancel{(m/b)}} \right) + \mathcal{O}^{2}\right]
+                \end{align*}
+
+                Ignoring the higher order terms, we in fact have proved that for small $t$ we get the desired expression:
+                $$\dot{q}_{y}(t) = g t$$
+
+
+            \end{callout}
+        \item The position of the dropped object is given by (2.35) with $v_{y 0}=0$. Show similarly that this reduces to the familiar $y=\frac{1}{2} g t^2$ when $t$ is small
+            \begin{callout}{Solution:}
+                
+                If instead we want position for such drag we would have the expression
+                \begin{align*} q_y(t) = v_{\textrm{ter}}t + (\dot{q}_{\textrm{y0}}-v_{\textrm{ter}}\tau)(1-e^{-t/\tau}) \tag{2.35} \end{align*}
+
+                    Since we have $\dot{q}_{y}$ we do not have to taylor expand equation (2.35), and instead we can easily see that we get the desired expression by integrating with respect to $t$ in the previous solution:
+                    \begin{align*}
+                        \int_{0}^{t} \dot{q}_{y}(t) ~dt &= \int_{0}^{t} g t ~dt \\ 
+                        q_y(t) &= \frac{1}{2}g t^2
+                    \end{align*}
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (Taylor 2.8) A mass $m$ has velocity $v_{\mathrm{o}}$ at time $t=0$ and coasts along the $x$ axis in a medium where the drag force is $F(v)=-c v^{3 / 2}$. Use the method of Problem 2.7 to find $v$ in terms of the time $t$ and the other given parameters. At what time (if any) will it come to rest?
+    \begin{callout}{Solution:}
+        
+        Problem 2.7 has us solve such nonlinear differential equations by getting our differential equation into the form 
+        $$dt = m \frac{d\dot{q}}{F(\dot{q})} \implies t = m \int_{v_0}^{v} \frac{d\dot{q}'}{F(\dot{q}')}$$
+
+        \textit{(Taylor's notation bothers me a bit here, it took a depressing amount of time to realize that the prime does not refer to a derivative. I rewrote it here with dot notation out of personal preference and clarity.)}
+
+        \vspace{0.3 cm} It is worth noting this happens to take care of our boundary condition for $t=0$ since we just handle it with our integration bounds!
+
+        \begin{align*}
+            dt &= m \frac{d\dot{q}}{F(\dot{q})} \\ 
+            \int_0^t dt &= -\frac{m}{c} \int_{v_0}^{v} \dot{q}'^{-3/2} ~d\dot{q}' \\ 
+            -\frac{c}{m}t &= -2 \left.(v')^{-1/2}\right|_{v_0}^{v} \\ 
+            v(t) &= \frac{4m^2v_0}{(ct \sqrt{ v_0 }+2m)^2}
+        \end{align*}
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (Taylor 2.9) We solved the differential equation (2.29), $m \dot{v}_y=-b\left(v_y-v_{\text {ter }}\right)$, for the velocity of an object falling through air, by inspection - a most respectable way of solving differential equations. Nevertheless, one would sometimes like a more systematic method, and here is one. Rewrite the equation in the "separated" form
+$$
+\frac{m d v_y}{v_y-v_{\mathrm{ter}}}=-b d t
+$$
+and integrate both sides from time 0 to $t$ to find $v_y$ as a function of $t$. Compare with (2.30).
+
+\begin{callout}{Solution:}
+
+    Integration over the separated differential equation:
+    $$\int_{\dot{q}_{y0}}^{\dot{q}_{y}} \frac{1}{\dot{q}'_{y} - v_{\textrm{ter}}}~d\dot{q}'_{y} = - \frac{b}{m} \int_{0}^{t} ~dt$$
+    Let $u=\dot{q}_{y}' - v_{\textrm{ter}}$, $du=d\dot{q}_{y}$;
+    \begin{align*}
+        (\ln |u|)|_{\dot{q}_{y0}-v_{\textrm{ter}}}^{\dot{q}-v_{\textrm{ter}}} &= -\frac{b}{m} (t)|_{0}^{t} \\ 
+        \ln \left| \frac{\dot{q}_{y}-v_{\textrm{ter}}}{\dot{q}_{y0}-v_{\textrm{ter}}} \right| &= -\frac{b}{m}t \\ 
+        \left| \frac{\dot{q}_{y}-v_{\textrm{ter}}}{\dot{q}_{y0}-v_{\textrm{ter}}} \right| &= e^{- t/\tau} \\ 
+        \dot{q}_{y}(t) &= v_{\textrm{ter}} + (\dot{q}_{y0} - v_{\textrm{ter}}) e^{- t/\tau}
+    \end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    (Taylor 2.10, a) 
+    For a steel ball bearing (diameter 2 mm and density $7.8 \, \mathrm{g/cm^3}$) dropped in glycerin (density $1.3 \, \mathrm{g/cm^3}$ and viscosity $12 \, \mathrm{N \cdot s/m^2}$ at STP), the dominant drag force is the linear drag given by (2.82) of Problem 2.2. (a) Find the characteristic time $\tau$ and the terminal speed $v_{\mathrm{ter}}$. In finding the latter, you should include the buoyant force of Archimedes. This just adds a third force on the right side of Equation (2.25).
+
+    \begin{callout}{Solution:}
+        
+The sum of forces given by the problem is 
+\begin{align*}
+     m_{\textrm{s}}g - f_{\textrm{lin}} - f_{\textrm{b}} &= m \ddot{q} \\ 
+     \rho_{\textrm{s}} V g - 3\pi \eta D \dot{q} - \rho_{\textrm{g}} V g &= \rho_{\textrm{s}} V \ddot{q} \\ 
+    \rho_{\textrm{s}} V \ddot{q} - 3\pi\eta D \dot{q} + \rho_{\textrm{s}} V g - \rho_{\textrm{g}} V g &= 0 \\ 
+    \ddot{q} + \frac{3\pi \eta D}{\rho_{\textrm{s}}V} \dot{q} - g + \frac{\rho_{\textrm{g}}}{\rho_{\textrm{s}}} g &= 0  \\ 
+    \ddot{q} + \frac{3\pi \eta D}{\rho_{\textrm{s}}V} \dot{q} &= g-\frac{\rho_{\textrm{g}}}{\rho_{\textrm{s}}} g   \\ 
+    \ddot{q} + \frac{3\pi \eta D}{\rho_{\textrm{s}}V} \dot{q} &= -\frac{\rho_{\textrm{s}}g - \rho_{\textrm{g}}g }{\rho_{\textrm{s}}}
+\end{align*}
+
+I will define $\kappa$ and $\gamma$ to make things easier to read:
+\begin{align*}
+    \kappa &\equiv \frac{3\pi \eta D}{\rho_{\textrm{s}}V} = \frac{18 \eta}{\rho_{\textrm{s}}D^2}\\ 
+    \gamma &\equiv \frac{\rho_{\textrm{s}}g - \rho_{\textrm{g}}g}{\rho_{\textrm{s}}} = g\left( 1 - \frac{\rho_{\textrm{g}}}{\rho_{\textrm{s}}} \right)
+\end{align*}
+
+This is a nice non-homogeneous linear differential equation with characteristic polynomial that implies exponential solutions:
+$$\lambda^2 + \kappa \lambda = 0$$
+
+Which has solutions $\lambda = \{ 0, \kappa \}$. This gives us exponential solutions of form:
+\begin{align*}
+    q_{c} &= \cancelto{1}{ e^{0t}}C_1 + C_2 e^{-\kappa t} \\ 
+\end{align*}
+
+We assume the solution to the particular part is linear: 
+$$\begin{cases}
+    q_p = ut \\ 
+    \dot{q}_{p} = u \\ 
+    \ddot{q}_{p} = 0
+\end{cases}$$
+
+$$0+\kappa u = \gamma \qquad \implies \qquad u = \frac{\gamma }{\kappa } $$
+
+Now we write the general solution
+\begin{align*}
+    q(t) &= q_c + q_p  \implies \begin{cases}
+        q(t) &= C_1 + C_2 e^{-\kappa t} + \frac{\gamma}{\kappa}t \\
+        \dot{q}(t) &= -\kappa C_2 e^{-\kappa t} + \frac{\gamma}{\kappa} \\ 
+        \ddot{q}(t) &= \kappa^2 C_2 e^{-\kappa t}
+    \end{cases}
+\end{align*}
+
+Based on the equation, we can define characteristic time
+        $$\tau \equiv \frac{1}{\kappa} = \frac{\rho_{\textrm{s}}D^2}{18 \eta}$$
+
+Before back-substituting to be in terms of the original variables, we can fit the boundary conditions:
+$$\begin{cases}
+    q(t_0) = \textrm{undef.} \quad \implies q(t_0) = C_1  \\ 
+    \dot{q}(0) = 0 \quad \implies \quad 0 = -\kappa C_2 + \frac{\gamma}{k} \quad \implies \quad C_2 = \frac{\gamma}{\kappa^2}
+\end{cases}$$
+
+Therefore we have simplified solutions, where we notice $\gamma \tau = v_{\textrm{ter}}$
+$$\begin{cases}
+    q(t) &= C_1 +  \tau(v_{\textrm{ter}}) e^{-t/\tau} + v_{\textrm{ter}} t \\
+    \dot{q}(t) &=  v_{\textrm{ter}} \left( 1-e^{-t/\tau} \right) \\ 
+    \ddot{q}(t) &=  \gamma e^{- t/\tau}
+\end{cases}$$
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    (Taylor 2.12) Problem 2.7 is about a class of one-dimensional problems that can always be reduced to doing an integral. Here is another. Show that if the net force on a one-dimensional particle depends only on position, $F = F(x)$, then Newton's second law can be solved to find $v$ as a function of $x$ given by
+    \[
+    v^2 = v_0^2 + \frac{2}{m} \int_{x_0}^x F(x') \, dx'. \tag{2.85}
+    \]
+
+    \textit{[Hint: Use the chain rule to prove the following handy relation, which we could call the "v dv/dx rule": If you regard $v$ as a function of $x$, then]}
+    \[
+    \dot{v} = v \frac{dv}{dx} = \frac{1}{2} \frac{d v^2}{dx}. \tag{2.86}
+    \]
+
+    \begin{callout}{Solution:}
+        
+        \begin{align*}
+            F(x) &= m \frac{dv}{dt} \\ 
+            &= m \frac{dv}{dx} \frac{dx}{dt} \\ 
+            &= \frac{m}{2} \left( 2v \frac{dv}{dt} \right) \\ 
+            &= \frac{m}{2} \frac{d}{dx} \left( v^2 \right) \\ 
+            \frac{2}{m}\int_{x_0}^{x}  F(x')~dx' &= \int_{x_0}^{x} \frac{d}{dx'} (v^2) ~dx' \\ 
+            \frac{2}{m} W &= (v)^2 - (v_0)^2 \\ 
+            W &= \frac{1}{2}mv^2 - \frac{1}{2}mv_0^2
+        \end{align*}
+
+    \end{callout}
+
+    \textit{Use this to rewrite Newton's second law in the separated form $m \, d(v^2) = 2F(x) dx$ and then integrate from $x_0$ to $x$. Comment on your result for the case that $F(x)$ is actually a constant. (You may recognize your solution as a statement about kinetic energy and work, both of which we shall be discussing in Chapter 4.)}
+\end{homeworkProblem}
+\begin{homeworkProblem}
+    (Taylor 2.38, a, b) A projectile that is subject to quadratic air resistance is thrown vertically up with initial speed $v_0$.
+    
+    \begin{itemize}
+        \item[(a)] Write down the equation of motion for the upward motion and solve it to give $v$ as a function of $t$.
+        
+        \item[(b)] Show that the time to reach the top of the trajectory is 
+        \[
+        t_{\text{top}} = \left( \frac{v_{\text{ter}}}{g} \right) \arctan \left( \frac{v_0}{v_{\text{ter}}} \right).
+        \]
+
+        \begin{callout}{Solution:}
+            
+            We have a system of differential equations given by: 
+    
+            \begin{align*}
+                \begin{pmatrix} m \ddot{q}_{1} \\ m \ddot{q}_{2} \end{pmatrix} &= \begin{pmatrix} -c\dot{q}_{1}^2 \\ -mg - c\dot{q}_{2}^{2}  \end{pmatrix}
+            \end{align*}
+
+            These are independent and we only really care about the $q_2~(y)$ component. We also only care about the velocity, so we can reduce the order by 1 while still complying with the boundary conditions. Let $\dot{q}_{2} = v$ and $\ddot{q}_{2} = \frac{dv}{dt}$.
+            \begin{align*}
+                \frac{1}{ -g - \frac{c}{m} v^2} dv &= dt \\ 
+                -\frac{1}{g} \frac{1}{1+\frac{c}{mg}v^2} &= \int_{0}^{t} gdt
+            \end{align*}
+
+            Apply the substitution $u=\sqrt{ \frac{c}{mg} }v$:
+            \begin{align*}
+                -\frac{\sqrt{ \frac{mg}{c} }}{g} \frac{1}{1+u^2} ~dv &= t \\ 
+                \sqrt{\frac{m}{cg}} \int_{v_0 \sqrt{ \frac{c}{mg} }}^{v\sqrt{ \frac{c}{mg} }} \frac{1}{1+u^2} ~du &= t
+            \end{align*}
+
+            This gives $\tan(u)$. After integration, we get:
+            \begin{align*}
+                \sqrt{\frac{m}{c g}} \left(\tan^{-1}\left(v \sqrt{\frac{c}{mg}}  \right) - \tan^{-1}\left( v_0 \sqrt{\frac{c}{mg}} \right)\right) &= t \\ 
+                \tan^{-1}\left( v \sqrt{ \frac{c}{mg} } \right) &= \sqrt{ \frac{cg}{m} } t + \tan^{-1}\left( v_0 \sqrt{ \frac{c}{mg} } \right) \\ 
+                v \sqrt{ \frac{c}{mg} } &= \tan\left(\sqrt{ \frac{cg}{m} } t + \tan^{-1}\left( v_0 \sqrt{ \frac{c}{mg} } \right)\right) \\ 
+                v(t) &= \sqrt{ \frac{mg}{c} }\tan\left(\sqrt{ \frac{cg}{m} } t + \tan^{-1}\left( v_0 \sqrt{ \frac{c}{mg} } \right)\right) \\ 
+                v(t) &= \sqrt{ \frac{mg}{c} }\tan\left(\sqrt{ \frac{cg}{m} } t + v_0 \sqrt{ \frac{c}{mg} } \right)
+            \end{align*}
+
+            when $v=0$ we have 
+            $$t = -\sqrt{\frac{m}{gc}}\arctan \left(\sqrt{\frac{c}{mg}}v_0\right)$$
+            Which gives a negative sign probably because of how I defined my coordinate system, but this should be equivalent to the desired time to reach the top.
+
+
+        \end{callout}
+
+    \end{itemize}
+\end{homeworkProblem}

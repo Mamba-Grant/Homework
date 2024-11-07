@@ -1,0 +1,344 @@
+\documentclass{article}
+
+
+\newcommand{\hmwkTitle}{Homework \#4}
+\newcommand{\hmwkDueDate}{\today}
+\newcommand{\hmwkClass}{MATH 648}
+\newcommand{\hmwkAuthorName}{\textbf{Grant Saggars}}
+
+
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+
+\usepackage{float}
+\usepackage{caption}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{XCharter}
+
+\usetikzlibrary{automata,positioning}
+
+\usepackage{geometry}
+\geometry{top=1in, bottom=1in, left=1in, right=1in} % Adjust margins as needed
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.75in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Callout Box
+%
+
+\definecolor{shadecolor}{RGB}{235,235,235}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%
+% Title Page
+%
+
+\title{
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDueDate}\\
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\textbf{Math 648 S24 Homework 4 (Thursday 04/11/24)}
+
+\begin{itemize}
+	\item Section 7.1: \#2, \#4.
+	      \begin{itemize}
+		      \item Hint for \#2: Note that the boundary condition $M(0)$ at $t = 0$ is fixed but the boundary condition $M(T)$ at $t = T$ is not fixed so that one needs the natural boundary condition (NBC) at $t = T$.
+	      \end{itemize}
+	\item Section 7.3: \#1, \#2.
+	      \begin{itemize}
+		      \item Hint for \#1: Use the result from Example 2.3.4 for a parametric form of the solution of the E-L:
+		            $$x(\psi) = \kappa_2 - \kappa_1(2\psi + \sin(2\psi)), \quad y(\psi) = \kappa_1(1 + \cos(2\psi)).$$
+		            Suppose the angle parameter $\psi$ varies from $\psi_0$ to $\psi_1$. So that $\psi = \psi_0$ corresponds to the end point $(x, y) = (0, 0)$, that is $x(\psi_0) = y(\psi_0) = 0$, and $\psi = \psi_1$ corresponds to the other end point on the curve given by $y = x - 1$.
+		            Show that, the natural boundary condition at $x = x_1$ gives $y'(x_1) = -1$ or, in terms of $\psi$, $\tan \psi = -1$ (since $y' = \tan \psi$ from Example 2.3.4).
+		            Show that the condition $x(\psi_0) = y(\psi_0) = 0$ gives $\psi_0 = (n + 1/2)\pi$ for some integer $n$ (we can take $n = 0$), and hence, $\kappa_2 = \kappa_1\pi$.
+		            Use $y'(x_1) = -1$ and $y \geq 0$ to show that $x_1 > 0$, and hence, $\psi_1 < \psi_0 = \pi/2$. Use again $y'(x_1) = \tan \psi_1 = -1$ to get $\psi_1 = -\pi/4$.
+		            Finally, use the condition that $y(\psi_1) = x(\psi_1) - 1$ to get $\kappa_1 = \frac{2}{3\pi} > 0$, and hence, $\kappa_2 = \frac{2}{3}$.
+		            Therefore, an extremal of the problem is parameterized by
+		            $$x(\psi) = \frac{2}{3} - \frac{2}{3\pi}(2\psi + \sin(2\psi)), \quad y(\psi) = \frac{2}{3\pi}(1 + \cos(2\psi))$$
+		            for $\psi$ from $\pi/2$ to $-\pi/4$.
+	      \end{itemize}
+\end{itemize}
+
+\newpage
+\begin{homeworkProblem}
+	A simplified version of the Ramsey growth model in economics concerns a functional of the form
+	$$J(M) = \int_{0}^{T} \left(c_1 \left(c_2M(t) - M'(t) - c_3\right)^2\right) \, dt.$$
+	Here, $J$ corresponds to the "total product," $M$ is the capital, and the $c_k$ are positive constants. The problem is to find the best use of capital such that $J$ is minimized in a given planning period $[0, T]$. Now, the initial capital $M(0) = M_0$ is known, but the final capital $M(T)$ is not prescribed. Use the natural boundary conditions to find the extremal for $J$ and the final capital $M(T)$.
+	\begin{callout}{Solution:}
+
+		The E-L for this is:
+		$$\left[ 2c_1c_2^2 M - \cancel{2c_1c_2 M'} - 2c_1c_2c_3 \right] - \frac{d}{dt}\left[ \cancel{-2c_1c_2M} -2c_1 M' + \cancel{2c_1c_3} \right]$$
+		Simplifying to:
+		$$M''-c_2^2M = -c_2c_3$$
+		Characteristic equation:
+		$$\lambda^2 - c_2^2 = 0 \implies y_c = Ae^{c_2t}+Be^{-c_2t}$$
+		Particular equation:
+		\begin{align*}
+			y_p=y_c''-c_2^2y_c = - c_2 c_3
+		\end{align*}
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+	Let $\mathbf{q} = (q_1, \ldots, q_n)$ and $J(\mathbf{q}) = \int_{t_0}^{t_1} L(t, \mathbf{q}, \dot{\mathbf{q}}) \, dt$. Derive the natural boundary conditions that an extremal must satisfy if neither $\mathbf{q}(t_0)$ nor $\mathbf{q}(t_1)$ are prescribed.
+	\begin{callout}{Solution:}
+		Consider the conditions for a functional $J=\int_{x_{0}}^{x_{1}} f(x,y,y')\,dx$ without any boundary conditions. We need to first consider whether this is even well posed.
+
+		It is obvious that we ought to express both the x-coordinate and y-coordinate as things which can vary.
+
+		Let
+		$$\hat{x}_{0}=x_{0}+\epsilon \bar{x}_{0}+O(\epsilon^{2}), \quad \hat{x}_{1}=x_{1}+\epsilon \bar{x}_{1}+O(\epsilon^{2})$$
+		Consider
+		\begin{align*}
+			\hat{y}(x)=y(x)+\epsilon\eta(x),                                    & \quad \text{for $x\in[x_{0},x_{1}]\cup[\hat{x}_{0},\hat{x}_{1}]$};                     \\
+			\hat{y}(\hat{x}_{0})=y(x_{0})+\epsilon \bar{y}_{0}+O(\epsilon^{2}), & \quad \hat{y}(\hat{x}_{1})=y(x_{1})+\epsilon \bar{y}_{1}+O(\epsilon^{2}), \text{ and:} \\
+			\hat{y}'(\hat{x}_{0,1})=y'(x_{0,1})+O(\epsilon)
+		\end{align*}
+
+		Expressing our functional now:
+
+		\begin{align*}
+			J(\hat{y})-J(y) & =\int_{\hat{x}_{0}}^{\hat{x}_{1}} f(x,\hat{y},\hat{y}')\,dx - \int_{x_{0}}^{x_{1}} f(x,y,y')\,dx                                       \\
+			                & =\int_{x_{0}}^{x_{1}} f(x,y+\epsilon\eta,y'+\epsilon\eta')\,dx + \int_{\hat{x}_{0}}^{x_{1}}f(x,y+\epsilon \eta,y'+\epsilon \eta') \,dx \\
+			                & \quad+\int_{x_{1}}^{\hat{x}_{1}} f(x,y+\epsilon \eta,y'+\epsilon \eta')\,dx - \int_{x_{0}}^{x_{1}} f(x,y,y')\,dx
+		\end{align*}
+
+		By integration by parts and mean value theorem (MVT approximating the middle two terms):
+
+		\begin{gather*}
+			\epsilon\left\{ \int_{x_{0}}^{x_{1}} \eta\left[ f_{y}(x,y,y')-\frac{d}{dx}f)y'(x,y,y') \right]\,dx +f_{y'}\eta \mid_{x_{0}}^{x_{1}} +O(\epsilon^{2})\right. \\
+			-\epsilon f(x_{0},y(x_{0}),y'(x_{0}))+O(\epsilon^{2}) \\
+			+\epsilon f(x_{1},y(x_{1}),y'(x_{1}))\bar{x}_{1} + O(\epsilon^{2})
+		\end{gather*}
+
+		Now,
+
+		\begin{align*}
+			J(\hat{y})-J(y) & = \epsilon\delta J(\eta,y)+O(\epsilon^{2})                                                                                                         \\
+			                & = f_{y'}\eta|_{x_{0}}^{x_{1}} \int_{x_{0}}^{x_{1}} \left[ f_{y}-\frac{d}{dx}f_{y'} \right]\eta\,dx +f|_{x_{1}} \bar{x}_{1} - f|_{x_{0}}\bar{x}_{0}
+		\end{align*}
+
+		This is the first variation of a functional at $y$ in the direction of $\eta$ in the general case.
+
+		From equations 1 and 2:
+
+		\begin{align*}
+			\epsilon\eta(x_{0})  & =\hat{y}(x_{0})-y(x_{0})                                                                                 \\
+			                     & = \hat{y}(x_{0})-\hat{y}(\hat{x}_{0})+\hat{y}(\hat{x}_{0})-y(x_{0})                                      \\
+			                     & = \hat{y}'(\langle x_{0} \rangle)(x_{0}-\hat{x}_{0}) + \epsilon y_{0}+O(\epsilon^{2}) &  & \text{(MVT?)} \\
+			                     & = -\epsilon y'(x_{0})\bar{x}_{0} + \epsilon \bar{y}_{0}+O(\epsilon^{2})                                  \\
+			\implies \eta(x_{0}) & =-y'(x_{0})\bar{x}_{0}+\bar{y}_{0}                                                                       \\
+			\implies \eta(x_{1}) & =-y'(x_{1})\bar{x}_{1}+\bar{y}_{1}
+		\end{align*}
+
+		Substituting that back into our functional derivative:
+
+		\begin{align*}
+			\delta J(\eta,y) & = \int_{x_{0}}^{x_{1}} \left[ f_{y}-\frac{d}{dx}f_{y'} \right]\eta\,dx
+			+ f_{y'}|_{x_{1}}(-y'(x_{1})\bar{x}_{1}+\bar{y}_{1}) - f_{y'}|_{x_{0}}(-y'(x_{0})\bar{x}_{0}+\bar{y}_{0})
+		\end{align*}
+
+
+		Again, we conclude that for any extremal our functional has to equal zero no matter what endpoints. If we fix endpoints the extra terms drop out and we recover the original E-L equation.
+
+		We can pull out conditions for our extremal:
+
+		\begin{align*}
+			\left[ f_{y'}y'-f \right]_{x_{0}} & =0 \\
+			\left[ f_{y'}y'-f \right]_{x_{1}} & =0 \\
+			f_{y'}|_{x_{0}}                   & =0 \\
+			f_{y'}|_{x_{1}}                   & =0
+		\end{align*}
+
+		Because we don't have enough conditions, this problem is not well posed in general.
+
+		One needs two relations among $\bar{x}_{0},~\bar{x}_{1},~\bar{y}_{0},~\bar{y}_{1}$ to reduce the degrees of freedom. A possibility is that we require $(x_{0},~y_{0})$ lies on one given curve $y=\varphi(x)$.
+
+		Let
+		$$\hat{x}_{0}+\epsilon \bar{x}_{0}+\dots,\quad \hat{y}(\hat{x}_{0})=y(x_{0})+\epsilon \bar{y}_{0}+\dots$$
+		\begin{gather*}
+			(\hat{x}_{0},\hat{y}(\hat{x}_{0}))=(x_{0}+\epsilon \bar{x}_{0},y(x_{0})+\epsilon \bar{y}_{0})+O(\epsilon^{2}) \\
+			y(x_{0})+\epsilon \bar{y}_{0}=\varphi(x_{0}+\epsilon \bar{x}_{0}) = \varphi(x_{0})+\epsilon \varphi'(x_{0})\bar{x}_{0} + O(\epsilon^{2}) \\
+			\implies \bar{y}_{0}=\varphi'(x_{0})\bar{x}_{0}
+		\end{gather*}
+
+		End points on the curves $(x_{0},y(x_{0}))$ on $\varphi_{0}(x_{0})$, and $(x_{1},y(x_{1}))$ on the curve $y=\varphi_{1}(x_{1})$. Recall the basic functional derivative:
+
+		\begin{align*}
+			\delta J(y,\eta) & =\int_{x_{0}}^{x_{1}} \left[ f_{y}-\frac{d}{dx}f_{y'} \right]\,dx
+			+ f_{y'}|_{x_{1}}\bar{y}_{1}-f_{y'}|_{x_{0}}\bar{y}_{0}                              \\
+			                 & \qquad+\bar{x}_{1}(f-y'f_{y'})_{x_{1}}
+			-\bar{x}_{0}(f-y'f_{y'})_{x_{0}}
+		\end{align*}
+
+		We can simplify it to
+
+		\begin{align*}
+			\delta J(\eta,y) & =\int_{x_{0}}^{x_{1}} \eta\left( f_{y}-\frac{d}{dx}f_{y'} \right)\,dx                                          \\
+			                 & \quad+ (f_{y_{1}}(\varphi_{1}'-y')+f)|_{x_{1}}\bar{x}_{1} - (f_{y_{1}}(\varphi_{0}'-y')+f)|_{x_{0}}\bar{x}_{0}
+		\end{align*}
+
+		Where our extra two boundary conditions are
+
+		$$[f_{y_{1}}(\varphi_{1}'-y')+f]|_{x_{1}}=0,\qquad [f_{y'}(\varphi_{0}'-y')+f]|_{x_{0}}=0$$
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+	The functional for the brachystochrone is
+	$$J(y) = \int_{0}^{x_1} \sqrt{ \frac{1+y'^{2}}{y} } ~dx$$
+
+	Find an extremal for $J$ subject to the condition that $y(0) = 0$ and $(x_1, y(x_1))$ lies on the curve $y = x - 1$.
+	\begin{callout}{Solution:}
+
+		As previously found, the solutions to this functional are parametric of form:
+		$$x(\psi) = \kappa_2 - \kappa_1(2\psi + \sin(2\psi)), \quad y(\psi) = \kappa_1(1 + \cos(2\psi)).$$
+
+		\begin{enumerate}[(I)]
+			\item $$x(\psi_0) = y(\psi_0) = 0 \implies 0 = \kappa_2 - \kappa_1(2\psi_0 + \sin(\psi_0)) = \kappa (1+\cos(2\psi))$$
+			      This gives valid values of $\psi_0$ equal to $\pi(n+\frac{1}{2})$, which if we let $n$ equal zero we get $\pi \kappa_1 = \kappa_2$
+			\item
+
+			      $$r(\xi) = (\xi, \xi - 1)$$
+			      $$\left(\frac{dx_\Gamma}{d\xi} \cdot \frac{dy_\Gamma}{d\xi}\right) \cdot \left(1, \frac{dy}{dx}\right) = 1+\frac{dy}{dx} = 0$$
+			      $$\frac{dy}{dx} \to \frac{dy/d\psi}{dx/d\psi} = \frac{-2\kappa_1\sin(2\psi)}{-2\kappa(1+\cos(2\psi))} = \tan(\psi)$$
+
+			      Evaluating this gives $\frac{dy}{dx} = -1$ which gives values of $\psi_1 = - \frac{\pi}{4} + \pi n$, which we can again use $n=0$ for.
+			\item Because this is a brachystochrone curve, we can automatically assume $x_1<x_0$, as that is the point of the problem. I am curious how you would prove that mathematically though. We can substitute into our second boundary condition now to find $\kappa_1$ and $\kappa_2$:
+			      \begin{align*}
+				      y(\psi_1)                                                 & = x(\psi_1) - 1                                                                        \\
+				      \kappa_1 \left(1+\cos\left( -\frac{\pi}{2} \right)\right) & = \kappa_2 - \kappa_1\left(-\frac{\pi}{2}+\sin\left( -\frac{\pi}{2} \right)\right) - 1 \\
+				      -\kappa_1 \frac{\pi}{2} + 1                               & = \kappa_2 = \pi \kappa_1                                                              \\
+				      1                                                         & = \frac{3\pi \kappa_1}{2}                                                              \\
+				      \kappa_1                                                  & = \frac{2}{3\pi}                                                                       \\
+				      \kappa_2                                                  & = \frac{2}{3}
+			      \end{align*}
+
+			      Substiting these gives the desired:
+			      $$x(\psi) = \frac{2}{3} - \frac{2}{3\pi}(2\psi + \sin(2\psi)), \quad y(\psi) = \frac{2}{3\pi}(1 + \cos(2\psi))$$
+		\end{enumerate}
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+	Let
+	$$J(y) = \int_{0}^{x_1} (y'^2 + y^2) \, dx.$$
+
+	Find an extremal for $J$ subject to the condition that $y(0) = 0$ and $(x_1, y(x_1))$ lies on the curve $y = 1 - x$. Determine the appropriate constants in terms of implicit relations.
+	\begin{callout}{Solution:}
+		This functional has E-L:
+		$$\frac{d}{dx}2y' - 2y = 0$$
+		is a homogeneous ODE with solutions:
+		$$y(x) = c_1 e^x + c_2 e^{-x}$$
+		% After some time thinking, it seems that the only valid solution for this to meet both boundary conditions is $y=0$ for all $x$, with $x_0=0$ and $x_1=1$. It is necessary for $c_1=-c_2$ to fit boundary condition \#1, despite there being valid conditions for the other endpoint.
+		\begin{enumerate}[(I)]
+			\item It is obvious that $c_1=-c_2$.
+			\item \begin{align*}
+				      y'(x_1)                & =-1            \\
+				      c_1e^{x_1}+c_1e^{-x_1} & =-1            \\
+				      2\sinh(x_1)            & =\frac{1}{c_1} \\
+				      \frac{1}{2\sinh(x_1)}  & = c_1
+			      \end{align*}
+			\item \begin{align*}
+				      x_1-1 & = \frac{1}{2\sinh(x_1)} e^{x_1} - \frac{1}{2\sinh{x_1}}e^{-x_1}
+			      \end{align*}
+			      Using a graphing calculator to numerically solve this gives $x_1=2$.
+			\item Therefore the solution is:
+			      $$y(x) = \frac{1}{2\sinh(2)}e^{x} - \frac{1}{2\sinh(2)}e^{-x}$$
+		\end{enumerate}
+	\end{callout}
+\end{homeworkProblem}
+
+\end{document}

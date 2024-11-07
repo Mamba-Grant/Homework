@@ -1,0 +1,204 @@
+\documentclass{article}
+
+\title{Homework 10}
+\author{Grant Saggars}
+\date{November 11, 2023}
+
+\usepackage{amsmath}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{geometry}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{lipsum}  
+\usepackage{caption}
+\usepackage{float}
+\usepackage{bbold}
+% \usepackage{fontspec}
+
+% \setmainfont{BespokeSerif-Regular}
+\definecolor{shadecolor}{RGB}{235,235,235}
+
+\geometry{top=1in, bottom=1in, left=1in, right=1in}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT BEGINS HERE %
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+% \section{Problems}
+
+\begin{enumerate}
+
+\item (4 pts) A particle is confined between rigid walls it cannot penetrate separated by a distance $L = 0.189 \text{ nm}$. The particle is in the second excited state. Evaluate the probability to find the particle in an interval of width 1.00 pm at $x = 0.188$ nm.
+
+    \begin{callout}{Solution:}
+        \begin{multicols}{2}
+
+            \begin{center} This is an infinite square well problem: \end{center}
+
+            Because potential is infinite, the probability of the particle being in region $I$ or $III$ is zero. Therefore, the wave equation is:
+
+            \columnbreak
+
+            \center
+            Piecewise regions \& potentials:
+            \begin{align*}
+                \begin{array}{rcl} 
+                    I: & x < 0 & u=\infty \\
+                    II: & 0 \leq x \leq L & u= 0 \\
+                    III: & x > L & u=\infty
+                \end{array}    
+            \end{align*}
+        \end{multicols}
+
+        \vspace{-0.8 cm} \begin{align*}
+            -\frac{\hbar}{2m} \frac{\partial^2 \psi_{II}(x)}{\partial x^2} = E \psi_{II}(x) \to \psi'' + k^2 \psi = 0 && k = \sqrt{ \frac{2mE}{\hbar^2} }\\
+            r^2 + k^2 = 0 \implies r = i \pm k
+        \end{align*}
+
+        Therefore the general solution is:
+
+        \vspace{-0.8 cm} \begin{align*}
+            \psi_{II}(x) = A \sin(kx) + B \cos(kx)
+        \end{align*}
+
+        \begin{enumerate}
+            \item Continuity condition:
+
+            \begin{align*}
+                \psi_{II}(0)=\psi_{I}(0) &\to B \cancelto{1}{\cos(0)} = 0 \\
+                \implies &B=0 \\
+                \psi_{II}(L)=\psi_{III}(L) &\to A \sin(kx) = 0 \\
+                \implies &A=0 \textrm{ or } kL = n \pi
+            \end{align*}
+
+        \item Normalization Condition:
+
+            Because $|\psi_n(x)|^2$ is the PDF of the position of the particle:
+            
+            \vspace{-0.7 cm} \begin{align*}
+                1 &= \int_{-\infty}^{\infty} |\psi_n(x)|^{2} ~dx 
+                \to \int_{0}^{L} \psi_n(x) ~dx \\
+                &= \int_{0}^{L} |A|^{2} \sin^{2}\left(\frac{n \pi x}{L}\right) ~dx \\
+                &= A^2 \frac{L}{2} \implies A = \sqrt{ \frac{2}{L} }
+            \end{align*}
+        \end{enumerate}
+
+        Therefore, our final wave equation is: $\sqrt{ \frac{2}{L} } \sin\left(\frac{n \pi x}{L}\right)$. To evaluate the given probability:
+        \begin{align*}
+            \int_{0.188\textrm{nm} - \frac{1}{2}\textrm{pm}}^{0.188\textrm{nm}+\frac{1}{2}\textrm{pm}}  
+            \sqrt{ \frac{2}{L} } \sin\left(\frac{n \pi x}{L}\right)~dx = 0.0357\%
+        \end{align*}
+    \end{callout}
+
+\newpage
+\item Consider a Gaussian wavefunction:
+$\psi(x) = A \exp\{-a (x - \mu)^2\}$, 
+where $a > 0$.
+\begin{enumerate}
+\item (4 pts) Find the normalization factor $A$ in terms of $\mu$ and $a$. (You can look up integration of Gaussian’s an quote the results)
+
+    \begin{callout}{Solution: (Polar Transformation)}
+
+        \begin{align*}
+            \psi = \int_{-\infty}^{\infty} \exp(-a(x-\mu)^2 ) ~dx \to \int_{-\infty}^{\infty} \exp(-a(u)^2) ~dx \tag{1}
+        \end{align*}
+        Transformation (1) has a jacobian of one, which should make sense since $x-\mu$ does not scale the function. Now, we can temporarily square $\psi$ to convert to polar coordinates.
+        \begin{align*}
+            \psi^2 &= \int_{-\infty}^{\infty} \exp(-a(u^2 + v^2)) ~dx \to \int_{0}^{2\pi} \int_{0}^{\infty} \rho \exp(-a\rho^2) ~d\rho~d\theta
+        \end{align*}
+        Finally, a substitution of $a\rho^2 = w$ allows the integral to be solved to completion:
+        \begin{align*}
+            \psi^2 &=\frac{\cancel{2}\pi}{\cancel{2}a} \int_{0}^{\infty} e^{-w} ~dx \\
+             &= \frac{\pi}{a} \left(-e^{-w}\middle|_{0}^{\infty} \right) \\
+             &= \sqrt{ \frac{\pi}{a} } 
+        \end{align*}
+
+        (This is the scale factor, so the inverse of this is the normalization factor $A$). Plotting the normalized wavefunction again shows that $\mu$ has no effect on the scale of the function, so it is normalized for all $\mu$.
+    \end{callout}
+
+\item (4 pts) What is the probability that $x < \mu$? 
+
+    \begin{callout}{Solution:}
+
+        $\mu$ represents the location of the center of the wave function for all $\mu$. Because the wave function is a (symmetrical) gaussian, this also is where the peak of the PDF occurs. Therefore, for $x < \mu$, the particle would be to the left of the center of the PDF. Therefore the probability is 50\%
+    \end{callout}
+
+\newpage
+\item (4 pts) For $a = 0.05 \text{ m}^{-2}$ and $\mu = 1.3\text{m}$, find the average position of the particle.
+
+    \begin{callout}{Solution:}
+
+        The average position is defined as $\int_{-\infty}^{\infty} x|\psi(x)|^{2} ~dx$.
+        \begin{align*}
+           \sqrt{ \frac{\pi}{a} }^{-2} \int_{-\infty}^{\infty} x \exp^2(-a(x-\mu)^{2}) ~dx 
+           \to \frac{a}{\pi} \int_{-\infty}^{\infty} x \exp(-2a(x-\mu)^{2}) ~dx 
+        \end{align*}
+
+        \begin{enumerate}[(1)]
+            \item make the substitution: $x-\mu \to u$, $dx = du$
+
+                \begin{align*}
+                    \frac{a}{\pi} \int_{-\infty}^{\infty} (u + \mu) \exp(-2au^{2}) ~du \\
+                    \to \frac{a}{\pi} \left( \int_{-\infty}^{\infty} u\exp(-2au^2) ~du + \int_{-\infty}^{\infty} \mu\exp(-2au^2) ~du \right)
+                \end{align*}
+
+            \item The first integral can be solved with a single substitution
+                \begin{align*}
+                    \int_{-\infty}^{\infty} u\exp(-2au^2) ~du &= \left(-\exp(-2au^2) \cdot \frac{1}{4a}\middle) \right|_{-\infty}^\infty = 0 \\
+                \end{align*}
+
+            \item The second integral is a gaussian, and can be solved like in part (a).
+                \begin{align*}
+                    \int_{-\infty}^{\infty} \mu\exp(-2au^2) ~du 
+                    &= \left( \mu^2 \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \exp(-2a(x^2+y^2)) ~dy ~dx \right)^\frac{1}{2} \\ 
+                    &= \left(\mu^2\int_0^{2\pi} \int_{0}^{\infty} \rho \exp(-2a\rho^2) ~d\rho~d\theta\right)^{\frac{1}{2}} \\
+                    &= \left(\mu^2\frac{2\pi}{2a} \int_{0}^{\infty} e^{-w} ~dw \right)^{\frac{1}{2}} \\
+                    &= \mu \sqrt{ \frac{\pi}{a} }
+                \end{align*}
+
+            \item Substituting these into (1):
+
+                \begin{align*}
+                    \frac{a}{\pi} \left(0 + \mu \sqrt{ \frac{\pi}{a} }\right) = \frac{\mu a}{\pi} \sqrt{ \frac{\pi}{a} } = 0.164~\textrm{m}
+                \end{align*}
+
+        \end{enumerate}
+    \end{callout}
+
+\newpage
+\item (7 pts) Standard deviation is defined as: 
+$\sigma = \sqrt{[x^2]_{\text{ave}} - (x_{\text{ave}})^2}$,
+where $[x^2]_{\text{ave}}$ is the average of $x^2$ and $x_{\text{ave}}$ is the average position. Find the standard deviation of the Gaussian wavefunction for arbitrary $a$, $\mu$.
+
+\begin{callout}{Solution:}
+    
+    $x_{\textrm{ave}}$ was found in part (c). $x^2_{\textrm{ave}}$ can be found as:
+
+    \vspace{-0.3 cm}\begin{align*}
+        \frac{a}{\pi} \int_{-\infty}^{\infty} x^2 \exp(-2a(x-\mu)^2) ~dx 
+        &= -2 \frac{d}{da} \int_{-\infty}^{\infty} \exp(-2a(x-\mu)^2) ~dx \quad \textrm{(part a.)}\\
+        &= -2 \frac{d}{da} \sqrt{ \frac{\pi}{a} } \\
+        &= \frac{4}{a} \sqrt{ \frac{\pi}{a} }
+    \end{align*}
+
+    Therefore, the standard deviation $\sigma$ is:
+    \begin{align*}
+        \sqrt{ \frac{4}{a} \sqrt{ \frac{\pi}{a} } - \left(\frac{\mu a}{\pi} \sqrt{ \frac{\pi}{a} }\right)^{2} }
+    \end{align*}
+
+\end{callout}
+
+\end{enumerate}
+\end{enumerate}
+\end{document}
+

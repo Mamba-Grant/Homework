@@ -1,0 +1,132 @@
+\documentclass[12pt]{extarticle}
+
+
+\newcommand{\hmwkTitle}{Granular Separation Procedure}
+\newcommand{\hmwkDueDate}{\today}
+\newcommand{\hmwkClass}{CHEM 138}
+\newcommand{\hmwkAuthorName}{\textbf{Grant Saggars}}
+
+
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+
+\usepackage{float}
+\usepackage{caption}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{XCharter}
+
+\usetikzlibrary{automata,positioning}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.75in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{10pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Callout Box
+%
+
+\definecolor{shadecolor}{RGB}{235,235,235}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%
+% Title Page
+%
+
+\title{
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDueDate}\\
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\section{Procedure}
+\quad Begin by obtaining 15 mL of the mixture, placing it into a 50 mL beaker. Before doing anything else, add in 3g of salt to be included with the mixture. Using a magnet, the metal beads can be carefully removed. The beads can be set aside in a tray for weighing.
+
+Next, pour the mixture over a kitchen sieve into another 40-50 mL beaker temporarily. The popcorn should be at the top of the sieve, and can again be set aside to be weighed.
+
+Now, prepare a Erlenmeyer Flask with a funnel and paper filter. Pour the mixture from the temporary beaker into the funnel on top of the filter paper. Rinse and store the temporary beaker. Using the original beaker, fill it with 50 mL of water, and slowly pour it over the mixture. Using a glass stirring rod, mix the water-salt-sand mixture as you pour. The dissolved water will be separated into the flask, and the sand left in the filter.
+
+Separately weigh the steel shot, popcorn, wet sand-filter combination, and flask of water, as well as the separate trays, flasks, and filters which the separated materials are in. This should provide enough data to separately calculate the mass of each part of the mixture.
+
+\end{document}

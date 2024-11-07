@@ -1,0 +1,103 @@
+\begin{homeworkProblem}
+\textbf{(3 pts)} A physical electric dipole consists of two equal and opposite charges ($\pm q$) separated by a distance $d$. Find the quadrupole and octopole terms in the potential.
+\begin{callout}{Solution:}
+
+    $$ V(\textbf{r}) = \frac{1}{4\pi \epsilon_0} \left( \frac{q}{\textbf{r}_{+}} - \frac{q}{\textbf{r}_{-}} \right) $$
+    The binomial theorem states that for any real number $n$:
+    $$(x+y)^{n}= \begin{pmatrix}n \\ 0\end{pmatrix} x^{n}y^{0}+\begin{pmatrix}n \\ 1 \end{pmatrix}x^{n-1}y^{1} + \begin{pmatrix}n \\ 2 \end{pmatrix}x^{n-2}y^{2}+\dots+\begin{pmatrix}n \\ n-1\end{pmatrix}x^{1}y^{n-1}+\begin{pmatrix}n\\n\end{pmatrix}x^{0}y^{n}$$
+
+        or for the special case of the dipole expansion:
+        $$(1+x)^{n}= 1+nx+\frac{n(n-1)}{2!}x^{2}+\frac{n(n-1)(n-2)}{3!}x^{3}+\dots$$
+        \begin{align*}
+            \frac{1}{\textbf{r}_{\pm}} = \frac{1}{r}\left( 1 \mp \frac{d}{r}\cos\theta \right)^{-1/2}
+            = \frac{1}{r} \left( 1\mp x \right)^{-1/2}
+            \approx \dots + \underbrace{\frac{3}{8}x^2}_{\text{quadrupole}} 
+            - \underbrace{\frac{5}{16} x^3}_{\text{octopole}} 
+            + ~\mathcal{O}^4
+        \end{align*}how do we continue the expansion
+        Substituting back, we get 
+        \begin{align*}
+            V(\textbf{r}) &= \frac{q}{4\pi \epsilon_0} \frac{1}{r} \left( \frac{3d^2}{8r^2}\cancelto{0}{\left[ 1-1 \right]}\cos^2\theta + \frac{5d^3}{16r^3}[1 - (-1)]\cos^3\theta \right) \\ 
+            &= \frac{q}{4\pi \epsilon_0} \frac{5d^3}{8r^4}\cos^3\theta
+        \end{align*}
+
+        %\begin{align*}
+            %&= \frac{q}{4\pi \epsilon_0} \left( \frac{1}{r} \sum_{n=0}^{\infty} \left( \frac{d}{2r} \right)^{n} \left[ \cos\theta - (-1)^{n}\cos\theta \right] \right)\\
+            %\textbf{r}^{2}_{\pm} &= r^2 + \left( \frac{d^2}{2} \right)^{2} \mp rd\cos\theta = r^2\left( 1 \mp \frac{d}{r} \cos \theta + \frac{d^2}{4r^2} + \frac{d^3}{8r^3}\right) \\ 
+            %\frac{1}{\textbf{r}_{\pm}} &= \frac{1}{r} \left( 1\mp \frac{d}{r}\cos\theta \right)^{-1/2} \approx \frac{1}{r} \left( 1 \pm \frac{d}{2r} \cos\theta \right) \\
+            %\frac{1}{r_+} - \frac{1}{r_-} &\approx \frac{d}{r^2} \cos\theta \\ 
+            %V(\textbf{r}) &= \frac{1}{4\pi \epsilon_0} \frac{qd \cos\theta}{r^2}
+        %\end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{(3 pts)} A sphere of radius $R$, centered at the origin, carries a charge density
+\[
+\rho(r, \theta) = \frac{R}{r^2}(R - 2r) \sin \theta,
+\]
+where $k$ is a constant, and $r, \theta$ are the usual spherical coordinates. Find the approximate potential for points on the $z$ axis, far from the sphere. (That is, the first non-zero term in the multipole expansion.)
+\begin{callout}{Solution:}
+    
+    \begin{align*}
+        Q_{\textrm{enc}} &= \frac{k}{a} \int_{0}^{\pi}\sin^2\theta ~d\theta \int_{0}^{R} (R-2r) ~dr \int_{0}^{2\pi} d\phi \\ 
+        &= 4\pi \frac{k}{R} (R^2-R^2) = 0
+    \end{align*}
+
+    Since total charge is zero, there can be no monopole. I can try to calculate the dipole:
+    \begin{align*}
+        V_{\text{dip}}(\textbf{r})&=\frac{1}{4\pi\epsilon_{0}} \frac{1}{r^{2}} \textbf{p} \\
+        \textbf{p} &= 2\pi \int_0^{\pi} \int_0^{R} r \cos\theta \rho(r) r^2\sin\theta ~dr ~d\theta \\
+        &= 2\pi \underbrace{\int_0^{\pi} \cos\theta\sin^2\theta}_{=0}  ~d\theta \int_0^{R} r \left[ \frac{R}{\cancel{r^2}}(R-2r) \cancel{r^2} \right]~dr \\ 
+        &= 0
+    \end{align*}
+
+    This is zero so I will try a quadrupole:
+    \begin{align*}
+        V_{\textrm{quad}}(\textbf{r}) &= \frac{1}{r^{3}} \int \left( r \right)^{2}\left( \frac{3}{2} \cos^2 \theta - \frac{1}{2} \right)\rho(\textbf{r})  ~d\tau \\
+        &= \frac{1}{4\pi \epsilon_0} \frac{R}{r^3} \int_{0}^{\pi} \frac{1}{2}(3\cos^2-1)\theta \sin^2\theta ~d\theta  \int_{0}^{R} r^2 (R-2r) ~dr \int_{0}^{2\pi} d\phi \\
+        &= \frac{1}{4\pi \epsilon_0} \left( \frac{R}{r^3} \right) \left( -\frac{R^4}{6} \right) \left( -\frac{\pi}{16} \right) (2\pi) \\ 
+        &= \frac{1}{4\pi \epsilon_0} \left( \frac{\pi^2R^5}{48r^3} \right)
+    \end{align*}
+
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{(3 pts)} Calculate the dipole moment of a spherical shell of radius $R$ with a surface charge density of $\sigma = k \cos \theta$.
+\begin{callout}{Solution:}
+   
+    \textit{assuming the sphere is centered at the origin.}
+    $$\mathbf{p}\equiv \int \mathbf{r}'\rho(\mathbf{r}')\,d\tau'$$
+    Which for a fixed radius $R$ is just the surface integral 
+    \begin{align*}
+        \textbf{P} &= R \int_{0}^{\pi} \int_{0}^{2\pi} \sigma k \cos\theta ~d\phi ~d\theta = 2\pi R \int_{0}^{\pi} \sigma k\cos\theta ~d\theta \\
+        &= 2\pi R [-\sigma k \cos\pi + \sigma k \cos 0] \\ 
+        &= 4\pi \sigma k R 
+    \end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{(3 pts)} A “pure” dipole $\mathbf{p}$ is situated at the origin, pointing in the $z$ direction. How much work does it take to move a charge $q$ from $(a, 0, 0)$ to $(0, 0, a)$?
+\begin{callout}{Solution:}
+    
+    The work done to move a charge from any two points is given by:
+    $$W=\int_{a}^{b} \textbf{F}\cdot d\ell = -Q \int_{a}^{b} E\cdot d\ell = Q[V(b)-V(a)]$$
+    The potential for this dipole is then 
+    $$V_{\textrm{dip}}(\textbf{r}) = \frac{1}{4\pi \epsilon_0} \frac{\textbf{p}\cdot \mathbf{\hat{r}}}{r^2} = \frac{p\cos\theta}{4\pi \epsilon_0 r^2}$$
+    %Where we derive the electric field by taking the gradient of each component:
+    %\begin{align*}
+    %    E_r &= -\frac{\partial V}{\partial r} = \frac{2p\cos\theta}{4\pi \epsilon_0 r^3} \\ 
+    %    E_\theta &= -\frac{1}{r} \frac{\partial V}{\partial \theta} = \frac{p\sin\theta}{4\pi \epsilon_0r^3} \\ 
+    %    E_\phi &= - \frac{1}{r\sin\theta} \frac{\partial V}{\partial \phi} = 0
+    %\end{align*}
+    %$$E_{\textrm{dip}}(r,\theta) = \frac{p}{4\pi \epsilon_0r^3} (2\cos\theta \mathbf{\hat{r}} + \sin\theta \boldsymbol{\hat{\theta}})$$
+    When the charge is at $(0,0,a)$, the angle between the charge and dipole is $0^\circ$, and when it is at (a,0,0) the angle is $90^\circ$. Therefore we get a force
+    $$\textbf{F} = \frac{qp}{4a^2 \pi \epsilon_0}\left( \cos(0)-\cos(\pi/2) \right) = \frac{qp}{4a^2\pi \epsilon_0}$$
+
+\end{callout}
+\end{homeworkProblem}

@@ -1,0 +1,16 @@
+# Project Proposal: Optical Spectrometer & Solar Measurements; Grant Saggars
+
+## Objectives
+
+My objective is to build an optical spectrometer, capable of measuring the entire visible significant portions of the infrared spectrum. I aim to use this instrument to measure the temperature of the sun. Planck's law describes the temperature of a blackbody as a function of wavelength and intensity, which is conveniently two things accurately measured using a spectrometer.
+
+## Design
+
+Optical spectrometers, in their basic form, require a collimator, diffraction grating, and optical sensor. The collimator can be created using a light-absorbing material in the shape of a tube to minimize scattered light. This component is essentially a 3D-printed tube or box with a slit, and it may include a lens, although this may not be necessary. Diffraction gratings and optical sensors are readily available at low cost, and I already have access to these components. The primary challenge in this experiment lies in safely aiming the spectrometer at the Sun. Two key considerations are vital:
+
+1. The intensity of the sunlight will have to be greatly reduced using a filter. I have AstroSolar's "safety" filter in mind, as it is an inexpensive polymer solar filter rated for optical and digital observation of the sun which has no bias for wavelength, meaning that it should not affect the captured wavelengths of light. Additionally, I hope that the filter will alleviate the need to use a telescope to observe the sun, since there will be nearly no perceived light besides the sun.
+2. Accounting for potential shifts in observed wavelengths due to atmospheric scattering. To mitigate this effect, measurements will be taken as close to midday as possible, and software adjustments will be applied if necessary.
+
+## Timeline
+
+I anticipate the software consuming a majority of the build time, maybe 2-3 weeks, since I have never done image analysis. I plan to use Julia to handle the software, since it has been my preferred language for data processing and scientific work. It has a very good standard VideoIO library, and OpenCV bindings if I choose to make the software real-time. Construction of the spectrometer itself would take only the first half of a week. Calibration will likely take a week after completing or running in parallel with the software development phase. I had initially planned to use lasers to calibrate, but it has been brought to my attention that we have access to samples which would provide very accurate markers for known wavelengths. Finally, I plan to allocate the last week for data collection and authoring the paper.

@@ -1,0 +1,157 @@
+% vim: set ft=tex compiler=latexmk options+=-quiet:
+\documentclass{article}
+
+   \title{Homework 7 (Variation of Parameters)}
+   \author{Grant Saggars}
+   \date{\today}
+
+   \usepackage{amsmath}
+   \usepackage{import}
+   \usepackage{pdfpages}
+   \usepackage{transparent}
+   \usepackage{xcolor}
+   \usepackage{framed}
+   \usepackage{enumerate}
+   \usepackage{cancel}
+   \usepackage{silence}
+   \WarningsOff*
+   % \ErrorsOff*
+
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{section}{4}
+\section{$y'' + 9y = 9 \sec^2(3t), \quad 0 < t < \pi/6$}
+Find the general solution of the given differential equation.
+
+\begin{callout}{Solution:}
+
+    Because $t$ is a function of $\sec$, the method of undetermined coefficients cannot be used. Instead, we should apply the method of variation of parameters to find the particular solution.
+
+    \begin{enumerate}
+        \item Homogeneous Solution:
+            \begin{align*}
+                r^2 + 9 &= 0 \implies r = \pm 3i  \\
+                y_c &= c_1\cos(3t) + c_2\sin(3t)
+            \end{align*}
+
+        \item Particular Solution:
+
+            The particular solution when using variation of parameters is defined as $y_p = u_1y_1 + u_2y_2$, where $u_1$ and $u_2$ are functions of $t$. Additionally, $0 = u_1'y_1 + u_2'y_2~(1)$.
+            \begin{align*}
+                y_p &= u_1 \cos(3t) + u_2 \sin(3t) \\
+                y_p' &= \cancel{u_1'\cos(3t)} - 3u_1 \sin(3t) + \cancel{u_2'\sin(3t)} + 3u_2 \cos(3t) \\
+                y_p'' &= -3u_1'\sin(3t) - 9u_1\cos(3t) + 3u_2'\cos(3t) - 9u_2\sin(3t)
+            \end{align*}
+
+            Substituting and simplifying:
+            \begin{align*}
+                \begin{array}{c}-3u_1'\sin(3t) - \cancel{9u_1\cos(3t)} + 3u_2'\cos(3t)\\ - \cancel{9u_2\sin(3t)} +
+            \cancel{9u_1 \cos(3t)} + \cancel{9u_2 \sin(3t))}\end{array} = 9\sec^2(3t) \\
+            \implies 3u_2'\cos(3t) - 3u_1'\sin(3t)  = 9\sec^2(3t) \tag{2}
+            \end{align*}
+
+            \newpage
+            Now we can multiply equation one by $\sin^2(3t)$ and equation two by $\cos^2(3t)$ to eliminate the $\sec^2(3t)$.
+            % \begin{align*}
+            %     u_1' \cos(3t) + u_2' \sin(3t) &= 0 \tag{1} \\
+            %     3u_2'\cos(3t) - 3u_1'\sin(3t) &= 9\sec^2(3t) \tag{2}
+            % \end{align*}
+
+            % Which makes the equations:
+            \begin{align*}
+                u_1' \cos(3t)\sin^2(3t) + u_2' \sin^3(3t) &= 0 \tag{1} \\
+                3u_2'\cos^3(3t) - 3u_1'\sin(3t)\cos^2(3t) &= \cancelto{9}{9\sec^2(3t)\cos^2(3t)} \tag{2}
+            \end{align*}
+
+            % Finally, we can take the sum of the equations:
+            % \begin{align*}
+            %     u_1' \cos(3t)\sin^2(3t) + u_2' \sin^3(3t) &= 0 \\
+            %     +~u_2'\cos^3(3t) - u_1'\sin(3t)\cos^2(3t) &= 3 \\
+            %     \implies \begin{array}{r} \cancel{\cos^2(3t)}(u_2'\cos(3t) - u_1'\sin(3t)) \\
+            %                             +~\cancel{\sin^2(3t)}(u_1\cos(3t)+u_2\sin(3t))
+            %              \end{array} &= 3
+            % \end{align*}
+    \end{enumerate}
+\end{callout}
+
+\setcounter{section}{6}
+\section{$4y'' + y = 2 \sec(t/2), \quad -\pi < t < \pi$}
+Find the general solution of the given differential equation.
+
+\begin{callout}{Solution:}
+
+\begin{enumerate}
+    \item Homogeneous Solution:
+        \begin{align*}
+            4r^2 + 1 &= 0 \implies r = \pm \frac{1}{2}i \\
+            y_c &= c_1\cos\left(\frac{1}{2}t\right)+c_2\sin\left(\frac{1}{2}t\right)
+        \end{align*}
+
+    \item Particular Solution:
+
+        Let $y_1 = \cos\left(\frac{1}{2}t\right)$ and $y_2 = \sin\left(\frac{1}{2}t\right)$;
+        \begin{align*}
+            \begin{array}{l}
+                y_p = u_1\cos\left(\frac{1}{2}t\right) + u_2\sin\left(\frac{1}{2}t\right) \\
+                y'_p = \cancel{u'_1\cos\left(\frac{1}{2}t\right)} - \frac{1}{2}u_1 \sin\left(\frac{1}{2}t\right) + \cancel{u'_2\sin\left(\frac{1}{2}t\right)} + \frac{1}{2}u_2\cos\left(\frac{1}{2}t\right) \\
+                y''_p =  - \frac{1}{2}u'_1 \sin\left(\frac{1}{2}t\right) - \frac{1}{4}u_1 \cos\left(\frac{1}{2}t\right) + \frac{1}{2}u'_2\cos\left(\frac{1}{2}t\right) -\frac{1}{4}u_2\sin\left(\frac{1}{2}t\right) \\
+            \end{array}
+        \end{align*}
+
+        Substituting these back into the initial differential equation, we get:
+        \begin{align*}
+            - 2u'_1 \sin\left(\frac{1}{2}t\right) - \cancel{u_1 \cos\left(\frac{1}{2}t\right)} + 2u'_2\cos\left(\frac{1}{2}t\right) - \cancel{u_2\sin\left(\frac{1}{2}t\right)} \\
+            + \cancel{u_1\cos\left(\frac{1}{2}t\right)} + \cancel{u_2\sin\left(\frac{1}{2}t\right)} &= 2\sec(t/2)
+        \end{align*}
+
+        Now we are left with the equations:
+        \begin{align*}
+            u'_1\cos\left(\frac{1}{2}t\right)+u'_2\sin\left(\frac{1}{2}t\right) &= 0 \\
+            - 2u'_1 \sin\left(\frac{1}{2}t\right) + 2u'_2\cos\left(\frac{1}{2}t\right) &= 2\sec(t/2)
+        \end{align*}
+
+        Multiplying the first by $\sin(t/2)$ and the second by $\cos(t/2)$ and adding to simplify:
+        \begin{align*}
+            u'_1\cos\left(\frac{1}{2}t\right)\sin\left(\frac{1}{2}t\right)+u'_2\sin\left(\frac{1}{2}t\right)\cos\left(\frac{1}{2}t\right) & \\
+            - 2u'_1 \sin\left(\frac{1}{2}t\right)\cos\left(\frac{1}{2}t\right) + 2u'_2\cos\left(\frac{1}{2}t\right)\sin\left(\frac{1}{2}t\right) &= 2
+        \end{align*}
+        I need to solve my system now and im done 
+\end{enumerate}
+\end{callout}
+
+\setcounter{section}{13}
+\section{$x^2y'' - xy' + (x^2-\frac{1}{4} )y = 3x^{3/2} \sin x, \quad x > 0; \\ y_1 = x^{-1/2}\sin(x),~y_2 = x^{-1/2}\cos(x)$}
+Verify that the given functions $y_1$ and $y_2$ satisfy the corresponding homogeneous equation; then find a particular solution of the given nonhomogeneous equation.
+
+\begin{callout}{Solution:}
+    \begin{enumerate}
+        \item Verifying $y_1$ and $y_2$:
+        \begin{align*}
+            y_1 &= x^{-1/2}\sin(x) \\
+            y_1' &= -\frac{\sin x}{2x^{3/2}} + \frac{\cos x}{\sqrt{x}} \\
+            y_1'' &= \frac{-4x^2\sin x - 4x\cos x + 3\sin x}{4x^{5/2}}
+        \end{align*}
+
+    \item Particular Solution:
+        \begin{enumerate}
+            \item System:
+            \begin{align*}
+                u'_1y_1 + u'_2y_2  &= 0; \\
+                u_1y_1 + u_2y_2 &= y_p
+            \end{align*}
+
+            \item 
+        \end{enumerate}
+    \end{enumerate}
+\end{callout}
+
+\end{document}
+
+
+
+u_1 \cos(3t)\sin^2(3t) + u_2 \sin^3(3t) + u_2\cos^3(3t) - u_1\sin(3t)\cos^2(3t) 

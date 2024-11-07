@@ -1,0 +1,202 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Define Article %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Using Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{empheq}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{psfrag}
+\usepackage{pgfplots}
+\usepackage{bm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Other Settings
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Page Setting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\geometry{a4paper}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define some useful colors %%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{ocre}{RGB}{243,102,25}
+\definecolor{mygray}{RGB}{243,243,244}
+\definecolor{deepGreen}{RGB}{26,111,0}
+\definecolor{shallowGreen}{RGB}{235,255,255}
+\definecolor{deepBlue}{RGB}{61,124,222}
+\definecolor{shallowBlue}{RGB}{235,249,255}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define an orangebox command %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\orangebox[1]{\fcolorbox{ocre}{mygray}{\hspace{1em}#1\hspace{1em}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% English Environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{mytheoremstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\newtheoremstyle{myproblemstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{theorem}{Theorem}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{definition}{Definition}[section]
+\theoremstyle{myproblemstyle}
+\newmdtheoremenv[linecolor=black,leftmargin=0pt,innerleftmargin=10pt,innerrightmargin=10pt,]{problem}{Problem}[section]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Plotting Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepgfplotslibrary{colorbrewer}
+\pgfplotsset{width=8cm,compat=1.9}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title & Author %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Homework 5}
+\author{Grant Saggars}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+    \maketitle
+    
+Math 590 HW5
+Problem 1. Let $A=\left[\begin{array}{llll}1 & 4 & 7 & 10 \\ 2 & 5 & 8 & 11 \\ 3 & 6 & 9 & 12\end{array}\right]$. Find a basis for $\operatorname{Image}(A)$ and a basis for $\operatorname{Kernel}(A)$.
+
+\begin{definition}
+    (Range and Image are interchangeable terms)
+    For $T$ a function from $V$ to $W$, the range of $T$ is the subset of $W$ consisting of those vectors that are the form $Tv$ for some $v \in V$.
+    \begin{displaymath}
+        \operatorname{range(T)=\{ Tv : v \in V \}} 
+    \end{displaymath}
+    Axler, S. (2015). Linear Algebra Done Right (3rd Ed.). Springer.
+\end{definition}
+
+To find the basis vectors of $A$, it must be first reduced to RREF:
+
+\begin{align*}
+    \operatorname{RREF}(A) = \begin{bmatrix}
+        1 & 0 & -1 & -2 \\
+        0 & 1 & 2 & 3 \\
+        0 & 0 & 0 & 0
+    \end{bmatrix}
+\end{align*}
+
+We can see that there are pivots in row 1 \& 2, so the basis must be:
+
+\begin{align*}
+    \left\{\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}, \begin{bmatrix} 4 \\ 5 \\ 6 \end{bmatrix} \right\}
+\end{align*}
+
+Because the third and fourth variables are free, a basis for $\operatorname{Kernel}(A)$ is 
+$$\left\{\left[\begin{array}{c} 1 \\ -2 \\ 1 \\ 0  \end{array}\right],\left[\begin{array}{c} 2 \\ -3 \\ 0 \\ 1  \end{array}\right]\right\}$$
+
+\newpage
+Problem 2. Let $T: \mathbb{R}^2 \rightarrow \mathbb{R}^2$ be the linear transformation by projecting a vector in $\mathbb{R}^2$ to the line $y=2x$.
+
+\vspace{0.4cm} a) Find the algebraic formula for $T$. Namely the matrix $A$ such that $T(\vec{v})=A \vec{v}$.
+
+\begin{enumerate}
+    \item Since we are projecting across the line $y=2x$, the direction vector is \begin{bmatrix} 1 \\ 2 \end{bmatrix}
+    \item Additionally, the formula for projection is: $\frac{\vec{e}_1 \cdot \vec{d}}{\|\vec{d}\|^2} \cdot \vec{d}$
+
+    \begin{align*}
+        e_1 &= \frac{\begin{bmatrix} 1 \\ 0 \end{bmatrix} \cdot \begin{bmatrix} 1 \\ 2 \end{bmatrix}}{1+2^2} \cdot \begin{bmatrix} 1 \\ 2 \end{bmatrix} 
+        = \begin{bmatrix} 1/5 \\ 2/5 \end{bmatrix} \\
+        e_1 &= \frac{\begin{bmatrix} 0 \\ 1 \end{bmatrix} \cdot \begin{bmatrix} 1 \\ 2 \end{bmatrix}}{1+2^2} \cdot \begin{bmatrix} 1 \\ 2 \end{bmatrix}
+        = \begin{bmatrix} 2/5 \\ 4/5 \end{bmatrix}
+    \end{align*}
+
+    Using these vectors as a basis for $T$:
+
+    \begin{align*}
+        = \begin{bmatrix}
+            \frac{1}{5} & \frac{2}{5} \\
+            \frac{2}{5} & \frac{4}{5}
+        \end{bmatrix}
+    \end{align*}
+    \end{enumerate}
+
+b) Show that $A^{100}=A$.
+\begin{enumerate}
+    \item Given that $A = \begin{bmatrix} 1 & 0 \\ 2 & 0 \end{bmatrix}$:
+        \begin{align*}
+            A^2 &= \begin{bmatrix} 1 & 0 \\ 2 & 0 \end{bmatrix} \begin{bmatrix} 1 & 0 \\ 2 & 0 \end{bmatrix}
+            = \begin{bmatrix}
+                (1)(1) + (0)(2) & (0)(1) + (0)(0) \\ 
+                (2)(1) + (0)(2) & (0)(2) + (0)(0)
+            \end{bmatrix} \\
+                &=\begin{bmatrix} 1 & 0 \\ 2 & 0 \end{bmatrix} 
+        \end{align*}
+
+    Because after squaring $A$, $A$ does not change, by induction we can say that $A^{100}$ = $A$.
+\end{enumerate}
+
+\newpage
+Problem 3. Give a (total of) one-page summary of Sections $3.1,3.2$ in the textbook.
+
+\section*{Matrix Transformations} 
+
+\qquad Matrices can be understood as functions, since when written in the form $A\vec{x} = b$, we can understand that the independent variable is $x$, and the dependent variable is $b$.
+
+Often, we do not call such an operation a function; instead, it is normally called a transformation.
+\begin{definition}
+    A transformation from $\mathbf{R}^n$ to $\mathbf{R}^m$ is a rule $T$ that assigns to each vector $x$ in $\mathbf{R}^n$ a vector $T(x)$ in $\mathbf{R}^m$.
+    \begin{itemize}
+         \item $\mathbf{R}^n$ is called the domain of $T$.
+         \item $\mathbf{R}^m$ is called the codomain of $T$.
+         \item For $x$ in $\mathbf{R}^n$, the vector $T(x)$ in $\mathbf{R}^m$ is the image of $x$ under $T$.
+         \item The set of all images $\left\{T(x) \mid x\right.$ in $\left.\mathbf{R}^n\right\}$ is the range of $T$.
+    \end{itemize}
+    The notation $T: \mathbf{R}^n \longrightarrow \mathbf{R}^m$ means " $T$ is a transformation from $\mathbf{R}^n$ to $\mathbf{R}^m$."
+    
+\end{definition}
+
+Matrix transformations are defined by matrices and involve transforming vectors from one space to another. Given an \(m \times n\) matrix \(A\), the associated matrix transformation \(T\) maps vectors from \(\mathbb{R}^n\) to \(\mathbb{R}^m\) by multiplying them with \(A\). The domain of \(T\) is \(\mathbb{R}^n\) because \(A\) has \(n\) columns, and the codomain is \(\mathbb{R}^m\) because \(A\) results in vectors with \(m\) entries when multiplied by a vector. For example, if \(A\) is a specific matrix, and \(T(x)\) is the associated transformation, \(T\) applied to a vector like \([-1, -2, -3]\) would yield \([-14, -32]\) as the result.
+
+\begin{definition}
+Let $A$ be an $m \times n$ matrix, and let $T(x)=A x$ be the associated matrix transformation.
+    \begin{itemize}
+        \item The domain of $T$ is $\mathbf{R}^n$, where $n$ is the number of columns of $A$.
+        \item The codomain of $T$ is $\mathbf{R}^m$, where $m$ is the number of rows of $A$.
+        \item The range of $T$ is the column space of $A$.
+    \end{itemize}
+\end{definition}
+
+\newpage
+\section*{One-to-one and Onto Transformations}
+
+\begin{definition}
+    A transformation $T: \mathbf{R}^n \rightarrow \mathbf{R}^m$ is oneto-one if, for every vector $b$ in $\mathbf{R}^m$, the equation $T(x)=b$ has at most one solution $x$ in $\mathbf{R}^n$.
+\end{definition}
+
+This essentially means that for every vector, there is zero or one solution.
+Onto (surjective) solutions are similar, but they have \textit{at least} one solution for every vector $b$.
+
+\vspace{0.5cm} \begin{minipage}{0.45\textwidth}
+\center T is one-to-one
+\begin{itemize}
+    \item $T(x)=b$ has at most one solution for every $b$.
+    \item The columns of $A$ are linearly independent.
+    \item A has a pivot in every column.
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\center T is onto (Surjective)
+\begin{itemize}
+    \item $T(x)=b$ has at least one solution for every $b$.
+    \item The columns of $A$ span $\mathbf{R}^m$.
+    \item $A$ has a pivot in every row.
+\end{itemize}
+\end{minipage}
+
+\vspace{0.5cm} Put simply, the difference between the two is that there may be "unmapped" regions for onto (surjective) transformations, but one-to-one projections are not "compressed". This means that every vector gets a single new vector.
+
+\begin{itemize}
+    \item An onto transformation might be a rotation by 90 degrees counterclockwise. Every point in the target space can be reached by rotating some point in the source space.
+    \item A one-to-one transformation might be a scaling transformation that scales all vectors by a factor of 2. No two distinct vectors in the source space will map to the same vector in the target space because the scaling operation preserves distinctness.
+\end{itemize}
+
+\end{document}

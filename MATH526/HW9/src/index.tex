@@ -1,0 +1,161 @@
+\begin{homeworkProblem}[22]
+	In the American Heart Association journal Hypertension, researchers report that individuals who practice Transcendental Meditation (TM) lower their blood pressure significantly. If a random sample of 225 male TM practitioners meditate for 8.5 hours per week with a standard deviation of 2.25 hours, does that suggest that, on average, men who use TM meditate more than 8 hours per week? Quote a P-value in your conclusion.
+	\begin{callout}{Solution:}
+
+		Let $H_0: \mu \leq 8$ and $H_1: \mu > 8$ (hours per week).
+		% The critical region is $z>z_{\alpha}$, so:
+		\begin{enumerate}[(1)]
+			% \item $z_{\alpha}$ is computed with a standard normal distribution and gives 1.645.
+			\item \textbf{The test statistic for a test concerning a single mean and standard deviation} is: $$Z= \frac{\bar{x}-\mu}{\sigma /\sqrt{ n }} = \frac{8.5-8}{2.25/\sqrt{ 225 }}=3.33\dots$$
+			\item Using a normal CDF, we get for $P(Z>3.333)=0.0004$.
+		\end{enumerate}
+		This is a very low likelihood, so we reject the null hypothesis. Therefore men who practice TM meditate at least 8 hours a week.
+
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[23]
+	Test the hypothesis that the average content of containers of a particular lubricant is 10 liters if the contents of a random sample of 10 containers are 10.2, 9.7, 10.1, 10.3, 10.1, 9.8, 9.9, 10.4, 10.3, and 9.8 liters. Use a 0.01 level of significance and assume that the distribution of contents is normal.
+	\begin{callout}{Solution:}
+
+		$H_0: \mu=10$ and $H_1: \mu \neq 10$. Also, $n=10$, $\bar{x}=10.06$, $S=0.246$.
+		Because we make a non-directional comparison, we use a two-tailed p-value, given $\nu=n-1=9$.
+		\textbf{For tests concerning a single mean with a SAMPLE standard deviation} we use the sampling distribution:
+		$$T=\frac{\bar{x}-\mu}{S/\sqrt{ n }}=\frac{10.06-10}{0.246/\sqrt{ 10 }} = 0.771$$
+		Given $\alpha = 0.01$, a t-distribution with $\nu=9$ gives $t_{0.005}=\pm3.249$.
+		This value is contained within the interval, so we cannot reject the null hypothesis. The p-value for this using the same t-distribution is given by $2P(t<-0.771)=0.460\dots$. This is also a fairly large p-value, so further evidence that we cannot reject $H_0$.
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}[24]
+	The average height of females in the freshman class of a certain college has historically been 162.5 centimeters with a standard deviation of 6.9 centimeters. Is there reason to believe that there has been a change in the average height if a random sample of 50 females in the present freshman class has an average height of 165.2 centimeters? Use a P-value in your conclusion. Assume the standard deviation remains the same.
+	\begin{callout}{Solution:}
+
+		$H_0: \mu = 162.5$, $H_1: \mu \neq 162.5$ (cm), $n=50$, $\bar{x}=165.2$, $\sigma =6.9$.
+		Again with the same single-mean single-standard deviation distribution:
+		$$Z=\frac{165.2-162.5}{6.9/\sqrt{ 50 }} = 2.76\dots$$
+		Because this is two-tailed, we must find the cdf to the right of the positive value and left of the negative value. The p-value corresponding to this is $0.0056$ (on my calculator). This indicates that the null hypothesis ought to be rejected.
+
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[26]
+	According to a dietary study, high sodium intake may be related to ulcers, stomach cancer, and migraine headaches. The human requirement for salt is only 220 milligrams per day, which is surpassed in most single servings of ready-to-eat cereals. If a random sample of 20 similar servings of a certain cereal has a mean sodium content of 244 milligrams and a standard deviation of 24.5 milligrams, does this suggest at the 0.05 level of significance that the average sodium content for a single serving of such cereal is greater than 220 milligrams? Assume the distribution of sodium contents to be normal.
+	\begin{callout}{Solution:}
+
+		$H_0:\mu=220$, $H_0:\mu > 220$:
+		$$Z=\frac{244-220}{24.5/\sqrt{ 20 }}=4.38\dots$$
+		Given a significance value $\alpha = 0.05$ for a one tail test $z_{0.05}$ equals $1.64\dots$.
+		Because $Z$ is greater than $z_{\alpha}$, we reject the null hypothesis.
+		There is more than 220 mg of sodium per single serving.
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}[42]
+	Five samples of a ferrous-type substance were used to determine if there is a difference between a laboratory chemical analysis and an X-ray fluorescence analysis of the iron content. Each sample was split into two subsamples and the two types of analysis were applied. Following are the coded data showing the iron content analysis:
+
+	\begin{center}
+		\begin{tabular}{|l|c|c|c|c|c|}
+			\hline
+			Analysis & 1   & 2   & 3   & 4   & 5   \\
+			\hline
+			X-ray    & 2.0 & 2.0 & 2.3 & 2.1 & 2.4 \\
+			Chemical & 2.2 & 1.9 & 2.5 & 2.3 & 2.4 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	Assuming that the populations are normal, test at the 0.05 level of significance whether the two methods of analysis give, on the average, the same result.
+	\begin{callout}{Solution:}
+
+		Let $H_0: \bar{x}_{1}=\bar{x}_{2}$, and $H_1:\bar{x}_{1}\neq\bar{x}_{2}$.
+		We have a sample mean difference $\bar{D}$ and standard deviation $S_D$ -0.1 and $0.1414\dots$, respectively.
+		\textbf{For an inference between paired samples} with $\nu=n-1=4$, we use the test statistic:
+		$$T=\frac{\bar{D}-\mu_D}{S_D/\sqrt{ n }} = \frac{-0.1-0}{0.1414/\sqrt{ 5 }}=-1.5813\dots $$
+		Using a t-distribution with $\nu=n-1=4$, $t_{0.025}=2.776\dots$. We fail to reject this at $P<0.05$, and conclude there is not a significant difference.
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}[45]
+	A taxi company manager is trying to decide whether the use of radial tires instead of regular belted tires improves fuel economy. Twelve cars were equipped with radial tires and driven over a prescribed test course. Without changing drivers, the same cars were then equipped with regular belted tires and driven once again over the test course. The gasoline consumption, in kilometers per liter, was recorded as follows:
+
+	\begin{center}
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Car & Radial Tires & Belted Tires \\
+			\hline
+			1   & 4.2          & 4.1          \\
+			2   & 4.7          & 4.9          \\
+			3   & 6.6          & 6.2          \\
+			4   & 7.0          & 6.9          \\
+			5   & 6.7          & 6.8          \\
+			6   & 4.5          & 4.4          \\
+			7   & 5.7          & 5.7          \\
+			8   & 6.0          & 5.8          \\
+			9   & 7.4          & 6.9          \\
+			10  & 4.9          & 4.7          \\
+			11  & 6.1          & 6.0          \\
+			12  & 5.2          & 4.9          \\
+			\hline
+		\end{tabular}
+	\end{center}
+
+	Can we conclude that cars equipped with radial tires give better fuel economy than those equipped with belted tires? Assume the populations to be normally distributed. Use a P-value in your conclusion.
+	\begin{callout}{Solution:}
+
+		Let $H_0: \mu_B = \mu_R$, $H_1: \mu_B \neq \mu_R$.
+		The difference statistics between sample 1 and 2 is $\bar{D}= 0.1416\dots$ and $S_D = 0.1975\dots$.
+		\textbf{For an inference between paired samples} with $\nu=n-1=11$, we use the test statistic:
+		$$T=\frac{\bar{D}-\mu_D}{\sqrt{ S_D/\sqrt{ n } }}=\frac{0.142 - 0.198}{0.198/\sqrt{ 12 }}=-0.97974\dots $$
+		A two-tailed test gives a p-value calculated using a t-test with $\nu=11$ equal to $2 P(t<-0.97974)=0.384\dots$. This p-value is relatively large, so we cannot conclusively reject $H_0$.
+
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[46]
+	In Review Exercise 9.91 on page 313, use the t-distribution to test the hypothesis that the diet reduces a woman’s weight by 4.5 kilograms on average against the alternative hypothesis that the mean difference in weight is less than 4.5 kilograms. Use a P-value.
+	\begin{callout}{Solution:}
+
+		$H_0: \mu=4.5$, and $H_1: \mu < 4.5$ (kg). Wtih df $\nu=n-1=6$, and $\bar{D}$=4.7, $S_D=3.23$ our test statistic is:
+		$$T=\frac{\bar{D}-\mu_D}{S_D/\sqrt{ n }} = \frac{4.7-4.5}{3.23/\sqrt{ 15 }} = 0.23981\dots$$
+
+		Using this test statistic on a t-distribution with df=14, we find $P(t<-0.23981)\dots=0.406\dots$. This is a large p-value and therefore we cannot reject $H_0$.
+
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[57]
+	A new radar device is being considered for a certain missile defense system. The system is checked by experimenting with aircraft in which a kill or a no kill is simulated. If, in 300 trials, 250 kills occur, accept or reject, at the 0.04 level of significance, the claim that the probability of a kill with the new system does not exceed the 0.8 probability of the existing device.
+	\begin{callout}{Solution:}
+
+		$H_0:p<0.8$, $H_1:p>0.8$.
+		$Z_{0.04}=1.751\dots$.
+		We get $\hat{p}=\frac{250}{300}=0.833\dots$, so we use the test statistic:
+		$$Z = \frac{\hat{p}-p_0}{\sqrt{ p_0q_0 / n}} = \frac{0.833-0.8}{\sqrt{ (0.8)(0.2)/300 }}=1.42894\dots < 1.751\dots$$
+		The test statistic is not significant at the 0.04 level. We cannot reject the null hypothesis.
+
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[59]
+	A fuel oil company claims that one-fifth of the homes in a certain city are heated by oil. Do we have reason to believe that fewer than one-fifth are heated by oil if, in a random sample of 1000 homes in this city, 136 are heated by oil? Use a P-value in your conclusion.
+	\begin{callout}{Solution:}
+
+		$H_0: p=\frac{1}{5}$, and $H_1: p<\frac{1}{5}$.
+		Using the \textbf{single proportion test statistic}:
+		$$Z=\frac{\hat{p}-p_0}{\sqrt{ p_0q_0/n }}=\frac{0.136-0.2}{\sqrt{ (0.2)(0.8)/1000 }}=-5.05964\dots$$
+		Using a standard normal distribution, we find $P(z<-5.05964\dots)\approx0$. We reject the null hypothesis, since this is a small p-value.
+
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[62]
+	In a controlled laboratory experiment, scientists at the University of Minnesota discovered that 25\% of a certain strain of rats subjected to a 20\% coffee bean diet and then force-fed a powerful cancer-causing chemical later developed cancerous tumors. Would we have reason to believe that the proportion of rats developing tumors when subjected to this diet has increased if the experiment were repeated and 16 of 48 rats developed tumors? Use a 0.05 level of significance.
+	\begin{callout}{Solution:}
+
+		Let $H_0:p_1=p_2$ and $H_1:p_1<p_2$.
+		For an 0.05 level significance on a standard nomral distribution (single-tailed): $z_{0.05}=1.64\dots$.
+		\textbf{For a test on a single proportion} our test statistic is:
+		$$Z=\frac{\hat{p}-p_0}{\sqrt{ p_0q_0/n }}=\frac{0.33-0.25}{\sqrt{ (0.67)(0.33)/48 }}=1.17873\dots $$
+
+	\end{callout}
+\end{homeworkProblem}

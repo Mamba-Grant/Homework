@@ -1,0 +1,388 @@
+\documentclass[12pt]{article}
+
+
+\newcommand{\hmwkTitle}{Homework \#3}
+\newcommand{\hmwkDueDate}{\today}
+\newcommand{\hmwkClass}{MATH 526}
+\newcommand{\hmwkAuthorName}{\textbf{Grant Saggars}}
+
+
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+
+\usepackage{float}
+\usepackage{caption}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{XCharter}
+
+\usetikzlibrary{automata,positioning}
+
+\usepackage{geometry}
+\geometry{top=1in, bottom=1in, left=1in, right=1in} % Adjust margins as needed
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.75in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Callout Box
+%
+
+\definecolor{shadecolor}{RGB}{235,235,235}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%
+% Title Page
+%
+
+\title{
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDueDate}\\
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{homeworkProblem}[3]
+	Let $W$ be a random variable giving the number of heads minus the number of tails in three tosses of a coin. List the elements of the sample space $S$ for the three tosses of the coin and to each sample point assign a value $w$ of $W$.
+	\begin{callout}{Solution:}
+
+		\begin{multicols}{2}
+
+			\begin{align*}
+				\begin{array}{rr}
+					\{HHH\}: & 3  \\
+					\{HTH\}: & 1  \\
+					\{HHT\}: & 1  \\
+					\{THH\}: & 1  \\
+					\{HTT\}: & -1 \\
+					\{THT\}: & -1 \\
+					\{TTH\}: & -1 \\
+					\{TTT\}: & -3 \\
+				\end{array}
+			\end{align*}
+
+		\end{multicols}
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[7]
+	The total number of hours, measured in units of 100 hours, that a family runs a vacuum cleaner over a period of one year is a continuous random variable \(X\) that has the density function
+
+	\[ f(x) = \begin{cases} x, & 0 < x < 1, \\ 2 - x, & 1 \leq x < 2, \\ 0, & \text{elsewhere}. \end{cases} \]
+
+	Find the probability that over a period of one year, a family runs their vacuum cleaner
+	\begin{enumerate}[(a)]
+		\item Less than 120 hours
+		      \begin{callout}{Solution:}
+
+			      $$ \int_{0}^{1.2} f(x) ~dx = \int_{0}^{1} x ~dx + \int_{1}^{1.2} 2-x ~dx = \frac{1}{2} + \frac{9}{50} = 68\% $$
+		      \end{callout}
+		\item Between 50 and 100 hours.
+		      \begin{callout}{Solution:}
+
+			      $$ \int_{0.5}^{1} f(x) ~dx = \int_{0.5}^{1} x ~dx = 37.5\% $$
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[13]
+	The probability distribution of \(X\), the number of imperfections per 10 meters of a synthetic fabric in continuous rolls of uniform width, is given by
+
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|}
+			\hline
+			x    & 0    & 1    & 2    & 3    & 4    \\
+			\hline
+			f(x) & 0.41 & 0.37 & 0.16 & 0.05 & 0.01 \\
+			\hline
+		\end{tabular}
+	\end{center}
+
+	Construct the cumulative distribution function of \(X\).
+	\begin{callout}{Solution:}
+
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|c|c|}
+				\hline
+				x    & 0    & 1    & 2    & 3    & 4   \\
+				\hline
+				c(x) & 0.41 & 0.78 & 0.94 & 0.99 & 1.0 \\
+				\hline
+			\end{tabular}
+		\end{center}
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[14]
+	The waiting time, in hours, between successive speeders spotted by a radar unit is a continuous random variable with cumulative distribution function \(F(x) = \begin{cases} 0, & x < 0, \\ 1 - e^{-8x}, & x \geq 0. \end{cases}\)
+
+	Find the probability of waiting less than 12 minutes between successive speeders
+	\begin{enumerate}[(a)]
+		\item Using the cumulative distribution function of \(X\);
+		      \begin{callout}{Solution:}
+			      $$ \int 1-e^{-8x} ~dx = \left. 0.2 - \frac{1}{8}e^{-8x} \right|_{0}^{0.2} \approx 10\% $$
+		      \end{callout}
+		\item Using the probability density function of \(X\).
+		      \begin{callout}{Solution:}
+			      $$ \int_{0}^{0.2} 1-e^{-8x} ~dx = 0.2 - \frac{1}{8}e ^{-1.6} + \frac{1}{8} \approx 10\% $$
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[17]
+	A continuous random variable \(X\) that can assume values between \(x = 1\) and \(x = 3\) has a density function given by \(f(x) = \frac{1}{2}\).
+	\begin{enumerate}[(a)]
+		\item Show that the area under the curve is equal to 1.
+		      \begin{callout}{Solution:}
+			      $$ \int_{1}^{3} \frac{1}{2} ~dx = (1/2)(2) = 1 $$
+		      \end{callout}
+		\item Find \(P(2 < X < 2.5)\).
+		      \begin{callout}{Solution:}
+			      $$ \int_{2}^{2.5} \frac{1}{2} ~dx = (1/2)(1/2) = 0.25 $$
+		      \end{callout}
+		\item Find \(P(X \leq 1.6)\).
+		      \begin{callout}{Solution:}
+			      $$ \int_{1}^{1.6} (\frac{1}{2}) ~dx = (1/2)(0.6) = 0.3 $$
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[33]
+	Suppose a certain type of small data processing firm is so specialized that some have difficulty making a profit in their first year of operation. The probability density function that characterizes the proportion \(Y\) that make a profit is given by
+
+	\[ f(y) = \begin{cases} ky^4(1 - y)^3, & 0 \leq y \leq 1, \\ 0, & \text{elsewhere}. \end{cases} \]
+	\begin{enumerate}[(a)]
+		\item What is the value of \(k\) that renders the above a valid density function?
+		      \begin{callout}{Solution:}
+			      $$ \frac{1}{k} = \int_{0}^{1} y^4(1-y)^3 ~dx = \frac{1}{280} \implies k = 280 $$
+		      \end{callout}
+		\item Find the probability that at most 50\% of the firms make a profit in the first year.
+		      \begin{callout}{Solution:}
+			      $$ \int_{0}^{0.5} 280 y^4(1-y)^3  ~dx \approx 36.4\% $$
+		      \end{callout}
+		\item Find the probability that at least 80\% of the firms make a profit in the first year.
+		      \begin{callout}{Solution:}
+			      $$ \int_{0}^{0.8} 280 y^4(1-y)^3  ~dx \approx 94\% $$
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[36]
+	On a laboratory assignment, if the equipment is working, the density function of the observed outcome, \(X\), is given by
+
+	\[ f(x) = \begin{cases} 2(1 - x), & 0 < x < 1, \\ 0, & \text{otherwise}. \end{cases} \]
+	\begin{enumerate}[(a)]
+		\item Calculate \(P(X \leq \frac{1}{3})\).
+		      \begin{callout}{Solution:}
+			      $$ \int_{0}^{1/3} 2(1-x) ~dx = 5/9 $$
+		      \end{callout}
+		\item What is the probability that \(X\) will exceed 0.5?
+		      \begin{callout}{Solution:}
+			      $$ \int_{0.5}^{1} 2(1-x) ~dx = 1/4 $$
+		      \end{callout}
+		\item Given that \(X \geq 0.5\), what is the probability that \(X\) will be less than 0.75?
+		      \begin{callout}{Solution:}
+			      $$ \int_{0.5}^{0.75} 2(1-x) ~dx = 3/16 $$
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[38]
+	If the joint probability distribution of \(X\) and \(Y\) is given by \(f(x, y) = \frac{x + y}{30}\) for \(x = 0, 1, 2, 3;\ y = 0, 1, 2\), find \(P(0 < X < 1 | Y = 2)\).
+	\begin{callout}{Solution:}
+		$$ \int_{0}^{1} \frac{x+2}{30} ~dx = 1/12 $$
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}[41]
+	A candy company distributes boxes of chocolates with a mixture of creams, toffees, and cordials. Suppose that the weight of each box is 1 kilogram, but the individual weights of the creams, toffees, and cordials vary from box to box. For a randomly selected box, let \(X\) and \(Y\) represent the weights of the creams and the toffees, respectively, and suppose that the joint density function of these variables is
+
+	\[ f(x, y) = \begin{cases} 24xy, & 0 \leq x \leq 1, 0 \leq y \leq 1, x + y \leq 1, \\ 0, & \text{elsewhere}. \end{cases} \]
+	\begin{enumerate}[(a)]
+		\item Find the probability that in a given box the cordials account for more than \(1/2\) of the weight.
+		      \begin{callout}{Solution:}
+
+			      We want to find the $P(1-X-Y)>0.5$ which simplifies to $P(X+Y)<0.5$:
+			      $$
+				      Z = \int_{0}^{1} \int_{0}^{0.5-x} 24xy ~dy ~dx
+				      = \int_{0}^{1} 12x(-x+0.5)^2 ~dx = 0.5
+			      $$
+		      \end{callout}
+		\item Find the marginal density for the weight of the creams.
+		      \begin{callout}{Solution:}
+			      $$ g(x) = \int_{0}^{1} 24xy ~dy = 12x $$
+		      \end{callout}
+		\item Find the probability that the weight of the toffees in a box is less than \(1/8\) of a kilogram if it is known that creams constitute \(3/4\) of the weight.
+		      \begin{callout}{Solution:}
+			      $$ \int_{0}^{1/8} 24(3/4)y ~dy = 9/64$$
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}[43]
+	Let \(X\) denote the reaction time, in seconds, to a certain stimulus and \(Y\) denote the temperature (\(^{\circ}\text{F}\)) at which a certain reaction starts to take place. Suppose that two random variables \(X\) and \(Y\) have the joint density
+
+	\[ f(x, y) = \begin{cases} 4xy, & 0 < x < 1, 0 < y < 1, \\ 0, & \text{elsewhere}. \end{cases} \]
+
+	Find
+	\begin{enumerate}[(a)]
+		\item \(P(0 \leq X \leq \frac{1}{2} \text{ and } \frac{1}{4} \leq Y \leq \frac{1}{2})\);
+		      \begin{callout}{Solution:}
+			      $$ \int_{0}^{1/2} \int_{1/4}^{1/2} 4xy ~dy ~dx = 3/64 $$
+		      \end{callout}
+		\item \(P(X < Y)\).
+		      \begin{callout}{Solution:}
+			      $P(X<Y)$ implies a region of $0 < y < 1$ and $0 < x < y$:
+			      $$ \int_{0}^{1} \int_{0}^{y} 4xy ~dx ~dy = 1/2 $$
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[45]
+	Let \(X\) denote the diameter of an armored electric cable and \(Y\) denote the diameter of the ceramic mold that makes the cable. Both \(X\) and \(Y\) are scaled so that they range between 0 and 1. Suppose that \(X\) and \(Y\) have the joint density
+
+	\[ f(x, y) = \begin{cases} \frac{1}{y}, & 0 < x < y < 1, \\ 0, & \text{elsewhere}. \end{cases} \]
+
+	Find \(P(X + Y > \frac{1}{2})\).
+	\begin{callout}{Solution:}
+		$$ \int_{0}^{1} \int_{1/2-y}^{1} \frac{1}{y} ~dx ~dy = 2\ln(2)-1 \approx 38\% $$
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[47]
+
+	The amount of kerosene, in thousands of liters, in a tank at the beginning of any day is a random amount \(Y\) from which a random amount \(X\) is sold during that day. Suppose that the tank is not resupplied during the day so that \(x \leq y\), and assume that the joint density function of these variables is
+
+	\[ f(x, y) = \begin{cases} 2, & 0 < x \leq y < 1, \\ 0, & \text{elsewhere}. \end{cases} \]
+
+	\begin{enumerate}[(a)]
+		\item Determine if \(X\) and \(Y\) are independent.
+		      \begin{callout}{Solution:}
+
+			      \begin{align*}
+				      MDF(x) = \int_{x}^{1} 2 ~dy = 2-2x \\
+				      MDF(y) = \int_{0}^{y} 2 ~dx = 2y
+			      \end{align*}
+
+			      It is obvious that their JDF is not equal to the product of the MDF, therefore they are not independent.
+
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[56]
+	The joint density function of the random variables X and Y is
+
+	$$ f(x, y) = \begin{cases} 6x, & 0 < x < 1, 0 < y < 1 - x, \\ 0, & \text{elsewhere.} \end{cases} $$
+
+	\begin{enumerate}[(a)]
+		\item Show that X and Y are not independent.
+		      \begin{callout}{Solution:}
+
+			      \begin{align*}
+				      MDF(x) = \int_{0}^{1-x} 6x ~dy = 3(1-y)^2 \\
+				      MDF(y) = \int_{0}^{1} 6x ~dx = 3
+			      \end{align*}
+
+			      Their product is clearly not the JDF, therefore they are not independent.
+
+		      \end{callout}
+		\item Find \( P(X > 0.3 | Y = 0.5) \).
+
+		      \begin{callout}{Solution:}
+			      \begin{align*}
+				      P(X > 0.3 | Y = 0.5) = \frac{\int_{0.3}^{1} 6x ~dx}{\int_{0}^{1} 6x ~dx} = \frac{2.73}{3} = 0.91
+			      \end{align*}
+		      \end{callout}
+
+	\end{enumerate}
+
+
+\end{homeworkProblem}
+
+\end{document}

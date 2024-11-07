@@ -1,0 +1,148 @@
+\begin{homeworkProblem}
+    (3 pts) Prove the 2D rotation matrix will preserve a dot product. That is, it is the same in both frames:
+    $$A'_y B'_y + A'_z B'_z = A_y B_y + A_z B_z$$
+
+    \begin{callout}{Solution:}
+        
+        To know that a dot product is preserved under an operation it stands to reason that if the angle between the two vectors as well as their magnitudes remains the same, then their dot product will also remain the same. We can do this through the derivation of the rotation matrix:
+
+        \begin{align*}
+            \vec{v}_{1} &= \begin{cases} x = r\cos\theta \\ y = r\sin\theta \end{cases} \\
+                \vec{v}_{2} &= \begin{cases} x' = r'\cos(\theta+\varphi) \\ y' = r'\sin(\theta+\varphi) \end{cases}
+        \end{align*}
+
+        By the double angle identity:
+
+        \begin{align*}
+            \cos(\theta + \varphi) &= \cos \theta \cos \varphi - \sin \theta \sin \varphi \\ 
+            \sin(\theta + \varphi) &= \cos\theta\sin\varphi + \sin\theta\cos\varphi
+        \end{align*}
+
+        We want $r'=r$, I will attempt to validate this later. This fact allows us to write:
+
+        \begin{align*}
+            \vec{v}_{1} 
+            &= \begin{cases}
+                x' = x\cos\varphi - y\sin\varphi \\
+                y' = x\sin\varphi + y\cos\varphi
+            \end{cases} \\ 
+            &= \begin{pmatrix} 
+                \cos\varphi & -\sin\varphi \\ 
+                \sin\varphi & \cos\varphi
+            \end{pmatrix}
+        \end{align*}
+
+        Now, if we are only working with the understanding that this matrix rotates and we wanted to verify that vector magnitues are preserved under it (although we technically get to make this happen when we define how rotations work) we could simply take the deterimnant which gives us the identity:
+
+        $$\cos^2\varphi + \sin^2\varphi = 1$$
+
+        This is all sufficient to know that dot products are preserved since:
+
+        $$a \cdot b = |a||b|\cos\varphi$$
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (3 pts) Prove the triple product identity
+    $$\mathbf{A} \times (\mathbf{B} \times \mathbf{C}) = \mathbf{B}(\mathbf{A} \cdot \mathbf{C}) - \mathbf{C}(\mathbf{A} \cdot \mathbf{B})$$
+
+    \begin{callout}{Solution:}
+
+        Expanding the cross product gives:
+
+        \begin{align*}
+            \mathbf{A} \times (\mathbf{B} \times \mathbf{C}) &=
+            \textbf{A} \times \left\{ (B_yC_z - C_yB_z)\hat{x} - (B_xC_z-B_zC_x)\hat{y} + (B_xC_y-B_yC_x)\hat{z} \right\} \\
+            &= \{(A_y)(B_xC_y-B_yC_x)-(A_z)(B_zC_x-B_xC_z)\}\hat{x}
+        \end{align*}
+
+        Working with the x-axis to avoid clutter, we can rearrange to get sums inside parentheses (The right hand of the equation we are trying to prove can give a hint on how to move it around):
+
+        \begin{align*}
+            &= A_yB_xC_y - A_yB_yC_x - A_zB_zC_x+A_zB_xC_z \\
+            &= B_x(A_yC_y+A_zC_z) - C_x(A_zB_z+A_yB_y)
+        \end{align*}
+
+        Notice that this would proove our equality true if we only had x-components inside parentheses. Since we have a difference, though, we can simply add on this last term which ordinarily cancels to zero:
+
+            $$ = B_x(A_yC_y+A_zC_z) - C_x(A_zB_z+A_yB_y) + (A_xB_xC_x-A_xB_xC_x) $$
+
+            We can move like terms together:
+
+            $$ = B_x(A_xC_x+A_yC_y+A_zC_z) - C_x(A_xB_x+A_yB_y+A_zB_z) $$
+
+            This now simplifies to our dot products:
+
+            $$ = B_x(\textbf{A} \cdot \textbf{C})-C_x(\textbf{A} \cdot \textbf{B})$$
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (3 pts) Calculate the divergence and curl of
+    $$\mathbf{v} = xy\hat{x} + 2yz\hat{y} + 3zx\hat{z}$$
+
+    \begin{callout}{Solution:}
+        
+        \begin{enumerate}[i.]
+            \item Divergence:
+                \begin{align*}
+                    \nabla \cdot \textbf{v} &= \frac{\partial }{\partial x}(xy) + \frac{\partial }{\partial y}(2yz) + \frac{\partial }{\partial z}(3zx) \\ 
+                    &= y + 2z + 3x
+                \end{align*}
+            \item Curl:
+                \begin{callout}{Solution:}
+                    \begin{align*}
+                        \nabla \times \textbf{v} &= \left| \begin{array}{ccc} 
+                            \textbf{i} & \textbf{j} & \textbf{k} \\ 
+                            \frac{\partial}{\partial x} & \frac{\partial }{\partial y} & \frac{\partial }{\partial z} \\ 
+                            xy & 2yz & 3zx
+                        \end{array} \right| \\ 
+                        &= (-2z,~ 3z,~ -x)
+                    \end{align*}
+                \end{callout}
+        \end{enumerate}
+
+    \end{callout}
+
+\end{homeworkProblem}
+    
+\newpage
+\begin{homeworkProblem}
+    (1 pts) Calculate the gradient of
+    $$f(x, y, z) = e^x \sin(y) \ln(z)$$
+
+    \begin{callout}{Solution:}
+        
+        \begin{align*}
+            \nabla f &= \left(e^x\sin(y)\ln(z),~ e^x\cos(y)\ln(z),~ e^x\sin(y)\frac{1}{z}\right)
+        \end{align*}
+
+    \end{callout}
+
+\end{homeworkProblem}
+    
+\begin{homeworkProblem}
+    (3 pts) EXTRA CREDIT Show that the dot product in 3D is invariant under rotations
+    $$\mathbf{A} \cdot \mathbf{B} = \mathbf{A}' \cdot \mathbf{B}'$$
+
+    \begin{callout}{Solution:}
+        
+        In general, a dot product is the product of a row and column vector, say $\vec{u}$ and $\vec{v}$. Rotation matrices are also orthagonal, and their transpose is equal to their inverse. As a result the dot product under a rotation in n-dimensions can be seen as:
+
+        \begin{align*}
+            \vec{u}R(\vec{v}R)^T &= \vec{u}RR^T\vec{v}^T \\ 
+            &= \vec{u}\cancel{RR^{-1}}\vec{v}^T \\ 
+            &= \vec{u} \vec{v}^T
+        \end{align*}
+        (note that this defines both $\vec{u}$ and $\vec{v}$ as row vectors for the purpose of transposition)
+
+    \end{callout}
+
+\end{homeworkProblem}
+    

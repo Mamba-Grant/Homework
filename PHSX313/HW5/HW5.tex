@@ -1,0 +1,128 @@
+\documentclass{article}
+% \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{xcolor}
+\usepackage{framed}
+
+\definecolor{shadecolor}{RGB}{248,248,248}
+
+\newenvironment{callout}[1]
+{\begin{shaded*}
+\textbf{#1}
+}
+{\end{shaded*}}
+
+
+\title{Physics 313-Fall 2023 
+ Homework 5 
+ Due 5:00 pm Oct. 4, 2023 }
+
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+  \item (a) (2 pts) According to observer $\mathcal{O}$, a certain particle has a momentum $715 \mathrm{MeV} / \mathrm{c}$ and a total relativistic energy of $1012 \mathrm{MeV}$. What is the rest mass of this particle?
+\end{enumerate}
+
+\begin{callout}{Solution:}
+\begin{align*}
+    (1012) (1.602\times10^{-13}) \mathrm{~J} = m_0c^2 \implies m_0 = 1.80\times10^{-27} \mathrm{~kg} \tag{1} \\
+    (1012) \mathrm{~MeV} = m_0c^2 \implies m_0 = 1.12\times10^{ -14 } \mathrm{~MeV/c^2} \tag{2} 
+\end{align*}
+\end{callout}
+
+\vspace{0.25cm}(b) (2 pts) An observer $\mathcal{O}^{\prime}$ in a different frame of reference measures the momentum of this particle to be $863 \mathrm{MeV} /$ c. What does $\mathcal{O}^{\prime}$ measure for the total relativistic energy of the particle?
+
+\begin{callout}{Solution:}
+    \begin{enumerate}
+        \item Given that $E^2 = (pc)^2+(mc^2)^2$:
+            \begin{align*}
+                E'^2 &= (715c)^2 + (1.12\times10^{ -14 } c^2)^2 \\ 
+                     &= 2.59\times10^{ 11 } 
+            \end{align*}
+    \end{enumerate}
+\end{callout}
+
+
+%
+% \begin{callout}{Solution:}
+% \begin{enumerate}
+%     \item Writing out what we have so far:
+%         \begin{align*}
+%             715\times10^6 &= \gamma(u_1) (1.12 \times 10^{-8}) v_0 && 863\times10^6 = \gamma(u_2) (1.12 \times 10^{-8}) v_0 \\
+%             1012\times10^6 &= \gamma(u_1) (1.12 \times 10^{-8}) c^2 && e_2 = \gamma(u_2) (1.12 \times 10^{-8}) c^2 
+%         \end{align*}
+%     \item 
+%         \begin{align*}
+%             u_1 & = 1.89\times10^7 \implies v_0 = 
+%         \end{align*}
+% \end{enumerate}
+% \end{callout}
+%
+\newpage
+\begin{enumerate}
+  \setcounter{enumi}{1}
+  \item Two tau particles collide and become an electron and muon. The mass of a tau is $1777 \mathrm{MeV} / \mathrm{c}^{2}$, the mass of a muon is $106 \mathrm{MeV} / \mathrm{c}^{2}$, and the mass of an electron is 0.511 $\mathrm{MeV} / \mathrm{c}^{2}$. The initial state taus have velocities of $-0.75 \mathrm{c}$ and $0.75 \mathrm{c}$.
+\end{enumerate}
+
+(a) (2 pts) Convert the electron mass to $\mathrm{kg}$ and compare to the known electron mass. (The point is to show Energy $/ c^{2}$ is a unit of mass and the above masses are correct. It's often a much more natural unit for elementary particles.)
+
+\begin{callout}{Solution:}
+    \begin{enumerate}
+        \item Given that the known electron mass (according to google) is $9.1\times10^{-31}$ kg, and 1MeV = $1.602\times10^-13$ J :
+            \begin{align*}
+                \frac{(0.511)(1.602\times10^{-13})}{c^2} = m \implies m = 9.1\times10^{-31} \mathrm{~kg}
+            \end{align*}
+    \end{enumerate}
+\end{callout}
+
+(b) (5 pts) Calculate the energy and momentum of both the electron and the muon. (You can assume that this is one dimensional, elastic scattering.)
+
+\begin{callout}{Solution:}
+    \begin{enumerate}
+        \item Finding initial momentum using: $p = \gamma(u) mu^2$
+            \begin{align*}
+                % E_i &= 2\gamma(0.75c)(1777)(c^2) = 4.829\times10^{20} \\
+                p_i &= (1777)\gamma(0.75c)(0.75c-0.75c) = 0
+            \end{align*}
+
+        \item Finding final energy \& momentum using: $E^2 = (pc)^2 + (mc^2)^2$
+            \begin{align*}
+                p_i &= p_f \implies p_f = 0 \\
+                E &= mc^2 \implies \begin{array}{l} E_{\mu f} = 9.526\times10^{18} \\ E_{e f} = 4.593\times10^{16} \\ E_f = 9.572\times10^{18} \end{array} \\
+                E_i &= E_f \implies E_i = 9.572\times10^{18} \\
+                    &\implies E_\tau = 4.786\times10^{18}
+            \end{align*}
+    \end{enumerate}
+\end{callout}
+
+(c) (3 pts) Is the sum of particle masses the same between the initial and final states? Is mass conserved?
+
+\begin{callout}{Solution:}
+    No, $2(1777) \neq 0.511 + 106$
+\end{callout}
+
+(d) (3 pts) Calculate the invariant mass of both the initial and final state systems. Is invariant mass of the initial and final states conserved? Is the invariant mass the same of the sum of initial or final state masses?
+
+\begin{enumerate}
+  \setcounter{enumi}{2}
+  \item Momentum of light:
+\end{enumerate}
+
+(a) (2 pts) Find the momentum of a gamma ray with an energy of $9 \mathrm{MeV}$. Express momentum in both $\mathrm{kg} \mathrm{m} / \mathrm{s}$ and $\mathrm{eV} / \mathrm{c}$.
+
+\begin{callout}{Solution:}
+    \begin{enumerate}
+        \item $E = |p|c \implies p = 9\times10^6 \mathrm{~eV/c}$
+        \item $E = |p|c \implies p = \frac{9 \times 1.062\times10^{ -13 }}{c} = 4.81 \mathrm{~kgm/s}$
+    \end{enumerate}
+\end{callout}
+
+\end{document}

@@ -1,0 +1,322 @@
+\documentclass{article}
+
+
+\newcommand{\hmwkTitle}{Homework 2}
+\newcommand{\hmwkDueDate}{\today}
+\newcommand{\hmwkClass}{MATH 526}
+\newcommand{\hmwkAuthorName}{\textbf{Grant Saggars}}
+
+\usepackage{geometry}
+\geometry{top=1in, bottom=1in, left=1in, right=1in} % Adjust margins as needed
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{framed}
+\usepackage{tikz}
+
+\usepackage{float}
+\usepackage{caption}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{XCharter}
+
+\usetikzlibrary{automata,positioning}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.75in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Callout Box
+%
+
+\definecolor{shadecolor}{RGB}{235,235,235}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%
+% Title Page
+%
+
+\title{
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDueDate}\\
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{homeworkProblem}[14]
+	If $S = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\}$ and $A = \{0, 2, 4, 6, 8\}$, $B = \{1, 3, 5, 7, 9\}$, $C = \{2, 3, 4, 5\}$, and $D = \{1, 6, 7\}$, list the elements of the sets corresponding to the following events:
+	\begin{enumerate}[(a)]
+		\item $A \cup C$;
+		      \begin{callout}{Solution:}
+			      $\{ 0,2,3,4,5,6,8 \}$
+		      \end{callout}
+		\item $A \cap B$;
+		      \begin{callout}{Solution:}
+			      $\{ 2,4 \}$
+		      \end{callout}
+		\item $C'$;
+		      \begin{callout}{Solution:}
+			      $\{ 1,6,7,8,9 \}$
+		      \end{callout}
+		\item $(C' \cap D) \cup B$;
+		      \begin{callout}{Solution:}
+			      $\{ 1,3,5,6,7,9 \}$
+		      \end{callout}
+		\item $(S \cap C)'$;
+		      \begin{callout}{Solution:}
+			      $\{ 1,6,7,8,9 \}$
+		      \end{callout}
+		\item $A \cap C \cap D'$.
+		      \begin{callout}{Solution:}
+			      $\emptyset$
+		      \end{callout}
+	\end{enumerate}
+	\setcounter{homeworkProblemCounter}{33}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[34]
+	\begin{enumerate}[(a)]
+		\item How many distinct permutations can be made from the letters of the word \textbf{COLUMNS}?
+		      \begin{callout}{Solution:}
+			      7! = 5040
+		      \end{callout}
+		\item How many of these permutations start with the letter \textbf{M}?
+		      \begin{callout}{Solution:}
+			      6! = 720
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[36]
+	\begin{enumerate}[(a)]
+		\item How many three-digit numbers can be formed from the digits 0, 1, 2, 3, 4, 5, and 6 if each digit can be used only once?
+		      \begin{callout}{Solution:}
+
+			      ${}_{7}P_3 = 210$
+		      \end{callout}
+		\item How many of these are odd numbers?
+		      \begin{callout}{Solution:}
+
+			      There are 3 choices for the ones place, 6 for the tens, and 5 for the hundreds. $3\times6\times5=90$
+		      \end{callout}
+		\item How many are greater than 330?
+		      \begin{callout}{Solution:}
+
+			      If we choose 4,5,6 for the hundreds, there are 6 choices for the tens and 5 for the ones. If we choose three for the hundreds, there are 3 choices for the tens, and 5 choices for the ones. Therefore there are $3\times6\times5+1\times3\times5=105$ choices.
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[50]
+	Assuming that all elements of $S$ in Exercise 2.8 on page 42 are equally likely to occur, find:
+	(The sample space $S$ is the set of all possible outcomes of two repeated dice throws, $x,~y$ respectively.)
+	\vspace{0.3cm} \hrule
+	\begin{enumerate}[(a)]
+		\item The probability of event $A$.
+		      \begin{callout}{Solution:}
+
+			      The event $A$ is defined as $\{\{x+y>8\} ~\forall~ x,y \in S\}$, i.e., all sequential rolls who's sum are greater than 8. There are 10 events out of 36 possible permutations ($6\times6$). This gives a probability $\frac{10}{36} = \frac{5}{18} = 0.2\overline{7}$.
+		      \end{callout}
+		\item The probability of event $C$.
+		      \begin{callout}{Solution:}
+
+			      The event $C$ is defined as $\{\{x+y>4\} ~\forall~ x,y \in S\}$, i.e., all sequential rolls who's sum are greater than 4. Drawing a tree shows that there are 30 events ($3+4+5+6+6+6$) out of the 36 possible events, giving a probability $30/36=15/18=0.8\overline{3}$.
+		      \end{callout}
+		\item The probability of event $A \cap C$.
+		      \begin{callout}{Solution:}
+
+			      All possible rolls could be listed out, however it is instead more sensible to consider that for an event to be both greater than 4 and greater than 8, only events which are greater than 8 qualify. Therefore the probability is the same as event $A=0.8\overline{7}$.
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[56]
+	An automobile manufacturer is concerned about a possible recall of its best-selling four-door sedan. If there were a recall, there is a probability of 0.25 of a defect in the brake system, 0.18 of a defect in the transmission, 0.17 of a defect in the fuel system, and 0.40 of a defect in some other area.
+	\begin{enumerate}[(a)]
+		\item What is the probability that the defect is the brakes or the fueling system if the probability of defects in both systems simultaneously is 0.15?
+		      \begin{callout}{Solution:}
+			      We are looking for the probability of $d_b \cup d_f$ given that a part is defective. This implies that the part has defective breaks ($d_b$), defective fueling ($d_f$), or both. Because the events are not dependent on each other, the full probability is:
+			      $$ P(d_b) + P(d_f) - P(d_b \cap d_f) = 0.25+0.18-0.15 = 0.28 $$
+		      \end{callout}
+		\item What is the probability that there are no defects in either the brakes or the fueling system?
+		      \begin{callout}{Solution:}
+			      The probability that there are no defects in either system is the complement of ($d_b \cup d_f$) which equals 1-0.28=0.72.
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[60]
+
+	If 3 books are picked at random from a shelf containing 5 novels, 3 books of poems, and a dictionary, what is the probability that:
+	\begin{enumerate}[(a)]
+		\item the dictionary is selected?
+		      \begin{callout}{Solution:}
+
+			      We can express the probability in terms of favorable combinations: $P=\frac{\text{favorable combinations}}{\text{total combinations}}$. Since we are interested in the scenario where the dictionary is pulled, we automatically need to consider that the dictionary is one of the selected books. This leaves any combination of 2 remaining books as the last two books $\binom{8}{2}$ The total combinations is finally given by $\binom{9}{3}$.
+			      $$ \frac{\binom{8}{2}}{\binom{9}{3}} = \frac{28}{84} = \frac{1}{3} $$
+		      \end{callout}
+		\item 2 novels and 1 book of poems are selected?
+
+		      \begin{callout}{Solution:}
+
+			      Again, the solution can be expressed using combinations:
+			      $$ \frac{\binom{5}{2}\binom{3}{1}}{\binom{9}{3}} = \frac{5}{14} $$
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[78]
+	A manufacturer of a flu vaccine is concerned about the quality of its flu serum. Batches of serum are processed by three different departments having rejection rates of 0.10, 0.08, and 0.12, respectively. The inspections by the three departments are sequential and independent.
+	\begin{enumerate}[(a)]
+		\item What is the probability that a batch of serum survives the first departmental inspection but is rejected by the second department?
+		      \begin{callout}{Solution:}
+			      $$ 0.9\times0.08 = 0.072 $$
+		      \end{callout}
+		\item What is the probability that a batch of serum is rejected by the third department?
+		      \begin{callout}{Solution:}
+			      $$ (0.9)(0.92)(0.12)=0.0994 $$
+		      \end{callout}
+	\end{enumerate}
+	\setcounter{homeworkProblemCounter}{81}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[82]
+	For married couples living in a certain suburb, the probability that the husband will vote on a bond referendum is 0.21, the probability that the wife will vote on the referendum is 0.28, and the probability that both the husband and the wife will vote is 0.15. What is the probability that
+	\begin{enumerate}[(a)]
+		\item at least one member of a married couple will vote?
+		      \begin{callout}{Solution:}
+
+			      We are looking for $P(W \cup H)$ which is equal to:
+			      $$ P(W) + P(H) - P(W \cap H) = 0.21+0.28-0.15 = 0.35 $$
+		      \end{callout}
+		\item a wife will vote, given that her husband will vote?
+		      \begin{callout}{Solution:}
+			      $$ P(W|H) = \frac{P(H \cap W)}{P(H)} = \frac{0.15}{0.21} = 0.71 $$
+		      \end{callout}
+		\item a husband will vote, given that his wife will not vote?
+
+		      \begin{callout}{Solution:}
+			      $$ P(H|W') = \frac{P(H \cap W')}{P(W')} = \frac{P(H)-P(H \cap W)}{P(W')} = \frac{0.06}{0.72} = 0.08\overline{3} $$
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[95]
+	In a certain region of the country it is known from past experience that the probability of selecting an adult over 40 years of age with cancer is 0.05. If the probability of a doctor correctly diagnosing a person with cancer as having the disease is 0.78 and the probability of incorrectly diagnosing a person without cancer as having the disease is 0.06, what is the probability that an adult over 40 years of age is diagnosed as having cancer?
+
+	\begin{callout}{Solution:}
+
+		Let the probability of having cancer $A=0.05$ and the probability of being diagnosed with cancer correctly $P(B|A)=0.78$ and the probability of being incorrectly diagnosed with cancer $P(B|A')=0.06$. Bayes's Rule can be used to find the total probability of being diagnosed with cancer:
+		$$ P(B) = P(B|A)P(A) + P(B|A')P(A') = P(B|A)P(A) + P(B|A')P(1-A) = 0.096 $$
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[100]
+	A regional telephone company operates three identical relay stations at different locations. During a one-year period, the number of malfunctions reported by each station and the causes are shown below.
+	\begin{center}
+		\begin{tabular}{lccc}
+			\hline
+			\textbf{Station}                    & \textbf{A} & \textbf{B} & \textbf{C} \\
+			\hline
+			Problems with electricity supplied  & 2          & 1          & 1          \\
+			Computer malfunction                & 4          & 3          & 2          \\
+			Malfunctioning electrical equipment & 5          & 4          & 2          \\
+			Caused by other human errors        & 7          & 7          & 5          \\
+			\hline
+		\end{tabular}
+	\end{center}
+
+	Suppose that a malfunction was reported and it was found to be caused by other human errors. What is the probability that it came from station C?
+
+	\begin{callout}{Solution:}
+
+		Let $C$ be the event that the error comes from station C, and let $H$ be the event of a human error.
+
+		% Let $P(M|A) = \frac{7}{19} = 0.368$, $P(M|B) = 0.368$, $P(M|B) = \frac{5}{19} = 0.263$, and $P(M) = \frac{19}{43} = 0.441$. Because all stations are identical, the chances of a malfunction due to human errors is equal.
+
+		Given that all stations are identical, $P(C) = 1/3$. The probability of a human error given that it occurs at station C is given by: $P(H|C) = \frac{5}{5+2+2+1} = \frac{1}{2}$. $P(H|C')$ is found similarly and equals $14/33$.
+
+		$$ P(C|H) = \frac{P(C)P(H|C)}{P(C)P(H|C)+P(C')P(H|C')} \approx 0.37 $$
+	\end{callout}
+\end{homeworkProblem}
+
+\end{document}

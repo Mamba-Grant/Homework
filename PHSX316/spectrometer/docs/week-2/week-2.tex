@@ -1,0 +1,51 @@
+\documentclass{article}
+
+\title{Week 2 Report}
+\author{Grant Saggars}
+\date{\today}
+
+\usepackage{amsmath}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{geometry}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{lipsum}  
+\usepackage{caption}
+\usepackage{float}
+\usepackage{bbold}
+% \usepackage{fontspec}
+
+% \setmainfont{BespokeSerif-Regular}
+\definecolor{shadecolor}{RGB}{235,235,235}
+
+\geometry{top=1in, bottom=1in, left=1in, right=1in}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT BEGINS HERE %
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+
+\section{Housing \& Mounts}
+Development of the instrument housing and mounts has been my focus this week. Progress was a bit slower than the previous week due to exams, however I made good progress nonetheless. 
+
+I intend to project the image of the diffracted light onto the camera sensor directly, which has been a serious design difficulty because the camera is so small. I would like to allow myself some flexibility in my mounting system, so that I could possibly instead project onto a screen which the camera observes. 
+
+I've divided the design into two components: internal mounts and the housing box. Once I've confirmed the arrangement of all internal parts, I can swiftly design the housing box. Therefore, rather than prioritizing the outer box, my focus has been on soundly aligning everything on the inside.
+
+I finished designing the mount for my diffraction grating Thursday night. I have vast experience with non-CAD modelling, but this was my first time creating a constrained model. Much of the time was spent learning CAD, rather than actually designing. Now that I have the ropes though, iterating on my designs and finishing the camera mount will take little time.
+
+\section{Software}
+I implemented the feature to sample spectral density along any line, rather than an exclusively horizontal one. This will be useful to correct for very minute alignment errors. Besides this feature, the only thing left to do is to implement calibration features, which will be done after the housing is complete.
+
+\section{Timeline}
+This was a slow week, but I believe I am still working at a reasonable pace. Not much will need to be done once the housing is complete, so I optimistically hope to be done by the next weekend. Measurements can be taken the next week and I should have enough time to fix the instrument if anything needs to be adjusted.
+
+\end{document}

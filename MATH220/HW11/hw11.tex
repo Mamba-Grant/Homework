@@ -1,0 +1,99 @@
+\documentclass{article}
+\title{Homework 11}
+\author{Grant Saggars}
+\date{\today}
+
+\usepackage{amsmath}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{geometry}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{lipsum}  
+\usepackage{caption}
+\usepackage{float}
+\usepackage{bbold}
+% \usepackage{fontspec}
+
+% \setmainfont{BespokeSerif-Regular}
+\definecolor{shadecolor}{RGB}{235,235,235}
+
+\geometry{top=1in, bottom=1in, left=1in, right=1in}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT BEGINS HERE %
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+\setcounter{enumi}{8}
+\item Find the general solution of $x'=\begin{bmatrix} 1 & -1 & 4 \\ 3 & 2 & -1 \\ 2 & 1 & -1 \end{bmatrix}x$ :
+    \begin{callout}{Solution:}
+     \begin{align*}
+        0 &= \left| \begin{matrix} 1-\lambda & -1 & 4 \\ 3 & 2-\lambda & -1 \\ 2 & 1 & -1 -\lambda  \end{matrix} \right| \\
+        &= (1-\lambda)((2-\lambda)(-1-\lambda)-(-1)(1))+ (3)(-1-\lambda)+2 + 4(3-(2-\lambda)(2)) \\
+        &= (-\lambda+1)(\lambda+2)(\lambda-3) \implies \lambda = \{1,-2,3\}
+    \end{align*}
+
+    Therefore: $x'=\begin{bmatrix} 1 & 0 & 0 \\ 0 & -2 & 0 \\ 0 & 0 & 3 \end{bmatrix}x$, and it follows that the solutions to the differential equation are:
+
+    \begin{align*}
+        \begin{array}{l} 
+            x_1 = c_1 e^{t} \\
+            x_2 = c_2 e^{-2t} \\
+            x_3 = c_3 e^{3t}
+        \end{array}
+        = \begin{bmatrix}  
+            c_1 e^{t} & 0 & 0 \\             
+            0 & c_2 e^{-2t} & 0 \\
+            0 & 0 & c_3 e^{3t}
+        \end{bmatrix}
+    \end{align*}
+    \end{callout}
+
+\setcounter{enumi}{10}
+\item Find the general solution of $x'=\begin{bmatrix} 5 & -1 \\ 3 & 1 \end{bmatrix}x$ :
+
+    \begin{callout}{Solution:}
+        \begin{align*}
+            0 &= \left| \begin{array}{cc} 5-\lambda & -1 \\ 3 & 1-\lambda  \end{array} \right| \\
+            &= (5-\lambda)(1-\lambda)+3 = (\lambda - 2)(\lambda - 4) \\
+            \implies \lambda &= \{2,4\}
+        \end{align*}
+
+        Therefore: $x'=\begin{bmatrix} 2 & 0 \\ 0 & 4 \end{bmatrix}x$, and it follows that the solutions to the differential equation are:
+
+    \begin{align*}
+        \begin{array}{l} 
+            x_1 = c_1 e^{2t} \\
+            x_2 = c_2 e^{4t}
+        \end{array} 
+        = \begin{bmatrix} c_1e^{2t} & 0 \\ 0 & c_2 e^{4t} \end{bmatrix}
+    \end{align*}
+
+    Now, in order to fulfill the boundary conditions:
+
+    \begin{align*}
+        \left[\begin{array}{cc|c} e^{0} & 0 & 2 \\ 0 & e^{0} & -1 \end{array}\right]
+        \implies \begin{array}{l} c_1 = 2 \\ c_2 = -1 \end{array}
+    \end{align*}
+
+    \setcounter{enumi}{6}
+    \item 
+        \begin{callout}{Solution:}
+            \begin{align*}
+                0 &= \left| \begin{array}{cc} 1-\lambda & -5 \\ 1 & -3-\lambda \end{array} \right|
+                &= (1-\lambda)(-3-\lambda)+5 = 0
+                \implies \lambda = \{ -1+i, -1-i \}
+            \end{align*}
+        \end{callout}
+
+\end{callout}
+\end{enumerate}
+\end{document}

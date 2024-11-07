@@ -1,0 +1,70 @@
+\begin{callout}{Polar Coordinates:}
+    We have 
+    $$\begin{cases}
+        x = r\cos\phi \\ 
+        y = r\sin\phi
+    \end{cases} 
+    \qquad 
+    \begin{cases}
+        r = \sqrt{ x^2 + y^2 }\\
+        \phi = \arctan \frac{y}{x}
+    \end{cases}$$
+    \begin{multicols}{2}
+ 
+        \subsection{Radial Time Derivative}
+        \begin{align*}
+            \frac{d\vec{r}}{dt} &= \frac{d}{dt} \left( \cos\phi \hat{x}, \quad r\sin\phi \hat{y} \right) \\
+            &= \frac{d}{dt}(\cos\phi)\hat{x} + \cos\phi \frac{d\hat{x}}{dt} \\ &\qquad + \frac{d}{dt}(\sin\phi)\hat{y} +\sin\phi \frac{d\hat{y}}{dt} \\ 
+            &= - \sin \phi \dot{\phi} \hat{x} + \cos\phi \dot{\phi} \hat{y} \\ 
+            &= \dot{\phi} \left( -\sin\phi\hat{x} + \cos\phi \hat{y} \right) \\ 
+            &= \dot{\phi} \hat{\phi}
+        \end{align*}
+        
+        \subsection{Angular Time Derivative}
+        \begin{align*}
+            \frac{d\vec{\phi}}{dt} &= \frac{d}{dt} (-\sin\phi\hat{x} + \cos\phi\hat{y}) \\ 
+            &= -\frac{d}{dt} (\sin\phi)\hat{x]} + (-\sin\phi) \frac{d\hat{x}}{dt} \\ &\qquad + \frac{d}{dt}(\cos\phi) \hat{y} + (\cos\phi) \frac{d\hat{y}}{dt} \\ 
+            &= -\cos\phi \dot{\phi} \hat{x} - \sin\phi \dot{\phi} \hat{y} \\ 
+            &= -\dot{\phi}(\cos\phi \hat{x} + \sin\phi\hat{y}) \\ 
+            &= -\dot{\phi}\hat{r}
+        \end{align*}
+    \end{multicols}
+
+    \begin{align*}
+        \frac{dv}{dt} = \dot{r}\hat{r} + r\dot{\phi}\hat{\phi}
+    \end{align*}
+   
+\end{callout}
+
+\begin{callout}{Drag Forces}
+
+    \begin{align*}
+        f_{\textrm{drag}} &= -f(v) \hat{v} \\ 
+        &= \ell v + cv^2 + \dots \\ 
+        &= \beta D v + \gamma D^2v^2
+    \end{align*}
+    Linear prop. to viscosity ($\beta$) and linear size of projectile ($D$). Quadratic prop. to density of medium ($\gamma$) and cross sectional area ($D$). The relative importance is
+    \begin{align*}
+        \frac{f_{\textrm{quad}}}{f_{\textrm{lin}}} &= \frac{\gamma D^2v^2}{\beta Dv} = \frac{\gamma }{\beta }Dv
+    \end{align*}
+    
+\end{callout}
+
+\begin{callout}{Energy:}
+    Energy is conserved only under conservative forces. This also allows us to define a potential energy.
+
+    \subsection{Potential Energy}
+
+
+    \subsection{Proof of Conservation}
+    \begin{align*}
+        \frac{\partial L}{\partial t} &= \sum_i \dot{q}_{i} \frac{d}{dt}\left( \frac{\partial L}{\partial \dot{q}_{i}} \right) + \sum_i \frac{\partial L}{\partial \dot{q}_{i}} \ddot{q}_{i} \\ 
+        &= \sum_i \frac{d}{dt}\left( \dot{q}_{i} \frac{\partial L}{\partial \dot{q}_{i}} \right) \\ 
+        &= \frac{d}{dt}\left( \sum_i \dot{q}_{i} \frac{\partial L}{\partial \dot{q}_{i}}-L \right) \\ 
+        &= 0
+    \end{align*}
+    
+\end{callout}
+
+\section { Central Fields }
+\subsection{ Kepler's Central Field }

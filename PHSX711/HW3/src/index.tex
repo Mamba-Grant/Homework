@@ -1,0 +1,218 @@
+\begin{homeworkProblem}
+    (15 pts) Exercise 4.2.1 (Shankar) Consider the following operators on a Hilbert space $\mathcal{V}^3(\mathbb{C})$:
+
+    \[
+        L_x = \frac{1}{\sqrt{2}}
+        \begin{bmatrix}
+            0 & 1 & 0 \\
+            1 & 0 & 1 \\
+            0 & 1 & 0
+        \end{bmatrix},
+        \quad
+        L_y = \frac{1}{\sqrt{2}}
+        \begin{bmatrix}
+            0 & -i & 0 \\
+            i & 0 & -i \\
+            0 & i & 0
+        \end{bmatrix},
+        \quad
+        L_z =
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & 0 & 0 \\
+            0 & 0 & -1
+        \end{bmatrix}
+    \]
+
+    \begin{enumerate}
+        \item What are the possible values one can obtain if $L_z$ is measured?
+        \item Take the state in which $L_z = 1$. In this state, what are $\braket{L_x}$, $\braket{L^2_x}$, and $\Delta L_x$?
+        \item Find the normalized eigenstates and the eigenvalues of $L_x$ in the $L_z$ basis.
+        \item If the particle is in the state with $L_z = -1$, and $L_x$ is measured, what are the possible outcomes and their probabilities?
+        \item Consider the state
+            \[
+                \ket{\psi} = 
+                \begin{bmatrix}
+                    1/2 \\
+                    1/2 \\
+                    1/\sqrt{2}
+                \end{bmatrix}
+            \]
+            in the $L_z$ basis. If $L_z^2$ is measured in this state and a result $+1$ is obtained, what is the state after the measurement? How probable was this result? If $L_x$ is measured, what are the outcomes and respective probabilities?
+        \item A particle is in a state for which the probabilities are $P(L_z = 1) = 1/4$, $P(L_z = 0) = 1/2$, and $P(L_z = -1) = 1/4$. Convince yourself that the most general, normalized state with this property is
+            \[
+                \ket{\psi} = \frac{e^{i\delta_1}}{2} \ket{L_z = 1} + \frac{e^{i\delta_2}}{\sqrt{2}} \ket{L_z = 0} + \frac{e^{i\delta_3}}{2} \ket{L_z = -1}
+            \]
+            It was stated earlier that if $\ket{\psi}$ is a normalized state, then the state $e^{i\theta} \ket{\psi}$ is a physically equivalent normalized state. Does this mean that the factors $e^{i\theta}$ multiplying the $L_z$ eigenstates are irrelevant? [Calculate for example $P(L_x = 0)$.]
+    \end{enumerate}
+
+    \begin{callout}{Part 1:}
+        The possible values that $L_z$ can take when measured are the eigenvalues. $L_z$ is diagonal so the eigenvalues lie on its diagonal.
+        $$\{ -1, 0, 1 \}$$
+
+    \end{callout}
+    \begin{callout}{Part 2:}
+        For $L_z=1$ the eigenket is $\ket{\psi}=\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}$. The expectation value of an operator \(A\) in state \(\lvert \psi \rangle\) is given by:
+            \[ \langle A \rangle = \langle \psi \lvert A \rvert \psi \rangle \]
+
+            \begin{align*}
+                \braket{L_x} &= \begin{pmatrix}1&0&0\end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix}0&1&0\\ 1&0&1\\ 0&1&0\end{pmatrix}\begin{pmatrix}1\\ 0\\ 0\end{pmatrix} =\begin{pmatrix}0&1&0\end{pmatrix}\frac{1}{\sqrt{2}}\begin{pmatrix}1\\ 0\\ 0\end{pmatrix} = (0) \\ 
+                    \braket{L^2_x} &= \begin{pmatrix}1&0&0\end{pmatrix}\frac{1}{2}\begin{pmatrix}0&1&0\\ 1&0&1\\ 0&1&0\end{pmatrix}^2\begin{pmatrix}1\\ 0\\ 0\end{pmatrix} =\begin{pmatrix}1&0&1\end{pmatrix}\frac{1}{2}\begin{pmatrix}1\\ 0\\ 0\end{pmatrix} = (1/2) \\ 
+                        \Delta L_x &= \sqrt{\braket{L^2_x}+\braket{L_x}^2} = (1/\sqrt{ 2 })
+            \end{align*}
+
+    \end{callout}
+    \begin{callout}{Part 3:}
+        For this we simply need solve for eigenvalues and eigenstates of the given $L_x$ as it is already in the $L_z$ basis. If it were not already in this basis, say if we wanted it for the $L_y$ basis, we would need to find its eigenvectors and project onto those. This would use diagonalization matrices for $L_y$ on $L_x$:
+        $$L_x' = U^{-1} L_x U$$
+        Regardless, the eigenvalues and eigenvectors for $L_x$ are given by 
+        $$0 = \det (L_x - \lambda)$$
+        And eigenvectors:
+        $$0 = \det (L_x - \lambda)\ket{\lambda}$$
+
+        We have $\lambda = \{ 0, 1, -1 \}$, which then gives eigenvectors (non-normalized):
+        \begin{align*}
+            \ket{\lambda = 0} = \begin{pmatrix} -1 \\ 0 \\ 1 \end{pmatrix}, \qquad
+                \ket{\lambda = 1} = \begin{pmatrix} 1 \\ \sqrt{ 2 } \\ 1 \end{pmatrix}, \qquad
+                    \ket{\lambda = -1} = \begin{pmatrix} 1 \\ -\sqrt{ 2 } \\ 1 \end{pmatrix}
+        \end{align*}
+
+        Normalizing gives:
+        \begin{align*}
+            \ket{\lambda = 0} = \frac{1}{\sqrt{ 2 }} \begin{pmatrix} -1 \\ 0 \\ 1 \end{pmatrix}, \qquad
+                \ket{\lambda = 1} = \frac{1}{2} \begin{pmatrix} 1 \\ \sqrt{ 2 } \\ 1 \end{pmatrix}, \qquad
+                    \ket{\lambda = -1} = \frac{1}{2} \begin{pmatrix} 1 \\ -\sqrt{ 2 } \\ 1 \end{pmatrix}
+        \end{align*}
+    \end{callout}
+
+    \newpage
+    \begin{callout}{Part 4:}
+        We already know the possible outcomes of $L_x$ are $\{ 1, 0, -1 \}$ as we found them in part 1. Additionally, the eigenstate corresponding to $L_z = -1$ is 
+        $$\ket{\psi} = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}$$
+
+            The probability amplitude is now given by the projection of $\ket{\psi}$ onto the basis for $L_x$ squared
+            $$\braket{\lambda = n | \psi}^2$$
+
+            \begin{align*}
+                P(L_x = 0) &=\braket{\lambda=0 | \psi}^2= \left|\frac{1}{\sqrt{2}}(-1~0~1) \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} \right|^2 = \frac{1}{2} \\
+                    P(L_x = 1) &=\braket{\lambda=1 | \psi}^2= \left|\frac{1}{2}(1~\sqrt{ 2 }~1) \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} \right|^2 = \frac{1}{4} \\
+                        P(L_x = -1) &=\braket{\lambda=-1 | \psi}^2= \left|\frac{1}{2}(1~-\sqrt{ 2 }~1) \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} \right|^2 = \frac{1}{4} \\
+            \end{align*}
+
+
+    \end{callout}
+
+    \begin{callout}{Part 5:}
+        We have to first project $\ket{\psi}$ on the $L_z^2 = 1$ basis.
+        $$L_z^2 = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}$$
+            This has eigenvalues $\lambda = \{ 0, 1 \}$ and eigenvectors
+            \begin{align*}
+                \ket{\lambda = 0} = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}, \qquad 
+                    \ket{\lambda = 1} = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+            \end{align*}
+
+            Projecting- we recall from the first homework that projection is 
+            $$\ket{\psi'} = \ket{n} \braket{n|\psi}$$
+
+            \begin{align*}
+                \ket{\psi'} &= \frac{1}{A} \left( \ket{\lambda =0} \bra{\lambda =0} + \ket{\lambda =1} \bra{\lambda = 1} \right) \ket{\psi} \\ 
+                &= \frac{1}{A} \left( \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} (0~1~0) + \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} (1~0~0) \right) \begin{pmatrix} 1/2 \\ 1/2 \\ 1/\sqrt{ 2 } \end{pmatrix} \\ 
+                    &= \frac{1}{A} \begin{pmatrix} 1/2 \\ 0 \\ \sqrt{ 2 }/2 \end{pmatrix} \\
+                        &= \frac{1}{\sqrt{ 3 }} \begin{pmatrix} 1 \\ 0 \\ \sqrt{ 2 } \end{pmatrix}
+            \end{align*}
+            Where $A$ is the normalization constant and equals $\frac{\sqrt{ 3 }}{2}$.
+
+            That is the state after measurement, but what is the probability of that outcome? We find it the same way we find any other probability amplitude:
+            \begin{align*}
+                \braket{\psi|\ket{\lambda =1}\bra{\lambda =1} + \ket{\lambda =0}\bra{\lambda =0}|\psi}^2 
+                = \braket{\psi|\psi'}^2 &= \frac{3}{4}
+            \end{align*}
+
+            If we measured $L_z$ the posible outcomes are the eigenvalues $L_z,\{0, \pm 1\}$, with probabilities
+
+            \begin{align*}
+                & P(L_z = 1) = \left|\left( \begin{array}{lll}
+                    1 & 0 & 0
+                \end{array}\right) \psi' \right|^2 = \left| \frac{1}{\sqrt{3}} \left( \begin{array}{lll}
+                    1 & 0 & 0
+                \end{array} \right) \left( \begin{array}{c}
+                    1 \\
+                    0 \\
+                    \sqrt{2}
+                \end{array} \right) \right|^2 = \frac{1}{3}, \\
+                & P(L_z = 0) = \left|\left( \begin{array}{lll}
+                    0 & 1 & 0
+                \end{array}\right) \psi' \right|^2 = \left| \frac{1}{\sqrt{3}} \left( \begin{array}{lll}
+                    0 & 1 & 0
+                \end{array}\right) \left( \begin{array}{c}
+                    1 \\
+                    0 \\
+                    \sqrt{2}
+                \end{array} \right) \right|^2 = 0, \\
+                & P(L_z = -1) = \left|\left( \begin{array}{lll}
+                    0 & 0 & 1
+                \end{array}\right) \psi' \right|^2 = \left| \frac{1}{\sqrt{3}} \left( \begin{array}{lll}
+                    0 & 0 & 1
+                \end{array} \right) \left( \begin{array}{c}
+                    1 \\
+                    0 \\
+                    \sqrt{2}
+                \end{array} \right) \right|^2 = \frac{2}{3}.
+            \end{align*}
+    \end{callout}
+
+    \newpage
+    \begin{callout}{Part 6:}
+
+        Shankar implies we should try calculating $P(L_x=0)$ for this problem, which has the corresponding eigenvector 
+        $$\begin{pmatrix} \braket{\lambda = 0 | \psi}^2 \end{pmatrix} 
+            = \left|\left(-\frac{1}{\sqrt{ 2 }}~~0~~\frac{1}{\sqrt{ 2 }}\right)\begin{pmatrix} \frac{1}{2} e^{i \delta_1} \\ \frac{1}{\sqrt{ 2 }} e^{i \delta_2} \\ \frac{1}{2} e^{i \delta_3} \end{pmatrix}\right|^2 =\left|\frac{e^{i \delta_1}}{2 \sqrt{2}}-\frac{e^{i \delta_3}}{2 \sqrt{2}}\right|^2 = \frac{1}{2 \sqrt{ 2 }}\left| e^{i \delta_1} - e^{i \delta _{3}} \right|^2$$
+        Where $\ket{\lambda = 0}$ was found to be the following eigenket in part 3:
+        $$\frac{1}{\sqrt{ 2 }} \begin{pmatrix} -1 \\ 0 \\ 1 \end{pmatrix}$$
+        This implies that the probability of finding $L_x$ in state 0 depends on some difference in the phase vectors on the $L_z$ basis! As these are complex exponential vectors, it is likely that you could express this as some sort of rotation where the final difference is between some angles $\delta_1$ and $\delta_3$.
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (5 pts) Exercise 4.2.2 (Shankar)
+
+    More hint: Evaluate the probability: 
+    $$P(p) = |\braket{\psi | p}|^2$$
+    in the x-basis.
+
+    \begin{callout}{Solution:}
+
+        The given probability is equivalent to 
+        $$\braket{P} = \braket{\psi|P|\psi}$$
+        \begin{align*}
+            \braket{P} &= \int_{-\infty}^{\infty} dx~ \braket{\psi|x}\braket{x|P|p} \\ 
+            &= \int_{-\infty}^{\infty} dx~ \psi^*(x) \left( -i \hbar \frac{d}{dx} \right) \psi(x) \\ 
+            &= -i \hbar \int_{-\infty}^{\infty} dx~ \psi^*(x) \frac{d\psi(x)}{dx}
+        \end{align*}
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (5 pts) Exercise 4.2.3 (Shankar) 
+    Show that if $\psi(x)$ has mean momentum $\braket{\boldsymbol{P}}$, $e^{i p_0 x / \hbar} \psi(x)$ has mean momentum $\braket{P}+p_0$.
+    \begin{callout}{Solution:}
+
+    $$\braket{\textbf{P}} = \braket{\psi | P | \psi} = -i\hbar \psi^* \frac{d\psi}{dx}$$
+
+    $\braket{\exp({ip_0x/\hbar}) \psi(x)|P| \exp({ip_0x/\hbar}) \psi(x)}:$
+    \begin{align*}
+        &= \int_{-\infty}^{\infty}~dx \exp({-ip_0x/\hbar}) \psi^*(x) (-i\hbar) \underbrace{\frac{d}{dx}\left[\exp({ip_0x/\hbar}) \psi(x) \right]}_{\frac{ip_0}{\hbar}\exp\left( ip_0x/\hbar \right)\psi(x) + \exp\left( ip_0x/\hbar \right) \frac{d\psi(x)}{dx} } \\ 
+        &= -i \hbar \int_{-\infty}^{\infty}dx~ \left[\cancel{\exp\left( -ip_0x/\hbar \right)} \psi^*(x)\right] \left[ \frac{ip_0}{\hbar} \cancel{\exp\left( ip_0x/\hbar \right)} \psi(x) \right]  \\
+        &\hspace{2cm} +  \int_{-\infty}^{\infty} dx \left[ \psi^*(x) \cancel{\exp\left( -ip_0x/\hbar \right)}\cancel{\exp\left( ip_0x/\hbar \right)} \frac{d\psi(x)}{dx}\right] \\ 
+        &= p_0 \underbrace{\int_{-\infty}^{\infty} dx \psi^*\psi}_{\braket{\psi|\psi}=1} - \underbrace{i\hbar \int_{-\infty}^{\infty} dx \psi^* \frac{d\psi}{dx}}_{\braket{\psi|\textbf{P}|\psi}=\braket{P}} \\ 
+        &= p_0 + \braket{\textbf{P}}
+    \end{align*}
+
+    \end{callout}
+\end{homeworkProblem}

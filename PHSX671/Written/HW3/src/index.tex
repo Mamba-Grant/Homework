@@ -1,0 +1,125 @@
+\newpage
+\begin{homeworkProblem}
+    (Exercise 3.1) A Gaussian distribution can be described by
+    $$ f(x) = \frac{1}{\sqrt{2\pi\sigma}} e^{-\frac{x^2}{2\sigma^2}}. $$
+    What is the entropy of this distribution?
+
+    \begin{callout}{Solution:}
+        
+        \begin{align*}
+        \begin{array}{r}
+            \mathcal{S}=\ln \Omega \\
+            \mathcal{\operatorname { l n }}=-\sum_n p_n \ln \left(p_n\right)=-\overline{\ln p} \\
+            \mathcal{S}=-\int p(x) \ln (p(x)) d x=-\overline{\ln p}
+        \end{array} \tag{3.9}
+        \end{align*}
+
+        By equation(s) (3.9), we need to do the following integral to get our entropy:
+        \begin{align*}
+            \mathcal{S} & =-\frac{1}{\sigma \sqrt{2 \pi}} \int_{-\infty}^{\infty} \exp \left(-\frac{(x)^2}{2 \sigma^2}\right) \ln \left(\frac{1}{\sigma \sqrt{2 \pi}} \exp \left(-\frac{(x)^2}{2 \sigma^2}\right)\right) \mathrm{d} x \\
+            & =\frac{1}{\sigma \sqrt{2 \pi}} \int_{-\infty}^{\infty} \exp \left(-\frac{(x)^2}{2 \sigma^2}\right) \ln \left(\sigma \sqrt{2 \pi} \exp \left(\frac{(x)^2}{2 \sigma^2}\right)\right) \mathrm{d} x \\
+            & =\frac{\sqrt{2} \sigma}{\sigma \sqrt{2 \pi}} \int_{-\infty}^{\infty} \exp \left(-t^2\right) \ln \left(\sigma \sqrt{2 \pi} \exp \left(t^2\right)\right) \mathrm{d} t && t= -\frac{x^2}{2 \sigma^2}\\
+            & =\frac{1}{\sqrt{\pi}} \int_{-\infty}^{\infty}\left(\ln (\sigma \sqrt{2 \pi})+\ln \left(\exp \left(t^2\right)\right)\right) \exp \left(-t^2\right) \mathrm{d} t \\
+            & =\frac{\ln (\sigma \sqrt{2 \pi})}{\sqrt{\pi}} \int_{-\infty}^{\infty} \exp \left(-t^2\right) \mathrm{d} t+\frac{1}{\sqrt{\pi}} \int_{-\infty}^{\infty} t^2 \exp \left(-t^2\right) \mathrm{d} t \\
+            & =\frac{\sqrt{\pi} \ln (\sigma \sqrt{2 \pi})}{\sqrt{\pi}}+\frac{1}{\sqrt{\pi}}\left(\left[-\frac{t}{2} \exp \left(-t^2\right)\right]_{-\infty}^{\infty}+\frac{1}{2} \int_{-\infty}^{\infty} \exp \left(-t^2\right) \mathrm{d} t\right) \\
+            & =\ln (\sigma \sqrt{2 \pi})+\frac{1}{2 \sqrt{\pi}} \int_{-\infty}^{\infty} \exp \left(-t^2\right) \mathrm{d} t \\
+            & =\ln (\sigma \sqrt{2 \pi})+\frac{\sqrt{\pi}}{2 \sqrt{\pi}} \\
+            & =\ln (\sigma \sqrt{2 \pi})+\frac{1}{2}
+        \end{align*}
+        
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (Exercise 3.2) The entropy of a system is given by the following equation:
+    $$ \lambda \mathcal{S}^2 = NE + \gamma V^2. $$
+    Determine an expression for the pressure of this system.
+    \begin{callout}{Solution:}
+        The expression we derived for pressure given an entropy is:
+        $$P = \frac{1}{\beta}\left( \frac{\partial \mathcal{S}}{\partial V} \right)_{E,N}$$
+        \begin{align*}
+            \mathcal{S} &= \sqrt{ \frac{NE+\gamma V^2}{\lambda } } \\ 
+            \left( \frac{\partial S}{\partial V} \right)_{E,N} &= \frac{\gamma V}{\sqrt{\lambda NE + \gamma V^2}}
+        \end{align*}
+        Therefore the final expression is 
+        \begin{align*}
+            P &= \frac{1}{\beta}\frac{\gamma V}{\sqrt{\lambda NE + \gamma V^2}} \\ 
+             &= k_BT\frac{\gamma V}{\sqrt{\lambda NE + \gamma V^2}} \\ 
+        \end{align*}
+
+        (I'm not particularly sure how to get anything more than this for $\beta$)
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (Exercise 3.3) Six identical non-interacting particles occupy the $i$-th energy level, which is 9-fold degenerate.
+    \begin{itemize}
+        \item[(a)] How many possible microstates are there if the particles are bosons?
+            \begin{callout}{Solution:}
+
+                If the particles are Bosons then the Pauli Exclusion Principle does not apply. In essence we want to calculate how many many ways 6 indistinguishable particles can be arranged into 9 energy levels. Energy levels can be empty or host more than one particle.
+
+                Any arrangement of objects ($n$) and bins ($k$) (particles and energy levels) consists of $n+k-1$ objects and $k-1$ of which are bins/energy levels. Now we only need to choose $k-1$ of the arrangements to be bins. This can be imagined with the stars and bars mnemonic. 
+
+                $$\begin{pmatrix} n+k-1 \\ k-1 \end{pmatrix} = \begin{pmatrix} 14 \\ 8 \end{pmatrix} = 3003$$
+
+            \end{callout}
+        \item[(b)] How many possible microstates are there if the particles are fermions?
+            \begin{callout}{Solution:}
+                
+                If the particles are Fermions then the Pauli Exclusion Principle applies. In essence we want to calculate how many ways 6 indistinguishable particles can be arranged into 9 energy levels if each level can only be occupied by one particle. Energy levels can be empty.
+
+                This is simply a combination of ways to arrange 6 objects into 9 bins:
+                $$\begin{pmatrix} 9 \\ 6 \end{pmatrix}= \frac{9!}{6!(9-6)!} = 84$$
+
+            \end{callout}
+    \end{itemize}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (Exercise 3.4) A thermodynamic system has non-degenerate states with energies $0, \epsilon, 2\epsilon, 3\epsilon, \dots$ that are occupied by four particles with a total energy of $E_{\textrm{tot}} = 6\epsilon$.
+    \begin{itemize}
+        \item[(a)] What is the average occupation number for the energy levels if the particles are bosons?
+            \begin{callout}{Solution:}
+
+                The occupation number is the average number of particles occupying each energy level. If we have a set of particles:
+                $$n_0 + n_1 + n_2 + n_3 = N$$
+
+                with energies
+                $$0 + \epsilon + 2 \epsilon + 3\epsilon = 6 \epsilon = E_{\textrm{tot}}$$
+
+                The occupation number can be calculated by considering the number of ways to arrange the 4 particles (multiplicity) into each state which has total energy $6 \epsilon$ divided out by the total ways to arrange everything. For bosons, the same line of reasoning as in problem 3 holds, where multiplicity is:
+                $$\Omega = \begin{pmatrix} n + k - 1 \\ k-1 \end{pmatrix}$$
+                \begin{table}[H] 
+                    \centering 
+                    \begin{tabular}{c|cccc|c} 
+                        \toprule 
+                        \textbf{State} & \(n_0\) ($0\epsilon$) & \(n_1\) (\(1\epsilon\)) & \(n_2\) (2\(\epsilon\)) & \(n_3\) (3\(\epsilon\)) & \textbf{Multiplicity}\\ 
+                        \midrule
+                        $\ket{1}$ & 2 & 0 & 0 & 2 & 5 \\
+                        $\ket{2}$ & 0 & 3 & 0 & 1 & 5 \\
+                        $\ket{3}$ & 1 & 1 & 1 & 1 & 35 \\
+                        $\ket{4}$ & 0 & 2 & 2 & 0 & 5 \\
+                        \bottomrule 
+                    \end{tabular} 
+                \end{table}
+
+                For each state, we then have an occupation number 
+                $$\frac{N \cdot \Omega_i}{\sum_{i} \Omega_i} = \{ 0.4,~0.4,~2.8,~0.4 \}$$
+                And of course the sum of the occupations is equal to the total number of particles $N$:
+                $$0.4+0.4+2.8+0.4=4$$
+
+            \end{callout}
+        \item[(b)] What is the average occupation number for the energy levels if the particles are fermions?
+            \begin{callout}{Solution:}
+                
+                When we are dealing with Fermions, only one particle can be in each energy level. Having the same constraints, we can only really have one state in which we can distribute the particles. Therefore we have an occupation number of 1 per level.
+
+            \end{callout}
+    \end{itemize}
+\end{homeworkProblem}

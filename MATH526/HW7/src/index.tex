@@ -1,0 +1,120 @@
+\maketitle
+
+\begin{homeworkProblem}[12]
+	The tar contents of 8 brands of cigarettes selected at random from the latest list released by the Federal Trade Commission are as follows: 7.3, 8.6, 10.4, 16.1, 12.2, 15.1, 14.5, and 9.3 milligrams. Calculate
+	\begin{enumerate}[(a)]
+		\item the mean.
+		      \begin{callout}{Solution:}
+			      11.687
+		      \end{callout}
+		\item the variance.
+		      \begin{callout}{Solution:}
+			      10.776
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[23]
+	The random variable $X$, representing the number
+	of cherries in a cherry puff, has the following probability distribution:
+	\[ P(X = x) = \begin{cases}
+			0.2 & \text{if } x = 4 \\
+			0.4 & \text{if } x = 5 \\
+			0.3 & \text{if } x = 6 \\
+			0.1 & \text{if } x = 7
+		\end{cases} \]
+	(a) Find the mean $\mu$ and the variance $\sigma^2$ of $X$.
+	\begin{callout}{Solution:}
+		$$\mu = 4 \times 0.2 + 5 \times 0.4 + 6 \times 0.3 + 7 \times 0.1 = 5.3$$
+		$$\sigma^2 = (4 - 5.3)^2 \times 0.2 + (5 - 5.3)^2 \times 0.4 + (6 - 5.3)^2 \times 0.3 + (7 - 5.3)^2 \times 0.1 = 1.331$$
+	\end{callout}
+	(b) Find the mean $\mu_{\overline{X}}$ and the variance $\sigma_{\overline{X}}^2$ of the mean $\overline{X}$ for random samples of 36 cherry puffs.
+	\begin{callout}{Solution:}
+		The sample mean is the same as the mean of $X = 5.3$.
+		Sample variance is $\frac{\sigma^2}{n} = 0.03697$
+	\end{callout}
+	(c) Find the probability that the average number of cherries in 36 cherry puffs will be less than 5.5.
+	\begin{callout}{Solution:}
+		Assuming normal distribution by the CLT: $P(X<36)=0.85$
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[26]
+	The amount of time that a drive-through bank teller spends on a customer is a random variable with a mean μ = 3.2 minutes and a standard deviation σ = 1.6 minutes. If a random sample of 64 customers is observed, find the probability that their mean time at the teller’s window is
+	\begin{enumerate}[(a)]
+		\item at most 2.7 minutes;
+		      \begin{callout}{Solution:}
+			      0.38
+		      \end{callout}
+		\item more than 3.5 minutes;
+		      \begin{callout}{Solution:}
+			      0.43
+		      \end{callout}
+		\item at least 3.2 minutes but less than 3.4 minutes.
+		      \begin{callout}{Solution:}
+			      0.55 - 0.5 = 0.05
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[27]
+	In a chemical process, the amount of a certain type of impurity in the output is difficult to control and is thus a random variable. Speculation is that the population mean amount of the impurity is 0.20 gram per gram of output. It is known that the standard deviation is 0.1 gram per gram. An experiment is conducted to gain more insight regarding the speculation that $\mu=0.2$. The process is run on a lab scale 50 times and the sample average $\bar{x}$ turns out to be 0.23 gram per gram. Comment on the speculation that the mean amount of impurity is 0.20 gram per gram. Make use of the Central Limit Theorem in your work.
+	\begin{callout}{Solution:}
+		We can test the hypothesis using the CLT:
+
+		Set $z = \frac{0.23 - 0.20}{0.1/\sqrt{ 50 }}$:
+		$$P(X \leq 0.03) = 2.2 \times 10^{-5}$$
+		This is a good estimation.
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}[29]
+	The distribution of heights of a certain breed of terrier has a mean of 72 centimeters and a standard deviation of 10 centimeters, whereas the distribution of heights of a certain breed of poodle has a mean of 28 centimeters with a standard deviation of 5 centimeters. Assuming that the sample means can be measured to any degree of accuracy, find the probability that the sample mean for a random sample of heights of 64 terriers exceeds the sample mean for a random sample of heights of 100 poodles by at most 44.2 centimeters.
+	\begin{callout}{Solution:}
+		Using the difference of sampling distributions:
+
+		$$z = \frac{x - (72 - 28)}{\sqrt{ (10)^{2}/64 + (5)^{2}/100 }}$$
+		$$P(z \leq 44.2) = 0.56$$
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[30]
+	The mean score for freshmen on an aptitude test at a certain college is 540, with a standard deviation of 50. Assume the means to be measured to any degree of accuracy. What is the probability that two groups selected at random, consisting of 32 and 50 students, respectively, will differ in their mean scores by
+	\begin{enumerate}[(a)]
+		\item more than 20 points?
+		      \begin{callout}{Solution:}
+			      The difference of sampling distributions for this is
+			      $$z = \frac{x - 0}{\sqrt{ 50^2/32 + 50^2/50 }}$$
+			      $$P(z \geq 20) = 0.039$$
+		      \end{callout}
+		\item an amount between 5 and 10 points?
+		      $$0.81-0.67 = 0.14$$
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[48]
+	A manufacturing firm claims that the batteries used in their electronic games will last an average of 30 hours. To maintain this average, 16 batteries are tested each month. If the computed t-value falls between $-t_{0.025}$ and $t_{0.025}$, the firm is satisfied with its claim. What conclusion should the firm draw from a sample that has a mean of $\bar{x}=27.5$ hours and a standard deviation of s = 5 hours? Assume the distribution of battery lives to be approximately normal.
+	\begin{callout}{Solution:}
+		This has a t-value of $-2$ with $n=14$, giving [-2.13, 2.13]. -2 falls between these values, so the firm can be satisfied with its claim.
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[49]
+	A normal population with unknown variance has a mean of 20. Is one likely to obtain a random sample of size 9 from this population with a mean of 24 and a standard deviation of 4.1? If not, what conclusion would you draw?
+	\begin{callout}{Solution:}
+		We have a t-value of $-2.93$. The range for $\alpha = 0.05$ equals $[-2.3, 2.3]$. The t-value does not fall within this range, so it is unlikely.
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[72]
+	Given a normal random variable X with mean 20 and variance 9, and a random sample of size n taken from the distribution, what sample size n is necessary in order that
+	$$P(19.9 \leq \bar{X} \leq 20.1) = 0.95$$
+	\begin{callout}{Solution:}
+		The corresponding z-values for this percentile are [-1.96, 1.96]. To find a valid $n$ for these:
+		\begin{align*}
+			-1.96 = \frac{19.9-20}{3/\sqrt{ n }}, \quad
+			1.96 = \frac{20.1-20}{3/\sqrt{ n }}
+		\end{align*}
+		Which gives $n=\frac{34.5744}{0.01}$.
+	\end{callout}
+\end{homeworkProblem}

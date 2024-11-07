@@ -1,0 +1,306 @@
+\documentclass{article}
+
+
+\newcommand{\hmwkTitle}{Homework \#7}
+\newcommand{\hmwkDueDate}{\today}
+\newcommand{\hmwkClass}{PHSX 611}
+\newcommand{\hmwkAuthorName}{\textbf{Grant Saggars}}
+
+
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{braket}
+
+\usepackage{float}
+\usepackage{caption}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{XCharter}
+
+\usetikzlibrary{automata,positioning}
+
+\usepackage{geometry}
+\geometry{top=1in, bottom=1in, left=1in, right=1in} % Adjust margins as needed
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.75in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Callout Box
+%
+
+\definecolor{shadecolor}{RGB}{235,235,235}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%
+% Title Page
+%
+
+\title{
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDueDate}\\
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\begin{homeworkProblem}
+	Creation $\hat{a}_{+}$and annihilation $\hat{a}_{-}$operators for the harmonic oscillator (we are dealing with 1D version of Harmonic oscillator in this example). Calculate expectation values for the following (consider that harmonic oscillator is in the n-th state): (1) $\left\langle\hat{a}_{+} \hat{a}_{-}\right\rangle$, (2) $\left\langle\hat{a}_{+} \hat{a}_{+} \hat{a}_{-} \hat{a}_{-} \hat{a}_{+} \hat{a}_{+} \hat{a}_{-}\right\rangle$, and (3) $\left\langle\hat{a}_{+} \hat{a}_{+} \hat{a}_{+} \hat{a}_{+} \hat{a}_{+} \hat{a}_{-} \hat{a}_{+} \hat{a}_{-} \hat{a}_{-} \hat{a}_{-} \hat{a}_{-} \hat{a}_{-}\right\rangle(0.3 \mathrm{pts}$.)
+	*This problem can't and shouldn't be solved with brute force. Lecture 27 will explain how to deal with such situations. This is a great example of the use of Dirac notation to calculate expectation values of operators that are expressed via creation/annihilation operator.
+	\begin{callout}{Solution:}
+
+		\begin{enumerate}[(1)]
+			\item $$ \hat{a}_{+}\hat{a}_{-} = \bra{n}\hat{a}_{+} \sqrt{ n } \ket{n-1} = \sqrt{ n } \bra{n}\hat{a}_{+}\ket{n-1} = \sqrt{ n }\sqrt{ n } \braket{n | n} = n $$
+			      $$ \langle \hat{a}_{+}\hat{a}_{-} \rangle = \braket{ n}\cancelto{ n\ket{n}  }{ \hat{a}_{+} \hat{a}_{-}\ket{n}  } = n $$
+			\item This has an odd length, so it is zero.
+			\item $$\hat{a}_{-}\hat{a}_{+} = \bra{n}\hat{a}_{-}\hat{a}_{+}\ket{n} = \sqrt{ n+1 } \bra{n}\hat{a}_{-}\ket{n+1} = (n+1) \braket{n | n} = n+1;$$
+			      \begin{align*}
+				      \left\langle\hat{a}_{+}^{5}\hat{a}_{-} \hat{a}_{+} \hat{a}_{-}^{5}\right\rangle
+				       & = \sqrt{ n }\sqrt{ n-1 }\sqrt{ n-2 }\sqrt{ n-3 }\sqrt{ n-4 } \braket{n|\hat{a}_{+}^{5}\hat{a}_{-} \hat{a}_{+} |n-5} \\
+				       & = \sqrt{ n }\sqrt{ n-1 }\sqrt{ n-2 }\sqrt{ n-3 } (n-4) \braket{n|\hat{a}_{+}^{5}\hat{a}_{-}  |n-4}                  \\
+				       & = \sqrt{ n }\sqrt{ n-1 }\sqrt{ n-2 }\sqrt{ n-3 } (n-4)^{3/2} \braket{n|\hat{a}_{+}^{5}  |n-5}                       \\
+				       & = n(n+1)(n+2)(n+3) (n-4)^{2} \cancel{ \braket{n|n} }
+			      \end{align*}
+
+		\end{enumerate}
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+	Similar to the previous problem, calculate expectation values for dimensionless coordinate $\hat{Q}$ and momentum $\hat{\mathcal{P}}$ operators in the following powers: $\left\langle\widehat{Q}^4\right\rangle,\left\langle\widehat{\mathcal{P}}^2\right\rangle$. Explain how you got to the results. (0.3 pts.)
+	*Same as the previous problem, please deal with this after Lecture 27. Expectation values for position and momentum operators must be calculated using creation and annihilation operators. This problem is related to Problem 2 of this homework above but suggests performing calculations through creation/annihilation operators.
+	\begin{callout}{Solution:}
+
+		These are pretty straightforward if you express the operators as to a power then expand and cancel as necessary.
+		Reviewing last week's attempt at this problem reveals that I have been a fool and made errors in my expansion:
+		\begin{enumerate}[(I)]
+			\item $\left\langle \hat{Q}^{4} \right\rangle$:
+			      \begin{align*}
+				      \left\langle \hat{Q}^{4} \right\rangle & = \bra{n} \frac{1}{16} (\hat{a}_{-}+\hat{a}_{+})^{4}\ket{n}                                                                                                                 \\
+				                                             & = \bra{n}\left(\frac{1}{16}(\cancel{ \hat{a}_{-}^4 }+\cancel{ 4\hat{a}_{-}^3\hat{a}_{+} }+...+\cancel{ 4\hat{a}_{-}\hat{a}_{+}^3 }+\cancel{ \hat{a}_{+}^4 })\right) \ket{n} \\
+			      \end{align*}
+			      I temporarily drop out the terms which do not cancel here to save space, writing them in again we get:
+			      \begin{align*}
+				       & = \bra{ n}\left.\frac{1}{16}\middle(2(\hat{a}_{-}\hat{a}_{+})^{2} + 2(\hat{a}_{+}\hat{a}_{-})^{2} + (\hat{a}_{+}\hat{a}_{-}\hat{a}_{+}\hat{a}_{-}) + (\hat{a}_{-}\hat{a}_{+}\hat{a}_{-}\hat{a}_{+}) \right)\ket{n} \\
+				       & = \left. \frac{1}{16} \middle(
+				      [2\sqrt{ n+1 }\sqrt{ n+2 }\braket{n | \hat{a}_{-}^{2} | n}]
+				      + [2\sqrt{ n }\sqrt{ n-1 }\braket{ n | \hat{a}_{+}^{2} |n } ]
+				      + n\braket{ n | a_{+}a_{-} | n }
+				      + n+1 \braket{ n | a_{-}a_{+} | n } \right)                                                                                                                                                                           \\
+				       & = \left. \frac{1}{16} \middle(2(n+1)(n+2)+2(n)(n-1)+n^2 + (n+1)^{2}\right)                                                                                                                                         \\
+				       & = \frac{1}{16}(6n^2+6n+5)
+			      \end{align*}
+			\item $\left\langle \hat{\mathcal{P}}^{2} \right\rangle$:
+			      \begin{align*}
+				      \left\langle \hat{\mathcal{P}}^{2} \right\rangle & = \bra{n} -\frac{1}{2}[\cancel{ (a_{-})^{2} }-(a_{-}a_{+})-(a_{+}a_{-})+\cancel{ (a{+})^{2} }] \ket{n} \\
+				                                                       & = \frac{1}{2}(2n+1)                                                                                    \\
+				                                                       & = n+\frac{1}{2}
+				      % & = -\cancel{ \frac{1}{2} }\braket{n | \cancel{ 2 }\hat{a}_{-}\hat{a}_{+}|n } \\
+				      % & = n+1
+			      \end{align*}
+		\end{enumerate}
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}
+	Calculate the expectation value of the Hamiltonian operator when the particle is in the $27^{\text {th }}$ excited state of a one-dimensional quantum Harmonic oscillator using creation and annihilation operators. *Refer to Lecture 27. (0.3 pts.)
+	\begin{callout}{Solution:}
+
+		We need to find the value of $\braket{n|\hat{H}|n}$ for $n=27$:
+		\begin{align*}
+			\braket{n|\hat{H}|n} = \frac{1}{2} \braket{ n | Q^2+P^2|n } & = \hbar \omega \frac{1}{2}\braket{ n | Q^2|n } + \frac{1}{2}\braket{ n | P^2|n }                                                                                     \\
+			                                                            & = \hbar \omega \frac{1}{2} \braket{ n | \frac{1}{2}[\cancel{ (a_{-})^{2} }+(a_{-}a_{+})+(a_{+}a_{-})+\cancel{ (a_{+})^{2} }] | n } + \frac{1}{2}\braket{ n | P^2|n } \\
+			                                                            & = \hbar \omega \frac{1}{4} (n+1) + \frac{1}{2}\braket{ n | P^2|n }                                                                                                   \\
+			                                                            & = \hbar \omega \frac{1}{4} (n+1) + \frac{1}{2}\bra{n} -\frac{1}{2}[\cancel{ (a_{-})^{2} }-(a_{-}a_{+})-(a_{+}a_{-})+\cancel{ (a{+})^{2} }] \ket{n}                   \\
+			                                                            & = \hbar \omega \frac{1}{4} (2n+1) + \frac{1}{4}(2n+1)                                                                                                                \\
+			                                                            & = \hbar \omega \frac{1}{4}(4n+2)                                                                                                                                     \\
+			                                                            & = \hbar \omega \left( n+\frac{1}{2} \right)
+		\end{align*}
+		The harmonic oscillator starts from $n=0$, so the expectation of the energy should be
+		$$\frac{53}{2} \hbar \omega$$
+
+	\end{callout}
+\end{homeworkProblem}
+
+
+\newpage \begin{homeworkProblem}
+	Using Dirac notation, project the action of the operator of momentum $\widehat{\vec{p}}$ on the wavefunction $|\psi\rangle$ on the basis of position operator eigenvectors $|\vec{r}\rangle$. In other words, express $\langle\vec{r}|\widehat{\vec{p}}| \psi\rangle$ through wavefunction $\psi(\vec{r})$. *Notice, that it is expected that you can do step by step derivation and explain how you did it. Refer to Lectures 25, 26 . (0.5 pts.)
+	\begin{callout}{To express the momentum operator in real space:}
+
+		\begin{enumerate}[(I)]
+			\item Expand the expression:
+			      \begin{align*}
+				      \braket{ \mathbf{r} | \mathbf{\hat{p}} | \psi }
+				       & = \bra{\textbf{r}} \int \mathbf{\hat{p}} ~\psi(\mathbf{r})\ket{\mathbf{r}} \,d^{3}\mathbf{r} \\
+				       & = \bra{\textbf{r}} \int  -i\hbar \nabla \psi(\mathbf{r})\ket{\mathbf{r}} \,d^{3}\mathbf{r}   \\
+			      \end{align*}
+
+			\item Because the gradient operator is only applied to the wavefunction, and not the bra/ket vectors, we get
+			      $$\int -i \hbar \nabla \psi(\textbf{r}) \cancel{\braket{\textbf{r}|\textbf{r}}} ~d^3 \textbf{r}$$
+
+			\item Because $\braket{\textbf{r}|\textbf{r}}$ is a delta function, the rest of the expression is left after integration:
+			      $$-i \hbar \nabla \psi(\textbf{r})$$
+		\end{enumerate}
+
+	\end{callout}
+\end{homeworkProblem}
+
+
+\newpage
+\begin{homeworkProblem}
+	Using Dirac notation, project the action of the operator of position $\hat{\vec{r}}$ on the wavefunction $|\psi\rangle$ on the basis of position operator eigenvectors $|\vec{p}\rangle$. In other words, express $\langle\vec{p}|\hat{\vec{r}}| \psi\rangle$ through wavefunction $\psi(\vec{p})$. *Notice, that it is expected that you can do step by step derivation and explain how you did it. Refer to Lectures 25,26 . (0.5 pts.)
+	\begin{callout}{To express the position operator in momentum space:}
+
+		\begin{enumerate}[(I)]
+			\item We begin by focusing on the right side of this: (note that $\hat{\textbf{r}} \to i \hbar \nabla_p$)
+			      \begin{align*}
+				      \mathbf{\hat{r}} \ket{ \psi } & = \int  \mathbf{\hat{r}}\ket{\mathbf{p}}\braket{ \mathbf{p} | \psi }  \,d^{3}p                                                  \\
+				                                    & = \int \ket{\mathbf{r}} [-i\hbar \nabla_{p}\braket{ \mathbf{r} | \mathbf{p} } ]\psi(\mathbf{p})\,d^{3}\mathbf{p}d^{3}\mathbf{r} \\
+				                                    & = \int i\hbar \nabla_{p} \psi(\mathbf{p})\ket{\mathbf{p}} \,d^{3}\mathbf{p}
+			      \end{align*}
+			\item Integration by parts gives the term:
+			      \begin{align*}
+				      = \cancelto{ 0 }{ -i\hbar \psi(\mathbf{p})|_{-\infty}^{\infty} } + \int i\hbar \nabla \psi(\mathbf{p})\,d^{3}p \\
+			      \end{align*}
+			\item Now we can project onto $\ket{\textbf{p}}$:
+			      $$\braket{ \mathbf{p}} \int i\hbar \nabla_{p}\psi(\mathbf{p})\ket{\mathbf{p}} \,d^{3}\mathbf{p} = \int i\hbar \nabla_{p}\psi(\mathbf{p})\cancel{ \braket{\mathbf{p} | \mathbf{p} } } \,dx$$
+			\item Therefore, by the integral properties of delta functions:
+			      $$\braket{ \mathbf{p} | \mathbf{\hat{r}}|\mathbf{\psi} } = i\hbar \nabla_{p}\psi(\mathbf{p})$$
+
+		\end{enumerate}
+
+	\end{callout}
+\end{homeworkProblem}
+
+
+\newpage
+\begin{homeworkProblem}
+	(Problem 4.4) Using Section 4.1 and Lectures 27, 28 construct the following spherical harmonics: $Y_0^0$ and $Y_2^1$. Prove that they are orthonormal. *This problem provides a bit of practice on how to work with Schrodinger equation in spherical coordinates. ( $0.6 \mathrm{pts}$.)
+	\begin{callout}{Solution:}
+
+		\begin{enumerate}[(I)]
+			\item Function I:
+			      $$Y_{\ell}^{m}(\theta,\phi) = \sqrt{ \frac{(2\ell+1)(\ell-m)!}{4\pi(\ell+m)!} } e^{im\phi} \mathcal{P}_{\ell}^{m}(\cos\theta)$$
+			      Focusing on the Legendre function:
+			      \begin{align*}
+				      \mathcal{P}_{0}(x)     & =x^{2}-1;           \\
+				      \mathcal{P}_{0}^{0}(x) & =\mathcal{P}_{0}(x)
+			      \end{align*}
+			      Substituting these back:
+			      $$Y_{0}^{0}(\theta,\phi) = \cos^2\theta - 1$$
+
+			\item Function II:
+			      Again, starting with Legendre function:
+			      \begin{align*}
+				      \mathcal{P}_{2}(x)              & =\frac{1}{2^{2}(2)!}\frac{d^2}{dx^2}(x^{2}-1)^{2}                     \\
+				                                      & =\frac{1}{8}\frac{d^2}{dx^2}(x^4-2x^2+1)                              \\
+				                                      & =\frac{1}{8}(12x^2-4x)                                                \\
+				      \implies \mathcal{P}_{2}^{1}(x) & = (-1)\sqrt{ 1-x^{2} } \frac{d}{dx}\left(\frac{1}{8}(12x^2-4x)\right) \\
+				                                      & = -\sqrt{ 1-x^{2} } \left(3x-\frac{1}{2}\right)
+			      \end{align*}
+			      Substitute:
+			      \begin{align*}
+				      Y_{2}^{1}(\theta,\phi) = \sqrt{ \frac{120}{24\pi} } \left(e^{i\phi} -\sqrt{ 1-\cos^{2}\theta } \left(3\cos\theta-\frac{1}{2}\right)\right)
+			      \end{align*}
+
+			\item Orthagonality:
+			      \begin{gather*}
+				      \int_{0}^{\pi} \int_{0}^{2\pi} \left[\sqrt{ \frac{120}{24\pi} } \left(e^{i\phi} -\sqrt{ 1-\cos^{2}\theta } \left(3\cos\theta-\frac{1}{2}\right)\right)\right]^{*} \left[\cos^2\theta - 1\right] \sin \theta ~d\theta ~d\phi \\
+				      =\sqrt{ \frac{120}{24\pi} } \int_{0}^{\pi} \int_{0}^{2\pi} 3\sin \theta\left(\cos\theta-\frac{1}{2}\right)e^{-i\phi} -\sin \theta\left(3\cos\theta-\frac{1}{2}\right)\sqrt{ 1-\cos^{2}\theta } ~d\theta ~d\phi \\
+			      \end{gather*}
+			      Working on the left hand side:
+			      $$\int_0^\pi \left(\int_0^{2\pi} 3 e^{-i\phi} \left(-\frac{1}{2} + \cos(\theta)\right) \sin(\theta) d\theta\right) d\phi = 0 $$
+			      And the right:
+			      $$\int_{0}^{\pi} \left( \int_{0}^{2\pi} \left( -\frac{1}{2} + 3\cos(\theta) \right) \sqrt{1 - \cos^2(\theta)} \sin(\theta) \, d\theta \right) \, d\phi = 0$$
+			      Therefore these are orthagonal.
+		\end{enumerate}
+
+	\end{callout}
+\end{homeworkProblem}
+
+\end{document}

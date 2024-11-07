@@ -1,0 +1,180 @@
+\begin{homeworkProblem}
+(3 pts) Show that the electric field of a (perfect) dipole can be written in the coordinate-free form
+\[
+\mathbf{E}_\text{dip}(\mathbf{p}) = \frac{1}{4\pi\epsilon_0}\frac{1}{r^3}\left[3(\mathbf{p}\cdot\hat{\mathbf{r}})\hat{\mathbf{r}} - \mathbf{p}\right]
+\]
+\begin{callout}{Solution:}
+    
+    \begin{align*}
+        \mathbf{E}_{\text{dip}}(\textbf{p}) &= \frac{\textbf{p}}{4\pi \epsilon_0 r^3} 2\cos\theta \boldsymbol{\hat{r}} \sin\theta \boldsymbol{\hat{\theta}} \\ 
+        &= \frac{1}{4\pi \epsilon_0} \frac{1}{r^3} \left[3(p\cos\theta \boldsymbol{\hat{r}} - p\cos\theta \boldsymbol{\hat{r}} ~p\sin\theta\boldsymbol{\hat{\theta}}\right] \\ 
+        &= \frac{1}{4\pi \epsilon_0} \frac{1}{r^3} [3(p\cos\theta, p\sin\theta) \cdot (1,0)\boldsymbol{\hat{r}} - (p\cos\theta, p\sin\theta)] \\ 
+        \mathbf{E}_\text{dip}(\mathbf{p}) &= \frac{1}{4\pi\epsilon_0}\frac{1}{r^3}\left[3(\mathbf{p}\cdot\hat{\mathbf{r}})\hat{\mathbf{r}} - \mathbf{p}\right] \\
+    \end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+A conducting sphere of radius $a$, at potential $V_0$, is surrounded by a thin concentric spherical shell of radius $b$, over which someone has glued a surface charge $\sigma(\theta) = k\cos\theta$, where $k$ is a constant and $\theta$ is the usual spherical coordinate.
+\begin{enumerate}[(a)]
+    \item (3 pts) Find the potential in each region: $r > b$ and $a < r < b$.
+        \begin{callout}{Solution:}
+
+            %\textit{(I am rather curious if we could model this as a dipole)} 
+            We need to start with spherical harmonics. We have spherical solutions to Laplace's equation:
+            $$V(r,\theta)=\sum_{l}^{\infty}\left( A_{l}r^{l}+\frac{B_{l}}{r^{l+1}} \right)P_{l}(\cos \theta)$$
+
+            We have the boundary conditions that (1) finiteness of potential, (2) potential is continuous across boundaries, (3) that $E_{\textrm{above}} - E_{\textrm{below}} = \frac{\sigma}{\epsilon_0}$, and (4) that $V(a)=V_0$.
+            Finiteness is pretty trival, and we drop the outside term which blows up at infinity.
+
+            \vspace{1em} We can begin by equating the potentials inside and outside as in boundary condition (2):
+            $$\sum_l \underset{ \text{(inside)} }{ \left( A_{l}r^{l}+\frac{B_{l}}{r^{l+1}} \right)\cancel{P_{l}(\cos \theta) }}= \sum_l \underset{\text{(outside)}}{\left( \frac{C_{l}}{r^{l+1}} \right)\cancel{P_{l}(\cos \theta)}}$$
+            \begin{align*}
+                \boxed{C_l = \left.(A_lr^{2l+1} + B_l)\right|_{r=b}} \tag{2}
+            \end{align*}
+
+            Now the more complicated boundary condition (3) says that
+            \begin{align*}
+                E_{\textrm{above}} - E_{\textrm{below}} &= \frac{\sigma(\theta)}{\epsilon_0} \tag{2.33} \\ 
+                \implies \nabla V |_{r=b} &= - \frac{\sigma(\theta)}{\epsilon_0} \tag{2.35} \\ 
+                \sum \nabla \left( \frac{C_l}{r^{l+1}} P_l(\cos\theta) \right) &= - \frac{\sigma(\theta)}{\epsilon_0} \\ 
+                \sum \nabla \left( A_lr^{l} + \frac{B_l}{r^{l+1}} \right) P_l (\cos\theta) &= - \frac{\sigma(\theta)}{\epsilon_0} \\ 
+                \sum \left( A_lr^{l-1}l - \frac{B_l(l+1)}{r^{l+2}} \right) P_l (\cos\theta) &= - \frac{k}{\epsilon_0} \cos\theta = \stackrel{\text{(this is $P$ one)}}{- \frac{k}{\epsilon_0}P_1(\cos\theta)}
+            \end{align*}
+            I will stop here to make a few notes before moving forward. Equation (3.85) showcases this technique to substitute in $P_1(\cos\theta)$, where it is shown that for $l\neq0$ the right hand side of the equation with the charge density goes to zero, and the legendre polynomials drop out due to orthagonality. 
+            Also, we can start substituting $r\to b$.
+            \begin{align*}
+                \boxed{\begin{cases}
+                    A_lb^{l-1}l - \frac{B_l(l+1)}{b^{l+2}} = 0, & l\neq1 \\ 
+                    A_1 - \frac{2B_1}{b^3} = -\frac{k}{\epsilon_0}, & l=1
+                \end{cases}} \tag{3}
+            \end{align*}
+            
+            Boundary condition (4) says
+            \begin{gather*}
+                \sum \left( A_la^l + \frac{B_l}{a^{l+1}} \right)P_l(\cos\theta) = V_0 \\ 
+                \implies \begin{cases}
+                    \left( A_0 + \frac{B_0}{a} \right) = V_0, & l=0 \\ 
+                    \left( A_la^l  + \frac{B_l}{a^{l+1}} \right)P_l(\cos\theta) = 0, & l\neq 0
+                \end{cases} 
+            \end{gather*}
+            \begin{align*}
+                \boxed{\begin{cases}
+                    B_0 = a(V_0 - A_0), & l=0 \\ 
+                    B_l = -A_l a^{2l+1}, & l\neq0
+                \end{cases}} \tag{4}
+            \end{align*}
+            Each of the boundary conditions has been worked, so we can start combining them to express coefficients.
+            \begin{align*}
+                0 &= \stackrel{(3)}{A_lb^{l-1}l - \frac{B_l(l+1)}{b^{l+2}}}, \quad \stackrel{(4)}{B_l = -A_l a^{2l+1}} \\
+                \implies 0 &= A_lb^{l-1}l - \frac{-A_l a^{2l+1}(l+1)}{b^{l+2}} \\
+                0 &= A_lb^{2l+1}l + A_l a^{2l+1}(l+1) \\ 
+                0 &= A_l \left[b^{2l+1}l + a^{2l+1}(l+1)\right]
+            \end{align*}
+            If we throw this back at the solution from (2) and (4), we have no solutions for $l>1$:
+            $$\boxed{A_l, B_l, C_l = 0, \quad l \neq 0, ~l \neq 1}$$
+
+            \begin{align*}
+                C_0 - B_0 = 0
+                (b-a)A_0+aV_0 = aV_0 - aA_0 
+            \end{align*}
+            Which implies 
+            $$\boxed{A_0 = 0, ~B_0=C_0=aV_0 \quad l=0}$$
+
+            \begin{gather*}
+                \stackrel{(3)}{A_1 - \frac{2B_1}{b^3} = -\frac{k}{\epsilon_0}}, \quad \stackrel{(4)}{B_1 = -A_1 a^{3}} \\ 
+                A_1 + 2A_1 = k \to A_1 = \frac{k}{3\epsilon_0} \\ 
+                B_1 = - \frac{k a^3}{3 \epsilon_0} \\ 
+                C_1 = (b^3 - a^3) A_1 = \frac{(b^3 - a^3)k}{3 \epsilon_0} 
+            \end{gather*}
+            $$\boxed{A_1 = \frac{k}{3\epsilon_0}, ~B_1 = - \frac{k a^3}{3 \epsilon_0}~C_1 = \frac{(b^3 - a^3)k}{3 \epsilon_0}, \quad l = 1 }$$
+
+            This then gives solutions
+            $$\boxed{\begin{cases} 
+                V(r) = \frac{aV_0}{r} + \frac{(b^3-a^3)}{3r^2 \epsilon_0}k \cos\theta, & r \geq b \\ 
+                V(r) = \frac{aV_0}{r} + \frac{(r^3-a^3)}{3r^2 \epsilon_0}k \cos\theta, & r \leq b
+            \end{cases}}$$
+
+        \end{callout}
+    \item (3 pts) Find the surface charge density $\sigma_i(\theta)$ on the conductor.
+        \begin{callout}{Solution:}
+            \begin{align*}
+                \sigma_i(\theta) &= -\epsilon_0 \frac{\partial V}{\partial r} \hat{n} \tag{2.49} \\ 
+                &= -\epsilon_0 \frac{\partial }{\partial r} \left[ \frac{aV_0}{r} + \frac{(r^3-a^3)}{3r^2 \epsilon_0}k\cos\theta \right] \\
+                &= \frac{2 a V_0 \epsilon_0 }{r^3} + \frac{2a^3}{r^4}k\cos \theta 
+            \end{align*}
+        \end{callout}
+\end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+(3 pts) According to quantum mechanics, the electron cloud for a hydrogen atom in the ground state has a charge density
+\[
+\rho(r) = \frac{q}{\pi a^3}e^{-2r/a}
+\]
+where $q$ is the charge of the electron and $a$ is the Bohr radius. Find the atomic polarizability. \textit{[Hint: First calculate the electric field of the electron cloud, $\mathbf{E}_e(r)$; then expand the exponential assuming $r \ll a$]}
+\begin{callout}{Solution:}
+    
+    \begin{enumerate}[i.]
+        \item The charge enclosed is given by the integral
+            \begin{align*}
+                Q_{enc} = \frac{4\pi q}{\pi a^3} \int_{0}^{r} r^2e^{-2r/a} ~dr = q \left[ 1-e^{-2r/a} \left( 1 + \frac{2r}{a} + \frac{2r^2}{a^2} \right) \right]
+            \end{align*}
+
+        \item Then the electric field is 
+            \begin{align*}
+                \oint E \cdot dA &= \frac{Q_{enc}}{\epsilon_0} \\ 
+                E \cdot 4\pi r^2 &= \frac{q}{\epsilon_0} \left[ 1-e^{-2r/a} \left( 1 + \frac{2r}{a} + \frac{2r^2}{a^2} \right) \right] \\ 
+                E &= \frac{q}{\epsilon_ 04\pi r^2} \left[ 1-e^{-2r/a} \left( 1 + \frac{2r}{a} + \frac{2r^2}{a^2} \right) \right] \\ 
+            \end{align*}
+
+        \item The linear term of the Taylor Expansion is polarizability, Taylor expand by expanding the product:
+            \begin{align*}
+                A &= e^{-2r/a} = 1 + \left( -\frac{2r}{a} \right) + \frac{1}{2!}\left( \frac{2r}{a} \right)^2 + \dots \\ 
+                B &= 1+\frac{2r}{a}+\frac{2r^2}{a^2} \\
+                1-AB &= 1 - \frac{4}{3} \left( \frac{r}{a} \right)^{3} + \dots
+            \end{align*}
+
+            Then if we choose the linear term,
+            $$E\approx \frac{1}{4\pi \epsilon_0} \frac{q}{r^2} \left( \frac{4}{3} \left( \frac{r}{a} \right)^{3} \right)$$
+            Which reduces to 
+            $$E = \frac{1}{3\pi \epsilon_0 a^3} qr = \frac{1}{3\pi \epsilon_0 a^3} \textbf{p} $$
+    \end{enumerate}
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+(4 pts) A (perfect) dipole $\mathbf{p}$ is situated a distance $z$ above an infinite grounded conducting plane. The dipole makes an angle $\theta$ with the perpendicular to the plane. Find the torque on $\mathbf{p}$. If the dipole is free to rotate, in what orientation will it come to rest?
+\begin{callout}{Solution:}
+
+    \begin{enumerate}[i.]
+        \item Electric field felt by the dipole is equal to the induced field by the dipole. We have
+            $$\boxed{\begin{aligned}
+                E_{dip} &= \frac{p}{4\pi \epsilon_0 r^3} (2\cos\theta, ~\sin\theta,~0) \\ 
+                \textbf{p} &= (p\cos\theta, ~p\sin\theta)
+            \end{aligned} }$$
+            Then, by the image method, 
+            \begin{align*}
+                \mathbf{E_i} = \frac{p}{4\pi \epsilon_0 (2z)^3}(2\cos\theta, ~\sin\theta, ~0)
+            \end{align*}
+
+        \item Net torque is then 
+            \begin{align*}
+               \textbf{N} &= \textbf{p} \times \mathbf{E_i} \\ 
+                &= (p\cos\theta, ~p\sin\theta,~0) \times \frac{p}{4\pi \epsilon_0 (2z)^3}(2\cos\theta, ~\sin\theta, ~0) \\ 
+                &= \frac{p^2}{4\pi \epsilon_0 (2z)^3}\left| \begin{matrix}
+                    \boldsymbol{\hat{i}} & \boldsymbol{\hat{j}} & \boldsymbol{\hat{k}} \\ 
+                    \cos\theta & \sin\theta & 0 \\ 
+                    2\cos\theta & \sin\theta & 0
+                \end{matrix} \right| \\ 
+                &= \frac{p^2}{4\pi \epsilon_0 (2z)^3} \left( \sin\theta\cos\theta \boldsymbol{\hat{\phi}} \right) \\ 
+                &= \frac{p^2}{8\pi \epsilon_0 (2z)^3} \sin(2\theta)
+            \end{align*}
+            
+            This has zeroes at integer multiples of $\pi/2$, so it will orient parallel to the surface.
+    \end{enumerate}
+\end{callout}
+\end{homeworkProblem}

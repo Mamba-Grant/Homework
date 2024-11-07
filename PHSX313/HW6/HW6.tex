@@ -1,0 +1,91 @@
+\documentclass{article}
+
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{amsmath}
+
+\newcommand{\incfig}[2][1]{%
+        \def\svgwidth{#1\columnwidth}
+        \import{./figures/}{#2.pdf_tex}
+}
+
+\definecolor{shadecolor}{RGB}{248,248,248}
+
+\newenvironment{callout}[1]
+{\begin{shaded*}
+\textbf{#1}
+}
+{\end{shaded*}}
+
+\title{Physics 313-Fall 2023\\Homework 6}
+\author{}
+\date{Due 5:00 pm Oct. 11, 2023}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+
+\item (a) (3 pts) The Large Hadron Collider is circulating protons. At the beginning they circulated the protons at an energy of 3.5 TeV and have a design to circulate them at 7 TeV. For each of those energies, calculate how far away from the speed of light are the protons travelling? Compared to the speed of light, does the doubling of energy change their speed much? [Hint: Solve for speed, but don’t plug in numbers until the end. Also, feel free to use a Taylor expansion but justify why you are using it.]
+
+\begin{callout}{Solution:}
+\begin{enumerate}[1.]
+        \item Given that $E = \frac{mc^2}{\sqrt{1-\frac{u^2}{c^2} }}$:
+    \begin{align*}
+        E \sqrt{1-\frac{u^2}{c^2} } &= mc^2 \\
+        (E^2)\left(1-\frac{u^2}{c^2}\right) &= (mc^2)^2 \\
+        1-\frac{u^2}{c^2} &= \left( \frac{mc^2}{E} \right)^2 \\
+        u^2 &= c^2 - \left( \frac{(mc^2)^2}{E^2} + 1 \right)  \\
+        \implies u &= \sqrt{ c^2 - \left( \frac{(m^2c^6)}{E^2} \right) } \\
+                   &= \sqrt {c^2 - 6.48\times10^{9}}~\textrm{(for E = 3.5 TeV)} \tag{1} \\
+                   &= \sqrt{c^2 - 1.62\times10^{9}}~\textrm{(for E = 7 TeV)} \tag{2} \\
+    \end{align*}
+    \end{enumerate}
+\end{callout}
+
+\newpage
+(b) Momentum of light:
+\begin{enumerate}[i]
+    \item (3 pts) Find the energy and momentum of a 1$\mu$m infrared photon. Express momentum in both kg m/s and eV/c, and energy both in Joules and eV.
+
+\begin{callout}{Solution:}
+    \begin{enumerate}[1.]
+        \item $p = \frac{h}{\lambda} = 1.33\times10^{-27}~\mathrm{\frac{kg \times m}{s} }$
+        \item $E = pc = 3.987\times10^{-19}~\textrm{J}$
+    \end{enumerate}
+\end{callout}
+
+\end{enumerate}
+
+(c) A metal surface has a photo electric effect cutoff wavelength of 325.6 nm. It is
+illuminated with light of wavelength of 259.8 nm.
+\begin{enumerate}[i]
+    \item (3 pts) Find the work function of the material.
+        \begin{align*}
+            \lambda_{c} &= \frac{hc~\textrm{$e$V $\cdot$ nm}}{\phi~\textrm{$e$V}} \implies 325.6 = \frac{(1240)}{\phi} \\
+            \implies \phi &= 0.263~\textrm{$e$V} 
+        \end{align*}
+    \item (3 pts) What is the stopping potential? 
+        Because energy is conserved, $K-q\Delta V = 0$:
+        \begin{align*}
+            K = hf-\phi \implies (h)\left( \frac{c}{f} \right) - \phi &\implies (\frac{1240}{259.8} ) - 0.263 \\
+            K = e\Delta V &\implies 4.5 \textrm{~$e$V}
+        \end{align*}
+    \item (3 pts) Will the photo electric effect be observed for $\lambda < 325.6$ nm or for
+$\lambda > 325.6$ nm? Explain your answer. That is, why is it observed in one
+range but not the other.
+
+\begin{callout}{Solution:}
+    Because the energy induced by the light is a function of its wavelength or frequency, and not amplitude, the photoelectric effect depends only on the wavelength of light. The cutoff frequency describes the minimum frequency required to cause emission of photoelectrons. When $\lambda$ is greater than 325.6 nm, photoelectrons will be emitted.
+\end{callout}
+
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}

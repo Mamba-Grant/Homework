@@ -1,0 +1,145 @@
+\documentclass{article}
+
+
+   \usepackage{amsmath}
+   \usepackage{import}
+   \usepackage{pdfpages}
+   \usepackage{transparent}
+   \usepackage{xcolor}
+   \usepackage{framed}
+   \usepackage{enumerate}
+
+
+\newcommand{\incfig}[2][1]{%
+        \def\svgwidth{#1\columnwidth}
+        \import{./figures/}{#2.pdf_tex}
+}
+
+\definecolor{shadecolor}{RGB}{248,248,248}
+
+\newenvironment{callout}[1]
+{\begin{shaded*}
+\textbf{#1}
+}
+{\end{shaded*}}
+
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+
+\section{Math 590 HW8}
+
+\subsection{Problem 1.} Let 
+$A = \begin{bmatrix}
+a_{11} & a_{12} & a_{13}\\  
+a_{21} & a_{22} & a_{23}\\
+a_{31} & a_{32} & a_{33}
+\end{bmatrix}$.
+Let $C_{ij}$ be the matrix obtained from A by deleting row $i$, column $j$ and $D_{ij} = \det(C_{ij})$. Show by direct computations that:
+
+\begin{enumerate}[(a)]
+\item $a_{11}D_{11} - a_{12}D_{12} + a_{13}D_{13} = \det(A)$.
+
+\begin{callout}{Solution:}
+
+For a 3x3 matrix, we can show that the cofactor method of determining the determinant is equivalent to the triple product method of finding the determinant:
+
+    \begin{enumerate}[1.]
+        \item By Cofactor Expansion:
+            \begin{align*}
+                a_{11}(a_{22}a_{33}-a_{23}a_{32})-a_{12}(a_{21}a_{33}-a_{31}a_{23}) + a_{13}(a_{21}a_{32}-a_{22}a_{31}) \\
+            \end{align*}
+        \item By Triple Product:
+            \begin{align*}
+                \begin{bmatrix} a_{12} \\ a_{22} \\ a_{32} \end{bmatrix} \times \begin{bmatrix} a_{13} \\ a_{23} \\ a_{33} \end{bmatrix} = 
+                (a_{22}a_{33}-a_{23}a_{32})-(a_{21}a_{33}-a_{31}a_{23}) + (a_{21}a_{32}-a_{22}a_{31}) \\
+                \begin{bmatrix} a_{11} \\ a_{21} \\ a_{31} \end{bmatrix} \cdot \left(\begin{bmatrix} a_{12} \\ a_{22} \\ a_{32} \end{bmatrix} \times \begin{bmatrix} a_{13} \\ a_{23} \\ a_{33} \end{bmatrix}\right) = \\
+                a_{11}(a_{22}a_{33}-a_{23}a_{32})-a_{12}(a_{21}a_{33}-a_{31}a_{23}) + a_{13}(a_{21}a_{32}-a_{22}a_{31}) \\
+            \end{align*}
+    \end{enumerate}
+
+    Given that these two are equivalent, we've symbolically computed that this is a valid method to find the determinant.
+
+\end{callout}
+
+\item $a_{21}D_{11} - a_{22}D_{12} + a_{23}D_{13} = 0$.
+
+\begin{callout}{Solution:}
+
+    We can see that the following would cancel to zero below:
+    \begin{align*}
+        a_{21}(a_{22}a_{33}-a_{23}a_{32})-a_{22}(a_{21}a_{33}-a_{31}a_{23}) + a_{23}(a_{21}a_{32}-a_{22}a_{31})
+    \end{align*}
+\end{callout}
+
+\end{enumerate}
+
+\subsection{Problem 2.} Let 
+$A = \begin{bmatrix} 
+1 & 1 & 0\\
+1 & 0 & 1\\
+0 & 1 & 1
+\end{bmatrix}$.
+
+\begin{enumerate}[(a)]
+\item Write A and $A^{-1}$ as product of elementary matrices.  
+
+\begin{callout}{Solution:}
+    \begin{enumerate}[1.]
+        \item $A$:
+        \begin{align*}
+            \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}
+            \begin{bmatrix} 1 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 1 \end{bmatrix}
+        \end{align*}
+        \item $A^{-1}$:
+        \begin{align*}
+            \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{bmatrix}
+            \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & -1 & 1 \end{bmatrix}
+            \begin{bmatrix} 1 & 1 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}
+            \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1/2 & 0 \\ 0 & 0 & 1 \end{bmatrix}
+            \begin{bmatrix} 1 & 0 & -3 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}
+            \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{bmatrix}
+            \begin{bmatrix} 1 & 0 & 0 \\ -1 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}
+            \begin{bmatrix} 1 & 1 & 0 \\ 1 & 0 & 1 \\ 0 & 1 & 1 \end{bmatrix}
+        \end{align*}
+    \end{enumerate}
+\end{callout}
+
+\item Find $A^{-1}$ using row reduction.
+
+\begin{callout}{Solution:}
+
+    \includegraphics[width=\textwidth]{InverseRREF.jpg}
+\end{callout}
+
+\newpage
+\item Find $A^{-1}$ using cofactor matrices.
+
+\begin{callout}{Solution:}
+    \begin{enumerate}[1.]
+        \item Cofactor Matrix:
+            \begin{align*}
+                \begin{bmatrix} -1 & -1 & 1 \\ -1 & 1 & -1 \\ 1 & -1 & -1 \end{bmatrix}
+            \end{align*}
+
+        \item Adjoint Matrix:
+
+            The adjoint matrix is the transpose of the cofactor matrix:
+            \begin{align*}
+                \left(\begin{bmatrix} -1 & -1 & 1 \\ -1 & 1 & -1 \\ 1 & -1 & -1 \end{bmatrix}\right)^{T} =
+                \begin{bmatrix} -1 & -1 & 1 \\ -1 & 1 & -1 \\ 1 & -1 & -1 \end{bmatrix}
+            \end{align*}
+
+        \item Multiply by Inverse Determinant:
+
+            Given that the determinant is -2:
+            \begin{align*}
+                -\frac{1}{2} \begin{bmatrix} -1 & -1 & 1 \\ -1 & 1 & -1 \\ 1 & -1 & -1 \end{bmatrix} = 
+                \begin{bmatrix} 1/2 & 1/2 & -1/2 \\ 1/2 & -1/2 & 1/2 \\ -1/2 & 1/2 & 1/2 \end{bmatrix}
+            \end{align*}
+    \end{enumerate}
+\end{callout}
+
+\end{enumerate}
+
+\end{document}

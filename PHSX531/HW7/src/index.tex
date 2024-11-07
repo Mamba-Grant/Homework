@@ -1,0 +1,140 @@
+\begin{homeworkProblem}
+\textbf{(3 pts)} A cubical box (sides of length $a$) consists of five metal plates, which are welded together and grounded. The top is made of a separate sheet of metal, insulated from the others, and held at a constant potential $V_0$. Find the potential inside the box.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{../assets/H7P1F1.png}
+\end{figure}
+\begin{callout}{Solution:}
+    
+    Much like example 3.5 in Griffiths, this is a true 3-D problem. 
+    \begin{gather*}
+        \frac{\partial^2 V}{\partial x^2} + \frac{\partial^2 V}{\partial y^2} + \frac{\partial^2 V}{\partial z^2} = 0 \\ 
+        \frac{1}{X} \frac{\partial ^2 X}{\partial x} = k, \quad \frac{1}{Y} \frac{\partial ^2 Y}{\partial y} = l, \quad \frac{1}{Z} \frac{\partial ^2 Z}{\partial z} = C_3, \quad k + l + C_3 = 0 \\ 
+        \frac{d^2X}{x^2} = l^2X, \quad \frac{d^2Y}{dy^2} = -k^2Y, \quad \frac{d^2Z}{dz^2} = (k^2 + l^2)Z
+    \end{gather*}
+    $$\begin{cases}
+        X(x) = A\sin(lx) + B\cos(lx) \\
+        Y(y) = C\sin(ky) + D\cos(ky) \\ 
+        Z(z) = Ee^{\sqrt{ k^2+l^2 }z} + Fe^{-\sqrt{ k^2+l^2 }z}
+    \end{cases}$$
+    $$V(x,y,a) = \sum_n \sum_m C_{n,m} \left(A\sin(lx) + B\cos(lx)\middle)\middle(C\sin(ky) + D\cos(ky)\middle)\middle(Ee^{\sqrt{ k^2+l^2 }z} + Fe^{-\sqrt{ k^2+l^2 }z}\right) $$
+
+    \newpage Subject to:
+    $$\begin{cases}
+        V = 0 \text{ when } x = 0, \\
+        V = 0 \text{ when } x = a, \\
+        V = 0 \text{ when } y = 0, \\
+        V = 0 \text{ when } y = a, \\
+        V = 0 \text{ when } z = 0, \\
+        V = V_0(x,y,a) \text{ when } z = a.
+    \end{cases}$$
+
+    The easy boundary conditions are:
+    \begin{align*}
+        x(0) &= 0 \implies B=0 \\ 
+        x(a) &= A\sin la = 0 \implies ka=n\pi \\ 
+        y(0) &= 0 \implies D=0 \\ 
+        y(a) &= C\sin ka = 0 \implies ka = m\pi \\ 
+        z(0) &= 0 \implies E+F=0 \\ 
+        z(z) &= Ee^{\sqrt{ k^2 + l^2 }z} - Ee^{-\sqrt{ k^2 + l^2 }z} = 2E\sinh \left( z\sqrt{ k^2 + l^2 } \right)
+    \end{align*}
+    $$\boxed{V(x,y,z) = \sum_n \sum_m C_{n,m} \sin \left( \frac{n\pi}{a}x \right) \sin \left( \frac{m\pi}{a}y \right) \sinh\left( z\sqrt{ \frac{n\pi}{a}^2 + \frac{m\pi}{a}^2 } \right)}$$
+
+    The coefficients can be pulled out with Fourier's trick
+    \begin{align*}
+        V(x,y,z=a) = V_0 \\ 
+        V_0 \int_{x=0}^{a} \int_{y=0}^{a} \sin \frac{n\pi}{a} x \sin \frac{n\pi}{a} y ~dx ~dy 
+        &= C_{n,m} \frac{a^2}{4} \sinh\left( \pi \sqrt{ n^2+m^2 } \right) \\ 
+        \left( \frac{a}{n\pi} \frac{a}{m\pi} \cos \frac{n\pi}{a}x \cos \frac{m\pi}{a}y \middle)\right|_{x,y=0}^{x,y=a}
+        &= C_{n,m} \frac{a^2}{4} \sinh\left( \pi \sqrt{ n^2+m^2 } \right) \\ 
+        \frac{a}{n\pi} \frac{a}{m\pi} [\cos n\pi - 1] [\cos m\pi - 1]
+        &= C_{n,m} \frac{a^2}{4} \sinh\left( \pi \sqrt{ n^2+m^2 } \right) \\ 
+        \frac{1}{nm\pi^2} \frac{4 V_0}{\sinh\left( \pi \sqrt{ n^2+m^2 } \right)} [\cos n\pi - 1] [\cos m\pi - 1] 
+        &= C_{n,m}
+    \end{align*}
+    When $n$ or $m$ are even everything goes to zero, meanwhile we get a multiple of 4 when $n$ and $m$ are odd. Therefore only odd solutions exist giving
+    $$\boxed{C_{n,m=1,3,5,\dots} = \frac{1}{nm \pi^2} \frac{16 V_0}{\sinh\left( \pi \sqrt{ n^2 + m^2 } \right)} }$$
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+\textbf{(3 pts)} Suppose the potential is a constant $V_0$ over the surface of a sphere of radius $R$. Find the potential inside and outside of the sphere. (Use our solutions to Laplace’s equations in spherical coordinates).
+\begin{callout}{Solution:}
+    
+    In spherical coordinates the general solution for Laplace's equation is
+    $$V(r,\theta)=\sum_{l}^{\infty}\left( A_{l}r^{l}+\frac{B_{l}}{r^{l+1}} \right)P_{l}(\cos \theta)$$
+    
+    Inside, $A_{l}$ must be nonzero meanwhile $B_l$ must be zero to constitute finiteness. The opposite is true if we consider the outside.
+    \begin{enumerate}[i.]
+        \item For the insidse, we have the condition 
+            $$V(R, \theta) = \sum_{l=0}^{R} A_lr^l P_l(\cos\theta) = V_0(\theta)$$
+        \item For the outside, we have the condition 
+            $$V(R, \theta) = \sum_{l=0}^{\infty} \frac{B_l}{R^{l+1}} P_l(\cos\theta) = V_0(\theta)$$
+    \end{enumerate}
+
+    Following the concepts discussed in Griffiths Example 3.7, we arrive at:
+
+    \begin{align*}
+        A_{l}&=\frac{2l+1}{2R^{l}} \int_{0}^{\pi} V_{0}(\theta)P_{l}(\cos \theta) \sin \theta\,d\theta \\
+        B_{l}&=\frac{2l+1}{2}R^{l+1}\int_{\pi}^{\infty} V_{0}(\theta)P_{l}(\cos \theta)\sin \theta\, d \theta
+    \end{align*}
+
+    Now with $V_0(\theta) = V_0 $, we can insert $P_0(\cos\theta)=1$.
+    \begin{align*}
+        A_{l}&=\frac{2l+1}{2R^{l}} \int_{0}^{\pi} P_0(\cos\theta)P_{l}(\cos \theta) \sin \theta\,d\theta \\
+        B_{l}&=\frac{2l+1}{2}R^{l+1}\int_{\pi}^{\infty} P_0(\cos\theta)P_{l}(\cos \theta)\sin \theta\, d \theta
+    \end{align*}
+    Now by orthagonality of Legendre Polynomials we can reason that the only nonzero result happens when $l=0$. The integral terms give
+    $$\int_{0}^{\pi} \sin\theta ~d\theta = -\cos\theta |_{0}^{\pi} = 2$$
+    $$\begin{cases}
+            A_l = \frac{1}{2}V_0 \cdot 2 = V_0 \\ 
+            B_l = \frac{1}{2}RV_0 \cdot 2 = RV_0 \\ 
+    \end{cases}$$
+    Therefore:
+    $$\boxed{V(r,\theta) =\begin{cases}
+        V_0, &\text{inside} \\ 
+        \frac{V_0R}{r}, &\text{outside}
+    \end{cases}}$$
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{(3 pts)} Derive the most general solution to Laplace’s equation in cylindrical coordinates, assuming cylindrical symmetry (no dependence on $z$). [Make sure you find all the solutions to the radial equation; in particular, your result must accommodate the case of an infinite line charge.]
+\begin{callout}{Solution:}
+    
+    \begin{gather*}
+        \nabla^2 V(r, \theta, z) = r \frac{\partial ^{2}V}{\partial r ^{2}} + \frac{\partial V}{\partial r} + \frac{1}{r} \frac{\partial ^{2}V}{\partial \theta ^{2}} = 0 \\ 
+        \quad \frac{1}{\Theta} \frac{d^2\Theta}{d\theta} = -k^2, \qquad \frac{1}{R} \frac{1}{r} \frac{d}{dr}\left( \frac{dR}{dr} \right) = k^2
+    \end{gather*}
+
+    Because these are second order we get two solutions. The first solution for the radial part is a power series, while the second is logarithmic:
+    \begin{align*}
+        r \frac{d}{dr} \left( r \frac{dr^n}{dr} \right) &= r \frac{d}{dr} (rnr^{n-1}) \\ 
+        &= r \frac{d}{dr} (nr^n) \\ 
+        &= rn^2 r^{n-1} \\
+        &= n^2 r^n \\
+        &= k^2 R = k^2 r^n \\ 
+        &\implies n = k
+    \end{align*}
+    \begin{align*}
+        r \frac{d}{dr} \left( r \frac{dR}{dr} \right) &= const \\ 
+        \frac{dR}{dr} &= \frac{const}{r} \\ 
+        dR &= \frac{dr}{r} \cdot const \\ 
+        R &= A\ln r + B
+    \end{align*}
+    The angular solutions are the same as before. 
+    \begin{align*}
+        R_1(r) &= Ar^k + Br^{-k} \\ 
+        R_2(r) &= A \ln r + B \\ 
+        \Theta_1(\theta) &= C\cos(k \theta) + D\sin(k \theta) \\
+        \Theta_2(\theta) &= C\theta + D \quad \text{This one is non-physical, gives discontinuous solutions}
+    \end{align*}
+
+    $$V(r, \theta) = A\ln r + B + \sum_{k=1}^{\infty} \left[ r^k(a_k \cos k\theta + b_k \cos k\theta ) + r^{-k} (a_k \cos k\theta + b_k \sin k\theta) \right] $$
+
+\end{callout}
+\end{homeworkProblem}

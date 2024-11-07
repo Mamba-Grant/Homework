@@ -1,0 +1,105 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Define Article %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Using Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{cancel}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{empheq}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{psfrag}
+\usepackage{pgfplots}
+\usepackage{bm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\speedoflight{299792458}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Page Setting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\geometry{a4paper}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define some useful colors %%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{ocre}{RGB}{243,102,25}
+\definecolor{mygray}{RGB}{243,243,244}
+\definecolor{deepGreen}{RGB}{26,111,0}
+\definecolor{shallowGreen}{RGB}{235,255,255}
+\definecolor{deepBlue}{RGB}{61,124,222}
+\definecolor{shallowBlue}{RGB}{235,249,255}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define an orangebox command %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\orangebox[1]{\fcolorbox{ocre}{mygray}{\hspace{1em}#1\hspace{1em}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% English Environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{mytheoremstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\newtheoremstyle{myproblemstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{theorem}{Theorem}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{definition}{Definition}[section]
+\theoremstyle{myproblemstyle}
+\newmdtheoremenv[linecolor=black,leftmargin=0pt,innerleftmargin=10pt,innerrightmargin=10pt,]{problem}{Problem}[section]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Plotting Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepgfplotslibrary{colorbrewer}
+\pgfplotsset{width=8cm,compat=1.9}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title & Author %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{HW 3 }
+\author{Grant Saggars}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+  \item The distance from Earth to Alpha Centauri is about \(41 \times 10^{12} \mathrm{~km}\). A spaceship travels directly from Earth to Alpha Centauri at a speed of 0.9 c.
+\end{enumerate}
+
+(a) (3 pts) How much shorter than \(41 \times 10^{12} \mathrm{~km}\) is the distance according to the spaceship travellers.
+
+    \[\begin{split}
+        L = L_0 \sqrt{1 - \frac{v^2 }{c^2 }} &= 17.87 \times 10^{12} \mathrm{~km}\\
+        L_0 - L &= 23.13 \times 10^{12}\, \mathrm{~km} 
+    \end{split}\]
+
+(b) (5 pts) How much do the spaceship travellers think that they have aged? Calculate this in two ways.
+
+\begin{align*}
+    t   &= \gamma (u) (t_0) \to \frac{41000 \times 10^{12}}{0.9c} = \gamma (0.9c) (t_0) \tag{1} \\
+    t_0 &= 6.6231 \times 10^7\, \mathrm{~seconds} \\
+    d   &= rt \to 17.87 \times 10^{12} = (0.9c)(t)\tag{2} \\
+    t   &= 6.6231 \times 10^7\, \mathrm{~seconds}
+\end{align*}
+
+\begin{enumerate}
+  \setcounter{enumi}{1}
+  \item The Enterprise is moving directly away from the Millineum Falcon at relative speed of 0.73 c. On the Millineum Falcon, Han Solo bounces a ball off a wall 3 meters away. It takes the ball \(100 \mathrm{~ms}\) to bounce off the wall and back.
+\end{enumerate}
+
+(a) (3 pts) How far away from the wall in Han Solo according to an observer on the Enterprise?
+
+\begin{align*}
+    L &= L_0 \sqrt{1- \frac{(0.73\cancel{c})^2}{\cancel{c^2}}} \\
+      &= 3\sqrt{1-0.73^2} \\
+      &= 2.05\, \mathrm{~m}
+\end{align*}
+
+(b) (3 pts) How long does it take the ball to get back to Han Solo according to an observer on the Enterprise?
+
+\begin{align*}
+    t &= \gamma(u) t_0 \to \gamma(0.73c)(100) \\
+      &= 146\, \mathrm{~ms}
+\end{align*}
+
+\end{document}

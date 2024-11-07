@@ -1,0 +1,289 @@
+\documentclass{article}
+
+
+\newcommand{\hmwkTitle}{Homework \#4}
+\newcommand{\hmwkDueDate}{\today}
+\newcommand{\hmwkClass}{PHSX 611}
+\newcommand{\hmwkAuthorName}{\textbf{Grant Saggars}}
+
+
+
+\usepackage{fancyhdr}
+\usepackage{braket}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+
+\usepackage{float}
+\usepackage{caption}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{XCharter}
+
+\usetikzlibrary{automata,positioning}
+
+\usepackage{geometry}
+\geometry{top=1in, bottom=1in, left=1in, right=1in} % Adjust margins as needed
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.75in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Callout Box
+%
+
+\definecolor{shadecolor}{RGB}{235,235,235}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%
+% Title Page
+%
+
+\title{
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDueDate}\\
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+	\item (Problem A2.a) Consider a collection of all polynomials (with complex coefficients) of degree $< N$ in $x$. Does this set constitute a vector space (with polynomials as vectors)? If not, why not? (0.25 pt.)
+	      \begin{callout}{Solution:}
+		      Consider two polynomials in such a vector space, $\{(\alpha = x^a, ~\beta = x^b) ~\forall~ u,v < N\}$.
+		      \begin{enumerate}[(I)]
+			      \item The sum $\alpha + \beta$ remains closed under addition for any $a,b$ because the sum of any two exponentials can not produce a power greater than $N$.
+			      \item It is also evident that the set is closed under scalar multiplication, since $c \alpha$ remains of finite degree for all scalars $c$.
+			      \item The zero polynomial exists, implying the existence of the rest of the typical set axioms (additive identity, inverse, etc.).
+		      \end{enumerate}
+	      \end{callout}
+	\item (Problem A6) Find the angle (as defined in Equation A.28) between the following vectors:
+	      $$|\alpha\rangle=(1+i) \hat{l}+\hat{\jmath}+i \hat{k}$$ and $$|\beta\rangle=(4-i) \hat{l}+(2-2 i) \hat{k}$$ (0.25 pt.)
+	      \begin{callout}{Solution:}
+
+		      \begin{gather*}
+			      \cos \theta = \frac{\ket{a} \cdot \ket{b}}{|a||b|}
+		      \end{gather*}
+
+		      Magnitudes of $\ket{a}$ and $\ket{b}$:
+		      \begin{gather*}
+			      a: \quad \sqrt{ (1+i)(1-i) + (1)(1) + (i)(-i) } = 2  \\
+			      b: \quad \sqrt{ (4-i)(4+i) + (2-2i)(2+2i) } = 5
+		      \end{gather*}
+
+		      \begin{gather*}
+			      = \frac{(1+i)(4-i)+i(2-2i)}{10}
+			      = \frac{7+5i}{10}
+			      = \frac{7}{10} + \frac{1}{2}i \\
+			      \implies \theta = \arccos\left( \frac{7}{10} + \frac{1}{2}i \right)
+		      \end{gather*}
+
+		      % \begin{gather*}
+		      %  \cos \theta = \frac{\ket{a} \cdot \ket{b}}{|a||b|} = \frac{(1+i)(4-i)+i(2-2i)}{\sqrt{ 2 } \sqrt{ 20 }} = \frac{7+5i}{2 \sqrt{ 10 }} = \frac{7\sqrt{ 10 }}{20} + \frac{\sqrt{ 10 }}{4}i \\
+		      % \end{gather*}
+
+	      \end{callout}
+	\item (Problem A11) Is the sum of two unitary matrices unitary? Is the sum of two Hermitian matrices Hermitian? (0.25 pts.)
+	      \begin{callout}{Solution:}
+
+		      \begin{enumerate}[(I)]
+			      \item Let $\hat{A} = \hat{A}^{\dagger}$ and $\hat{B}=\hat{B}^{\dagger}$. We want to show that $\hat{A}+\hat{B} = (\hat{A}+\hat{B})^{\dagger}$, or equivalently, $\braket{ f | (A+B)f} = \braket{ (A+B)f | f}$
+
+			            \begin{gather}
+				            \braket{ f | (\hat{A}+\hat{B})f } = \int_{-\infty}^{\infty} f^{*}(\hat{A}+\hat{B})f\,dx = \int_{-\infty}^{\infty} f^{*}\hat{A}f\,dx + \int_{-\infty}^{\infty} f^{*}\hat{B}f\,dx = \braket{ f | \hat{A}f } +\braket{ f | \hat{B}f } \\
+				            \braket{ f | \hat{A}f } +\braket{ f | \hat{B}f } = \int_{-\infty}^{\infty} f^{*}\hat{A}f\,dx +\int_{-\infty}^{\infty} f^{*}\hat{B}f\,dx = \int_{\infty}^{\infty} f^{*}\hat{A}^{\dagger}f\,dx + \int_{-\infty}^{\infty} f^{*}\hat{B}^{\dagger}f\,dx
+			            \end{gather}
+			            (because $\hat{A}=\hat{A}^{\dagger}$ and $\hat{B}=\hat{B}^{\dagger}$)
+			            \begin{gather}
+				            \int_{\infty}^{\infty} f^{*}\hat{A}^{\dagger}f\,dx + \int_{-\infty}^{\infty} f^{*}\hat{B}^{\dagger}f\,dx = \int_{-\infty}^{\infty} \hat{A}f^{*}f\,dx +\int_{-\infty}^{\infty} \hat{B}f^{*}f\,dx = \braket{ \hat{A}f | f } +\braket{ \hat{B}f | f }
+			            \end{gather}
+		      \end{enumerate}
+		      \item One definition of a unitary matrix is a matrix which has an inverse equal to its hermitian conjugate,
+		      $$\hat{A}^{-1} = \hat{A}^{\dagger}$$
+		      If $(\hat{A}+\hat{B})^{-1}$ equals $\hat{A}^{-1}+\hat{B}^{-1}$, the sum of the matrices $\hat{A}$ and $\hat{B}$ are unitary, which can be shown by "distributing":
+		      $$
+			      \begin{aligned}
+				      (A+B)^{-1} & \stackrel{?}{=}(A+B)^{\dagger}          \\
+				                 & \stackrel{?}{=} A^{\dagger}+B^{\dagger} \\
+				                 & \stackrel{?}{=} A^{-1}+B^{-1}
+			      \end{aligned}
+		      $$
+
+	      \end{callout}
+	\item (Problem A14a) Using the orthonormal standard basis for vectors in three dimensions $(i, j, k)$ construct a matrix that represents a rotation through angle $\theta$ (counterclockwise, looking down the axis toward the origin) about the $z$-axis. (0.25 pts.)
+	      \begin{callout}{Solution:}
+
+		      $$ T = \begin{bmatrix} \cos \theta & \sin \theta & 0 \\ -\sin \theta & \cos \theta & 0 \\ 0 & 0 & 1 \end{bmatrix} $$
+
+	      \end{callout}
+	\item Asymmetric finite square well. Consider the square well in Figure 1. Write down the boundary conditions for bound states of stationary wavefunctions. (0.5 pts.)
+	      \begin{center}
+		      \begin{tikzpicture}[scale=0.8]
+			      \draw[->] (-2,0) -- (4,0) node[right] {$x$};
+			      \draw[->] (0,-2) -- (0,4) node[above] {$V(x)$};
+			      \draw[red,thick] (0,0) -- (2,0) -- (2,3) -- (4,3);
+			      \draw[red,thick] (-2,2) -- (0,2) -- (0,0);
+			      \node at (-1,2.5) {$V_1$};
+			      \node at (3,3.5) {$V_2$};
+			      \node at (2,-0.5) {$a$};
+		      \end{tikzpicture}
+	      \end{center}
+	      \begin{callout}{Solution:}
+
+		      $$ \begin{cases}
+				      \Psi_{I}(0)  & = \Psi_{II}(0)                     \\
+				      \Psi_{II}(a) & = \Psi_{III}(a)                    \\
+				      1            & = \int_{-\infty}^{0} \Psi_I(x) ~dx
+				      + \int_{0}^{a} \Psi_{II}(x) ~dx
+				      + \int_{a}^{\infty} \Psi_{III}(x) ~dx
+			      \end{cases} $$
+
+	      \end{callout}
+	\item (Problem 2.25) Check that the bound state of the delta function well (Equation 2.132 in Griffiths) is orthogonal to the scattering states (Equations 2.134, 2.135). (0.5 pts.)
+	      \begin{callout}{Solution:}
+
+		      \begin{align*}
+			      \psi(x)   & = \frac{\sqrt{ m \alpha  }}{\hbar} e ^{-m \alpha |x| / \hbar ^{2}} & \textrm{(Bound State)} \\
+			      \psi_k(x) & = \begin{cases}
+				                    Ae ^{ikx} + Be ^{-ikx}, & -\infty < x < 0 \\
+				                    Fe ^{ikx} + Ge ^{-ikx}, & 0 < x < \infty
+			                    \end{cases}
+			                & \textrm{(Scattering States)}
+		      \end{align*}
+
+		      \begin{align*}
+			      \braket{ \psi^{*} | \psi_{k}} & = \frac{\sqrt{ ma }}{\hbar}\left[\int_{-\infty}^{0}Ae^{-ma|x|/\hbar^{2}}e^{ikx} \,dx
+			      + \int_{-\infty}^{0}Be^{-ma|x|/\hbar^{2}}e^{-ikx}\,dx\right.                                                                                                                                                   \\
+			                                    & \qquad \left.+ \int_{0}^{\infty} Fe^{-ma|x|/\hbar^{2}}e^{ikx}\,dx
+			      + \int_{0}^{\infty} Ge^{-ma|x|/\hbar^{2}}e^{-ikx}\,dx \right]                                                                                                                                                  \\
+			                                    & = \frac{\sqrt{ ma }}{\hbar}\frac{A}{-\frac{ma}{\hbar^{2}}+ik} \cancelto{ 1 }{ \left.e^{(ma/\hbar^{2}+ik)x}\right|_{-\infty}^{0} }
+			      + \frac{\sqrt{ ma }}{\hbar}\frac{B}{-\frac{ma}{\hbar^{2}}-ik} \cancelto{ 1 }{ \left.e^{(ma/\hbar^{2}-ik)x}\right|_{-\infty}^{0} }                                                                              \\
+			                                    & \qquad + \frac{\sqrt{ ma }}{\hbar}\frac{F}{-\frac{ma}{\hbar^{2}}+ik} \cancelto{ 1 }{ \left.e^{(ma/\hbar^{2}+ik)x}\right|_{0}^{\infty} }
+			      \frac{\sqrt{ ma }}{\hbar}\frac{G}{-\frac{ma}{\hbar^{2}}-ik} \cancelto{ 1 }{ \left.e^{(ma/\hbar^{2}-ik)x}\right|_{0}^{\infty} }                                                                                 \\
+			                                    & = \frac{\sqrt{ ma }}{\hbar}\left[  \frac{(A+G)\left( \frac{ma}{\hbar^{2}}-ik \right)+(B-F)\left( \frac{ma}{\hbar^{2}}+ik \right)}{\frac{m^{2}a^{2}}{\hbar^{4}}+k^{2}}  \right]
+		      \end{align*}
+		      Applying boundary conditions $F+G=A+B$:
+		      \begin{align*}
+			      \braket{ \psi^{*} | \psi_{k}} & = \frac{\sqrt{m \alpha}}{\hbar}\left\{\frac{\frac{m \alpha}{\hbar^2}[A+B+(A+B)]+\left[-\frac{2 m \alpha}{\hbar^2}(A+B)\right]}{\frac{m^2 \alpha^2}{\hbar^4}+k^2}\right\} \\
+			                                    & = \frac{\sqrt{m \alpha}}{\hbar}\left[\frac{\cancelto{ 0 }{ \frac{2 m \alpha}{\hbar^2}(A+B)-\frac{2 m \alpha}{\hbar^2}(A+B) }}{\frac{m^2 \alpha^2}{\hbar^4}+k^2}\right]   \\
+			                                    & =0
+		      \end{align*}
+
+	      \end{callout}
+	\item (Problem 2.26) Calculate the Fourier transform of the delta function. Hint: use Plancherel's theorem. (0.5 pts.)
+	      \begin{callout}{Solution:}
+
+		      $$ \mathcal{F}(f(x)) = \frac{1}{\sqrt{ 2\pi }} \int_{-\infty}^{\infty} e ^{ikx}f(x) ~dx $$
+
+		      Due to the properties of the delta function, the integral becomes:
+
+		      $$ \frac{1}{\sqrt{ 2\pi }}\cancelto{1}{e^{ik(0)}} $$
+
+	      \end{callout}
+	\item (Problem 2.29) Analyze the odd bound state wave functions for the finite square well. Derive the transcendental equation for the allowed energies and solve it graphically. Examine the two limiting cases. Is there always an odd bound state? (0.5 pts.)
+	      \begin{callout}{Solution:}
+
+		      $$ \psi(x) = \begin{cases}
+				      Fe ^{-kx},  & (x>a)   \\
+				      D \sin(lx), & (0<x<a) \\
+				      \psi(-x),   & (x<0)
+			      \end{cases} $$
+		      By continuity,
+		      \begin{align*}
+			      Fe ^{-ka}   & = D \sin(la)  \\
+			      -kFe ^{-ka} & = lD \cos(la)
+		      \end{align*}
+		      % Using $k=l\tan(la)$:
+		      As with the even solutions, we find $k=l\cot(la)$ by dividng out the above equations.
+		      Now, using $l= \frac{\sqrt{ 2m(E+V_0) }}{\hbar}$ and $k= \frac{\sqrt{ -2mE }}{\hbar}$, we follow Griffith's substitutions
+		      \begin{gather*}
+			      z := la, \quad z_0 := \frac{a}{\hbar}\sqrt{ 2mV_0 }
+		      \end{gather*}
+		      The trancendental equation for $z$ is therefore:
+		      \begin{align*}
+			      \cot(z) = \sqrt{ (z_0/z)^{2}-1 }
+		      \end{align*}
+		      There may not always be a bound state, since as $z_0$ gets smaller its intersection with $\cot(z)$ goes to infinity. Contrary, as $z_0$ gets larger the well approaches the form of the infinite square well, so the allowed energies ought to approach $\frac{n^2\pi^2\hbar^2}{2m(2a)^2}$.
+
+	      \end{callout}
+\end{enumerate}
+
+\end{document}

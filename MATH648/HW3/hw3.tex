@@ -1,0 +1,450 @@
+\documentclass[12pt]{article}
+
+
+\newcommand{\hmwkTitle}{Homework \#3}
+\newcommand{\hmwkDueDate}{March 13, 2024}
+\newcommand{\hmwkClass}{MATH 648}
+\newcommand{\hmwkAuthorName}{\textbf{Grant Saggars}}
+
+
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+
+\usepackage{float}
+\usepackage{caption}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{XCharter}
+
+\usetikzlibrary{automata,positioning}
+
+\usepackage{geometry}
+\geometry{top=1in, bottom=1in, left=1in, right=1in} % Adjust margins as needed
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.75in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Callout Box
+%
+
+\definecolor{shadecolor}{RGB}{235,235,235}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%
+% Title Page
+%
+
+\title{
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDueDate}\\
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{itemize}
+	\item Section 4.2, Page 93: \#1, \#2, \#3, \#4.
+
+	      \textit{[Hint for \#4: For the second part of the problem, observe that if $B(y)$ is an anti-derivative of $A(y)$, then
+				      \[
+					      J(y) = \int_{0}^{1} A(y)y' \,dx = \int_{0}^{1} A(y) \,dy = B(1) - B(0) \text{ (a value independent of $y(x)$)}.
+				      \]
+				      Therefore, you only need to show that there are an infinite number of functions satisfying $I(y) = L.$]}
+
+	\item Section 4.3, Page 101: \#1, \#2.
+\end{itemize}
+
+\newpage
+
+\section{Section 4.2}
+\begin{homeworkProblem}[1]
+	Let $J$ and $I$ be the functionals defined by
+	$$ J(y)=\int_0^1 y'^2 d x, \quad I(y)=\int_0^1 y d x $$
+
+	Find the extremals for $J$ subject to the conditions $y(0)=0, y(1)=2$, and $I(y)=L$.
+	\begin{callout}{Solution:}
+
+		The E-L for Isoperimetric constrained problems is:
+		$$\begin{cases}
+				(f-\lambda g)_{y}-\frac{d}{dx}(f-\lambda g)_{y'} = 0 \\
+				I(y) = L
+			\end{cases}$$
+		\begin{align*}
+			(y'^{2}-\lambda y) - \frac{d}{dx}\left( y'^{2}-\lambda y \right)_{y'} & =0                   \\
+			-\lambda - \frac{d}{dx} \left( 2y' \right)                            & = 0                  \\
+			y''                                                                   & = -\frac{\lambda}{2}
+		\end{align*}
+
+		Integrating both sides twice gives
+
+		$$y(x)= -\frac{\lambda}{4}x^2 + c_1x +c_2$$
+
+		Applying boundary conditions:
+
+		$$\begin{cases}
+				0   & = c_2                                                                 \\
+				2   & = - \frac{\lambda}{4} + c_1                                           \\
+				L   & = \int_{0}^{1} - \frac{\lambda }{4}x^2 + c_1x + \cancelto{0}{c_2} ~dx \\
+				\to & = \left.- \frac{\lambda }{12} x^3 + \frac{c_1}{2} x^2 \right|_{0}^{1}
+				= -\frac{\lambda}{12}+ \frac{c_1}{2}
+			\end{cases}$$
+
+		These imply
+
+		$$\begin{cases}
+				c_1     & = 6L-4   \\
+				c_2     & = 0      \\
+				\lambda & = 24L-24
+			\end{cases}$$
+
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[2]
+	Dido's Problem in Polar Coördinates: Let $J$ and $I$ be functionals defined by
+	$$ J(r)=\frac{1}{2} \int_0^\pi r^2 d \theta, \quad I(r)=\int_0^\pi \sqrt{r^2+r^{\prime 2}} d \theta $$
+	where $r^{\prime}=d r / d \theta$. Find an extremal for $J$ subject to the conditions $r(0)=$ $0, r(\pi)=0$, and $I(r)=L>0$.
+	\begin{callout}{Solution:}
+
+		Using the special case of no explicit $\theta$-dependence:
+
+		$$ F = r^2 - \lambda \sqrt{ r^2+r'^2 }$$
+		$$ H=y'F_{y'}-F = C $$
+
+		The E-L for this is
+		$$\frac{r^2}{2}-\lambda \sqrt{r^2+r^{'2}}-r'\left( -\lambda \frac{r'}{\sqrt{r^2+r^{'2}}}\right) = \frac{C^2}{2}$$
+		The differential triangle relation $\sin\phi = \frac{r}{\sqrt{ r^2+r'^2 }}$ needs to be applied here, which allows us to simplify this to:
+		$$r\sin\phi = \frac{r^2 - C^2}{\lambda}$$
+		Eliminating $\phi$ gives
+		\begin{align*}
+			r' = \frac{dr}{d\theta} & = \pm \frac{r(r^2-C^2)}{\sqrt{ 2r^2(2 \lambda^2+c^2)-r^4-c^4 }}         \\
+			\int d\theta            & = \pm \int \frac{\sqrt{ 2r^2(2 \lambda^2+c^2)-r^4-c^4 }}{r(r^2-C^2)} dr
+		\end{align*}
+		This integral is awful, and I have no idea how to solve it.
+
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[3]
+	Let $J$ and $I$ be the functionals defined by
+	$$ J(y)=\int_0^1\left(y y^{\prime}\right)^2 d x, \quad I(y)=\int_0^1 y^2 d x $$
+
+	Suppose that $y$ is an extremal for $J$ subject to the conditions $y(0)=1$, $y(1)=2$, and $I(y)=L$.
+	\begin{enumerate}[(a)]
+		\item Find a first integral for the Euler-Lagrange equations for this problem and show that for $L=3$,
+		      $$ y(x)=\sqrt{4-3(x-1)^2}. $$
+		      \begin{callout}{Solution:}
+
+			      $$(f-\lambda g)_{y}-\frac{d}{dx}(f-\lambda g)_{y'}=0$$
+
+			      The general E-L equation is no good here:
+
+			      \begin{align*}
+				      ((yy')^{2}-\lambda y^2)_{y} - \frac{d}{dx}((yy')^{2}-\lambda y^2)_{y'} & = 0                                  \\
+				      [2yy'^{2}-2 \lambda y] - \frac{d}{dx}[2y^2y']                          & = 0                                  \\
+				      2 y(x)^2 y''(x) - 2 y(x) y'(x)^2 - 2 \lambda y(x)                      & = 0 \qquad \textrm{(unsolveable...)}
+			      \end{align*}
+
+			      Applying the no explicit x-dependence special case:
+			      $$ F = (yy')^{2} - \lambda y^2$$
+			      $$ H=y'F_{y'}-F = C $$
+
+			      \begin{align*}
+				      \cancel{2}( yy')^2 - \cancel{(yy')^{2}} - \lambda y^2 & = C                                                   \\
+				      y^2y'^2                                               & = C + \lambda y^2                                     \\
+				      y' = \frac{dy}{dx}                                    & = \sqrt{ \frac{C}{y^2} + \lambda }                    \\
+				      \int \frac{1}{\sqrt{ \frac{C}{y^2} + \lambda }} ~dy   & = \int dx                                             \\
+				      y(x)                                                  & = \sqrt{\frac{-C + \lambda ^2 (x+c_1)^{2}}{\lambda }}
+			      \end{align*}
+
+			      Applying boundary conditions:
+
+			      $$\begin{cases}
+					      1 & = \frac{-C+\lambda ^{2}(c_1)^{2} }{\lambda }                  \\
+					      4 & = \frac{-C+\lambda ^{2}(1 + c_1)^{2} }{\lambda }              \\
+					      L & = \int_{0}^{1} \frac{-C+\lambda ^{2}(x+c_1)^{2}}{\lambda} ~dx
+					      = \frac{1}{3\lambda}\left(-3C+\lambda^2+3\lambda^2c_1+3\lambda^2c_1^2\right)
+				      \end{cases}$$
+
+			      Using equation I we can express $C=\lambda^2 c_1^2-\lambda$. Substituting this into equation III gives allows us to find $c_1 = \frac{L-1}{\lambda}-\frac{1}{3}$. Substituting these into equation II gives $\lambda = -6L+15$. Combining everything finally gives:
+			      $$\begin{cases}
+					      C       & = 9L^2-30L+21       \\
+					      c_1     & = \frac{-L+2}{2L-5} \\
+					      \lambda & = -6L+15
+				      \end{cases}$$
+			      Substituting these into the original equation gives:
+			      $$ y(x) = \sqrt{ -\left(6 L x^2-6 L x-15 x^2+12 x-1\right) } $$
+			      Letting $L\to3$ gives the desired $y(x)=\sqrt{4-3(x-1)^2}$.
+
+		      \end{callout}
+		\item For $L=7 / 3$ show that there exists a linear function that is an extremal for the problem.
+		      \begin{callout}{Solution:}
+			      Letting $L\to \frac{7}{3}$ gives $y(x)=x+1$.
+		      \end{callout}
+		\item For $L=5 / 2$ show that this problem admits the solution $\lambda=0$. Find the extremal corresponding to this value.
+		      \begin{callout}{Solution:}
+			      Because $\lambda = -6L+15$, when $L$ equals $\frac{5}{2}$, $\lambda$ equals zero.
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[4]
+	Let $A(y)$ be a smooth function and let
+	$$ J(y)=\int_0^1 A(y) y^{\prime} ~dx $$
+	and
+	$$ I(y)=\int_0^1 \sqrt{1+y^{\prime 2}} ~dx $$
+
+	Formulate the Euler-Lagrange equations for the isoperimetric problem with $y(0)=0, y(1)=1$, and $I(y)=L>\sqrt{2}$. Show that $\lambda=0$, and that there are an infinite number of solutions to the problem. Explain without using the Euler-Lagrange equations (or any conservation laws) why there must be an infinite number of solutions to this problem.
+
+	\begin{callout}{Solution:}
+		\begin{enumerate}[(I)]
+			\item
+			      $$(f-\lambda g)_{y}-\frac{d}{dx}(f-\lambda g)_{y'}=0$$
+
+			      Solving this with the general E-L equation is no good:
+			      \begin{align*}
+				      \left[(A(y)y'-\lambda \sqrt{ 1+y'^{2} }\right]_{y} - \frac{d}{dx}\left[(A(y)y'-\lambda \sqrt{ 1+y'^{2} }\right]_{y'} & = 0                                 \\
+				      [A'(y)]-\frac{d}{dx}\left[ A(y)-\lambda \frac{y'}{\sqrt{ 1+y'^{2} }} \right]                                         & = 0                                 \\
+				      A'(y) - y'A'(y) - \lambda \frac{y''}{(1+y'^2)^{3/2}}                                                                 & = 0 \quad \textrm{(unsolveable...)}
+			      \end{align*}
+
+			      Instead apply the special case for no explicit x-dependence:
+
+			      $$ F = f-\lambda g = A(y)y'-\lambda \sqrt{ 1+y'^{2} } $$
+			      $$ H=y'F_{y'}-F = C $$
+
+			      \begin{align*}
+				      \cancel{y'A(y)} - \lambda \frac{y'^{2}}{\sqrt{ 1+y'^{2} }} - \cancel{y'A(y)} + \lambda \sqrt{ 1+y'^{2} } & = C                                           \\
+				      \lambda \left[ \frac{1+\cancel{y'^{2}}-\cancel{y'^{2}}}{\sqrt{ 1+y'^{2} }} \right]                       & = C                                           \\
+				      \frac{\lambda}{\sqrt{ 1+y'^{2} }}                                                                        & = C                                           \\
+				      y' = \frac{dy}{dx}                                                                                       & = \frac{\sqrt{ -C^2+\lambda ^{2} }}{C}        \\
+				      y                                                                                                        & = \frac{\sqrt{ -C^2+\lambda ^{2} }}{C}x + c_1
+			      \end{align*}
+
+			      Applying boundary conditions
+
+			      $$\begin{cases}
+					      0 & = 0 + c_1 \implies c_1 = 0                                                                     \\
+					      1 & = \frac{\sqrt{ -C^2+\lambda ^{2} }}{C}                                                         \\
+					      L & = \int_{0}^{1} \frac{\sqrt{ -C^2+\lambda ^{2} }}{C} ~dx = \frac{\sqrt{ -C^2+\lambda ^{2} }}{C}
+				      \end{cases}$$
+
+			      In this case we get both $1=\frac{\sqrt{ -C^2+\lambda ^{2} }}{C}$ and $L=\frac{\sqrt{ -C^2+\lambda ^{2} }}{C}$, which leaves free variables therefore allowing infinite solutions.
+
+			\item Geometrically the constraint is that there is a minimum length of $\sqrt{ 2 }$ to the curve which is being optimized. Since there is no finite length of the curve the functional ought to be able to take on an infinite number of curves as 'optimal' solutions. This is to say that it is underconstrained.
+
+		\end{enumerate}
+	\end{callout}
+\end{homeworkProblem}
+
+% \newpage
+
+\section{Section 4.3}
+
+\begin{homeworkProblem}[1]
+	Let $J$ and $I$ be functionals defined by
+	\begin{align*}
+		J(x, y) & = \int_{t_0}^{t_1} \left(1 - \frac{x}{\sqrt{x^2 + y^2}} \right)x'\, dt, \\
+		I(x, y) & = \int_{t_0}^{t_1} y^2 x' \,dt,
+	\end{align*}
+
+	where $x = x(t)$, $y = y(t)$, and $'$ denotes $\frac{d}{dt}$. Suppose that $(x, y)$ is an extremal for $J$ subject to the constraint $I(x, y) = K$, where $K$ is a positive constant. Prove that neither $x(t)$ nor $y(t)$ can be identically zero on the interval $[t_0, t_1]$ and that there is a constant $\lambda$ such that
+	$$ x = \lambda (x^2 + y^2)^{3/2}. $$
+	\begin{callout}{Solution:}
+
+		$$ \frac{d}{dt} \frac{\partial F}{\partial \dot{q}_{j}} - \frac{\partial F}{\partial q_j} = 0 $$
+
+		The E-L for this is:
+		$$\begin{cases}
+				\left( 1- \frac{x}{\sqrt{ x ^{2} + y ^{2} }} - \lambda y^2x' \right)_{x}
+				- \frac{d}{dt}\left( 1- \frac{x}{\sqrt{ x ^{2} + y ^{2} }} - \lambda y^2x' \right)_{x'} = 0 \\
+				\left( 1- \frac{x}{\sqrt{ x ^{2} + y ^{2} }} - \lambda y^2x' \right)_{y}
+				- \frac{d}{dt}\left( 1- \frac{x}{\sqrt{ x ^{2} + y ^{2} }} - \lambda y^2x' \right)_{y'} = 0 \\
+			\end{cases}$$
+		Working through the x-part:
+		\begin{align*}
+			\frac{\partial}{\partial x}\left( -\frac{x}{\sqrt{ x^2+y^2 }} \right) & = - \frac{y^2}{(x^2+y^2)^{3/2}} \\
+			\frac{d}{dt}\frac{\partial}{\partial x'}\left( -\lambda y^2x' \right) & = 2 \lambda yy'                 \\
+			\implies 2 \lambda yy'- \frac{y^2}{(x^2+y^2)^{3/2}}                   & = 0
+		\end{align*}
+		And the y-part:
+		\begin{align*}
+			\frac{\partial}{\partial y}\left( -\frac{x}{\sqrt{ x^2+y^2 }} - \lambda y^2x' \right) & = \frac{xy}{(x^2+y^2)^{3/2}} - 2 \lambda y x' \\
+			\implies \frac{xy}{(x^2+y^2)^{3/2}} - 2 \lambda y x'                                  & = 0
+		\end{align*}
+
+		From the constsraint it is obvious that if either $x$ or $y$ is zero, then the constraint will not hold.
+
+		I am unsure how to prove the second part of this question.
+
+		% Which simplifies to:
+		% $$\begin{cases}
+		% 		-\frac{y^2}{\left(x^2+y^2\right)^{3/2}} + 2\lambda yy'     & = 0 \\
+		% 		\frac{xy}{\left(x^2+y^2\right)^{\frac{3}{2}}}-2\lambda yx' & = 0
+		% 	\end{cases}$$
+		%
+		% It is logical to make a polar coordinate transformation here:
+		%
+		% $$\begin{cases}
+		% 		-\frac{\cancel{r^2}\sin^2\theta}{r^{\cancel{3}}} + 2\lambda r\sin\theta\left( r'\sin\theta + r\cos\theta \right) = 0 \\
+		% 		\frac{\cancel{r^2}\cos\theta \sin\theta}{r^{\cancel{3}}} - 2\lambda r\sin\theta \left( r'\cos\theta - r\sin\theta \right) = 0
+		% 	\end{cases}$$
+		%
+		% I have been at this for two days and I am not sure where I have gone wrong, nothing I have tried has given me a separable differential equation. In the spirit of mathematics I will attempt to continue using the small angle approximation:
+		%
+		% \begin{align*}
+		% 	r'                           & = \frac{\theta -2 \lambda r^3}{2 \lambda r^2 \theta}                                                                                                          \\
+		% 	                             & = \frac{\cancel{\theta} }{2 \cancel{\theta} \lambda r^2} - \frac{\cancel{2} \cancel{\lambda} r^{\cancel{3}}}{\cancel{2} \cancel{\lambda} \theta \cancel{r^2}} \\
+		% 	                             & = \frac{1}{2 \lambda r^2} - \frac{r}{\theta}                                                                                                                  \\
+		% 	r' + \frac{r}{\theta}        & = \frac{1}{2 \lambda r^2}                                                                                                                                     \\
+		% 	3r^2r' + \frac{3r^3}{\theta} & = \frac{1}{2 \lambda}
+		% \end{align*}
+		%
+		% Because we multiplied both sides by 3 there is an incredible opportunity to notice that we can u-subtitute $r^3 = u$ and $3r^2~dr = du$.
+		%
+		% \begin{align*}
+		% 	u' + \frac{3u}{\theta} & = \frac{3}{2 \lambda}
+		% \end{align*}
+		%
+		% At long last we have a solveable differential equation using integrating factors:
+		%
+		% $$\mu = e^{\int 3/\theta d\theta} = \theta^3$$
+		%
+		% \begin{align*}
+		% 	u\theta^3 & = \int \frac{3 \theta^3}{2 \lambda} ~d\theta       \\
+		% 	u = r^3   & = \frac{3\theta}{8 \lambda} + \frac{c_1}{\theta^3}
+		% \end{align*}
+
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[2]
+	Let $J$, $I_1$ and $I_2$ be functionals defined by
+	\begin{align*}
+		J(y)   & = \int_{0}^{1} y'^2 \,dx,     \\
+		I_1(y) & = \int_{0}^{1} x^2 y'^2 \,dx, \\
+		I_2(y) & = \int_{0}^{1} y \,dx.
+	\end{align*}
+
+	Find the extremals for $J$ subject to the conditions $I_1(y) = \ell_1$, $I_2(y) = \ell_2$ and the boundary conditions $y(0) = 0$, $y(1) = 1$.
+	\begin{callout}{Solution:}
+
+		$$ F = f - \lambda_1 g_1 - \lambda_2 g_2 = y'^2 - \lambda_1 x^2y'^2 - \lambda_{2} y $$
+		$$ (f-\lambda_1g_1 - \lambda_2g_2)_{y} - \frac{d}{dx}(f-\lambda_1g_1 - \lambda_2g_2)_{y'} = 0 $$
+
+		The E-L for this is therefore:
+		\begin{align*}
+			-\lambda_2 - \frac{d}{dx}\left[ 2y' - 2\lambda_1 x^2y'  \right] & = 0 \\
+			-\lambda_2 - 2y'' + 4 \lambda_1xy' + 2 \lambda_1 x^2y''         & = 0 \\
+		\end{align*}
+		Using reduction of order and rearranging:
+		$$u' - \frac{4 \lambda_1 x u}{-2 \lambda_1 x^2 + 2} = - \frac{\lambda_2}{2 \lambda_1 x^2 + 2}$$
+		We can use integrating factors now $\mu=\exp \{ \int \frac{4 \lambda_1 x}{-2 \lambda_1 x^2 + 2} ~dx \} = x^2 \lambda_1 - 1$
+		\begin{align*}
+			u\mu   & = \int -\frac{\lambda_2 (x^2\lambda_1-1)}{2 \lambda_1 x^2 + 2} ~dx                \\
+			       & = \frac{\lambda_2 x}{2} + c_1                                                     \\
+			u = y' & = \frac{\lambda_2 x}{2x^2 \lambda_1 - 1} + \frac{c_1}{x^2 \lambda_1 - 1}          \\
+			y      & = \int \frac{\lambda_2 x}{2x^2 \lambda_1 - 1} + \frac{c_1}{x^2 \lambda_1 - 1} ~dx
+		\end{align*}
+		The first term is simple to integrate:
+		$$\frac{\lambda_2}{4\lambda_1}\ln \left|1-2x^2\lambda_1\right|$$
+		The second term is much trickier, and I had to use a calculator:
+		$$\frac{c_1 \tanh ^{-1}\left(\sqrt{\lambda_1} x\right)}{\sqrt{\lambda_1}}$$
+		The general solution is therefore:
+		$$y(x) = \frac{\lambda_2}{4\lambda_1}\ln \left|1-2x^2\lambda_1\right|+\frac{c_1 \tanh ^{-1}\left(\sqrt{\lambda_1} x\right)}{\sqrt{\lambda_1}} + c_2$$
+		$$y'(x) = \frac{-\lambda_2x\left(-\lambda_1x^2+1\right)+c_1\left(-2\lambda_1x^2+1\right)}{\left(-\lambda_1x^2+1\right)\left(-2\lambda_1x^2+1\right)}$$
+		Applying boundary conditions:
+		\begin{align*}
+			0      & = c_2                                                                                                                                                            \\
+			1      & = \frac{\lambda_2}{4\lambda_1}\ln \left|1-2\lambda_1\right|+\frac{c_1 \tanh ^{-1}\left(\sqrt{\lambda_1}\right)}{\sqrt{\lambda_1}}                                \\
+			\ell_1 & = \int_{0}^{1} x^2\frac{-\lambda_2x\left(-\lambda_1x^2+1\right)+c_1\left(-2\lambda_1x^2+1\right)}{\left(-\lambda_1x^2+1\right)\left(-2\lambda_1x^2+1\right)} ~dx \\
+			\ell_2 & = \int_{0}^{1} \frac{\lambda_2}{4\lambda_1}\ln \left|1-2x^2\lambda_1\right|+\frac{c_1 \tanh ^{-1}\left(\sqrt{\lambda_1} x\right)}{\sqrt{\lambda_1}} ~dx
+		\end{align*}
+
+	\end{callout}
+\end{homeworkProblem}
+
+\end{document}

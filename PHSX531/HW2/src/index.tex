@@ -1,0 +1,103 @@
+\newpage
+\begin{homeworkProblem}
+    Consider the function $\mathbf{v} = (xy)\hat{x} + (2yz)\hat{y} + (3zx)\hat{z}$. NOTE: Test means to check both sides of the identity and show they are the same.
+
+    \begin{enumerate}[(a)]
+        \item (4 pts) Test Gauss's theorem for a cube with side of length 2:
+
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.4\textwidth]{../assets/H2P1F1.png}
+            \end{figure}
+
+            \begin{callout}{Solution:}
+
+                Gauss's theorem says that:
+                $$\int_{V} (\vec{\nabla}\cdot \vec{v})\,d\tau =\oint_{S}\vec{v}\cdot d\vec{a}$$
+                \begin{enumerate}[i.]
+                    \item The left hand side of the equation is the integral
+
+                        \begin{align*}
+                            \int_{0}^{2}\int_{0}^{2}\int_{0}^{2} \left( 3x + y + 2z \right) ~dx~dy~dz = 48
+                        \end{align*}
+
+                    \item The right hand side of the equation is the set of integrals:
+                        \begin{align*}
+                            x &= 2 \implies 2\int_{0}^{2}\int_{0}^{2} y ~dy ~dz = 8 \\
+                            x &= 0 \implies 0 \\
+                            y &= 2 \implies 2\int_{0}^{2}\int_{0}^{2} 2z ~dx ~dz = 16 \\ 
+                            y &= 0 \implies 0 \\ 
+                            z &= 2 \implies 2\int_{0}^{2}\int_{0}^{2} 3x ~dx ~dy = 24 \\ 
+                            z &= 0 \implies 0 \\ 
+                        \end{align*}
+                        (recall that for cases such as at the surface of $x=2$, $x$ goes to 2 in the vector field. Additionally, sign for vector field is flipped due to face orientation for the planes through $(x,y,z)=0$. Use Griffiths page 27 for review on the subject.)
+
+                        The sum of these is the total surface integral which equals 48.
+
+                \end{enumerate}
+
+            \end{callout}
+
+            \newpage
+        \item (4 pts) Test Stoke's theorem for the following shaded triangle:
+
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.4\textwidth]{../assets/H2P2F1.png}
+            \end{figure}
+
+            \begin{callout}{Solution:}
+
+                Stoke's theorem says that:
+                $$\int_{S} (\vec{\nabla}\times \vec{v})\,d\vec{a}=\oint_{P}\vec{v}\cdot d \vec{\ell} $$
+
+                \begin{enumerate}[i.]
+                    \item The left hand side is the integral:
+                        \begin{align*}
+                            \int_{0}^{2} \int_{0}^{2-y} \left( -2y, -3z, -x \right) \cdot (~dz~dy,0,0) &=
+                            \int_{0}^{2} \int_{0}^{2-y} -2y ~dz~dy
+                            = -\frac{8}{3}
+                        \end{align*}
+
+                    \item The right hand side is the set of integrals:
+                        \begin{align*}
+                            (0,0,0) &\to (0,2,0) : \int_{0}^{2} 2y\cancelto{0}{z} ~dy = 0 \\ 
+                        \end{align*}
+                        On the line $z=2-y$, $dy=dz$
+                        \begin{align*}
+                            (0,2,0) \to (0,0,2) &: \int_{0}^{2} (xy, 2yz, 3zx) \cdot (0, dy, dy)~dy \\ 
+                            &= -\int_{0}^{2} 2y(2-y) + 0 ~dy \\ 
+                            &= -\frac{8}{3}
+                        \end{align*}
+                        On the last line, $x=y=0$, sending the integral to zero. The total line integral is indeed equal to the left hand side of the equation.
+                \end{enumerate}
+
+            \end{callout}
+
+    \end{enumerate}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (2 pts) Using second derivatives, fundamental theorem of divergences, Gauss's theorem, and/or Stoke's theorem, show
+    \begin{align}
+        \int_S f(\nabla \times \mathbf{A}) \cdot d\mathbf{a} = \int_S [\mathbf{A} \times (\nabla f)] \cdot d\mathbf{a} + \oint_P f\mathbf{A} \cdot d\boldsymbol{\ell}
+    \end{align}
+
+    \begin{callout}{Solution:}
+        
+        The product rule for curl converts
+        $$f(\nabla \times A) \to A\times (\nabla f) + \nabla \times (f A)$$
+        This is aready half way to what we want:
+        \begin{align*}
+        \int_S f(\nabla \times \mathbf{A}) \cdot d\textbf{a} 
+            = \int_{S} [A\times (\nabla f)] ~d\textbf{a} 
+            + \int_{S} [\nabla \times (fA)] ~d\textbf{a}
+        \end{align*}
+        Stokes theorem can now be used to get the last term into the desired loop integral:
+        $$\int_S f(\nabla \times \mathbf{A}) \cdot d\mathbf{a} = \int_S [\mathbf{A} \times (\nabla f)] \cdot d\mathbf{a} + \oint_P f\mathbf{A} \cdot d\boldsymbol{\ell}$$
+
+    \end{callout}
+
+\end{homeworkProblem}

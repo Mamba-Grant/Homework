@@ -1,0 +1,187 @@
+\documentclass[12pt]{extarticle}
+
+\title{Homework 1}
+\author{Grant Saggars}
+\date{\today}
+
+\usepackage{amsmath}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{geometry}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{lipsum}  
+\usepackage{caption}
+\usepackage{float}
+\usepackage{bbold}
+% \usepackage{fontspec}
+
+% \setmainfont{BespokeSerif-Regular}
+\definecolor{shadecolor}{RGB}{235,235,235}
+
+\geometry{top=0.25in, bottom=1in, left=0.5in, right=0.5in}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT BEGINS HERE %
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+
+\section{Propose two functions and sketch them (0.5 pt)}
+
+\begin{multicols}{2}
+
+	\begin{enumerate}[(a)]
+		\item The function $f(x)$ which can serve as a PDF.
+		      \begin{callout}{Solution:}
+
+			      The Wigner semicircle distribution is a really odd distribution defined as:
+			      \begin{align*}
+				      f(x) = \left\{
+				      \begin{array}{cl}
+					      \frac{2}{\pi R^{2}}\sqrt{R^{2}-x^{2}} & [-R, R]                        \\
+					      0                                     & (-\infty, -R) \cup (R, \infty)
+				      \end{array} \right.
+			      \end{align*}
+			      Although this could not technically work as a wavefunction, as it does not have a continuous derivative, it is finite and continuous and is therefore a PDF.
+
+		      \end{callout}
+		\item The function $g(x)$ which can't serve as a PDF.
+
+		      \begin{callout}{Solution:}
+
+			      A logistic curve is an example of something which cannot be a PDF, as it is not finite:
+			      $$ g(x)={\frac {1}{1+e^{-x}}} $$
+
+		      \end{callout}
+
+		      \columnbreak
+
+		      \medskip
+		      \includegraphics[width=0.4\textwidth]{graphs.png}
+
+	\end{enumerate}
+\end{multicols}
+
+\newpage
+\section{Prove that if a wavefunction is normalized at one point in time it preserves its normaliation over future time (0.75 pt)}
+\begin{callout}{Solution:}
+
+	Because the wave function, once normalized, is only a function of time, it would be a good idea to take the time derivative and show that it must equal zero for the normalization to remain constant for all time (it does not change). We can start by moving the time derivative under the integral sign and expanding the wave function:
+	\begin{align*}
+		\frac{d}{dt} \int_{-\infty}^{\infty} | \Psi(x,t) |^{2} ~dx & = \int_{-\infty}^{\infty} \frac{\partial }{\partial t} | \Psi(x,t) |^{2} ~dx                                                                                      \\
+		\frac{\partial }{\partial t} |\Psi|^{2}                    & = \frac{\partial }{\partial t}(\Psi^{*}\Psi) = \Psi^* \frac{\partial \Psi}{\partial t} + \frac{\partial \Psi^*}{\partial t}\Psi &  & \text{(by the product rule)} \\
+	\end{align*}
+	Expressions for $\frac{\partial \Psi}{\partial t}$ and its complex conjugate can be expanded using the definition of the Shr{\"o}dinger equation:
+	\begin{align*}
+		\frac{\partial }{\partial t}|\Psi|^{2}                     & = \frac{i\hbar}{2m} \left( \Psi^* \frac{\partial ^{2} \Psi}{\partial x ^{2}} - \frac{\partial ^{2}\Psi^*}{\partial x ^{2}} \Psi \right) = \frac{\partial }{\partial x} \left[ \frac{i \hbar}{2m} \left( \Psi^* \frac{\partial \Psi}{\partial x} - \frac{\partial \Psi^*}{\partial x} \Psi \right) \right] \\
+		\frac{d}{dt} \int_{-\infty}^{\infty} | \Psi(x,t) |^{2} ~dx & = \frac{i \hbar}{2m} \left( \Psi^* \frac{\partial \Psi}{\partial x} - \frac{\partial \Psi^*}{\partial x}\Psi \middle)\right|_{-\infty}^\infty
+	\end{align*}
+
+	Now, because the wave function goes to zero as $x$ goes to $\pm \infty$:
+
+	$$ \frac{d}{dt} \int_{-\infty}^{\infty} |\Psi(x,t)|^{2} ~dx = 0 $$
+
+\end{callout}
+
+\newpage
+\section{Consider the gaussian distribution (0.75 pt)}
+ {\LARGE $$ \rho(x) = Ae ^{-\lambda (x-a)^{2}} $$}
+
+\
+\begin{enumerate}[(a)]
+	\item Determine $A$.
+
+	      \begin{callout}{Solution: (Polar Transformation)}
+
+		      \begin{align*}
+			      \rho = \int_{-\infty}^{\infty} \exp(-a(x-\mu)^2 ) ~dx \to \int_{-\infty}^{\infty} \exp(-a(u)^2) ~dx \tag{1}
+		      \end{align*}
+		      Transformation (1) has a jacobian of one, which should make sense since $x-\mu$ does not scale the function. Now, we can temporarily square $\rho$ to convert to polar coordinates.
+		      \begin{align*}
+			      \rho^2 & = \int_{-\infty}^{\infty} \exp(-a(u^2 + v^2)) ~dx \to \int_{0}^{2\pi} \int_{0}^{\infty} \rho \exp(-a\rho^2) ~d\rho~d\theta
+		      \end{align*}
+		      Finally, a substitution of $a\rho^2 = w$ allows the integral to be solved to completion:
+		      \begin{align*}
+			      \rho^2 & =\frac{\cancel{2}\pi}{\cancel{2}a} \int_{0}^{\infty} e^{-w} ~dx \\
+			             & = \frac{\pi}{a} \left(-e^{-w}\middle|_{0}^{\infty} \right)      \\
+			             & = \sqrt{ \frac{\pi}{a} }
+		      \end{align*}
+
+	      \end{callout}
+
+	\item Calculate $\langle x \rangle$, $\langle x^{2} \rangle$, and $\sigma$.
+
+	      \begin{callout}{$\langle x \rangle$:}
+
+		      The average position is defined as $\int_{-\infty}^{\infty} x|\psi(x)|^{2} ~dx$.
+		      \begin{align*}
+			      \sqrt{ \frac{\pi}{a} }^{-2} \int_{-\infty}^{\infty} x \exp^2(-a(x-\mu)^{2}) ~dx
+			      \to \frac{a}{\pi} \int_{-\infty}^{\infty} x \exp(-2a(x-\mu)^{2}) ~dx
+		      \end{align*}
+
+		      \begin{enumerate}[(1)]
+			      \item make the substitution: $x-\mu \to u$, $dx = du$
+
+			            \begin{align*}
+				            \frac{a}{\pi} \int_{-\infty}^{\infty} (u + \mu) \exp(-2au^{2}) ~du \\
+				            \to \frac{a}{\pi} \left( \int_{-\infty}^{\infty} u\exp(-2au^2) ~du + \int_{-\infty}^{\infty} \mu\exp(-2au^2) ~du \right)
+			            \end{align*}
+
+			      \item The first integral can be solved with a single substitution
+			            \begin{align*}
+				            \int_{-\infty}^{\infty} u\exp(-2au^2) ~du & = \left(-\exp(-2au^2) \cdot \frac{1}{4a}\middle) \right|_{-\infty}^\infty = 0 \\
+			            \end{align*}
+
+			      \item The second integral is a gaussian, and can be solved like in part (a).
+			            \begin{align*}
+				            \int_{-\infty}^{\infty} \mu\exp(-2au^2) ~du
+				             & = \left( \mu^2 \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \exp(-2a(x^2+y^2)) ~dy ~dx \right)^\frac{1}{2} \\
+				             & = \left(\mu^2\int_0^{2\pi} \int_{0}^{\infty} \rho \exp(-2a\rho^2) ~d\rho~d\theta\right)^{\frac{1}{2}}         \\
+				             & = \left(\mu^2\frac{2\pi}{2a} \int_{0}^{\infty} e^{-w} ~dw \right)^{\frac{1}{2}}                               \\
+				             & = \mu \sqrt{ \frac{\pi}{a} }
+			            \end{align*}
+
+			      \item Substituting these into (1):
+
+			            \begin{align*}
+				            \frac{a}{\pi} \left(0 + \mu \sqrt{ \frac{\pi}{a} }\right) = \frac{\mu a}{\pi} \sqrt{ \frac{\pi}{a} }
+			            \end{align*}
+
+		      \end{enumerate}
+	      \end{callout}
+
+	      \begin{callout}{$\langle x ^{2} \rangle$ and Standard Deviation:}
+
+		      $x^2_{\textrm{ave}}$ is:
+
+		      \vspace{-0.3 cm}\begin{align*}
+			      \frac{a}{\pi} \int_{-\infty}^{\infty} x^2 \exp(-2a(x-\mu)^2) ~dx
+			       & = -2 \frac{d}{da} \int_{-\infty}^{\infty} \exp(-2a(x-\mu)^2) ~dx \\
+			       & = -2 \frac{d}{da} \sqrt{ \frac{\pi}{a} }                         \\
+			       & = \frac{4}{a} \sqrt{ \frac{\pi}{a} }
+		      \end{align*}
+
+		      Therefore, the standard deviation $\sigma$ is:
+		      \begin{align*}
+			      \sqrt{ \frac{4}{a} \sqrt{ \frac{\pi}{a} } - \left(\frac{\mu a}{\pi} \sqrt{ \frac{\pi}{a} }\right)^{2} }
+		      \end{align*}
+
+	      \end{callout}
+
+	      \newpage
+	\item Sketch the graph of $\rho(x)$.
+
+	      \center
+	      \includegraphics[width=0.8\textwidth]{gaussian.png}
+
+\end{enumerate}
+
+
+\end{document}

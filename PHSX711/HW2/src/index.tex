@@ -1,0 +1,295 @@
+\begin{homeworkProblem}
+    Exercise 1.8.2 (Shankar) Consider the matrix
+
+    \begin{align*}
+        \Omega = \begin{pmatrix} 
+            0 & 0 & 1 \\ 
+            0 & 0 & 0 \\ 
+            1 & 0 & 0 
+        \end{pmatrix}
+    \end{align*}
+
+    \begin{enumerate}[(1)]
+        \item Is it Hermitian?
+            \begin{callout}{Solution:}
+                Yes, this is Hermitian. $\Omega$ is equal to its complex conjugate transpose:
+                \begin{align*}
+                    \Omega^{\dagger} = \begin{pmatrix} 
+                        0 & 0 & 1 \\ 
+                        0 & 0 & 0 \\ 
+                        1 & 0 & 0 
+                    \end{pmatrix}
+                    = \Omega 
+                \end{align*}
+            \end{callout}
+        \item Find its eigenvalues and eigenvectors.
+            \begin{callout}{Solution:}
+
+                \begin{enumerate}[i.]
+                    \item Eigenvalues:
+                        \begin{align*}
+                            \left| \begin{matrix} 
+                                0-\lambda & 0 & 1 \\ 
+                                0 & 0-\lambda & 0 \\ 
+                                1 & 0 & 0-\lambda
+                            \end{matrix} \right|&=0 \\ 
+                            \implies -\lambda (\lambda^2) + (\lambda) &= 0 \\ 
+                            -\lambda(\lambda+1)(\lambda-1)&=0 \\ 
+                            \implies \lambda = 0, \pm 1
+                        \end{align*}
+
+                    \item Eigenvectors:
+                        \begin{align*}
+                            \left(\begin{array}{ccc|c} 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 \end{array}\right)
+                                &\implies \ket{1} = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} \\ 
+                            \left(\begin{array}{ccc|c} -1 & 0 & 1 & 0 \\ 0 & -1 & 0 & 0 \\ 1 & 0 & -1 & 0 \end{array}\right)
+                                &\implies \ket{2} = \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} \\ 
+                            \left(\begin{array}{ccc|c} 1 & 0 & 1 & 0 \\ 0 & 1 & 0 & 0 \\ 1 & 0 & 1 & 0 \end{array}\right)
+                                &\implies \ket{3} = \begin{pmatrix} -1 \\ 0 \\ 1 \end{pmatrix}
+                        \end{align*}
+                \end{enumerate}
+
+            \end{callout}
+        \item Verify that $U^{\dagger}\Omega U$ is diagonal, $U$ being the matrix of eigenvectors of $\Omega$.
+            \begin{callout}{Solution:}
+                
+                Ordinarily, a diagonalized matrix is given by:
+                $$\Omega = U \Lambda U^{-1}$$
+                Where it can be rearranged to give 
+                $$U^{-1} \Omega U = \Lambda$$
+
+                However, if $\Omega$ is Hermitian, $U^{\dagger}\Omega U$ is also diagonal:
+                \begin{align*}
+                    U^{\dagger}\Omega U = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 1 \\ -1 & 0 & 1 \end{pmatrix}
+                    \begin{pmatrix} 0 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 0 \end{pmatrix} 
+                    \begin{pmatrix} 0 & 1 & -1 \\ 1 & 0 & 0 \\ 0 & 1 & 1 \end{pmatrix}
+                    = \begin{pmatrix} 0 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & -2 \end{pmatrix}
+                \end{align*}
+                
+                Notice that this is a non-normalized (solely because I did not normalize my eigenvectors) matrix of eigenvalues along the diagonal ($\Lambda$). Note that we can also express $\Omega$ as:
+                \begin{align*}
+                    \Omega  = U \Lambda U^{\dagger} = 
+                    \begin{pmatrix} 0 & 1 & -1 \\ 1 & 0 & 0 \\ 0 & 1 & 1 \end{pmatrix}
+                    \begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -1 \end{pmatrix}
+                    \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 1 \\ -1 & 0 & 1 \end{pmatrix}
+                    = \begin{pmatrix} 0 & 0 & 2 \\ 0 & 0 & 0 \\ 2 & 0 & 0 \end{pmatrix} 
+                \end{align*}
+                (again I was lazy with my normalization, apologies)
+
+                %Where $\Xi$ represents the matrix of eigenvectors, and $\Lambda$ represents a matrix with eigenvalues along the diagonal. To construct the full right hand side we need the inverse eigenvector matrix:
+                %\begin{align*}
+                %    \begin{pmatrix} 0 & 1 & -1 \\ 1 & 0 & 0 \\ 0 & 1 & 1 \end{pmatrix}^{-1} &= ? \\ 
+                %    \left(\begin{array}{ccc|ccc} 0 & 1 & -1  & 1 & 0 & 0 \\ 1 & 0 & 0 & 0 & 1 & 0 \\ 0 & 1 & 1 & 0 & 0 & 1 \end{array}\right) 
+                %        &\to \left(\begin{array}{ccc|ccc} 1 & 0 & 0 & 0 & 1 & 0 \\ 0 & 1 & 0 & 1/2 & 0 & 1/2 \\ 0 & 0 & 1 & -1/2 & 0 & 1/2 \end{array}\right)
+                %\end{align*}
+                %
+                %Therefore
+                %$$\Xi^{-1} = \begin{pmatrix} 0 & 1 & 0 \\ 1/2 & 0 & 1/2 \\ -1/2 & 0 & 1/2 \end{pmatrix}$$
+                %
+                %Therefore $\Omega$ equals
+                %\begin{align*}
+                %    A =
+                %    \begin{pmatrix} 0 & 1 & -1 \\ 1 & 0 & 0 \\ 0 & 1 & 1 \end{pmatrix}
+                %    \begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -1 \end{pmatrix}
+                %    \begin{pmatrix} 0 & 1 & 0 \\ 1/2 & 0 & 1/2 \\ -1/2 & 0 & 1/2 \end{pmatrix}
+                %\end{align*}
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Exercise 1.13 (Sakurai) A two-state system is characterized by the Hamiltonian
+    $$\hat{H} = H_{11} \ket{1} \bra{1} + H_{22} \ket{2}\bra{2} + H_{12} [\ket{1}\bra{2} + \ket{2}\bra{1}]$$
+    where $H_{11}, H_{22}$ and $H_{12}$ are real numbers with the dimension of energy, and $\ket{1}$ and $\ket{2}$ are eigenkets of some observable $( \neq H)$. Find the energy eigenkets and their corresponding energy eigenvalues. Make sure that your answer makes good sense for $H_{12}=0$.
+
+    \vspace{0.3cm} (Hint: you can treat $\ket{1}$ and $\ket{2}$ as an orthonormal basis, i.e. $\braket{i|j}=\delta_{ij}$ where $i,j = 1 \textrm{~or~} 2$)
+
+    \begin{callout}{Solution:}
+        
+        $$\begin{matrix}
+            \braket{1|\hat{H}|1} = H_{11} & \braket{1|\hat{H}|2} = H_{12} \\ 
+            \braket{2|\hat{H}|1} = H_{12} & \braket{2|\hat{H}|2} = H_{22}
+        \end{matrix}$$
+
+        \begin{enumerate}[i.]
+            \item Finding eigenvalues:
+                \begin{align*}
+                    \left|\begin{matrix} H_{11}-\lambda & H_{12} \\ H_{12} & H_{22}-\lambda \end{matrix}\right| &= 0 \\ 
+                        (H_{11}-\lambda)(H_{22}-\lambda) - 2H_{12} &= 0
+                \end{align*}
+
+                The solution to this quadratic gives 
+                $$\lambda = \frac{1}{2} \left[ H_{11}+H_{22} \pm \sqrt{H_{11}^2-2H_{11}H_{22}+H_{22}^2+8H_{12}} \right]$$
+            \item Finding eigenvectors:
+                Solving for a general eigenvalue
+                \begin{gather*}
+                    \left(\begin{array}{cc|c} H_{11}-\lambda & H_{12} & 0 \\ H_{12} & H_{22}-\lambda & 0 \end{array}\right) \\ 
+                        \implies H_{11}=\frac{\lambda-H_{22}}{H_{12}} \\
+                    \ket{\xi} = \begin{pmatrix} 1 \\ \frac{\lambda - H_{22}}{H_{12}} \end{pmatrix}
+                \end{gather*}
+
+                Substitution of $\lambda$ into the eigenket gives:
+                \begin{align*}
+                    \ket{1} &= \begin{pmatrix} 1 \\ \frac{H_{11} + \sqrt{8 H_{12} + (H_{11} - H_{22})^2}}{2H_{12}} \end{pmatrix} \\ 
+                    \ket{2} &= \begin{pmatrix} 1 \\ \frac{H_{11} - \sqrt{8 H_{12} + (H_{11} - H_{22})^2}}{2H_{12}} \end{pmatrix}
+                \end{align*}
+
+            \item Alternatively, if $H_{12}=0$, we get eigenvalues $\lambda = H_{11} ~\&~ H_{22}$. Substitution into the matrix and solving like before gives
+                \begin{align*}
+                    \ket{1} &= \begin{pmatrix} 1 \\ 0 \end{pmatrix} \\ 
+                    \ket{2} &= \begin{pmatrix} 0 \\ 1 \end{pmatrix}
+                \end{align*}
+
+        \end{enumerate}
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Exercise 1.8.5 (Shankar) Consider the matrix
+    $$\Omega = \begin{pmatrix} 
+        \cos \theta & \sin \theta \\
+        - \sin \theta & \cos \theta 
+    \end{pmatrix}$$
+    \begin{enumerate}[(1)]
+        \item Show that it is unitary.
+            \begin{callout}{Solution:}
+                
+                A matrix is unitary if 
+                $$UU^{\dagger}=I$$
+                This is indeed the case!
+                \begin{align*}
+                    \begin{pmatrix} \cos \theta & \sin \theta \\ - \sin \theta & \cos \theta \end{pmatrix} 
+                    \begin{pmatrix} \cos \theta & - \sin \theta  \\ \sin \theta & \cos \theta  \end{pmatrix} &=
+                    \begin{pmatrix} cos^2 \theta + \sin^2 \theta & -\cos \theta \sin \theta + \cos \theta \sin \theta \\ 
+                    -\sin \theta \cos \theta + \sin \theta \cos \theta & \sin^2 \theta + \cos^2 \theta \end{pmatrix} \\ 
+                    &= \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}
+                \end{align*}
+            \end{callout}
+        \item Show that its eigenvalues are $e^{i\theta}$ and $e^{i\theta}$.
+            \begin{callout}{Solution:}
+                
+                \begin{align*}
+                    \left| \begin{array}{cc|c} \cos \theta - \lambda & \sin \theta & 0 \\ -\sin \theta & \cos \theta -\lambda & 0 \end{array} \right|
+                \end{align*}
+                \begin{align*}
+                    (\cos \theta-\lambda)^{2} + \sin^2 \theta &= 0 \\ 
+                     \lambda^{2} + 2\lambda\cos \theta + \cancelto{1}{\cos^2 \theta + \sin^2 \theta} &= 0 \\ 
+                     %\lambda (\lambda + 2\cos \theta) = -1 \\ 
+                     \frac{-2\cos \theta \pm \sqrt{ (\cos^2 \theta)-4 }}{2} &= \lambda 
+                \end{align*}
+                
+                $$\lambda=\cos \theta \pm \sqrt{\cos ^2 \theta-1}=\cos \theta \pm i \sin \theta=e^{ \pm i \theta}$$
+
+            \end{callout}
+            \newpage
+        \item Find the corresponding eigenvectors; show that they are orthagonal.
+            \begin{callout}{Solution:}
+
+                \begin{enumerate}[i.]
+                    \item Eigenvalue 1.
+                        \begin{align*}
+                            \left(\begin{array}{cc|c}
+                                \cos \theta - e^{i \theta} & \sin \theta & 0 \\ 
+                                -\sin \theta  & \cos \theta - e^{i \theta} & 0
+                            \end{array}\right)
+                            &= \left(\begin{array}{cc|c}
+                                -i\sin \theta & \sin \theta & 0 \\ 
+                                -\sin \theta  & -i\sin \theta & 0
+                            \end{array}\right) \\ 
+                            &= \left(\begin{array}{cc|c}
+                                1  &  -i & 0 \\ 
+                                1   & -i  & 0
+                            \end{array}\right) \\ 
+                        \end{align*}
+
+                    \item Eigenvalue 2.
+                        \begin{align*}
+                            \left(\begin{array}{cc|c}
+                                \cos \theta + e^{i \theta} & \sin \theta & 0 \\ 
+                                -\sin \theta  & \cos \theta + e^{i \theta} & 0
+                            \end{array}\right)
+                            &= \left(\begin{array}{cc|c}
+                                i\sin \theta & \sin \theta & 0 \\ 
+                                -\sin \theta & i\sin \theta & 0
+                            \end{array}\right) \\ 
+                            &= \left(\begin{array}{cc|c}
+                                1 & i & 0 \\ 
+                                1 & i & 0
+                            \end{array}\right) \\ 
+                        \end{align*}
+                \end{enumerate}
+
+                This gives eigenvectors:
+                \begin{align*}
+                \ket{1} &= \begin{pmatrix} i \\ 1 \end{pmatrix} \\
+                \ket{2} &= \begin{pmatrix} -i \\ 1 \end{pmatrix}
+                \end{align*}
+
+                Notice that these are conjugate. They are also clearly orthagonal by geometry. Just to be sure, though
+                $$\braket{1 | 2} = (i)(-i) + 1 = -1 + 1 = 0$$
+
+            \end{callout}
+        \item Verify that $U^{\dagger} \Omega  U$ = (diagonal matrix), where $U$ is the matrix of eigenvectors of $\Omega$
+            \begin{callout}{Solution:}
+                
+                \begin{align*}
+                    \begin{pmatrix} -i & 1 \\ i & 1 \end{pmatrix}
+                    \begin{pmatrix} \cos \theta & \sin \theta \\ -\sin \theta & \cos \theta \end{pmatrix}
+                    \begin{pmatrix} i & -i \\ 1 & 1 \end{pmatrix} &= 
+                    \begin{pmatrix} -i & 1 \\ i & 1 \end{pmatrix}
+                    \begin{pmatrix}i\cos \theta +\sin \theta &-i\cos \theta +\sin \theta \\ -i\sin \theta +\cos \theta &i\sin \theta +\cos \theta \end{pmatrix} \\ 
+                        &= \begin{pmatrix}2\cos \theta -2i\sin \theta &0\\ 0&2i\sin \theta +2\cos \theta \end{pmatrix} \\ 
+                        &= \begin{pmatrix}-2e^{i\theta}\\ 0 & 2e^{i\theta} \end{pmatrix} \\ 
+                \end{align*}
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Exercise 1.10.1 (Shankar) Show that $\delta(ax) = \delta (x) / |a|$. [Consider $\int \delta (ax) ~d(ax)$. Remember that $\delta(x) = \delta(-x)$.]
+    \begin{callout}{Solution \#1:}
+        
+        My intuition tells me that as Shankar relates the delta function to the gaussian, $\delta (ax)$ corresponds to stretching along the $x$. Because it is not normalized in such a case, this "flattens" the curve. This has the effect of scaling the delta function inversely by $a$. To prove this more rigorously, though-
+
+        \begin{align*}
+            \lim_{\Delta \to 0} \int_{-\infty}^{\infty} \frac{1}{4\pi \Delta ^2}^{1/2} \exp \left[ - \frac{(ax)^2}{\Delta^2} \right]  ~dx
+        \end{align*}
+
+        We can see the effects $a$ has on the delta function by integrating over all space. I have done such integrals by changing to polar coordinates in the past, but in this case we can check just about any book on QM (even wikipedia has a page on "common integrals in QFT" with a similar integral) to see that this is a well known integral. The effect of this $a^2$ term does what we expect, scaling by $\frac{1}{|a|}$.
+
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{callout}{Solution \#2:}
+    
+    Another way to show frame this is by utilizing a change of $dx\to d(ax)$ alongisde the properties of delta functions. To get to the integral with respect $ax$, we need to introduce the substitution
+    $$dx = \frac{1}{a}d(ax)$$
+
+    And since $\delta(x)=\delta(-x)$, $a=|a|$, by the properties of delta functions:
+    $$\frac{1}{|a|}\int_{-\infty}^{\infty} \delta(|a|x)~d(|a|x) = \frac{1}{|a|} \delta(x)$$
+
+\end{callout}
+
+\newpage
+\begin{homeworkProblem}
+    Exercise 1.10.3 (Shankar) Consider the theta function $\theta (x-x')$ which vanishes if $x-x'$ is negative and equals 1 if $x-x'$ is positive. Show that $\delta(x-x') = d/dx \theta (x-x')$.
+    \begin{callout}{Solution:}
+        
+        \begin{align*}
+            \int_{-\infty}^{\infty} g(x) \frac{d}{\cancel{dx}} \theta(x-x') ~\cancel{dx} \\ 
+            \left[ \theta(x-x')g(x) \middle]\right|_{-\infty}^{\infty} -  \int_{-\infty}^{\infty} g'(x) \theta(x-x') dx \\
+             g(\infty) - [g(\infty) - g(0)] \\ 
+             = g(0) 
+             = \int_{-\infty}^{\infty} g(x) \delta(x) ~dx
+        \end{align*}
+
+    \end{callout}
+\end{homeworkProblem}
+

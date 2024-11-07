@@ -1,0 +1,153 @@
+\begin{homeworkProblem}
+    What is the work done by a gas as it moves from point A to point B in the figure below? What is the work done by the gas as it moves from point B to point C?
+
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.4\textwidth]{../assets/h1p1f1.png}
+        \caption{}
+    \end{figure}
+
+    \begin{callout}{Solution:}
+
+        Integrating over the curve gives:
+
+        \begin{align*}
+            W &= \int_{2}^{4} 2V ~dV + \int_{4}^{6} -3V+20 ~dV \\ 
+            &= 12 + 10 \\ 
+            &= 22 
+        \end{align*}
+
+        Work along line AB is 12, work along line BC is 10.
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    What is the work done by a gas as it completes one cycle in the figure below?
+
+
+    \begin{figure}[ht]
+        \centering
+        \includegraphics[width=0.4\textwidth]{../assets/h1p2f1.png}
+        \caption{}
+    \end{figure}
+
+    \begin{callout}{Solution Attempt \#1 (INCORRECT):} The work done over a single cycle is zero- the gas starts and ends at the same $P$, $V$, so equal parts positive and negative work is done.\end{callout}
+
+    \begin{callout}{Solution Attempt \#2:}
+        
+        The work done is in fact the area enclosed by the PV diagram. For whatever reason I assumed the work was some sort of line integral in attempt 1. It is just the integral $\int P ~dV$. Work in this case is:
+
+        $$W = \int P  ~dV$$
+
+        This works out to 
+
+        \begin{gather*}
+            \int_{V_0}^{rV_0} rP_0 ~dV + \int_{rV_0}^{V_0} P_0 ~dV \\ 
+            = \int_{V_0}^{rV_0} rP_0 ~dV - \int_{V_0}^{rV_0} P_0 ~dV \\ 
+            = \int_{V_0}^{rV_0} rP_0 - P_0 ~dV \\ 
+            = rP_0 (V)|_{V_0}^{rV_0} - P_0 (V)|_{V_0}^{rV_0} 
+        \end{gather*}
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Any free surface has a certain energy that is proportional to the area of the surface. The energy per unit area is called the surface energy density and is denoted by $\sigma$. The temperature dependence of $\sigma$ is usually small and can be neglected. The radius of a spherical drop of an incompressible fluid is increased from $r$ to $r + dr$ by the slow and careful injection of additional fluid. The drop does work against outside atmospheric pressure as its radius increases. What is the difference between the pressure outside and inside the drop? You may assume that the time involved is so short that no heat is absorbed or released by the drop during this process. Note, however, that in this case there is only one surface.
+%    \begin{callout}{Solution Attempt \#1:}
+%
+%        \begin{enumerate}[i.]
+%            \item This problem involves conservation of energy alone- $dE = -\bar{d}W$. The goal is to express $\bar{d}W = PdV$ We've never worked with surface energy before but it is straightforward to express it as proportional to the change in surface area:
+%                \begin{align*}
+%                    4\pi r^2 &\to 4\pi (r+dr)^{2} \\ 
+%                    \implies dA &= 4\pi (r^2) |_{r=r}^{r=r+dr}
+%                \end{align*}
+%                The energy being proportional to surface energy density "$\sigma$" implies surface energy is then
+%                $$dE_{\sigma} = \left.4\pi\sigma (r^2) \right|_{r=r}^{r=r+dr}$$
+%
+%            \item We write the right hand side of our equality as $\bar{d}W = P dV$. We can express the change in volume of this droplet:
+%                \begin{align*}
+%                    \frac{4}{3}\pi r^{3} &\to \frac{4}{3}\pi(r+dr)^{3} \\ 
+%                    \implies dV &= \left.\frac{4}{3}\pi (r^3)\right|_{r=r}^{r=r+dr}
+%                \end{align*}
+%
+%            \item This allows us to express the total work done and solve for pressure change
+%                \begin{align*}
+%                    dE_{\sigma} &= -(dP) dV \\ 
+%                    \left. \cancel{4\pi} \sigma (r^2) \right|_{r=r}^{r=r+dr} &= -(dP)\left( \frac{\cancel{4}}{3} \cancel{\pi} r^3 \middle)\right|_{r=r}^{r=r+dr} \\ 
+%                    dP &= - \left.\sigma \frac{\cancel{r^2}}{3r^{\cancel{3}}}\right|_{r=r}^{r=r+dr}
+%                \end{align*}
+%        \end{enumerate}
+%
+%    \end{callout}
+%
+%    \newpage
+%    \begin{callout}{Solution Attempt \#2:}
+%        This problem involves conservation of energy alone- $dE = -\bar{d}W$. The goal is to express $\bar{d}W = PdV$
+%        \begin{enumerate}[i.]
+%            \item We've never worked with surface energy before but it is straightforward to express it as proportional to the change in surface area. The area element in spherical coordinates is given by:
+%                $$dA = r^2 \sin(\theta) d\theta d\phi$$
+%            The total change in energy is given by:
+%                $$dE = \sigma dA = \sigma r^2 \sin(\theta) d\theta d\phi$$
+%
+%            \item The volume element meanwhile is given by:
+%                $$dV = r^2 \sin(\theta) dr d\theta d\phi$$
+%
+%            \item The initial relation we wrote can now be expressed:
+%                \begin{align*}
+%                    \sigma \cancel{ r^2 \sin(\theta)d\theta d\phi } &= -P (\cancel{ r^2 \sin(\theta) } dr \cancel{ d\theta } \cancel{ d\phi })\\
+%                    \sigma &= -P \int_{r}^{r+dr} dr\\
+%                    \sigma &= -P (dr)\\
+%                P &= -\frac{\sigma}{dr}                \end{align*}
+%        \end{enumerate}
+%    \end{callout}
+%
+%
+%    \newpage
+    \begin{callout}{Solution Attempt \#3:}
+
+            We have area and energy elements:
+            $$\begin{cases}
+                A = 4\pi r^2 & \to \quad  dA = 8\pi r ~dr \\ 
+                dE = \sigma ~dA & \to \quad dE = 8 \sigma \pi r ~dr \\ 
+                dV = \frac{4}{3} \pi r ^{3} &\to \quad dV = 4\pi r^2 ~dr
+            \end{cases}$$        
+
+            The net work done is the difference between the work done by the pressure inside the bubble and the pressure outside the bubble.
+
+            $$dW = (p_0-p) ~dV $$
+            \begin{align*}
+                dE &= - dW \\
+                8 \sigma  \pi r &= -(p_0-p) 4 \pi r^2 \\
+                \frac{2 \sigma}{r} &= p-p_0 = \Delta p
+            \end{align*}
+
+
+        \end{callout}
+
+
+    %    This problem involves conservation of energy alone- $dE = -\bar{d}W$. The goal is to express $\bar{d}W = PdV$
+    %    \begin{enumerate}[i.]
+    %        %\item We've never worked with surface energy before but it is straightforward to express it as proportional to the change in surface area. The area element in spherical coordinates is given by:
+    %        %    $$dA = r^2 \sin(\theta) d\theta d\phi$$
+    %        %The total change in energy is given by:
+    %        %    $$dE = \sigma dA = \sigma r^2 \sin(\theta) d\theta d\phi$$
+    %
+    %        \item The volume element meanwhile is given by:
+    %            $$dV = r^2 \sin(\theta) dr d\theta d\phi$$
+    %
+    %        \item The initial relation we wrote can now be expressed:
+    %            \begin{align*}
+    %                \sigma \cancel{ r^2 \sin(\theta)d\theta d\phi } &= -P (\cancel{ r^2 \sin(\theta) } dr \cancel{ d\theta } \cancel{ d\phi })\\
+    %                \sigma &= -P \int_{r}^{r+dr} dr\\
+    %                \sigma &= -P (dr)\\
+    %            P &= -\frac{\sigma}{dr}                \end{align*}
+    %    \end{enumerate}
+    %\end{callout}
+
+\end{homeworkProblem}

@@ -1,0 +1,102 @@
+\begin{homeworkProblem}
+    (3 pts) Use any method to find the electric field inside and outside a long hollow cylindrical tube, which carries a uniform surface charge $\sigma$. Check that your result is consistent with the boundary condition of an electric field at a surface charge.
+
+    \begin{callout}{Solution:}
+        
+        
+        \begin{enumerate}[i.]
+            \item \textbf{Electric Field for $\textbf{r<a}$}:
+
+                There is no charge enclosed here, therefore there is no electric field.
+
+            \item \textbf{Electric field for $\textbf{r>a}$}
+
+                By gauss's law, charge enclosed is 
+                $$Q_{\textrm{enc}} = z \frac{2\pi R \sigma}{\epsilon _{0}}$$
+
+                Which then gives the expression
+                \begin{align*}
+                    E(2\pi r)z &= z\frac{2 \pi R \sigma }{\epsilon _{0}} \\ 
+                    E &= \frac{\sigma R}{r \epsilon_0}
+                \end{align*}
+            \item \textbf{Boundary Condition}
+                We have the boundary condition that 
+                $$V_{\textrm{above}} = V_{\textrm{below} }$$
+                $$\nabla V_{\textrm{above}} - \nabla V_{\textrm{below}} = - \frac{\sigma}{\epsilon_0}\boldsymbol{\hat{n}}$$ 
+                Because the feild inside a conductor is zero, the above boundary condition requires that the field immediately outside is 
+                $$E = \frac{\sigma}{\epsilon_0}\boldsymbol{\hat{n}}$$
+                And this is what we see here!
+
+        \end{enumerate}
+    \end{callout}
+
+    \newpage \begin{callout}{Attempt at direct integration (done mostly out of curiousity)}
+        
+                $$E = \frac{1}{4\pi \epsilon_0} \int_{0}^{2\pi} \frac{dq}{r'^2} ~d\theta$$
+                We will have to consider a slice of the cylinder where $\lambda = \sigma \cdot (2\pi R)$. We have to calculate the same $r$ from such a slice as in homework 3 problem where by the law of cosines we got:
+                $$\textbf{r'}^2 = r^2 + R^2 - 2rR \cos \theta$$
+                This gives us the integral
+                \begin{align*}
+                    E &= \frac{1}{4\pi \epsilon_0} \int_{0}^{2\pi} \frac{dq}{R^2-2rR\cos\theta} \hat{\textbf{r}} ~d\theta \\ 
+                    &= \frac{1}{4\pi \epsilon_0} \int_{0}^{2\pi} \frac{\lambda}{R^2-2rR\cos\theta} \frac{r-R\cos\theta}{\sqrt{ R^2-2rR\cos\theta }}~d\theta \\ 
+                    &= \frac{\lambda}{4\pi \epsilon_0} \int_{0}^{2\pi} \frac{r-R\cos\theta}{(R^2-2rR\cos\theta)^{3/2}} ~d\theta \\ 
+                    &= \frac{\lambda }{4\pi \epsilon_0} \int_{0}^{2\pi} \frac{r}{(r^2 + R^2 - r R \cos\theta)^{3/2}} - \frac{R\cos\theta}{(r^2 + R^2 - r R \cos\theta)^{3/2}} ~d\theta
+                \end{align*}
+                This integral has me stuck, it may be easier to do this in some other coordinate system instead.
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    (4 pts) Two spherical cavities, of radii $a$ and $b$, are hollowed out from the interior of a (neutral) conducting sphere of radius $R$. At the center of each cavity, a point charge is placed - call these charges $q_a$ and $q_b$.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{../assets/H5P1F1.png}
+\end{figure}
+
+    Find the surface charge densities on the interior of each cavity ($\sigma_a$ and $\sigma_b$) as well as the surface charge density on the exterior of the conducting sphere ($\sigma_R$). What is the electric field in each cavity?
+    \begin{callout}{Solution:}
+        
+        The boundary condition we used in \textbf{Problem 1} allows us to work out the surface charge density if we know the electric field due to each point charge. We should take note that each cavity is electrically isolated from the other because the sphere is a conductor. We have electric field for each point charge given by:
+
+        \begin{Large}
+            $$\begin{cases}
+                E_{a} = \frac{1}{4\pi \cancel{\epsilon_0}} \frac{q_a}{r^2} = \frac{\sigma_a}{\cancel{\epsilon_0}} \\
+                E_{b} = \frac{1}{4\pi \cancel{\epsilon_0}} \frac{q_b}{r^2} = \frac{\sigma_b}{\cancel{\epsilon_0}}
+            \end{cases}$$
+        \end{Large}
+
+        The surface charge on the exterior similarly \textbf{I should get the field more rigorously}:
+        $$E_{ab} = \frac{1}{4\pi \cancel{\epsilon_0}}\frac{(q_a+q_b)}{R^2} = \frac{\sigma}{\cancel{\epsilon_{0}}}$$
+            
+
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    (3 pts) Consider two concentric spherical shells, of radii $a$ and $b$. Suppose the inner one carries a charge $q$ and the outer one a charge $-q$ (both of them uniformly distributed over the surface). Calculate the energy of this configuration. (You can assume $a < b$).
+    \begin{callout}{Solution:}
+        
+        We derived an elegant expression for the energy from a charge distribution in class where we ended up with the expression
+        $$W = \frac{\epsilon_0}{2} \int E^2 ~d\tau$$
+
+        \begin{align*}
+            \begin{cases}
+                \textbf{r<a:} & \textbf{E} = 0 \\
+                \textbf{a<r<b:} & \textbf{E} = \frac{1}{4\pi \epsilon_0} \frac{q}{r^2}\boldsymbol{\hat{r}} \\
+                \textbf{b<r:} & \textbf{E} = 0 
+            \end{cases}
+        \end{align*}
+
+        Electrostatic energy is only defined between the plates, so we should integrate over all space between the plates:
+
+        \begin{align*}
+            W &= \frac{\epsilon_0}{2} \int_{a}^{b} (4\pi) \left( \frac{1}{4\pi \epsilon_0} \frac{q}{r^2} \right)^{2}  \boldsymbol{\hat{r}} (r^2~dr) \\ 
+            &= \frac{q^2}{8\pi \epsilon_0} \left( -\frac{1}{r} \middle)\right|_{a}^{b} \\ 
+            &= \frac{q^2}{8\pi \epsilon_0} \left( \frac{1}{a} - \frac{1}{b} \right)
+        \end{align*}
+        
+    \end{callout}
+\end{homeworkProblem}

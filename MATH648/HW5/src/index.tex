@@ -1,0 +1,157 @@
+$\bullet$ Section 10.3 \#1, \#2. \\
+$\bullet$ Section 10.4 \#2, \#3. \\
+$\bullet$ Section 10.6 \#3, \#4. \\
+
+\newpage\section{Section 10.3}
+\begin{homeworkProblem}[1]
+	Geodesics on a sphere of radius $R>0$ correspond to the extremals of the functional
+	$$J(\phi)=\int_{\theta_0}^{\theta_1} \sqrt{1+\sin ^2 \theta \phi'^2} d \theta,$$
+	where $\phi$ is the polar angle, $\theta$ is the azimuth angle, and $\phi^{\prime}$ denotes $d \phi / d \theta$. Show that $J$ satisfies the Legendre condition (10.7).
+	\begin{callout}{Solution:}
+
+		Working with the assumption that the Legendre condition, as given, holds in polar coordinates, we find:
+		\begin{align*}
+			f_{\phi'}      & = \frac{\phi'\sin ^2\left(\theta\right)}{\sqrt{1+\phi'^2\sin ^2\left(\theta\right)}}               \\
+			f_{\phi'\phi'} & = \frac{\sin ^2\left(\theta\right)}{\left(1+\phi'^2\sin ^2\left(\theta\right)\right)^{3/2}} \geq 0
+		\end{align*}
+
+		(This is never negative for real values, implying convexity)
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}[2]
+	Let
+	$$J(y)=\int_{x_0}^{x_1} \frac{1+y^2}{y^{\prime 2}} d x .$$
+	Suppose that $J$ has a local extremum at $y$. Use the Legendre condition to determine the nature of the extremum.
+	\begin{callout}{Solution:}
+
+		$$p(x) = f_{y'y'} = \frac{6(1+y^2)}{y'^4}$$
+		(This is always greater than zero by the even powers, implying a minimal)
+		% $$q(x) = f_{yy} - \frac{d}{dx}f_{yy'} = 0$$
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage \section{Section 10.4}
+\begin{homeworkProblem}[1]
+	Derive the Riccati equation (10.11) associated with the functional of Example 10.3.3. Solve the Riccati equation directly and show that there are no solutions $w$ defined for all $x \in[0, \ell]$ if $\ell>\pi$.
+	\begin{callout}{Solution:}
+
+		\subsection{Part I}
+
+		Our Riccati equation is:
+		$$w'+q(x)-\frac{w^2}{p(x)}=0$$
+		To get to this, we start with the second variation, defined as:
+		$$\delta^2J(\eta,y) = \int_{x_0}^{x_1} \left(p(x)\eta'^2 + q(x)\eta^2\right) ~dx$$
+		Well behaved functions (consider $w(x)$, for example) have $\eta$ at endpoints which vanish to zero. Jacobi makes the observation that for ANY smooth function $w$, one has
+		$$\int_{x_0}^{x_1} (w\eta^2)' ~dx$$
+		by the product rule, $2w\eta\eta'+w'\eta^2=(w\eta^2)'$
+		$$\delta^2J(\eta,y) = \int_{x_0}^{x_1} \left( p\eta'^{2} + 2w\eta\eta' + (w'+q)\eta^2 \right) ~dx$$
+		We know:
+		\begin{enumerate}
+			\item For $y$ to be a minimal, $p(x) \geq 0$ for $x\in[x_0,x_1]$
+			\item By the Legendre necessary condition $p(x)$ will be greater than zero for this domain.
+		\end{enumerate}
+		Our integrand can therefore be rewritten as
+		\begin{gather*}
+			p\left( \eta'^2 + 2 \frac{w}{p}\eta\eta' + \frac{w^2}{p^2}\eta^2 \right) + \left( w'+q-\frac{w^2}{p} \right)\eta^2 \\
+			=p\left( \eta'+ \frac{w}{p}\eta \right)^{2} + \left( w'+q-\frac{w^2}{p} \right)\eta^2
+		\end{gather*}
+		If we can find a function $w=w(x)$ so that
+		$$w'+q(x)- \frac{w^2}{p(x)}=0, \qquad x\in[x_0,x_1]$$
+		Then the second variation $\delta^2J(\eta,y) \geq 0$ for any $\eta$ since $p(x) > 0$
+
+		\newpage \subsection{Part II}
+
+		To solve we convert the riccati equation into a 2nd order linear system by introducing $u=u(x)$:
+		$$w(x)=-\frac{p(x)u'(x)}{u(x)}, \quad \textrm{or} \quad u(x) = u_0 e ^{-\int_{x_0}^{x} \frac{w(z)}{p(z)} ~dz}$$
+		This gives us our beloved Jacobi Accessory Equation:
+		$$(p(x)u')'-q(x)u=0, \quad x\in[x_0,x_1]$$
+
+		\subsection{Part III}
+
+		I am not sure how to prove that there are no solutions for all $x \in [0,\ell$ if $\ell > \pi$.
+
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}[2]
+	Let
+	$$f\left(x, y, y^{\prime}\right)=y^{\prime 2}-y^{\prime} y+y^2 .$$
+
+	Show, using elementary arguments, that $\delta^2 J(\eta, y) \geq 0$ for all $\eta \in H$. Derive the Jacobi accessory equation and show by solving this equation that any nontrivial solution $u$ can have at most one zero.
+	\begin{callout}{Solution:}
+
+		We've derived the Jacobi accessory equation in the prior problem. We can also apply the same arguments to show that the second variation is greater than zero for all $\eta$:
+		$$p(x) = f_{y'y'} = 2 \geq 0$$
+
+		If we also want to show that there exists no conjugate points for any nontrivial solution, we ought to apply the jacobi accessory equation.
+		\begin{align*}
+			(p(x) u(x))' - q(x)u = 0; & \quad q(x) = f_{yy} - \frac{d}{dx} f_{yy'} = 2 \\
+			(2u)' - 2u = 0
+		\end{align*}
+
+		This is evidently an exponential function which has only one root.
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage \section{Section 10.6}
+\begin{homeworkProblem}[3]
+	Let
+	$$J(y)=\int_0^{\pi / 4}\left(y^2-y^{\prime 2}-2 y \cosh x\right) d x .$$
+
+	Find the extremals for $J$ and show that for the fixed endpoint problem these extremals produce weak local maxima.
+	\begin{callout}{Solution:}
+
+		\subsection{E-L:}
+		\begin{align*}
+			2y-2\cosh x - \frac{d}{dx}2y' & = 0                                             \\
+			y'' - y                       & = -\cosh x                                      \\
+			y_c                           & = c_1 e^x + c_2 e^{-x}                          \\
+			y_p                           & = - \frac{1}{2} x \sinh(x)                      \\
+			y(x)                          & = c_1 e^x + c_2 e^{-x} - \frac{1}{2} x \sinh(x)
+		\end{align*}
+		\subsection{Categorizing Extrema:}
+		\begin{align*}
+			p(x) = f_{y'y'}                                   & = -2                  \\
+			q(x) = f_{yy} - \frac{d}{dx} f_{yy'}              & = 2                   \\
+			(p(x)u')' + q(x) u                   = -2u'' + 2u & = 0                   \\
+			u(x)                                              & = c_1 e^x + c_2e^{-x} \\
+		\end{align*}
+		Now, $u(0)=0$ implies:
+		$$c_1+c_2 = 0$$
+		We choose $c_1 = -c_2 = \frac{1}{2}$ which gives us:
+		$$u(x) = \sinh(x) > 0, ~x>0$$
+		Thereby showing it is a local maxima.
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}[4]
+	Let
+	$$J(y)=\int_{x_0}^{x_1} y^{\prime}\left(1+x^2 y^{\prime}\right) d x,$$
+	where $0<x_0<x_1$. Find the extremals for $J$ and the general solution to the Jacobi accessory equation. Find any conjugate points to $x_0$ and determine the nature of the extremals for the fixed endpoint problem.
+	\begin{callout}{Solution:}
+
+		\subsection{E-L:}
+		\begin{align*}
+			1 + 2x^2y'         & = c_1                     \\
+			y' = \frac{dy}{dx} & = \frac{c_1-1}{2x^2}      \\
+			y                  & = -\frac{c_1-1}{2x} + c_2
+		\end{align*}
+
+		\subsection{Categorizing Extremals:}
+		\begin{align*}
+			p(x) = f_{y'y'}                      & = x^2 > 0 \\
+			q(x) = f_{yy} - \frac{d}{dx} f_{yy'} & = 0       \\
+			x^2u''(x)                            & = 0
+		\end{align*}
+		We get $u(x) = c_1x + c_2$. For $u(0) = 0$;
+		$$c_2 = 0$$
+		There are no other zeroes of this function except for when $c_1$ is 0, which has undefined behavior as $u(x)=0$ for all $x$, so this must be a local minimal (meaning no conjugate points).
+
+	\end{callout}
+\end{homeworkProblem}

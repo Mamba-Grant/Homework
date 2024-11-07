@@ -1,0 +1,155 @@
+\begin{homeworkProblem}
+    5.1: Determine an equation for the chemical potential of a Van der Waals gas.
+    \begin{callout}{Solution:}
+        
+        By equation 5.14 and 5.8:
+        $$
+        \frac{\mu}{T}=-\left( \frac{\partial S}{\partial N} \right)_{V,P}, \qquad 
+        S_{\text{VDW}} = Nk_B\left[\ln \left(\frac{V-b N}{N}\right)+\frac{3}{2} \ln \left(\frac{2 m \pi}{\beta h^2}\right)+\frac{5}{2}\right]
+        $$
+
+            $$-\left( \frac{\partial S}{\partial N} \right)_{V,P} = -\left[\ln \left(\frac{V-b N}{N}\right)+\frac{3}{2} \ln \left(\frac{2 m \pi}{\beta h^2}\right)+\frac{5}{2}\right] + \frac{1}{N}$$
+            \begin{align*}
+                \frac{\mu}{T} &= -k_B\left[\ln \left(\frac{V-b N}{N}\right)+\frac{3}{2} \ln \left(\frac{2 m \pi}{h^2} T \right)+\frac{5}{2}\right] + \frac{k_B}{N} \\ 
+                \mu &= \frac{k_BT}{N} - k_BT\ln\left( \frac{V-bN}{N} \right) + \frac{3T}{2} \ln\left( \frac{2m\pi}{h^2}T \right) + \frac{5k_B}{2}
+            \end{align*}
+
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    5.2: Determine an equation for \( C_V \) for a Van der Waals gas.
+    \begin{callout}{Solution:}
+        
+        By equation 5.15 and 5.8:
+        $$
+        C_V=- \beta \left( \frac{\partial S}{\partial \beta} \right)_{V}, \qquad 
+        S_{\text{VDW}} = Nk_B\left[\ln \left(\frac{V-b N}{N}\right)+\frac{3}{2} \ln \left(\frac{2 m \pi}{\beta h^2}\right)+\frac{5}{2}\right]
+        $$
+
+        $$-\left( \frac{\partial S}{\partial \beta} \right)_{V} = \frac{3Nk_B}{2 \beta} \implies C_V = \frac{3Nk_B}{2}$$
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    5.3: Determine an equation for \( C_P \) for a Van der Waals gas.
+    \begin{callout}{Solution:}
+        
+        By equation 5.17 and 5.8:
+        $$
+        C_P=C_V+T\left( \frac{\partial P}{\partial T} \right)_{V} \left( \frac{\partial V}{\partial T} \right)_{P}, \qquad 
+        \begin{cases}
+            S_{\text{VDW}} = N\left[\ln \left(\frac{V-b N}{N}\right)+\frac{3}{2} \ln \left(\frac{2 m \pi}{\beta h^2}\right)+\frac{5}{2}\right] \\ 
+            \left( P+a \frac{N^2}{V^2} \right)\left( V-bN \right) = \frac{N}{\beta}
+        \end{cases}
+        $$
+
+        \begin{align*}
+            \left(\frac{\partial P}{\partial T} \right)_{V} &= \frac{\partial}{\partial T}\left( \frac{Nk_BT}{V-bN} - a \frac{N^2}{V^2} \right) = \frac{Nk_B}{V-bN} \\ 
+            \left(\frac{\partial V}{\partial T} \right)_{P} &= \frac{\partial}{\partial T}\left( \frac{Nk_BT}{P+a \frac{N^2}{V^2}}+bN \right) = \frac{Nk_B}{P+a \frac{N^2}{V^2}} \\ 
+        \end{align*}
+
+        \begin{align*}
+            C_P &= \frac{3Nk_B}{2 \beta} + T\left( \frac{Nk_B}{V-bN} \right) \left( \frac{Nk_B}{P+a \frac{N^2}{V^2}} \right) \\
+            &= \frac{3Nk_B}{2 \beta} + \left( \frac{T\left( Nk_B \right)^{2}}{(V-bN)(P+a \frac{N^2}{V^2})} \right) 
+        \end{align*}
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    5.4: Consider a real gas that is confined within a vertical box of cross-sectional area \( A \). The molecules of this gas will have translational kinetic energy and gravitational potential energy, but no other kinetic or potential energies. You can also assume that the molecules of the gas are indistinguishable. Calculate the partition function for a horizontal slice of this gas between a vertical position of \( z \) and \( z + dz \) above the bottom of the box.
+    \begin{callout}{Solution:}
+       $$Z = \left( \frac{e}{Nh^{3}} \right)^{N}Z_{K}Z_{U}$$ 
+        \begin{align*}
+            Z_{K}&=\int e^{-\beta K(\bar{p}_{1},\bar{p}_{2},\dots)}\,d^{3}p_{1}~d^{3}p_{2} \dots d^{3}p_{N} \\
+            Z_{U}&=\int e^{-\beta K(\bar{q}_{1},\bar{q}_{2},\dots)}\,d^{3}q_{1}~d^{3}q_{2} \dots q^{3}p_{N}
+        \end{align*}
+        For kinetic energy:
+        \begin{align*}
+            Z_K &= \left( \int_0^{\infty} e^{\frac{\beta}{2m} p^2 } 4\pi p^2 ~dp \right)^N \\ 
+            &= \left( 2 \sqrt{ 2 } \left( \frac{m\pi}{\beta} \right)^{3/2} \right)^{N} \\ 
+            &= \left( \frac{2m\pi}{\beta} \right)^{3N/2}
+        \end{align*}
+        For gravitational potential energy, we have $\epsilon=mgz$. the $x-y$ integrals give a since its gravitational:
+        \begin{align*}
+            Z_U &= \left( A\int_{z}^{z+dz} e^{-\beta mgz} ~dz \right)^{N} \\ 
+            &=\left[\left(-\frac{1}{\beta mg} e^{-\beta mgz} \middle)\right|_{z}^{z+dz}\right]^{N} = \left[\frac{1}{\beta mg}\left( e^{-\beta mgz}- e^{-\beta mg(z+dz)} \right)\right]^{N}
+        \end{align*}
+        \begin{align*}
+            Z &= Z_KZ_U \\ 
+            &= \left( \frac{e}{Nh^{3}} \right)^{N}\left( \frac{2m\pi}{\beta} \right)^{3N/2}\left( \frac{1}{\beta mg} \right)^{N}\left( e^{-\beta mgz}- e^{-\beta mg(z+dz)} \right)^{N}
+        \end{align*}
+
+        \textit{Should we do something to simplify the difference in exponentials?}
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    5.5: A Van der Waals gas is allowed to freely expand into a vacuum under adiabatic conditions. What is the change in the temperature of the gas following the expansion? Express your answer as a relationship between \( dT \) and \( dV \).
+    \begin{callout}{Solution:}
+        
+        Walking through the derivation of heat capacity at constant pressure again, we can arrive at an expression for heat in terms of some relevant variables:
+        \begin{align*}
+            dE = T dS - P dV &= \left( \frac{\partial E}{\partial V} \right)_{T} dV + \left( \frac{\partial E}{\partial T} \right)_{V}dT \\ 
+        \end{align*}
+        We can express $dS$:
+        \begin{gather*}
+            dS = \frac{1}{T} \left( \frac{\partial E}{\partial T} \right)_{V} dT + \frac{1}{T} \left[ P + \left( \frac{\partial E}{\partial V} \right)_{T} \right] dV \\ 
+            \left( \frac{\partial S}{\partial T} \right)_{V} = \frac{1}{T} \left( \frac{\partial E}{\partial T} \right)_{V}, \qquad \left( \frac{\partial S}{\partial V} \right)_{T} = \frac{1}{T} \left[ P + \left( \frac{\partial E}{\partial V} \right)_{T} \right] \\ 
+            \frac{\partial ^{2} S}{\partial V \partial T} = \frac{\partial ^{2} S}{\partial T \partial V}\quad \to \quad \frac{\partial }{\partial V} \left( \frac{1}{T} \left( \frac{\partial E}{\partial T} \right)_{V} \right) = \frac{\partial }{\partial T} \left(\frac{1}{T}\left[  P+\left( \frac{\partial E}{\partial V} \right)_{T} \right]\right) \\ 
+            \frac{1}{T} \frac{\partial ^{2}E}{\partial V \partial T} = -\frac{1}{T^2} \left[ P+\left( \frac{\partial E}{\partial V} \right)_{T} \right] + \frac{1}{T} \left[ \left( \frac{\partial P}{\partial V} \right)_{V} + \left( \frac{\partial^2 E}{\partial T \partial V} \right)_{T} \right]
+        \end{gather*}
+        And since internal energy is also an exact differential, its cross partial derivatives must be equal
+        \begin{gather*}
+            \frac{\partial ^{2}E}{\partial V \partial T} = \frac{\partial ^2 E}{\partial T\partial V} \quad \to \quad 0 = - \frac{1}{T^2} \left[ P + \left( \frac{\partial E}{\partial V} \right)_{T} \right] + \frac{1}{T} \left( \frac{\partial P}{\partial T} \right)_{V} \\ 
+            P + \left( \frac{\partial E}{\partial V} \right)_{T} = T \left( \frac{\partial P}{\partial T} \right)_{V} \\ 
+        \end{gather*}
+        We’re almost there. Now let’s go back to the previously derived equation for $dS$.
+        \begin{gather*}
+            dS = \frac{1}{T} \left( \frac{\partial E}{\partial T} \right)_{V} dT + \frac{1}{T} \left[ P + \left( \frac{\partial E}{\partial V} \right)_{T} \right]dV \\ 
+            TdS = \left( \frac{\partial E}{\partial T} \right)_{V} dT + \left[ P + \left( \frac{\partial E}{\partial V} \right)_{T} \right]dV \\ 
+            \bar{d}Q = C_V dT + \left[P + \left( \frac{\partial E}{\partial V} \right)_{T}\right]dV \\
+            \underbrace{\bar{d}Q}_{=0} = C_V dT + \underbrace{P + \left( \frac{\partial E}{\partial V} \right)_{T}}_{=T\left( \frac{\partial P}{\partial T} \right)_{V}=0} dV \\
+            0 = C_VdT
+        \end{gather*}
+        Adibatic conditions implies that both heat capacity and pressure are zero. As a consequence the pressure differential is also zero. This implies $dT$ must be zero because $C_V$ cannot be zero. Therefore the temperature is constant!
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    5.6: Show that for a gas in \( n \) dimensions, whose single-particle energy is described by \( \epsilon = p^\alpha \), that \( \frac{C_P}{C_V} = 1 + \frac{\alpha}{n} \).
+    \begin{callout}{Solution:}
+        \begin{align*}
+            Z &= \int \dots \int \exp\left( -\beta p^a \right) ~d^np \\ 
+            &= \int \dots \int \exp\left( -\beta p^a \right) ~p^{n-1}dp \int d \Omega n \\ 
+            E &= - \frac{\partial }{\partial \beta } \ln(Z) \\
+            &= \frac{\int_{0}^{\infty} p^{n-1+a} \exp\left( -\beta p^a \right) ~dp}{\int_{0}^{\infty} p^{n-1}\exp(-\beta p^a) ~dp}
+        \end{align*}
+        Transforming to n-D spherical coordinates gives $p^{n-1}dp$ times the jacobian. This luckily vanishes when we go from the partition function to energy thanks to it being in the numerator and denominator. If we set $u=-\beta p^\alpha$, this is a ratio of gamma functions, where $\Gamma\left( \frac{n}{a} \right) = \left( \frac{1}{\beta} \right) × \frac{\Gamma\left( \frac{n+a}{a} \right) }{\Gamma \left( \frac{n}{a} \right)}$. Then,
+        $$E=k_BT \frac{n}{\alpha}, \quad E_N = Nk_BT \frac{n}{a}$$
+        \begin{align*}
+            C_V &= \left( \frac{\partial E}{\partial T} \right)_{V} = \frac{nNk_B}{\alpha } \\ 
+            C_P &= C_V + T \left( \frac{\partial P}{\partial T} \right)_{V} \left( \frac{\partial V}{\partial T} \right)_{P}
+        \end{align*}
+        Since there is no specified potential, this should be an ideal gas. In this case, we have already derived the right hand side of the sum for $C_P$,
+        \begin{align*}
+            C_P &= C_V + \left( \frac{Nk_BT}{PV} \right)Nk_BT \\ 
+            &= C_V + Nk_BT \\ 
+            &= \frac{nNk_B}{\alpha} + Nk_BT 
+        \end{align*}
+        Then we have the ratio:
+        \begin{align*}
+            \frac{C_P}{C_V} &= \frac{\frac{nNk_B}{T} + Nk_BT}{\frac{nNk_B}{\alpha}} \\ 
+            &= 1+ \frac{\alpha}{n}
+        \end{align*}
+
+    \end{callout}
+\end{homeworkProblem}

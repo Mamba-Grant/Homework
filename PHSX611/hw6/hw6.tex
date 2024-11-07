@@ -1,0 +1,410 @@
+\documentclass{article}
+
+
+\newcommand{\hmwkTitle}{Homework \#6}
+\newcommand{\hmwkDueDate}{\today}
+\newcommand{\hmwkClass}{PHSX 611}
+\newcommand{\hmwkAuthorName}{\textbf{Grant Saggars}}
+
+
+
+\usepackage{fancyhdr}
+\usepackage{braket}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+
+\usepackage{float}
+\usepackage{caption}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{XCharter}
+
+\usetikzlibrary{automata,positioning}
+
+\usepackage{geometry}
+\geometry{top=1in, bottom=1in, left=1in, right=1in} % Adjust margins as needed
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.75in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Callout Box
+%
+
+\definecolor{shadecolor}{RGB}{235,235,235}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%
+% Title Page
+%
+
+\title{
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDueDate}\\
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+\begin{document}
+
+\maketitle
+
+\begin{homeworkProblem}
+	(Problem 3.32) An anti-Hermitian (skew-Hermitian) operator is equal to minus its Hermite conjugate. Show that the expectation value of an anti-Hermitian operator is imaginary. Next, show that the eigenvalues of the anti-Hermitian operator are imaginary. ( $0.5 \mathrm{pts}$.) *This problem provides you with a bit more practice with operators and also allows you to work on Dirac notation.
+	\begin{callout}{Solution:}
+
+		$$\textrm{Let} \quad \hat{Q}^{\dagger}=-\hat{Q};$$
+		\begin{align*}
+			\langle Q \rangle & = (\bra{ f}  \hat{Q}) \ket{ f }            \\
+			                  & = (\bra{ f } -\hat{Q}^{\dagger}) \ket{ f } \\
+			                  & = -(\bra{ f } \hat{Q}^{\dagger}) \ket{ f } \\
+			                  & = -[\bra{ f } (\hat{Q} \ket{ f })]^{*}     \\
+			                  & = -\langle Q \rangle^{*}
+		\end{align*}
+
+		Comparing to hermatian operators, which we previously found to have $\hat{H} = \hat{H}^*$
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+	(Problem 3.39) Find matrix elements for position operator $\left\langle n|x| n^{\prime}\right\rangle$ and momentum operator $\left\langle n|p| n^{\prime}\right\rangle$ in the orthonormal basis of stationary states of the one-dimensional Harmonic oscillator. ( $0.5 \mathrm{pts}$.) "This problem provides more practice in Dirac notation. You should know by Lecture 24 how to solve such problems, but a bit more information on the harmonic oscillator will be provided in Lectures 25 and 26.
+	\begin{callout}{Solution:}
+
+		The annihilation and creation operators can be expressed in terms of an n-th state, and equation 2.70 expresses position and momentum operators using creation and annihilation:
+
+		$$
+			\hat{x}=\sqrt{\frac{\hbar}{2 m \omega}}\left(\hat{a}_{+}+\hat{a}_{-}\right); \qquad
+			\hat{p}=i \sqrt{ \frac{\hbar m \omega}{2} }(\hat{a}_{+} - \hat{a}_{-})
+		$$
+
+		\begin{align*}
+			\hat{a}_{+}|n\rangle & =\sqrt{n+1}|n+1\rangle \\
+			\hat{a}_{-}|n\rangle & =\sqrt{n}|n-1\rangle
+		\end{align*}
+
+		\begin{enumerate}[(I)]
+			\item \textbf{(position)} I want to note how the above operators are expressed adjacent to $\ket{n}$ (n-th energy level of harmonic oscillator). Algebraiacally my goal is then to get that expressed and everything falls into place afterwards.
+			      \begin{align*}
+				      \left\langle n|x| n^{\prime}\right\rangle & = (\hat{x}^{\dagger}\ket{n} )^{\dagger}\ket{n'}                                                                                               \\
+				                                                & = \left( \sqrt{\frac{\hbar}{2 m \omega}}\left(\hat{a}_{+}+\hat{a}_{-}\right)^{\dagger} \ket{ n} \right)^{\dagger} \ket{ n'}                   \\
+				                                                & = \left( \sqrt{\frac{\hbar}{2 m \omega}}\left(\hat{a}_{-}\ket{ n}+\hat{a}_{+}\ket{ n}\right) \right)^{\dagger} \ket{ n'}                      \\
+				                                                & = \left( \sqrt{\frac{\hbar}{2 m \omega}}[\sqrt{n}|n-1\rangle+ \sqrt{n+1}|n+1\rangle] \right)^{\dagger} \ket{ n'}                              \\
+				                                                & = \left( \sqrt{\frac{\hbar}{2 m \omega}}\sqrt{n}|n-1\rangle+ \sqrt{\frac{\hbar}{2 m \omega}}\sqrt{n+1}|n+1\rangle \right)^{\dagger} \ket{ n'} \\
+				                                                & = \left( \sqrt{\frac{\hbar}{2 m \omega}}\sqrt{n+1}\braket{ n+1}  + \sqrt{\frac{\hbar}{2 m \omega}}\sqrt{n}\bra{n-1}  \right) \ket{ n'}        \\
+				                                                & = \sqrt{\frac{\hbar(n+1)}{2 m \omega}}\braket{n+1 | n' }  + \sqrt{\frac{\hbar n}{2 m \omega}}\braket{n-1|n'}                                  \\
+				                                                & = \sqrt{\frac{\hbar(n+1)}{2 m \omega}} \delta_{n+1,~n'}  + \sqrt{\frac{\hbar n}{2 m \omega}} \delta_{n-1,~n'}
+			      \end{align*}
+
+			      Expressing this in a matrix:
+			      \begin{align*}
+				      \mathbf{X} = \begin{pmatrix}
+					                   \braket{ 0 | \hat{x}|0 } & \braket{ 0 | \hat{x}| 1 } & \dots  & \braket{ 0 | \hat{x}| n' } \\
+					                   \braket{ 1 | \hat{x}|0 } & \braket{ 1 | \hat{x}| 1 }                                       \\
+					                   \vdots                   &                           & \ddots                              \\
+					                   \braket{ n | \hat{x}|0 } &                           &        & \braket{ n | \hat{x}| n' }
+				                   \end{pmatrix}
+			      \end{align*}
+
+			\item \textbf{momentum} Same story here:
+			      \begin{align*}
+				      \left\langle n|p| n^{\prime}\right\rangle & = (\hat{p}^{\dagger}\ket{n} )^{\dagger}\ket{n'}                                                     \\
+				                                                & = i \sqrt{ \frac{\hbar m \omega}{2} }(\sqrt{ n+1 }~\delta_{n+1,~n' } - \sqrt{ n }~\delta_{n-1,~n'})
+			      \end{align*}
+			      With matrix
+			      \begin{align*}
+				      \mathbf{P} = \begin{pmatrix}
+					                   \braket{ 0 | \hat{p}|0 } & \braket{ 0 | \hat{p}| 1 } & \dots  & \braket{ 0 | \hat{p}| n' } \\
+					                   \braket{ 1 | \hat{p}|0 } & \braket{ 1 | \hat{p}| 1 }                                       \\
+					                   \vdots                   &                           & \ddots                              \\
+					                   \braket{ n | \hat{p}|0 } &                           &        & \braket{ n | \hat{p}| n' }
+				                   \end{pmatrix}
+			      \end{align*}
+
+
+		\end{enumerate}
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+	(Problem 3.44) The Hamiltonian for a certain three-level system is represented by the matrix: $H=\left(\begin{array}{lll}a & 0 & b \\ 0 & c & 0 \\ b & 0 & a\end{array}\right)$
+	Where $a, b, c$ are real numbers (consider why they must be real?). Calculate time-dependent wavevector $|\Psi(t)\rangle$ if the following wavevector represents the state of the system at $t=0$; $|\Psi(t)\rangle=\left(\begin{array}{l}0 \\ 1 \\ 0\end{array}\right)(0.5 \mathrm{pts}$.
+	"This problem (in a simpler form) was discussed during Office hour \#7 but solving it will be of no difficulty after you attend Lecture 24 where we will generalize Dirac notation for Schrodinger equation in coordinate representation (in other words, S.E. that you are used to).
+	\begin{callout}{Solution:}
+
+		$$\hat{H}\psi(x) = E\psi; \quad \Psi(x,t) = \psi(x)\psi(t)$$
+
+		\begin{align*}
+			(H-I \lambda)\psi = 0
+		\end{align*}
+
+		Eigenvectors:
+
+		\begin{align*}
+			(H-I \lambda)\psi                                                                                           & = 0                  \\
+			\det\left(\begin{array}{lll} a-\lambda & 0 & b \\ 0 & c-\lambda & 0 \\ b & 0 & a-\lambda \end{array}\right) & = 0                  \\
+			(a-\lambda)(c-\lambda)(a-\lambda) + b(-b(c-\lambda))                                                        & = 0                  \\
+			\lambda                                                                                                     & = \{ ~a+b,~c,~a-b \}
+		\end{align*}
+
+		\begin{enumerate}[(I)]
+			\item \begin{align*}
+				      \begin{pmatrix}
+					      -b & 0     & b  \\
+					      0  & c-a-b & 0  \\
+					      b  & 0     & -b
+				      \end{pmatrix} \begin{pmatrix} x_{1} \\ x_{2} \\ x_{3} \end{pmatrix} = \vec{0}
+			      \end{align*}
+			      \begin{align*}
+				      -bx_{1} + bx_{3} & = 0 \\
+				      x_{2}(c-a-b)     & = 0 \\
+				      bx_{1} - bx_{3}  & = 0
+			      \end{align*}
+			      $$ x_1 = x_3, ~ x_2 = 0 $$
+
+			\item \begin{align*}
+				      \begin{pmatrix}
+					      a-c & 0 & b   \\
+					      0   & 0 & 0   \\
+					      b   & 0 & a-c
+				      \end{pmatrix} \begin{pmatrix} x_{1} \\ x_{2} \\ x_{3} \end{pmatrix} & = \vec{0} \\
+			      \end{align*}
+			      \begin{align*}
+				      (a-c)x_{1} + bx_{3} & = 0 \\
+				      bx_{1} + (a-c)x_{3} & = 0
+			      \end{align*}
+			      $$ 0 = x_1 = x_2 $$
+
+
+
+			\item \begin{align*}
+				      \begin{pmatrix}
+					      b & 0     & b \\
+					      0 & c-a+b & 0 \\
+					      b & 0     & b
+				      \end{pmatrix} \begin{pmatrix}x_{1} \\ x_{2} \\ x_{3}\end{pmatrix} = \vec{0}
+			      \end{align*}
+			      \begin{align*}
+				      bx_{1} + bx_{2} & = 0 \\
+				      x_{2}(c-a+b)    & = 0 \\
+				      bx_{1} + bx_{2} & = 0
+			      \end{align*}
+			      $$ x_2 = 0, ~ x_3 = -x_1 $$
+		\end{enumerate}
+
+		Therefore the eigenvectors are:
+
+		\begin{align*}
+			\ket{\xi_{1}} & = x_{1}\begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix} \to \frac{1}{\sqrt{ 2 }} \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}    \\
+			\ket{\xi_{2}} & = x_{2}\begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} \to \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}                         \\
+			\ket{\xi_{3}} & = x_{3} \begin{pmatrix} 1 \\ 0 \\ -1 \end{pmatrix} \to \frac{1}{\sqrt{ 2 }} \begin{pmatrix} 1 \\ 0 \\ -1 \end{pmatrix}
+		\end{align*}
+
+		In terms of our new basis we can express the time-dependent wave function as:
+
+		$$\begin{pmatrix}
+				\frac{c_1}{\sqrt{ 2 }} & 0   & \frac{c_3}{\sqrt{ 2 }}  \\
+				0                      & c_2 & 0                       \\
+				\frac{c_1}{\sqrt{ 2 }} & 0   & -\frac{c_3}{\sqrt{ 2 }}
+			\end{pmatrix} \exp \{ -iE_0t / \hbar \} $$
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+	(Problem 3.46) The Hamiltonian for a certain three-level system is represented by the matrix below:
+
+	$$
+		H=\hbar \omega\left(\begin{array}{lll}
+				1 & 0 & 0 \\
+				0 & 2 & 0 \\
+				0 & 0 & 2
+			\end{array}\right)
+	$$
+
+	Calculate eigenvalues and normalized eigenvectors for this Hamiltonian. ( $0.5 \mathrm{pts}$ )
+	*This problem provides you with a bit more practice in the calculation of eigenvectors and eigenvalues for a Hermitian operator. Nothing difficult, just work on your technique.
+
+	\begin{callout}{Solution:}
+
+		\begin{enumerate}[(I)]
+			\item \textbf{eigenvalues:}
+			      \begin{align*}
+				      \hbar \omega [ (1-\lambda)(2-\lambda)(2-\lambda) ] & = 0                                   \\
+				      \lambda                                            & = \{ \hbar \omega,~ 2 \hbar \omega \}
+			      \end{align*}
+			\item \textbf{eigenvectors:}
+
+			      \begin{align*}
+				      \hbar\omega \begin{pmatrix}
+					                  0 & 0 & 0 \\
+					                  0 & 1 & 0 \\
+					                  0 & 0 & 1
+				                  \end{pmatrix} \begin{pmatrix}x_{1} \\ x_{2} \\ x_{3}\end{pmatrix} & = \vec{0}
+			      \end{align*}
+			      \begin{align*}
+				      \hbar\omega x_{2} & =0 \\
+				      \hbar\omega x_{3} & =0 \\
+				      x_{2}=x_{3}       & =0
+			      \end{align*}
+
+			      \begin{align*}
+				      \hbar\omega \begin{pmatrix}
+					                  -1 & 0 & 0 \\
+					                  0  & 0 & 0 \\
+					                  0  & 0 & 0
+				                  \end{pmatrix} \begin{pmatrix}x_{1} \\ x_{2} \\ x_{3}\end{pmatrix} & = \vec{0}
+			      \end{align*}
+			      \begin{align*}
+				      \hbar\omega x_{1} & =0 \\
+				      x_{1}             & =0
+			      \end{align*}
+
+			      \begin{align*}
+				      \ket{\xi_{1}} & = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}                    \\
+				      \ket{\xi_{2}} & = \frac{1}{\sqrt{ 2 }}\begin{pmatrix} 0 \\ 1 \\ 1\end{pmatrix}
+			      \end{align*}
+
+			\item \textbf{generalized eigenvector:}
+			      $$ (H-\lambda_{2})\ket{\xi_{3}} = \ket{\xi_{2}} $$
+
+			      \begin{align*}
+				      \implies \hbar\omega \begin{pmatrix}
+					                           -1 & 0 & 0 \\
+					                           0  & 0 & 0 \\
+					                           0  & 0 & 0
+				                           \end{pmatrix} = \frac{1}{\sqrt{ 2 }}\begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} \implies \ket{\xi_{3}}= \frac{1}{\sqrt{ 2 }}\begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}
+			      \end{align*}
+		\end{enumerate}
+
+	\end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+	Creation $\hat{a}_{+}$and annihilation $\hat{a}_{-}$operators for the harmonic oscillator (we are dealing with 1D version of Harmonic oscillator in this example). Calculate expectation values for the following (consider that harmonic oscillator is in the n-th state): (1) $\left\langle\hat{a}_{+} \hat{a}_{-}\right\rangle$, (2) $\left\langle\hat{a}_{+} \hat{a}_{+} \hat{a}_{-} \hat{a}_{-} \hat{a}_{+} \hat{a}_{+} \hat{a}_{-}\right\rangle$, and (3) $\left\langle\hat{a}_{+} \hat{a}_{+} \hat{a}_{+} \hat{a}_{+} \hat{a}_{+} \hat{a}_{-} \hat{a}_{+} \hat{a}_{-} \hat{a}_{-} \hat{a}_{-} \hat{a}_{-} \hat{a}_{-}\right\rangle(0.5 \mathrm{pts}$.)
+	*This problem can't and shouldn't be solved with brute force. Lecture 25 will explain hou to deal with such situations. This is a great example of the use of Dirac notation to calculate expectation values of operators that are expressed via creation/annihilation operator.
+	\begin{callout}{Solution:}
+
+		\begin{enumerate}[(1)]
+			\item $$ \hat{a}_{+}\hat{a}_{-} = \bra{n}\hat{a}_{+} \sqrt{ n } \ket{n-1} = \sqrt{ n } \bra{n}\hat{a}_{+}\ket{n-1} = \sqrt{ n }\sqrt{ n } \braket{n | n} = n $$
+			      $$ \langle \hat{a}_{+}\hat{a}_{-} \rangle = \braket{ n}\cancelto{ n\ket{n}  }{ \hat{a}_{+} \hat{a}_{-}\ket{n}  } = n $$
+			\item This has an odd length, so it is zero.
+			\item $$\hat{a}_{-}\hat{a}_{+} = \bra{n}\hat{a}_{-}\hat{a}_{+}\ket{n} = \sqrt{ n+1 } \bra{n}\hat{a}_{-}\ket{n+1} = (n+1) \braket{n | n} = n+1;$$
+			      \begin{align*}
+				      \left\langle\hat{a}_{+}^{5}\hat{a}_{-} \hat{a}_{+} \hat{a}_{-}^{5}\right\rangle
+				       & = \sqrt{ n }\sqrt{ n-1 }\sqrt{ n-2 }\sqrt{ n-3 }\sqrt{ n-4 } \braket{n|\hat{a}_{+}^{5}\hat{a}_{-} \hat{a}_{+} |n-5} \\
+				       & = \sqrt{ n }\sqrt{ n-1 }\sqrt{ n-2 }\sqrt{ n-3 } (n-4) \braket{n|\hat{a}_{+}^{5}\hat{a}_{-}  |n-4}                  \\
+				       & = \sqrt{ n }\sqrt{ n-1 }\sqrt{ n-2 }\sqrt{ n-3 } (n-4)^{3/2} \braket{n|\hat{a}_{+}^{5}  |n-5}                       \\
+				       & = n(n+1)(n+2)(n+3) (n-4)^{2} \cancel{ \braket{n|n} }
+			      \end{align*}
+
+		\end{enumerate}
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+	Similar to the previous problem, calculate expectation values for dimensionless coordinate $\hat{Q}$ and momentum $\hat{\mathcal{P}}$ operators in the following powers: $\left\langle\widehat{Q}^4\right\rangle,\left\langle\hat{\mathcal{P}}^2\right\rangle$. Explain how you got to the results. ( 0.5 pts.)
+	*Same as the previous problem, please deal with this after Lecture 25. Expectation values for position and momentum operators must be calculated using creation and annihilation operators. This problem is related to Problem 2 of this homework above, but suggests to perform calculations through creation/annihilation operators.
+	\begin{callout}{Solution:}
+
+		\begin{enumerate}[(I)]
+			\item $\left\langle \hat{Q}^{4} \right\rangle$:
+			      \begin{align*}
+				      \left\langle \hat{Q}^{4} \right\rangle & = \bra{n} \frac{1}{16} (\hat{a}_{-}+\hat{a}_{+})^{4}\ket{n}                                                                                                                                         \\
+				                                             & = \bra{n}\left(\frac{1}{16}(\cancel{ \hat{a}_{-}^4 }+\cancel{ 4\hat{a}_{-}^3\hat{a}_{+} }+6\hat{a}_{-}^2\hat{a}_{+}^2+\cancel{ 4\hat{a}_{-}\hat{a}_{+}^3 }+\cancel{ \hat{a}_{+}^4 })\right) \ket{n} \\
+				                                             & = \bra{n} \frac{1}{16}6\hat{a}_{-}^{2}\hat{a}_{+}^{2}\ket{n}                                                                                                                                        \\
+				                                             & = \frac{1}{16} \sqrt{ n+1 }\sqrt{ n+2 } \bra{n} \hat{a}_{-}^{2} \ket{n+2}                                                                                                                           \\
+				                                             & = \frac{1}{16}(n+1)(n+2)
+			      \end{align*}
+			\item $\left\langle \hat{\mathcal{P}}^{2} \right\rangle$:
+			      \begin{align*}
+				      \left\langle \hat{\mathcal{P}}^{2} \right\rangle & = -\frac{1}{2} \braket{ n} (\hat{a}_{-}+\hat{a}_{+})^{2}\ket{n}             \\
+				                                                       & = -\cancel{ \frac{1}{2} }\braket{n | \cancel{ 2 }\hat{a}_{-}\hat{a}_{+}|n } \\
+				                                                       & = n+1
+			      \end{align*}
+		\end{enumerate}
+
+	\end{callout}
+\end{homeworkProblem}
+
+\end{document}

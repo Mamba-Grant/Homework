@@ -1,0 +1,37 @@
+\begin{homeworkProblem}
+Exercise 11.2.2 (Shankar) – 5 points
+Using \( T^\dagger(\epsilon) T(\epsilon) = I \) to order \(\epsilon\), deduce that \( G^\dagger = G \).
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Exercise 11.4.1 (Shankar) – 5 points
+Prove that if \( [\Pi, H] = 0 \), a system that starts out in a state of even/odd parity maintains its parity. (Note that since parity is a discrete operation, it has no associated conservation law in classical mechanics.)
+\begin{callout}{Solution:}
+    
+\begin{align*}
+    [\Pi, H] &= 0 \implies H(x,p) = H(-x,-p) \\ 
+    \Pi \ket{\psi(x)} &= \ket{\psi(-x)} &&\text{(where $\ket{\psi(x)} = \pm \ket{\psi(x)}$)} \\
+    \Pi \ket{\psi(x)} &= \pm \ket{\psi(x)} \\ \\
+    \Pi \ket{\psi(x,~t)} &= \Pi e^{iHt/\hbar}\ket{\psi(x)} \\ 
+    &= e^{iH(\pm x, \pm t)t/\hbar} \ket{\psi(\pm x)} &&(H(x,p)=H(-x,-p)) \\ 
+    &= e^{iHt/\hbar} \pm \ket{\psi(x)} \\ 
+    &= \pm \ket{\psi(x,t)} \\ 
+\end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Exercise 11.4.2 (Shankar) – 5 points
+A particle is in a potential
+\[
+V(x) = V_0 \sin\left(\frac{2\pi x}{a}\right)
+\]
+which is invariant under the translations \( x \rightarrow x + ma \), where \( m \) is an integer. Is momentum conserved? Why not?
+
+Hint: You can start this problem with:
+\[
+\frac{d}{dt} \langle P \rangle = -\frac{i}{\hbar} \langle [P, H] \rangle
+\]
+Whether it goes to zero or not depends on the range you used for averaging \( \langle \dots \rangle \).
+\end{homeworkProblem}

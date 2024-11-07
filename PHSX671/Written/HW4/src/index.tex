@@ -1,0 +1,249 @@
+\begin{homeworkProblem}
+    4.1: A system consists of N identical, non-interacting, and distinguishable particles. There are two energy states accessible to each particle, $\epsilon_1$ and $\epsilon_2$ with $\epsilon_2 > \epsilon_1$.
+    \begin{enumerate}[(a)]
+        \item What is the partition function for a single particle of this system?
+            \begin{callout}{Solution:}
+                
+                The partition function is 
+                $$Z = \sum_{i=1}^{N} e^{-\beta \epsilon_{n}}$$
+
+                Where we have two states, so it is then 
+                $$Z = e^{-\beta \epsilon_1} + e^{-\beta \epsilon_2}$$
+
+            \end{callout}
+        \item What is the partition function for the entire system of N particles?
+            \begin{callout}{Solution:}
+                
+                %For a system of $N$ particles obeying Boltzmann statistics, the entropy of the system is found by multiplying by $N$:
+                %$$\mathcal{S} = N\left( \ln Z + \beta \bar{\epsilon} \right)$$
+                %Which in turn becomes exponentiation on $Z$ as it is logarithmic. Therefore the entire system is described by:
+                We found in class that for a system of $N$ particles the partition function $Z$ is exponentiated by the number of particles:
+                $$Z = \left( e^{-\beta \epsilon_1} + e^{-\beta \epsilon_2} \right)^{N}$$
+
+            \end{callout}
+
+        \newpage
+        \item What is the mean energy of this system?
+            \begin{callout}{Solution:}
+                
+                \begin{align*}
+                    \bar{\epsilon} &= \frac{\sum_{n=1}^{N} p_n \epsilon_i}{\sum_{n=1}^{N}p_n} \\ 
+                    &= \frac{\sum \frac{g_n \epsilon_n e^{-\beta e_n}}{Z}}{ \sum \frac{g_n e^{-\beta e_n}}{Z}} \\ 
+                    &= \frac{\sum g_n \epsilon_n e^{-\beta e_n}}{ \sum g_n e^{-\beta e_n}} \\ 
+                    &= - \frac{1}{Z} \frac{\partial }{\partial \beta } \sum e^{-\beta \epsilon_i} \\ 
+                    &= - \frac{1}{Z} \frac{\partial Z}{\partial \beta } \\ 
+                    &= -\frac{\partial \ln Z}{\partial \beta }
+                \end{align*}
+
+                In our case we then have:
+                \begin{align*}
+                    \bar{\epsilon} &= -\frac{\partial }{\partial \beta } \left[ \ln \left\{ \left( e^{-\beta \epsilon_1} + e^{-\beta \epsilon_2} \right)^{N} \right\} \right] \\ 
+                    &= -N\frac{\partial }{\partial \beta} \ln \left( e^{-\beta \epsilon_1} + e^{-\beta \epsilon_2} \right) \\
+                    &= -N \frac{1}{-e^{-\beta \epsilon_1} - e^{-\beta \epsilon_2}} \left( -\epsilon_1e^{-\beta \epsilon_1}  -\epsilon_2 e^{-\beta \epsilon_2} \right) \\
+                    &= N \frac{\epsilon_1 e^{-\beta \epsilon_1}+ \epsilon_2 e^{-\beta \epsilon_2}}{e^{-\beta \epsilon_1}+e^{-\beta \epsilon_2}}
+                \end{align*}
+
+            \end{callout}
+        \item What is the entropy of this system?
+            \begin{callout}{Solution:}
+                
+                The definition of entropy most easily applied here is equation (4.3)
+                \begin{align*}
+                    \mathcal{S} &= \ln(Z) + \beta \bar{\epsilon} \tag{4.3} \\ 
+                    &= \left( -\beta \epsilon_1 - \beta \epsilon_2 \right) + \beta N \frac{\epsilon_1 e^{-\beta \epsilon_1}+ \epsilon_2 e^{-\beta \epsilon_2}}{e^{-\beta \epsilon_1}+e^{-\beta \epsilon_2}} \\ 
+                    &= -N\frac{\beta e^{-\beta \epsilon_2} \epsilon_1 + \beta e^{-\beta \epsilon_1} \epsilon_2}{e^{-\beta \epsilon_1}+e^{-\beta \epsilon_2}}
+                \end{align*}
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    4.2: Now add an energy baseline or offset term, $\epsilon_0$, to each of the accessible energy states in Question 4.1. Thus, the new energy states are $\epsilon_1 + \epsilon_0$ and $\epsilon_2 + \epsilon_0$.
+    \begin{enumerate}[(a)]
+        \item What is the partition function for a single particle of this system?
+            \begin{callout}{Solution:}
+                \begin{align*}
+                    Z' &= e^{-\beta \epsilon_1 + \epsilon_0} + e^{-\beta \epsilon_2 + \epsilon_0} \\ 
+                    &= e^{\epsilon_0} Z
+                \end{align*}
+            \end{callout}
+        \item What is the partition function for the entire system of N particles?
+            \begin{callout}{Solution:}
+                \begin{align*}
+                    Z' &= \left( e^{-\beta \epsilon_1 + \epsilon_0} + e^{-\beta \epsilon_2 + \epsilon_0} \right)^{N} \\ 
+                    &= e^{N\epsilon_0} Z
+                \end{align*}
+            \end{callout}
+        \item What is the mean energy of this system?
+            \begin{callout}{Solution:}
+                \begin{align*}
+                    \bar{\epsilon } &= - \frac{N}{e^{-\beta \epsilon_1 + \epsilon_0} + e^{-\beta \epsilon_2 + \epsilon_0}} \left\{ -\epsilon_1 e^{-\beta \epsilon_1 + \epsilon_0}- \epsilon_2 e^{-\beta \epsilon_2 + \epsilon_0} \right\} \\
+                    &= N \frac{\epsilon_1 e^{-\beta \epsilon_1}+ \epsilon_2 e^{-\beta \epsilon_2}}{e^{-\beta \epsilon_1}+e^{-\beta \epsilon_2}}{\epsilon_0}  \\
+                \end{align*}
+                (the extra term factors out nicely!)
+            \end{callout}
+        \item What is the entropy of this system?
+            \begin{callout}{Solution:}
+                \begin{align*}
+                    \mathcal{S} &= \ln(Z') + \beta \bar{\epsilon} \\ 
+                    &= \ln(Z') + \beta \left( N \frac{\epsilon_1 e^{-\beta \epsilon_1} +  \epsilon_2 e^{-\beta \epsilon_2}}{e^{-\beta \epsilon_1}+e^{-\beta \epsilon_2}}{\epsilon_0} \right) \\ 
+                    &= \epsilon_0 \ln(Z) + \beta \left( N \frac{\epsilon_1 e^{-\beta \epsilon_1} +  \epsilon_2 e^{-\beta \epsilon_2}}{e^{-\beta \epsilon_1}+e^{-\beta \epsilon_2}}{\epsilon_0} \right) \\ 
+                    &= -N \beta \frac{\beta e^{-\beta \epsilon_2} \epsilon_1 + \beta e^{-\beta \epsilon_1} \epsilon_2}{e^{-\beta \epsilon_1}+e^{-\beta \epsilon_2}} 
+                \end{align*}
+            \end{callout}
+        \item What properties of the system were affected by this energy offset? What properties were not affected? What conceptual arguments can you give for this?
+            \begin{callout}{Solution:}
+                The mean energy increases, but the entropy does not. This is because the energy does go up on average but the distribution of energies is not changed.
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    4.3: A system possesses three energy levels, $E_1 = \epsilon$, $E_2 = 2\epsilon$ and $E_3 = 3\epsilon$, with degeneracies $g(E_1) = g(E_3) = 1$, $g(E_2) = 2$. Determine the mean energy of this system.
+    \begin{callout}{Solution:}
+        
+        The partition function with degeneracy is 
+        \begin{align*}
+            Z &= \sum_{i=1}^{N} g_i e ^{-\beta \epsilon_i} \\ 
+            &= e^{-\beta \epsilon} + 2e^{-\beta 2\epsilon} + e^{-\beta 3\epsilon}
+        \end{align*}
+
+        \begin{align*}
+            \bar{\epsilon} &= - \frac{1}{Z} \frac{\partial Z}{\partial \beta} \\ 
+            &= \left( e^{-\beta \epsilon} + 2e^{-\beta 2\epsilon} + e^{-\beta 3\epsilon} \right)^{-1} \left( - \epsilon e^{-\beta \epsilon} - 4 \epsilon e^{-\beta 2\epsilon} - 3\epsilon e^{-\beta 3\epsilon} \right) \\ 
+            &= \frac{ \epsilon e^{-\beta \epsilon} + 4 \epsilon e^{-\beta 2\epsilon} + 3\epsilon e^{-\beta 3\epsilon}}{e^{-\beta \epsilon} + 2e^{-\beta 2\epsilon} + e^{-\beta 3\epsilon}}
+        \end{align*}
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    4.4: A system consists of N non-interacting particles at a temperature T sufficiently high so that we are in a classical limit. Each particle has mass m and is free to perform one dimensional oscillations about its equilibrium position. Calculate the heat capacity of this system of particles at this temperature when
+    \begin{enumerate}[(a)]
+        \item The restoring force for the oscillations is proportional to the displacement of the particle from its equilibrium position.
+            \begin{callout}{Solution:}
+                
+                $$C = \frac{\partial S}{\partial T}$$
+                The force and energy is given by
+                \begin{gather*}
+                    F=-kx; \quad \to \quad U = -\int_{0}^{x} -kx ~dx\\
+                    E=\sum_i^N \frac{p_i^2}{2m} + \frac{1}{2}kx_i^2 
+                \end{gather*}
+                Chapter 4 gives us the equipartition theorem, each quadratic term contributes $\frac{1}{2 \beta }$ average energy to the system, where $\frac{1}{\beta} = k_BT$:
+                $$\frac{\bar{E}}{N} = \frac{1}{2}k_BT + \frac{1}{2}k_BT = k_BT$$
+                Which for $N$ particles is just
+                $$\bar{E}=Nk_BT$$
+                Consequently heat capacity $C$ is 
+                $$C=Nk_B$$
+
+
+            \end{callout}
+        \item The restoring force for the oscillations is proportional to the cube of the displacement of the particle from its equilibrium position.
+            \begin{callout}{Solution:}
+                \begin{gather*}
+                    F=-kx^3; \quad \to \quad U = -\int_{0}^{x^3} -kx ~dx\\
+                    E=\sum_i^N \frac{p_i^2}{2m} + \frac{1}{4}kx_i^4 
+                \end{gather*}
+                \begin{align*}
+                    Z &= \prod_i^N \int_{-\infty}^{\infty} e^{-\beta p_i^2/(2m)}\, dp_{i} \int_{-\infty}^{\infty} e^{-\beta kx^4/4}\, dx_{i} \\ 
+                    &= \left( \frac{\pi(2m)}{\beta} \right)^{N/2} \prod_i^N \int_{-\infty}^{\infty} e^{-\beta kx^4/4}\, dx_{i}
+                \end{align*}
+                Since mean energy is given by $-\frac{\partial \ln Z}{\partial \beta}$, we can actually just try separating out $\beta$, because even if we don't know the full solution to the second integral, as long as it does not depend on $\beta$ it will go to zero. I will make a $u$-substitution:
+                \begin{gather*}
+                    u_i = \beta ^{1/4} x_i, \quad du_i = \beta ^{1/4} dx_i \\ 
+                    = \left( \frac{\pi(2m)}{\beta} \right)^{N/2} \prod_i^N \int_{-\infty}^{\infty} \beta^{-1/4} e^{ku^4/4}\, du_{i} \\ 
+                    = \beta^{-3N/4} \left( 2\pi m \right)^{N/2} \prod_i^N \int_{-\infty}^{\infty} e^{ku^4/4}\, du_{i} \\ 
+                    \ln Z = \ln\left( \beta ^{-3N/4} \right) + \ln (2\pi m)^{N/2} + \ln \left(  \prod_i^N \int_{-\infty}^{\infty} e^{ku^4/4}\, du_{i} \right)
+                \end{gather*}
+                Only the first term now depends on $\beta$, so the mean energy is then:
+                \begin{align*}
+                    \bar{E} &= \frac{3N}{4 \beta} = \frac{3}{4}Nk_BT \\ 
+                    C &= \frac{3}{4}Nk_B
+                \end{align*}
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    4.5: A very sensitive spring balance consists of a quartz spring suspended from a fixed support; the mass of the object is determined by the displacement of the spring from its equilibrium position. The spring constant is $\alpha$ and the balance is at temperature T in a location where the acceleration due to gravity is g.
+    \begin{enumerate}[(a)]
+        \item If a very small object of mass m is suspended from the spring, what is the magnitude of the thermal fluctuations of the object about its equilibrium position?
+            \begin{callout}{Solution:}
+                
+                The mean displacement is what we want to find here. By the equipartition theorem we have every quadratic in the hamiltonian contributing $\frac{1}{2}k_BT$ in the mean energy.
+                \begin{align*}
+                    \frac{1}{2}kx^2 &= \frac{1}{2}k_BT \\ 
+                    x^2 &= \frac{k_BT}{k} \\ 
+                    x &= \sqrt{ \frac{k_BT}{k} }
+                \end{align*}
+                I equated energy to mean energy, so I will argue that this is then the mean displacement.
+                $$ \bar{x} = \sqrt{ \frac{k_BT}{k} }$$
+
+            \end{callout}
+        \item What is the minimum mass that can be measured accurately with this balance? (Hint: the thermal fluctuations of the movement of the mass will cause uncertainty in the measurement).
+            \begin{callout}{Solution:}
+                
+                Equating the force due to a hanging mass to the spring force, then setting $x\to\bar{x}$:
+                \begin{align*}
+                    mg &= kx \\ 
+                    m &= \frac{k}{g} \sqrt{ \frac{k_BT}{k} }
+                \end{align*}
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    4.6: 2 moles of nitrogen gas ($N_2$) and 6 moles of hydrogen gas ($H_2$) are inside a container and separated from each other by a valve. The entire container is thermally and mechanically isolated from the outside. The gases are initially at the same temperature, $T_i$. If the valve is opened, the gases interact to form ammonia ($NH_3$) What is the final temperature of the system if 1 mole of ammonia is formed? You can treat the gasses as ideal with associated molar heat capacities of $\frac{5}{2}R$ for $N_2$ and $H_2$ and $3R$ for $NH_3$.
+    \begin{callout}{Solution:}
+        
+        We have remaining moles 
+        $$(2-0.5)N_2 + (6-1.5)H_2 \to NH_3$$
+        $$1.5N_2 + 4.5H_2 \to NH_3$$
+        \begin{align*}
+            \overline{\Delta E} &= n C_V T = 0 \\ 
+            &= (2)\left( \frac{5}{2}R \right)T_i + (6)\left( \frac{5}{2}R \right)T_i \\
+            &\quad- (0.5)\left( \frac{5}{2}R \right)T_f + (1.5)\left( \frac{5}{2} \right)T_f + (1)\left( 3R \right)T_f \\
+            0 &= 20RT_i - 18RT_f \\
+            T_f &= \frac{20}{18} T_f
+        \end{align*}
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    4.7: According to quantum mechanics, rotational kinetic energy is described by the following equation:
+
+    \[\epsilon_R = \frac{\hbar^2}{2I}r(r+1) \quad r = 0, 1, 2, \ldots\]
+
+    In this equation, I is the moment of inertia for the rotation and each energy level has a degeneracy of $(2r + 1)$. The partition function can therefore be calculated as
+    
+    \[Z_{rot} = \sum_{0}^{\infty} (2r + 1) e^{-\beta \frac{\hbar^2}{2I}r(r+1)}\]
+    
+    What is the mean rotational kinetic energy at high temperatures? Assume that T is so large that the spacing between the energy levels is small enough to allow for integration of the Boltzmann factors.
+
+    \begin{callout}{Solution:}
+
+        \begin{gather*}
+            u = \beta \frac{\hbar^2}{2I} r(r+1) \quad \to \quad du = \beta \frac{\hbar^2}{2I} 2r+1~dr \\
+            Z \approx \int_{0}^{\infty} (2r+1) e^{-\beta \frac{\hbar^2}{2I}r(r+1)} ~dr \\ 
+            Z \approx \left( \beta \frac{\hbar^2}{2I} \right)^{-1} \int_{0}^{\infty} \cancel{\frac{2r+1}{2r+1}} e^{-u} ~du \\ 
+        \end{gather*}
+
+        Applying the same trick as in problem 4, we can completely ignore the integral and just focus on the part with $\beta$.
+        \begin{align*}
+            \bar{E} = -\frac{\partial \ln Z}{\partial \beta} &= \frac{\partial }{\partial T}\ln\left( \frac{2I}{\hbar^2 \beta} \right) + \cancelto{0}{\ln \dots} \\ 
+            &= - \frac{1}{\beta} \\ 
+            &= k_BT
+        \end{align*}
+
+    \end{callout}
+
+\end{homeworkProblem}

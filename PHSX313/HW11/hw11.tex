@@ -1,0 +1,275 @@
+\documentclass{article}
+
+\title{Physics 313-Fall 2023 \\ Homework 11 \\ Due 5:00 pm Nov. 29, 2023}
+\author{Grant Saggars}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{geometry}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{lipsum}  
+\usepackage{caption}
+\usepackage{float}
+\usepackage{bbold}
+% \usepackage{fontspec}
+
+% \setmainfont{BespokeSerif-Regular}
+\definecolor{shadecolor}{RGB}{235,235,235}
+
+\geometry{top=1in, bottom=1in, left=1in, right=1in}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT BEGINS HERE %
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}  
+\item (3 pts) The lowest energy of a particle in an infinite one-dimensional well is 4.4 eV. If the width of the well is doubled, what is its lowest energy?
+
+\begin{callout}{Solution:}
+
+    In solving the Shrödinger equation, we determined that there were finite energy states: 
+
+    \begin{align*}
+        \frac{n \pi}{L} &= \sqrt{ \frac{2mE}{\hbar^{2}} }
+        \implies E_1 = \frac{\hbar^{2}\pi^{2}}{2mL^{2}}
+    \end{align*}
+
+    This implies that the energy of a given state is proportional to the inverse square of the width of the well. Therefore its energy should be 1.1 eV.
+\end{callout}
+
+\item (5 pts) Consider a potential barrier:
+    \begin{align*}
+        \begin{array}{lcc}
+        U(x) = 0   & \textrm{for} & x < 0 \\
+        U(x) = U_0 & \textrm{for} & 0 \leq x \leq L \\
+        U(x) = 0   & \textrm{for} & x > L. \\
+        \end{array}
+    \end{align*}
+For an electron with energy $E > U_0$, calculate the wavelength of the wavefunction in  all three regions $x < 0$, $0 \leq x \leq L$, and $L < x$. Sketch the wavefunction, make sure it reflects the correct wavelenghts. Let the height of the potential barrier be 0.75 eV, the energy of the particle be 0.8 eV, and the width of the potential be $L = 0.5$ $\mu$m.
+
+\begin{callout}{Solution:}
+
+    \begin{gather}
+        E = \frac{1}{2} mv^2 = \frac{1}{2m}m^2v^2 = \frac{p^2}{2m} 
+        \implies p = \sqrt{ 2mE } \\
+        \lambda = \frac{h}{p} = \frac{h}{\sqrt{ 2mE }}
+    \end{gather}
+
+    Therefore, the wavelengths are:
+    \begin{align*}
+        \lambda = \left\{ \begin{array}{cl} 
+                U_{I} & 1.685 \textrm{~nm} \\
+                U_{II} & 6.741 \textrm{~nm} \\
+                U_{III} & 1.685 \textrm{~nm}
+        \end{array} \right.
+    \end{align*}
+
+\end{callout}
+
+% \begin{callout}{Solution:}
+%
+%     \begin{enumerate}
+%         \item Region I:
+%             \begin{align*}
+%                 \cancelto{0}{E\psi(x)} &= 
+%                 -\frac{\hbar^{2}}{2m} \frac{d^{2}\psi(x)}{dx^{2}} + \cancelto{0}{u(x)\psi(x)}, 
+%                 \qquad k = \sqrt{ \frac{2mE}{\hbar^2} } \\
+%                  0 &= k \psi''(x) \\ 
+%             \end{align*}
+%
+%             \vspace{-0.7 cm} This is a simple homogeneous equation with imaginary roots, so the general solution is:
+%
+%             \vspace{-0.5 cm} \begin{align*}
+%                 \psi_I(x) &= c_1 \sin(kx) + c_2 \cos(kx)
+%             \end{align*}
+%
+%         \item Region II:
+%             \begin{align*}
+%                 EU_0 &= 
+%                 -\frac{\hbar^{2}}{2m} \frac{d^{2}\psi_{II}(x)}{dx^{2}} + U_0 \psi_{II}(x)
+%                 \to \psi_{II}'' + k^2\psi_{II} = 0 \\
+%                 \implies r^2 + k^2 &= 0 \implies r = \pm k \\
+%                 \implies \psi_{II} &= c_3 e^{kx} + c_4 e^{-kx}
+%             \end{align*}
+%
+%         \item Region III:
+%
+%             Region III has the same solution as region I, except with its own coefficients:
+%
+%             \vspace{-0.5 cm} \begin{align*}
+%                 \psi_{III}(x) &= c_5 \sin(kx) + c_6 \cos(kx)
+%             \end{align*}
+%
+%         \item Boundary Conditions:
+%
+%             \begin{align*}
+%                 \textrm{Solutions:} \left\{\begin{array}{rl}  
+%                     \psi_I &= c_1 \sin(kx) + c_2 \cos(kx) \\
+%                     \psi_{II} &= c_3 e^{kx} + c_4 e^{-kx} \\
+%                     \psi_{III} &= c_5 \sin(kx) + c_6 \cos(kx) \\
+%                 \end{array}\right.
+%             \end{align*}
+%
+%             \begin{enumerate}[(I)]
+%                 \item Continuity:
+%
+% For continuity between regions I and II:
+%
+% \begin{align*}
+%     \psi_{I}(0) &= \psi_{II}(0) \\
+%     c_1 \sin(0) + c_2 \cos(0) &= c_3 e^{0} + c_4 e^{0} \\
+%     c_2 &= c_3 + c_4 \tag{1}
+% \end{align*}
+%
+% and their derivatives:
+%
+% \begin{align*}
+%     \psi_{I}'(0) &= \psi_{II}'(0) \\
+%     kc_1 \cos(0) - kc_2 \sin(0) &= kc_3 e^{0} - kc_4 e^{0} \\
+%     kc_1 &= kc_3 - kc_4 \tag{2}
+% \end{align*}
+%
+% For continuity between regions II and III:
+%
+% \begin{align*}
+%     \psi_{II}(L) &= \psi_{III}(L) \\
+%     c_5 \sin(kL) + c_6 \cos(kL) &= c_3 e^{kL} + c_4 e^{-kL} \\
+% \end{align*}
+%
+% and their derivatives:
+%
+% \begin{align*}
+%     \psi_{II}'(L) &= \psi_{III}'(L) \\
+%     kc_1 \cos(kL) - kc_2 \sin(kL) &= kc_3 e^{kL} - kc_4 e^{-kL} \\
+% \end{align*}
+%
+%                 \item Normalization:
+%
+% \begin{align*}
+%     \int_{-\infty}^{0} c_1 \sin(kx) + c_2 \cos(kx) ~dx &= 1
+% \end{align*}
+%
+%             \end{enumerate}
+%     \end{enumerate}
+% \end{callout}
+
+\item (3 pts) An electron is trapped in a one-dimensional region with rigid walls it cannot penetrate of width 0.07 nm. Find the three smallest possible values allowed for the energy of the electron:  
+
+\begin{callout}{Solution:}
+
+    As in problem one, the energy states of a particle in an infinite square well are described by:
+    \begin{align*}
+        E = \frac{n^2\hbar^{2}\pi^{2}}{2mL^{2}}
+    \end{align*}
+
+    Therefore the three smallest energies the system can have are the first three:
+
+    \vspace{-0.5 cm} \begin{align*}
+        \{ 1.23 \times 10^{-17}, 4.92 \times 10^{-17}, 11.08 \times 10^{-17} \} 
+    \end{align*}
+
+\end{callout}
+
+\item (4 pts) Consider a particle in the second excited state of an infinite square well:  
+$U(x) = \infty$ for $x < 0$  
+$= 0$ for $0 \leq x \leq L$  
+$= \infty$ for $x > L$.  
+Calculate the standard deviation of its position:  
+$\sigma_x = \sqrt{[x^2]_{ave} - (x_{ave})^2}$.  
+
+\begin{callout}{Solution:}
+
+    The solution to the infinite square well from lecture is:
+
+    $$\psi_{n} = \sqrt{ \frac{2}{L} }\sin\left( \frac{n\pi x}{L} \right)$$
+
+    $x_{\textrm{avg}}$ can be found:
+
+    \begin{gather}
+        \sqrt{ \frac{2}{L} } \int_{0}^{L} x \sin \left( \frac{2\pi x}{L} \right) ~dx
+        = -\frac{L^2}{ 2 \sqrt{ 2 } \sqrt{ \pi } }
+    \end{gather}
+
+    Second, $(x^{2})_{\textrm{avg}}$ can be found:
+
+    \begin{gather}
+        \sqrt{ \frac{2}{L} } \int_{0}^{L} x^{2} \sin \left( \frac{2\pi x}{L} \right) ~dx
+        = -\frac{L^3}{ 2 \sqrt{ 2 } \sqrt{ \pi } }
+    \end{gather}
+
+    Finally, the standard deviation can be written as:
+
+    \begin{gather}
+        \sigma_x =
+        \sqrt{ \left( -\frac{L^3}{ 2 \sqrt{ 2 } \sqrt{ \pi } } \right)
+        - \left( -\frac{L^2}{ 2 \sqrt{ 2 } \sqrt{ \pi } } \right)^2 }
+        = \sqrt{-\frac{L^4}{8 \pi} - \frac{L^3}{2 \sqrt{2 \pi}}}
+    \end{gather}
+
+\end{callout}
+
+\newpage
+\item You're given a wave function $\psi(x) = A\exp(-\kappa x)$ for $x \geq 0$ and $\psi(x) = B\exp(\kappa x)$ for $x < 0$, where $\kappa = \sqrt{2 m E}/\hbar$. Consider an electron with mass $9.11 \times 10^{-31}$ kg and  
+energy $E = 0.6$ eV.  
+
+\begin{enumerate}[(a)]
+\item (4 pts) Find the coefficients $A$ and $B$. (Note that this is a wavefunction for when the potential is infinite at $x=0$ and zero everwhere else. Think about what boundary conditions are needed for infinite potentials. Your answer should be in terms of $\kappa$.)  
+
+\begin{callout}{Solution:}
+    
+    For the wave function to be normalized, $\phi_{I}(0)$ must equal $\phi_{II}(0)$, which implies that $A$ must also equal $B$. This also makes sense, since there is symmetry to the potentials. Now to normalize:
+
+    \begin{align*}
+        1 &= \int_{-\infty}^{0} Ae^{kx} ~dx + \int_{0}^{\infty} Ae^{-kx} ~dx \\
+          &= \left.-Ae^{kx}\right|_{-\infty}^{0} + \left.Ae^{-kx}\right|_{0}^{\infty} \\
+          &= \frac{2A}{k}
+    \end{align*}
+
+    Therefore $A$ and $B$ must be $k/2$.
+\end{callout}
+
+\item (4 pts) What is the average position of the electron?  
+
+\begin{callout}{Solution:}
+
+    Average position is defined as $\int_{-\infty}^{\infty} x|\psi(x)|^{2} ~dx$.
+
+    \begin{gather*}
+        \frac{k}{2} \int_{-\infty}^{0} xe^{2kx} ~dx +  
+        \frac{k}{2} \int_{0}^{\infty} xe^{-2kx} ~dx \\
+        = \frac{k}{2} \left. \frac{ e^{2kx} (2kx-1) }{4k^2} \right|_{-\infty}^{0}
+        - \frac{k}{2} \left. \frac{ e^{-2kx} (2kx+1) }{4k^2} \right|_{0}^{\infty} \\
+        = -\frac{k}{8} + \frac{k}{8} \\
+        = 0
+    \end{gather*}
+\end{callout}
+
+\item (4 pts) What is the probability of finding the electron in the region $-0.5$ \AA $<$  
+$x$ $<0.5$ \AA?  
+
+\begin{callout}{Solution:}
+    
+    Changing the bounds so that we evaluate the probability of finding the electron in the region described:
+
+
+    \begin{align*}
+        \frac{k}{2} \left. \frac{ e^{2kx} (2kx-1) }{4k^2} \right|_{-0.5 \AA}^{0}
+        - \frac{k}{2} \left. \frac{ e^{-2kx} (2kx+1) }{4k^2} \right|_{0}^{0.5 \AA} 
+        &= 7.3357325768 \times 10^{-11}
+    \end{align*}Al
+\end{callout}
+
+\end{enumerate}
+\end{enumerate}
+\end{document}

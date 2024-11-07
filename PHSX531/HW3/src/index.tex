@@ -1,0 +1,101 @@
+
+\begin{homeworkProblem}
+    (4 pts) Find the electric field a distance $z$ above the center of a circular loop:
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.3\textwidth]{../assets/H3P1F1-1.png}
+    \end{figure}
+
+    Take the limit $z \gg r$. Does your answer make sense? Explain why or why not in detail.
+
+    \begin{callout}{Solution:}
+    
+        In this case it is probably easiest to define $\textbf{r}$ as the difference in positions from the coordinate from the coordinate on the surface of the shape ($r-r'$). Electric field for some line charge is then given by
+
+        $$\frac{1}{4 \pi \epsilon_0} \int \frac{\lambda\left(\mathbf{r}^{\prime}\right)}{\left|\mathbf{r}-\mathbf{r}^{\prime}\right|^3}\left(\mathbf{r}-\mathbf{r}^{\prime}\right) d l^{\prime}$$
+
+        Which in polar coordinates for this case becomes (notice the $rd\theta$):
+        
+        \begin{gather*}
+            \frac{1}{4\pi \epsilon_0} \int_{0}^{2\pi} \frac{\lambda}{(r^2 + z^2)^{3/2}}(\langle0,0,z\rangle-\langle r'\cos\theta,r'\sin\theta,0\rangle) ~r(d\theta') \\ 
+            \frac{1}{4\pi \epsilon_0} \int_{0}^{2\pi} \frac{\lambda}{(r^2 + z^2)^{3/2}}\langle-r'\cos\theta,r'\sin\theta,z\rangle ~r(d\theta') \\ 
+            = \frac{\lambda}{4\pi \epsilon_0} \frac{rz}{(r^2+z^2)^{3/2}} + \cancelto{0}{\int_{0}^{2\pi} r'\cos\theta ~d\theta'} + \cancelto{0}{\int_{0}^{2\pi} r'\sin\theta ~d\theta'} + \cancelto{2\pi}{\int_{0}^{2\pi} d\theta'} \\ 
+            = \frac{\lambda}{2 \epsilon_0} \frac{rz}{(r^2+z^2)^{3/2}} \stackrel{(\hat{\textbf{z}})}{\langle 0,0,1 \rangle} 
+        \end{gather*}
+
+        %And when $z \gg r$, we cannot just say that $r$ goes to zero, since that will send the whole thing to $0/0$. [CHECK THIS LATER]
+        While we cannot just set $r\to0$, we can take the ratio of $r$ and $z$ and do a series expansion:
+
+        \begin{align*}
+            \textbf{E} &= \frac{\lambda}{2 \epsilon_0} \frac{rz}{[z^2(\frac{r^2}{z^2}+1)]^{3/2}} \\ 
+            &= \frac{\lambda}{2 \epsilon_0} \frac{r}{z^2} \left( 1+\frac{r^2}{z^2} \right)^{-3/2} \\ 
+            &= \frac{\lambda}{2 \epsilon_0} \frac{r}{z^2} \left[ \sum_{k=0}^{\infty} \frac{\Gamma (-3/2 + 1)}{\Gamma(k+1) \Gamma(-3/2-k+1)} \left( \frac{r^2}{z^2} \right)^{k} \right] \\ 
+            &= \frac{\lambda}{2 \epsilon_0} \frac{r}{z^2} \left[ \frac{\Gamma(-1/2)}{\Gamma(1)\Gamma(-1/2)} \left( \frac{r}{z} \right)^{0} + \frac{\Gamma(-1/2)}{\Gamma(2)\Gamma(-3/2)} \left( \frac{r}{z} \right)^{2} + \frac{\Gamma(-1/2)}{\Gamma(3)\Gamma(-5/2)} \left( \frac{r}{z} \right)^{4} + \dots  \right] \\ 
+            &\approx \frac{\lambda}{2 \epsilon_0} \frac{r}{z^2} \left[ 1-\frac{3r^2}{2z^2} + \frac{15r^4}{8r^4} \right] \\ 
+            &\approx \frac{Q}{4\pi \epsilon_0} \frac{1}{z^2} \left[ 1-\frac{3r^2}{2z^2} + \frac{15r^4}{8r^4} \right]
+        \end{align*}
+
+        Here we can see that the ratio of $r/z$ gets inftesimally small when $z \gg r$, thereby giving an inverse square field akin to a point charge.
+
+        $$E\approx \frac{Q}{4\pi \epsilon_0} \frac{1}{z^2}$$
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (4 pts) Find the electric field a distance $z$ from the center of a spherical surface of radius $R$ that carries a uniform surface charge density $\sigma$. Treat the case of $z < R$ (inside) as well as $z > R$ (outside). Express your answers in terms of the total charge $q$ on the sphere. [Hint: Use the law of cosines to write $r$ in terms of $R$ and $\theta$. Be sure to take the positive square root of $\sqrt{R^2 + z^2 - 2Rz\cos\theta}$, which depends on if you're inside or outside the sphere.]
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.3\textwidth]{../assets/H3P2F1.png}
+    \end{figure}
+
+    \begin{callout}{Solution:}
+        
+        First we need to express some distance $z$ along the $\hat{\textbf{z}}$ axis for all points on the surface of the sphere. By the law of cosines, $\textbf{r}^2 = z^2 + R^2 - 2zR \cos \theta$. Describing $\hat{\textbf{r}}$ is a bit tricky as well. Thinking about it conceptually, it is the $z-component$ from the surface of the sphere to point $z$. This means that it is actually the $z'$ component, if we consider $\textbf{r}=r=r'$. Geometrically the angle from the top of the triangle ($\gamma$) can be used to find $\hat{r}=\cos\gamma=\frac{z'}{r}=\frac{z-R\cos\theta}{\sqrt{R^2 + z^2 - 2Rz\cos\theta}}$. Now we get to integrate the monster that is:
+
+        \begin{align*}
+            \frac{1}{4\pi \epsilon_0} \int \frac{\sigma(\textbf{r})}{\textbf{r}^{2}} \hat{\textbf{r}} ~da' 
+            &= \frac{\sigma}{4\pi \epsilon_0} \int_{0}^{\pi} \int_{0}^{2\pi} \frac{1}{R^2 + z^2 - 2Rz\cos\theta} \frac{z-R\cos\theta}{\sqrt{R^2 + z^2 - 2Rz\cos\theta}} R^2 \sin\theta ~d\phi ~d\theta \\ 
+            &= \frac{\sigma}{4\pi \epsilon_0} \int_{0}^{\pi} \frac{R^2\sin\theta(z-r\cos\theta)}{(R^2+z^2 - 2Rz\cos\theta)^{3/2}} ~d\theta \cancelto{2\pi}{\int_{0}^{2\pi} d\phi} 
+        \end{align*}
+
+        Make the substitution $u=\cos\theta$ and $du=-\sin\theta$:
+
+        $$-\frac{R^2\sigma}{2 \epsilon_0} \int_{u=1}^{u=-1} \frac{z-Ru}{(R^2 + z^2 - 2Rzu)^{3/2}} ~du$$
+
+        \newpage 
+        Make a new substitution $v=R^2+z^2-2Rzu$, $dv=-2Rz ~du$, $du = -\frac{dv}{2Rz}$, and $z-Ru = \frac{v-R^2-z^2+2v^2}{2z}$:
+
+        \begin{align*}
+            -\frac{R^2\sigma}{2 \epsilon_0} \frac{1}{2Rz} \int_{v=(R+z)^2}^{v=(R-z)^2} \frac{\frac{v-R^2-z^2+2v^2}{2z}}{(v)^{3/2}} ~dv &= -\frac{R^2\sigma}{2 \epsilon_0} \frac{1}{4Rz^2} \int_{v=(R+z)^2}^{v=(R-z)^2} \frac{v-R^2+z^2}{(v)^{3/2}} ~dv\\
+            &= -\frac{R^2\sigma}{2 \epsilon_0} \frac{1}{4Rz^2} \int_{v=(R+z)^2}^{v=(R-z)^2} (v-R^2+z^2)(v)^{-3/2} ~dv\\
+            &= -\frac{R^2\sigma}{2 \epsilon_0} \frac{1}{4Rz^2} \int_{v=(R+z)^2}^{v=(R-z)^2} (R^2+z^2)(v)^{-3/2} + (v)^{-1/2} ~dv\\
+            &= -\frac{R^2\sigma}{2 \epsilon_0} \frac{1}{4Rz^2} \left[ -2(R^2+z^2)(v)^{-1/2} + (2v)^{1/2}\middle]\right|_{(R-z)^2}^{(R+z)^2}\\
+            &= -\frac{R^2\sigma}{2 \epsilon_0} \frac{1}{4Rz^2} \left[ \frac{-2(R^2+z^2)}{R+z} + 2(R+z) \right] - \left[ \frac{-2(R^2+z^2)}{R-z} + 2(R-z) \right] \\
+        \end{align*}
+
+        Simplification yields 
+
+        $$E=-\frac{\sigma R^2}{2 \epsilon_0 z^2} \left( 1-\frac{R-z}{|R-z|} \right)$$
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (3 pts) Use your answer to Number 2 to find the field inside and outside a solid sphere of radius $R$ that carries a uniform volume charge density $\rho$. Express your answers in terms of the total charge of the sphere, $q$. Draw a graph of $|E|$ as a function of the distance from the center.
+    \begin{callout}{Solution:}
+        
+        \begin{enumerate}[i.]
+            \item \textbf{For $z<R$}: $E$ goes to zero, since the term inside the parenthesis will go to one, regardless of $R$ and $z$.
+            \item \textbf{For $z>R$}: Due to the absolute value, we will get $z-R$ under these conditions, giving
+                $$E = -\frac{\sigma R^2}{2 \epsilon_0 z^2} \left( 1-\frac{R-z}{z-R} \right)$$
+        \end{enumerate}
+
+    \end{callout}
+\end{homeworkProblem}

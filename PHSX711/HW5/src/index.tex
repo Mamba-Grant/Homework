@@ -1,0 +1,267 @@
+\newpage
+\begin{homeworkProblem}
+    7.3.3 (Shankar) – If $\psi(x)$ is even and $\phi(x)$ is odd under $x \to -x$, show that
+    \[
+        \int_{-\infty}^{\infty} \psi(x) \phi(x) \, dx = 0.
+    \]
+    Use this to show that $\psi_2(x)$ and $\psi_1(x)$ are orthogonal. Using the values of Gaussian integrals in Appendix A.2 verify that $\psi_2(x)$ and $\psi_0(x)$ are orthogonal.
+    \vspace{0.3 cm} Note: $\psi_0$, $\psi_1$, and $\psi_2$ are eigenstates for the simple harmonic oscillator problem.
+
+    \begin{callout}{Solution:}
+        \begin{enumerate}[i.]
+            \item The product of an even function and an odd function is always an odd function.
+            \item Integrating an odd function over all coordinate always gives zero as long as it converges. This combined with (i.) implies that $\int_{-\infty}^{\infty} \psi(x)\phi(x) ~dx = 0$.
+            \item The harmonic oscillator solutions in the coordinate basis are comprised of even functions multiplied by the hermite polynomials. It is then that when the hermite polynomial is odd the function becomes odd, or even for even. $H_1=2y$ is odd, $H_2=-2(1-2y^2)$ is even, so therefore $\psi_1$ is odd and $\psi_2$ is even
+            \item To verify that $\psi_2(x)$ and $\psi_0(x)$ are orthogonal by direct integration:
+                \begin{align*}
+                    \braket{\psi_0 | \psi_2} &= -\sqrt{\frac{m \omega}{\pi \hbar}} \cdot \frac{1}{\sqrt{2}} \int_{-\infty}^{\infty} \left( 1 - 2 \frac{m \omega x^2}{\hbar} \right) e^{-\frac{m \omega x^2}{\hbar}} \, dx \\ 
+                    &= - \frac{1}{\sqrt{ 2\pi }} \left( \sqrt{ \pi } -2 \cdot \frac{1}{2} \sqrt{ \pi } \right) = 0
+                \end{align*}
+                \textit{(plotting does indeed show that this is even)} Checking this integral does still show that the result is zero, so they are orthogonal.
+        \end{enumerate}
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    7.3.6 (Shankar) – Consider a particle in a potential
+    \[
+        V(x) = 
+        \begin{cases} 
+            \frac{1}{2}m\omega^2x^2, & x > 0, \\
+            \infty, & x \leq 0.
+        \end{cases}
+    \]
+    What are the boundary conditions on the wave functions now? Find the eigenvalues and eigenfunctions.
+
+    \begin{callout}{Solution:}
+        We will have a wave function with two regions. In the first region, we have the same differential equation as in the harmonic oscillator. In the second region with potential infinite, the $\psi^2(x \leq 0)=0$.
+        \begin{align*}
+            \left( \frac{\hat{p}^2}{2m} + \frac{1}{2}m \omega^2 \hat{x}^2 \right) \ket{E} &= \epsilon \ket{E} \\
+            \left( -\frac{\hbar^2}{2m} \frac{\partial^2}{\partial x^2} + \frac{1}{2}m \omega^2 \hat{x}^2 \right) \psi &= \epsilon \psi \\
+            \frac{\partial ^2 \psi}{\partial \psi} \frac{2m}{\hbar^2} \left( \epsilon - \frac{1}{2}m \omega ^2 x^2 \right) &= 0
+        \end{align*}
+        Writing the differential equation in terms of dimensionless variables as Shankar does, we look for a new variable $y$ related to $x$ by 
+        \begin{gather*}
+            x = by; \\ 
+            \to \frac{\partial^2 \psi}{\partial y^2} + \frac{2m \epsilon b^2}{\hbar^2} \psi - \frac{m^2 \omega^2 b^2}{\hbar^2} y^2 \psi = 0 \\ 
+            \to \psi'' + (2E - y^2) \psi = 0 
+        \end{gather*}
+        If we select some values to simplify things 
+        $$\begin{cases}
+            b = \left( \frac{\hbar}{m \omega} \right)^{1/2} \\ 
+            E = \frac{m \epsilon b^2}{\hbar^2} = \frac{\epsilon}{\hbar \omega}
+        \end{cases}$$
+        Shankar discusses the logic behind why we can assume the solutions are of some power series multiple of the gaussian. I will neglect to write them here, but if I ever want to review this it is covered on pages 210-211. The power series solutions are then:
+        \begin{align*}
+            u(y) &= \sum_{n=0}^{\infty} C_n y^n \\ 
+            &= \sum_{n=0}^{\infty} C_n[n(n-1)y^{n-2} -2ny^n + (2E -1) y^n] = 0 &&\text{(as $y \to 0, u \to A + cy+ O(y^2)$)} \tag{7.3.13}
+        \end{align*}
+        Due to the $n(n-1)$ factor, the first term in the series can be equated to the offset 
+        \begin{align*}
+            \sum_{n=0}^{\infty} C_nn(n-1)y^{n-2} = \sum_{n=2}^{\infty} C_nn(n-1)y^{n-2} 
+        \end{align*}
+        Let $m=n-1$:
+        \begin{align*}
+            \sum_{m=0}^{\infty} C_{m+2} (m+2)(m+1)y^m \equiv \sum_{n=0}^{\infty} C_{n+2} (n+2)(n+1)y^n
+        \end{align*}
+        Substituting this back into equation (7.3.13) gives 
+        $$C_{n+2} = C_n \frac{(2n + 1 - 2\varepsilon)}{(n + 2)(n + 1)}$$
+        As before we argue that due to finiteness the series must truncate. We get energy reduced energy eigenvalues 
+        $$E_n = \frac{2n+1}{2}; \quad \epsilon_n = (n+\frac{1}{2})\hbar \omega$$
+        and solutions 
+        $$\psi(y) = u(y)e^{-y^2/2} = e^{-y^2/2}\begin{cases}
+            C_0 + C_2y^2 + C_4y^4 + \dots \\ 
+            C_1y + C_3y^3 + C_5y^5 + \dots 
+        \end{cases}$$
+        Now we can fit the boundary conditions to the solutions. Our new potential imposes the \textbf{boundary condtion} $\boldsymbol{\psi(x \leq 0) = 0}$ (in addition to finiteness as always). But due to the structure of the sum (we get the $n+2$ solution from the $n$ solution), all even solutions vanish. The spectrum is then $n=1,3,5,\dots$ or $n=2k+1$ for $k=0,1,2,\dots$.
+        \begin{enumerate}[i.]
+            \item Eigenvalues are $\epsilon_n = (n+\frac{1}{2})\hbar \omega$ or $\epsilon_k = (2k+\frac{3}{2})\hbar \omega$.
+            \item Eigenvectors are (using the heavyside function $\theta(x)$ to drop everything to zero for $x \leq 0$):
+                $$\psi(x) = \left( \frac{m\omega}{\pi \hbar 2^{4k} (2k+1)!} \right)^{1/4} \exp\left(-\frac{m\omega x^2}{2\hbar}\right) H_{2k+1}\left[\left(\frac{m\omega}{\hbar}\right)^{1/2} x\right] \theta(x)$$
+        \end{enumerate}
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    7.4.2 (Shankar) – Find $\langle x \rangle$, $\langle p \rangle$, $\langle x^2 \rangle$, $\langle p^2 \rangle$, $\Delta x \cdot \Delta p$ in the state $\lvert n \rangle$.
+
+    \begin{callout}{Solution:}
+        \begin{enumerate}[i.]
+            \item $\boldsymbol{\braket{x}}:$
+                I'm still a little unfamiliar with using the energy basis, so to remind myself, shankar tell us that $\ket{0}\to\braket{x|0}=\psi_0(x)$. Additionally, $\hat{x} = a^{\dagger}+a$. Therefore:
+                \begin{align*}
+                    \braket{\psi_n|x|\psi_n} &= \left( \frac{2 \hbar}{m \omega} \right)^{1/2} \braket{n|x|n} \\ 
+                    &= \left( \frac{2 \hbar}{m \omega} \right)^{1/2} \braket{n|(a^{\dagger}+a)|n} \\ 
+                \end{align*}
+                This has odd length of creation and annihilation operators so we will get zero. To show this more rigorously though:
+                \begin{align*}
+                    \left( \frac{2 \hbar}{m \omega} \right)^{1/2} \braket{n|(a^{\dagger}+a)|n} &= \left( \frac{2 \hbar}{m \omega} \right)^{1/2} \bra{n} \sqrt{ n+1 }\ket{n+1} + \sqrt{ n }\ket{n-1} \\ 
+                    &= \left( \frac{2 \hbar}{m \omega} \right)^{1/2} \braket{n|\sqrt{ n+1 }|n+1} + \braket{n|\sqrt{ n }|n-1} \\ 
+                    &= 0 \quad \text{(by orthogonality)}
+                \end{align*}
+
+            \item $\boldsymbol{\braket{p}}:$
+                \begin{callout}{Solution:}
+                    \begin{align*}
+                        \braket{n|\hat{p}|n} &= i\sqrt{ 2m \omega \hbar } \braket{n|(a^{\dagger}-a)|n} \\ 
+                        &= 0 \quad \text{(by odd length of iterated creation/annihilation operators)}
+                    \end{align*}
+                \end{callout}
+            \item $\boldsymbol{\braket{x^2}}:$
+                \begin{align*}
+                    \braket{\psi_n|x|\psi_n} &= \left( \frac{2 \hbar}{m \omega} \right) \braket{n|(a^{\dagger}+a)^2|n} \\ 
+                    &= \left( \frac{2 \hbar}{m \omega} \right) \braket{ n | \frac{1}{2}[\cancel{ (a)^{2} }+(aa^{\dagger})+(a^{\dagger}a)+\cancel{ (a^{\dagger})^{2} }] | n } \\ 
+                    &= \frac{1}{2} \left( \frac{2 \hbar}{m \omega} \right) (2n+1) \\ 
+                    &= \left( \frac{2 \hbar}{m \omega} \right) \left(n+\frac{1}{2}\right)
+                \end{align*}
+            \item $\boldsymbol{\braket{p^2}}:$
+                \begin{align*}
+                    &= m \omega \hbar \bra{n} -\frac{1}{2}[\cancel{ (a)^{2} }-(aa^{\dagger})-(a^{\dagger}a)+\cancel{ (a{+})^{2} }] \ket{n} \\
+                    &= m \omega \hbar \frac{1}{2}(2n+1) \\
+                    &= m \omega \hbar \left( n+\frac{1}{2} \right) 
+                \end{align*}
+            \item $\boldsymbol{\Delta x \cdot \Delta p}:$
+                \begin{align*}
+                    \sqrt{ \left( \frac{2 \hbar}{m \omega} \right) \left(n+\frac{1}{2}\right) } \times \sqrt{ (m \omega \hbar) \left( n+\frac{1}{2} \right) } = \frac{\hbar}{2} \left( n+ \frac{1}{2} \right)
+                \end{align*}
+        \end{enumerate}
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    7.4.3 (Shankar) – (Virial Theorem) The virial theorem in classical mechanics states that for a particle bound by a potential $V(r) = ar^k$, the average (over the orbit) kinetic and potential energies are related by
+    \[
+        \langle T \rangle = c(k) \langle V \rangle,
+    \]
+    where $c(k)$ depends only on $k$. Show that $c(k) = \frac{k}{2}$ by considering a circular orbit. Using results from the previous exercise, show that for the oscillator ($k = 2$)
+    \[
+        \langle T \rangle = \langle V \rangle
+    \]
+    in the quantum state $\lvert n \rangle$.
+
+    Note for the first part of the question: Classically, for a circular orbit, $\frac{mv^2}{r} = \frac{\partial V}{\partial r}$.
+    \begin{callout}{Solution:}
+        
+        \begin{enumerate}[i.]
+            \item $\boldsymbol{\braket{T}}$
+                \begin{align*}
+                    \braket{T} = \braket{n|T|n} = \frac{1}{2m}\braket{n|\hat{p}^2|n} = \frac{1}{2} \hbar \omega \left(n+\frac{1}{2}\right)
+                \end{align*}
+            \item $\boldsymbol{\braket{V}}$
+                \begin{align*}
+                    \braket{V} = \braket{n|V|n} = \frac{m \omega^2}{2} \braket{n|\hat{x}^2|n} = \frac{1}{2} \hbar \omega \left(n+\frac{1}{2}\right)
+                \end{align*}
+        \end{enumerate}
+
+        Therefore for a harmonic oscillator energy is equally distributed between kinetic and potential.
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    7.4.5 (Shankar) – At $t=0$ a particle (in a quadratic potential) starts out in $\lvert \psi(0) \rangle = \frac{1}{\sqrt{2}} (\lvert 0 \rangle + \lvert 1 \rangle)$. 
+    \begin{enumerate}
+        \item Find $\lvert \psi(t) \rangle$.
+    \begin{callout}{Solution:}
+
+        In 1D separation of the wave function into the time dependent and independent parts gave us a fixed time-dependent part which we can multiply against $\ket{\psi(0)}$:
+        \begin{align*}
+            \ket{\psi(t)} &= e^{i\hat{H}t/\hbar}\ket{\psi(0)} \\ 
+            &= \frac{1}{\sqrt{ 2 }} \left( e^{i\hat{H}t/\hbar}\ket{0} + e^{i\hat{H}t/\hbar}\ket{1} \right) \\
+            &= \frac{1}{\sqrt{ 2 }} \left( e^{i \omega t/2}\ket{0} + e^{3i \omega t/2}\ket{1} \right)
+        \end{align*}
+        where $\hat{H}$ is given by $\hbar \omega (n+\frac{1}{2})$
+    \end{callout}
+        \item Find $\langle X(0) \rangle$, $\langle P(0) \rangle$, $\langle X(t) \rangle$, $\langle P(t) \rangle$.
+            \begin{callout}{Solution:}
+                To approach this use the sum of creation/annihilation operators in an inner product.
+                    \begin{enumerate}[i.]
+                        \item $\boldsymbol{\langle X(0) \rangle}:$
+                            \begin{align*}
+                                \left( \frac{2 \hbar}{m \omega} \right)^{1/2}\braket{(\psi(0)|(a^{\dagger}+a)|\psi(0)}
+                                &= \frac{1}{2} \left( \frac{2 \hbar}{m \omega} \right)^{1/2} \braket{(\bra{0}+\bra{1})|(a^{\dagger}+a)|(\ket{0}+\ket{1})} \\ 
+                                &= \frac{1}{2} \left( \frac{2 \hbar}{m \omega} \right)^{1/2} \left[ \cancelto{0}{\braket{0|(a^{\dagger}+a)|0}} + \cancelto{0}{\braket{1|(a^{\dagger}+a)|1}} + \braket{0|(a^{\dagger}+a)|1} + \braket{1|(a^{\dagger}+a)|0} \right] \\ 
+                                &= \frac{1}{2} \left( \frac{2 \hbar}{m \omega} \right)^{1/2} \left[ \cancelto{0}{\braket{0|a^{\dagger}|1}} + \braket{0|a|1} + \braket{1|a^{\dagger}|0} + \cancelto{0}{\braket{1|a|0}} \hspace{1.3em}\right] \\ 
+                                &= \frac{1}{2} \left( \frac{2 \hbar}{m \omega} \right)^{1/2} \left[ \braket{0|1|0} + \braket{1|1|1} \right] \\ 
+                                &= \frac{1}{2} \left( \frac{2 \hbar}{m \omega} \right)^{1/2} \left[ 1 + 1 \right] \\ 
+                                &= \left( \frac{2 \hbar}{m \omega} \right)^{1/2}
+                            \end{align*}
+                        \item $\boldsymbol{\langle P(0) \rangle}:$
+                            \begin{align*}
+                                i(2m \omega \hbar)^{1/2}\braket{(\psi(0)|(a^{\dagger}-a)|\psi(0)}
+                            \end{align*}
+                            Since the inner terms are a difference, the kets will reduce to 1-1, reducing the entire momentum expectation value to zero.
+                        \item $\boldsymbol{\langle X(t) \rangle}:$
+                            \begin{gather*}
+                                \frac{1}{2} \left( \frac{2 \hbar}{m \omega} \right)^{1/2}\braket{\bra{0}\left( e^{-i \omega t/2} \right) + \bra{1} \left(e^{-3i \omega t/2}\right) |(a^{\dagger}+a)|\left( e^{i \omega t/2} \right)\ket{0} + \bra{1} \left(e^{3i \omega t/2}\right)\ket{1}} \\ 
+                                = \frac{1}{2} \left( \frac{2 \hbar}{m \omega} \right)^{1/2} e^{-i \omega t}\braket{0|a|1} + e^{i \omega t}\braket{1|a^{\dagger}|0} \\ 
+                                = \left( \frac{2 \hbar}{m \omega} \right)^{1/2} \cos\left( \omega t \right)
+                            \end{gather*} 
+                        \item $\boldsymbol{\langle P(t) \rangle}:$
+                            Again because we just have a difference instead of a sum:
+                            \begin{align*}
+                                \frac{i}{2} \sqrt{\frac{ m \omega \hbar }{2}} e^{-i \omega t}\braket{0|a|1} - e^{i \omega t}\braket{1|a^{\dagger}|0} \\ 
+                                = - \sqrt{\frac{ m \omega \hbar }{2}} \sin (\omega t)
+                            \end{align*}
+                    \end{enumerate}
+            \end{callout}
+        \item Use Ehrenfest's theorem and solve for $\langle X(t) \rangle$ and $\langle P(t) \rangle$ and compare with part (2).
+    \end{enumerate}
+    Note - Ehrenfest’s theorem (Eq. 6.2 in Shankar book):
+    \[
+        \frac{d}{dt} \langle \Omega \rangle = \frac{i}{\hbar} \langle [H, \Omega] \rangle + \left\langle \frac{\partial \Omega}{\partial t} \right\rangle,
+    \]
+    where $\Omega$ can be any operator without an explicit time-dependence.
+    \begin{callout}{Solution:}
+        The commutators we need are 
+        \begin{enumerate}[i.]
+            \item \begin{align*}
+                    \dot{x} = \frac{i}{\hbar}[\hat{x}, \hat{H}] &= \frac{i}{\hbar}\left[\hat{x}, \widehat{T}+\widehat{V}\right] \\ 
+                    &= \frac{i}{\hbar}\left[\hat{x}, \widehat{T}\right] + \left[\frac{i}{\hbar}\hat{x}, \widehat{V}\right] \\ 
+                    &= \frac{i}{\hbar}\left[\hat{x}, \frac{\hat{p}^2}{2m} \right] + \cancelto{0}{x\hat{V} - \hat{V}x} \\ 
+                    &= \frac{i}{\hbar} [\hat{x}, \hat{p}]\hat{p} \\ 
+                    &= \frac{i}{\hbar} \frac{1}{2m} \left( -i \hbar \hat{p} \right) \\ 
+                    &= \frac{\hat{p}}{2m}
+            \end{align*}
+        \item In PHSX 611 we solved this for a general $V$:
+            \begin{align*}
+                [\widehat{H}, \hat{p}] & = [\widehat{T} + \widehat{V}, \hat{p}] = \left[\frac{\hat{p}^2}{2m}, \hat{p}\right] + [\widehat{V}, \hat{p}] \\
+                & = \frac{1}{2m}(\hat{p}[\hat{p},\hat{p}] - [\hat{p}, \hat{p}]\hat{p}) + [\widehat{V}, \hat{p}]                \\
+                & = 0 + V(-i \hbar) \nabla (f) - (-i \hbar) \nabla(Vf)                                                         \\
+                & = -i \hbar ( V\nabla(f) - V\nabla(f) - f\nabla(V) )                                                          \\
+                & = i \hbar \nabla V
+            \end{align*}
+            Which for $V=\frac{1}{2}m \omega^2 x^2$, 
+                $$=-m \omega^2 x$$
+
+                Combining (1) and (2), we have
+                \[ \langle \ddot{x} \rangle = \frac{1}{m} \langle \dot{p} \rangle = -\omega^2 x \]
+                \[ \Rightarrow \langle \ddot{x} \rangle + \omega^2 x = 0 \]
+                \[ \Rightarrow \langle x \rangle = A \cos \omega t + B \sin \omega t \]
+                \[ \Rightarrow \langle p \rangle = m \langle \dot{x} \rangle = -m \omega A \sin \omega t + m \omega B \cos \omega t \]
+
+                Consider the initial condition:
+                \[ \begin{cases}
+                    \langle x(0) \rangle = \sqrt{\frac{\hbar}{2m\omega}} \\
+                    \langle p(0) \rangle = 0
+                \end{cases} \]
+
+                we have \( A = \sqrt{\frac{\hbar}{2m\omega}} \), \( B = 0 \).
+
+                Therefore,
+                \[ \begin{cases}
+                    \langle X(t) \rangle = \sqrt{\frac{\hbar}{2m\omega}} \cos \omega t \\
+                    \langle p(t) \rangle = -\sqrt{\frac{m\hbar\omega}{2}} \sin \omega t
+                \end{cases} \]
+
+                which is the same as the result in Part (2).
+
+    \end{enumerate}
+\end{callout}
+
+\end{homeworkProblem}

@@ -1,0 +1,104 @@
+\begin{homeworkProblem}
+    (3 pts) Find the average potential over a spherical surface of radius \( R \) due to a point charge \( q \) located inside (similar to the case of a point charge outside the sphere as discussed in class but with \( z < R \)). (In this case, Laplace’s equation does not hold within the sphere.) Show that, in general:
+    \[
+    V_{\text{ave}} = V_{\text{center}} + \frac{Q_{\text{enc}}}{4 \pi \varepsilon_0 R},
+    \]
+    where \( V_{\text{center}} \) is the potential at the center due to all the external charges, and \( Q_{\text{enc}} \) is the total enclosed charge. (NOTE: Try to show this for one point charge inside the sphere as part of the first portion of the question and then make an argument about how to generalize to other charge distributions.)
+    
+    \begin{callout}{Solution:}
+        The average potential can be found by integrating the contributions from the point charge \( q \) and any external charges. The potential at the center is \( V_{\text{center}} \), and the term \( \frac{Q_{\text{enc}}}{4 \pi \varepsilon_0 R} \) accounts for the contribution from the enclosed charge.
+        \begin{align*}
+            V_{\text{surface}} &= \frac{1}{4\pi \epsilon_0} \frac{q}{r}, \quad r = \sqrt{ z^2+R^2-2zr\cos\phi } \\ 
+            V_{\text{avg}} &= \frac{q}{r\pi \epsilon_0} \frac{1}{4\pi R^2} \int_{\text{sphere}} \left[ z^2+R^2-2zR\cos\phi \right]R^2\sin\phi  ~dr~d\phi~d\theta \\
+            u = z^2 + R^2 - 2zR \cos \phi \quad &\to \quad d\phi = 2zR\sin\phi d\phi \\ 
+            &= \frac{2q}{8\pi \epsilon_0} \left( \sqrt{ z^2+R^2+2zR } - \sqrt{ z^2+R^2-2zR } \right) \\ 
+            &= \frac{q}{4\pi \epsilon_0} \left( (z+R) - (R-z) \right) \\
+            &= \frac{q}{4\pi \epsilon_0 R} \\ 
+                V_{\text{ave}} &= V_{\text{center}} + \frac{Q_{\text{enc}}}{4 \pi \varepsilon_0 R}
+        \end{align*}
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (3 pts) Find the force on the charge \( +q \) in the figure below (assuming the xy-plane is a grounded conductor).
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.3\textwidth]{../assets/H6P2F1.png}
+\end{figure}
+    
+    \begin{callout}{Solution:}
+        To find the force on the charge \( +q \), we apply the principle of superposition. We apply the same idea as in the method of images:
+
+
+        $$ \begin{aligned}
+            F_z^{\mathrm{net}} & =\frac{-2 q^2}{4 \pi \epsilon_0} \times \frac{1}{(2 d)^2}+\frac{+2 q^2}{4 \pi \epsilon_0} \times \frac{1}{(4 d)^2}+\frac{-q^2}{4 \pi \epsilon_0} \times \frac{1}{(6 d)^2} \\
+            & =\frac{q^2}{4 \pi \epsilon_0 d^2}\left(-\frac{2}{4}+\frac{2}{16}-\frac{1}{36}\right) \\
+            & =-\frac{29}{72} \times \frac{q^2}{4 \pi \epsilon_0 d^2}
+        \end{aligned} $$
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    In class, we found the potential for a charge \( q \) placed a distance \( a \) away from the center of a grounded conducting sphere of radius \( R < a \):
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{../assets/H3P3F1.png}
+\end{figure}
+
+    \begin{enumerate}
+        \item (3 pts) Find the induced surface charge distribution on the sphere, as a function of \( \theta \). Find the total induced charge. Does the total induced charge agree with your expectations? Why or why not?
+        
+        \begin{callout}{Solution:}
+            The induced surface charge distribution can be found using the method of images to first calculate potential, as we did in class:
+            $$V(r)=\frac{1}{4\pi \epsilon_0} \left( \frac{q}{r} + \frac{q'}{r'} \right)$$
+            \textit{where $r$ and $r'$ are the distances from $q$ and $q'$, respectively.}
+            $$q'=-q \frac{R}{a}, \quad r' = \frac{R^2}{a}$$
+            \begin{align*}
+                &= \frac{1}{4\pi \epsilon_0} \left( \frac{q}{|r-r_q|} - \frac{q'}{|r-r_{q'}|} \right)  \\
+                &= \frac{1}{4\pi \epsilon_0} \left( \frac{q}{\sqrt{R^2+a^2-2Ra\cos\theta}} - \frac{q'}{\sqrt{ R^2 + \left( \frac{R^2}{a} \right)^2 - R\left( \frac{R^2}{a} \right)\cos\theta }} \right)  
+            \end{align*}
+
+            The gradient of this gives the electric field, which then we can use 
+            $$\sigma = -\epsilon_0 E$$
+
+            %$$ E = -\frac{\partial V}{\partial r} \hat{r} - \frac{1}{r}\frac{\partial V}{\partial \theta} \hat{\theta} $$
+            %$$ \frac{\partial V}{\partial r} = -kq\left(\frac{1}{r_1^2}\right)\left(\frac{\partial r_1}{\partial r}\right) + kq\frac{R}{a r_2^2}\left(\frac{\partial r_2}{\partial r}\right) $$
+            %$$ = -kq\frac{(r - a \cos(\theta))}{r_1^3} + kq\frac{R(r - \frac{R^2}{a}\cos(\theta))}{a r_2^3} $$
+            %$$ \frac{\partial V}{\partial \theta} = kq\frac{a r \sin(\theta)}{r_1^3} - kq\frac{R^2 r \sin(\theta)}{a^2 r_2^3} $$
+
+            \begin{align*}
+                \sigma(\theta)&=-\frac{q}{4 \pi R^2}\left(\frac{R}{a}\right)^2\left(1-\frac{2 a \cos (\theta)}{a^2+R^2-2 a R \cos (\theta)}\right)
+            \end{align*}
+
+            total induced charge is given by 
+            \begin{align*}
+            Q_{\text{induced}}&=\int \sigma(\theta)~dA\\
+                &=\int_{0}^{2\pi}\int_{0}^{\pi}\sigma(\theta)R^2\sin(\theta)d\theta d\phi \\ 
+                &=\int_{0}^{2\pi}\int_{0}^{\pi}-\frac{q}{4 \pi R^2}\left(\frac{R}{a}\right)^2\left(1-\frac{2 a \cos (\theta)}{a^2+R^2-2 a R \cos (\theta)}\right)R^2\sin(\theta)d\theta d\phi \\ 
+                &= -\frac{q}{4\pi}(R^2-a^2) \frac{1}{R} \int_{0}^{2\pi} \int_{0}^{\pi} \left( R^2+a^2-2Ra\cos\theta \right)^{-3/2}R^2\sin\theta ~d\theta ~d\phi\\
+                &= -\frac{q}{4} (R^2-a^2) \frac{1}{R} R^2 (2\pi) \int_{0}^{\pi} \left( u \right)^{-3/2}R^2\sin\theta \cancel{\sin\theta} \frac{du}{2Ra\cancel{\sin\theta}}\\
+                &= -q (R^2-a^2) \frac{1}{a} \left( -2u^{1/2} \right) \\ 
+                &= \frac{q}{2a} \left( (a-R)-(R+a) \right) \\ 
+                &= -\frac{qA}{a} = q'
+            \end{align*}
+        \end{callout}
+        
+        \item (3 pts) Calculate the energy of this configuration.
+        
+        \begin{callout}{Solution:}
+            \begin{align*}
+                F &= \frac{1}{4\pi \epsilon_0} \frac{qq'}{(a-\frac{R^2}{a})}\hat{a} \\
+                &= - \frac{q^2}{4\pi \epsilon_0} \frac{Ra'}{(a'^2-R^2)^2} \\ 
+                W &= \int F ~d\ell = \int_{\infty}^{a} \frac{q^2}{4\pi \epsilon_0} \frac{Ra'}{(a'^2-R^2)} ~da \\ 
+                &= \frac{q^2R}{4\pi \epsilon_0} \int_{\infty}^{a} \frac{a'}{(a'^2-R^2)^2} ~da \\ 
+                &= \frac{q^2R}{4\pi \epsilon_0} \left( -\frac{1}{2} \frac{1}{a'^2-R^2} \middle)\right|_{\infty}^{a} \\ 
+                &= -\frac{q^2R}{8\pi \epsilon_0(a^2-R^2)}
+            \end{align*}
+        \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}

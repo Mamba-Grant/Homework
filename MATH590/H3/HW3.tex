@@ -1,0 +1,81 @@
+
+\documentclass[12pt]{article}
+
+% Packages for mathematical symbols, equations, and formatting
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry} % Adjust page margins
+\usepackage{graphicx} % Include images
+\usepackage{enumitem} % Customize lists
+\usepackage{titling}  % Customize title placement
+
+% Page setup
+\geometry{letterpaper, margin=1in}
+\pagestyle{plain}
+
+% Adjust title placement
+\setlength{\droptitle}{-3cm} % Move title up
+\posttitle{\par\end{center}} % Remove additional space after title
+
+% Title information
+\title{HW2}
+\author{Grant Saggars}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Problem 1}
+Let $S=\left\{\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix},\begin{bmatrix} 4 \\ 5 \\ 6 \end{bmatrix},\begin{bmatrix} 7 \\ 8 \\ 9 \end{bmatrix},\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}\right\}$. Show that $\operatorname{Span}(S)$ has dimension two.
+
+\[\begin{split} 
+    \begin{bmatrix} 1 & 4 & 7 & 1 \\ 2 & 5 & 8 & 1 \\ 3 & 6 & 9 & 1 \end{bmatrix} \to \begin{bmatrix} 1 & 4 & 7 & 1 \\ 0 & -3 & -6 & -1 \\ 0 & -6 & -12 & -2 \end{bmatrix} \to \begin{bmatrix} 1 & 4 & 7 & 1 \\ 0 & 1 & 2 & 1/3 \\ 0 & 6 & 12 & 2 \end{bmatrix} \to \begin{bmatrix} 1 & 0 & -1 & -1/3 \\ 0 & 1 & 2 & 1/3 \\ 0 & 0 & 0 & 0 \end{bmatrix}
+\end{split}\]
+
+Simplifying these vectors by row reduction shows that they are linearly dependent since the third vector can be expressed as a linear combination of the other two, therefore the dimension of this set cannot be $\mathbb{R}^3$ An example of a basis with span S is the first two vectors:
+
+$$\left\{\begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix},\begin{bmatrix} 4 \\ 5 \\ 6 \end{bmatrix}\right\}$$
+
+\section*{Problem 2}
+Let $H \subset \mathbb{R}^{4}$ be the set of solutions to the equation $x_{1}+2 x_{2}+3 x_{3}+5 x_{4}=0$. Show that $H$ is a subspace of $\mathbb{R}^{4}$ and find a basis for $H$.
+
+\vspace{10pt}
+To prove that $H$ is a subspace of $\mathbb{R}^4$, 3 things need to be shown:
+
+\begin{enumerate}
+     \item The set is closed under addition:
+        \[\begin{split}
+            \vec{u}, \vec{v} \in H \implies \vec{u} + \vec{v} \in H \\
+            (u_1+v_1) + 2(u_2+v_2) + 3(u_3+v_3) + 5(u_4+v_4) = 0 \\
+            \implies (u_1+2u_2+3u_3+5u_4) + (v_1+2v_2+3v_3+5v_4) = 0 + 0 = 0
+        \end{split}\]
+ 
+    \item The set is closed under scalar multiplication: 
+        \[\begin{split}
+            \vec{v} \in V \implies \alpha \vec{v} \in V\, \forall \, \alpha \\
+            \alpha(v_1 + 2v_2 + 3v_3 + 5v_4) = c \cdot 0 = 0 
+        \end{split}\]
+ 
+    \item The set includes zero:
+        \[ 0 + 2(0) + 3(0) + 5(0) = 0 \]
+\end{enumerate}
+
+
+\section*{Problem 3}
+Let $U, V$ be subspaces of $\mathbb{R}^{n}$. Let $W$ be the collection of all sums $\vec{u}+\vec{v}$ with $\vec{u} \in U, \vec{v} \in V$. Prove that $W$ is also a subspace.
+
+\begin{enumerate}
+    \item Since $u_1$ is in U and $v_1$ is in V, it follows that $u_1 + v_1$ is in W. In class, we discussed that the same would be true for $u_2$ and $v_2$. This means that by induction $\vec{u}$ and $\vec{v}$ are in W.
+
+    \item Let $\vec{w}=\vec{u}+\vec{v}$, where $\vec{w}$ is in W. To show that the set is closed under scalar multiplication, the following must be true:
+        \[\begin{split}
+            \alpha\vec{w} = \alpha(\vec{u} + \vec{v})
+        \end{split}\]
+
+    Because $\vec{u}$ is in U and $\vec{v}$ is in V, by the definition of a subspace $\vec{u}$ and $\vec{v}$ are independently closed under scalar multiplication. This does not change under addition, so the set must be closed under scalar multiplcation.
+
+    \item Finally, the set must include the zero vector, which is trivial since U and V are subspaces, so we know they must contain the zero vector. 
+\end{enumerate}
+
+\end{document}
+

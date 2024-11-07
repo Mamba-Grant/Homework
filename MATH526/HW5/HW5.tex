@@ -1,0 +1,264 @@
+\documentclass{article}
+
+
+\newcommand{\hmwkTitle}{Homework \#5 (Binomial \& Poisson)}
+\newcommand{\hmwkDueDate}{\today}
+\newcommand{\hmwkClass}{MATH 526}
+\newcommand{\hmwkAuthorName}{\textbf{Grant Saggars}}
+
+
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+
+\usepackage{float}
+\usepackage{caption}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{XCharter}
+
+\usetikzlibrary{automata,positioning}
+
+\usepackage{geometry}
+\geometry{top=1in, bottom=1in, left=1in, right=1in} % Adjust margins as needed
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.75in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Callout Box
+%
+
+\definecolor{shadecolor}{RGB}{235,235,235}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%
+% Title Page
+%
+
+\title{
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDueDate}\\
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{homeworkProblem}[5]
+	In a certain city district, the need for money to buy drugs is stated as the reason for 75\% of all thefts. Find the probability that among the next 5 theft cases reported in this district,
+	\begin{enumerate}[(a)]
+		\item exactly 2 resulted from the need for money to buy drugs;
+		      \begin{callout}{Solution:}
+
+			      Let $D$ represent a theft which occurs due to the need to buy drugs;
+
+			      Let $N$ represent a theft which occurs otherwise;
+
+			      $$ b(2,5,0.75) = {5\choose{2}} 2^{0.75}3^{0.25} \approx 8.8\% $$
+
+		      \end{callout}
+		\item at most 3 resulted from the need for money to buy drugs.
+		      \begin{callout}{Solution:}
+
+			      $$ \sum_{x=0}^{3}b(x;5,0.75) \approx 37\% $$
+
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[10]
+	A nationwide survey of college seniors by the University of Michigan revealed that almost 70\% disapprove of daily pot smoking, according to a report in Parade. If 12 seniors are selected at random and asked their opinion, find the probability that the number who disapprove of smoking pot daily is
+	\begin{enumerate}[(a)]
+		\item anywhere from 7 to 9;
+		      \begin{callout}{Solution:}
+			      $$\sum_{x=7}^{9}b(x;12,0.70)\approx0.24\%$$
+		      \end{callout}
+		\item at most 5;
+		      \begin{callout}{Solution:}
+			      $$\sum_{x=0}^{5}b(x;5,0.75)\approx98.8\%$$
+		      \end{callout}
+		\item not less than 8.
+		      \begin{callout}{Solution:}
+			      $$\sum_{x=8}^{12}b(x;12,0.75)\approx0.0415\%$$
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[25]
+	Suppose that for a very large shipment of integrated-circuit chips, the probability of failure for any one chip is 0.10. Assuming that the assumptions underlying the binomial distributions are met, find the probability that at most 3 chips fail in a random sample of 20.
+	\begin{callout}{Solution:}
+		$$\sum_{x=0}^{3} b(x;20,0.10) \approx 87\%$$
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[26]
+	Assuming that 6 in 10 automobile accidents are due mainly to a speed violation, find the probability that among 8 automobile accidents, 6 will be due mainly to a speed violation by using the formula for the binomial distribution;
+	\begin{callout}{Solution:}
+		$$ b\left(6;8,\frac{6}{10}\right) = 21\%$$
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[27]
+	If the probability that a fluorescent light has a useful life of at least 800 hours is 0.9, find the probabilities that among 20 such lights
+	\begin{enumerate}[(a)]
+		\item exactly 18 will have a useful life of at least 800 hours;
+		      \begin{callout}{Solution:}
+			      $$ b(18;20,0.9) = 29\% $$
+		      \end{callout}
+		\item at least 15 will have a useful life of at least 800 hours;
+		      \begin{callout}{Solution:}
+			      $$ \sum_{x=15}^{20}b(x;20,0.9) = 98.9\% $$
+		      \end{callout}
+		\item at least 2 will not have a useful life of at least 800 hours.
+		      \begin{callout}{Solution:}
+			      $$ \sum_{x=2}^{20} b(x;20,0.1) = 61\% $$
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[56]
+	On average, 3 traffic accidents per month occur at a certain intersection. What is the probability that in any given month at this intersection
+	\begin{enumerate}[(a)]
+		\item exactly 5 accidents will occur?
+		      \begin{callout}{Solution:}
+			      $$P(5; 3) = 10\%$$
+		      \end{callout}
+		\item fewer than 3 accidents will occur?
+		      \begin{callout}{Solution:}
+			      $$P(x<3;3) = \sum_{x=0}^{2}P(x;3) = 42\%$$
+		      \end{callout}
+		\item at least 2 accidents will occur?
+		      \begin{callout}{Solution:}
+			      $$P(x \geq 2; 3) = 1-P(x \leq 2; 3) = 57.68\%$$
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[62]
+	The probability that a student at a local high school fails the screening test for scoliosis (curvature of the spine) is known to be 0.004. Of the next 1875 students at the school who are screened for scoliosis, find the probability that
+	\begin{enumerate}[(a)]
+		\item fewer than 5 fail the test;
+		      \begin{callout}{Solution:}
+			      $$ \sum_{x=0}^{5}b(x;1875,0.004) = 24\% $$
+		      \end{callout}
+		\item 8, 9, or 10 fail the test.
+		      \begin{callout}{Solution:}
+			      $$ \sum_{x=8}^{10}b(x;1875,0.004) = 34\% $$
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[66]
+	Changes in airport procedures require considerable planning. Arrival rates of aircraft are important factors that must be taken into account. Suppose small aircraft arrive at a certain airport, according to a Poisson process, at the rate of 6 per hour. Thus, the Poisson parameter for arrivals over a period of hours is $\mu = 6t$.
+	\begin{enumerate}[(a)]
+		\item What is the probability that exactly 4 small aircraft arrive during a 1-hour period?
+		      \begin{callout}{Solution:}
+			      $$P(4; 6) = 13.39\%$$
+		      \end{callout}
+		\item What is the probability that at least 4 arrive during a 1-hour period?
+		      \begin{callout}{Solution:}
+			      $$P(x \geq 4; 6) = 1-P(x \leq 4; 6) = 1-\sum_{x=0}^{4}P(x;6) = 71.49\%$$
+		      \end{callout}
+		\item If we define a working day as 12 hours, what is the probability that at least 75 small aircraft arrive during a working day?
+		      \begin{callout}{Solution:}
+			      $$ P(x \geq 75; 72) = 1-\sum_{x=0}^{75} P(x;72) \approx 100\% $$
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[67]
+	The number of customers arriving per hour at a certain automobile service facility is assumed to follow a Poisson distribution with mean $\lambda = 7$.
+	\begin{enumerate}[(a)]
+		\item Compute the probability that more than 10 customers will arrive in a 2-hour period.
+		      \begin{callout}{Solution:}
+			      % $$ p(x; \lambda t) = \frac{e^{-\lambda t}(\lambda t)^{x}}{x!} $$
+			      $$P(X \geq 10; 14) = 1-P(X \leq 10; 14) = 1- \sum_{x=0}^{10} \frac{e^{-14}(14)^{x}}{x!}=82.24\%$$
+
+		      \end{callout}
+		\item What is the mean number of arrivals during a 2-hour period?
+		      \begin{callout}{Solution:}
+			      The mean given $t=2$ is $14$.
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+\end{document}

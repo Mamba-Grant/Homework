@@ -1,0 +1,159 @@
+\documentclass{article}
+
+\usepackage[a4paper, margin=0.5in]{geometry} % Adjust the margin as needed
+
+\title{590 Proofs \& Definitions}
+\author{Grant Saggars}
+\date{\today}
+
+\usepackage{amsmath}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{silence}
+\usepackage{multicol}
+\usepackage{txfonts}
+\WarningsOff*
+% \ErrorsOff*
+
+\definecolor{shadecolor}{RGB}{230,230,230}
+
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+\begin{document}
+
+\maketitle
+
+\section{Definitions}
+\begin{callout}{Null Space / Kernel:}
+
+    The null space of $T$ is the set of vectors which are mapped to zero. 
+
+    It can be found by reducing $Tx=0$. Count the rows of all zeroes to determine nullity. For example, suppose matrix $T$ reduces to the following:
+    \begin{align*}
+        \left(\begin{array}{cccc|c}
+            1 & -2 & 0 & -6 & 0 \\
+            0 & 0 & 1 & 2 & 0 \\
+            0 & 0 & 0 & 0 & 0
+        \end{array}\right)
+    \end{align*}
+    We can say that $x= \left[\begin{smallmatrix} 2 \\ 1 \\ 0 \\ 0\end{smallmatrix}\right] + t\left[\begin{smallmatrix} 0 \\ 0 \\ 6 \\ 2 \end{smallmatrix}\right]$. As a result, we can say that null $t$ = span $\left\{ \left[\begin{smallmatrix} 2 \\ 1 \\ 0 \\ 0\end{smallmatrix}\right] + t\left[\begin{smallmatrix} 0 \\ 0 \\ 6 \\ 2 \end{smallmatrix}\right] \right\}$
+\end{callout}
+
+\begin{multicols}{2}
+
+\begin{callout}{Injectivity:}
+
+    A function $T: V \to W$ is called injective if $Tu=Tv$ implies $u = v$ (every input maps to ONE output).
+\end{callout}
+
+\begin{callout}{Projection:}
+    \begin{align*}
+         proj_v(u) = \displaystyle\frac{u \cdot v}{|v|^2}v
+    \end{align*}
+\end{callout}
+
+\begin{callout}{Rotations:}
+    \begin{align*}
+        \begin{bmatrix} \cos(\phi) & -\sin(\phi) \\ \sin(\phi) & \cos(\phi) \end{bmatrix}
+    \end{align*}
+\end{callout}
+
+\columnbreak
+
+\begin{callout}{Surjectivity:}
+
+    A function $T: V \to W$ is called surjective if its range equals $W$. This is to say that the range is unchanged after the map.
+\end{callout}
+
+\begin{callout}{Characteristic Polynomial:}
+    \begin{align*}
+        f(\lambda) = \det(A-I\lambda)
+    \end{align*}
+\end{callout}
+
+\begin{callout}{Orthagonal Complement:}
+
+    Let $W$ be a subspace of $\mathbb{R}^{n}$. Its \textbf{orthagonal complement} is the subspace
+    \begin{align*}
+        W^{\perp} = \{ v \in \mathbb{R}^{n} | v \cdot w = 0 ~\forall~ w \in W \}
+    \end{align*}
+
+    \vspace{-1cm} \begin{align*}
+        W^{\perp} = \ker(A^T)
+    \end{align*}
+\end{callout}
+
+\end{multicols}
+
+\begin{callout}{Theorem 3}
+
+    Let $W = \operatorname{span}\left\{ \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}, \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix} \right\}$. Therefore $W^\perp = \ker \begin{pmatrix} 1 & 2 & 3 \\ 1 & 1 & 1 \end{pmatrix}$. To find the kernel:
+    
+    \begin{align*}
+        \ker \begin{pmatrix} 1 & 2 & 3 \\ 1 & 1 & 1 \end{pmatrix} &= \begin{pmatrix} 1 & 0 & -1 \\ 0 & 1 & 2 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \vec{0} 
+        \implies \ker(A) = \begin{pmatrix} 1 & -2 & 1 \end{pmatrix}A
+    \end{align*}
+
+    Now we can show that $\ker \begin{pmatrix} 1 & -2 & 1 \end{pmatrix} = \operatorname{span}\left\{ \begin{pmatrix} 2 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} -1 \\ 0 \\ 1 \end{pmatrix} \right\}$, which we found earlier.
+    
+\end{callout}
+
+% \newpage
+\section{Injective/Surjective/Bijective}
+
+\subsection{Injective (one-to-one)}
+\begin{callout}{Proof:} Injectivity is Equivalent to Null Space Equals 0
+
+    We know that the zero vector is in any subspace, and because the nullity is a subspace it must contain the zero vector. Consequently, because $Tu=Tv$ implies $u=v$, $T(v)=0=T(0)$ (T can only map 0 to 0). Additionally, we have defined injective (one-to-one) maps as mapping one input to one output. Therefore, more than one vector cannot map to 0.
+\end{callout}
+
+\begin{callout}{A map to a smaller dimensional space is not injective}
+\end{callout}
+
+
+\subsection{Surjective (onto)}
+\begin{callout}{Proof:} Check ranges:
+
+    By definition a surjective transformation does not change the range of the vector space. We can prove a transformation is surjective by simply verifying this.
+
+    By the rank-nullity theorem, Dim $T$ + Null $T$ equals number of columns in a matrix.
+\end{callout}
+
+\begin{callout}{A map to a larger dimensional space is not surjective}
+\end{callout}
+
+\section{Invertible Matrices are Bijective}
+\begin{callout}{Proof:}
+
+    First, assume that $T$ is invertible. To show that it is injective (one-to-one) suppose that $u,~v \in V$ and $Tu=Tv$ (definition of injectivity). Then
+    \begin{align*}
+        u = T^{-1}(Tu) = T^{-1}(Tv) = v
+    \end{align*}
+
+    Second, take $w \in W$. The following implies that $w$ is in the range of $T$, and that implies range $T$ = $W$. (surjectivity)
+    \begin{align*}
+        w = T^{-1}(Tw) = w
+    \end{align*}
+
+    Third, assume that $T$ is bijective. To prove it is invertible:
+    \begin{align*}
+        T((S \circ T)v) = (T \circ S)(Tv) = I(Tv)=Tv
+    \end{align*}
+
+    Finally, to show that $S$ is linear, suppose $w_1,~w_2 \in W$
+    \begin{align*}
+        T(Sw_1 + Sw_2) = T(Sw_1) + T(Sw_2) = w_1 + w_2
+    \end{align*}
+    This also implies that $S(w_1+w_2)=Sw_1+Sw_2$, so it therefore satisfies the additive property. To show homogeneity:
+    \begin{align*}
+        T(\lambda Sw) = \lambda T(Sw)= \lambda w
+    \end{align*}
+    Thus, $\lambda Sw$ is the unique element of $V$ that $T$ maps to $\lambda w$. this implies that $S(\lambda w) = \lambda S w$
+\end{callout}
+
+\end{document}

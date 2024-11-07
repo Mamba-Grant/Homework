@@ -1,0 +1,110 @@
+\documentclass{article}
+% \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{xcolor}
+\usepackage{framed}
+
+\definecolor{shadecolor}{RGB}{248,248,248}
+
+\newenvironment{callout}[1]
+{\begin{shaded*}
+\textbf{#1}
+}
+{\end{shaded*}}
+
+\title{Math 590 HW5}
+
+\author{Grant Saggars}
+\date{}
+
+
+\begin{document}
+\maketitle
+Problem 1. Let $A=\left[\begin{array}{cccc}1 & 4 & 7 & 10 \\ 2 & 5 & 8 & 11 \\ 3 & 6 & 9 & x\end{array}\right]$. Find all $x$ so that the transformation $T$ : $\mathbb{R}^{4} \rightarrow \mathbb{R}^{3}, T(\vec{v})=A \vec{v}$ is:
+
+a) injective.
+
+\begin{callout}{Solution:}
+    \begin{enumerate}
+        \item \textbf{Injectivity is equivalent to null space equals {0}} (Proof taken from Axler 61)
+
+            \qquad First suppose $T$ is injective. We want to prove that null $T$ = \{0\}. We already know that {0} $\subset$ null $T$, since any subspace contains the zero vector, and the null space is a subspace. To prove the inclusion in the other direction, suppose $v \in \operatorname{null}T$. Then:
+            \begin{align*}
+                T(v) = 0 = T(0)
+            \end{align*}
+            Because $T$ is injective, the equation above implies that $v$ = 0. Thus we can conclude that null $T$ = {0}, as desired. 
+
+            To prove the implication in the other direction, now suppose null $T$ = \{0\}. We want to prove that $T$ is injective. To do this, suppose $u$, $v \in V$ and $Tu=Tv$. Then
+            \begin{align*}
+                0 = Tu - Tv = T(u-v)
+            \end{align*}
+            Thus $u-v$ is in null $T$, which equals \{0\}. Hence $u-v=0$, which implies that $u=v$; hence, $T$ is injective.
+
+        \item To make $A$ injective, we must therefore find $x$ such that null $A$ equals \{0\}:
+
+        \qquad Because $A$ is not square, there must be a free variable. Consequently, this means that there will always be a nonzero nullity, regardless of the value chosen for $x$. \textbf{Additionally, this implies that a map to a smaller dimensional space is not injective.}
+    \end{enumerate}
+\end{callout}
+
+\newpage 
+b) surjective.
+
+\begin{callout}{Solution:}
+    \begin{enumerate}
+        \item A function $T$: $V \to W$ is surjective if its range equals $W$.
+
+            Given that the range of $A$ is equivalent to the number of pivots, and $W$ equals 3, range $A$ equals 3 for all $x \neq 12$, since if $x$ equals 12, there will be no pivot in row 3.
+    \end{enumerate}
+\end{callout}
+
+Problem 2. Prove carefully that if a linear transformation $T$ is bijective, then it is invertible. (Don't forget to show that $T^{-1}$ is also a linear transformation).
+
+\begin{callout}{Solution:}
+    To show that $T$ is invertible if and only if it is injective and surjective, we must show that: (1) $Tu=Tv \implies u=v$ (injective), (2) range $T$ equals $W$ (surjective), and (3) When $T$ is injective and surjective it is invertible.
+
+    \begin{enumerate}
+        \item Suppose $T$ is invertible, and suppose $u,~v \in V$:
+            $$ u=T^{-1}(Tu) = T^{-1}(Tv) = v $$
+        \item Again, suppose $T$ is invertible, and let $w \in W$:
+            $$ w = T(T^{-1}w) $$
+            This shows that w is still in the range of $T$. Therefore, range $T$ equals $W$.
+        \item Finally, assume $T$ is injective and surjective:
+            let $S$ be the inverse of $T$, as in $T(Sw)$ for $w\in W$ equals $w$. Note that this also implies $w$ is in the range of $T$. Clearly, $T \circ S$ must be the identity matrix. Now:
+            $$ T((S\circ T)v) = (T \circ S)(Tv) = I(Tv) = Tv $$
+            This implies that $(S \circ T)v = v$, proving that $S \circ T$ is the identity map.
+            
+            Finally, it must be shown that $S$ is linear. To do this, suppose $w_1,~w_2 \in W$. Then:
+            $$ T(Sw_1+Sw_2) = T(Sw_1)+T(Sw_2) = w_1 + w_2 $$
+            Therefore, $Sw_1+Sw_2$ is a unique element which $T$ maps to $w_1+w_2$. This indicates that $S$ satisfies the additive property. Similarly:
+            $$ T(\lambda Sw)=\lambda T(Sw) = \lambda w $$
+            implies the multiplicative property required for linearity. As a consequence, this must mean that $S$ is linear.
+    \end{enumerate}
+\end{callout}
+
+\newpage
+Problem 3. a) Show that if $T, S$ are invertible linear transformations $\mathbb{R}^{n} \rightarrow \mathbb{R}^{n}$, then so is the composition $T \circ S$.
+
+\begin{callout}{Solution:}
+    % To show that a matrix is invertible, we must show: (1) $(T \circ S)^{-1}(T \circ S) = I$ and (2) the composition of $T$ and $S$ are linear\cdot 
+    To prove the composition of two invertible matrices is still invertible, it suffices to show that:
+    $$ (ST)(T^{-1}S^{-1}) = S(TT^{-1})S^{-1} = S(I)S^{-1} = SS^{-1} = I $$ 
+\end{callout}
+
+b) Alice claims that if $T,~S$ are invertible linear transformations $\mathbb{R}^{2} \rightarrow \mathbb{R}^{2}$, then there are infinitely many $\alpha \in \mathbb{R}$ such that $T+\alpha S$ is invertible. Is she correct? Justify your claim fully.
+
+\begin{callout}{Solution:}
+    \begin{enumerate}
+        \item Before considering whether $T + \alpha S$ is generally invertible, it would make sense to first consider whether $T + S$ is in general invertible. Consider the situation:
+            \begin{align*}
+                \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} + \begin{bmatrix} -1 & 0 \\ 0 & -1 \end{bmatrix}
+            \end{align*}
+            We can see that this gives $\left[\begin{smallmatrix} 0 & 0 \\ 0 & 0 \end{smallmatrix}\right]$, which is not invertible. As a result, we can see that because the sum of two invertible matrices is not invertible always, the original statement is not true by counterexample.
+    \end{enumerate}
+\end{callout}
+
+\end{document}

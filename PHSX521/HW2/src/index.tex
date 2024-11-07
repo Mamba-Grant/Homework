@@ -1,0 +1,249 @@
+\newpage 
+\begin{homeworkProblem}
+    (Taylor 1.29) Go over the steps from Equation (1.25) to (1.29) in the proof of conservation of momentum but treat the case that $N=4$ and write out all the summations explicity to be sure that you understand the various manipulations.
+
+    \begin{callout}{Equation 1.25 $\to$ 1.29:}
+
+        $$\textrm{(net force on particle a)} = \textbf{F}_{\alpha}=\sum_{\beta \neq \alpha} F_{\alpha \beta} + F_{\alpha}^{\textrm{ext}}$$
+
+        Which is equivalent to expressing this as the derivative of momentum:
+
+        $$\dot{\textbf{p}}_{\alpha} = \sum_{\alpha \neq \beta} \textbf{F}_{\alpha \beta} + \textbf{F}_{\alpha}^{\textrm{ext}}$$
+
+        Which also holds for all $\alpha = 1,2,\dots,N$. If we want total momentum derivative instead of the momentum derivative acting on $\alpha$, we simply sum over each $\alpha$
+        $$\dot{\textbf{p}} = \sum_{\alpha}\sum_{\alpha \neq \beta} \textbf{F}_{\alpha \beta} + \sum_{\alpha}\textbf{F}_{\alpha}^{\textrm{ext}}$$
+
+        This is also equivalent to the double sum written with the equality
+        $$\dot{\textbf{p}}_{\alpha} = \sum_{\alpha > \beta} \cancel{(\textbf{F}_{\alpha \beta} + \textbf{F}_{\beta \alpha})} + \textbf{F}_{\alpha}^{\textrm{ext}}$$
+
+        We should conclude that the double sum cancels to zero, as the force acting from one object to another is opposite to the same object back.
+    \end{callout}
+
+    \begin{callout}{Solution:}
+
+        If we want to write out these sums explicity between 4 objects. Let's consider the set of objects $\{ 1, 2, 3, 4 \}$.
+        \begin{enumerate}[i.]
+            \item 
+                $$\begin{cases}
+                    \textbf{F}_{1} = \dot{\textbf{p}}_{1} = \textbf{F}_{1 2} + \textbf{F}_{1 3} + \textbf{F}_{1 4} + \textbf{F}_{1}^{\textrm{ext}} \\ 
+                    \textbf{F}_{2} = \dot{\textbf{p}}_{2} = \textbf{F}_{2 1} + \textbf{F}_{2 3} + \textbf{F}_{2 4} + \textbf{F}_{2}^{\textrm{ext}} \\ 
+                    \textbf{F}_{3} = \dot{\textbf{p}}_{3} = \textbf{F}_{3 1} + \textbf{F}_{3 2} + \textbf{F}_{3 4} + \textbf{F}_{3}^{\textrm{ext}} \\ 
+                    \textbf{F}_{4} = \dot{\textbf{p}}_{4} = \textbf{F}_{4 1} + \textbf{F}_{4 2} + \textbf{F}_{4 3} + \textbf{F}_{4}^{\textrm{ext}} \\ 
+                \end{cases}$$
+            \item 
+                $$\dot{\textbf{p}} = \dot{\textbf{p}}_{1} + \dot{\textbf{p}}_{2} + \dot{\textbf{p}}_{3} + \dot{\textbf{p}}_{4}$$
+            \item 
+                $$= \cancel{(\textbf{F}_{12} + \textbf{F}_{21})} + \cancel{(\textbf{F}_{34} + \textbf{F}_{43})} + \textbf{F}^{\textrm{ext}}_{1} + \textbf{F}^{\textrm{ext}}_{2} + \textbf{F}^{\textrm{ext}}_{3} + \textbf{F}^{\textrm{ext}}_{4}$$
+        \end{enumerate}
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (Taylor 1.30) Conservation laws, such as conservation of momentum, often give a surprising amount of information about the possible outcome of an experiment. Here is perhaps the simplest example: Two objects of masses $m_1$ and $m_2$ are subject to no external forces. Object 1 is traveling with velocity $\textbf{v}$ when it collides with the stationary object 2. The two objects stick together and move off with common velocity $\textbf{v'}$. Use conservation of momentum to find $\textbf{v'}$ in terms of $\textbf{v}, m_1, m_2$.
+    \begin{callout}{Solution:}
+
+        \begin{align*}
+            m_1 \cancelto{\textbf{v}}{\textbf{v}_1} + \cancelto{0}{m_2 \textbf{v}_2} &= (m_1+m_2) \textbf{v'} \\ 
+            \frac{m_1 \textbf{v}}{(m_1+m_2)} &= \textbf{v'} 
+        \end{align*}
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (Taylor 1.36) A plane, which is flying horizontally at a constant speed $v_0$ and at a height $h$ above the sea, must drop a bundle of supplies to a castaway on a small raft. \textbf{(a)} Write down Newton's second law for the bundle as it falls from the plane, assuming you can neglect air resistance. Solve your equations to give the bundle's position in flight as a function of $t$. \textbf{(b)} How far before the raft (measured horizontally) must the pilot drop the bundle if it is to hit the raft? What is this distance if $v_0=50$ m/s, $h=100$ m and $g\approx 10$ m/s$^2$> \textbf{(c)} Within that interval of time $(\pm \Delta t)$ must the pilot drop the bundle if it is to land within $\pm 10$ m of the raft?
+    \begin{callout}{Solution:}
+
+        \begin{enumerate}[(a)]
+            \item The moment the supplies are dropped they enter free fall with fixed velocity in the horizontal direction. 
+                \begin{align*}
+                    \textbf{F} = \begin{pmatrix} 0 \\ -\cancel{m}g \end{pmatrix} &= \cancel{m} \ddot{\textbf{r}} \\ 
+                        \begin{pmatrix} 0 \\ -g~dt \end{pmatrix} &= \frac{d\dot{\textbf{r}}}{\cancel{dt}}\cancel{dt}\\
+                            \begin{pmatrix} \alpha_1 \\ -g t + \beta_1 \end{pmatrix} &= \dot{\textbf{r}} \\ 
+                                \begin{pmatrix} \alpha_1 \\ -g t + \beta_1 \end{pmatrix}dt &= \frac{d\textbf{r}}{\cancel{dt}}\cancel{dt} \\ 
+                                    \begin{pmatrix} \alpha_1t + \alpha_2 \\ - \frac{1}{2} g t^2 + \beta_1t + \beta_2  \end{pmatrix} &= \textbf{r}
+                \end{align*}
+
+                Now we can do boundary conditions
+                \begin{enumerate}[i.]
+                    \item $v_0 = 50$ m/s (in the x-direction):
+                        \begin{align*}
+                            \dot{\textbf{r}}(0) = \begin{pmatrix} 50 \\ 0 \end{pmatrix} &= \begin{pmatrix} \alpha_1 \\ -g (0) + \beta_1 \end{pmatrix} \implies \alpha_1 = v_0 = 50, \quad \beta_1 = 0
+                        \end{align*}
+                    \item $h=100$ m 
+                        \begin{align*}
+                            \textbf{r}(0) = \begin{pmatrix} 0 \\ 100 \end{pmatrix} &= \begin{pmatrix} \alpha_1 (0) + \alpha_2 \\ -\frac{1}{2}g (0) + \beta_1(0) + \beta_{2} \end{pmatrix} \implies \alpha_2 = 0, \quad \beta_2 = h = 100
+                        \end{align*}
+                \end{enumerate}
+
+                Therefore the trancendental equations are
+                \begin{align*}
+                    \begin{cases}
+                        \textbf{r}(t) = \begin{pmatrix} 50t \\ 100-\frac{1}{2}gt^2 \end{pmatrix} \textrm{m} \\
+                        \dot{\textbf{r}}(t) = \begin{pmatrix} 50 \\ -g t \end{pmatrix} \textrm{m/s}
+                    \end{cases}
+                \end{align*}
+
+            \item Solving for $t$ when the vertical component of the position equals zero 
+                \begin{align*}
+                    0 &= 100 - \frac{1}{2}g t^2 \implies t = \sqrt{ 20 } \textrm{~s}
+                \end{align*}
+
+                At this time, the horizontal component of motion is $50 \sqrt{ 20 } \approx 224$ m, i.e. the supplies strike the ground 224 m from the drop point.
+
+            \item The times at which the projectile is within $\pm 10$ m of this are given by 
+                \begin{align*}
+                    50 \sqrt{ 20 } \pm 10 &= 50t \implies t \approx \{ 4.2721, 4.6721 \}
+                \end{align*}
+        \end{enumerate}
+
+    \end{callout}   
+
+    %\begin{callout}{Solution:}
+    %    The bundle experiences the force of gravity as it falls. According to Newton's second law:
+    %    \[ \mathbf{F} = m \mathbf{a} \] 
+    %
+    %    Neglecting air resistance, we have: 
+    %    \[ \begin{pmatrix} 0 \\ -mg \end{pmatrix} = m \begin{pmatrix} \ddot{x} \\ \ddot{y} \end{pmatrix} \]
+    %
+    %    This simplifies to:
+    %    \[ \begin{pmatrix} 0 \\ -g \end{pmatrix} = \begin{pmatrix} \ddot{x} \\ \ddot{y} \end{pmatrix} \]
+    %
+    %            The horizontal motion is uniform:
+    %            \[ \ddot{x} = 0 \quad \Rightarrow \quad \dot{x} = v_0 \quad \Rightarrow \quad x(t) = v_0 t + C_1 \]
+    %
+    %            The vertical motion under gravity gives:
+    %            \[ \ddot{y} = -g \quad \Rightarrow \quad \dot{y} = -gt + C_2 \quad \Rightarrow \quad y(t) = -\frac{1}{2} g t^2 + C_2 t + C_3 \]
+    %
+    %            Using the initial conditions, we set:
+    %
+    %            - At \( t = 0 \):
+    %            - \( x(0) = 0 \) (bundle drops at the horizontal position of the plane)
+    %            - \( y(0) = h \)
+    %
+    %            Thus, we find:
+    %
+    %            1. For horizontal motion:
+    %            \[
+    %                x(0) = C_1 \quad \Rightarrow \quad C_1 = 0
+    %            \]
+    %
+    %            2. For vertical motion:
+    %            \[
+    %                y(0) = C_3 \quad \Rightarrow \quad C_3 = h
+    %            \]
+    %
+    %            The equations become:
+    %
+    %            \[
+    %                \begin{cases}
+    %                    x(t) = v_0 t \\
+    %                    y(t) = h - \frac{1}{2} g t^2
+    %                \end{cases}
+    %            \]
+    %\end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (Taylor 1.45) Prove that if $\textbf{v}(t)$  is any vector that depends on time (for example the velocity of a moving particle) but which has constant magnitude, then $\dot{\textbf{v}}(t)$ is orthogonal to $\textbf{v}(t)$, then $|\textbf{v}(t)|$ is constant. [Hint: Consider the derivative of $\textbf{v}^2$.] This is a very handy result. It explains why, in two-dimensional polars, $d\hat{\textbf{r}}/dt$ has to be in the direction of $\hat{\varphi}$ and vice versa. It also shows that the speed of a charged particle in a magnetic field is constant, since the acceleration is perpendicular to the velocity.
+    \begin{callout}{Solution:}
+        
+        Suppose there's a time-dependent vector,
+$$
+\mathbf{v}=\mathbf{v}(t)
+$$
+which has a constant magnitude,
+$$
+|\mathbf{v}|=\lambda
+$$
+
+Consider the dot product of $\mathbf{v}$ with itself.
+$$
+\begin{aligned}
+\mathbf{v}^2 & =\mathbf{v} \cdot \mathbf{v} \\
+& =|\mathbf{v}||\mathbf{v}| \cos 0 \\
+& =(\lambda)(\lambda)(1) \\
+& =\lambda^2
+\end{aligned}
+$$
+
+Take the derivative of both sides with respect to time.
+$$
+\begin{aligned}
+\frac{d}{d t}\left(\lambda^2\right) & =\frac{d}{d t} \mathbf{v}^2 \\
+0 & =\frac{d}{d t}(\mathbf{v} \cdot \mathbf{v}) \\
+& =\frac{d \mathbf{v}}{d t} \cdot \mathbf{v}+\mathbf{v} \cdot \frac{d \mathbf{v}}{d t} \\
+& =\mathbf{v} \cdot \frac{d \mathbf{v}}{d t}+\mathbf{v} \cdot \frac{d \mathbf{v}}{d t} \\
+& =2\left(\mathbf{v} \cdot \frac{d \mathbf{v}}{d t}\right)
+\end{aligned}
+$$
+
+Divide both sides by 2 .
+$$
+0=\mathbf{v} \cdot \frac{d \mathbf{v}}{d t}
+$$
+
+Therefore, $\mathbf{v}$ is orthogonal to $\dot{\mathbf{v}}=d \mathbf{v} / d t$.
+
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (Taylor 2.2) The origin on the linear drag force on a sphere in a fluid is the viscosity of the fluid. According to Stoke's law, the viscous drag on a sphere is
+    $$f_{\textrm{lin}}=3\pi \eta Dv$$
+    where $\eta$ is the viscosity of the fluid, $D$ is the sphere's diameter, and $v$ is its speed. Show that this expression reproduces the form (2.3) for $f_{\textrm{lin}}$, with $b$ given by (2.4) as $b=\beta D$. Given that the viscosity of the air at STP is $\eta = 1.7 \times 10^{-5} \textrm{N$\cdot$s/m$^2$}$, verify the value of $\beta$ given in (2.5).
+    \begin{callout}{Solution:}
+        
+        The aim is to show that the given expression for $f_{\text {lin }}$ simplifies to
+        $$ f_{\operatorname{lin}}=b v $$
+        where $b=\beta D$ for spherical projectiles and $\beta=1.6 \times 10^{-4} \mathrm{~N} \cdot \mathrm{~s} / \mathrm{m}^2$ for projectiles in air at STP. Let everything except $Dv$ equal $\beta$:
+        \begin{align*}
+            \beta &= 3\pi\eta \\
+            &= 3 \pi\left(1.7 \times 10^{-5} \frac{\mathrm{~N} \cdot \mathrm{~s}}{\mathrm{~m}^2}\right) \\ 
+            &\approx 1.6 \times 10^{-4} \frac{\mathrm{~N} \cdot \mathrm{~s}}{\mathrm{~m}^2}
+        \end{align*}
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (Taylor 2.4) The origin of the quadratic drag force on any projectile in a fluid is the inertia of the fluid that the projectile sweeps up. \textbf{(a)} Assuming the projectile has a cross-sectional area $A$ (normal to its velocity) and speed $v$, and that the density of the fluid is $\rho$, show that the rate at which the projectile encounters fluid (mass/time) is $\rho Av$. \textbf{(b)} Making the simplifying assumption that all of this fluid is accelerated to the speed $v$ of the projectile, show that the net drag force on the projectile is $\rho Av^2$. It is certainly not true that all the fluid that the projectile encounters is accelerated to the full speed $v$ , but one might guess that the actual force would have the form 
+    $$f_{\textrm{quad}} = \kappa \rho Av^2$$ 
+    where $\kappa$ is a number less than 1, which would depend on the shape of the projectile, with $\kappa$ small for a streamlined body, and larger for a body with a flat front end. \textbf{(c)} Show that (2.84) reproduces the form (2.3) for $f_{\textrm{quad}}$, with $c$ given by (2.4) as $c=\gamma D^2$. Given that the density of air at STP is $\rho=1.29 \textrm{kg/m$^{3}$}$ and that $\kappa=1/4$  for a sphere, verify the value of $\gamma$ given in (2.6).
+    \begin{callout}{Solution:}
+        
+        \begin{enumerate}[(a)]
+            \item 
+We begin by considering the motion of a surface in one dimension through stationary air. The mass $m$ associated with the displaced air is given by the product of its density $\rho$ and the volume $V$ displaced by the moving surface:
+\begin{align*}
+    \frac{dm}{dt} &= \frac{d}{dt} (m) \\ 
+    &= \frac{d}{dt} (\rho V)
+\end{align*}
+For simplicity, we take $\rho$ as constant, and express the volume as the product of the surface area $A$ and the displacement $x$, i.e., $V = A x$. Hence,
+\[ \frac{dm}{dt} = \rho A \frac{d}{dt} x. \]
+The rate of change of displacement is velocity $v$, so we finally obtain:
+\[ \frac{dm}{dt} = \rho A v. \]
+Thus, the rate of mass displaced by the surface is directly proportional to the velocity of the surface and its cross-sectional area.
+
+\item For this we could simply begin with the assumption that this is a valid substituion into the linear drag coefficient, as this form we derived in \textbf{(a)} relates displaced mass to some function of drag. We can be a bit more rigorous, though, as multiplying both sides by v allows us to express this as a force:
+    $$\frac{d}{dt}(mv) = \dot{p} = F = \rho A v^2$$
+    This can also be multiplied by a unitless scalar $\kappa$ to more accurately model the effects due to the shape of the object.
+
+\item To show that
+    $$\kappa \rho A v^2 = \gamma D^2v^2 = cv^2$$
+                We should begin by noting that we are assuming the object is a sphere. The question gives values for $\kappa$ and $\rho$. Cross sectional area $A$ is also known to be a circle $(\pi r^2 = \pi (D/2)^{2})$. Also, the value of $\gamma$ given by the book is $\gamma =  0.25 \frac{N\cdot s^2}{m^4}$.
+                \begin{align*}
+                    0.25D^2 &\stackrel{?}{=} \frac{1}{4}(1.29)(\pi)\left(\frac{D^2}{4}\right) \\ 
+                    0.25D^2 &\stackrel{?}{=} (0.2533)D^2
+                \end{align*}
+                Which is indeed very close!
+        \end{enumerate}
+    \end{callout}
+\end{homeworkProblem}

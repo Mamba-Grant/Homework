@@ -1,0 +1,204 @@
+\documentclass[12pt]{article}
+
+
+\newcommand{\hmwkTitle}{Spectrometer Lab Report}
+\newcommand{\hmwkDueDate}{\today}
+\newcommand{\hmwkClass}{CHEM 130}
+\newcommand{\hmwkAuthorName}{\textbf{Grant Saggars}}
+
+
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+
+\usepackage{float}
+\usepackage{caption}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{XCharter}
+
+\usetikzlibrary{automata,positioning}
+
+\usepackage{geometry}
+\geometry{top=1in, bottom=1in, left=1in, right=1in} % Adjust margins as needed
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.75in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+\begin{document}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+	% \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+	% \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+	% \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+	% \stepcounter{#1}
+	% \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+% \nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+	\ifnum#1>0
+		\setcounter{homeworkProblemCounter}{#1}
+	\fi
+	\section{Problem \arabic{homeworkProblemCounter}}
+	\setcounter{partCounter}{1}
+	\enterProblemHeader{homeworkProblemCounter}
+}{
+	\exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Callout Box
+%
+
+\definecolor{shadecolor}{RGB}{235,235,235}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%
+% Title Page
+%
+
+\title{
+	\textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+	\normalsize\vspace{0.1in}\small{\hmwkDueDate}\\
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\section{Results}
+% Table \ref{demo-table} has a caption:
+\begin{table}[!h]
+	\begin{center}
+		\caption{Hydrogen Emission Spectrum}
+		\label{hydrogen-spectrum}
+		\begin{tabular}{||c | c c c||}
+			\hline
+			Line \# & Wavelength (nm) & Energy (J)            & color     \\ [0.5ex]
+			\hline\hline
+			1       & 410             & $4.8 \times 10^{-19}$ & violet    \\
+			\hline
+			2       & 433             & $4.5 \times 10^{-19}$ & dark blue \\
+			\hline
+			3       & 485             & $4.0 \times 10^{-19}$ & cyan      \\
+			\hline
+			4       & 659             & $3.0 \times 10^{-19}$ & red       \\
+			\hline
+		\end{tabular}
+	\end{center}
+\end{table}
+
+\subsection{Calculations}
+\begin{enumerate}[1.]
+	\item Conversion of wavelength to frequency for the different peak frequencies, given that $\frac{c}{\lambda} = \nu$.
+	      \begin{align}
+		      \nu_1 & = \frac{3\times10^8}{410\times10^{-9}} = 4.55\times10^{14} \\
+		      \nu_2 & = \frac{3\times10^8}{433\times10^{-9}} = 6.93\times10^{14} \\
+		      \nu_3 & = \frac{3\times10^8}{485\times10^{-9}} = 6.19\times10^{14} \\
+		      \nu_4 & = \frac{3\times10^8}{659\times10^{-9}} = 4.55\times10^{14}
+	      \end{align}
+	\item Derivation of expected energy for the first peak, given that $E = \frac{hc}{\lambda}$.
+
+	      \begin{align*}
+		      \frac{(6.626\times10^{-34})(3\times10^8)}{659\times10^{-9}} = 3 \times 10 ^{-19} \textrm{~J} = 1.8 \textrm{~eV}
+	      \end{align*}
+
+	\item Percent error calculation for Rydberg Constant.
+	      This calculation was done assuming the Balmer Series:
+	      \begin{align*}
+		      \frac{|V_o - V_t|}{V_t} \to \frac{2.00 - 2.18}{2.18} \approx 0.0826\%
+	      \end{align*}
+	      \begin{centering}
+		      \tiny note: technically due to the number of significant digits excel displays, the Rydberg Constant should have been taken to 1 significant digit giving a 0\% difference.
+	      \end{centering}
+
+\end{enumerate}
+
+\newpage
+\subsection{Figures}
+\begin{multicols}{2}
+	\center
+	\begin{Figure}
+		\centering
+		\includegraphics[width=1\linewidth]{paschen.png}
+		\captionof{figure}{Paschen Series Prediction}
+	\end{Figure}
+	\begin{Figure}
+		\centering
+		\includegraphics[width=1\linewidth]{balmer.png}
+		\captionof{figure}{Balmer Series Prediction}
+	\end{Figure}
+	\begin{Figure}
+		\centering
+		\includegraphics[width=1\linewidth]{lyman.png}
+		\captionof{figure}{Lyman Series Prediction}
+	\end{Figure}
+\end{multicols}
+
+Figures [1,2,3] contain predicted plots of measured energy versus inverse wavelength. Energy reduces as inverse wavelength decreases, which is to be expected as inverse wavelength is directly proportional to frequency, and low frequency photons carry less energy than high frequency photons.
+
+\end{document}

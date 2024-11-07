@@ -1,0 +1,212 @@
+
+\newpage\begin{homeworkProblem}
+Evaluate the work done 
+\[
+W = \int_O^P \mathbf{F} \cdot d\mathbf{r} = \int_O^P (F_x \, dx + F_y \, dy) \tag{4.100}
+\]
+by the two-dimensional force $\mathbf{F} = (x^2, 2xy)$ along the three paths joining the origin to the point $P = (1, 1)$ as shown in Figure 4.24(a) and defined as follows:
+\begin{itemize}
+    \item[(a)] This path goes along the $x$ axis to $Q = (1, 0)$ and then straight up to $P$. (Divide the integral into two pieces, $\int_O^P = \int_O^Q + \int_Q^P$.) 
+        \begin{callout}{Solution:}
+            
+            \begin{align*}
+                W &= \int_{0}^{1} (x^2, 2xy) \cdot (dx, 0) + \int_{0}^{1} (x^2,2xy) \cdot (0, dy) ~dx \\ 
+                &= \int_{0}^{1} x^2 ~dx + \int_{0}^{1} 2y ~dy \\ 
+                &= \frac{1}{3} + 1 = \frac{4}{3}
+            \end{align*}
+
+        \end{callout}
+    \item[(b)] On this path $y = x^2$, and you can replace the term $dy$ in (4.100) by $dy = 2x \, dx$ and convert the whole integral into an integral over $x$.
+        \begin{callout}{Solution:}
+            
+            \begin{align*}
+                W &= \int_{0}^{1} (x^2, 2x(x^2)) \cdot (dx, 2x ~dx) \\ 
+                &= \int_{0}^{1} x^2 ~dx + \int_{0}^{1} 4x^4 ~dx \\ 
+                &= \frac{1}{3} + \frac{4}{5} = \frac{17}{15}
+            \end{align*}
+
+        \end{callout}
+
+    \newpage
+    \item[(c)] This path is given parametrically as $x = t^3$, $y = t^2$. In this case rewrite $x$, $y$, $dx$, and $dy$ in (4.100) in terms of $t$ and $dt$, and convert the integral into an integral over $t$.
+        \begin{callout}{Solution:}
+            
+            \begin{align*}
+                W &= \int_{0}^{1} ((t^3)^2, 2(t^3t^2)) \cdot (3t^2 ~dt, 2t~dt) \\ 
+                &= \int_{0}^{1} (t^6, 2t^5) \cdot (3t^2 ~dt, 2t~dt) \\ 
+                &= \int_{0}^{1} 3t^8 ~dt + \int_{0}^{1} 4t^6 ~dt \\ 
+                &= \frac{3}{9} + \frac{4}{7} = \frac{19}{21}
+            \end{align*}
+
+        \end{callout}
+\end{itemize}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+Consider a small frictionless puck perched at the top of a fixed sphere of radius $R$. If the puck is given a tiny nudge so that it begins to slide down, through what vertical height will it descend before it leaves the surface of the sphere? 
+
+    \vspace{1em} \textbf{Hint:} Use conservation of energy to find the puck’s speed as a function of its height, then use Newton’s second law to find the normal force of the sphere on the puck. At what value of this normal force does the puck leave the sphere?
+\begin{callout}{Solution:}
+    
+    I will define my coordinate system to have origin at the center of the sphere. I will choose to work in polar coordinates, assuming the puck is confined to a plane of motion. $R$ is then fixed, and the ball will have a height given by 
+    $$h = R\cos\theta$$
+    By conservation of energy:
+    $$ mgR = mgh + \frac{1}{2}m (\cancelto{0}{\dot{R}} + R^2\dot{\theta}^2)$$ 
+    Angular speed is then $\dot{\theta}^2 = 2g(R-h)$. We can also write the normal force as the net force in the radial direction:
+    $$mg\cos\theta - \boldsymbol{N} = \frac{m \boldsymbol{v}^2}{R}$$
+    At the point where the puck leaves the surface, $\boldsymbol{N}=0$. Due to the coordinate system, $\boldsymbol{v}=\dot{\theta}$, so:
+    \begin{align*}
+        \cos\theta &= \frac{2(R-h)}{R} \\ 
+        \cos\theta &= \frac{2(R-R\cos\theta)}{R} \\ 
+        R\cos\theta &= 2R-R\cos\theta \\ 
+        \cos\theta = h &= \frac{3}{2}R 
+    \end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+Which of the following forces is conservative?
+\begin{itemize}
+    \item[(a)] $\mathbf{F} = k(x, 2y, 3z)$ where $k$ is a constant.
+        \begin{callout}{Solution:}
+            \begin{enumerate}[i.]
+                \item \textbf{Curl}
+                    \begin{align*}
+                        \nabla \times \textbf{F} &= \left| \begin{array}{ccc} 
+                            \boldsymbol{\hat{i}} & \boldsymbol{\hat{j}} & \boldsymbol{\hat{k}} \\ 
+                            \frac{\partial }{\partial x} & \frac{\partial }{\partial y} & \frac{\partial }{\partial z} \\
+                            F_x & F_y & F_z
+                        \end{array} \right| = \left| \begin{array}{ccc} 
+                            \boldsymbol{\hat{i}} & \boldsymbol{\hat{j}} & \boldsymbol{\hat{k}} \\ 
+                            \frac{\partial }{\partial x} & \frac{\partial }{\partial y} & \frac{\partial }{\partial z} \\
+                            kx & 2ky & 3kz
+                        \end{array} \right| = 0 - 0 + 0 = 0
+                    \end{align*}
+                \item \textbf{Potential Function}
+                    \begin{gather*}
+                        U = -\int F_{x} ~dx = -\frac{kx^2}{2} + c(y,z) \\ 
+                        F_y = -\frac{\partial U}{\partial y} \implies 2ky = -c_{y}(y,z) \implies -\int 2ky ~dy = c(y,z) \implies -ky^2 + h(z) = c(y,z) \\ 
+                        F_z = -\frac{\partial U}{\partial z} \implies 3kz = -\frac{\partial}{\partial z} \left( -\frac{kx^2}{2} - ky^2 + h(z) \right) \implies h(z) = -\int 3kz ~dz = -\frac{3}{2}kz^2 + C
+                    \end{gather*}
+                    Then we have
+                    $$U= -\frac{kx^2}{2} - ky^2 - \frac{3}{2}kz^2 + C, \qquad - \nabla U = k(x, 2y, 3z)$$
+            \end{enumerate}
+        \end{callout}
+    \item[(b)] $\mathbf{F} = k(y, x, 0)$.
+        \begin{callout}{Solution:}
+            \begin{enumerate}[i.]
+                \item \textbf{Curl}
+                    \begin{align*}
+                        \nabla \times \textbf{F} = \left| \begin{array}{ccc} 
+                            \boldsymbol{\hat{i}} & \boldsymbol{\hat{j}} & \boldsymbol{\hat{k}} \\ 
+                            \frac{\partial }{\partial x} & \frac{\partial }{\partial y} & \frac{\partial }{\partial z} \\
+                            F_x & F_y & F_z
+                        \end{array} \right| = 0 - 0 + (1-1) = 0
+                    \end{align*}
+                \item \textbf{Potential Function}
+                    \begin{gather*}
+                        U = -k\int F_x ~dx = - kyx + kc(y,z) \\ 
+                        F_y = - k\frac{\partial U}{\partial y} \implies kx = kx + kc_y(y,z) \implies kh(z) = c(y,z) \\ 
+                        F_z = - \frac{\partial U}{\partial z} \implies 0 = \frac{\partial}{\partial z}[-yx + h(z)] = kh_z(z) \implies h(z) = C \\ 
+                        U = -2yx + C, \qquad - \nabla U = (y,x,0)
+                    \end{gather*}
+            \end{enumerate}
+        \end{callout}
+    \newpage \item[(c)] $\mathbf{F} = k(-y, x, 0)$.
+        \begin{callout}{Solution:}
+            \begin{align*}
+                \nabla \times \textbf{F} = \left| \begin{array}{ccc} 
+                    \boldsymbol{\hat{i}} & \boldsymbol{\hat{j}} & \boldsymbol{\hat{k}} \\ 
+                    \frac{\partial }{\partial x} & \frac{\partial }{\partial y} & \frac{\partial }{\partial z} \\
+                    F_x & F_y & F_z
+                \end{array} \right| = 0 - 0 + (1+1)k = 2k
+            \end{align*}
+        \end{callout}
+\end{itemize}
+For those which are conservative, find the corresponding potential energy $U$, and verify by direct differentiation that $\mathbf{F} = - \nabla U$.
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+Consider a mass $m$ on the end of a spring of force constant $k$ and constrained to move along the horizontal $x$ axis. If we place the origin at the spring's equilibrium position, the potential energy is $\frac{1}{2}kx^2$. At time $t = 0$ the mass is sitting at the origin and is given a sudden kick to the right so that it moves out to a maximum displacement at $x_{\text{max}} = A$ and then continues to oscillate about the origin.
+\begin{enumerate}[(a)]
+\item Write down the equation for conservation of energy and solve it to give the mass's velocity $\dot{x}$ in terms of the position $x$ and the total energy $E$.
+    \begin{callout}{Solution:}
+        \begin{align*}
+            \frac{1}{2}kx^2 + \frac{1}{2} m \dot{x}^2 &= E \\ 
+            \dot{x}^2 &= \frac{2E-kx^2}{m} \\ 
+            \dot{x} &= \sqrt{ \frac{2E-kx^2}{m} } 
+        \end{align*}
+    \end{callout}
+\item Show that $E = \frac{1}{2}kA^2$, and use this to eliminate $E$ from your expression for $\dot{x}$. Use the result (4.58), $t = \int dx'/\dot{x}(x')$, to find the time for the mass to move from the origin out to a position $x$.
+    \begin{callout}{Solution:}
+        There's no kinetic energy in the moment the spring is released, so we just have the potential energy with $x=A$:
+        $$E = \frac{1}{2}kA^2$$
+    \end{callout}
+\item Solve the result of part (b) to give $x$ as a function of $t$ and show that the mass executes simple harmonic motion with period $2\pi\sqrt{m/k}$.
+    \begin{callout}{Solution:}
+        \begin{align*}
+            \dot{x} &= \sqrt{ \frac{kA^2-kx^2}{m} }  \\ 
+            \frac{dx}{dt} &= \sqrt{ \frac{k}{m} } \sqrt{ A^2 - x^2 } \\ 
+            \int_{0}^{x} \frac{1}{\sqrt{ A^2 - x^2 }} ~dx &= \int_{0}^{t} \sqrt{ \frac{k}{m} } ~dt
+        \end{align*}
+        This integral can be evaluated with a substitution of $x=A\sin\theta$, so we have 
+        \begin{align*}
+            \arcsin\left(\frac{x}{A}\right) &= \omega t \\ 
+            x &= A \sin(\omega t)
+        \end{align*}
+        $x(t)$ repeats itself after a time such that $t=2\pi \omega = 2\pi \sqrt{ m/k }$
+    \end{callout}
+\end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+A mass $m$ is in a uniform gravitational field, which exerts the usual force $F = mg$ vertically down, but with $g$ varying with time, $g = g(t)$. Choosing axes with $y$ measured vertically up and defining $U = mgy$ as usual, show that $F = -\nabla U$ as usual, but, by differentiating $E = \frac{1}{2}mv^2 + U$ with respect to $t$, show that $E$ is not conserved.
+\begin{callout}{Solution:}
+    \begin{align*}
+        F &= - \frac{d}{dy} (mgy) \\ 
+        &= -mg \boldsymbol{\hat{y}} \\ 
+        \frac{dE}{dt} &= m \dot{y} \ddot{y} + m\dot{g} y + mg\dot{y} \\ 
+    \end{align*}
+    If $g$ were constant, we would have $\frac{dE}{dt} = \dot{y}(F-mg) = 0$ when $F=mg$. Because $g$ is not constant, we have the additional term $m\dot{g}y$ so,
+    $$\frac{dE}{dt}=m\dot{g}y\neq0$$
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+A metal ball (mass $m$) with a hole through it is threaded on a frictionless vertical rod. A massless string (length $l$) attached to the ball runs over a massless, frictionless pulley and supports a block of mass $M$, as shown in Figure 4.27. The positions of the two masses can be specified by the one angle $\theta$.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{../assets/H5P6F2.png}
+\end{figure}
+
+\begin{enumerate}[(a)]
+\item Write down the potential energy $U(\theta)$. (The PE is given easily in terms of the heights shown as $h$ and $H$. Eliminate these two variables in favor of $\theta$ and the constants $b$ and $l$. Assume that the pulley and ball have negligible size.)
+    \begin{callout}{Solution:}
+        The masses do work against each other, so they have a sign difference.
+        $$h = \frac{b}{\tan\theta}, \quad H = l-\frac{b}{\sin\theta}$$
+        \begin{align*}
+            U(\theta) &= mgh - MgH \\ 
+            &= mg \frac{b}{\tan\theta} - Mg \left( l - \frac{b}{\sin\theta} \right) \\ 
+            &= \frac{gb}{\sin\theta} \left( M \cos\theta - m  \right) \\
+            &= gb\csc\theta \left( M \cos\theta - m  \right)
+        \end{align*}
+    \end{callout}
+
+\item By differentiating $U(\theta)$ find whether the system has an equilibrium position, and for what values of $m$ and $M$ equilibrium can occur. Discuss the stability of any equilibrium positions.
+    \begin{callout}{Solution:}
+        \begin{align*}
+            \frac{dU}{d\theta} &= gb\left(\frac{d}{d\theta}\left(\csc \theta\right)\left(M\cos \theta-m\right)+\frac{d}{d\theta}\left(M\cos \theta-m\right)\csc \theta\right) \\ 
+            &= gb\left(-\cot \theta\csc \theta\left(-m+M\cos \theta\right)-M\right) \\ 
+            &= gb \left(  \right)
+        \end{align*}
+        Which has stable equilibria $\frac{dU}{d\theta} = 0$ when $m<M$.
+    \end{callout}
+\end{enumerate}
+\end{homeworkProblem}

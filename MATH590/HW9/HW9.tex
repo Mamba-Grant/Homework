@@ -1,0 +1,116 @@
+\documentclass{article}
+
+\title{Homework}
+\author{Grant Saggars}
+\date{\today}
+
+\usepackage{amsmath}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{silence}
+\WarningsOff*
+% \ErrorsOff*
+
+\definecolor{shadecolor}{RGB}{248,248,248}
+
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+\begin{document}
+
+\maketitle
+
+\section{Math 590 HW9}
+
+\subsection{Problem 1.} Let T be the following transformation $\mathbf{R}^2 \to \mathbf{R}^2$: projecting onto the line $y = x$, then projecting onto the line $y = 2x$.
+
+\begin{enumerate}[(a)]
+\item What is the matrix A for T, using standard basis?
+
+\begin{callout}{Solution:}
+
+    Recall that $proj_v(u) = \displaystyle\frac{u \cdot v}{|v|^2}v$. Second, because we are projecting onto the line $y=x$ first and the line $y=2x$ second, the direction vectors are $[\begin{smallmatrix} 1 \\ 1 \end{smallmatrix}]$ and $[\begin{smallmatrix} 1 \\ 2 \end{smallmatrix}]$ respectively. Therefore:
+
+    \begin{enumerate}
+        \item $y=x$:
+            \begin{align*}
+                \vec{e}_1 &= \frac{[\begin{smallmatrix} 1 \\ 0 \end{smallmatrix}] \cdot [\begin{smallmatrix} 1 \\ 1 \end{smallmatrix}]}{\sqrt{2}}\begin{bmatrix}1 \\ 1\end{bmatrix} = \begin{bmatrix} \sqrt{2} \\ \sqrt{2} \end{bmatrix} \\
+                \vec{e}_2 &= \frac{[\begin{smallmatrix} 0 \\ 1 \end{smallmatrix}] \cdot [\begin{smallmatrix} 1 \\ 1 \end{smallmatrix}]}{\sqrt{2}}\begin{bmatrix}1 \\ 1\end{bmatrix} = \begin{bmatrix} \sqrt{2} \\ \sqrt{2} \end{bmatrix} \\
+            \end{align*}
+        \item $y=2x$:
+            \begin{align*}
+                \vec{e}_1 &= \frac{[\begin{smallmatrix} 1 \\ 0 \end{smallmatrix}] \cdot [\begin{smallmatrix} 1 \\ 2 \end{smallmatrix}]}{\sqrt{2}}\begin{bmatrix}1 \\ 1\end{bmatrix} = \frac{\sqrt{5}}{2}  \begin{bmatrix} 1 \\ 2 \end{bmatrix} \\
+                \vec{e}_2 &= \frac{[\begin{smallmatrix} 0 \\ 1 \end{smallmatrix}] \cdot [\begin{smallmatrix} 1 \\ 2 \end{smallmatrix}]}{\sqrt{2}}\begin{bmatrix}1 \\ 1\end{bmatrix} = \frac{2\sqrt{5}}{5}   \begin{bmatrix} 1 \\ 2 \end{bmatrix} \\
+            \end{align*}
+    \end{enumerate}
+
+    Finally, the composition of these transformations is the same as applying them sequentially:
+    \begin{align*}
+        \begin{bmatrix} \frac{\sqrt{5}}{2} & \frac{2\sqrt{5}}{2}  \\ \frac{2\sqrt{5}}{2} & \frac{4\sqrt{5}}{2} \end{bmatrix}
+        \begin{bmatrix} \sqrt{2} & \sqrt{2} \\ \sqrt{2} & \sqrt{2} \end{bmatrix} = 
+        \begin{bmatrix} \frac{3\sqrt{10}}{2} & \frac{3\sqrt{10}}{2} \\ 3\sqrt{10} & 3\sqrt{10} \end{bmatrix}
+    \end{align*}
+\end{callout}
+
+\item What are the eigenvalues and eigenspaces of T, using algebraic method and the matrix A?
+
+\begin{callout}{Solution:}
+    \begin{enumerate}
+        \item Eigenvalues:
+            \begin{align*}
+                \det\left(\lambda \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} - \begin{bmatrix} \frac{3\sqrt{10}}{2} & \frac{3\sqrt{10}}{2} \\ 3\sqrt{10} & 3\sqrt{10} \end{bmatrix}\right) = 0 \\
+                \to \left( \lambda - \frac{3\sqrt{10}}{2} \right)(\lambda - 3\sqrt{10}) - \left(\frac{3\sqrt{10}}{2} \right)(3\sqrt{10}) = 0 \\
+                \to \lambda^2 - \lambda \frac{9\sqrt{5}}{\sqrt{2}} = 0 \to \lambda\left(\lambda - \frac{9\sqrt{5}}{\sqrt{2}}\right) = 0 \\
+            \end{align*}
+                \vspace{-1cm}
+            \begin{align*}
+                \implies \lambda = \left\{0,\, \frac{9\sqrt{5}}{\sqrt{2}}\right\} \\
+            \end{align*}
+
+        \item Eigenvectors:
+            \begin{align*}
+            \left(\lambda \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} - \begin{bmatrix} \frac{3\sqrt{10}}{2} & \frac{3\sqrt{10}}{2} \\ 3\sqrt{10} & 3\sqrt{10} \end{bmatrix}\right)x = 0 \\
+            \end{align*}
+                \vspace{-1cm}
+            \begin{align*}
+                \left[\begin{array}{cc|c} 1 & 1 & 0 \\ 0 & 0 & 0 \end{array}\right] 
+                &\implies \begin{bmatrix} -x_2 \\ x_2  \end{bmatrix} \to \begin{bmatrix} -1 \\ 1  \end{bmatrix} \tag{1} \\
+                \left[\begin{array}{cc|c} 1 & 1/2 & 0 \\ 0 & 0 & 0 \end{array}\right]
+                &\implies \begin{bmatrix} \frac{x_2}{2} \\ x_2  \end{bmatrix} \to \begin{bmatrix} \frac{1}{2} \\ 1  \end{bmatrix} \tag{2}
+            \end{align*}
+    \end{enumerate}
+\end{callout}
+
+\item Explain part (b) using geometry.
+    \begin{callout}{Solution:}
+        Geometrically eigenvectors represent vectors which do not change direction under the map. We can see that $\begin{bmatrix} \frac{1}{2} \\ 1  \end{bmatrix}$ is only scaled (because we project onto the line $y=x$ first), since it already lies on the line $y=2x$. The other eigenvector, $\begin{bmatrix} -1 \\ 1  \end{bmatrix}$ is mapped to zero, because it is perpendicular to the first map to the line $y=x$.
+    \end{callout}
+\end{enumerate}
+
+\subsection{Problem 2.} Let A be the matrix in Problem 1. Find $A^{2023}$ by:
+
+\begin{enumerate}[(a)]
+\item Using geometry, using the description of T, and results from Problem 1.
+
+\begin{callout}{Solution:}
+    
+    The final transformation represents a projection onto the line $y=2x$, so the vectors will not change direction after applying the transformation repeatedly. However, because it is projected onto the line $y=x$ before projecting onto $y=2x$, the vector will be scaled after each iteration. 
+\end{callout}
+
+\item Using algebra, via diagonalization.
+
+\begin{callout}{Solution:}
+
+    The diagonal matrix is $\left[\begin{smallmatrix} 0 & 0 \\ 0 & \frac{9\sqrt{5}}{\sqrt{2}}  \end{smallmatrix}\right]$. Therefore, $A^{2023}$ is equal to:
+    \begin{align*} 
+        \begin{bmatrix} 0 & 0 \\ 0 & \left(\frac{9\sqrt{5}}{\sqrt{2}}\right)^{2023}  \end{bmatrix} 
+        % \begin{bmatrix} 0 & 0 \\ 0 & \left(\frac{9\sqrt{5}}{\sqrt{2}}\right)^{2023}  \end{bmatrix}
+    \end{align*}
+\end{callout}
+\end{enumerate}
+
+\end{document}

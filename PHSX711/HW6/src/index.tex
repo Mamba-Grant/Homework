@@ -1,0 +1,183 @@
+\begin{homeworkProblem}
+    Exercise 10.1.2 (Shankar) - 10 points
+
+    Imagine a fictitious world in which the single-particle Hilbert space is two-dimensional. Let us denote the basis vectors by $\ket{+}$ and $\ket{-}$. Let
+    $$
+    \begin{array}{c} \\ \sigma_1^{(1)}= \end{array} 
+    \begin{array}{rcl}
+        & \begin{matrix} + & - \end{matrix} \\[0.5em]
+        \begin{matrix} + \\ - \end{matrix}
+        & \begin{bmatrix} a\hspace{0em} & b \\ c\hspace{0em} & d \end{bmatrix}
+    \end{array}
+    \begin{array}{c} \\ \quad \text{and} \quad \sigma_2^{(2)} = \end{array}
+    \begin{array}{rcl}
+        & \begin{matrix} + & - \end{matrix} \\[0.5em]
+        \begin{matrix} + \\ - \end{matrix}
+        & \begin{bmatrix} e\hspace{0em} & f \\ g\hspace{0em} & h \end{bmatrix}
+    \end{array}
+    $$
+    be operators in $\mathbb{V_1}$ and $\mathbb{V_2}$, respectively (the $\pm$ signs label the basis vectors. Thus $b=(\braket{+| \sigma_1^{(1)} |-}-\cdots)$ The space $\mathbb{V_1} \otimes \mathbb{V_2}$ is spanned by four vectors $\ket{+} \otimes \ket{+}$, $\ket{+} \otimes \ket{-}$, $\ket{-} \otimes \ket{+}$, $\ket{-} \otimes \ket{-}$. Show (using the method of images or otherwise) that:
+
+    \begin{enumerate}[(1)]
+        \item $$
+            \begin{array}{c} \\ \sigma_1^{(1)\otimes(2)} = \sigma_1^{(1)}\otimes I^{(2)} = \end{array}
+            \begin{array}{rcl}
+                & \begin{matrix} ++ & +- & -+ & -- \end{matrix} \\[0.5em]
+                \begin{matrix} ++ \\ +- \\ -+ \\ -- \end{matrix}
+                & \begin{bmatrix}
+                    a\hspace{1em} & 0\hspace{1em} & b\hspace{1em} & 0 \\
+                    0\hspace{1em} & a\hspace{1em} & 0\hspace{1em} & b \\
+                    c\hspace{1em} & 0\hspace{1em} & d\hspace{1em} & 0 \\
+                    0\hspace{1em} & c\hspace{1em} & 0\hspace{1em} & d
+                \end{bmatrix}
+            \end{array}
+            $$
+            \begin{callout}{Solution:}
+                
+                Equation (10.1.15) of Shankar tells us that $\sigma_1^{(1)\otimes(2)} = \sigma_1^{(1)}\otimes I^{(2)}$. Phyiscally this represents the operator $\sigma_1$ acting on the first subsystem, while the identity operator acts on the second. 
+
+                \begin{align*}
+                    \sigma_1^{(1)} \otimes I_2^{(2)} = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \otimes \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} &= \begin{pmatrix} a \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} & b \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \\ c \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} & d \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \end{pmatrix} \begin{pmatrix} \ket{+}\otimes\ket{+} \\ \ket{+}\otimes\ket{-} \\ \ket{-}\otimes\ket{+} \\ \ket{-}\otimes\ket{-} \end{pmatrix} \\ &= \begin{array}{rcl} & \hspace{-0.5em}\begin{matrix} ++ & +- & -+ & -- \end{matrix} \\[0.25em] \begin{matrix} ++ \\ +- \\ -+ \\ -- \end{matrix} & \hspace{-0.5em}\begin{pmatrix} a\hspace{1em} & 0\hspace{1em} & b\hspace{1em} & 0 \\ 0\hspace{1em} & a\hspace{1em} & 0\hspace{1em} & b \\ c\hspace{1em} & 0\hspace{1em} & d\hspace{1em} & 0 \\ 0\hspace{1em} & c\hspace{1em} & 0\hspace{1em} & d \end{pmatrix}\\ \vspace{0.25em}\end{array}
+                \end{align*}
+
+    It is very difficult to type the signs on each index in the intermediate steps, but the product of each basis vector is also taken here, giving the final matrix with the ordering we expect.
+
+            \end{callout}
+
+        \item $$\sigma_2^{(1)\otimes(2)} = \begin{bmatrix} e & f & 0 & 0 \\ g & h & 0 & 0 \\ 0 & 0 & e & f \\ 0 & 0 & g & h \end{bmatrix}$$
+                \begin{callout}{Solution:}
+                    
+                    Same process as the previous part, although we must pay close attention to the ordering in the notation:
+                    
+                    \begin{align*}
+                        I_1^{(1)}\otimes \sigma_2^{(1)} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \otimes \begin{pmatrix} e & f \\ g & h \end{pmatrix}  &= \begin{pmatrix} 1 \begin{pmatrix} e & f \\ g & h \end{pmatrix} & 0 \begin{pmatrix} e & f \\ g & h \end{pmatrix} \\ 0 \begin{pmatrix} e & f \\ g & h \end{pmatrix} & 1 \begin{pmatrix} e & f \\ g & h \end{pmatrix} \end{pmatrix}\begin{pmatrix} \ket{+}\otimes\ket{+} \\ \ket{+}\otimes\ket{-} \\ \ket{-}\otimes\ket{+} \\ \ket{-}\otimes\ket{-} \end{pmatrix} \\ &= \begin{pmatrix} e & f & 0 & 0 \\ g & h & 0 & 0 \\ 0 & 0 & e & f \\ 0 & 0 & g & h \end{pmatrix}\begin{pmatrix} \ket{+}\otimes\ket{+} \\ \ket{+}\otimes\ket{-} \\ \ket{-}\otimes\ket{+} \\ \ket{-}\otimes\ket{-} \end{pmatrix}
+                    \end{align*}
+
+                \end{callout}
+
+        \item $$(\sigma_1\sigma_2)^{(1)\otimes(2)} =\sigma_1^{(1)} \otimes \sigma_2^{(2)}=\begin{bmatrix} ae & af & be & bf \\ ag & ah & bg & bh \\ ce & cf & de & df \\ cg & ch & dg & dh \end{bmatrix}$$
+                \begin{callout}{Solution:}
+                    
+                    \begin{enumerate}[i.]
+                        \item \begin{align*}\sigma_1^{(1)}\otimes \sigma_2^{(2)} &= \begin{pmatrix} a \begin{pmatrix} e & f \\ g & h \end{pmatrix} & b \begin{pmatrix} e & f \\ g & h \end{pmatrix} \\ c \begin{pmatrix} e & f \\ g & h \end{pmatrix} & d \begin{pmatrix} e & f \\ g & h \end{pmatrix} \end{pmatrix}\begin{pmatrix} \ket{+}\otimes\ket{+} \\ \ket{+}\otimes\ket{-} \\ \ket{-}\otimes\ket{+} \\ \ket{-}\otimes\ket{-} \end{pmatrix} \\ &= \begin{pmatrix} ae & af & be & bf \\ ag & ah & bg & bh \\ ce & cf & de & df \\ cg & ch & dg & dh \end{pmatrix}\begin{pmatrix} \ket{+}\otimes\ket{+} \\ \ket{+}\otimes\ket{-} \\ \ket{-}\otimes\ket{+} \\ \ket{-}\otimes\ket{-} \end{pmatrix}\end{align*}
+
+                        \item \begin{gather*}
+                            \sigma_1^{(1)\otimes(2)} \sigma_2^{(1)\otimes(2)} =  \begin{pmatrix} a & 0 & b & 0 \\ 0 & a & 0 & b \\ c & 0 & d & 0 \\ 0 & c & 0 & d \end{pmatrix} \begin{pmatrix} e & f & 0 & 0 \\ g & h & 0 & 0 \\ 0 & 0 & e & f \\ 0 & 0 & g & h \end{pmatrix}\begin{pmatrix} \ket{+}\otimes\ket{+} \\ \ket{+}\otimes\ket{-} \\ \ket{-}\otimes\ket{+} \\ \ket{-}\otimes\ket{-} \end{pmatrix} \\ 
+                                = \tiny{\begin{pmatrix}ae+0\cdot g+b\cdot 0+0\cdot 0&af+0\cdot h+b\cdot 0+0\cdot 0&a\cdot 0+0\cdot 0+be+0\cdot g&a\cdot 0+0\cdot 0+bf+0\cdot h\\ 0e+ag+0\cdot 0+b\cdot 0&0\cdot f+ah+0\cdot 0+b\cdot 0&0\cdot 0+a\cdot 0+0e+bg&0\cdot 0+a\cdot 0+0\cdot f+bh\\ ce+0\cdot g+d\cdot 0+0\cdot 0&cf+0\cdot h+d\cdot 0+0\cdot 0&c\cdot 0+0\cdot 0+de+0\cdot g&c\cdot 0+0\cdot 0+df+0\cdot h\\ 0e+cg+0\cdot 0+d\cdot 0&0\cdot f+ch+0\cdot 0+d\cdot 0&0\cdot 0+c\cdot 0+0e+dg&0\cdot 0+c\cdot 0+0\cdot f+dh\end{pmatrix}}\begin{pmatrix} \ket{+}\otimes\ket{+} \\ \ket{+}\otimes\ket{-} \\ \ket{-}\otimes\ket{+} \\ \ket{-}\otimes\ket{-} \end{pmatrix} \\ 
+                                    = \begin{pmatrix} ae & af & be & bf \\ ag & ah & bg & bh \\ ce & cf & de & df \\ cg & ch & dg & dh \end{pmatrix}\begin{pmatrix} \ket{+}\otimes\ket{+} \\ \ket{+}\otimes\ket{-} \\ \ket{-}\otimes\ket{+} \\ \ket{-}\otimes\ket{-} \end{pmatrix}
+                        \end{gather*}
+                                
+                    \end{enumerate}
+                \end{callout}
+    \end{enumerate}
+    Do part (3) in two ways, by taking the matrix product of $\sigma_1^{(1)\otimes(2)}$ and $\sigma_2^{(1)\otimes(2)}$ and by directly computing the matrix elements of $\sigma_1^{(1)} \otimes \sigma_2^{(2)}$.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Exercise 10.2.3 (Shankar) - 10 points
+
+    Quantize the three-dimensional isotropic oscillator for which
+    \[ \mathcal{H}=\frac{p_x^2+p_y^2+p_z^2}{2m}+\frac{1}{2}m\omega^2(x^2+y^2+z^2) \]
+
+    (1) Show that $E=(n+3/2)\hbar\omega$; $n=n_x+n_y+n_z$; $n_x,n_y,n_z=0,1,2,\ldots$
+    (2) Write the corresponding eigenfunctions in terms of single-oscillator wave functions and verify that the parity of the level with a given $n$ is $(-1)^n$. Express the first four states in terms of spherical coordinates. Show that the degeneracy of a level with energy $E=(n+3/2)\hbar\omega$ is $(n+1)(n+2)/2$.
+
+    \textit{Note: You can direct use results for the single-oscillator derived in the previous chapter.}
+
+    \begin{callout}{(1), Solution:}
+
+        We can immediately write the hamiltonian as a sum of each component: $H = H_x + H_y + H_z$. I cannot recall if it was proved in this class or PHSX 611, but we have also found that the Hamiltonian for different components commute for any wave function. Its eigenstates are then 
+        \begin{align*}
+            E(n_x, n_y, n_z) &= \left( n_x + n_y + n_z + \frac{3}{2} \right)\hbar \omega \\ 
+            E(N) &= \left( N+\frac{3}{2} \right)\hbar \omega
+        \end{align*}
+
+    \end{callout}
+
+    \begin{callout}{(2), Solution:}
+
+        The combined space of eigenenergies is obtained by taking the direct/tensor product between the components.  In the coordinate basis this is just multiplication, so
+
+        \begin{align*}
+            \braket{\hat{x},\hat{y},\hat{z}|E} &= \braket{x|\hat{x}|E} \otimes \braket{y|\hat{y}|E} \otimes \braket{z|\hat{z}|\ket{E}} \\
+            \braket{\hat{x},\hat{y},\hat{z}|E} &= \hat{x}\ket{E_x} \otimes \hat{y}\ket{E_y} \otimes \hat{z}\ket{E_z} \\
+            \psi_{xyz}(x,y,z) &= \psi_x(x) \otimes \psi_y(y) \otimes \psi_z(z) \\ 
+            &= \psi_x(x)\psi_y(y)\psi_z(z)
+        \end{align*}
+
+        Now to consider parity (evenness/oddness), we know that we have alternating even and odd solutions to the 1-D harmonic oscillator. We can express this as:
+        $$\psi_x(x) = (-1)^{n_x}\psi_x(x)$$
+
+        Generalizing this to 3-D means we multiply the leading exponential, which gives a parity:
+        $$\psi_{xyz}(x,y,z) = (-1)^{n_x+n_y+n_z} \psi_x(x)\psi_y(y)\psi_z(z) = (-1)^N\psi_x(x)\psi_y(y)\psi_z(z)$$
+
+        And for energy degeneracy, $N=n_x+n_y+n_z$.
+        \begin{align*}
+            n_x &= 0,1,2,\dots,N \\ 
+            n_y &= 0,1,2,\dots,N-n_x \\ 
+            n_z &= N-n_x-n_y
+        \end{align*}
+        For each $n_x$, there are $N-n_x+1$ choices for $n_y$, so the total number of choices is 
+        $$g_N = \sum_{n_x=0}^{N} (N-n_x+1) = \frac{(N+1)(N+2)}{2}$$
+\end{callout}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Exercise 10.3.2 (Shankar) - 5 points
+
+When an energy measurement is made on a system of three bosons in a box, the $n$ values obtained were 3, 3, and 4. Write down a symmetrized, normalized state vector.
+
+\textit{Note: You can leave your answer in bra-ket notation (e.g. $\ket{334}$, etc) without writing out the explicit wavefunction ψ(x).}
+\begin{callout}{Solution:}
+    
+    The total wavefunction must be symmetric under exchange of any two particles. As we saw, each state can be written as a tensor product of each individual state, for example:
+    $$\ket{334} = \ket{3}\otimes\ket{3}\otimes\ket{4}$$
+    We have also seen in the derivation of symmetric and antisymmetric wave functions that we must write a symmetric wave function as an equally weighted superposition of accessible states, which is then normalized:
+    $$\ket{\psi} = A[\ket{334} + \ket{343} + \ket{433}] \quad\to\quad A=\braket{\psi|\psi}=\frac{1}{\sqrt{ 3 }}$$
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Exercise 10.3.3 (Shankar) - 5 points
+
+Imagine a situation in which there are three particles and only three states $a$, $b$, and $c$ available to them. Show that the total number of allowed, distinct configurations for this system is:
+
+(1) 27 if they are labeled
+(2) 10 if they are bosons
+(3) 1 if they are fermions
+\begin{callout}{Solution:}
+    
+    \begin{enumerate}[(1)]
+        \item Each particle can be in any of the three states, yielding $3^3=27$ possible states.
+        \item If they are bosons, things are a little complicated. In essence we want to calculate how many many ways 6 indistinguishable particles can be arranged into 9 energy levels. Energy levels can be empty or host more than one particle. Any arrangement of objects (n) and bins (k) (particles and energy levels) consists of $n+k-1$ objects and $k-1$ of which are bins/energy levels. Now we only need to choose $k-1$ of the arrangements to be bins. This can be imagined with the stars and bars mnemonic.
+            $$\begin{pmatrix} n+k-1 \\ k-1 \end{pmatrix} = \begin{pmatrix} 5 \\ 2 \end{pmatrix} = 10$$
+        \item If they are fermions, each state can only be occupied by one particle. To express this mathematically, it is simply:
+            $$\begin{pmatrix} 3 \\ 3 \end{pmatrix} = 1$$
+    \end{enumerate}
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+Exercise 10.3.4 (Shankar) - 5 points (Bonus)
+
+Two identical particles of mass $m$ are in a one-dimensional box of length $L$. Energy measurement of the system yields the value $E_{\textrm{sys}}=\hbar^2\pi^2/mL^2$. Write down the state vector of the system. Repeat for $E_{\textrm{sys}}=5\hbar^2\pi^2/2mL^2$. (There are two possible vectors in this case.) You are not told if they are bosons or fermions. You may assume that the only degrees of freedom are orbital.
+
+\textit{Note: You need to write down the state vector for both cases (bosons and fermions) if both cases are allowed. You don't need to consider spin, so the only quantum number is $n$.}
+\begin{callout}{Solution:}
+    
+    $$E_n = \frac{n^2 \hbar^2 \pi^2}{2mL^2}$$
+    In general we can let $n^2 = n_1^2 + n_2^2$. We then have a linear combination of two energies, which in the first case must be equal $(n_1 = n_2 = 1)$ so therefore we have identical bosons. The state vector is just:
+    $$\ket{\psi} = \ket{1}\ket{1}$$
+    In the second case we have $5=n_1^2 + n_2^2$ for our bosons, so we can have $n_1=1$ and $n_2=2$ or vise versa. We can write a symmetric wavefunction:
+    $$\ket{\psi} = [\ket{1}\ket{2} + \ket{2}\ket{1}]$$
+
+    If these were fermions, the wave function would be antisymmetric
+    $$\ket{\psi} = [\ket{1}\ket{2} - \ket{2}\ket{1}]$$
+
+\end{callout}
+\end{homeworkProblem}
+

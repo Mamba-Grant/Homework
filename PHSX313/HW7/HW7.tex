@@ -1,0 +1,37 @@
+\documentclass{article}
+
+
+   \usepackage{amsmath}
+   \usepackage{import}
+   \usepackage{pdfpages}
+   \usepackage{transparent}
+   \usepackage{xcolor}
+   \usepackage{framed}
+   \usepackage{enumerate}
+
+
+\newcommand{\incfig}[2][1]{%
+        \def\svgwidth{#1\columnwidth}
+        \import{./figures/}{#2.pdf_tex}
+}
+
+\definecolor{shadecolor}{RGB}{248,248,248}
+
+\newenvironment{callout}[1]
+{\begin{shaded*}
+\textbf{#1}
+}
+{\end{shaded*}}
+
+
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+
+\section{(10 pts) What is your favorite topic in the course so far?}
+
+\begin{callout}{}
+While it was a brief discussion, I found the relation between special relativity and Maxwell's equations to be captivating. It was shown that the constancy of the speed of light can be derived theoretically from Maxwell's equations, which was done even before the Michelson-Morley experiment experimentally proved this. Really, I guess it just put into better perspective how elegant Maxwell's equations are, since they not only always hold, but also hinted at other incredible phenomena in physics.
+\end{callout}
+
+\end{document}

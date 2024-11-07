@@ -1,0 +1,162 @@
+
+\begin{homeworkProblem}
+    In the game of Russian roulette, one inserts a single cartridge into the drum of a revolver, leaving the other five chambers of the drum empty. One then spins the drum, aims at one's head, and pulls the trigger. During each subsequent round of the game, the person spins the drum (which still contains a single bullet as long as the person is still alive), aims at his head, and pulls the trigger.
+
+    \begin{enumerate}
+        \item What is the probability of being still alive after playing $N$ rounds of the game?
+            \begin{callout}{Solution:}
+                
+                Using a probability of not being shot of $5/6$, the probability of two events that are independent (we shuffle the barrel of the gun after each trigger pull, so one trigger pull does not affect the next) $P(A \textrm{~and~} B)$ is simply $P(A)P(B)$. This holds for any number of probabilities, so we get:
+                $$p(n) = \left( \frac{5}{6} \right)^{N}$$
+
+            \end{callout}
+        \item What is the probability of surviving $(N-1)$ rounds of the game and then being shot the $N^{\text{th}}$ time?
+            \begin{callout}{Solution:}
+
+                The probability of not shooting yourself $N-1$ times is given by $P(A) = (5/6)^{N-1}$, and the probability of shooting yourself is $P(B) = 1/6$. The combined probability $P(A \cap B)$
+                $$\left( \frac{5}{6} \right)^{N-1} \times \frac{1}{6}$$
+            \end{callout}
+        \item What is the mean number of rounds a player can play the game (i.e., how many times on average can a player pull the trigger before being shot)?
+            \begin{callout}{Solution:}
+                
+                This is technically a geometric distribution which has a mean defined as $1/p$, meaning we can survive $\frac{1}{1/6}=6$ rounds before expecting to be shot. Intuitively this should check out even without knowing it is a geometric distribution, since each round has a $1/6$ chance of getting shot, after 6 rounds we should expect to get shot. 
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Two 1-dimensional random walkers start out together at the origin, each having an equal probability of making a step to the left or right. What is the probability that they meet again after $N$ steps? You can assume that the random walkers take their steps simultaneously.
+    \begin{callout}{Solution \#3:}
+        
+        We are interested in the condition that the two walkers (described by binomial distributions) will have distance zero between them after $n$ steps. To express this mathematically we first think about how the distance ($D$) can change between each random walker after each step.
+
+        \begin{enumerate}[i.]
+            \item $D + 2$ if both walkers take a step in opposite directions
+            \item $D - 2$ if both walkers take a step towards each other 
+            \item $D$ unaffected if both walkers move in the same direction.
+        \end{enumerate}
+
+        For the net displacement to remain the same the walkers must return to the same place after $N$ steps. To begin I will define the three possible scenarios; 
+        $$\begin{cases}
+            k: &\text{the number of times walkers take a step towards each other (D-2)} \\ 
+            m: &\text{the number of times walkers take a step away from each other (D+2)} \\ 
+            r=N-k-m: &\text{distance unchanged}
+        \end{cases}$$
+        The probability of moving towards or away from each other is $\frac{1}{4}$, meanwhile the probability of distance being unchanged is $\frac{1}{2}$. A multinomial distribution expresses the probability of any combination of these steps:
+        $$P(k,m,r) = \frac{N!}{k!m!r!} \left( \frac{1}{4} \right)^{k} \left( \frac{1}{4} \right)^{m} \left( \frac{1}{2} \right)^{r}$$
+        The probability of the walker being in the same place at a later time is then given by the sum over all $k$, $m$, $r$:
+        $$P(\text{same position}) = \sum_{k,m,r \geq 0}^{N=k+m+r} \frac{N!}{k!m!r!} \left( \frac{1}{4} \right)^{k} \left( \frac{1}{4} \right)^{m} \left( \frac{1}{2} \right)^{r}$$
+
+        %Now we need to consider the probability that the random walker returns to the origin after $N$ steps. $N$ must be even because the number of right moves must equal the number of left moves. Out of $N$ steps, half of them must be of $D-2$ in order to return to the origin. 
+        %
+        %$$P(D=0) = \sum_{k=1}^{N/2} \begin{pmatrix} N \\ k \end{pmatrix} \left( \frac{1}{2} \right)^{N}$$
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    The diffusion of particle in one dimension along the x-axis can be described by the following differential equation:
+
+    \begin{equation}
+        \frac{\partial \rho}{\partial t} = D \frac{\partial^2 \rho}{\partial x^2}
+    \end{equation}
+
+    The variable $D$ in this equation is the diffusion coefficient. A solution for this differential equation is:
+
+    \begin{equation}
+        \rho = \frac{1}{\sqrt{4\pi Dt}} e^{-\frac{(x-x_0)^2}{4Dt}}
+    \end{equation}
+
+    The variable $x_0$ in this equation denotes the mean of the distribution. Determine an expression for the dispersion of this distribution.
+
+     
+    \begin{callout}{Solution \#3:}
+
+        For simplicity, I will let $\frac{1}{4Dt} = a$. 
+
+        \begin{enumerate}[i.]
+            \item The average position is defined as $\int_{-\infty}^{\infty} x\rho(x) ~dx$. make the substitution: $x-x_0 \to u$, $dx = du$:
+                \begin{align*}
+                    \braket{A} &= \frac{1}{4\pi Dt} \int_{-\infty}^{\infty} x e^{-a(x-x_0)^2} ~dx \\ 
+                    &= \frac{1}{4\pi Dt} \int_{-\infty}^{\infty} (u+x_0) e^{-au^2} ~dx \\ 
+                    &= \frac{1}{4\pi Dt} \left( \cancelto{0}{\int_{-\infty}^{\infty} ue^{-au^2}} ~dx + \int_{-\infty}^{\infty} x_0e^{-au^2} ~dx \right) \\ 
+                    %&= x_0
+                \end{align*}
+
+                This nonzero integral is a gaussian, do polar change of coordinates:
+
+                \begin{align*}
+                    \frac{x_0}{4\pi Dt}\left[\int_{-\infty}^{\infty} e^{-au^2} ~dx\right]^2
+                    &= \frac{x_0}{\sqrt{ 4\pi Dt }}\int_{0}^{\infty} \int_{0}^{\infty} e^{-2a(u^2+v^2)} ~du ~dv \\ 
+                    &= \frac{x_0}{\sqrt{ 4\pi Dt }}\frac{1}{a} \int_{0}^{2\pi} \int_{0}^{\infty} re^{-r^2} ~dr ~d\theta \\ 
+                    &= \frac{x_0}{\sqrt{ 4\pi Dt }}\frac{\pi}{2a} \int_{0}^{\infty} re^{-r^2} ~dr \\ 
+                    &= \left.\frac{x_0}{\sqrt{ 4\pi Dt }}\frac{2\pi}{a} \left(-\frac{1}{2}e^{-r^2}\right)\right|_{0}^{\infty}  \\ 
+                    \braket{A}^2 &= \left( \frac{x_0}{\sqrt{ 4\pi Dt }} \right)^2 \frac{\pi}{a} = x_0^2 \\ 
+                    \braket{A} &= x_0
+                \end{align*}
+
+            \item The average square position is defined as $\int_{-\infty}^{\infty} x^2\rho(x) ~dx$, which gives 
+                \begin{align*}
+                    \braket{A^2} &= \frac{1}{\sqrt{ 4\pi Dt }} \int_{-\infty}^{\infty} x^2 e^{-a(x-x_0)^2}  ~dx \\ 
+                    &= \frac{1}{\sqrt{ 4\pi Dt }} \int_{-\infty}^{\infty} (u+x_0)^2 e^{-au^2} ~du \\ 
+                    &= \frac{1}{\sqrt{ 4\pi Dt }} \int_{-\infty}^{\infty} (u^2+2ux_0+x_0^2) e^{-au^2} ~du
+                \end{align*}
+                This gives three gaussian integrals. The first is a tough one with x in the second power:
+                $$\int_{-\infty}^{\infty} x^{2 n} e^{-a x^2} dx = \sqrt{ \frac{\pi}{a} } \frac{1}{a^n}(2 n-1)!!$$
+                so for $n=1$ we have 
+                \begin{align*}
+                    &= \sqrt{ \frac{a}{\pi} } \sqrt{ \frac{\pi}{a} } \frac{1}{a} \\ 
+                    &= \frac{1}{a}
+                \end{align*}
+                The middle one goes to zero as it has x in an odd power. The third one is the same as the average position times an additional $x_0$:
+                $$=x_0^2$$
+
+                The sum of these is our $\braket{A^2}$:
+                $$\braket{A^2} = x_0^2 + \frac{1}{a}$$
+
+            \item Our standard deviation is then 
+                \begin{align*}
+                    \sigma &= \sqrt{ \braket{A^2} - \braket{A}^2 } \\ 
+                    &= \sqrt{ \left( x_0^2 + \frac{1}{a} \right) - \left( x_0 \right)^2} \\ 
+                    &= \sqrt{ 4Dt } \\ 
+                \end{align*}
+        \end{enumerate}
+        \textit{(I should have noticed that this is the standard deviation from the definition of a gaussian distribution in my prior attempts.)}
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    A collection of random walkers can take steps of $-1$m, $0$m, or $+1$m along the x-axis with associated probabilities $P(-1) = 0.3$, $P(0) = 0.2$, and $P(1) = 0.5$.
+
+    \begin{enumerate}
+        \item[(a)] What is the average distance traveled and standard deviation for a single step?
+            \begin{callout}{Solution \#2:}
+                
+                This is the sum of the probability of the movement times the movement:
+                $$(0.3)(-1) + (0.2)(0) + (0.5)(1) = 0.2$$
+
+                We need mean distance squared and mean square distance to calculate stdev:
+                \begin{enumerate}[i.]
+                    \item Mean distance squared: 
+                        $$(0.2)^2 = 0.04$$
+                    \item Mean square distance:
+                        $$0.3(-1)^{2} + (0.2)(0)^{2} + (0.5)(1)^{2} = 0.8$$
+                    \item Standard deviation:
+                        $$\sqrt{ (0.8-0.02) } \approx 0.88$$
+                \end{enumerate}
+
+            \end{callout}
+        \item[(b)] What is the average distance traveled and standard deviation for 400 steps?
+            \begin{callout}{Solution:}
+                
+                Average distance for 400 steps is 
+                $$400 \times 0.2 = 80$$
+
+                We need mean distance squared and mean square distance to calculate stdev, however because of the multiplicative property of probability we can multiply our values for mean distance squared and mean square distance from part (a) by 400 to get the standard deviation:
+                $$\sqrt{ 400(0.8-0.02) } \approx 17.7$$
+            \end{callout}
+    \end{enumerate}   
+\end{homeworkProblem}

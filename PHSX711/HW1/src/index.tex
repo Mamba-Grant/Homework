@@ -1,0 +1,220 @@
+\begin{homeworkProblem}
+    Exercise 1.3.2 (Shankar) Show how to go from the basis
+    \begin{align*}
+        \ket{I} = \begin{pmatrix} 3\\0\\0 \end{pmatrix}
+            \qquad \ket{II} =\begin{pmatrix} 0\\1\\2 \end{pmatrix}
+                \qquad \ket{III} =\begin{pmatrix} 0\\2\\5 \end{pmatrix}
+    \end{align*}
+
+    to the orthonormal basis
+
+    \begin{align*}
+        \ket{I} =\begin{pmatrix} 1\\0\\0 \end{pmatrix} 
+            \qquad \ket{II} =\begin{pmatrix} 0\\1/\sqrt{ 5 }\\2/\sqrt{ 5 } \end{pmatrix} 
+                \qquad \ket{III} =\begin{pmatrix} 0\\-2/\sqrt{ 5 }\\1/\sqrt{ 5 } \end{pmatrix}
+    \end{align*}
+
+    \begin{callout}{Solution:}
+
+        \begin{enumerate}[i.]
+
+            \item Normalize the first vector, I will use $\ket{I}$ since it only has one nonzero component it becomes $\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}$. If we want to write this more formally,
+
+                    \begin{align*}
+                        \ket{I'} = \frac{\ket{I}}{|I|}, \textrm{~where~} |I|=\sqrt{ \braket{I|I} }
+                    \end{align*}
+                    
+            \item Subtract from the second vector its projection along the first, leaving behind only the part perpendicular to the first. Of course it should also be normalized.
+
+                    \begin{align*}
+                        \ket{II'} &= \ket{II} - \ket{I'}\braket{I'|II} \\
+                        &= \begin{pmatrix} 0 \\ 1 \\ 2 \end{pmatrix} - \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} (0)
+                    \end{align*}
+                    We find $\ket{I'}$ and $\ket{II}$ are orthagonal, so we just normalize:
+                    \begin{align*}
+                        \begin{pmatrix} 0 \\ 1/\sqrt{ 5 } \\ 2/\sqrt{ 5 } \end{pmatrix}
+                    \end{align*}
+
+                \item Finally for the third vector:
+
+                \begin{align*}
+                    \ket{III'} &= \ket{III} - \cancelto{0}{\ket{I'}\braket{I'|III}} - \ket{II'}\braket{II'|III} \\
+                     &= \ket{III} - \ket{II'} (12/\sqrt{ 5 }) \\ 
+                     &= \begin{pmatrix} 0 \\ 2 \\ 5 \end{pmatrix} - \begin{pmatrix} 0 \\ 12/5 \\ 24/5 \end{pmatrix} \\ 
+                         &= \begin{pmatrix} 0 \\ - 2/\sqrt{ 5 } \\ 1/\sqrt{ 5 } \end{pmatrix}
+                \end{align*}
+
+                This is already normalized.
+
+        \end{enumerate} 
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Prove $(\Omega\Lambda)^\dagger = \Lambda^\dagger \Omega^\dagger$
+
+    \begin{callout}{Solution:}
+
+        Let $f$ and $g$ be functions (in this case of x) for the operators to act on. Expanding back to the integral form can help demonstrate how things move around:
+
+        \begin{align*}
+            \braket{f|\Omega \Lambda |g} &= \braket{f|\Omega \Lambda |g} \\ 
+            &= \int_{-\infty}^{\infty} f^* \Omega \Lambda g ~dx \\
+            &= \int_{-\infty}^{\infty} f^* \left\{ \Omega \left( \Lambda g \right) \right\} ~dx \\
+            &= \int_{-\infty}^{\infty} \left( \Omega ^{\dagger}f \right)^{*}(\Lambda g) ~dx\\
+            &= \int_{-\infty}^{\infty} (\Lambda ^{\dagger}\{\Omega ^{\dagger}f\})^{*}g \,dx \\
+            &= \int_{-\infty}^{\infty} (\Lambda ^{\dagger}\Omega ^{\dagger}f)^{*}g\,dx \\
+            &= \braket{\Lambda^{\dagger}\Omega^{\dagger}f | g }
+        \end{align*}
+     \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Show that for any operator $\Omega$, $\frac{\Omega + \Omega^\dagger}{2}$ is a Hermitian operator $\frac{\Omega - \Omega^\dagger}{2}$ is an anti-Hermitian operator.
+
+    \begin{callout}{Solution:}
+
+        A Hermitian operator is one which obeys the following:
+
+        $$Q^{\dagger}=Q$$
+
+        Conversely, an anti-Hermitian operator picks up a negative sign under its Hermite conjugate:
+
+        $$Q^{\dagger}=-Q$$
+
+        Additionally, for the sake of my future self, I will leave the additional properties of Hermitian conjugates here:
+
+        \begin{align}
+            (A + B)^{\dagger} &= A^{\dagger} + B^{\dagger} \\
+            (cA)^{\dagger} &= c^*A^{\dagger} &&\textrm{where c is a scalar} \\
+            (A^{\dagger})^{\dagger} &= A
+        \end{align}
+        
+        \begin{enumerate}[i.]
+            \item For the first proof, let me begin by defining $O=\frac{\Omega + \Omega^{\dagger}}{2}$.
+
+                \begin{align*}
+                    O &\stackrel{?}{=} O^{\dagger}\\
+                    &\stackrel{?}{=} \frac{(\Omega+\Omega ^{\dagger})}{2}\\
+                    &\stackrel{?}{=}\frac{(\Omega+\Omega ^{\dagger})^{\dagger}}{2}\\
+                    &\stackrel{?}{=}\frac{\Omega ^{\dagger}+(\Omega ^{\dagger})^{\dagger}}{2} \\
+                    &\stackrel{?}{=}\frac{(\Omega ^{\dagger}+\Omega)}{2}
+                \end{align*}
+
+                This is indeed equivalent to the original operator $O$. Therefore any such combination of operators will be Hermitian due to property (1) of Hermitian operators.
+
+            \item The second proof takes the exact same approach, let's use $P=\frac{\Omega - \Omega^{\dagger}}{2}$ instead:
+
+                \begin{align*}
+                    P &\stackrel{?}{=} P^{\dagger}\\
+                    &\stackrel{?}{=} \frac{(\Omega-\Omega ^{\dagger})}{2}\\
+                    &\stackrel{?}{=} \frac{(\Omega-\Omega ^{\dagger})^{\dagger}}{2}\\
+                    &\stackrel{?}{=} \frac{\Omega ^{\dagger}-(\Omega ^{\dagger})^{\dagger}}{2} \\
+                    &\stackrel{?}{=} \frac{(\Omega ^{\dagger}-\Omega)}{2}
+                \end{align*}
+
+                This shows that it is indeed anti-Hermitian.
+
+        \end{enumerate}
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Exercise 1.6.2 (Shankar) Given $\Omega$ and $\Lambda$ are Hermitian, what can you say about (1) $\Omega\Lambda$; (2) $\Omega\Lambda + \Lambda\Omega$; (3) $[\Omega,\Lambda]$; and (4) $i[\Omega,\Lambda]$
+
+    \vspace{0.5cm} (Hint: Whether they are Hermitian or anti-Hermitian.) \\
+
+    \begin{callout}{Solution:}
+        
+        \begin{enumerate}[(1)]
+            \item The product of two Hermitian operators may not necessarily be Hermitian. Because Hermitian operators are symmetric, the product only remains symmetric if $\Omega$ and $\Lambda$ commute.
+                $$(\Omega \Lambda)^{\dagger} = \Lambda \Omega$$
+                We can see that $\Omega \Lambda = \Lambda \Omega$ only if they commute. Otherwise this is neither.
+
+            \item This is Hermitian:
+                \begin{align*}
+                    (\Omega \Lambda + \Lambda \Omega)^{\dagger} &= (\Omega \Lambda)^{\dagger} + (\Lambda \Omega)^{\dagger} \\ 
+                    &= \Lambda \Omega + \Omega \Lambda \\
+                    &= \Omega \Lambda + \Lambda \Omega 
+                \end{align*}
+
+            \item This is anti-Hermitian:
+                \begin{align*}
+                    (\Omega \Lambda - \Lambda \Omega)^{\dagger} &= (\Omega \Lambda)^{\dagger} - (\Lambda \Omega)^{\dagger} \\ 
+                    &= \Lambda \Omega - \Omega \Lambda \\
+                    &= -(\Omega \Lambda + \Lambda \Omega)
+                \end{align*}
+
+            \item This is hermitian:
+                \begin{align*}
+                    [i(\Omega \Lambda - \Lambda \Omega )]^{\dagger} &= (i \Omega \Lambda - i \Lambda \Omega )^{\dagger} \\ 
+                    &= (i \Omega \Lambda)^{\dagger} - (i \Lambda \Omega)^{\dagger} \\ 
+                    &= (\Lambda \Omega)(-i) - (\Omega \Lambda)(-i) \\ 
+                    &= i \Omega \Lambda - i\Lambda \Omega
+                \end{align*}
+        \end{enumerate}
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Exercise 1.6.5 (Shankar) Verify that $R(\frac{1}{2}\pi i)$ is unitary (orthagonal) by examining its matrix.
+
+    \vspace{0.5cm} Note that $R(\frac{1}{2}\pi i)$ designates the rotation about unit vector $i$ by $\frac{1}{2}\pi$.
+
+    \begin{callout}{Solution:}
+        
+\begin{enumerate}[i.]
+    \item \textbf{Unitary Matrices:} By definition, a unitary matrix is one which obeys the following 
+        $$\Omega ^{\dagger}\Omega = \Omega \Omega ^{\dagger} = I$$
+
+    \item \textbf{Matrix form of $R(\frac{1}{2}\pi i)$:} In the $\ket{1}, \ket{2}, \ket{3}$ basis,
+        \begin{align*}
+            R\left( \frac{1}{2}\pi i \right) \ket{1} &= \ket{1} \\ 
+            R\left( \frac{1}{2}\pi i \right) \ket{2} &= \ket{3} \\ 
+            R\left( \frac{1}{2}\pi i \right) \ket{3} &= -\ket{2}
+        \end{align*}
+        Which in matrix form is given by:
+        $$R\left( \frac{1}{2}\pi i \right) = \begin{pmatrix} 
+            1 & 0 & 0 \\ 
+            0 & 0 & -1 \\ 
+            0 & 1 & 0
+        \end{pmatrix}$$
+        Where its hermitian conjugate is
+        $$\left[R\left( \frac{1}{2}\pi i \right)\right]^{\dagger} = \begin{pmatrix} 
+            1 & 0 & 0 \\ 
+            0 & 0 & 1 \\ 
+            0 & -1 & 0
+        \end{pmatrix}$$
+        (which is really just the transpose, since it is real)
+        
+    \item Their product gives the identity matrix, therefore it is unitary:
+        \begin{align*}
+            \begin{pmatrix} 
+            1 & 0 & 0 \\ 
+            0 & 0 & 1 \\ 
+            0 & -1 & 0
+        \end{pmatrix}
+\begin{pmatrix} 
+            1 & 0 & 0 \\ 
+            0 & 0 & -1 \\ 
+            0 & 1 & 0
+        \end{pmatrix}
+            &= \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}
+        \end{align*}
+
+\end{enumerate}
+
+    \end{callout}
+
+\end{homeworkProblem}

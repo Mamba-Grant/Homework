@@ -1,0 +1,90 @@
+\documentclass{article}
+
+\title{Physics 313 Homework 12}
+\author{Grant Saggars}
+\date{\today}
+
+\usepackage{amsmath}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{geometry}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{lipsum}  
+\usepackage{caption}
+\usepackage{float}
+\usepackage{bbold}
+% \usepackage{fontspec}
+
+% \setmainfont{BespokeSerif-Regular}
+\definecolor{shadecolor}{RGB}{235,235,235}
+
+\geometry{top=1in, bottom=1in, left=1in, right=1in}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT BEGINS HERE %
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+\item (4 pts) Calculate the average radius of a hydrogen atom in the first excited state with $l = 1$.
+
+\begin{callout}{Solution:}
+
+    A hydrogen atom in the first excited state with $l=1$ has an average radius:
+    $$ R_{avg}(r) = \int_{0}^{\infty} rP(r) ~dr = \int_{0}^{\infty} r^3 \left( \frac{1}{ \sqrt{ 3 } (2a_0)^{3/2}} \frac{r}{a_0} e^{-r/2a_0} \right)^{2} ~dr $$
+    Numerically, this comes out to be approximately 25 nm.
+\end{callout}
+
+\item (3 pts) What is the most probable radius of a hydrogen atom in the first excited state with $l = 1$ and $l = 0$?
+
+\begin{callout}{Solution:}
+
+    A hydrogen atom in the first excited state with $l$ = 0 has a radial probability:
+    $$ P(r) = r^2R^2(r) = r^2 \left( \frac{1}{(2a_0)^{3/2}} \left( 2 - \frac{r}{a_0} \right) e^{-r/2a_0} \right)^{2}$$
+    The radial probability is at a maximum when $r$ is approximately 27.699 nm.
+
+    A hydrogen atom in the first excited state with $l$ = 1 has a radial probability:
+    $$ P(r) = r^2R^2(r) = r^2 \left( \frac{1}{ \sqrt{ 3 } (2a_0)^{3/2}} \frac{r}{a_0} e^{-r/2a_0} \right)^{2} $$
+    The radial probability is at a maximum at exactly $r = 4a_0 \approx 21.16$ nm.
+\end{callout}
+
+\item (2 pts) What is the configuration of a magnesium atom (Z = 12)?
+
+\begin{callout}{Solution:}
+    
+    A magnesium atom has 12 electrons, so the configuration is 1s, 2s, 2p, 3s. 2 electrons fill subshells 1s and 2s, 6 fill 2p, and 2 more occupy 3s.
+
+    \begin{itemize}
+        \item In s1: $n$=1, $l$=0, implying two electrons with opposite spin
+        \item In s2: $n$=2, $l$=0, implying the same
+        \item In 2p: $n$=2, $l$=1, implying $2l+1=3 \times 2 = 6$ combinations of electrons
+        \item In 3s: $n$=3, $l$=1, implying the same
+    \end{itemize}
+
+\end{callout}
+
+\item (3 pts) Consider an electron in an infinite square well with a length of L = 2.0 nm.  
+The electron is in a state with a wavefunction of the form
+\begin{equation}
+\psi(x) = e^{i K x} \frac{1}{\sqrt{L}},  
+\end{equation}
+where $K = 10^{10} \ \mathrm{m}^{-1}$. What is the probability that when we measure the energy of the electron, we find it to be in the ground state?
+
+\begin{callout}{Solution:}
+    
+
+\end{callout}
+
+\end{enumerate}
+
+\end{document}
+
+\end{document}

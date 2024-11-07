@@ -1,0 +1,196 @@
+\documentclass{article}
+
+
+   \usepackage{amsmath}
+   \usepackage{import}
+   \usepackage{pdfpages}
+   \usepackage{transparent}
+   \usepackage{xcolor}
+   \usepackage{framed}
+   \usepackage{enumerate}
+   \usepackage{cancel}
+
+\newcommand{\incfig}[2][1]{%
+        \def\svgwidth{#1\columnwidth}
+        \import{./figures/}{#2.pdf_tex}
+}
+
+\definecolor{shadecolor}{RGB}{248,248,248}
+
+\newenvironment{callout}[1] { \begin{shaded*} \textbf{#1} }
+{ \end{shaded*} }
+
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+\section{$y'' - 2y' - 3y = 3e^{2t}$} 
+
+\begin{callout}{Solution:}
+\begin{enumerate}
+    \item Homogeneous Solution:
+        \begin{align*}
+            r^2 - 2r- 3 &= 0 \implies r_1 = 3,\, r_2 = -1 \\
+            y_c &= c_1e^{3t}+c_2e^{-t}
+        \end{align*}
+
+    \item Particular Solution:
+        \begin{align*}
+            \cancel{4Ae^{2t}} - \cancel{2(2Ae^{2t})} - 3Ae^{2t} \implies A = 1 &&\begin{array}{l}
+                y_p = Ae^{2t} \\  
+                y'_p = 2Ae^{2t} \\
+                y''_p = 4Ae^{2t} \\
+            \end{array} 
+        \end{align*}
+
+    \item Final Solution: 
+        \begin{align*}
+            y(t) = y_c(t) + y_p(t) \quad = \quad c_1e^{3t}+c_2e^{-t} + e^{2t}
+        \end{align*}
+\end{enumerate} 
+\end{callout}
+
+\section{$y''+y'-6y=12e^{3t}+12e^{-2t}$}
+\begin{callout}{Solution:}
+    \begin{enumerate}
+        \item Homogeneous Solution:
+            \begin{align*}
+                r^2 + r - 6 &= 0 \implies r = -3,\, 2 \\
+                y_c &= c_1e^{-3t} + c_2e^{2t}
+            \end{align*}
+            
+        \item Particular Solution:
+            \begin{align*}
+                Ae^{3t} + 3Ae^{3t} - 6Ae^{3t} = 12e^{3t} \implies A = -6 &&\begin{array}{l} 
+                    y_{p1} = Ae^{3t} \\
+                    y'_{p1} = 3Ae^{3t} \\
+                    y''_{p1} = 9Ae^{3t} \\
+                \end{array} \\
+                Be^{-2t} - 2Be^{-2t} - 4Be^{-2t} = 12e^{-2t} \implies B = -12/5 &&\begin{array}{l} 
+                    y_{p2} = Be^{-2t} \\
+                    y'_{p2} = -2Be^{-2t} \\
+                    y''_{p2} = 4Ae^{-2t} \\
+                \end{array}
+            \end{align*}
+
+        \item Final Solution:
+            \begin{align*}
+                c_1e^{-3t} + c_2e^{2t} -6e^3t - \frac{12}{5}e^{-2t} 
+            \end{align*}
+    \end{enumerate}
+\end{callout}
+
+% \section{$y'' + y' - 2y = 4t^2-2t$} 
+% \begin{callout}{Solution:}
+%     \begin{enumerate}
+%         \item Homogeneous Solution:
+%             \begin{align*}
+%                 r^2 + r - 2 &= 0 \implies r = 1,\, r = -2 \\
+%                 y_c &= c_1e^{t} + c_2e^{-2t}
+%             \end{align*}
+%
+%         \item Particular Solution:
+%             \begin{align*}
+%                 [At^2+Bt+C] + [2At+B] - [2(2A)] = 4t^2 + 0t + 0  &&\begin{array}{l} 
+%                                                     y_{p1} = At^2+Bt+C \\
+%                                                     y'_{p1} = 2At+B \\
+%                                                     y''_{p1} = 2A
+%                                                 \end{array} \\
+%                 At^2 = 4t^2 \implies A = 4 \\
+%                 2\cancelto{4}{A}t + Bt = 0 \implies B = -8 \\
+%                 \cancelto{-8}{B} + C - 4\cancelto{4}{A} = 0 \implies C = 16 \\
+%                 \\ \hline \\
+%                 [At+B]-A-0 = -2t &&\begin{array}{l} 
+%                                     y_{p2} = At+B \\
+%                                     y'_{p2} = A \\
+%                                     y''_{p2} = 0
+%                                 \end{array}\\
+%                 At = -2t \implies A = -2 \\
+%                 B - \cancelto{-2}{A} = 0 \implies B = -2 \\
+%             \end{align*}
+%
+%         \item Final Solution:
+%             \begin{align*}
+%                 c_1e^t+c_2e^{-2t} + 4t^2 -8t + 16 -2t -2
+%             \end{align*}
+%     \end{enumerate}
+% \end{callout}
+
+\newpage
+\setcounter{section}{6} \section{$y'' + y = 3\sin(2t)+t\cos(2t)$}
+\begin{callout}{Solution:}
+    \begin{enumerate}
+        \item Homogeneous Solution:
+            \begin{align*}
+                r^2 + r = 0 \implies r = -i \\
+                y_c = c_1 \cos t + c_2 \sin t
+            \end{align*}
+
+        \item Particular Solution:
+            \begin{align*}
+                -3A \sin(2t) - 3B\cos(2t) = 3\sin(2t) &&\begin{array}{l}
+                    y_{p1} = A\sin(2t)+B\cos(2t) \\
+                    y'_{p1} = 2A\cos(2t) - 2B\sin(2t) \\
+                    y''_{p1} = -4A\sin(2t) - 4B\cos(2t)
+                \end{array} \\
+                \implies A = -1,\, B = 0 \\ 
+            \end{align*}
+
+                \vspace{-1.4cm}
+            \begin{align*}
+                \\ \hline \\
+                &\begin{array}{l}
+                    y_{p2} = Ct\cos(2t) + Dt\sin(2t) \\
+                    y'_{p2} = C\cos(2t) - 2Ct\sin(2t) + D\sin(2t) + 2Dt\cos(2t) \\
+                    y''_{p2} = -4C\sin(2t) - 4Ct\cos(2t) + 4D\cos(2t) - 4Dt\sin(2t)
+                \end{array} \\
+            \end{align*}
+
+                \vspace{-1.2cm}
+            \begin{align*}
+                -4C\sin(2t) &- 4Ct\cos(2t) + 4D\cos(2t) \\ &- 4Dt\sin(2t) + Ct\cos(2t) + Dt\sin(2t) = t\cos(2t) \\
+                \implies &-4C\sin(2t) + 4D\cos(2t) \\ &- 3Dt\sin(2t) - 3Ct\cos(2t) = t\cos(2t) \\
+                \implies & C = - \frac{t\cos(2t) - 3Dt\sin(2t) - 4D\cos(2t)}{4\sin(2t) + 3t\cos(2t)}, \\
+                \implies & D = \frac{t\cos(2t) + 3Ct\cos(2t) + 4C\sin(2t)}{-3t\sin(2t) + 4\cos(2t)}
+            \end{align*}
+
+        \item Final Solution:
+            $$y(t) = y_c + y_{p1} + y_{p2}$$
+    \end{enumerate}
+\end{callout}
+
+\newpage
+\setcounter{section}{11} \section{$y''-2y'+y=te^t+4, \qquad y(0)=0, y'(0)=2$}
+\begin{callout}{Solution:}
+    \begin{enumerate}
+        \item Homogeneous Solution:
+            \begin{align*}
+                r^2 - 2r + 1 &= 0 \implies r = 1 \\
+                y_c &= c_1e^t + c_2te^t,\, \qquad y'_c = c_1e^t + c_2(e^t+te^t) \\
+                y_c(0) &= 0 \implies c_1 = 0 \\
+                y'_c(0) & = 2 \implies c_2 = 2 \\
+                \implies y_c &= 2te^t
+            \end{align*}
+        \item Particular Solution:
+            \begin{align*}
+                A(2e^t+te^t) - 2A(e^t+te^t) + Ate^t = te^t &&\begin{array}{l}
+                    y_{p1} = Ate^t \\
+                    y'_{p1} = A(e^t+te^t) \\
+                    y''_{p1} = A(2e^t+te^t) 
+                \end{array} \\
+                \implies \text{True for all $A$.} \\
+                \\ \hline \\
+                B = 4 &&\begin{array}{l}
+                    y_{p2} = B \\
+                    y'_{p2} = 0 \\
+                    y''_{p2} = 0 
+                \end{array} \\
+            \end{align*}
+
+        \item Final Solution:
+            \begin{align*}
+                y(t) = (2te^t) + (A(2e^t+te^t) - 2A(e^t+te^t) + Ate^t) + (4)
+            \end{align*}
+    \end{enumerate}
+\end{callout}
+
+\end{document}

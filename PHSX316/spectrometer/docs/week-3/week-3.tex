@@ -1,0 +1,46 @@
+\documentclass{article}
+
+\title{Week 3 Writeup}
+\author{Grant Saggars}
+\date{\today}
+
+\usepackage{amsmath}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{geometry}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{lipsum}  
+\usepackage{caption}
+\usepackage{float}
+\usepackage{bbold}
+% \usepackage{fontspec}
+
+% \setmainfont{BespokeSerif-Regular}
+\definecolor{shadecolor}{RGB}{235,235,235}
+
+\geometry{top=1in, bottom=1in, left=1in, right=1in}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT BEGINS HERE %
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+
+\section{Housing \& Mounts}
+I finished and printed my first mounts over break. I spent this week revising my designs and I should be able to print everything monday of next week to finish assembly, since my tolerances were slightly off, and I had to rethink my camera mount.
+
+\section{Software}
+The rest of my weekend will be spent implementing calibration tools. This simply involves (1) determining a way to correlate pixel exposure to spectral energy intensity for my camera, (2) converting from pixel location to wavelength. These will all end up mathematically being a projection from the values in my buffers to the intensity/wavelength. Because of the nature of my data, this "projection" will be a very straightforward multiplication from pixel index to the desired unit value. 
+
+\section{Timeline}
+I feel behind schedule on where I would have liked to have been. Construction of the housing and case has taken two weeks longer than I would have liked, due to some delays getting full access to the 3D printer and design difficulties with the scale of my webcam lens. As a result, next week will have to be very busy to compensate. The weather fortunately seems quite good, so I should be able to get the measurements I need.
+
+
+\end{document}

@@ -1,0 +1,16 @@
+using IMinuit, Plots, CSV, DataFrames
+
+h = 6.626e-34
+kb = 1.381e-23
+c = 3e8
+
+dist(λ, T) = (8*π*h*c)/(λ^5) * (exp( (h*c)/(λ*kb*T) ) - 1)^(-1)
+
+# x = 0:1e-6:1e-4
+# y = dist.(x, 100)
+
+df = DataFrame(CSV.File("dump1.csv", header=false))
+
+y = df[2,:]
+
+# Create a sample dataframe

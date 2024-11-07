@@ -1,0 +1,270 @@
+\documentclass[12pt]{article}
+
+
+\newcommand{\hmwkTitle}{Introduction to Spectroscopy}
+\newcommand{\hmwkDueDate}{\today}
+\newcommand{\hmwkClass}{CHEM 130}
+\newcommand{\hmwkAuthorName}{\textbf{Grant Saggars}}
+
+
+
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+\setlength{\headheight}{15pt}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+
+\usepackage{float}
+\usepackage{caption}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{XCharter}
+
+\usetikzlibrary{automata,positioning}
+
+\usepackage{geometry}
+\geometry{top=1in, bottom=1in, left=1in, right=1in} % Adjust margins as needed
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.75in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+% \setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    % \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    % \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+% \newcommand{\exitProblemHeader}[1]{
+%     \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+%     \stepcounter{#1}
+%     \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+% }
+
+% \setcounter{secnumdepth}{0}
+% \newcounter{partCounter}
+% \newcounter{homeworkProblemCounter}
+% \setcounter{homeworkProblemCounter}{1}
+% \nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Callout Box
+%
+
+\definecolor{shadecolor}{RGB}{235,235,235}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%
+% Title Page
+%
+
+\title{
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDueDate}\\
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{multicols}{2}
+	\newpage
+	\section{Introduction}
+
+	\subsection{Background}
+
+	Spectroscopy is a useful method of analysis that involves analyzing the component wavelengths of light and their interactions with matter. For example, the relative concentration and composition of substances can be determined from the measured absorption and transmission of a material. The spectrometer we have been using works with wavelengths of light mostly in the visible spectrum (400-700 nm). For comparison, microwave involves frequencies 300 MHz-300 GHz, and X-ray involves frequencies of $3\times10^{16}$ Hz to $3\times10^{19}$ Hz.
+
+	In this lab, we applied properties of transmittance and absorbance, which are effectively inverses of one another. Transmittance is a measure of how much light energy for each wavelength is transmitted through a substance. Absorption is the amount of light energy for each wavelength that is absorbed by the substance. In practice, the coefficient of absorption increases as the concentration of "opaque" substance increases. Transmittance decreases, as it is inversely proportional to absorbance.
+
+	\subsection{Instrumentation}
+
+	A simple spectrometer uses a diffraction grating (or theoretically a prism) to project light onto an optical sensor. The device is calibrated in software to convert pixel space to wavelength space, as the different bands of light are separated across the sensor surface. Elements stored in vacuum tubes are used in calibration as when excited they have a very precisely known emission spectra which is commonly derived by students in introductory quantum mechanics classes. This is a useful device as it is what allows us to measure absorption and transmission.
+
+	\subsection{Relevant Mathematics}
+	\begin{itemize}
+		\item Beer's Law: The most common expression of this law relates the optical attenuation of a physical material to the path length through the absorptivity of the substance.
+		      \begin{align*} \log(i_0/i) = a = \epsilon l c \tag{1} \end{align*}
+		\item Equivalence of Volume-Concentration: Another important equation of note in dilution is the following relation between initial volume/concentration and a target volume/concentration:
+		      \begin{align*} c_0 v_0 = c_1 v_1 \tag{2} \end{align*}
+
+	\end{itemize}
+
+	\subsection{Objectives} \label{sec:objectives}
+
+	This lab involved the analysis of various prepared solutions' transmittance, investigation of the effects of sample concentration and absorbance using copper II nitrate at concentrations of 0.1 M, 0.05 M, 0.025 M, 0.015 M, 0.01 M, and estimation of a sample concentration using spectroscopy.
+
+	\section{Procedure}
+
+	The process for completing the objectives outlined in Section \ref{sec:objectives} involved first obtaining prepared cuvettes with solutions labelled 1, 2, 3, 4. They were subsequently inserted into the spectrometer after calibrating with an additional cuvette filled with deionized water. Plots of transmittance and absorbance were measured using LoggerPro, and peaks were noted in lab notes.
+
+	Next, several cuvettes were prepared with concentrations of copper II nitrate (0.1 M, 0.05 M, 0.025 M, 0.015 M, 0.01 M). This was done by calculating necessary quantities of water and copper II nitrate to produce such concentrations. This was done with Equation (2), which was rearranged to be in terms of $c_0$, $c_1$, and $v_1$, such that the necessary volume of copper II nitrate could be added to 2 mL of deionized water in a cuvette to achieve the desired concentration. In practice, this involved pouring some copper II nitrate into a 40 mL beaker, from which 1, 0.5, 0.3, and 0.2 mL were collected using a pipette and dispensed into a cuvette. After preparing the cuvettes, absorbance was measured and recorded.
+
+	Third, a cuvette containing an unknown concentration of copper II nitrate was obtained. From data collected in the previous steps, a linear fit was created relating absorbance to concentration. Using the measured absorbance for the sample of unknown concentration, concentration was estimated.
+
+	Finally, cuvettes of $1\times10^{-3}$ M $Fe(NO_3)_3$ and $5\times10^{-3}$ M $KSCN$ were also analyzed using the spectrometer to investigate what occurs after they are reacted.
+
+\end{multicols}
+
+\section{Results}
+
+\subsection{Transmittance and Absorbance of Colored Sample Set}
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{||c c c c c||}
+		\hline
+		Solution & Color  & $\lambda_{t}$ (nm) & $\lambda_{t, \text{max}}$ (nm) & $\lambda_{a, \text{max}}$ (nm) \\
+		\hline\hline
+		1        & Red    & 300-900+           & 358, 775                       & 300                            \\
+		\hline
+		2        & Blue   & 200-800            & 516                            & 100                            \\
+		\hline
+		3        & Green  & 100-900+           & 346, 497, 900                  & 200                            \\
+		\hline
+		4        & Yellow & 450-900+           & 900+                           & 100                            \\
+		\hline
+	\end{tabular}
+	\caption{Relevant transmission ranges and maxima in terms of wavelength, as well as max absorption wavelengths for the colored set of solutions.}
+	\label{table:1}
+\end{table}
+
+\subsection{Peak Absorbances for Each Concentration of Copper II Nitrate}
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{||c c c||}
+		\hline
+		Concentration (M) & $\lambda_{a, \text{max}}$ (nm) & Volume (mL) \\
+		\hline\hline
+		0.100             & (0-200)                        & 2.5 mL      \\
+		\hline
+		0.050             & (0-300)                        & 3.0 mL      \\
+		\hline
+		0.025             & (0-300)                        & 2.5 mL      \\
+		\hline
+		0.015             & (0-300)                        & 2.3 mL      \\
+		\hline
+		0.010             & (0-200)                        & 2.2 mL      \\
+		\hline
+		Unknown           & 252                            & 3.0 mL      \\
+		\hline
+	\end{tabular}
+	\caption{Maximum absorption wavelengths for each concentration of copper II nitrate. Due to instrument limitations, however, this data is not very useful for curve fitting, as it is impossible to precisely determine a peak due to clipping with intensity in LoggerPro.}
+	\label{table:2}
+\end{table}
+
+\subsection{Beer’s Law Linear Plot}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=8cm]{fig1.png}
+	\caption{Plot produced with the data from Table \ref{table:2}, using mean peak absorbances as there was no clear peak. There is no clear trend in this data, and the trend does not follow the predicted trend. See Section \ref{sec:discussion} for more discussion on this.}
+	\label{fig:1}
+\end{figure}
+
+\subsection{Calculation of Unknown Concentration Copper II Nitrate}
+
+Assuming the correctness of the trendline prediction ($a = -275.23c + 141.01$), it ought to be possible to make a prediction. However, in many cases, this will give a non-physical value for concentration (negative), so I will impose the boundary condition that the concentration ought to be positive, producing the equation:
+
+$$ c = \left|\frac{a - 141.01}{275.23}\right| $$
+
+This gives a predicted concentration of 0.404. Attempting to calculate relative error gives:
+
+\begin{align*}
+	\text{Relative error} = \left| \frac{c_{\text{est}} - c_{\text{real}}}{c_{\text{real}}} \right| = \frac{0.404 \text{~M} - 0.030 \text{~M}}{0.030 \text{~M}} = 1230\% \tag{3}
+\end{align*}
+
+\subsection{Spectral Observations of $\textrm{Fe(NO$_3$)$_3$}$ \& KSCN}
+\begin{table}[ht!]
+	\centering
+	\begin{tabular}{||c c c||}
+		\hline
+		Solution       & Concentration (M) & $\lambda_{a, \text{max}}$ (nm) \\
+		\hline\hline
+		Fe(NO$_3$)$_3$ & $1\times10^{-3}$  & 200                            \\
+		\hline
+		KSCN           & $5\times10^{-3}$  & 500                            \\
+		\hline
+	\end{tabular}
+	\caption{Relevant concentration and peak absorption wavelength in nanometers.}
+	\label{table:3}
+\end{table}
+
+\begin{multicols}{2}
+	\section{Discussion} \label{sec:discussion}
+
+	This experiment attempted to apply spectroscopy to analyze spectral data of various concentrations of Cu$_{2}$(NO$_{3}$)$_{2}$, Fe(NO$_3$)$_{3}$, and KSCN. To do so, Beer's law and equivalence of volume-concentration were applied.
+
+	While all analysis techniques were valid in principle, the major conclusion that would have been drawn from this experiment is the predicted concentration of the unknown molarity of copper II nitrate. The value predicted by the methods which led to the equation in \ref{fig:1} was catastrophic, as indicated by the enormous relative error (Equation 3). A much more accurate result could have been obtained by either getting a spectrometer with a higher intensity range, calibrating in a way such that the intensity is reduced by some constant finite amount (which would be incredibly easy in other software as there is almost certainly a way to control the optical sensor's exposure), or using the entire spectral absorption curve to fit data instead of a singular peak. This instrumental error prevents conclusions from being drawn.
+
+	In a much more ideal case, one should have been able to conclude that concentration increases the coefficient of absorption, producing a similar distribution with different intensity values between concentrations, ordered from greatest at high concentrations to lowest at low concentrations.
+
+	Part of this experiment allows a much more satisfying conclusion to be drawn: there is a clear inverse relationship between absorbance and transmittance. In the spectral transmission and absorption plots (not included in this document as they did not save), it can be observed that where the transmission drops the absorption peaks.
+
+	Aside from the instrumental error, there was likely some small degree of measurement uncertainty in the process of dilution. There was an approximate uncertainty of $\pm 0.2$ mL, and there was difficulty using the pipettes provided, as they were of gargantuan size. An additional consequence of this size is that there was a substantial amount of copper II nitrate residue in the pipette between transfers. Ideally, smaller glass pipettes could have been used and discarded between transfers to ensure maximum accuracy, although this would likely be overkill considering the significance of the instrumental error.
+
+\end{multicols}
+
+\section{References}
+\begin{enumerate}[(1)]
+	\item Dr. Applegate, lab procedure - Introduction to Spectroscopy
+\end{enumerate}
+
+\end{document}

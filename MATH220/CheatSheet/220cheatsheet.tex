@@ -1,0 +1,185 @@
+\documentclass{article}
+
+\title{MATH 220 Cheat Sheet}
+\author{Grant Saggars}
+\date{\today}
+
+\usepackage{amsmath}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{geometry}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{lipsum}  
+\usepackage{caption}
+\usepackage{float}
+\usepackage{bbold}
+% \usepackage{fontspec}
+
+% \setmainfont{BespokeSerif-Regular}
+\definecolor{shadecolor}{RGB}{235,235,235}
+
+\geometry{top=1in, bottom=1in, left=1in, right=1in}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT BEGINS HERE %
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+
+\begin{multicols}{2}
+
+\begin{callout}{Homogeneous Equations:}
+    \begin{align*}
+        y'' + y' - 6y &= 0 \to r^{2} + r - 6 = 0 \\
+        \implies &(r+3)(r-2) = 0 \\
+        y_c &= Ae^{-3t} + Be^{2t}
+    \end{align*}
+
+    The solution depends on the roots:
+
+    \vspace{-0.4 cm} \begin{align*}
+        \begin{array}{rl} 
+            r_1 = r_2: & y_c = c_1e^{r} + c_2te^{r} \\
+            r_1 \neq r_2: & y_c = c_1e^{r_1} + c_2e^{r_2} \\
+            \{r_1, r_2\} \in \mathbb{C}: & y_c = e^{\alpha t} c_1\cos(\beta t) + c_2\sin(\beta t) 
+        \end{array}
+    \end{align*}
+
+    For matrices the solution is of the form:
+    \vspace{-0.4cm} \begin{align*}
+        x_1(t) = c_1 
+    \end{align*}
+\end{callout}
+
+\begin{callout}{Wronskian:}
+
+    Suppose $y_1$ and $y_2$ are solutions. If given initial conditions to find constants $c_1$ and $c_2$ $\in y = c_1y_1(t) + c_2y_2(t)$ which satisfy the differential equation if and only if the Wronskian is nonzero.
+
+    \vspace{-0.4cm} \begin{align*}
+        W = \left| \begin{array}{cc} y_1 & y_2 \\ y_1' & y_2' \end{array} \right|
+    \end{align*}
+\end{callout}
+
+\begin{callout}{Variation of Parameters:}
+    \begin{align*}
+        y_p = u_1y_1 + u_2y_2
+    \end{align*}
+
+    \begin{itemize}
+        \item Variation of parameters is a method to find a particular solution. The first equation of the system is the characteristic (homogeneous) solution: $u_1y_1 + u_2y_2=0$. 
+        \item Substitute solutions 1 and 2 from characteristic solution, then differentiate and substitute in equation to obtain the second equation of the system.
+    \end{itemize}
+
+    When it is not necessary to solve a system of equations (which depends on the function of $t$), the method is called undetermined coefficients.
+\end{callout}
+\end{multicols}
+
+\newpage
+\section{Practice Problems}
+\begin{enumerate}
+
+\item Compute the determinant of the matrix
+$A = \begin{pmatrix} -1 & 1 & 2 \\ 4 & 3 & 5 \\ 8 & 6 & 7 \end{pmatrix}$
+
+\item Consider the following differential equation for $t > 0$,
+$y'' - 2y' + y = te^t$ with $y(0) = 1, y'(0) = 1$
+\begin{enumerate}
+\item Find the general solution
+    \begin{callout}{Solution:}
+        
+        Using undetermined coefficients:
+        \begin{align*}
+            y'' -2y' + y &= 0 \implies (r-1)(r-1) = 0 \\
+            y_c &= c_1e^t + c_2te^t \\
+        \end{align*}
+        \vspace{-0.7cm} \begin{align*}
+            \begin{array}{rl}  \end{array}
+            y_p &= t^2 (At+B)e^t \to (At^2 + Bt^2)e^t \\
+            y_p' &= (3At^2+2Bt)e^t + (At^3+Bt^2)e^t \\
+            y_p'' &= e^t(At^3+t^2(3A+B)+2Bt) + te^t(3At^2+2t(3A+B)+2B)
+        \end{align*}
+        substituting and simplifying:
+        \begin{align*}
+            \cancel{e^t}(At^3+t^2(6A+\cancelto{0}{B})+2t(\cancelto{0}{2B}+3A)+\cancelto{0}{2B}) &- 2\cancel{e^t}(At^3+t^2(3A+B)+\cancelto{0}{2B}t) \\ 
+             &+ \cancel{e^t}(At^3+\cancelto{0}{B}t^2) = t\cancel{e^t} \\
+             \implies 2B = 0 \quad \textrm{(because 2B is the only constant)} \\
+             \implies A = \frac{1}{6} \\
+             y_p = \frac{1}{6}t^{3}e^{t}
+        \end{align*}
+        Therefore the general solution is:
+        \begin{align*}
+            y_c + y_p = c_1 e^t + c_2 te^t + \frac{1}{6}t^3e^t
+        \end{align*}
+    \end{callout}
+\item Compute the Wronskian of a fundamental set of solutions
+    \begin{callout}{Solution:}
+
+        \begin{align*}
+            W = \left| \begin{array}{cc} y_1 & y_2 \\ y_1' & y_2' \end{array} \right| = \left| \begin{array}{cc} e^t & te^t \\ e^t & e^t + te^t \end{array} \right| = e^{2t} \neq 0
+        \end{align*}
+    \end{callout}
+\end{enumerate}
+
+\newpage
+\item Find the general solution of the given system $x' = \begin{pmatrix} 3 & 6 \\ -1 & -2 \end{pmatrix}x$
+    \begin{callout}{Solution:}
+        \begin{enumerate}[1.]
+            \item Eigenvalues:
+                \begin{align*}
+                    \begin{array}{|cc|} 3-\lambda & 6 \\ -1 & -2-\lambda \end{array} \implies \lambda = \{ 0, 1 \} \\
+                \end{align*}
+            \item Eigenvectors:
+                \begin{align*}
+                    \vec{\lambda} = \left\{ \begin{pmatrix} -3 \\ 1 \end{pmatrix}, \begin{pmatrix} -2 \\ 1 \end{pmatrix} \right\}
+                \end{align*} 
+            \item Solution:
+                \begin{align*}
+                    x(t) = c_1 \begin{pmatrix} -2 \\ 1 \end{pmatrix} e^{0} + c_2 \begin{pmatrix} -3 \\ 1 \end{pmatrix} e^t
+                \end{align*}
+
+        \end{enumerate}
+    \end{callout}
+\item Find the general solution of the given system $x' = \begin{pmatrix} 4 & 2 \\ 8 & -4 \end{pmatrix}x$
+
+\item Given the system $x' = \begin{pmatrix} 2 & -5 \\ 1 & -2 \end{pmatrix}x$
+\begin{enumerate}
+\item Find the fundamental matrix for the system
+    \begin{callout}{Solution:}
+        \begin{align*}
+             \begin{pmatrix} 2-i & -5 \\ 1 & -2-i \end{pmatrix} &= \begin{pmatrix} 0 \\ 0 \end{pmatrix} \\
+             x_1 = (2+i)m_2 \implies m_2 &= 1, \quad m_1 = 2+i \\
+             m_1 = \begin{pmatrix} 2 \\ 1 \end{pmatrix} + i \begin{pmatrix} 1 \\ 0 \end{pmatrix} \implies x_1 &= \left(\begin{pmatrix} 2 \\ 1 \end{pmatrix} + i \begin{pmatrix} 1 \\ 0 \end{pmatrix} \right)e^{it}
+        \end{align*}
+        I would like to try solving this my own way.
+    \end{callout}
+
+\newpage
+\item Find the fundamental matrix $\Phi(t)$ satisfying $\Phi(0)$
+    \begin{callout}{Solution:}
+        
+        Given that the general solution is:
+        \begin{align*}
+            x(t) &= \begin{pmatrix} 2 \cos t - \sin t & 2 \sin t + \cos t \\ \cos t & \sin t \end{pmatrix} \begin{pmatrix} c_1 \\ c_2 \end{pmatrix}  = \Psi(t) \\
+            \Psi(0) &= \begin{pmatrix} 2 & 1 \\ 1 & 0 \end{pmatrix} \implies \Psi^{-1}(0) = - \begin{pmatrix} 0 & -1 \\ -1 & 2 \end{pmatrix}
+        \end{align*}
+        Now, it follows that $\Phi = \Psi(t) \Psi^{-1}(0)$:
+        \begin{align*}
+            &= \begin{pmatrix} 2 \cos t - \sin t & 2 \sin t + \cos t \\ \cos t & \sin t \end{pmatrix} \begin{pmatrix} 0 & 1 \\ 1 & -2 \end{pmatrix} \\
+            \Phi &= \begin{pmatrix} 2 \sin t + \cos t & -t \sin t \\ \sin t & \cos t - 2 \sin t \end{pmatrix} \\
+            \Phi(0) &= \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}
+        \end{align*}
+    \end{callout}
+\end{enumerate}
+
+\item Find the solution of the initial value problem $x' = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}x, \quad x(0)=\begin{pmatrix} 2 \\ 0 \end{pmatrix}$
+
+\end{enumerate}
+
+\end{document}

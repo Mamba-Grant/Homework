@@ -1,0 +1,406 @@
+\documentclass{article}
+
+
+\newcommand{\hmwkTitle}{Homework \#6}
+\newcommand{\hmwkDueDate}{\today}
+\newcommand{\hmwkClass}{MATH 526}
+\newcommand{\hmwkAuthorName}{\textbf{Grant Saggars}}
+
+
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+
+\usepackage{float}
+\usepackage{caption}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{XCharter}
+
+\usetikzlibrary{automata,positioning}
+
+\usepackage{geometry}
+\geometry{top=1in, bottom=1in, left=1in, right=1in} % Adjust margins as needed
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.75in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Callout Box
+%
+
+\definecolor{shadecolor}{RGB}{235,235,235}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%
+% Title Page
+%
+
+\title{
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDueDate}\\
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{homeworkProblem}[1]
+	Given a continuous uniform distribution with support on the interval $[A, B]$, we want to show that:
+
+	\begin{enumerate}[(a)]
+		\item $\mu = \frac{A + B}{2}$
+		      \begin{callout}{Solution:}
+			      $$\frac{1}{b-a}\int_a^b x ~dx = \frac{a+b}{2}$$
+		      \end{callout}
+		\item $\sigma^2 = \frac{(B - A)^2}{12}$
+		      \begin{callout}{Solution:}
+			      \begin{align*}
+				      \sigma ^{2} & = \langle x \rangle^2 - \langle x^2 \rangle                            \\
+				                  & = \left( \frac{a+b}{2} \right)^{2} - \frac{1}{b-a}\int_{a}^{b} x^2 ~dx \\
+				                  & = \frac{(b-a)^{2}}{12}
+			      \end{align*}
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[4]
+	A bus arrives every 10 minutes at a bus stop. It is assumed that the waiting time for a particular individual is a random variable with a continuous uniform distribution.
+
+	\begin{enumerate}[(a)]
+		\item What is the probability that the individual waits more than 7 minutes?
+		      \begin{callout}{Solution:}
+			      $$\int_{7}^{10} \frac{1}{10} ~dx = \frac{3}{10}$$
+		      \end{callout}
+		\item What is the probability that the individual waits between 2 and 7 minutes?
+		      \begin{callout}{Solution:}
+			      $$\int_{2}^{7} \frac{1}{10} ~dx = \frac{1}{2}$$
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[5]
+	Given a standard normal distribution, find the area under the curve that lies:
+
+	\begin{enumerate}[(a)]
+		\item to the left of $z = -1.39$;
+		      \begin{callout}{Solution:}
+			      For $\sigma = 1$, $\mu=0$, $-1.39 \leq x$ which equals 0.0823.
+		      \end{callout}
+		\item to the right of $z = 1.96$;
+		      \begin{callout}{Solution:}
+			      0.0249979
+		      \end{callout}
+		\item between $z = -2.16$ and $z = -0.65$;
+		      \begin{callout}{Solution:}
+			      0.258-0.0154 = 0.2426
+		      \end{callout}
+		\item to the left of $z = 1.43$;
+		      \begin{callout}{Solution:}
+			      0.924
+		      \end{callout}
+		\item to the right of $z = -0.89$;
+		      \begin{callout}{Solution:}
+			      0.813
+		      \end{callout}
+		\item between $z = -0.48$ and $z = 1.74$.
+		      \begin{callout}{Solution:}
+			      0.959-0.316=0.643
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[6]
+	Find the value of $z$ if the area under a standard normal curve:
+
+	\begin{enumerate}[(a)]
+		\item to the right of $z$ is $0.3622$;
+		      \begin{callout}{Solution:}
+			      z=0.353
+		      \end{callout}
+		\item to the left of $z$ is $0.1131$;
+		      \begin{callout}{Solution:}
+			      z=-1.21
+		      \end{callout}
+		\item between $0$ and $z$, with $z > 0$, is $0.4838$;
+		      \begin{callout}{Solution:}
+			      z=2.14
+		      \end{callout}
+		\item between $-z$ and $z$, with $z > 0$, is $0.9500$.
+		      \begin{callout}{Solution:}
+			      z = $\pm$ 1.96
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[7]
+	Given a standard normal distribution, find the value of $k$ such that:
+
+	\begin{enumerate}[(a)]
+		\item $P(Z > k) = 0.2946$
+		      \begin{callout}{Solution:}
+			      k=0.540
+		      \end{callout}
+		\item $P(Z < k) = 0.0427$
+		      \begin{callout}{Solution:}
+			      k=-1.72
+		      \end{callout}
+		\item $P(-0.93 < Z < k) = 0.7235$
+		      \begin{callout}{Solution:}
+			      k=0.900
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[8]
+	Given a normal distribution with $\mu = 30$ and $\sigma = 6$, find:
+
+	\begin{enumerate}[(a)]
+		\item the normal curve area to the right of $x = 17$;
+		      \begin{callout}{Solution:}
+			      0.00230
+		      \end{callout}
+		\item the normal curve area to the left of $x = 22$;
+		      \begin{callout}{Solution:}
+			      0.0912
+		      \end{callout}
+		\item the normal curve area between $x = 32$ and $x = 41$;
+		      \begin{callout}{Solution:}
+			      0.967-0.631=0.336
+		      \end{callout}
+		\item the value of $x$ that has 80\% of the normal curve area to the left;
+		      \begin{callout}{Solution:}
+			      35.0
+		      \end{callout}
+		\item the two values of $x$ that contain the middle 75\% of the normal curve area.
+		      \begin{callout}{Solution:}
+			      $x=\pm36.9$
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[12]
+	The loaves of rye bread distributed to local stores by a certain bakery have an average length of 30 centimeters and a standard deviation of 2 centimeters. Assuming that the lengths are normally distributed, what percentage of the loaves are:
+
+	\begin{enumerate}[(a)]
+		\item longer than 31.7 centimeters?
+		      \begin{callout}{Solution:}
+			      0.198
+		      \end{callout}
+		\item between 29.3 and 33.5 centimeters in length?
+		      \begin{callout}{Solution:}
+			      0.960-0.363 = 0.597
+		      \end{callout}
+		\item shorter than 25.5 centimeters?
+		      \begin{callout}{Solution:}
+			      0.0122
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[18]
+	The heights of 1000 students are normally distributed with a mean of 174.5 centimeters and a standard deviation of 6.9 centimeters. Assuming that the heights are recorded to the nearest half-centimeter, how many of these students would you expect to have heights:
+
+	\begin{enumerate}[(a)]
+		\item less than 160.0 centimeters?
+		      \begin{callout}{Solution:}
+			      0.0178
+		      \end{callout}
+		\item between 171.5 and 182.0 centimeters inclusive?
+		      \begin{callout}{Solution:}
+			      0.861-0.332=0.529
+		      \end{callout}
+		\item equal to 175.0 centimeters?
+		      \begin{callout}{Solution:}
+			      0.471
+		      \end{callout}
+		\item greater than or equal to 188.0 centimeters?
+		      \begin{callout}{Solution:}
+			      0.025
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[24]
+	A coin is tossed 400 times. Use the normal curve approximation to find the probability of obtaining:
+
+	\begin{enumerate}[(a)]
+		\item between 185 and 210 heads inclusive;
+		      \begin{callout}{Solution:}
+			      0.841-0.0669=0.7741
+		      \end{callout}
+		\item exactly 205 heads;
+		      \begin{callout}{Solution:}
+			      0.779
+		      \end{callout}
+		\item fewer than 176 or more than 227 heads.
+		      \begin{callout}{Solution:}
+			      0.00820+0.00347=0.117
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[26]
+	A process yields 10\% defective items. If 100 items are randomly selected from the process, what is the probability that the number of defectives:
+
+	\begin{enumerate}[(a)]
+		\item exceeds 13?
+		      \begin{callout}{Solution:}
+			      0.159
+		      \end{callout}
+		\item is less than 8?
+		      \begin{callout}{Solution:}
+			      0.252
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[29]
+	If 20\% of the residents in a U.S. city prefer a white telephone over any other color available, what is the probability that among the next 1000 telephones installed in that city:
+
+	\begin{enumerate}[(a)]
+		\item between 170 and 185 inclusive will be white?
+		      \begin{callout}{Solution:}
+			      0.118-0.00885=0.109
+		      \end{callout}
+		\item at least 210 but not more than 225 will be white?
+		      \begin{callout}{Solution:}
+			      0.976-0.785=0.191
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[32]
+	A pharmaceutical company knows that approximately 5\% of its birth-control pills have an ingredient that is below the minimum strength, thus rendering the pill ineffective. What is the probability that fewer than 10 in a sample of 200 pills will be ineffective?
+	\begin{callout}{Solution:}
+		0.5
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}[34]
+	A pair of dice is rolled 180 times. What is the probability that a total of 7 occurs:
+
+	\begin{enumerate}[(a)]
+		\item at least 25 times?
+		      \begin{callout}{Solution:}
+			      The that a sum of 7 occurs is $\frac{1}{6}$, therefore $P(X=7) \geq 25$ equals 0.841
+		      \end{callout}
+		\item between 33 and 41 times inclusive?
+		      \begin{callout}{Solution:}
+			      0.986-0.726=0.260
+		      \end{callout}
+		\item exactly 30 times?
+		      \begin{callout}{Solution:}
+			      0.0798
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}[55]
+	Computer response time is an important application of the gamma and exponential distributions. Suppose that a study of a certain computer system reveals that the response time, in seconds, has an exponential distribution with a mean of 3 seconds.
+
+	\begin{enumerate}[(a)]
+		\item What is the probability that response time exceeds 5 seconds?
+		      \begin{callout}{Solution:}
+			      $\mu=\beta\implies\lambda=\frac{1}{\mu}$ which equals 1.89
+		      \end{callout}
+		\item What is the probability that response time exceeds 10 seconds?
+		      \begin{callout}{Solution:}
+			      0.0357
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\end{document}

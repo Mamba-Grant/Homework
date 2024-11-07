@@ -1,0 +1,382 @@
+\documentclass{article}
+
+
+\newcommand{\hmwkTitle}{Homework \#5}
+\newcommand{\hmwkDueDate}{\today}
+\newcommand{\hmwkClass}{PHSX 611}
+\newcommand{\hmwkAuthorName}{\textbf{Grant Saggars}}
+
+
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{braket}
+
+\usepackage{float}
+\usepackage{caption}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{XCharter}
+
+\usetikzlibrary{automata,positioning}
+
+\usepackage{geometry}
+\geometry{top=1in, bottom=1in, left=1in, right=1in} % Adjust margins as needed
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.75in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Callout Box
+%
+
+\definecolor{shadecolor}{RGB}{235,235,235}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%
+% Title Page
+%
+
+\title{
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDueDate}\\
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{homeworkProblem}
+	Find the eigenfunctions and eigenvalues of position operator $\hat{x}$. (0.4 pts.)
+	\begin{callout}{Solution:}
+		The eigenvalues of $\hat{x}$ are pretty straightforward; set $f(x)$ the eigenfunction and $u$ the eigenvalue:
+		$$ xf(x) = uf(x) $$
+		The eigenfunction $f(x)$ which satisfies this is the piecewise function:
+		$$f(x) = \begin{cases}
+				0 & x \neq u \\
+				A & x = u
+			\end{cases}$$
+		Or, more succinctly with a delta function:
+		$$f(x) = A\delta_{xu}$$
+		Eigenfunctions belonging to distinct eigenvalues ought to be complete and orthagonal. I will denote the other eigenvalue $v$ (letting $A$ equal 1):
+		$$\braket{f_u' | f_u} = \delta(u-u')$$
+		And finally completeness:
+		$$ f(x) = \int_{-\infty}^{\infty} c(u)f_u(x) ~du = \int_{-\infty}^{\infty} c(u)\delta(x-u) ~du $$
+		$$ c(y) = f(y) $$
+
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+	Provide at least two examples of Hamiltonians from Chapter 2 that have both discrete and continuous parts of the spectra. Explain why they have both - e.g. explain how to find basis. (0.4 pts.)
+	\begin{callout}{Solution:}
+		\begin{enumerate}[(I)]
+			\item \textbf{The Delta Function Potential:}
+			      When the delta function potential is configured such that it is a well ($-\alpha V(x)$), we get discrete spectra. However when configured to be a barrier ($\alpha V(x)$), we get something similar to a free particle where it can take on any energy, position, momenta, etc.
+			\item \textbf{The Finite Square Well:}
+			      The same case emerges for the square well for the same reasons.
+		\end{enumerate}
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+	(Problem 3.4) Show that position and Hamiltonian operators (where potential $V$ only depends on position and doesn't depend on time) are Hermitian. ( $0.4 \mathrm{pts}$.)
+	\begin{callout}{Solution:}
+
+		% The three important properties of Hermitian operators are
+		\begin{enumerate}[(I)]
+			\item \textbf{Their eigenvalues are real.}
+
+			      This holds as we have seen previously.
+
+			\item \textbf{To show that}
+			      $\braket{\psi|x\phi} = \braket{\phi|x\psi}^{*}$:
+			      \begin{align*}
+				      \int \psi^*x\phi ~dx & = \int (\phi^*x\psi)^{*} ~dx \\
+				                           & = \int \psi x \phi^* ~dx     \\
+				                           & = \int \phi^* x \psi ~dx
+			      \end{align*}
+			      \textbf{To show that} $\braket{\psi|H\phi} = \braket{\phi|h\psi}^*$:
+			      \begin{align*}
+				      \int \psi^* \left(-i \hbar \frac{d\phi}{dx}\right) ~dx + \int \psi ^{*} V(x) \phi ~dx & = \int \phi \left(i \hbar \frac{d\psi ^{*}}{dx}\right) ~dx + \int \phi V(x)\psi ^{*} ~dx                  \\
+				                                                                                            & = \psi^*\phi|_{-\infty}^{\infty} - i \hbar \int \psi^* \frac{d\phi}{dx} ~dx + \int \phi V(x)\psi ^{*} ~dx \\
+				                                                                                            & = - i \hbar \int \psi^* \frac{d\phi}{dx} ~dx + \int \phi V(x)\psi ^{*} ~dx
+			      \end{align*}
+		\end{enumerate}
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+	(Problem 3.11) Find the momentum-space wave function $\Phi(p, t)$ for a particle in the ground state of the harmonic oscillator. ( $0.4 \mathrm{pts}$.)
+	\begin{callout}{Solution:}
+
+		By Fourier transform:
+		$$ \Psi(x,t) = \frac{1}{\sqrt{ 2\pi }} \int_{-\infty}^{\infty} \Phi(k,t) e ^{+ikx} ~dk $$
+		Plancherel's theorem allows:
+		$$ \Phi(k,t) = \frac{1}{\sqrt{ 2\pi }} \int_{-\infty}^{\infty} \Psi(x,t) e ^{-ikx} ~dx $$
+		(note that $k$ represents the wave number, where $p = \hbar k$)
+		\begin{align*}
+			\Phi(p,t) & = \frac{1}{\sqrt{2 \pi \hbar}} \int_{-\infty}^\infty \Psi_0(x,t)~e^{-ipx/\hbar}\,dx                                                                                                              \\
+			          & = \frac{1}{\sqrt{2 \pi \hbar}} \int_{-\infty}^{\infty} \left( \frac{m \omega}{\pi \hbar} \right)^{1/4} e ^{-m \omega x^2 / 2 \hbar} \psi(t) e ^{-ipx/\hbar} ~dx                                  \\
+			          & = \frac{1}{\sqrt{2 \pi \hbar}} \left( \frac{m \omega}{\pi \hbar} \right)^{1/4} \psi(t) \int_{-\infty}^{\infty} \exp\left( -\frac{1}{2}\frac{m \omega}{\hbar}x^2 - \frac{ip}{\hbar} x \right) ~dx
+		\end{align*}
+		Let $a$ equal $\frac{m \omega}{\hbar}$ and $J$ equal $-\frac{ip}{\hbar}$. The exponental then goes to:
+		\begin{align*}
+			\left( -\frac{1}{2}ax^2 + Jx \right) & = - \frac{1}{2}a\left( x^2 - \frac{2Jx}{a} + \frac{J^2}{a^2} - \frac{J^2}{a^2} \right) = -\frac{1}{2} a \left( x- \frac{J}{a} \right)^2 + \frac{J^2}{2a} \\
+			                                     & \implies \exp\left( \frac{J^2}{2a} \right) \int_{-\infty}^{\infty} \exp\left( -\frac{1}{2}a \left( x- \frac{J}{a} \right)^2 \right) ~dx                  \\
+			                                     & = \exp\left( \frac{J^2}{2a} \right) \int_{-\infty}^{\infty} \exp\left( -\frac{1}{2}aw^2 \right) ~dw                                                      \\
+			                                     & = \left( \frac{2\pi}{a} \right)^{1/2} \exp\left( \frac{J^2}{2a} \right)
+		\end{align*}
+		Therefore the momentum-space wave function equals:
+		$$
+			\frac{1}{\sqrt{2 \pi \hbar}}
+			\left( \frac{m \omega}{\pi \hbar} \right)^{1/4}
+			e ^{-i \omega t / \hbar}
+			\left( \frac{2\pi\hbar}{m \omega} \right)^{1/2}
+			\exp\left( \frac{(-ip)^2}{2m \omega} \right)
+		$$
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+	(Problem 2.11) Compute the expectation value for coordinate and momentum operator for the ground state of Harmonic oscillator $\psi_0$. Check the uncertainty principle for those values. What do you expect to find for the first excited state of the Harmonic oscillator? (0.4 pts.)
+	\begin{callout}{Solution:}
+
+		$$ \ket{\psi_0} = \left( \frac{m \omega}{\pi \hbar} \right)^{1/4} e ^{-m \omega x^2 / 2 \hbar }; $$
+		\begin{enumerate}[(I)]
+			\item $\braket{\psi_0 ^{*}|\hat{x}\psi_0}$:
+			      \begin{align*}
+				      \braket{\psi_0 ^{*}|\hat{x}\psi_0} & = \int_{-\infty}^{\infty} x \sqrt{ \frac{m \omega }{\pi\hbar} } e ^{-2m \omega x^2 / 2 \hbar} ~dx \\
+				                                         & = 0
+			      \end{align*}
+			\item $\braket{\psi_0^*|\hat{p}\psi_0}$:
+			      \begin{align*}
+				      \braket{\psi_0^*|\hat{p}\psi_0} & = -i \hbar \int_{-\infty}^{\infty}  -\left( \frac{m \omega}{2\hbar} \right)^{3/2}  x e^{-2m \omega x^2 / 2 \hbar} ~dx \\
+				                                      & = 0
+			      \end{align*}
+
+			      Evidently, both work out to zero due to odd parity.
+			\item $\braket{\psi_0 ^{*}|\hat{x}^2\psi_0}$:
+			      \begin{align*}
+				      \braket{\psi_0 ^{*}|\hat{x}^2\psi_0} & = \sqrt{ \frac{m \omega}{2 \hbar} } \int_{-\infty}^{\infty} x^2e ^{-2m \omega x^2 / 2 \hbar} ~dx \\
+				                                           & = \frac{\hbar}{2m \omega}
+			      \end{align*}
+			\item $\braket{\psi_0 ^{*}|\hat{p}^2\psi_0}$:
+			      \begin{align*}
+				      \braket{\psi_0 ^{*}|\hat{p}^2\psi_0} & = -\hbar ^2 \sqrt{ \frac{m \omega}{2 \hbar} } \int_{-\infty}^{\infty} \left(\frac{m \omega}{\hbar}x\right)^{2} e ^{-2m \omega x^2 / 2 \hbar}-\left(\frac{m \omega}{\hbar}\right)e^{-2m \omega x^2 / 2 \hbar} ~dx \\
+				                                           & = - \hbar ^{2} \sqrt{ \frac{m^3 \omega ^{3}}{\pi \hbar ^{3}} } \int_{-\infty}^{\infty} \left( \frac{m \omega }{\hbar}x^2 - 1 \right) e ^{-m \omega x^2 / 2 \hbar}  ~dx                                           \\
+				                                           & = \frac{\hbar m \omega }{2}
+			      \end{align*}
+			\item $\sigma_x \sigma_p \geq \hbar/2$
+			      \begin{align*}
+				      \sigma_x          & = \sqrt{ \frac{\hbar}{2m \omega} }   \\
+				      \sigma_p          & = \sqrt{ \frac{\hbar m \omega }{2} } \\
+				      \sigma_x \sigma_p & = \frac{h}{2}
+			      \end{align*}
+		\end{enumerate}
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+	(Problem 3.21) Test the energy-time uncertainty principle for the free particle wave packet in Problem 2.42 and the observable x by calculating $\sigma_H, \sigma_x$, and $d\langle x\rangle / d t$ exactly. ( 0.5 pts.)
+	\begin{callout}{Solution:}
+
+		$$ \Delta E \Delta t \geq \hbar/2 \to \sigma_H \frac{\sigma_x}{\left|\frac{d \langle x \rangle}{dt}\right|} \geq \hbar/2 $$
+		The gaussian wave packet in question has a wave function:
+		$$ \Psi(x,t) = \left( \frac{2a}{\pi} \right)^{1/4} \frac{1}{\sqrt{ 1+\frac{2i \hbar at}{m} }} \exp\left[ \frac{-a(x- \frac{hlt}{m})^2}{1+\frac{2i \hbar at}{m}} \right] \exp \left[ il \left( x - \frac{\hbar lt }{2m} \right) \right]$$
+		\begin{enumerate}[(I)]
+			\item $\langle x \rangle$
+			      \begin{gather*}
+				      \braket{\psi^*|x\psi} =  \int_{-\infty}^{\infty} x \sqrt{ \frac{2}{\pi} } \sqrt{ \frac{a}{1+ \frac{4 \hbar^2 a^2 t^2}{m^2}} } \exp\left[ -2\left( \frac{a}{1+\frac{4 \hbar^2 a^2 t^2}{m^2}} \right)\left( x- \frac{\hbar lt}{m} \right)^{2} \right] ~dx
+			      \end{gather*}
+			      let $x-\frac{\hbar l t}{m} \to v$, and $dv = dx$
+			      \begin{gather*}
+				      \sqrt{ \frac{2m^2 a}{\pi(m^2+4 \hbar^2a^2t^2)]} } \int_{-\infty}^{\infty} v \exp\left( - \frac{2m^2a}{m^2+4 \hbar^2 a^2 t^2}v^2 \right) ~dx + \frac{\hbar lt}{m}\int_{-\infty}^{\infty} v \exp\left( - \frac{2m^2a}{m^2+4 \hbar^2 a^2 t^2}v^2 \right) ~dv \\
+				      = 2 \hbar l t \sqrt{ \frac{2a}{\pi(m^2 +4 \hbar^2 a^2 t^2)} } \sqrt{ \pi } \left( \frac{\sqrt{ \frac{m^2 +4 \hbar^2 a^2 t^2 }{2m^2a} }}{2} \right) \\
+				      = \frac{\hbar l t}{m}
+			      \end{gather*}
+			\item $\langle x^2 \rangle$
+			      \begin{align*}
+				      \braket{\psi^*|x^2\psi} & = \sqrt{ \frac{2m^2 a}{\pi(m^2+4 \hbar^2a^2t^2)]} } \int_{-\infty}^{\infty} (v+ \frac{\hbar l t}{m})^{2} \exp \left( - \frac{2m^2 a}{m^2 + 4 \hbar^2 a^2 t^2 }v^2 \right) ~dv                                          \\
+				                              & = \sqrt{ \frac{2m^2 a}{\pi(m^2+4 \hbar^2a^2t^2)]} } \int_{-\infty}^{\infty} \left( v^2 + \frac{2 \hbar l t}{m} v + \frac{\hbar^2 l^2 t^2}{m62} \right) \exp \left( - \frac{2m^2a}{m^2 + 4 \hbar^2 a^2 t^2} \right) ~dv \\
+				                              & = \frac{m^2 _{ 4 \hbar^2 a^2 t^2}}{4m^2 a} + \frac{\hbar^2 l^2 t^2}{m^2}
+			      \end{align*}
+			      Therefore $\sigma_x = \sqrt{ \frac{m^2+4 \hbar^2 a^2 t^2}{4m^2a} }$
+			\item $\langle p \rangle = m \frac{d \langle x \rangle}{dt} = m \frac{d}{dt}\left( \frac{\hbar l t}{m} \right) = \hbar l$
+			\item $\int_{-\infty}^{\infty} \Psi^*(x,t) \left( -i \hbar \frac{\partial}{\partial x} \right)^2 \Psi(x,t) ~dx = \hbar^2(a+l^2)$
+			\item $\sigma_p = \hbar \sqrt{ a }$
+			\item Momentum space of the gaussian wave packet:
+			      $$
+				      \Phi(p,t) = \frac{1}{\sqrt{2 \pi \hbar}} \int_{-\infty}^{\infty} e^{-i p x / \hbar}\left(\frac{2 a}{\pi}\right)^{1 / 4} \frac{1}{\sqrt{1+\frac{2 i \hbar a t}{m}}} \exp \left[\frac{-a\left(x-\frac{\hbar l t}{m}\right)^2}{1+\frac{2 i \hbar a t}{m}}\right] \exp \left[i l\left(x-\frac{\hbar l t}{2 m}\right)\right] dx
+			      $$
+			      This is a gaussian with a linear term in the exponent which can be written as:
+			      $$
+				      \Phi(p, t)=\left(\frac{2 a}{\pi}\right)^{1 / 4} \frac{1 / \sqrt{2 \pi \hbar}}{\sqrt{1+\frac{2 i \hbar a t}{m}}} \exp \left(-\frac{m+2 i \hbar a t}{4 \hbar^2 a m} p^2+\frac{l}{2 \hbar a} p-\frac{l^2}{4 a}\right) \int_{-\infty}^{\infty} \exp \left(-\frac{a}{1+\frac{2 i \hbar a t}{m}} u^2\right) d u
+			      $$
+			      With $u= x + \frac{im(p- \hbar l) - 2 p \hbar a t}{2 \hbar a m}$ and $du = dx$. This gives:
+			      $$
+				      \Phi(p,t) = \frac{1}{\sqrt[4]{2 \pi \hbar^2 a}} \exp \left(-\frac{m+2 i \hbar a t}{4 \hbar^2 a m} p^2+\frac{l}{2 \hbar a} p-\frac{l^2}{4 a}\right) .
+			      $$
+			\item $\langle H \rangle$:
+			      Expressed in momentum space:
+			      \begin{align*}
+				      \langle H \rangle = \braket{\Phi | \hat{H} \Phi} & = \int_{-\infty}^{\infty} \Phi^*(p,t) \hat{H} \Phi(p,t) ~dp                             \\
+				                                                       & = \int_{-\infty}^{\infty} \Phi^*(p,t) \left( \frac{\hat{p}^2}{2m} \right) \Phi(p,t) ~dp \\
+				                                                       & = \frac{1}{2m} \braket{\Phi | \hat{p}^2\Phi} = \frac{1}{2m} \langle p^2 \rangle         \\
+			      \end{align*}
+			      From before we have $\langle H \rangle = \frac{1}{2m}\langle p^2 \rangle = \frac{\hbar^2}{2m}(a+l)^2$
+			\item $\langle H^2 \rangle$: Expressing in momentum space:
+			      \begin{align*}
+				      \langle H^2 \rangle = \braket{\Phi | \hat{H}^2 \Phi} & = \int_{-\infty}^{\infty} \Phi^*(p,t) \hat{H}^2 \Phi(p,t) ~dp                             \\
+				                                                           & = \int_{-\infty}^{\infty} \Phi^*(p,t) \left( \frac{\hat{p}^4}{4m^2} \right) \Phi(p,t) ~dp \\
+				                                                           & = \frac{1}{2m} \braket{\Phi|p^4\Phi} = \frac{1}{2m} \langle p^4 \rangle
+			      \end{align*}
+			      Using momentum space to calculate $\langle p^4 \rangle$:
+			      \begin{align*}
+				      \langle p^4 \rangle & = \braket{\Phi^*|p^4 \Phi}                                                                                                                        \\
+				                          & = \frac{1}{\hbar \sqrt{2 \pi a}} \int_{-\infty}^{\infty} p^4 \exp \left(-\frac{1}{2 \hbar^2 a} p^2+\frac{l}{\hbar a} p-\frac{l^2}{2 a}\right) d p
+			      \end{align*}
+			      Yet another gaussian with a linear term:
+			      $$\langle p^4 \rangle = \hbar^4(3a^2 + 6al^2 + l^4)$$
+			\item Final result:
+			      \begin{align*}
+				      \sqrt{\left\langle H^2\right\rangle-\langle H\rangle^2} \frac{\sqrt{\left\langle x^2\right\rangle-\langle x\rangle^2}}{\left|\frac{d\langle x\rangle}{d t}\right|} & =\sqrt{\left[\frac{\hbar^4}{4 m^2}\left(3 a^2+6 a l^2+l^4\right)\right]-\left[\frac{\hbar^2}{2 m}\left(a+l^2\right)\right]^2} \frac{\sqrt{\left(\frac{m^2+4 \hbar^2 a^2 t^2}{4 m^2 a}+\frac{\hbar^2 l^2 t^2}{m^2}\right)-\left(\frac{\hbar l t}{m}\right)^2}}{\left|\frac{\hbar l}{m}\right|} \\
+				                                                                                                                                                                         & =\sqrt{\frac{\hbar^4 a\left(a+2 l^2\right)}{2 m^2} \frac{\sqrt{\frac{m^2+4 \hbar^2 a^2 t^2}{4 m^2 a}}}{\frac{\hbar l}{m}}}                                                                                                                                                                    \\
+				                                                                                                                                                                         & =\frac{\hbar}{2} \sqrt{\left(1+\frac{a}{2 l^2}\right)\left(1+\frac{4 \hbar^2 a^2 t^2}{m^2}\right)} .
+			      \end{align*}
+		\end{enumerate}
+
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+	Compute the following commutators for operators in three dimensions: $\left[\widehat{x}_i, \widehat{x}_j\right],\left[\widehat{p}_i, \widehat{p}_j\right],\left[\widehat{x}_i, \widehat{p}_j\right],[\widehat{H}, \hat{\boldsymbol{r}}],[\widehat{H}, \widehat{\boldsymbol{p}}]$, where $x_{\mathrm{i}}$ and $p_{\mathrm{i}}$ are components of coordinate and momentum operator in three dimensions respectively, and $\boldsymbol{r}$ and $\boldsymbol{p}$ are vectors of position operator and momentum operator in three dimensions. ( $0.5 \mathrm{pts}$.)
+	\begin{callout}{Solution:}
+		\begin{enumerate}[(I)]
+			\item $$ [\hat{x}_{i}, \hat{x}_{j}] = \hat{x}_{i} \hat{x}_{j} - \hat{x}_{j}\hat{x}_{i} = 0$$
+			\item
+			      \begin{align*}
+				      [\hat{p}_{i}, \hat{p}_{j}] & = \hat{p}_{i}\hat{p}_{j} - \hat{p}_{j}\hat{p}_{i}                                                 \\
+				                                 & = -i \hbar \frac{\partial}{\partial x_i} \left( -i \hbar \frac{\partial}{\partial x_j}(f) \right)
+				      + -i \hbar \frac{\partial}{\partial x_j} \left( -i \hbar \frac{\partial}{\partial x_i}(f) \right)                              \\
+				                                 & = -\hbar^2 \nabla f + \hbar^2 \nabla f                                                            \\
+				                                 & = 0
+			      \end{align*}
+			\item
+			      \begin{align*}
+				      [\hat{x}_{i}, \hat{p}_{j}] & = \hat{x}_{i}\hat{p}_{j} - \hat{p}_{j}\hat{x}_{i}                                                                                                 \\
+				                                 & = x_i (-i \hbar) \frac{\partial}{\partial x_j}(f) - (-i \hbar) \frac{\partial}{\partial x_j}(x_if)                                                \\
+				                                 & = x_i (-i \hbar) \frac{\partial f}{\partial x_j} + i \hbar \left( \frac{\partial x_i}{\partial x_j}f + \frac{\partial f}{\partial x_j}x_i \right) \\
+				                                 & = 0
+			      \end{align*}
+			\item
+			      \begin{align*}
+				      [\widehat{H}, \hat{r}] & = [\widehat{T} + \widehat{V}, \hat{r}] = [\widehat{T}, \hat{r}] + [\widehat{V}, \hat{r}]                                                  \\
+				                             & = -\frac{\hbar^2}{2m} \nabla( \nabla (rf) ) + \frac{\hbar^2}{2m} r \nabla^2(f) + [\widehat{V}, \hat{r}]                                   \\
+				                             & = -\frac{\hbar^2}{2m} \nabla( r \nabla f + f \cancelto{1}{\nabla r} ) + \cancel{\frac{\hbar^2}{2m} \nabla^2(f)r} + [\widehat{V}, \hat{r}] \\
+				                             & = -\frac{\hbar^2}{2m} (r\nabla^2 f + 2 \nabla f) + [\widehat{V}, \hat{r}]                                                                 \\
+				                             & = -\frac{\hbar^2}{m} \nabla f + [\widehat{V}, \hat{r}]                                                                                    \\
+				                             & = -\frac{\hbar}{im}\left( \frac{\hbar}{i} \nabla f \right) + [\widehat{V}, \hat{r}]                                                       \\
+				                             & = -\frac{\hbar}{im} \hat{p} + Vr-rV                                                                                                       \\
+				                             & = -\frac{\hbar}{im} \hat{p}
+			      \end{align*}
+			\item
+			      \begin{align*}
+				      [\widehat{H}, \hat{p}] & = [\widehat{T} + \widehat{V}, \hat{p}] = \left[\frac{\hat{p}^2}{2m}, \hat{p}\right] + [\widehat{V}, \hat{p}] \\
+				                             & = \frac{1}{2m}(\hat{p}[\hat{p},\hat{p}] - [\hat{p}, \hat{p}]\hat{p}) + [\widehat{V}, \hat{p}]                \\
+				                             & = 0 + V(-i \hbar) \nabla (f) - (-i \hbar) \nabla(Vf)                                                         \\
+				                             & = -i \hbar ( V\nabla(f) - V\nabla(f) - f\nabla(V) )                                                          \\
+				                             & = i \hbar \nabla V
+			      \end{align*}
+		\end{enumerate}
+	\end{callout}
+\end{homeworkProblem}
+\begin{homeworkProblem}
+	(Problem 3.37, Virial theorem, bonus, see full text of the problem in Griffiths, Third Edition) (0.5 pt.)
+\end{homeworkProblem}
+\end{document}

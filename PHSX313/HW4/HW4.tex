@@ -1,0 +1,166 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Define Article %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Using Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{empheq}
+\usepackage{mdframed}
+\usepackage{booktabs}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{psfrag}
+\usepackage{pgfplots}
+\usepackage{bm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Other Settings
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Page Setting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\geometry{a4paper}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define some useful colors %%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{ocre}{RGB}{243,102,25}
+\definecolor{mygray}{RGB}{243,243,244}
+\definecolor{deepGreen}{RGB}{26,111,0}
+\definecolor{shallowGreen}{RGB}{235,255,255}
+\definecolor{deepBlue}{RGB}{61,124,222}
+\definecolor{shallowBlue}{RGB}{235,249,255}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Define an orangebox command %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand\orangebox[1]{\fcolorbox{ocre}{mygray}{\hspace{1em}#1\hspace{1em}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% English Environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{mytheoremstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\newtheoremstyle{myproblemstyle}{3pt}{3pt}{\normalfont}{0cm}{\rmfamily\bfseries}{}{1em}{{\color{black}\thmname{#1}~\thmnumber{#2}}\thmnote{\,--\,#3}}
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowGreen,linecolor=deepGreen,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{theorem}{Theorem}[section]
+\theoremstyle{mytheoremstyle}
+\newmdtheoremenv[linewidth=1pt,backgroundcolor=shallowBlue,linecolor=deepBlue,leftmargin=0pt,innerleftmargin=20pt,innerrightmargin=20pt,]{definition}{Definition}[section]
+\theoremstyle{myproblemstyle}
+\newmdtheoremenv[linecolor=black,leftmargin=0pt,innerleftmargin=10pt,innerrightmargin=10pt,]{problem}{Problem}[section]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Plotting Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepgfplotslibrary{colorbrewer}
+\pgfplotsset{width=8cm,compat=1.9}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Title & Author %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Homework 4 }
+\author{Grant Saggars}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+    \maketitle
+    
+    1. (4 pts) Hydrogen emits light at certain frequencies. The so-called Balmer series of Hydrogen includes two frequencies of light of $457 \mathrm{THz}$ and $617 \mathrm{THz}$, where $T=$ Tera. (There are many other frequencies as well, but for now we will focus on these two.) These frequencies are measured in a lab when the Hydrogen atom is at rest. Say there's a galaxy at redshift $z=3$. If on Earth we observe the Balmer series of Hydrogen in that the galaxy, what two frequencies will we observe? Assuming the galaxy is moving directly away from from us, what speed is it moving at?
+
+    \begin{enumerate}
+        \item $1+z = \displaystyle\frac{f_{\mathrm{source}}}{f_{\mathrm{observed}}}
+            \implies 4 = \displaystyle\frac{457 \mathrm{~THz}}{f_{\mathrm{observed}}} 
+            \implies f_{\mathrm{observed}} = \displaystyle\frac{457 \mathrm{~THz}}{4} = 118.75 \mathrm{~THz}$
+
+        \item $1+z = \displaystyle\frac{f_{\mathrm{source}}}{f_{\mathrm{observed}}}
+            \implies 4 = \displaystyle\frac{617 \mathrm{~THz}}{f_{\mathrm{observed}}} 
+            \implies f_{\mathrm{observed}} = \displaystyle\frac{617 \mathrm{~THz}}{4} = 154.25 \mathrm{~THz}$
+
+        \item $f_{\mathrm{observed}} = f_{\mathrm{source}}\displaystyle\sqrt{ \frac{1-u/c}{1+u/c} }
+            \implies 118.75=457 \sqrt{ \displaystyle\frac{1-u/c}{1+u/c} }
+            \implies 261.869 \times 10^6 \mathrm{~m/s}$
+    \end{enumerate}
+
+    2. According to observer $\mathcal{O}$, a blue flash occurs at $x_b=9.8 \mathrm{~m}$ at time $t_b=0.164 \mu \mathrm{s}$, and a red flash occurs at $x_r=30.4 \mathrm{~m}$ at time $t_r=0.214 \mu \mathrm{s}$. According to an observer $\mathcal{O}^{\prime}$, who is in motion relative to $\mathcal{O}$ at velocity $u$, the two flashes appear to be simultaneous.
+
+    \vspace{0.2cm} (a) (4 pts) Find the velocity $u$ and distance between the flashes according to $\mathcal{O}^{\prime}$.
+
+    % First I should fully define the motion of observer $\mathcal{O}$ 
+
+
+    \begin{enumerate}
+        \item $\gamma(u) = \sqrt{ \displaystyle\frac{1}{1-u^2/c^2} }$
+        \item $\Delta t = \gamma(u)(t- \displaystyle\frac{u}{c^2}x)
+            \implies \gamma(u) \neq 0 \quad \text{because u $\neq$ c}$
+        % \item $v_{\mathrm{x}}' = \gamma(u)(x-ut)
+            % \implies \gamma(u) \neq 0 \quad \text{because u $\neq$ c}$
+    \end{enumerate}
+    \begin{enumerate}
+        \item Solving for the velocity $u$:
+        \begin{align*}
+            \cancel{\gamma(u)}\left(0.164\times 10^{-6}-\displaystyle\frac{u}{c^2}(9.8)\right) = \cancel{\gamma(u)}\left(0.214 \times 10^{-6}-\displaystyle\frac{u}{c^2}(30.4)\right) = 2.181441 \times 10^8\, \mathrm{~m/s}
+        \end{align*}
+        \item Solving for the distance $L$:
+            $L = \displaystyle\frac{L_0}{\gamma(u)} = \displaystyle\frac{30.4-9.8}{1.457836} = 14.13053\, \mathrm{~m}$
+    \end{enumerate}
+
+    \vspace{0.2cm} (b) (3 pts) Use your answer from (a) to show that the the invariant distance $\Delta s$ is indeed the same according to the observers in $\mathcal{O}$ and $\mathcal{O}^{\prime}$.
+    \begin{enumerate}
+        \item The invariant distance is defined as: $s^2 = x^2 + y^2 + z^2 - c^2t^2$
+            
+            $\implies 20.6^2-c^2(0.05\times10^{-6})^2 = 14.13053^2-c^2(14.13053/2.181441 \times 10^8)^2$
+
+            $\implies -199.67 = -177.441$ (I know this isn't correct but I can't figure out why)
+    \end{enumerate}
+
+    \newpage
+    3. The TARDIS is moving directly toward the Defiant at $0.76 \mathrm{c}$. Through some wibbly wobbly, timey wimey stuff, the Doctor on the TARDIS throws a ball $5 \mathrm{~km}$ forward in the same direction of motion as the TARDIS moving towards the Defiant and the ball stays in the air for $10\, \mathrm{~\mu s}$ according to the Doctor.
+
+    (a) (5 pts) How far does the ball move and for how long is it in the air according to Captain Sisko on the Defiant?
+
+    % \vspace{0.3cm} For the doctor, the ball should take a longer time and travel a shorter distance.
+    % For everyone else, the ball should take a shorter time and travel a longer distance.
+
+    \begin{enumerate}
+        % \item $L = \displaystyle\frac{L_0}{\gamma(0.76c)} = \displaystyle\frac{5}{0.75} = 6.33\, \mathrm{~km}$
+        \item The time and distance given are in proper time and length: 
+        %     $$L = \displaystyle\frac{L_0}{\gamma(0.76c)} = (5)(0.75) = 3.75\, \mathrm{~km}$$
+        % \item $$t = \gamma(u)t_0 = \frac{10}{0.75} = 13.33\, \mathrm{~\mu s}$$
+            $$L = \displaystyle\frac{L_0}{\gamma(0.76c)} = L_0 \sqrt{ 1-\frac{u^2}{c^2} } = 3.25\, \mathrm{~km}$$
+        \item $$t = \gamma(u)t_0 = 10(1.539) = 15.39\, \mathrm{~\mu s}$$
+    \end{enumerate}
+
+    (b) (5 pts) What is the speed of the ball according to Commander Worf on the Defiant? Calculate in 2 different ways.
+
+    \begin{enumerate}
+        \item $r=\displaystyle\frac{d}{t} \implies \displaystyle\frac{3.75 \times 10^3}{13.33\times 10^{-6}} = 2.813203 \times 10^8\, \mathrm{~m/s}$
+        \item $v' = \displaystyle\frac{v+u}{1+\frac{uv}{c^2}}
+            \implies \displaystyle\frac{0.76c-2.45\times 10^8}{1-\frac{(0.76c)(2.45 \times 10^8)}{c^2}}$
+    \end{enumerate}
+
+    (c) (3 pts) Show that the invariant distance $\Delta s$ is the same according to Donna on the TARDIS and Lieutinant Commander Dax on the Defiant.
+    \begin{enumerate}
+        \item The invariant distance is defined as: $s^2 = x^2 + y^2 + z^2 - c^2t^2$
+            \begin{align*}
+                (5\times10^3)^2 - (10\times10^{-6})^2c^2 = (3.75\times10^3)^2-(13.33\times10^{-6})^2c^2 \\
+                \implies 1.6\times10^7 = -1.07\times10^6
+            \end{align*}
+
+            Once again, I don't know why this isn't right.
+    \end{enumerate}
+
+    4. Extra Credit: (4 pts) Observer $\mathcal{O}$ fires a light beam at $20^{\circ}$ above the $x$-axis. Find the three components of velocity according to an observer $\mathcal{O}^{\prime}$ moving at a speed of $u$ in the x-direction. Show that $\mathcal{O}^{\prime}$ also measures the value $c$ for the speed of light.
+
+    \begin{enumerate}
+        \item Break the velocity of the light beam into its components:
+            \begin{align*}
+                x:\quad &c\cos(20)=2.817\times10^8 &&y:\quad c\sin(20)=1.025\times10^8
+            \end{align*}
+        \item Add the velocities relativistically:
+            \begin{align*}
+                v_{\mathrm{x}}' &=  \frac{v_{\mathrm{x}}-u}{1-\frac{v_{\mathrm{x}}u}{c^{2}}} 
+                \implies \frac{2.817\times10^8+u}{1+\frac{(2.817\times10^8)(u)}{c^{2}}} \\
+                v_{\mathrm{y}}' &= \frac{v_{\mathrm{y}} \sqrt{ 1-\frac{u^{2}}{c^{2}} }}{1-v_{\mathrm{x}} \frac{u}{c^{2}}} 
+                \implies \frac{1.025\times10^8 \sqrt{ 1-\frac{u^{2}}{c^{2}} }}{1- \frac{2.817\times10^8(u)}{c^{2}}} \\
+                v_{\mathrm{z}}' &= \frac{v_{\mathrm{z}} \sqrt{ 1-\frac{u^{2}}{c^{2}} }}{1-v_{\mathrm{x}} \frac{u}{c^{2}}}
+                \implies 0
+            \end{align*}
+    \end{enumerate}
+\end{document}

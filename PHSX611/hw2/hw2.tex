@@ -1,0 +1,228 @@
+\documentclass{article}
+
+
+\newcommand{\hmwkTitle}{Homework 2}
+\newcommand{\hmwkDueDate}{\today}
+\newcommand{\hmwkClass}{PHSX 611}
+\newcommand{\hmwkAuthorName}{\textbf{Grant Saggars}}
+
+
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+
+\usepackage{float}
+\usepackage{caption}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{XCharter}
+
+\usetikzlibrary{automata,positioning}
+
+\usepackage{geometry}
+\geometry{top=1in, bottom=1in, left=1in, right=1in} % Adjust margins as needed
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\: \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.75in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Callout Box
+%
+
+\definecolor{shadecolor}{RGB}{235,235,235}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%
+% Title Page
+%
+
+\title{
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDueDate}\\
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{homeworkProblem}
+	(Problem 2.1a) Prove the following theorem: for normalizable solutions of S.E., the separation constant $E$ must be real. ( 0.5 pt.)
+
+	\begin{callout}{Solution:}
+
+		%A good place to start is to try proof by contradiction. Suppose a wavefunction exists with complex energy $E_0 + i \Gamma$.
+		%
+		%\begin{align*}
+		%	\Psi(x,t) & = A\psi e^{-i(E_0+i \Gamma )t / \hbar}          \\
+		%	          & = A\psi e ^{-iE_0t/\hbar} e ^{\Gamma t / \hbar}
+		%\end{align*}
+		%
+		%Now to try and find the normalization constant $A$:
+		%
+		%\begin{align*}
+		%	1 & = \int_{-\infty}^{\infty} \Psi \Psi^* ~dx                             \\
+		%	  & = \int_{-\infty}^{\infty}
+		%	( A \psi \cancel{e ^{-iE_0t/\hbar}} e^{\Gamma t / \hbar} )
+		%	( A^* \psi^* \cancel{e ^{iE_0t/\hbar}} e^{\Gamma t / \hbar} )
+		%	~dx                                                                       \\
+		%	  & = \int_{-\infty}^{\infty} |A|^{2}|\psi|^{2}e^{2 \Gamma t / \hbar} ~dx
+		%\end{align*}
+		%
+		%This integral sends $\psi(x)$ to one due to finiteness, and in order to make the equation true the exponential must equal one. Therefore the only possible value $\Gamma $ can take is zero. Therefore there cannot be a complex component in a wavefunction's energy.
+
+	\end{callout}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+	(Problem 2.1b) Prove the following theorem: the time-dependent wave function $\psi(x)$ can always be taken to be real (unlike $\Psi(x, t)$, which is complex in the general case). Note, that this doesn't mean that every solution of the time-independent Schrodinger equation is real; what this means is that if you have one that is not, it can always be expressed as a linear combination of solutions (with the same energy) that are. ( $0.5 \mathrm{pt}$.)
+
+	\newpage \begin{callout}{Solution:}
+
+		If a given $\psi (x)$ is a solution to the wave function, so too is its complex conjugate, since solutions exist for both:
+		\begin{gather}
+			-\frac{\hbar^{2}}{2m} \frac{d^{2}\psi}{dx^{2}} + E\psi(x) = 0 \\
+			-\frac{\hbar^{2}}{2m} \frac{d^{2}\psi^*}{dx^{2}} + E\psi(x) = 0
+		\end{gather}
+
+		Now, because a linear combination of any two solutions of the Shr{\"o}dinger equation are in itself a new solution, the linear combination of a solution and its complex conjugate will always eliminate the complex part.
+
+		\begin{align*}
+			a+bi + a-bi = 2a
+		\end{align*}
+
+	\end{callout}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+	(Problem 2.2) Show that $E$ must exceed the minimum value of $V(x)$, for every normalizable solution to the time-independent Schrodinger equation. ( $0.5 \mathrm{pt}$.)
+
+	\begin{callout}{Solution:}
+
+		For the Shr{\"o}dinger equation $\frac{\partial ^{2} \psi}{\partial x ^{2}} = \frac{2m}{\hbar ^{2}} (V-E)\psi$, it is clear that if $E$ is less than $V$, the right side of the equation will be of the same sign as the left. Griffiths points out the consequence of this is that the second derivative of $\psi$ will always have the same sign as $\psi$. When this is the case, for positive $\psi$ the function will either be concave up or concave down for negative $\psi$ (for all x). This means that the function will either fly to infinity or negative infinity and never converge.
+	\end{callout}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+	(Problem 1.8) Consider the following situation - you add a constant $V_0$ to potential energy ( $V_0$ is independent of $x$ and $t$ ). In classical mechanics, this won't change anything but in quantum mechanics, it may. Show that the wavefunction picks up a time-dependent phase factor: $e^{-i V_0 t / \hbar}$. What effect does it have on the expectation value of a dynamic variable? (0.5 pt.)
+
+	\begin{callout}{Solution:}
+
+		$$ \frac{\partial \Psi}{\partial t} = \frac{i \hbar}{2m} \frac{\partial ^{2} \Psi}{\partial x ^{2}} - \frac{i}{h} V(x,t) \Psi(x,t) $$
+
+		I'll substitute a constant potential into the equation, separate, and see what happens:
+
+		\begin{align*}
+			\frac{\partial \Psi}{\partial t}                              & = \frac{i \hbar}{2m} \frac{\partial ^{2} \Psi}{\partial x ^{2}} - \frac{i}{\hbar} [V(x,t) + V_0 ] \Psi(x,t)                    \\
+			i \hbar \psi \frac{d\phi}{dt}                                 & = - \frac{\hbar}{2m}\frac{\partial ^{2} \psi}{\partial x ^{2}}\phi + \frac{i}{\hbar} V \psi\phi + \frac{i}{\hbar} V_0 \psi\phi \\
+			i \hbar \frac{1}{\phi} \frac{d\phi}{dt} - \frac{i V_0}{\hbar} & = - \frac{\hbar}{2m} \frac{\partial ^{2} }{\partial x ^{2}} \frac{1}{\psi} + V
+		\end{align*}
+		\begin{gather*}
+			\frac{i \hbar}{\phi} \frac{d \phi}{dt} - \frac{i V_0}{\hbar} = E \tag{1} \\
+			\frac{-\hbar ^{2}}{2m} \frac{d ^{2} \psi}{dx ^{2}} + V\psi = E\psi \tag{2}
+		\end{gather*}
+
+		We're focused on the time-dependent part here, (as hinted by Griffiths), so I will integrate to solve the differential equation:
+
+		\begin{align*}
+			\int \frac{1}{\phi} ~d\phi & = \frac{-iEt}{\hbar} + \frac{-iV_0t}{\hbar}                                                                                                         \\
+			\ln(\phi)                  & =                                                                                                                                                   \\
+			\phi                       & = \exp{\left( \frac{-iEt}{\hbar} + \frac{-iV_0t}{\hbar} \right)} =  \exp \left( \frac{-iEt}{\hbar} \right) \exp \left( \frac{-iV_0t}{\hbar} \right)
+		\end{align*}
+
+		Now trying an operator $Q$ with the new energy:
+
+		\begin{gather*}
+			\int_{-\infty}^{\infty} \left[ \Psi^(x,t) e ^{-iV_0t/\hbar} \right]^* Q \left[\Psi(x,t)e ^{-iV_0t/\hbar} \right] ~dx \\
+			= \int_{-\infty}^{\infty} \left[ \Psi^*(x,t) \right] Q \left[\Psi(x,t) \right] \cancel{e^{iV_0t/\hbar}} \cancel{e^{-iV_0t/\hbar}} ~dx \\
+		\end{gather*}
+
+		In this case due to the conjugate, there is no difference made by the new potential.
+
+
+	\end{callout}
+
+\end{homeworkProblem}
+
+\end{document}

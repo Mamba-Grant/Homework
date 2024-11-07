@@ -1,0 +1,216 @@
+\begin{homeworkProblem}[4]
+	The heights of a random sample of 50 college students showed a mean of 174.5 centimeters and a standard deviation of 6.9 centimeters.
+	\begin{enumerate}[(a)]
+		\item Construct a 98\% confidence interval for the mean height of all college students.
+		      \begin{callout}{Solution:}
+
+			      The z-value which leaves an area of 0.01 to the right, and consequently 0.99 to the left is:
+			      $$z_{0.01} = 2.33$$
+			      Our confidence interval is then:
+			      $$174.5 - z_{0.01} \frac{6.9}{\sqrt{50}} < \mu < 174.5+z_{0.01} \frac{6.9}{\sqrt{50}}$$
+			      Simplifying to:
+			      $$172.23 < \mu < 176.77$$
+
+		      \end{callout}
+		\item What can we assert with 98\% confidence about the possible size of our error if we estimate the mean height of all college students to be 174.5 centimeters?
+		      \begin{callout}{Solution:}
+
+			      We are 98\% confident that the true mean lies somewhere in this range.
+
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}[10]
+	A random sample of 12 graduates of a certain secretarial school typed an average of 79.3 words per minute with a standard deviation of 7.8 words per minute. Assuming a normal distribution for the number of words typed per minute, find a 95\% confidence interval for the average number of words typed by all graduates of this school.
+	\begin{callout}{Solution:}
+
+		\begin{gather*}
+			z_{0.025} = 1.96 \\
+			79.3 - z_{0.025} \frac{7.8}{\sqrt{ 12 }} < \mu < 79.3 + z_{0.025} \frac{7.8}{\sqrt{ 12 }} \\
+			74.89 < \mu < 83.71
+		\end{gather*}
+
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[14]
+	The following measurements were recorded for the drying time, in hours, of a certain brand of latex paint:
+	\begin{align*}
+		3.4, 2.5, 4.8, 2.9, 3.6, \\
+		2.8, 3.3, 5.6, 3.7, 2.8, \\
+		4.4, 4.0, 5.2, 3.0, 4.8.
+	\end{align*}
+	Assuming that the measurements represent a random sample from a normal population, find a 95\% prediction interval for the drying time for the next trial of the paint.
+	\begin{callout}{Solution:}
+
+		This set consists of 15 data points and has standard deviation $0.97$ with mean 3.79:
+		\begin{gather*}
+			z_{0.025} = 1.96 \\
+			3.79 - z_{0.025} \frac{0.97}{\sqrt{ 15 }} <\mu< 3.79 + z_{0.025} \frac{0.97}{\sqrt{ 15 }} \\
+			3.30 < \mu < 4.28
+		\end{gather*}
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}[16]
+	Consider Exercise 9.10. Compute the 95\% prediction interval for the next observed number of words per minute typed by a graduate of the secretarial school.
+	\begin{callout}{Solution:}
+		For a normal distribution of measurements with unknown mean $\mu$ and known variance $\sigma^{2}$, a 100(1 −α)\% prediction interval of a future observation $x_0$ is:
+		$$\bar{x} - z_{\alpha/2} \sigma \sqrt{ 1+\frac{1}{n} } < \mu <  \bar{x} + z_{\alpha/2} \sigma \sqrt{ 1+\frac{1}{n} }$$
+		Therefore, for:
+		\begin{align*}
+			\bar{x}   & = 79.3 \\
+			\sigma    & = 7.8  \\
+			n         & = 12   \\
+			z_{0.025} & = 1.96
+		\end{align*}
+		We use the same process as before:
+		$$\mu \in \left[79.3\pm1.96 \frac{7.8}{\sqrt{ 12 }}\right]$$
+		$$63.39 < \mu < 95.21$$
+
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[17]
+	Consider Exercise 9.9. Compute a 95\% prediction interval for the sugar content of the next single serving of Alpha-Bits.
+	\begin{callout}{Solution:}
+
+		\begin{align*}
+			\bar{x}   & = 11.3 \\
+			\sigma    & = 2.45 \\
+			n         & = 20   \\
+			z_{0.025} & = 1.96
+		\end{align*}
+		We use the same process as before:
+		$$\mu \in \right[11.3\pm1.96 \frac{2.45}{\sqrt{ 20 }}\left]$$
+		$$6.38 < \mu < 16.22$$
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}[38]
+	Two catalysts in a batch chemical process, are being compared for their effect on the output of the process reaction. A sample of 12 batches was prepared using catalyst 1, and a sample of 10 batches was prepared using catalyst 2. The 12 batches for which catalyst 1 was used in the reaction gave an average yield of 85 with a sample standard deviation of 4, and the 10 batches for which catalyst 2 was used gave an average yield of 81 and a sample standard deviation of 5. Find a 90\% confidence interval for the difference between the population means, assuming that the populations are approximately normally distributed with equal variances.
+	\begin{callout}{Solution:}
+
+		The difference between population means assuming a equal variances is given by:
+
+		% $$Z = \frac{(\bar{X}_{1} - \bar{X}_{2}) - (\bar{\mu}_{1} - \bar{\mu}_{2}) }{\frac{\sqrt{ \sigma^2_1 }}{n_1} + \frac{\sqrt{ \sigma^2_2 }}{n_2} }$$
+
+		For the data set:
+
+		$$\begin{array}{ccc}
+				\bar{x}_{1} = 85, & \bar{x}_{2} = 81 \\
+				s_1 = 4,          & s_2 = 5          \\
+				n_1 = 12,         & n_2 = 10         \\
+			\end{array}$$
+
+		Our degrees of freedom are:
+
+		$$\nu=12+10-2=20$$
+
+		Because our sample standard deviations are equal, we must use the pooled estimate of variance:
+		$$s_p^2 = \frac{(n_1-1)s^2_1 + (n_2-1)s^2_2}{n_1 + n_2 - 2} = 4.48$$
+
+		We get:
+
+		$$4-(1.725)(4.48) \sqrt{ \frac{1}{12} + \frac{1}{10} } < \mu_{\textrm{diff}} < 4+1.725 \sqrt{ \frac{1}{12} + \frac{1}{10} }$$
+
+		% Simplifying to:
+		$$-0.069< \mu_{\textrm{diff}} < 7.31$$
+
+
+	\end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}[43]
+	A taxi company is trying to decide whether to purchase brand A or brand B tires for its fleet of taxis. To estimate the difference in the two brands, an experiment is conducted using 12 of each brand. The tires are run until they wear out. The results are:
+
+	\begin{center}
+		Brand A: $\bar{x}_1 = 36,300$ kilometers, $s_1 = 5000$ kilometers. \\
+		Brand B: $\bar{x}_2 = 38,100$ kilometers, $s_2 = 6100$ kilometers.
+	\end{center}
+
+	Compute a 95\% confidence interval for $\mu_A - \mu_B$ assuming the populations to be approximately normally distributed. You may not assume that the variances are equal.
+	\begin{callout}{Solution:}
+
+		$$(\bar{x}_{1} - \bar{x}_{2}) - z_{\alpha/2}\sqrt{ \frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2} } < \mu_{\textrm{diff}} < (\bar{x}_{1} - \bar{x}_{2}) + z_{\alpha/2}\sqrt{ \frac{\sigma^2_1}{n_1} + \frac{\sigma^2_2}{n_2} }$$
+		Note that we cannot use $z_{0.025} = 1.96$, as for a sampling distribution we must consider the degrees of freedom. For this problem, we have 17 dof. $t_{0.025,~17} = 2.11$, with $\nu$ given by:
+		$$\nu=\frac{\left(s_1^2 / n_1+s_2^2 / n_2\right)^2}{\frac{\left(s_1^2 / n_1\right)^2}{n_1-1}+\frac{\left(s_2^2 / n_2\right)^2}{n_2-1}}$$
+
+		$$\begin{array}{cc}
+				\bar{x}_{1} = 36,300 & \bar{x}_{2} = 38,100 \\
+				s_1 = 5000           & s_2 = 6100           \\
+				n_1 = 12             & n_2 = 12
+			\end{array}$$
+		$$t_{0.025,~22} = 2.07$$
+		$$-6262 < \mu_{\textrm{diff}} < 2662$$
+
+	\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[48]
+	An automotive company is considering two types of batteries for its automobile. Sample information on battery life is collected for 20 batteries of type A and 20 batteries of type B. The summary statistics are $\bar{x}_A = 32.91$, $\bar{x}_B = 30.47$, $s_A = 1.57$, and $s_B = 1.74$. Assume the data on each battery are normally distributed and assume $\sigma_A = \sigma_B$.
+
+	\begin{enumerate}[(a)]
+		\item Find a 95\% confidence interval on $\mu_A - \mu_B$.
+		      \begin{callout}{Solution:}
+
+			      \textbf{This problem involves a difference in means for an unknown but equal standard deviation.}
+
+			      $$s_p^2 = \frac{(n-1)s^2_1 + (n_2-1)s^2_2}{n_1 + n_2 - 2} = 2.75$$
+			      $$\begin{array}{cc}
+					      \bar{x}_{A} = 32.91 & \bar{x}_{B} = 30.47 \\
+					      s_A = 1.57,         & s_B = 1.74          \\
+					      n_A = 20,           & n_B = 20
+				      \end{array}$$
+
+			      We can now apply:
+			      $$(\bar{x}_{1}-\bar{x}_{2}) \pm (t_{\alpha/2,~\nu})(s_p)\sqrt{ \frac{1}{n_1} + \frac{1}{n_2} }$$
+			      $$t_{0.025,~37.6} = 2.03$$
+			      $$0.67 < \mu < 4.21$$
+			      % $$1.4 < \mu < 3.5$$
+		      \end{callout}
+		\item Draw a conclusion from (a) that provides insight into whether A or B should be adopted.
+		      \begin{callout}{Solution:}
+			      Because the range does not include zero, it suggests there is a statistically significant difference between A and B. Since the interval is also entirely positive, it suggests that the mean life of A is greater than B.
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[55]
+	A new rocket-launching system is being considered for deployment of small, short-range rockets. The existing system has p = 0.8 as the probability of a successful launch. A sample of 40 experimental launches is made with the new system, and 34 are successful.
+	\begin{enumerate}[(a)]
+		\item Construct a 95\% confidence interval for p.
+		      \begin{callout}{Solution:}
+
+			      For a binomial parameter, the confidence interval is given by:
+			      $$p \in \bar{p} \pm z_{\alpha /2}\sqrt{ \frac{\bar{p}\bar{q}}{n} }$$
+
+			      Therefore we get:
+			      $$0.8 - 1.96 \sqrt{ \frac{(0.8)(0.2)}{34} } < p < 0.8+1.96 \sqrt{ \frac{(0.8)(0.2)}{34} }$$
+			      $$0.67<p<0.93$$
+
+		      \end{callout}
+		\item Would you conclude that the new system is better?
+		      \begin{callout}{Solution:}
+
+			      It is hard to say if it is better from this confidence interval alone, since the old probability is contained within the new confidence interval.
+
+		      \end{callout}
+	\end{enumerate}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}[66]
+	Ten engineering schools in the United States were surveyed. The sample contained 250 electrical engineers, 80 being women; 175 chemical engineers, 40 being women. Compute a 90\% confidence interval for the difference between the proportions of women in these two fields of engineering. Is there a significant difference between the two proportions?
+	\begin{callout}{Solution:}
+
+		For the mean difference between population A and B, we need to estimate the difference between the two proportions:
+		$$p \in (250-175) \pm (1.64)\sqrt{\left(\frac{80}{250}\right)\left(1-\frac{80}{250}\right)\left(\frac{1}{250}\right)+\left(\frac{40}{175}\right)\left(1-\frac{40}{175}\right)\left(\frac{1}{175}\right)}$$
+		$$74.93<p<75.07$$
+
+		Given that this does not contain zero, Which indicates more women are in chemical engineering.
+
+	\end{callout}
+\end{homeworkProblem}

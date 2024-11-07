@@ -1,0 +1,400 @@
+\documentclass{article}
+
+
+\newcommand{\hmwkTitle}{Homework\ \#1}
+\newcommand{\hmwkDueDate}{\today}
+\newcommand{\hmwkClass}{MATH 648}
+\newcommand{\hmwkAuthorName}{\textbf{Grant Saggars}}
+
+
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{bbold}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{XCharter}
+
+\usetikzlibrary{automata,positioning}
+
+\usepackage{geometry}
+\geometry{top=1in, bottom=1in, left=1in, right=1in} % Adjust margins as needed
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass: \hmwkTitle} % Center the header text
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.75in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Callout Box
+%
+
+\definecolor{shadecolor}{RGB}{235,235,235}
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%
+% Title Page
+%
+
+\title{
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\hmwkDueDate}\\
+}
+
+\author{\hmwkAuthorName}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\begin{itemize}
+	\item Section 2.2, Pages 35-36: \#1, \#2, \#4, \#5;
+	      [Hints: For 5(a), a general solution is not smooth at $x = 0$ except the trivial solutions $y(x) = $ constants.
+
+	      For 5(b), it is clear that $J(y) \geq 0$. Next, you may assume that there is a function $\varphi \in C^2([-1, 1])$ so that $\varphi(-1) = -1$, $\varphi(1) = 1$, and $\varphi'(-1) = \varphi'(1) = \varphi''(-1) = \varphi''(1) = 0$.
+
+	      (Can you construct such a function $\varphi$?)
+
+	      Now, for any $\varepsilon > 0$, define
+	      $y_\varepsilon(x) = \begin{cases}
+			      -1,                     & \text{if } x \in [-1, -\varepsilon)          \\
+			      \varphi(x/\varepsilon), & \text{if } x \in [-\varepsilon, \varepsilon] \\
+			      1,                      & \text{if } x \in (\varepsilon, 1].
+		      \end{cases}$
+
+	      You should be able to show that $y_\varepsilon \in S$ and $J(y_\varepsilon) \to 0$ as $\varepsilon \to 0$. But there is no $y \in S$ so that $J(y) = 0$.
+
+	\item Section 2.3, Page 41: \#1, \#3.
+
+	\item An extra problem not from the textbook: Find the extrema $y = y(x)$ of
+
+	      $$J(y) = \int_0^1 (y')^2 \sqrt{1 + (y')^2} ,dx,~ y(0) = 1 = y(1).$$
+
+	      Which one is a minimum or maximum? Why?
+\end{itemize}
+
+% HOMEWORK SOLUTIONS
+
+\newpage
+\section{Section 2.2}
+\begin{homeworkProblem}
+	Let J be a functional. Prove that for $\frac{dJ}{d\epsilon}=0$ as $\epsilon$ approaches 0 for $J(y+\epsilon\eta)$ leads to condition (2.6).
+	\vspace{0.3cm}
+
+	\hrule
+
+	\begin{align*}
+		\frac{dJ}{d \epsilon } & = \int_{x_0}^{x_1} \left( \frac{dJ}{dx} \frac{dx}{d \epsilon } + \frac{dJ}{d\hat{y}} \frac{d\hat{y}}{d \epsilon } + \frac{dJ}{d \hat{y}'} \frac{d\hat{y}'}{d \epsilon} \middle)\right|_{\epsilon = 0} ~dx \tag{1} \\
+		\hat{y}                & = y+\epsilon \eta \implies \frac{d\hat{y}}{d \epsilon } = \eta, \quad \hat{y}'=y'+\epsilon \eta \implies \frac{d\hat{y}'}{d \epsilon } = \eta'                                                            \tag{2} \\
+		\frac{dJ}{d \epsilon } & = \int_{x_0}^{x_1} \left( \frac{dJ}{d\hat{y}}\eta + \frac{dJ}{d\hat{y}'}\eta' \middle)\right|_{\epsilon = 0} ~dx
+	\end{align*}
+
+	The final equation above is condition 2.6 from the textbook.
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+	The First Variation: Let $J : S \to \Omega$ and $K : S \to \Omega$, be functionals defined by
+	$$ J = \int_{x_0}^{x_1} f(x,y,y') ~dx, \quad K = \int_{x_0}^{x_1} g(x,y,y') ~dx $$
+	where $f$ and $g$ are smooth functions of the indicated arguments and $\Omega \subset \mathbb{R}$.
+
+	\begin{enumerate}[(a)]
+		\item Show that for any real numbers $A$ and $B$,
+		      $$ \delta \left( AJ+BK \right)(\eta,y) = A \delta J(\eta,y)+B \delta K(\eta,y) $$
+		      (linear)
+		\item $$ \delta (JK)(\eta,y) = K(\eta,y)\delta J(\eta,y)+J(\eta,y)\delta K(\eta,y) $$
+		      (product rule)
+		\item Suppose that $G:\Omega \times \Omega \to \mathbb{R}$ is differentiable on $\Omega \times \Omega$. Show that
+		      $$ \delta G(J,K)(\eta,y)=\frac{\partial G}{\partial J}\delta J(\eta,y) + \frac{\partial G}{\partial K}\delta K(\eta,y) $$
+		      (chain rule)
+	\end{enumerate}
+
+	\vspace{0.3cm}
+	\hrule
+
+	\begin{enumerate}[(a)]
+		\item \begin{gather*}
+			      \delta(AJ+BK)(\eta, y) = \lim_{\epsilon \to 0} \frac{AJ(y + \epsilon \eta) + BK(y + \epsilon \eta) - (AJ(y) + BK(y))}{\epsilon} \\
+			      = \lim_{\epsilon \to 0} \left[ \frac{AJ(y+\epsilon \eta)-AJ(y)}{\epsilon } + \frac{BK(y+\epsilon \eta)-BK(y)}{\epsilon} \right] \\
+			      = A \delta J(\eta,y)+B \delta K(\eta,y)
+		      \end{gather*}
+
+		\item Let $H(y) = J(y)K(y)$:
+		      \begin{align*}
+			      \delta H(\eta, y) & = \lim_{\epsilon \to 0} \left[ \frac{H(y+\epsilon \eta) - H(y)}{\epsilon } \right]                                                                                                                                    \\
+			                        & = \lim_{\epsilon \to 0} \left[ \frac{J(y+\epsilon \eta)K(y+\epsilon \eta) - J(y)K(y)}{\epsilon } \right]                                                                                                              \\
+			                        & = \lim_{\epsilon \to 0} \left[ \frac{J(y+\epsilon \eta)K(y+\epsilon \eta)-J(y)K(y+\epsilon \eta)+J(y)K(y+\epsilon \eta)-J(y)K(y)}{\epsilon } \right]                                                                  \\
+			                        & = \lim_{\epsilon \to 0} \left[ \frac{(J(y+\epsilon \eta)-J(y)) \times K(y+\epsilon \eta) + J(y) \times (K(y+\epsilon \eta)-K(y)}{\epsilon } \right]                                                                   \\
+			                        & = \lim_{\epsilon \to 0} \frac{J(y+\epsilon \eta)-J(y)}{\epsilon } \times \lim_{\epsilon \to 0} K(y+\epsilon \eta) + \lim_{\epsilon \to 0} J(y) \times \lim_{\epsilon \to 0} \frac{K(y+\epsilon \eta)-K(y)}{\epsilon } \\
+			                        & = K(\eta,y)\delta J(\eta,y)+J(\eta,y)\delta K(\eta,y)
+		      \end{align*}
+
+		\item \dots ?
+
+	\end{enumerate}
+	\setcounter{homeworkProblemCounter}{3}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}[4]
+	Let J be the functional defined by
+	$$ J = \int_{0}^{1} (y'^{2}+y^2+4y2^x) ~dx $$
+	with boundary conditions $y(0)=0$ and y(1)=1. Find the extremals for J.
+	\vspace{0.3cm}
+
+	\hrule
+
+	\begin{align*}
+		\frac{\partial J}{\partial y}                             & = 2y+4e^x                               \\
+		\frac{d}{dx}\left( \frac{\partial J}{\partial y'} \right) & = \frac{d}{dx}\left( 2y' \right) = 2y'' \\
+		\implies 0                                                & = 2y'' - 2y - 4e^x \tag{1}
+	\end{align*}
+	\begin{align*}
+		2y'' - 2y              & = 4e^x \to y'-y=2e^x                        \\
+		e ^{-x}y'' - e ^{-x} y & = 2                                         \\
+		(e ^{-x} y')'          & = 2 \to \int (e ^{-x}y')' ~dx = \int 2 ~dx  \\
+		e^{-x}y'               & = 2x + c_1 \to y' = 2xe^x + c_1 e^x \tag{2} \\
+		\int y' ~dx            & = \int 2xe^x+c_1e^x ~dx                     \\
+		y                      & = 2(xe^x-e^x) + c_1e^x + c_2 \tag{3}
+	\end{align*}
+	Now, to fulfill our boundary conditions:
+	\begin{align*}
+		y(0) & = 0 \implies 0 = -2+c_1+c_2 \\
+		y(1) & = 1 \implies 1 = c_1e+c_2   \\
+		c_1  & = \frac{1}{1-e}             \\
+		c_2  & = \frac{2e-1}{e-1}
+	\end{align*}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[5]
+	Consider the functional defined by:
+	$$ J = \int_{-1}^{1} x^4y'^{2} ~dx $$
+	\begin{enumerate}[(a)]
+		\item Show that no extremals in $C^2[-1,1]$ exist which satisfy the boundary conditions $y(-1)=-1,~ y(1)=1$.
+		\item Without resorting to the Euler-Lagrange equation, prove that J cannot have a local minimum in the set:
+		      $$ S=\{ y \in C^2[-1,1]:y(-1)=-1 \text{ and } y(1)=1 \} $$
+	\end{enumerate}
+
+	\hrule
+
+	\begin{enumerate}[(a)]
+		\item
+		      \begin{align*}
+			      \frac{d}{dx} \left( \frac{\partial J}{\partial y'} \right) & = \frac{d}{dx}\left( 2y'x^4 \right) = 2y''x^4+8y'x^3 \\
+			      \frac{\partial J}{\partial y}                              & = 0
+		      \end{align*}
+		      \begin{gather*}
+			      \implies 2y''x^4+8y'x^3 = 0 \\
+			      \dots \\
+			      y(x) = \frac{c_1}{x^3}+c_2
+		      \end{gather*}
+
+		      For the boundary conditions:
+		      \begin{align*}
+			      -1 & = -c_1+c_2  \\
+			      1  & = c_1 + c_2
+		      \end{align*}
+		      it is clear that these are linearly dependent, and therefore no solutions exist for these boundary conditions.
+
+		\item Let $\varphi$ equal the step function $\left\{ \begin{array}{rr} -1, & -1 \leq x \leq 0 \\ 1, & 0 < x \leq 1  \end{array} \right.$.
+		      $$ y_\epsilon(x) =
+			      \begin{cases}
+				      -1                                     & \text{if } x \in [-1, -\epsilon)       \\
+				      \varphi\left(\frac{x}{\epsilon}\right) & \text{if } x \in [-\epsilon, \epsilon] \\
+				      1                                      & \text{if } x \in (\epsilon, 1]
+			      \end{cases} $$
+		      As $\epsilon $ approaches zero, $ y_\epsilon(x) $ approaches the piecewise function $ \varphi(x) $, and $ J(y_\epsilon) $ approaches $ 0 $. However there is no function in $y(x)$ such that $J(y)$ = 0 since that would violate the boundary conditions.
+	\end{enumerate}
+
+\end{homeworkProblem}
+
+\section{Section 2.3}
+\begin{homeworkProblem}[1]
+
+	Find the general solution to the Euler-Lagrange equation corresponding to the functional
+	$$ J = \int_{x_0}^{x_1} f(x)\sqrt{ 1+y'^2 } ~dx $$
+	where $x_0 > 0$, and investigate the special cases: (i) $f(x) = \sqrt{ x }$, (ii) $f(x) = x$.
+
+	\vspace{0.3cm} \hrule
+
+	\section{General Case}
+	\begin{gather*}
+		J = \int_{x_0}^{x_1} y \sqrt{ 1+y'^2 } ~dx \\
+		\frac{d}{dy}(J) = \sqrt{ 1+y'^{2} } \\
+		\frac{d}{dx}\left(\frac{yy'}{\sqrt{ 1+y'^{2} }}\right) = \frac{yy''+y'^{4}+y'^{2}}{(1+y'^{2})^{3/2}} \\
+		\implies \frac{yy''+y'^{4}+y'^{2}}{(1+y'^{2})^{3/2}} = 0 \\
+		\dots \\
+		y(x) = ?
+	\end{gather*}
+
+	\section{Special Cases}
+	\begin{enumerate}[(i)]
+		\item $$ J = \int_{x_0}^{x_1} \sqrt{ x+xy'^{2} } ~dx $$
+		      \begin{gather*}
+			      \frac{d}{dx}\left( \frac{xy}{\sqrt{ x+xy'^{2} }} \right) = \frac{x(2xy''+y'^{3}+y')}{2(xy'^{2}+x)^{3/2}} \\
+			      \implies \frac{x(2xy''+y'^{3}+y')}{2(xy'^{2}+x)^{3/2}} = 0 \\
+			      \dots \\
+			      y(x) = c_2 \pm 2ie^{c_1} \sqrt{ e^{2c_1} - x }
+		      \end{gather*}
+
+		\item $$ J = \int_{x_0}^{x_1} x \sqrt{1+y'^2} ~dx $$
+		      \begin{gather*}
+			      \frac{d}{dx}\left( \frac{xy'}{\sqrt{ y'^2 + 1 }} \right) = \frac{xy''+y'^{3}+y'}{(y'^{2}+1)^{3/2}} \\
+			      \implies \frac{xy''+y'^{3}+y'}{(y'^{2}+1)^{3/2}} = 0 \\
+			      \dots \\
+			      y(x) = c_2 \pm ie^{c_1}\tan^{-1}\left( \frac{x}{\sqrt{ e^{2c_1}-x^2 }} \right)
+		      \end{gather*}
+	\end{enumerate}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}[3]
+
+	Find a smooth extremal for J satisfying the boundary conditions $y(2)=1$ and $y(3) = \sqrt{ 3 }$.
+	$$ J = \int_{2}^{3} y^2(1-y')^2 ~dx $$
+
+	\hrule
+
+	\begin{align*}
+		\frac{d}{dx}\left( \frac{\partial J}{\partial y'} \right) & = -2y^2(1-y') = 2y\left( yy'' + 2y'^{2}-2y' \right) \\
+		\frac{\partial J}{\partial y}                             & = 2y(1-y')^{2}
+	\end{align*}
+	\begin{align*}
+		\implies 2y\left( yy'' + 2y'^{2}-2y' \right) - 2y(1-y')^{2}                                 & = 0 \tag{1} \\
+		\to 2yy'' + \cancelto{2}{4}yy'^{2} - \cancel{4yy'} - 2y + \cancel{4yy'} - \cancel{2yy'^{2}} & = 0         \\
+		\to 2y(yy''+y'^{2}-1)                                                                       & = 0 \tag{2} \\
+	\end{align*}
+	\begin{gather*}
+		\dots \\
+		y(x) = \pm\sqrt{2 c_2 x + c_2^2 - c_1 + x^2}
+	\end{gather*}
+
+	For the boundary conditions:
+	\begin{align*}
+		1          & = \sqrt{ 4c_2 + c_2^2 - c_1 + 4 } \\
+		\sqrt{ 3 } & = \sqrt{ 6c_2 + c_2^2 - c_1 + 9 } \\
+		c_1        & = -3/2                            \\
+		c_2        & = -3/4
+	\end{align*}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+
+	An extra problem not from the textbook: Find the extrema $y = y(x)$ of
+	$$J(y) = \int_0^1 (y')^2 \sqrt{1 + (y')^2} ,dx,~ y(0) = 1 = y(1).$$
+	Which one is a minimum or maximum? Why?
+	\vspace{0.3cm}
+
+	\hrule
+
+	\begin{align*}
+		\frac{d}{dx}\left( \frac{\partial J}{\partial y'} \right) & = \frac{d}{dx}\left( 2y'\sqrt{ 1+y'^{2} } + y'^{2}\frac{y'}{\sqrt{ 1+y'^2 }} \right) \\
+		                                                          & = \frac{d}{dx}\left( \frac{2y'(1+y'^{2})+y'^{3}}{\sqrt{ 1+y'^{2} }} \right)          \\
+		                                                          & = \frac{d}{dx}\left( \frac{3y'^{3}+2y'}{\sqrt{ 1+y'^{2} }} \right)                   \\
+	\end{align*}
+	let
+	\begin{align*}
+		u  & = 3y'^{3}+2y'                     \\
+		u' & = 9y'^{2}y'' + 2y''               \\
+		v  & = \sqrt{ 1+y'^{2} }               \\
+		v' & = \frac{y'y''}{\sqrt{ 1+y'^{2} }}
+	\end{align*}
+	apply the quotient rule:
+	\begin{align*}
+		\frac{d}{dx}\left( \frac{3y'^{3}+2y'}{\sqrt{ 1+y'^{2} }} \right) & = \frac{uv'-vu'}{v^2}                                                 \\
+		                                                                 & = \frac{(3y'^{3}+2y')y'y'' - 9y'^{2}y''+2y'}{\sqrt{ 1+y'^{2} }^{3/2}} \\
+		                                                                 & = \frac{y''(6y'^{4}+9y'^2+2)}{(1+y'^{2})^{3/2}}
+	\end{align*}
+	By the Euler-Lagrange equation the following gives the extrema of the functional:
+	\begin{gather*}
+		\frac{y''(6y'^{4}+9y'^2+2)}{(1+y'^{2})^{3/2}} = 0
+	\end{gather*}
+	I was not capable of directly solving this, wolfram alpha tells me the solution is:
+	\begin{align*}
+		y(x) = c_1 \pm \frac{1}{2}ix \sqrt{ 3\pm\sqrt{ 11/3 } }
+	\end{align*}
+	In order to determine what is a minima and maxima, I would need to apply the second variation to check the sign at each extremal. A positive sign would indicate a minimal and a negative a maximal.
+\end{homeworkProblem}
+
+\end{document}

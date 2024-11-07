@@ -1,0 +1,186 @@
+\documentclass{article}
+
+\title{Instrument Project}
+\author{Grant Saggars}
+\date{\today}
+
+\usepackage{amsmath}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{enumerate}
+\usepackage{geometry}
+\usepackage{cancel}
+\usepackage{multicol}
+\usepackage{lipsum}  
+\usepackage{caption}
+\usepackage{float}
+\usepackage{bbold}
+% \usepackage{fontspec}
+
+% \setmainfont{BespokeSerif-Regular}
+\definecolor{shadecolor}{RGB}{235,235,235}
+
+\geometry{top=1in, bottom=1in, left=1in, right=1in}
+\graphicspath{ {./rsc/} }
+\newenvironment{callout}[1] {\begin{shaded*} \textbf{#1}} {\end{shaded*}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT BEGINS HERE %
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Over the last five weeks, I have worked to design an optical spectrometer. I had intended to apply my device to calculate the temperature of a blackbody using Planck's law. The quality of my materials proved to be a considerable constraint, and ,any problems arose during the design process, particularly in the last few weeks; as I had countless rage-inducing complications with fabricating the housing and mounts for my parts. This led to even more problems getting a stable and precise alignment, among other things. Despite the difficulty, the device is fully capable of visible spectrum measurements, and I had significant success in fitting Planck's Law to my data.
+
+\begin{multicols}{2}
+\section{Methodology}
+\subsection{Physical Design}
+My spectrometer is as simple as possible in design: light enters through a thin silt, is diffracted, and then the resulting spectral lines are captured by camera. My initial designs involved sophisticated mounts and precise CAD designs. These unfortunately became unrealistic due to technical difficulties with the 3D printer available to me. The design process concluded with a long night, a cardboard box, and a lot of tape. Despite the low quality of the materials, the device works rather well. The lower quality of housing materials has resulted in some internal instability, as the system can occasionally fall out of calibration due to rough handling or heat.
+
+\subsection{Software}
+Development of the software was significantly smoother, thankfully. The OpenCV library provided a very solid foundation for my code, which allowed for speed and flexibility in my own feature set, which in its final form includes a live video feed from the spectrometer, a corresponding spectral density plot, and calibration visuals. I am able to dump the measured information with a keybind at any time, which allows me to "export" a frame for analysis.
+
+Had more time been available, I would have liked to have made the visuals prettier, and allowed for interactive calibration with the mouse. It has more than enough functionality for what I need, though.
+
+\subsection{Analysis}
+Because I wanted to analyze blackbodies with my device, process the data collected. I do this externally, partially because it is easier to work with a single "frame" of data, but also because it is useful to permanently save my data. For this, I implemented the ability to dump a snapshot or "frame" of what the spectrometer sees, which allows me to transfer my data to a CSV file.
+
+Planck's law describes a spectral density distribution (what is measured by my spectrometer) in terms of a blackbody's temperature and wavelength (or other related properties such as frequency or wave number). Because I can calibrate for wavelength, it is relatively trivial to fit this distribution to my data. I have experience using the IMinuit library developed by CERN's ROOT team to fit distributions to datasets using a Chi-Squared cost function.
+
+\subsection{Data Collection} \label{data collection}
+I analyzed two blackbodies with my spectrometer: a lightbulb of known color temperature, and the Sun.
+
+Analysis of the lightbulb was very straightforward, as I only need shine the light from the lightbulb into my spectrometer.
+
+The real test of my spectrometer has always been to measure the temperature of the sun with my spectrometer. The surface of the sun is known to be around 15 million degrees, so planck's law would indicate that the peak of such a distribution should be far into the ultraviolet spectrum. However, due to atmospheric absorption and scattering, the observed wavelength on Earth has a peak in the visible spectrum, which makes sense because if we were not protected from ultraviolet light by the atmosphere we would be rather dead.
+
+A quick google search revealed that the perceived blackbody temperature of the sun from earth is about 5770k as a consequence of these factors. It may be possible to produce estimates for the missing wavelength bands as a consequence of the atmospheric scattering using Rayleigh and Mie scattering distributions; however, I do not have enough time to make such estimates.
+
+Measurements of the sun were taken at midday on an (unfortunately) cloudy day. This should not have had a very large impact on my measured spectral distribution, since due to scattering the sun appears yellowish, when it is in reality white. I did not have access to the necessary filters to combat this issue, although the increased amount of blue from the cloudy-gray sky would have produced a color closer to the sun's actual color by pure coincidence.
+
+% BOOKMARK
+
+\section{Calibration \& Testing}
+The calibration process is straightforward in principle: shine light with known wavelengths at my spectrometer, and adjust the x-axis accordingly. In practice, known wavelengths were measured using the emission spectra of the hydrogen/helium tubes in the lab. In software, the location of the calibration bands in the image can be recorded and used to project from pixel space to unit space by sampling along the line between bands. After calibration, the device can be pointed at any light source to analyze its spectra.
+
+The y-axis is left relative, as it would be difficult to get a precise calibration (especially with a device that needs to be frequently recalibrated); however, I do scale my values to be on the correct order of magnitude. I used a 2700k lightbulb to produce a reference curve which I scaled my values toward, although this is not necessarily needed with some trial and error and good judgment.
+
+An issue I discovered in this process was that my camera filters infrared light, which greatly affects the overall spectral density distribution. I discuss the consequences of this in more detail in section \ref{2700k}. I was able to deal with this by clipping my data after the red peak, although this has drawbacks. Put simply, I am limited most by a combination of the measurable radiant intensities and visible wavelengths.
+    
+\begin{figure}[H]
+\caption{Calibration}
+\centering
+\includegraphics[width=0.3\textwidth]{calibration1.jpg}
+\end{figure}
+
+\begin{figure}[H]
+\caption{ui (during calibration)}
+\centering
+\includegraphics[width=0.3\textwidth]{ui.jpg}
+\end{figure}
+
+
+% \newpage
+\section{Results \& Discussion}
+My spectrometer has some major limitations for the purpose I designed it for, mostly which arise from the quality of my components (particularly the camera).
+
+The device has a theoretical wavelength resolution of 1.827 nm, although this is probably an underestimate, since there is visible "smearing" of the bands as a result of my diffraction grating.
+
+While the spectral intensities are relative, and therefore unitless, there are only 255 values possible for the intensities. This could be allevaited by remapping my image, a process which is common in film; however, this was not done because the camera itself has some limitation as to what intensity of light can be measured, which I do not know and lack the ability to determine in this time frame.
+
+For these two reasons, I have chosen to exclude uncertainty from my calculations since there are so many unmeasurable yet significant factors which contribute to the overall instrumental uncertainty. Statistical uncertainty is astronomically smaller than my instrumental, and there are also hundreds of data points for each measurement. Taking multiple measurements would not greatly reduce the uncertainty because of the insignificance of noise relative to the other fundamental issues with the device.
+
+\end{multicols}
+
+\subsection{2700k Lightbulb} \label{2700k}
+
+\begin{center}
+\begin{tabular}{ |c|c||c| }
+ \hline
+ Actual Temperature (k) & Predicted Temperature (k) & Percent Difference \\
+ \hline
+  2700  & 2850 & 5.4\% \\
+ \hline
+\end{tabular}
+\end{center}
+
+\begin{multicols}{2}
+
+	I first tested my spectrometer against an LED lightbulb which claimed to have a color temperature of 2700k. Technically, this is not an ideal thing to test against, since unlike an actual blackbody, little infrared light is emitted; although my sensor cannot measure those frequencies to begin with, so this simply serves to compare results between something at a human scale. Two things were made apparent with this test:
+
+\begin{enumerate}[(1)]
+	\item The limited visible intensities of my camera (not color space range) are very significant, since if the light is shown directly through the slit, it clips off completely and the distribution is lost (this is not shown in my plot, however it was evident while gathering data).
+	\item The lack of an infrared spectrum causes the distribution to be cut off very early, making it difficult to get an accurate fit as the peak is not included.
+\end{enumerate}
+
+	I believe that if these were not issues, there would be a more gradual decrease near the peak intensity. This is because from the unclipped distribution, it is clear that the peak should lie in the infrared spectrum, but because this is missing from my data, the distribution falls off from the prediction (Planck's Law) around 750nm. A reasonable approximation can still be made, however, as the temperature predicted by my fit is 2835k.
+
+% \columnbreak
+
+	% \begin{figure}[H]
+	% \caption{2700k Lightbulb - (Unclipped)}
+	% \centering
+	% \includegraphics[width=0.4\textwidth]{2700kSpectralDensityBad.png}
+	% \end{figure}
+
+	\begin{figure}[H]
+	\caption{2700k Lightbulb}
+	\centering
+	\includegraphics[width=0.4\textwidth]{2700kSpectralDensity.png}
+	\end{figure}
+\end{multicols}
+
+\subsection{Sun}
+
+\begin{center}
+\begin{tabular}{ |c|c||c| }
+ \hline
+ Actual Temperature (k) & Predicted Temperature (k) & Percent Difference \\
+ \hline
+ 5770 & 5047.21 & 13.367\% \\
+ \hline
+\end{tabular}
+\end{center}
+
+\begin{multicols}{2}
+    
+As discussed in section \ref{data collection}, the observed temperature of the sun due to Earth's atmosphere is approximately 5770 degrees k. My estimate was 5050 degrees k, which can in large part be attributed to the unfortunate weather conditions during data collection. Thankfully, my peak lies closer to the visible spectrum, so if I could collect more data, I believe I could get a more accurate measurement.
+
+\begin{figure}[H]
+\caption{Sun - (Clipped)}
+\centering
+\includegraphics[width=0.4\textwidth]{SunSpectralDensity.png}
+\end{figure}
+
+\end{multicols}
+
+\section{Conclusion}
+My spectrometer demonstrated its ability to measure the spectral density of the visible bandwidth with reasonable accuracy. Actual spectrometers are calibrated in light intensity, however I did not have the means to do this, so it was left relative. This worked fine for my purposes; however, my distribution fits would have been much more accurate with correct units. My results lack uncertainty due to the nature of its complexity, and I was able to produce relatively good fits.
+
+If I could repeat this, I would use a diffraction grating which is in better condition, and seek out other cameras as sensors, particularly ones for which I can remove the infrared filter.
+
+\section{Appendix}
+\subsection{Julia Code}
+
+\centering
+\includegraphics[width=0.95\textwidth]{julia.png}
+
+\subsection{Python Code}
+\centering
+\includegraphics[width=0.95\textwidth]{main.png}
+
+\centering
+\includegraphics[width=0.95\textwidth]{axes.png}
+
+\centering
+\includegraphics[width=0.95\textwidth]{utils.png}
+
+\end{document}
+
+
+
