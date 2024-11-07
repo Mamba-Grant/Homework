@@ -1,8 +1,22 @@
 \begin{homeworkProblem}
 Exercise 11.2.2 (Shankar) – 5 points
 Using \( T^\dagger(\epsilon) T(\epsilon) = I \) to order \(\epsilon\), deduce that \( G^\dagger = G \).
+\begin{callout}{Solution:}
+    \begin{align*}
+        \hat{T} \hat{T}^\dagger = \left( \hat{I}- \frac{i \epsilon}{\hbar} \hat{G} \right) \left( I - \frac{i \epsilon}{\hbar} \hat{G} \right)^\dagger &= \hat{I} && \left( \hat{T} = \hat{I} - \frac{i \epsilon }{\hbar} \hat{G} \right) \\ 
+        \left( \hat{I}- \frac{i \epsilon}{\hbar} \hat{G} \right) \left( I + \frac{i \epsilon}{\hbar} \hat{G}^\dagger \right) &= \hat{I} \\ 
+        \left( \hat{I}- \frac{i \epsilon}{\hbar} \hat{G} \right) \hat{I} \left( I + \frac{i \epsilon}{\hbar} \hat{G}^\dagger \right) &= \hat{I} &&\text{(introduce identity to expand expression)} \\ 
+        %\cancel{\hat{I}} + \frac{i \epsilon}{\hbar} \left[ \hat{I}, \hat{G} \right] + O(\epsilon^2) &= \cancel{\hat{I}} &&\text{(Taylor expansion)} \\
+        %\frac{i \epsilon}{\hbar} \left[ \hat{I}, \hat{G} \right] &= 0 \\ 
+        \cancel{\hat{I}} + \frac{i \epsilon}{\hbar} \left( \hat{G}\hat{I} - \hat{I}\hat{G} \right) &= \cancel{\hat{I}} \\
+        \frac{i \epsilon}{\hbar} \left( \hat{G}\hat{I} - \hat{G}^\dagger \hat{I} \right) &= 0 \\ 
+        \frac{i \epsilon}{\hbar} \left( \hat{G} - \hat{G}^\dagger \right) &= 0
+    \end{align*}
+    Therefore the term $\hat{G}-\hat{G}^\dagger$ must equal zero.
+\end{callout}
 \end{homeworkProblem}
 
+\newpage
 \begin{homeworkProblem}
 Exercise 11.4.1 (Shankar) – 5 points
 Prove that if \( [\Pi, H] = 0 \), a system that starts out in a state of even/odd parity maintains its parity. (Note that since parity is a discrete operation, it has no associated conservation law in classical mechanics.)
@@ -22,16 +36,30 @@ Prove that if \( [\Pi, H] = 0 \), a system that starts out in a state of even/od
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
-Exercise 11.4.2 (Shankar) – 5 points
-A particle is in a potential
-\[
-V(x) = V_0 \sin\left(\frac{2\pi x}{a}\right)
-\]
-which is invariant under the translations \( x \rightarrow x + ma \), where \( m \) is an integer. Is momentum conserved? Why not?
+    Exercise 11.4.2 (Shankar) – 5 points
+    A particle is in a potential
+    \[ V(x) = V_0 \sin\left(\frac{2\pi x}{a}\right) \]
+    which is invariant under the translations \( x \rightarrow x + ma \), where \( m \) is an integer. Is momentum conserved? Why not?
 
-Hint: You can start this problem with:
-\[
-\frac{d}{dt} \langle P \rangle = -\frac{i}{\hbar} \langle [P, H] \rangle
-\]
-Whether it goes to zero or not depends on the range you used for averaging \( \langle \dots \rangle \).
+    \vspace{1em} Hint: You can start this problem with:
+    \[ \frac{d}{dt} \langle \hat{p} \rangle = -\frac{i}{\hbar} \langle [\hat{p}, \hat{H}] \rangle \]
+    Whether it goes to zero or not depends on the range you used for averaging \( \langle \dots \rangle \).
+    \begin{callout}{Solution:}
+        Shankar tells directly tells us that via Ehrenfest's theorem,
+        \begin{align*}
+            \braket{[\hat{p}, \hat{H}]}= 0 \implies \dot{p} = 0 \tag{11.2.16}
+        \end{align*}
+        Expanding the commutator, we have in general that 
+        \begin{align*}
+            [\widehat{H}, \hat{p}] & = [\widehat{T} + \widehat{V}, \hat{p}] = \left[\frac{\hat{p}^2}{2m}, \hat{p}\right] + [\widehat{V}, \hat{p}] \\
+				                             & = \frac{1}{2m}(\hat{p}[\hat{p},\hat{p}] - [\hat{p}, \hat{p}]\hat{p}) + [\widehat{V}, \hat{p}]                \\
+				                             & = 0 + V(-i \hbar) \nabla (f) - (-i \hbar) \nabla(Vf)                                                         \\
+				                             & = -i \hbar ( V\nabla(f) - V\nabla(f) - f\nabla(V) )                                                          \\
+				                             & = i \hbar \nabla V
+        \end{align*}
+
+        Where $\nabla V = \frac{2\pi V_0}{a} \cos \left( \frac{2\pi x}{a} \right)$. It follows that we will then have some expectation value for $x$. Assuming the particle is in a bound state, we would have the time derivative of momentum:
+        $$\frac{d}{dt}\braket{\hat{p}} = \left\langle \frac{2\pi V_0}{a} \cos\left( \frac{2\pi x}{a} \right) \right\rangle = \frac{2\pi V_0}{a} \cos\left( \frac{2\pi x}{a} \right) \neq 0 $$
+        Therefore momentum is not conserved.
+    \end{callout}
 \end{homeworkProblem}
