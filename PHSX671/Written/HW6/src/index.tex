@@ -1,0 +1,115 @@
+\begin{homeworkProblem}
+One kilogram of water at 0 °C is brought into contact with a large heat reservoir at 100 °C. When the water has reached 100 °C, what has been the change in entropy of the water ($\Delta S_\text{water}$), of the reservoir ($\Delta S_\text{res}$) and of the entire system consisting of both water and heat reservoir ($\Delta S_\text{sys}$)?
+\begin{callout}{Solution:}
+    $$\Delta S_{\text{sys}} = \Delta S_{A} + \Delta S_{B} > 0$$
+    $$C_{A} \ln\left( \frac{T_{F}}{T_{A}} \right) + C_{B}\ln\left( \frac{T_{F}}{T_{A}} \right) > 0$$
+    $$dS = \frac{\bar{d}Q}{T} = C_{A} \ln\left( \frac{T_{F}}{T_{A}} \right)$$
+
+    A quick google search tells me $C$ for water is approximately $4.2 \frac{\textrm{J}}{\textrm{g}\cdot \textrm{K}}$, although this changes greatly with state and temperature. 
+    %I believe we need to multiply the right hand of the quations by mass in order for units to work, however we use a kilogram so this is irrelevant.
+    Also, it was my first instinct that $\Delta S_{\text{res}}=0$, since temperature is not changing, but it still loses \textit{heat}, so this should be considered. 
+    We have $\bar{d}Q = \int_{T_A}^{T_F} C_A ~dT$, which assuming constant heat capacity nets $\bar{d}Q = C_A(T_F-T_A)$.
+
+    \begin{align*}
+        \Delta S_{\text{water}} &= 4200 \cdot \ln \left( \frac{373.15}{273.15} \right) \approx 1310 \frac{\textrm{J}}{\textrm{K}} \\ 
+        \Delta S_{\text{res}} &= 4200 \cdot \frac{\bar{d}Q_{\text{water}}}{T} = \frac{-C_{\text{water}}(373.15-273.15)}{373.15} \approx -1125 \frac{\textrm{J}}{\textrm{K}} \\ 
+        \Delta S_{\text{sys}} &= \Delta S_{\text{water}} + \Delta S_{\text{res}} = 1310 - 1125 = 185 \frac{\textrm{J}}{\textrm{K}}
+    \end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+Consider a real gas that is confined within a vertical box of cross-sectional area $A$. The molecules of this gas will have translational kinetic energy and gravitational potential energy, but no other kinetic or potential energies. You can also assume that the molecules of the gas are indistinguishable. Starting with the equation for the partition function of this system determined previously, determine the equation for the Helmholtz Free Energy of this system.
+\begin{callout}{Solution:}
+    
+    We found previously that the partition function for such a gas is given by 
+    $$Z = A\left( \frac{e}{Nh^{3}} \right)^{N}\left( \frac{2m\pi}{\beta} \right)^{3N/2}\left( \frac{1}{\beta mg} \right)^{N}\left( e^{-\beta mgz}- e^{-\beta mg(z+dz)} \right)^{N} $$
+    And our equation for Helmholtz free energy is 
+    $$F = - \frac{1}{\beta} \ln (Z)$$
+    So, 
+    \begin{align*}
+        F &= - \frac{1}{\beta} \ln (Z) \\ 
+        -\beta F &= \ln (A)+N\ln \left(\frac{e}{Nh^3}\right) + \frac{3N}{2} \ln \left( \frac{2m\pi}{\beta} \right) + N\ln \left( \frac{1}{\beta mg} \right) + N \ln \left( e^{-\beta mgz} - e^{-\beta mg(z+dz)} \right) \\
+        &= \ln (A)+N-N\ln (Nh^3) + \frac{3N}{2} \ln \left( \frac{2m\pi}{\beta} \right) - N\ln (\beta mg) + N \ln \left( e^{-\beta mgz}\left( 1 - e^{-\beta mg~dz} \right) \right) \\
+        &= \ln (A)+N-N\ln (Nh^3) + \frac{3N}{2} \ln \left( \frac{2m\pi}{\beta} \right) - N\ln (\beta mg) -N \beta mgz \ln \left( 1 - e^{-\beta mg~dz} \right) \\
+        &= \ln (A)+N\left[1-\ln (Nh^3) + \frac{3}{2} \ln \left( \frac{2m\pi}{\beta} \right) - \ln (\beta mg) - \beta mgz \ln \left( 1 - e^{-\beta mg~dz} \right)\right] \\
+        F &= - \frac{1}{\beta} \ln (A) - \frac{N}{\beta}\left[1-\ln (Nh^3) + \frac{3}{2} \ln \left( \frac{2m\pi}{\beta} \right) - \ln (\beta mg) - \beta mgz \ln \left( 1 - e^{-\beta mg~dz} \right)\right]
+    \end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+Consider a real gas that is confined within a vertical box of cross-sectional area $A$. The molecules of this gas will have translational kinetic energy and gravitational potential energy, but no other kinetic or potential energies. You can also assume that the molecules of the gas are indistinguishable. Starting with the equation for the Helmholtz Free Energy for this system, determine the equation for the chemical potential of this system in the limit that $\delta z$ is small as this will allow you to calculate the chemical potential as a function of position $z$ above the bottom of the container. Express your answer in terms of the density of the gas $\rho = \frac{N}{\delta V} = \frac{N}{A\delta z}$
+\begin{callout}{Solution:}
+    
+    By 
+    $$dF = -PdV-SdT-\mu dN \quad \implies \quad \mu = \left( \frac{\partial F}{\partial N} \right)_{T,P}$$
+    \begin{align*}
+        \mu &= \left( \frac{\partial F}{\partial N} \right)_{T,P}
+    \end{align*}
+
+    I'll call everything in these square brackets except for $\ln(Nh^3)$ $"C"$. The partial derivative is then:
+    $$\mu = -\frac{1}{\beta}[1-\ln (Nh^3) + C] + \left( -\frac{N}{\beta} \right)\left( -\frac{1}{N} \right) = \frac{1}{\beta}[\ln \left(Nh^3\right)-C]$$
+
+    Substituting back in we have:
+    $$\mu = \frac{1}{\beta}\left[\ln \left(Nh^3\right) -1 + \frac{3}{2} \ln \left( \frac{2m\pi}{\beta} \right) - \ln (\beta mg) - \beta mgz \ln \left( 1 - e^{-\beta mg~dz} \right)\right]$$
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+A lead bar is placed on a block of ice that is much larger (in surface area) than the bar. The entire system is kept at 0 °C. As a result of the pressure exerted by the bar, the ice melts beneath the bar and refreezes above the bar. Thus, heat is released above the bar, conducted through the metal, and then absorbed by the ice below the bar. Find an approximate expression for the speed at which the bar sinks through the ice. Your answer should be in terms of the latent heat of fusion $L$ per kilogram of ice, the densities $\rho_\text{ice}$ and $\rho_\text{water}$ of ice and water, respectively, the thermal conductivity $\kappa$ of lead, the absolute temperature $T$, the acceleration due to gravity $g$, and the density of lead $\rho_\text{lead}$.
+
+    \vspace{1em} A little guidance: Probably the best way to solve this problem is to combine the Clausius-Claperyon equation with the equation that defines thermal conductivity: $\frac{d\bar{Q}}{dt} = \kappa A \frac{dT}{dh}$, where $A$ is the cross-sectional area of the bar and $h$ is the height (or thickness) of the bar.
+    \begin{callout}{Solution:}
+        %Find ways to express the rate at which the ice melts, and assume that the bar is instantaneously displacing downwards. Assume that the melting occurs due to pressure alone.
+        %
+        %Also, take system 1 to be the giant block of ice, and system 2 to be the very small system of melted ice.
+
+        By the Clausius-Claperyon equation, we have 
+        $$\frac{dP}{dT} = \frac{\Delta s}{\Delta v} = \frac{\Delta s}{1/\rho_{ice} - 1/\rho_{water}} = \frac{L}{T(1/\rho_{ice} - 1/\rho_{water})}$$
+
+        \textit{because we can take particle density and volume per particle to be:}
+        $$\rho = \frac{N}{V}, \quad v = \frac{V}{N} = \frac{1}{\rho}$$
+
+        Where the pressure exerted on the block of ice is 
+        $$P = mg = g\frac{\rho_{lead}}{Ah} $$
+
+        $$\frac{dQ}{dt} = \kappa A \frac{dT}{dh} = \kappa A \frac{dT}{dP} \frac{dP}{dh} = \kappa A \frac{L}{T(1/\rho_{ice}-1/\rho_{water})}\frac{dP}{dh}$$
+        Using our prior expression for $dP$, we can write $\frac{dP}{dh}$:
+        $$\frac{dP}{dh} = \frac{d}{dh}\left( g\frac{\rho_{lead}}{Ah} \right) = - \frac{\rho_{lead}g}{Ah^2}$$
+        $$\frac{dQ}{dt} = - \left( \kappa A \frac{L}{T(1/\rho_{ice}-1/\rho_{water})} \right)\left( \frac{\rho_{lead}g}{Ah^2} \right)$$
+
+        The heat conducted through the bar melts a certain amount of ice, corresponding to a mass $m_{ice}$, with the latent heat for melting ice being:
+        $$Q = m L \quad \to \quad dQ = dm L \quad \stackrel{\text{differentiating by }t}{\to}\quad \frac{dQ}{dt} = \frac{dm_{ice}}{dt} L $$
+        I'll have to draw this out, but the mass of ice melted equals density of ice times the volume, which is geometrically $\rho A$ times the change in height of the block after a very small amount of time $y$ which is $\dot{y}dt$:
+        $$dm_{ice} = \rho_{ice} dV = \rho_{ice} A \dot{y} dt \quad \to \quad \frac{dm_{ice}}{dt} = \frac{\rho_{ice}A \dot{y} \cancel{dt} }{\cancel{dt}} $$
+        Then we have 
+
+        $$\dot{y} = - \left( \kappa A \frac{L}{T(1/\rho_{ice}-1/\rho_{water})} \right)\left( \frac{\rho_{lead}g}{Ah^2} \right)\left( \frac{1}{AL\rho_{ice}} \right)$$
+
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Use the internet or other reference material to find the latent heat of fusion for water, the density of solid ice, and the density of liquid water. These densities will be in units of 'per gram' or 'per mole' so be sure that that latent heat has the same units. Using this information, determine what change in pressure (in atmospheres) is required to change the melting point of ice by 1°C.
+\begin{callout}{Solution:}
+
+Let $\Delta T$ equal $1^\circ$C
+\begin{align*}
+    L &= 334,000 \textrm{~J/kg} \\
+    \rho_{ice} &= 917 \textrm{~kg/m$^3$} \\
+    \rho_{water} &= 1000 \textrm{~kg/m$^3$} \\
+    T &= 273.15 \textrm{~K}
+\end{align*}
+
+    \begin{align*}
+        \Delta P = \frac{dP}{dT} \Delta T &= \frac{L}{T(1/\rho_{ice}-1/\rho_{water})} = \frac{L\rho_{ice}\rho_{water}}{T(\rho_{ice}-\rho_{water})} = 13.3709546624 \times 10^6 \textrm{~Pa} \approx 131.6 \textrm{~atm}
+    \end{align*}
+\end{callout}
+\end{homeworkProblem}

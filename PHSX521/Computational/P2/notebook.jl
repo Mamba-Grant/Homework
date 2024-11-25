@@ -75,33 +75,32 @@ Base.@kwdef mutable struct Newtonian
 	λ::Float64 = 10000 # units m
 	mag_v::Float64 = sqrt(sum(t -> t^2, dr)) # convenience map for |v|
 	c::Float64 = γ * D^2 * exp(-r[2]/λ) # units Ns^2 / m^2
+									    # this does actually check the value of r[2] whenever it is referenced, so it is a proper function!
 end
 
 # ╔═╡ 6d1cb544-0a7c-4a5d-bb17-57caeed46aad
 function step!(n::Newtonian)
     # Calculate the current acceleration based on forces and mass
-    ddr = (-1/n.m * n.c * n.r[2] * n.mag_v * n.dr[1], 
-           -n.g - 1/n.m * n.c * n.r[2] * n.mag_v * n.dr[2])
-
+    ddr = (-1/n.m * n.c * n.mag_v * n.dr[1], 
+           -n.g - 1/n.m * n.c * n.mag_v * n.dr[2])
     # Update position using the previous velocity and acceleration
     n.r = @. n.r + n.dt * n.dr + (n.dt^2) / 2 * n.ddr
-	
-    # Update velocity using the average of the old and new accelerations
+    
+    # Update velocity
     n.dr = @. n.dr + n.dt / 2 * (ddr + n.ddr)
-
-    # Store the new acceleration for the next time step
+    # Update velocity magnitude
+    n.mag_v = sqrt(sum(t->t^2, n.dr))
+    # Store the new acceleration
     n.ddr = ddr
-
     return n.r
 end
-
 
 # ╔═╡ dbf1a4aa-9e7f-4fe0-9a8e-db3dc8729c6a
 begin
 	
 	# Initialize system with air resistance
-	dt = 1e-3
-	tstop = 1/dt * 30 # (conversion * seconds)
+	dt = 1e-2
+	tstop = 1/dt * 60 # (conversion * seconds)
 	system_with_air = Newtonian(dr=(300*cosd(50),300*sind(50)), dt=dt)
 	
 	# Initialize vectors to store positions and time
@@ -144,7 +143,7 @@ begin
     end
 
 	# Initialize system without atmospheric density  
-    system_no_density = Newtonian(dr=(300*cosd(50),300*sind(50)), dt=dt, c=3.75e-2)
+    system_no_density = Newtonian(dr=(300*cosd(50),300*sind(50)), dt=dt, c=5.6e-3)
     
     # Initialize vectors to store positions
     x_positions_no_density = Float64[]
@@ -169,13 +168,14 @@ begin
     # Create subplot layout
     layout = @layout [a; b c; d e]
     
-    # Create plots with and without air resistance
+    # Create main plot p1
     p1 = plot(x_positions_with_air, y_positions_with_air, 
               label="With Air Resistance",
               color=:blue,
               title="Projectile Motion",
               xlabel="Distance (m)",
               ylabel="Height (m)",
+              ylims=(0,3000),
               legend=:outerright)
     plot!(x_positions_no_air, y_positions_no_air,
           label="Without Air Resistance", 
@@ -184,6 +184,16 @@ begin
           label="Without Changing Atmospheric Density", 
           color=:green)
     
+    # Add inset plot zoomed around x=2700
+    inset = (1, bbox(0.25, 0.1, 0.3, 0.3))
+    plot!(p1, inset = inset, subplot = 2, x_positions_with_air, y_positions_with_air,
+          label="", color=:blue, xlims=(2650,2850), ylims=(0,200), yticks=false)
+    plot!(p1, subplot = 2, x_positions_no_air, y_positions_no_air,
+          label="", color=:red)
+    plot!(p1, subplot = 2, x_positions_no_density, y_positions_no_density,
+          label="", color=:green)
+    
+    # Rest of the plots remain the same
     p2 = plot(times, x_positions_with_air, label="With Air Resistance", color=:blue,
               title="X vs Time",
               xlabel="Time (s)",
@@ -196,6 +206,7 @@ begin
               title="Y vs Time", 
               xlabel="Time (s)",
               ylabel="Height (m)",
+              ylims=(0,3000),
               legend=false)
     plot!(times, y_positions_no_air, label="Without Air Resistance", color=:red, legend=false)
     plot!(times, y_positions_no_density, label="Without Changing Atmospheric Density", color=:green, legend=false)

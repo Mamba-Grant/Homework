@@ -1,0 +1,75 @@
+\begin{homeworkProblem}
+    Use the Debye approximation to find the expressions for the entropy of a 3-dimensional solid as a function of the temperature $T$. For simplicity, express your answer in terms of the "Debye Function" $D(y) = \frac{3}{y^3}\int_0^y \frac{x^3}{e^x-1} dx$ and the "Debye Temperature" $\Theta_D = \frac{\hbar\omega_D}{k_B} = Tx_D$. Assume that each oscillation is independent of the others.
+    \begin{callout}{Solution:}
+        $$S = \ln Z - \beta \left( \frac{\partial \ln Z}{\partial \beta } \right) = - \left( \frac{\partial F}{\partial T} \right)$$
+        $$F = - \frac{1}{\beta} \ln Z$$
+        I'll choose to do this from the Helmholtz Free energy since it can be done a bit easier.
+        We found:
+        \begin{align*}
+            \ln Z &=  -\frac{9N\beta \hbar \omega}{8} - 3N\ln(1-e^{-x_{D}})-\frac{N}{x^{3}_{D}}\int_{0}^{x_{D}} \frac{x^{3}}{e^{x}-1} \,dx \\ 
+            &= -\frac{9Nx_{D}}{8} - 3N\ln(1-e^{-x_{D}})- N D_3(x_D); \quad x_D = \beta \hbar \omega 
+        \end{align*}
+        I'll just keep things in terms of beta, so
+        $$
+        -\left( \frac{\partial F}{\partial T} \right) 
+        = -\left( \frac{\partial F}{\partial \beta} \right) \left( \frac{\partial \beta}{\partial T} \right) 
+        = -\left( \frac{\partial F}{\partial \beta} \right) \frac{\partial }{\partial T}\left( \frac{1}{k_BT} \right) = \frac{\beta^2}{k_B} \left( \frac{\partial F}{\partial \beta} \right)
+        $$
+        Now we can just compute entropy
+        \begin{align*}
+            S &= -\frac{\partial}{\partial \beta} \left[ \frac{1}{\beta} \frac{\beta^2}{k_B} \left( -\frac{9N\beta \hbar \omega}{8} - 3N\ln(1-e^{-\beta \hbar \omega})- N D_3(x_D) \right) \right] \\
+            &= \frac{\partial}{\partial \beta} \left[ \frac{\beta}{k_B} \left( \frac{9N\beta \hbar \omega}{8} + 3N\ln(1-e^{-\beta \hbar \omega}) + N D_3(x_D) \right) \right] \\
+        \end{align*}
+        I will assume the form of $\frac{1}{k_B}(U) + \frac{\beta}{k_B}(U')$ (product rule), where $U$ is the contents of the parenthesis. Focusing on the $U'$ term for cleanliness:
+        \begin{align*}
+            U' &= \frac{\partial}{\partial \beta} \left( \frac{9N\beta \hbar \omega}{8} + 3N\ln(1-e^{-\beta \hbar \omega}) + N D_3(x_D) \right) \\
+            &= \left( \frac{9N\hbar \omega}{8} -3N\hbar \omega \frac{e^{-\beta \hbar \omega}}{1-e^{-\beta \hbar \omega}} + N \frac{\partial D_3(x_D)}{\partial \beta} \right)
+        \end{align*}
+        Which gives this beefy eqaution 
+        $$
+        S = \frac{1}{k_B} \left( \frac{9N\beta \hbar \omega}{8} + 3N\ln(1-e^{-\beta \hbar \omega}) + N D_3(x_D) \right) + \frac{\beta}{k_B} \left( \frac{9N\hbar \omega}{8} - 3N\hbar \omega \frac{e^{-\beta \hbar \omega}}{1-e^{-\beta \hbar \omega}} + N \frac{\partial D_3(x_D)}{\partial \beta} \right)
+        $$
+        And we can tidy it up with the Debye temperature instead of $\hbar \omega$ terms
+        \begin{align*}
+            S = \left( \frac{9N\beta \Theta_D}{8} + \frac{3N}{k_B} \ln(1-e^{-\beta k_B \Theta_D}) + \frac{N}{k_B}  D_3(x_D) \right) +  
+            \left( \frac{9N \beta \Theta_D}{8} - 3N \beta \Theta_D \frac{e^{-\beta k_B \Theta_D}}{1-e^{-\beta k_B \Theta_D}} + \frac{N\beta}{k_B} \frac{\partial D_3(x_D)}{\partial \beta} \right)
+        \end{align*}
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Derive an expression for the pressure of an Einstein solid in terms of $\frac{\partial\omega_0}{\partial V}$. Then use the proportion $\omega_0 \propto V^{-\frac{1}{3}}$ to determine an approximate expression for the pressure of an Einstein solid at $T = 0$.
+    \begin{callout}{Solution:}
+        
+        Again I will use Helmholtz Free energy, since it is fewer computations
+        $$
+        \ln Z
+        =-3 N\left[\frac{1}{2} \beta \hbar \omega_0+\ln \left(1-e^{-\beta h \omega_0}\right)\right] 
+        = -3 N\left[\frac{1}{2} \beta \hbar \lambda V^{-1/3}+\ln \left(1-e^{-\beta h \lambda V^{-1/3}}\right)\right] 
+        $$
+        $$P = \frac{\partial F}{\partial V}; \quad F = -\frac{1}{\beta} \ln Z$$
+
+        I choose to substitute $\omega \to V^{-1/3}$ times some proportionality constant $\lambda$.
+        Differentiating, we get
+        \begin{align*}
+            P = \frac{3N}{\beta}\left[\frac{1}{2} \beta \hbar \lambda V^{-4/3}
+            - \frac{\beta \lambda h}{3V^{\frac{4}{3}}} \frac{ e^{-\beta \lambda h V^{-1/3} }}{ (1-e^{-\beta \lambda h V^{-1/3}}) }\right]
+        \end{align*}
+
+        Without rigorously proving it, I'll say that the fraction of exponentials converges to zero when $\beta \to \infty$. This leaves us with a constant pressure at low temperature equal to
+        $$P=\frac{3N \hbar \lambda V^{-4/3}}{2}$$
+
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Use the Debye approximation to find the expressions for the entropy of a 3-dimensional solid as a function of the temperature $T$. For simplicity, express your answer in terms of the "Debye Function" $D(y) = \frac{3}{y^3}\int_0^y \frac{x^3}{e^x-1} dx$ and the "Debye Temperature" $\Theta_D = \frac{\hbar\omega_D}{k_B} = Tx_D$. Assume that each oscillation is independent of the others.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    What is the equation of state for a Debye solid? That is, find an expression for the pressure $P$ in terms of the volume $V$ and the temperature $T$. Express your answer in terms of the "Debye function", $D(y)$, the "Debye temperature", $\Theta_D$, and the Grüneisen parameter, $\gamma = -\frac{V}{\Theta_D}\frac{\partial\Theta_D}{\partial V}$.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    A rigid 1-D rod can excite longitudinal normal modes of oscillation down its length, denoted as $L$. Determine the heat capacity of the rod, $C_V$, as a function of temperature resulting from these oscillations using a Debye approximation model. Express your answer in terms of an integral and, for the sake of simplicity, consider using the dimensionless variable $x = \beta\hbar\omega$.
+\end{homeworkProblem}

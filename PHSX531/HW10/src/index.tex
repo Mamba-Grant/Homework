@@ -1,0 +1,148 @@
+\begin{homeworkProblem}
+    A thick spherical shell (inner radius $a$, outer radius $b$) is made of dielectric material with a "frozen-in" polarization:
+    \[\mathbf{P}(r) = \frac{k}{r}\hat{r},\]
+    where $k$ is a constant and $r$ is the distance from the center. (There is no free charge in the problem). Find the electric field in all three regions by two different methods:
+
+    \begin{enumerate}[(a)]
+        \item (3 pts) Calculate the bound charges. Use Gauss's Law for electric fields to calculate the field the bound charges produce.
+            \begin{callout}{Solution:}
+                We will have bound charges 
+                $$\rho_b = -\nabla \cdot \textbf{P} = - \frac{k}{r^2}, \qquad \sigma_b = \textbf{P} \cdot \hat{n} = \begin{cases}
+                    -k/r & r=b \\ 
+                    k/r & r=a
+                \end{cases}$$
+                Gauss's law says 
+                    $$\textbf{E} = \frac{1}{4\pi \epsilon_0} \frac{Q_{enc}}{r^2}\hat{r}$$
+                    Where $Q_{enc}$ is given by integrals over the surfaces and volumes. It happens that enclosed charge equals zero inside and outside. Total charge vanishes in a neutral conductor, and this is proven in problem 4. This leaves me with the charge between the two boundaries:
+                    \begin{align*}
+                        Q_{enc} &= -4\pi \frac{k}{a} a^2 + \int_{a}^{r} 4\pi (- \frac{k}{r^2}) r^2 ~dr \\ 
+                        &= -ka - k(r-a) \\
+                        &= -kr
+                    \end{align*}
+                    Therefore we have electric field for each region 
+                    $$\textbf{E} = \begin{cases}
+                        0 & r < a \\ 
+                        - \frac{k}{\epsilon_0 r} & a<r<b \\ 
+                        0 & r > b
+                    \end{cases}$$
+            \end{callout}
+            \newpage
+        \item (3 pts) Use Gauss's Law in the presence of dielectrics ($\oint \mathbf{D} \cdot d\mathbf{a} = Q_{f,enc}$) to first calculate the displacement $\mathbf{D}$. Then use the relationship between electric field, displacement, and polarization to find the E-field.
+            \begin{callout}{Solution:}
+                
+                Gauss's law in the presence of dielectrics is 
+                \begin{align*}
+                    \nabla\cdot\underbrace{ (\epsilon_{0}\mathbf{E}+\mathbf{P}) }_{ =\mathbf{D} }&=\rho_{f} \\ 
+                    \oint\mathbf{D}\cdot d\mathbf{a}&=Q_{f_{enc}}
+                \end{align*}
+
+                The integral form is more useful for this problem, and it tells me that $\textbf{D}=0$, since there are no free charges. We can only have polarized material for $a<r<b$, so:
+                \begin{align*}
+                     \textbf{E} &= -\frac{\textbf{P}}{\epsilon_0} = \begin{cases}
+                         0 & r<a \\ 
+                         - \frac{k}{\epsilon_0 r} & a < r < b \\ 
+                         0 & r>b
+                     \end{cases}
+                \end{align*}
+
+            \end{callout}
+    \end{enumerate}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (3 pts) A very long cylinder of linear dielectric material is placed in an otherwise uniform electric field $\mathbf{E}_0$. Find the resulting electric field within the cylinder. (The radius is $a$, the susceptibility $\chi_e$, and the axis is perpendicular to $\mathbf{E}_0$)
+    \begin{callout}{Solution:}
+        We have the same case as with our sphere example 4.7, so 
+        \begin{enumerate}[(i)]
+            \item $V_{in}=V_{out}$ at $r=a$ 
+            \item $\epsilon \frac{\partial V_{in}}{\partial r} = \epsilon_0 \frac{\partial V_{out}}{\partial r}$ at $r=a$
+            \item $V_{out}=-E_0 r\cos\theta$ for $r>>a$
+        \end{enumerate}
+        I'll immediately eliminate constants $A_0$ and $B_0$ outside the sums, since we can't have them with these boundary conditions. 
+        Also, by the principle of superposition, I will just add that constant electric field.
+        This gives potentials in both regions:
+        \begin{align*}
+            V_{out} &= -E_0a\cos\theta \sum_{k=1}^{\infty} [r^{-k}(a_k \cos k\theta + b_k \sin k\theta)] \\ 
+            V_{in} &= \sum_{k=1}^{\infty} [r^k(c_k\cos k\theta+ d_k \sin k\theta)]
+        \end{align*}
+
+        \begin{enumerate}[(i)]
+            \item Requires that 
+                $$\sum_{k=1}^{\infty} [r^k(c_k\cos k\theta + d_k \sin\theta)] = - E_0 r\cos\theta + \sum_{k=1}^{\infty}[r^{-k}(a_k\cos k\theta + b_k \sin k\theta)]$$
+            \item Requires that 
+                $$\epsilon _{r} \sum_{k=1}^{\infty} [kr^{k-1}(c_k\cos k\theta+d_k\sin k\theta)] = - E_0 \cos\theta - \sum_{k=1}^{\infty} [kr^{-k-1}(a_k\cos k\theta+b_k\sin k\theta)] $$
+        \end{enumerate}
+        The contribution from the external electric field vanishes for $k\neq1$, which sends $c_k=a_k=0$. 
+        Also, for all $k$ $d_k=b_k=0$, since this would violate (iii). This means that $k=1$ is the only allowed value.
+
+        For $k=1$:
+
+        \begin{align*}
+            ac_1 \cos\theta &= - E_0 a\cos\theta + a^{-1} a_1 \cos\theta \\ 
+            \epsilon_a c_1\cos\theta &= - E_0 \cos\theta - a^{-2}a_1\cos\theta \\ 
+            \implies a_1 &= a(ac_1+E_0a) \\ 
+            \implies c_1 &= \frac{-E_0 - a^{-2}a_1}{\epsilon_0}
+        \end{align*}
+        Where if we substitute $a_1$ into $c_1$, we get 
+        $$c_1=-\frac{2E_0}{\epsilon_0+1}, \qquad a_1 = E_0a^2-\frac{2a^2E_0}{\epsilon_0+1}$$
+        Then,
+        $$V_{in} = -\frac{2E_0}{\epsilon_0+1} ( \underbrace{r\cos\theta}_{=x} ), \quad E = -\frac{\partial V}{\partial x}\hat{x} = \frac{2E_0}{\epsilon_0 + 1}\hat{x} $$
+
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    (4 pts) An uncharged conducting sphere of radius $a$ is coated with a thick insulating linear dielectric shell (dielectric constant $\varepsilon_r$) out to radius $b$. This object is now placed in an otherwise uniform electric field $\mathbf{E}_0$ (which you can assume is in the $z$ direction). Find the electric field in the insulator.
+    \begin{callout}{Solution:}
+        Unlike in example 4.5 we do not have free charge $Q$ nor do we know bound charges or polarization or potential, so we ahve to use laplace's equation.
+        We have boundary conditions:
+        \begin{enumerate}[(i)]
+            \item $\epsilon \frac{\partial V_D}{\partial r} = \epsilon_0 \frac{\partial V'}{\partial r}$ at $r=b$
+            \item $V_D = v'$ at $r=b$ 
+            \item $V_D = 0$ at $r=a$
+        \end{enumerate}
+        And potentials 
+        \begin{enumerate}[(i)]
+            \item $V_D=\sum_{\ell=0}^{\infty} [A_\ell r^\ell + \frac{B_\ell}{r^{\ell+1}}P_\ell (\cos\theta)$ inside the insulator.
+            \item $V'= - E_0 r\cos\theta + \sum_{\ell=0}^{\infty} [A'_{\ell} r^\ell + \frac{B'_{\ell}}{r^{\ell+1}}P_\ell(\cos\theta)$ outside the insulator.
+            \item $V=0$ inside the sphere.
+        \end{enumerate}
+        Immediately $A_\ell'=0$ so we don't have infinite potential at infinity. 
+        \begin{enumerate}[(i)]
+            \item requires that:
+                $$\epsilon_r \sum_{\ell=0}^{\infty}\left[A_\ell \ell b^{\ell-1} - (\ell+1)\frac{B_\ell}{b^{\ell+2}}\right]P_\ell(\cos\theta)
+                =-E_0\cos\theta + \sum_{\ell=0}^{\infty}\left[ -(\ell+1)\frac{B_\ell'}{b^{\ell+2}} \right]P_\ell(\cos\theta)$$
+            \item requires that: 
+                $$\sum_{\ell=0}^{\infty}\left[A_\ell b^\ell + \frac{B_\ell}{b^{\ell+1}}\right]P_\ell (\cos\theta) = - E_0 \cos\theta + \sum_{\ell=0}^{\infty}\left[ \frac{B'_{\ell}}{b^{\ell+1}} \right]P_\ell(\cos\theta)$$
+        \end{enumerate}
+        Condition (iii) lets us say 
+        $$A_\ell a^\ell+\frac{B_\ell'}{r^{\ell+1}}=0 \quad \implies \quad B_\ell' = -A_\ell a^{2\ell+1}$$
+        For $\ell \neq 1$ the external field term vanishes, since it is equivalent to $P_1(\cos\theta)$. Then we can drop the summations and write 
+        \begin{align*}
+            A_\ell b^\ell + \frac{B_\ell}{b^{\ell+1}}&= \frac{B'_{\ell}}{b^{\ell+1}} \\ 
+            \epsilon_r \left[ A_\ell \ell b^{\ell-1} - (\ell+1)\frac{B_\ell}{b^{\ell+2}} \right] &= -(\ell+1)\frac{B_{\ell}'}{b^{\ell+2}}
+        \end{align*}
+        And for $\ell=1$:
+        \begin{align*}
+            \left[A_1 b^{\ell}+ \frac{B_1}{b^2}\right] \cos\theta &= - E_0 b\cos\theta + \frac{B_1'}{b^2}\cos\theta \\
+            \epsilon _{r}\left[ A_1 + \frac{-2B_1}{b^2} \right] &= - E_0 - \frac{2B_1'}{b^2}
+        \end{align*}
+
+        \textbf{Need to quickly finish this by combining the boundary conditions}
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    (Extra credit, 3 pts): When you polarize a neutral dielectric, the charge moves a bit, but the total remains zero. This fact should be reflected in the bound charges $\sigma_b$ and $\rho_b$. Use the definition of bound charges to show that the total bound charge is zero. (Hint: Assume some finite dielectric, draw Gaussian surface around it, and calculate the total bound charge inside)
+    \begin{callout}{Solution:}
+        We have the equations 
+        $$\sigma_b \equiv \textbf{P}\cdot\hat{n}, \qquad \rho_b \equiv -\nabla\cdot \textbf{P}$$
+        In deriving the bound charges, we found the total charge:
+        $$Q=\oint_{S} \sigma_b ~d \textbf{a} + \int_{V} \rho_b ~dV = \oint_S \textbf{P}\cdot d \textbf{a} + \oint_V -\nabla\cdot \textbf{P} d\tau$$
+        By the divergence theorem, these should be equal:
+        $$\oint_S \textbf{P}\cdot d \textbf{a} = \oint_V \nabla\cdot \textbf{P} d\tau $$
+        Therefore $Q$ due to the bound charges is zero. If there are no free charges, then total charge is zero.
+    \end{callout}
+\end{homeworkProblem}

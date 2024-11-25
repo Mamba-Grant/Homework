@@ -1,0 +1,211 @@
+\begin{homeworkProblem}
+    Exercise 12.2.1 (Shankar) -- 5 points
+
+    Provide the steps linking Eq. (12.2.8) to Eq. (12.2.9). [Hint: Recall the derivation of Eq. (11.2.8) from Eq. (11.2.6).]
+
+    \[U[R]\ket{x, y} = \ket{x - y\varepsilon_z, x\varepsilon_z + y}\]
+    \[\braket{x, y | I -\frac{i\varepsilon_z L_z}{\hbar}|\psi} = \psi(x + y\varepsilon_z, y - x\varepsilon_z)\]
+    \begin{callout}{Solution:}
+        In the derivation of rotations, we initially define infinitesimal rotations about $\epsilon_z \textbf{k}$:
+        $$U[R(\epsilon_z \textbf{k})]=I-\frac{i \epsilon_z L_z}{\hbar}$$
+        We can first examine the hermitian conjugate, where we just end up inverting the sign on the parts multiplied by $\epsilon_z$. 
+        Then, we can consider the application of the rotation operator such that $\braket{x,y|U[R]|\psi}$ to rotate the coordinates which we project $\psi$ into.
+        This leaves us with a modified projection of $\psi$ onto $x'$ and $y'$.
+        \begin{align*}
+            \left( U[R]\ket{x,y} \right)^{\dagger} &= \bra{x,y} \left( I+\frac{i \epsilon_z L_z}{\hbar} \right) = \bra{x+y \epsilon_z,~-x \epsilon_z +y} \\
+            \braket{x, y | I -\frac{i\varepsilon_z L_z}{\hbar}|\psi} &= \braket{x+y \epsilon_z,~-x \epsilon_z +y|\psi} \\ 
+            &= \psi(x+y \epsilon_z, ~y-x \epsilon_z)
+        \end{align*}
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Exercise 12.2.3 (Shankar) -- 5 points
+
+    Derive Eq. (12.2.19) by doing a coordinate transformation on Eq. (12.2.10), and also by the direct method mentioned above.
+
+    \[L_z\underset{\text{coordinate basis}}{=} -i\hbar\frac{\partial}{\partial\phi}\]
+
+    *You can choose either one of the methods.
+    \begin{callout}{Solution:}
+        
+        Equation 12.2.10 says
+        $$L_z = x\left( -i\hbar \frac{\partial}{\partial y} \right) - y\left( -i\hbar \frac{\partial}{\partial x} \right)$$
+
+        Directly doing the coordinate transformation to this is probably more straightforward.
+        The only tricky part is working out the transformation of the partial derivatives to polar coordinates for $r=1$ (since we don't want to modify length of our vectors).
+        \begin{align*}
+            &= \cos \phi \left( -i\hbar \frac{\partial}{\partial \phi} \frac{\partial \phi}{\partial y} \right) - \sin\phi \left( -i\hbar \frac{\partial}{\partial \phi}\frac{\partial \phi}{\partial x} \right) \\
+            &= \cos \phi \left( -i\hbar \cos\phi \frac{\partial}{\partial \phi} \right) - \sin\phi \left( -i\hbar \sin\phi \frac{\partial}{\partial \phi} \right) \\
+            &= -i\hbar \left( \cos^2\phi + \sin^2\phi \right) \frac{\partial}{\partial \phi} \\ 
+            &= -i\hbar \frac{\partial}{\partial \phi}
+        \end{align*}
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Exercise 12.5.3 (Shankar) -- 10 points
+
+    (1) Show that $\braket{J_x} = \braket{J_y} = 0$ in a state $\ket{jm}$.
+    \begin{callout}{Solution:}
+        We have 
+        $$J_i = L_i + S_i$$
+        Which in the basis of ladder operators is:
+        $$J_x = \frac{J_+ + J_-}{2}, \qquad J_y = \frac{J_+-J_-}{2i}$$
+        Which we do know how to do calculations with: 
+        \begin{align*}
+            J_{\pm} \ket{jm} &= \hbar[(j \mp m)(j\pm m+1)]^{1/2}\ket{j,m\pm1}
+        \end{align*}
+        It is relatively simple to express expectation values:
+        \begin{align*}
+            \braket{jm|\frac{J_++J_-}{2}|jm} &= \frac{1}{2} \left[ \braket{jm|J_+|jm} + \braket{jm|J_-|jm} \right] \\
+            &= \frac{\hbar}{2} \left\{ \left[(j-m)(j+m+1)\right]^{1/2} \cancelto{0}{\braket{jm|j,m+1}} + \left[ (j+m)(j-m+1) \right]^{1/2} \cancelto{0}{\braket{jm|j,m-1}} \right\} \\ 
+            &= 0 \\
+            \braket{jm|\frac{J_+-J_-}{2i}|jm} &= \frac{1}{2i} \left[ \braket{jm|J_+|jm} - \braket{jm|J_-|jm} \right] \\
+            &= \frac{\hbar}{2i} \left\{ \left[(j-m)(j+m+1)\right]^{1/2} \cancelto{0}{\braket{jm|j,m+1}} - \left[ (j+m)(j-m+1) \right]^{1/2} \cancelto{0}{\braket{jm|j,m-1}} \right\} \\
+            &= 0
+        \end{align*}
+        We run into the same situation we do with harmonic oscillator ladder operators, in that our off-diagonal (block diagonal) matrix form results in expectation values of zero when a value gets raised but not lowered, and vise versa due to the delta function.
+    \end{callout}
+
+    (2) Show that in these states
+    \[\braket{J_x^2} = \braket{J_y^2} = \frac{1}{2}\hbar^2[j(j+1) - m^2]\]
+    (use symmetry arguments to relate $\braket{J_x^2}$ to $\braket{J_y^2}$).
+    \begin{callout}{Solution:}
+        As with the harmonic oscillator ladder operators, squaring the sum of these operators results in two terms that have equal amounts raising and lowering.
+        \begin{align*}
+            \frac{1}{2}\braket{jm|\left( J_+ + J_- \right)^{2}|jm} &= \frac{1}{2}\braket{jm|\cancelto{0}{J_+^{2}} + \cancelto{0}{J_-^{2}} + J_-J_+ + J_+J_-|jm} \\ 
+            -\frac{1}{2}\braket{jm|\left( J_+ - J_- \right)^{2}jm} &= \frac{1}{2}\braket{jm|\cancelto{0}{-J_+^{2}} - \cancelto{0}{J_-^{2}} + J_-J_+ + J_+J_-|jm}
+        \end{align*}
+        Where the sequence of the one lowering-raising operator and vise-versa is:
+        \begin{align*}
+            \braket{jm|J_-J_+|jm} &= \hbar [(j-m)(j+m+1)]^{1/2}\braket{jm|J_-| jm+1} \\ 
+            &= \hbar^2 [(j-m)(j+m+1)(j+(m+1))(j-(m+1)+1)]^{1/2} \cancelto{1}{\braket{jm|jm}} \\
+            &= \hbar^2 \left(j+m+1\right)\left(j-m\right) \\ 
+            \braket{jm|J_+J_-|jm} &= \hbar [(j+m)(j-m+1)]^{1/2}\braket{jm|J_+| jm-1} \\ 
+            &= \hbar^2 [(j+m)(j-m+1)(j-(m-1))(j+(m-1)+1)]^{1/2} \cancelto{1}{\braket{jm|jm}} \\
+            &= \hbar^2 \left(j+m\right)\left(j-m+1\right)
+        \end{align*}
+        Substituting these back in, 
+        \begin{align*}
+            \braket{J_x^2} = \frac{1}{2}\braket{jm|\left( J_+ + J_- \right)^{2}|jm} &= \frac{\hbar^2}{2} \left[(j+m+1)(j-m) + (j+m)(j-m+1)\right] = \frac{\hbar^2}{2}\left[ j(j+1)-m^2 \right]
+        \end{align*}
+        It happens that $\braket{J_y^2}$ is the same, since that extra $i$ in the demoninator when squared makes it identical to $\braket{J_x^2}$.
+    \end{callout}
+    \begin{callout}{Solution \#2:}        
+        A bit more compactly, we have rotational invariance about the $z-axis$, so $\braket{J_x^2}=\braket{J_y^2}$.
+        Now we can just work out expectation values for:
+        $$J^2-J_z^2 = j_x^2+J_y^2$$
+        which is the same:
+        $$\braket{J_x^2} = \braket{J_y^2} = \frac{\hbar^2}{2}\left[ j(j+1)-m^2 \right]$$
+    \end{callout}
+
+    (3) Check that $\Delta J_x \cdot \Delta J_y$ from part (2) satisfies the inequality imposed by the uncertainty principle [Eq. (9.2.9)].
+    \begin{callout}{Solution:}
+        We have equation (9.2.9):
+        $$(\Delta \Omega)^2 (\Delta \Lambda)^2 \geq |\braket{\psi|\Omega \Lambda|\psi}|^2$$
+        where $\Omega \Lambda$ can also be expressed in terms of commutators
+        $$\frac{[\Omega,\Lambda]_{+} +[\Omega,\Lambda]}{2}$$
+        I think that it will be easier to just directly compute their product, since it is just 
+        $$\braket{J_xJ_y} = \frac{1}{4i}\braket{J_-J_+ - J_+J_-} = \frac{m\hbar^2}{2}$$
+        Now the left hand side, we have by rotational invariance about the $z$-axis:
+        \begin{align*}
+            \Delta J_x = \Delta J_y &= \sqrt{ \langle J_x^2 \rangle - \langle J_x \rangle^2 } \\ 
+            &= \sqrt{ \frac{\hbar^2}{2}\left[ j(j+1)-m^2 \right] }
+        \end{align*}
+        So to verify, we have 
+        $$\frac{\hbar^2}{2}\left[ j(j+1)-m^2 \right] \geq \frac{m\hbar^2}{2}$$
+        We must realize that $j \leq |m| \implies j(j+1) \leq m(m+1)$, so then the equality is met.
+    \end{callout}
+
+    (4) Show that the uncertainty bound is saturated in the state $\ket{j, \pm j}$.
+    \begin{callout}{Solution:}
+        The inequality is only saturated when $j=|m| \implies m = \pm j$. This is the state $\ket{j,\pm j}$
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Exercise 12.5.12 (Shankar) -- 6 points
+
+    Since $L^2$ and $L_z$ commute with $\Pi$, they should share a basis with it. Verify that $Y_l^m \underset{\Pi}{\rightarrow} Y_{l\Pi}^{m} = (-1)^l Y_l^m$. 
+
+    \vspace{1em} Hint: (I expanded the hint from the book a little bit)
+    \begin{enumerate}
+        \item $Y_{l\Pi}^{m}$ in this question represents the function generated from $\Pi Y_l^m$.
+        \item Recall (from Chap. 11) that $\Pi$ is an operation that changes $(x, y, z)$ to $(-x, -y, -z)$. For spherical coordinates, $\Pi Y_l^m = Y_{l\Pi}^{m}(\theta, \phi) = Y_l^m(\pi - \theta, \phi + \pi)$
+        \item Show the proof for the $Y_l^l$ first.
+        \item Then, show that the lower operator $L_-$ (projected in the X-basis) is not altered by the parity operation $(\theta \rightarrow \pi - \theta, \phi \rightarrow \phi + \pi)$
+    \end{enumerate}
+    \begin{callout}{Solution:}
+        
+        We have the harmonic function 
+        $$Y_l^m(\theta, \phi) = \left[ \frac{(2l+1)(l-m)!}{4\pi (l+m)!} \right]^{1/2} (-1)^m e^{im\phi}P_l^m (\cos\theta)$$
+
+        Starting with (3), we can apply the parity operator to $Y_l^l$.
+        \begin{align*}
+            Y_l^l(\theta,\phi) &= \left[\frac{2l+1}{4\pi(2l)!}\right]^{1/2} (-1)^{l} e^{il\phi}P_l^l(\cos\theta) \\
+            \Pi Y_l^l(\theta,\phi) &= \left[\frac{2l+1}{4\pi(2l)!}\right]^{1/2} (-1)^{l} e^{il(\phi+\pi)}P_l^l(\cos(\pi-\theta)) \\
+        \end{align*}
+        A key thing to see here is that $P_l^l$ obeys a nice rule, where 
+        $$P_\ell^\ell = \sin^\ell \theta = \sin^\ell(\pi-\theta)$$
+        %And this is equal to itself when phase shifted by $\pi$. 
+        We don't really care about the normalization term since it doesn't change under parity, so under parity just need to know what happens to the exponential $\phi$ term.
+        $$e^{il(\phi+\pi)} = \left( e^{i\phi} \right)^le^{il\phi} = (-1)^l e^{il\phi}$$
+        Hence, 
+        $$\Pi Y_l^l = (-1)^lY_l^l $$
+        We can now lower the harmonic function using $L_-$ to access the values of $m\neq l$.
+        Recall that the operator \( L_{\pm} \) is defined as  
+        \[ L_{\pm} = \pm \hbar e^{i\phi} \left( \frac{\partial}{\partial \theta} \pm i \cot\theta \frac{\partial}{\partial \phi} \right). \]  
+
+        Under the transformations \( \theta \to \pi - \theta \) and \( \phi \to \phi + \pi \), the differentials remain unchanged except that the differential with respect to \( \theta \) picks up a negative sign.  
+
+        To verify the behavior of \( \cot\theta \) under these transformations, we only need to check whether  
+        \[ \cot\theta \stackrel{?}{=} \cot(\pi - \theta), \]  
+        since it was already shown that \( e^{i\phi} \to e^{i(\phi-\pi)} = (-1)^l e^{i\phi} \).  
+
+        Using trigonometric identities, we compute:  
+        \[
+            \cot(\pi - \theta) = \frac{\cos(\pi - \theta)}{\sin(\pi - \theta)} = \frac{-\cos\theta}{\sin\theta} = -\cot\theta.  
+        \]  
+
+        Thus, \( \cot(\pi - \theta) = -\cot\theta \), confirming the behavior of $L_-$ under the transformation.
+
+        $$L_- = \Pi L_- \implies [L_-, \Pi] = 0$$
+        Therefore 
+        $$\Pi Y_l^m = (-1)^lY_l^m$$
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Exercise 12.6.1 (Shankar) -- 9 points
+
+    A particle is described by the wave function
+    \[\psi_E(r, \theta, \phi) = Ae^{-r/a_0} \quad (a_0 = \text{const})\]
+
+    (1) What is the angular momentum content of the state?
+    \begin{callout}{Solution:}
+        No $\phi$ or $\theta$ dependence implies it has no angular momentum. Furthermore, $\psi_E \propto Y_0^0$.
+    \end{callout}
+
+    (2) Assuming $\psi_E$ is an eigenstate in a potential that vanishes as $r \rightarrow \infty$, find $E$. (Match leading terms in Schrödinger's equation.)
+    \begin{callout}{Solution:}
+        \begin{align*}
+            \hat{H}\psi_E = \left[-\frac{\hbar^2}{2\mu} \frac{1}{r^2} \frac{\partial}{\partial r} \left( r^2 \frac{\partial}{\partial r} \right) + V(r)\right]\psi_E &= E\psi_E \\ 
+            \left[-\frac{\hbar^2}{2\mu} \frac{1}{r^2} \frac{\partial}{\partial r} \left( r^2 \frac{\partial}{\partial r} \right) + V(r)\right]Ae^{-r/a_0} &= EAe^{-r/a_0} \\
+            \left[-\frac{\hbar^2}{2\mu} \frac{1}{r^2} \frac{\partial}{\partial r} \left( r^2 \frac{\partial}{\partial r} \left( Ae^{-r/a_0} \right) \right) + V(r)Ae^{-r/a_0}\right] &= EAe^{-r/a_0} \\
+            -\frac{\hbar^2}{2\mu} \frac{1}{r^2} \frac{A}{a_0^2}\left(2a_0r-r^2\right)e^{-r/a_0} + V(r)Ae^{-r/a_0} &= EAe^{-r/a_0} \\
+            -\frac{\hbar^2}{2\mu} \frac{1}{r^2} \frac{1}{a_0^2}\left(2a_0r-r^2\right) + V(r) &= E \\
+            - \frac{\hbar^2}{\mu a_0} + \frac{\hbar^2}{2\mu a_0 r} + V(r) &= E
+        \end{align*}
+        If potential vanishes as $r\to\infty$, then we are left with one term 
+        $$E=-\frac{\hbar^2}{\mu a_0}$$
+    \end{callout}
+
+    (3) Having found $E$, consider finite $r$ and find $V(r)$.
+    \begin{callout}{Solution:}
+        Substituting $E$ in, we have 
+        $$-\frac{\hbar^2}{2\mu a_0 r}=V(r)$$
+    \end{callout}
+\end{homeworkProblem}

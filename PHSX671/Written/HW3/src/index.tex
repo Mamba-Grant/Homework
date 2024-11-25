@@ -45,11 +45,20 @@
         \end{align*}
         Therefore the final expression is 
         \begin{align*}
-            P &= \frac{1}{\beta}\frac{\gamma V}{\sqrt{\lambda NE + \gamma V^2}} \\ 
-             &= k_BT\frac{\gamma V}{\sqrt{\lambda NE + \gamma V^2}} \\ 
+            P &= \frac{1}{\beta}\frac{\gamma V}{\sqrt{\lambda NE + \gamma V^2}}
         \end{align*}
 
-        (I'm not particularly sure how to get anything more than this for $\beta$)
+        Recalling that $\beta = \frac{\partial S}{\partial E}$:
+
+        \begin{align*}
+            \beta = \frac{\partial S}{\partial E} &= \frac{1}{2\sqrt{\frac{NE+gV^2}{\lambda}}}\frac{\partial }{\partial E}\left(\frac{NE+gV^2}{\lambda}\right) \\ 
+            &= \frac{1}{2\sqrt{\frac{NE+gV^2}{\lambda}}} \frac{N}{\lambda} \\ 
+            \frac{1}{\beta} &= 2\sqrt{\frac{NE+gV^2}{\lambda}} \frac{\lambda}{N} \\ 
+            &= 2\frac{\sqrt{ \lambda(NE+gV^2)  }}{N} \\ 
+        \end{align*}
+
+        Substituting back nets
+        $$P = \frac{2\gamma V\sqrt{\lambda \left(NE+gV^2\right)}}{N\sqrt{\lambda NE+\gamma V^2}}$$
 
     \end{callout}
 \end{homeworkProblem}
@@ -91,30 +100,40 @@
                 $$n_0 + n_1 + n_2 + n_3 = N$$
 
                 with energies
-                $$0 + \epsilon + 2 \epsilon + 3\epsilon = 6 \epsilon = E_{\textrm{tot}}$$
+                $$0 + \epsilon + 2 \epsilon + 3\epsilon + \dots = 6 \epsilon = E_{\textrm{tot}}$$
 
                 The occupation number can be calculated by considering the number of ways to arrange the 4 particles (multiplicity) into each state which has total energy $6 \epsilon$ divided out by the total ways to arrange everything. For bosons, the same line of reasoning as in problem 3 holds, where multiplicity is:
                 $$\Omega = \begin{pmatrix} n + k - 1 \\ k-1 \end{pmatrix}$$
                 \begin{table}[H] 
                     \centering 
-                    \begin{tabular}{c|cccc|c} 
+                    \begin{tabular}{c|ccccccc|c} 
                         \toprule 
-                        \textbf{State} & \(n_0\) ($0\epsilon$) & \(n_1\) (\(1\epsilon\)) & \(n_2\) (2\(\epsilon\)) & \(n_3\) (3\(\epsilon\)) & \textbf{Multiplicity}\\ 
+                        \textbf{State} & \(n_0\) ($0\epsilon$) & \(n_1\) (\(1\epsilon\)) & \(n_2\) (2\(\epsilon\)) & \(n_3\) (3\(\epsilon\))  & \(n_4\) (4\(\epsilon\)) & \(n_5\) (5\(\epsilon\)) & \(n_6\) (6\(\epsilon\)) & \textbf{Multiplicity}\\ 
                         \midrule
-                        $\ket{1}$ & 2 & 0 & 0 & 2 & 5 \\
-                        $\ket{2}$ & 0 & 3 & 0 & 1 & 5 \\
-                        $\ket{3}$ & 1 & 1 & 1 & 1 & 35 \\
-                        $\ket{4}$ & 0 & 2 & 2 & 0 & 5 \\
+                        $\ket{1}$ & 2 & 0 & 0 & 2 & 0 & 0 & 0 & 5 \\
+                        $\ket{2}$ & 0 & 3 & 0 & 1 & 0 & 0 & 0 & 5 \\
+                        $\ket{3}$ & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 35 \\
+                        $\ket{4}$ & 0 & 2 & 2 & 0 & 0 & 0 & 0 & 5 \\
+                        $\ket{5}$ & 2 & 0 & 1 & 0 & 1 & 0 & 0 & 15 \\
+                        $\ket{6}$ & 1 & 2 & 0 & 0 & 1 & 0 & 0 & 15 \\
+                        $\ket{7}$ & 2 & 1 & 0 & 0 & 0 & 1 & 0 & 15 \\
+                        $\ket{8}$ & 3 & 0 & 0 & 0 & 0 & 0 & 1 & 5 \\
+                        \midrule
+                        \textbf{Total} & 11 & 9 & 4 & 4 & 2 & 1 & 1 \\
                         \bottomrule 
                     \end{tabular} 
                 \end{table}
+                We want to find occupation numbers for energies, so we need the totals for each column. Dividing out by the sum of totals gives occupation probability, so multiplying by $N$ gives occupation number:
+                $$\left\{1.375, 1.125, 0.5, 0.5, 0.25, 0.125, 0.125 \right\}$$
+                \textit{and of course the sum of these equals $N$.}
 
-                For each state, we then have an occupation number 
-                $$\frac{N \cdot \Omega_i}{\sum_{i} \Omega_i} = \{ 0.4,~0.4,~2.8,~0.4 \}$$
-                And of course the sum of the occupations is equal to the total number of particles $N$:
-                $$0.4+0.4+2.8+0.4=4$$
+                We can count the occupation number for each state using multiplicity
+                $$\frac{N \cdot \Omega_i}{\sum_{i} \Omega_i} = \{0.2, 0.2, 1.4, 0.2, 0.6, 0.6, 0.6, 0.2\}$$
+                \textit{and of course the sum of these equals $N$.}
 
             \end{callout}
+
+            \newpage
         \item[(b)] What is the average occupation number for the energy levels if the particles are fermions?
             \begin{callout}{Solution:}
                 
