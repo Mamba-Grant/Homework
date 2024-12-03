@@ -1,13 +1,58 @@
 \begin{homeworkProblem}
-    Use the Debye approximation to find the expressions for the entropy of a 3-dimensional solid as a function of the temperature $T$. For simplicity, express your answer in terms of the "Debye Function" $D(y) = \frac{3}{y^3}\int_0^y \frac{x^3}{e^x-1} dx$ and the "Debye Temperature" $\Theta_D = \frac{\hbar\omega_D}{k_B} = Tx_D$. Assume that each oscillation is independent of the others.
+    Determine the expression for the entropy of an Einstein solid.
+    \begin{callout}{Solution:}
+        
+        \begin{gather*}
+            S = \ln Z + \beta \bar{E}; \quad \bar{E} = -\frac{\partial \ln Z}{\partial \beta} \\ 
+            S = - \left( \frac{\partial F}{\partial T} \right)_{V} = \frac{\beta^2}{k_B} \left( \frac{\partial F}{\partial \beta} \right)_{V}
+        \end{gather*}
+
+        Using 
+        $$\ln Z = -3 N\left[\frac{1}{2} \beta  h \omega_0+\ln \left(1-e^{-\beta h \omega_0}\right)\right]$$
+        $$\bar{E} = 3 N h \omega_0 \left[ \frac{1}{2} -  \frac{e^{-\beta h \omega_0}}{1-e^{-\beta h \omega_0}} \right]$$
+
+        So entropy is:
+        $$S = -3 N\left[\frac{1}{2} \beta  h \omega_0+\ln \left(1-e^{-\beta h \omega_0}\right)\right] + 3N \beta h \omega_0 \left[ \frac{1}{2} -  \frac{e^{-\beta h \omega_0}}{1-e^{-\beta h \omega_0}} \right]$$
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Derive an expression for the pressure of an Einstein solid in terms of $\frac{\partial\omega_0}{\partial V}$. Then use the proportion $\omega_0 \propto V^{-\frac{1}{3}}$ to determine an approximate expression for the pressure of an Einstein solid at $T = 0$.
+    \begin{callout}{Solution:}
+        
+        Again I will use Helmholtz Free energy, since it is fewer computations
+        $$
+        \ln Z
+        =-3 N\left[\frac{1}{2} \beta  h \omega_0+\ln \left(1-e^{-\beta h \omega_0}\right)\right] 
+        = -3 N\left[\frac{1}{2} \beta  h \lambda V^{-1/3}+\ln \left(1-e^{-\beta h \lambda V^{-1/3}}\right)\right] 
+        $$
+        $$P = \left( \frac{\partial F}{\partial V} \right)_{T}; \quad F = -\frac{1}{\beta} \ln Z$$
+
+        I choose to substitute $\omega \to V^{-1/3}$ times some proportionality constant $\lambda$.
+        Differentiating, we get
+        \begin{align*}
+            P = \frac{3N}{\beta}\left[\frac{1}{2} \beta  h \lambda V^{-4/3}
+            - \frac{\beta \lambda h}{3V^{\frac{4}{3}}} \frac{ e^{-\beta \lambda h V^{-1/3} }}{ (1-e^{-\beta \lambda h V^{-1/3}}) }\right]
+        \end{align*}
+
+        Without rigorously proving it, I'll say that the fraction of exponentials converges to zero when $\beta \to \infty$. This leaves us with a constant pressure at low temperature proportional to
+        $$P\propto\frac{3N h V^{-4/3}}{2}$$
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Use the Debye approximation to find the expressions for the entropy of a 3-dimensional solid as a function of the temperature $T$. For simplicity, express your answer in terms of the "Debye Function" $D(y) = \frac{3}{y^3}\int_0^y \frac{x^3}{e^x-1} dx$ and the "Debye Temperature" $\Theta_D = \frac{ h\omega_D}{k_B} = Tx_D$. Assume that each oscillation is independent of the others.
     \begin{callout}{Solution:}
         $$S = \ln Z - \beta \left( \frac{\partial \ln Z}{\partial \beta } \right) = - \left( \frac{\partial F}{\partial T} \right)$$
         $$F = - \frac{1}{\beta} \ln Z$$
         I'll choose to do this from the Helmholtz Free energy since it can be done a bit easier.
         We found:
         \begin{align*}
-            \ln Z &=  -\frac{9N\beta \hbar \omega}{8} - 3N\ln(1-e^{-x_{D}})-\frac{N}{x^{3}_{D}}\int_{0}^{x_{D}} \frac{x^{3}}{e^{x}-1} \,dx \\ 
-            &= -\frac{9Nx_{D}}{8} - 3N\ln(1-e^{-x_{D}})- N D_3(x_D); \quad x_D = \beta \hbar \omega 
+            \ln Z &=  -\frac{9N\beta  h \omega}{8} - 3N\ln(1-e^{-x_{D}})-\frac{N}{x^{3}_{D}}\int_{0}^{x_{D}} \frac{x^{3}}{e^{x}-1} \,dx \\ 
+            &= -\frac{9Nx_{D}}{8} - 3N\ln(1-e^{-x_{D}})- N D_3(x_D); \quad x_D = \beta  h \omega 
         \end{align*}
         I'll just keep things in terms of beta, so
         $$
@@ -17,19 +62,19 @@
         $$
         Now we can just compute entropy
         \begin{align*}
-            S &= -\frac{\partial}{\partial \beta} \left[ \frac{1}{\beta} \frac{\beta^2}{k_B} \left( -\frac{9N\beta \hbar \omega}{8} - 3N\ln(1-e^{-\beta \hbar \omega})- N D_3(x_D) \right) \right] \\
-            &= \frac{\partial}{\partial \beta} \left[ \frac{\beta}{k_B} \left( \frac{9N\beta \hbar \omega}{8} + 3N\ln(1-e^{-\beta \hbar \omega}) + N D_3(x_D) \right) \right] \\
+            S &= -\frac{\partial}{\partial \beta} \left[ \frac{1}{\beta} \frac{\beta^2}{k_B} \left( -\frac{9N\beta  h \omega}{8} - 3N\ln(1-e^{-\beta  h \omega})- N D_3(x_D) \right) \right] \\
+            &= \frac{\partial}{\partial \beta} \left[ \frac{\beta}{k_B} \left( \frac{9N\beta  h \omega}{8} + 3N\ln(1-e^{-\beta  h \omega}) + N D_3(x_D) \right) \right] \\
         \end{align*}
         I will assume the form of $\frac{1}{k_B}(U) + \frac{\beta}{k_B}(U')$ (product rule), where $U$ is the contents of the parenthesis. Focusing on the $U'$ term for cleanliness:
         \begin{align*}
-            U' &= \frac{\partial}{\partial \beta} \left( \frac{9N\beta \hbar \omega}{8} + 3N\ln(1-e^{-\beta \hbar \omega}) + N D_3(x_D) \right) \\
-            &= \left( \frac{9N\hbar \omega}{8} -3N\hbar \omega \frac{e^{-\beta \hbar \omega}}{1-e^{-\beta \hbar \omega}} + N \frac{\partial D_3(x_D)}{\partial \beta} \right)
+            U' &= \frac{\partial}{\partial \beta} \left( \frac{9N\beta  h \omega}{8} + 3N\ln(1-e^{-\beta  h \omega}) + N D_3(x_D) \right) \\
+            &= \left( \frac{9N h \omega}{8} -3N h \omega \frac{e^{-\beta  h \omega}}{1-e^{-\beta  h \omega}} + N \frac{\partial D_3(x_D)}{\partial \beta} \right)
         \end{align*}
         Which gives this beefy eqaution 
         $$
-        S = \frac{1}{k_B} \left( \frac{9N\beta \hbar \omega}{8} + 3N\ln(1-e^{-\beta \hbar \omega}) + N D_3(x_D) \right) + \frac{\beta}{k_B} \left( \frac{9N\hbar \omega}{8} - 3N\hbar \omega \frac{e^{-\beta \hbar \omega}}{1-e^{-\beta \hbar \omega}} + N \frac{\partial D_3(x_D)}{\partial \beta} \right)
+        S = \frac{1}{k_B} \left( \frac{9N\beta  h \omega}{8} + 3N\ln(1-e^{-\beta  h \omega}) + N D_3(x_D) \right) + \frac{\beta}{k_B} \left( \frac{9N h \omega}{8} - 3N h \omega \frac{e^{-\beta  h \omega}}{1-e^{-\beta  h \omega}} + N \frac{\partial D_3(x_D)}{\partial \beta} \right)
         $$
-        And we can tidy it up with the Debye temperature instead of $\hbar \omega$ terms
+        And we can tidy it up with the Debye temperature instead of $ h \omega$ terms
         \begin{align*}
             S = \left( \frac{9N\beta \Theta_D}{8} + \frac{3N}{k_B} \ln(1-e^{-\beta k_B \Theta_D}) + \frac{N}{k_B}  D_3(x_D) \right) +  
             \left( \frac{9N \beta \Theta_D}{8} - 3N \beta \Theta_D \frac{e^{-\beta k_B \Theta_D}}{1-e^{-\beta k_B \Theta_D}} + \frac{N\beta}{k_B} \frac{\partial D_3(x_D)}{\partial \beta} \right)
@@ -37,39 +82,80 @@
     \end{callout}
 \end{homeworkProblem}
 
+\newpage
 \begin{homeworkProblem}
-    Derive an expression for the pressure of an Einstein solid in terms of $\frac{\partial\omega_0}{\partial V}$. Then use the proportion $\omega_0 \propto V^{-\frac{1}{3}}$ to determine an approximate expression for the pressure of an Einstein solid at $T = 0$.
+    What is the equation of state for a Debye solid? That is, find an expression for the pressure $P$ in terms of the volume $V$ and the temperature $T$. Express your answer in terms of the "Debye function", $D(y)$, the "Debye temperature", $\Theta_D$, and the Grüneisen parameter, $\gamma = -\frac{V}{\Theta_D}\frac{\partial\Theta_D}{\partial V}$.
     \begin{callout}{Solution:}
         
-        Again I will use Helmholtz Free energy, since it is fewer computations
-        $$
-        \ln Z
-        =-3 N\left[\frac{1}{2} \beta \hbar \omega_0+\ln \left(1-e^{-\beta h \omega_0}\right)\right] 
-        = -3 N\left[\frac{1}{2} \beta \hbar \lambda V^{-1/3}+\ln \left(1-e^{-\beta h \lambda V^{-1/3}}\right)\right] 
-        $$
-        $$P = \frac{\partial F}{\partial V}; \quad F = -\frac{1}{\beta} \ln Z$$
+        $$P = \left( \frac{\partial F}{\partial V} \right)_{T}, \quad F = - \frac{1}{\beta} \ln Z, \quad \Theta_D = \frac{\hbar \omega_D}{k_B}$$
 
-        I choose to substitute $\omega \to V^{-1/3}$ times some proportionality constant $\lambda$.
-        Differentiating, we get
+        We have already determined $F$:
         \begin{align*}
-            P = \frac{3N}{\beta}\left[\frac{1}{2} \beta \hbar \lambda V^{-4/3}
-            - \frac{\beta \lambda h}{3V^{\frac{4}{3}}} \frac{ e^{-\beta \lambda h V^{-1/3} }}{ (1-e^{-\beta \lambda h V^{-1/3}}) }\right]
+        F &= \frac{1}{\beta} \left[ \frac{9N \beta \hbar \omega_D}{8} - 3N \ln(1-e^{-\beta \hbar \omega_D}) + ND_3(\beta \hbar \omega_D) \right] \\
+        &= k_BT\left[\frac{9N}{8} \frac{\Theta_D}{T} + 3N \ln(1-e^{-\Theta_D/T}) + ND_3(\Theta_D/T)\right]
         \end{align*}
 
-        Without rigorously proving it, I'll say that the fraction of exponentials converges to zero when $\beta \to \infty$. This leaves us with a constant pressure at low temperature equal to
-        $$P=\frac{3N \hbar \lambda V^{-4/3}}{2}$$
+        Using $\gamma = -\frac{V}{\Theta_D} \frac{\partial \Theta_D}{\partial V}$, so equivalently $\frac{\partial \Theta_D}{\partial V} = - \gamma \frac{\Theta_D}{V}$
+        \begin{align*}
+            P &= -k_BT\left[\frac{9N}{8} \frac{1}{T}\frac{\partial\Theta_D}{\partial V} + \frac{3N}{1-e^{-\Theta_D/T}}e^{-\Theta_D/T}\left(-\frac{1}{T}\right)\frac{\partial\Theta_D}{\partial V} + N\frac{\partial D_3(\Theta_D/T)}{\partial V}\right] \\ 
+            &= \frac{k_BT\gamma}{V}\left[\frac{9N}{8}\frac{\Theta_D}{T} + \frac{\Theta_D}{T}\frac{3N}{e^{\Theta_D/T}-1} - N\frac{\partial D_3(y)}{\partial y}\bigg|_{y=\Theta_D/T}\right]
+        \end{align*}
+
 
     \end{callout}
 \end{homeworkProblem}
 
+\newpage
 \begin{homeworkProblem}
-    Use the Debye approximation to find the expressions for the entropy of a 3-dimensional solid as a function of the temperature $T$. For simplicity, express your answer in terms of the "Debye Function" $D(y) = \frac{3}{y^3}\int_0^y \frac{x^3}{e^x-1} dx$ and the "Debye Temperature" $\Theta_D = \frac{\hbar\omega_D}{k_B} = Tx_D$. Assume that each oscillation is independent of the others.
-\end{homeworkProblem}
+    A rigid 1-D rod can excite longitudinal normal modes of oscillation down its length, denoted as $L$. Determine the heat capacity of the rod, $C_V$, as a function of temperature resulting from these oscillations using a Debye approximation model. Express your answer in terms of an integral and, for the sake of simplicity, consider using the dimensionless variable $x = \beta h\omega$.
+    \begin{callout}{Solution:}
+        
+        For this I really just need to derive the Debye model in 1-D. We have $N$ normal modes of oscillation, and the density of phase space is given by 
+        \begin{gather*}
+            k^2 = k_x^2 \\ 
+            \Gamma (k) = \left( \frac{1}{2} \frac{k}{\pi/L} \right) = \frac{kL}{2\pi} = \frac{L \omega}{2\pi v} \\ 
+            D(k)~dk = \frac{d}{dk} \Gamma (k) = \frac{L}{2\pi v} d \omega, \quad \omega \leq \omega_D
+        \end{gather*}
+        We drop the 3, since now only 1 longitudinal oscillation is possible.
+        The 1/2 reflects the portion of phase space which is positive. 
 
-\begin{homeworkProblem}
-    What is the equation of state for a Debye solid? That is, find an expression for the pressure $P$ in terms of the volume $V$ and the temperature $T$. Express your answer in terms of the "Debye function", $D(y)$, the "Debye temperature", $\Theta_D$, and the Grüneisen parameter, $\gamma = -\frac{V}{\Theta_D}\frac{\partial\Theta_D}{\partial V}$.
-\end{homeworkProblem}
+        \begin{align*}
+            N &= \int_{0}^{\omega_D} D(\omega) ~d \omega \\ 
+            &= \int_{0}^{\omega_D} \frac{L}{2\pi v} ~d \omega \\ 
+            \omega_D &= 2\pi v \frac{N}{L}
+            \implies D(\omega) = \begin{cases}
+                \frac{N}{\omega_D} & \omega \leq \omega_D \\ 
+                0 & \omega > \omega_D
+            \end{cases}
+        \end{align*}
 
-\begin{homeworkProblem}
-    A rigid 1-D rod can excite longitudinal normal modes of oscillation down its length, denoted as $L$. Determine the heat capacity of the rod, $C_V$, as a function of temperature resulting from these oscillations using a Debye approximation model. Express your answer in terms of an integral and, for the sake of simplicity, consider using the dimensionless variable $x = \beta\hbar\omega$.
+        Now I can write the partition function 
+        \begin{align*}
+            \ln Z &= -\beta \int_{0}^{\omega_D} \frac{1}{2} h \omega D(\omega)\,d\omega-\int_{0}^{\omega_D} \ln(1-e^{-\beta  h\omega })D(\omega)~d\omega \\
+            &= - \frac{N \beta  h \omega_D}{4} - \frac{N}{\omega_D} \int_{0}^{\omega_D} \ln(1-e^{-\beta  h\omega }) ~d \omega \\ 
+            &= - \frac{N \beta  h \omega_D}{4} - \frac{N}{\omega_D} \int_{0}^{\beta h \omega_D} \ln\left( 1-e^{-x} \right) ~dx, &&(x = \beta h \omega) \\ 
+            &= - \frac{N \beta  h \omega_D}{4} - \left[ \frac{N}{\omega_D} \frac{x}{e^x-1} \middle]\right|_{x=0}^{x=\beta h \omega_D} + \frac{N}{\omega_D} \int_{0}^{\beta h \omega_D} \frac{x}{e^x-1} ~dx &&\text{(integration by parts)} \\
+            &= - \frac{N \beta  h \omega_D}{4} - \frac{N \beta h}{e^{\beta h \omega _{D}}-1} + D_1(\beta h \omega_D)
+        \end{align*}
+        Doing integration by parts, taking 1 to be the integrating part and the logarithm to be the differentiating part, we arrive at something very similar to what we got in class for 3-D.
+
+        $$C_V = \left( \frac{\partial S}{\partial T} \right)_{V} = k_B\beta^2 \left( \frac{\partial S}{\partial \beta} \right)_{V}$$
+
+        So, two derivatives have to be taken to get to the final result. The first to get entropy $(S=\ln Z + \beta \frac{\partial \ln Z}{\partial \beta})$:
+        \begin{align*}
+            \bar{E} = -\frac{\partial \ln Z}{\partial \beta} &= - \frac{\partial }{\partial \beta} \left[ - \frac{N \beta  h \omega_D}{4} - \frac{N}{\omega_D} \int_{0}^{\omega_D} \ln(1-e^{-\beta  h\omega }) ~d \omega \right] \\ 
+            &= \frac{N h \omega_D}{4} - \frac{N}{\beta} D_1(\beta h \omega_D)
+        \end{align*}
+
+        So then,
+        $$S = \frac{N h \omega_D}{4}\left( 1-\beta \right) - \frac{N \beta h}{e^{\beta h \omega _{D}}-1} + \left( 1 - \frac{N}{\beta} \right)D_1(\beta h \omega_D)$$
+        
+        and, 
+        \begin{align*}
+            C_V &= k_B \beta^2 \left( \frac{\partial S}{\partial \beta} \right)_{V} \\ 
+            &= k_B \beta^2 \left[ - \frac{N h \omega_D}{4} - \frac{Nh(e^{\beta h \omega_D} - \beta h \omega_De^{\beta h \omega_D} - 1)}{(e^{\beta h \omega_D}-1)^2} + \frac{1}{\beta^2} D_1(\beta h \omega_D) + \left( 1 - \frac{N}{\beta} \right) \frac{\partial D_1 (\beta h \omega_D)}{\partial \beta} \right] \\
+            &= - \frac{Nk_B \beta^2 h k_B \beta^2 \omega_D}{4} - \frac{Nh(e^{\beta h \omega_D} - \beta h \omega_De^{\beta h \omega_D} - 1)}{(e^{\beta h \omega_D}-1)^2} + k_B D_1(\beta h \omega_D) + k_B \beta ^2 \left( 1 - \frac{N}{\beta} \right) \frac{\partial D_1 (\beta h \omega_D)}{\partial \beta}
+        \end{align*}
+
+    \end{callout}
 \end{homeworkProblem}

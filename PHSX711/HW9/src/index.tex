@@ -1,0 +1,39 @@
+\begin{homeworkProblem}
+    Exercise 14.3.2 * (1) Show that the eigenvectors of $\boldsymbol{\sigma} \cdot \hat{\mathbf{n}}$ are given by Eq. (14.3.28). (2) Verify Eq. (14.3.29).
+
+    \[ |\hat{n} \text{ up}\rangle \equiv |\hat{n}+\rangle = \begin{bmatrix} \cos(\theta/2) e^{-i\phi/2} \\ \sin(\theta/2) e^{i\phi/2} \end{bmatrix} \]
+    \[ |\hat{n} \text{ down}\rangle \equiv |\hat{n}-\rangle = \begin{bmatrix} -\sin(\theta/2) e^{-i\phi/2} \\ \cos(\theta/2) e^{i\phi/2} \end{bmatrix} \]
+    \[ \langle\hat{n}\pm|\boldsymbol{S}|\hat{n}\pm\rangle = \pm(\hat{\theta}/2)(\mathbf{i} \sin \theta \cos \phi + \mathbf{j} \sin \theta \sin \phi + \mathbf{k} \cos \theta) \]
+    \[ = \pm(\hbar/2)\hat{\mathbf{n}} \]
+
+    \begin{callout}{Solution:}
+    \end{callout}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Exercise 14.3.3 * Using Eqs. (14.3.32) and (14.3.33) show that the Pauli matrices are traceless.
+
+    \vspace{1em} Note: for any two matrices A and B, Tr(AB)=Tr(BA).
+
+    \begin{align*}
+        [\sigma_i, \sigma_j]_+ &= 0 \quad \text{ or }\quad \sigma_i\sigma_j = -\sigma_j\sigma_i \quad (i\neq j)  \\
+     \sigma_x\sigma_y &= i\sigma_z \text{ and cyclic permutations}  \\
+     \text{Tr }\sigma_i &= 0, \quad i=x,y,z 
+    \end{align*}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Exercise 14.4.1 * Show that if $H=-\gamma L\cdot\mathbf{B}$, and $\mathbf{B}$ is position independent,
+    \[ \frac{d\langle\mathbf{L}\rangle}{dt} = \langle\boldsymbol{\mu}\times\mathbf{B}\rangle = \langle\boldsymbol{\mu}\rangle\times\mathbf{B} \]
+
+    Hint: start with Ehrenfest's theorem:
+    \[ \frac{d}{dt}\langle \textbf{L} \rangle = -\frac{i}{\hbar}\langle[\textbf{L},H]\rangle \]
+
+    And note: $[L_i,B_j]=0$ for any $i$ and $j$ because $\mathbf{B}$ is position independent.
+    It may be easier if you look at one of the components (e.g., $\langle L_z\rangle$) of $\mathbf{L}$ first. Then, generalizes to $\langle L_x\rangle$ and $\langle L_y\rangle$.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Exercise 14.4.4. At $t=0$, an electron is in the state with $s_z=\hbar/2$. A steady field $\mathbf{B}=B\hat{\mathbf{j}}$ with $B=100$ G is turned on. How many seconds will it take for the spin to flip?
+\end{homeworkProblem}

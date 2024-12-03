@@ -1,0 +1,161 @@
+\begin{homeworkProblem}
+The shortest path between two points on a \textit{curved surface}, such as the surface of a sphere, is called a \textbf{geodesic}. To find a geodesic, one has first to set up an integral that gives the length of a path on the surface in question. This will always be similar to the integral (6.2) but may be more complicated (depending on the nature of the surface) and may involve different coordinates than $x$ and $y$. To illustrate this, use spherical polar coordinates $(r, \theta, \phi)$ to show that the length of a path joining two points on a sphere of radius $R$ is
+\[
+L = R \int_{\theta_1}^{\theta_2} \sqrt{1 + \sin^2 \theta (\phi'(\theta))^2} d\theta
+\]
+if $(\theta_1, \phi_1)$ and $(\theta_2, \phi_2)$ specify the two points and we assume that the path is expressed as $\phi = \phi(\theta)$. (You will find how to minimize this length in Problem 6.16.)
+\begin{callout}{Solution:}
+    
+    In spherical coordinates, we swap $(x,y,z)$ for their polar equvalents, giving arclength:
+    $$ds^2 = dx^2 + dy^2 \quad \to \quad \left( 1+\left( \frac{dy}{dx} \right)^2 \right)dx^2$$
+    for polar coordinates:
+    \begin{align*}
+        ds^2 &= R^2 (d\theta^2 + \sin^2 \theta d\phi^2) \\ 
+        ds^2 &= R^2(d\theta^2 + \sin^2\theta (\phi'(\theta)d\theta)^2) &&\left( d\phi = \frac{d\phi}{d\theta}d\theta = \phi'(\theta) d\theta  \right) \\ 
+        ds^2 &= R^2 (1 + \sin^2\theta(\phi'(\theta))^2)d\theta^2 \\
+        ds &= R \sqrt{ 1 + \sin^2\theta(\phi'(\theta))^2 } d\theta
+    \end{align*}    
+    And of course if we treat this as our functional we can optimize for extremals (problem 3).
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+Find and describe the path $y = y(x)$ for which the integral $\int_{x_1}^{x_2} \sqrt{1 + y'^2} dx$ is stationary.
+\begin{callout}{Solution:}
+    
+    We have the arclength functional with fixed endpoints: 
+    Since there is no explicit x-dependence, 
+    \begin{align*}
+        f_{y'} &= c_1 \\ 
+        \frac{y'}{\sqrt{1+y'^2}} &= c_1 \\ 
+        y' = \frac{dy}{dx} &= \frac{c_1}{\sqrt{1-c_1^2}} \\ 
+        y &= \frac{c_1}{\sqrt{1-c_1^2}}x + c_2
+    \end{align*}
+    Which is the equation of a straight line.
+\end{callout}
+\begin{callout}{My preferred solution, 10.7 from the calculus of variations (MATH 648):}
+
+    I have chosen to include a second solution which we discussed at the end of MATH 648 using some theorems we derived from the second variation and the surrounding sufficient/necessary conditions. We arrived at the following theorem:
+
+    \vspace{1em}
+    "Suppose that for each \( x \in [x_0, x_1] \), the set \( \Omega_x \) is convex, and that \( f \) is a convex function of the variables \( (y, y') \in \Omega_x \). If \( y \) is a smooth extremal for \( J \), then \( J \) has a minimum at \( y \) for the fixed endpoint problem."
+
+    \vspace{1em}
+    The following theorem allows us to describe convex/concavity for functionals in the same way we might for functions:
+
+    \vspace{1em}
+    Let \( \Omega \subset \mathbb{R}^2 \) be a convex set and let \( f : \Omega \to \mathbb{R} \) be a function with continuous first- and second-order partial derivatives. The function \( f \) is convex if and only if for each \( (y, w) \in \Omega \):
+    \begin{align*}
+         f_{yy}(y, w) &\geq 0; \\
+         f_{ww}(y, w) &\geq 0; \\
+         f_{yy}(y, w) f_{ww}(y, w) - f_{yw}^2(y, w) &= \Delta \geq 0. 
+    \end{align*}
+
+    so for the cartesian arclength functional:
+
+    $$f_{yy} = f_{y'y} = 0; \quad f_{y'y'} = \frac{1}{(1+y'^2)^{3/2}} > 0$$
+    which implies a convex function assuming smoothness. The aboce theorem then implies the curves which optimize the functional are straight lines.
+    
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+Use the result (6.41) of Problem 6.1 to prove that the geodesic (shortest path) between two given points on a sphere is a great circle. [\textit{Hint}: The integrand $f(\phi, \phi', \theta)$ in (6.41) is independent of $\phi$, so the Euler-Lagrange equation reduces to $\partial f/\partial \phi' = c$, a constant. This gives you $\phi'$ as a function of $\theta$. You can avoid doing the final integral by the following trick: There is no loss of generality in choosing your $z$ axis to pass through the point 1. Show that with this choice the constant $c$ is necessarily zero, and describe the corresponding geodesics.]
+\begin{callout}{Solution:}
+    \begin{align*}
+        \frac{\partial f}{\partial \phi'} &= c_1 \\ 
+        R\frac{\phi'\sin^2(\theta)}{\sqrt{1+\phi'^2\sin ^2(\theta)}} &= c_1 \\ 
+        R^2 \frac{\phi'^2 \sin^4(\theta)}{1+\phi'^2 \sin^2(\theta)} &= c_1^2
+    \end{align*}
+    If we choose the sphere to be centered on the z-axis, meaning we can choose coordinates such that point 1 lies on the z-axis $(\theta =0)$. At $(\theta = 0)$, $(\sin \theta = 0)$, so the left side must be zero. Therefore, $c=0$.
+    This also means that $\phi'=0$ or $\sin\theta = 0$, meaning there's a constant $\phi$ or it passes through $\theta=0,~\theta=\pi$. This implies the motion along two kinds of circles.
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Consider a mass $m$ moving in two dimensions with potential energy $U(x, y) = \frac{1}{2}kr^2$, where $r^2 = x^2 + y^2$. Write down the Lagrangian, using coordinates $x$ and $y$, and find the two Lagrange equations of motion. Describe their solutions. [This is the potential energy of an ion in an "ion trap," which can be used to study the properties of individual atomic ions.]
+\begin{callout}{Solution:}
+    
+    The lagrangian in caresian coordinates is 
+    $$L=\frac{1}{2}m(\dot{x}^2 + \dot{y}^2) - \frac{1}{2}k(x^2+y^2)$$
+    As this can be written into two identical equations and solved independently, I will just solve the x-part:
+    $$J=\int_{x_0}^{x_1} \frac{1}{2}m\dot{x}^2 - \frac{1}{2}kx^2 ~dx$$
+    The base E-L equation is easier to apply than the special cases:
+    \begin{align*}
+        \frac{d}{dt} \left( \frac{\partial f}{\partial \dot{x}} \right) - \frac{\partial}{\partial x} &= 0 \\ 
+        \frac{d}{dt}\left( m\dot{x} \right) + kx &= 0 \\ 
+        m \ddot{x} + kx = 0
+    \end{align*}
+    We get characteristic polynomials $r^2 + \omega = 0$, so we have solutions 
+    $$\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} A \cos (\omega t + \delta_1) \\ B \sin(\omega t + \delta_2) \end{pmatrix}$$
+
+    This is an isotropic oscillator, and we would expect to see oscillatory behavior for the particle in the potential. 
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Use the Lagrangian method to find the acceleration of the Atwood machine of Example 7.3 (page 255) including the effect of the pulley's having moment of inertia $I$. (The kinetic energy of the pulley is $\frac{1}{2}I\omega^2$, where $\omega$ is its angular velocity.)
+\begin{callout}{Solution:}
+    
+    $$J = \int_{t_0}^{t_1} \frac{1}{2}(m_1+m_2) \dot{x}^2 + \frac{1}{2}I \left( \frac{\dot{x}}{R} \right)^2 - (m_1-m_2)gx~dt$$
+    Then the E-L is:
+    \begin{align*}
+        0 &= \left( m_1+m_2+ \frac{I}{R^2} \right)\frac{d}{dt} (\dot{x}) - (m_1-m_2)g \\ 
+        \ddot{x} &= \frac{g(m_1-m_2)}{m_1+m_2+ \frac{I}{R^2}} \\ 
+    \end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+Figure 7.14 shows a simple pendulum (mass $m$, length $l$) whose point of support $P$ is attached to the edge of a wheel (center $O$, radius $R$) that is forced to rotate at a fixed angular velocity $\omega$. At $t = 0$, the point $P$ is level with $O$ on the right. Write down the Lagrangian and find the equation of motion for the angle $\phi$. [\textit{Hint}: Be careful writing down the kinetic energy $T$. A safe way to get the velocity right is to write down the position of the bob at time $t$, and then differentiate.] Check that your answer makes sense in the special case that $\omega = 0$.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{../assets/H7P6F1.png}
+\end{figure}
+\begin{callout}{Solution Attempt \#1:}
+    We have 
+    \begin{align*}
+        T &= \begin{pmatrix} \frac{1}{2}m \frac{d}{dt}\left( R\cos(\omega t ) + l\sin\theta \right)^2 \\ \frac{1}{2}m \frac{d}{dt}\left( R\sin(\omega t ) - l\cos\theta \right)^2 \end{pmatrix}
+            = \begin{pmatrix} \frac{1}{2}m \left( R \omega \cos(\omega t ) + l \dot{\theta}\sin\theta \right)^2 \\ \frac{1}{2}m \left( R \omega \sin(\omega t ) - l \dot{\theta}\cos\theta \right)^2 \end{pmatrix}\\
+        V &= mgh = mg \left( R\sin(\omega t ) - l\cos\theta \right)
+    \end{align*}
+    So then we have a functional with fixed endpoints, and a specified $\theta(t=0) = 0$.
+    \begin{align*}
+        L = 
+        \frac{1}{2}m
+        \begin{pmatrix} 
+            R^2\omega^2\cos^2(\omega t)+2\omega lR \dot{\theta} \cos (\omega t)\sin (\theta)+l^2 \dot{\theta}^2\sin^2(\theta) \\ 
+            R^2\omega^2\sin^2(\omega t)-2\omega lR \dot{\theta} \sin (\omega t)\cos (\theta)+l^2 \dot{\theta}^2\cos^2(\theta)
+        \end{pmatrix}
+        - mg [R\sin(\omega t ) - l\cos\theta] 
+    \end{align*}
+    Really, for kinetic energy, $\textbf{v}^2 = v_x^2 + v_y^2$, despite me writing it out as I did in a vector. This allows us to use our beloved trigonometic identities to simplify.
+    \begin{align*}
+        J &= \int_{t_0}^{t_1} \frac{1}{2}m \left[ R^2 \omega^2 + l^2 \dot{\theta}^2 + 2\omega lR \dot{\theta} \cos (\omega t)\sin (\theta) - 2\omega lR \dot{\theta} \sin (\omega t)\cos (\theta) \right] - mg [R\sin(\omega t ) - l\cos\theta] ~d\theta
+    \end{align*}
+    There are no special cases to be applied, so the ordinary E-L applies:
+\begin{align*}
+    0 &= \frac{m}{2} \frac{d}{dt}\left( 2 l^2 \dot{\theta} + 2 \omega l R \cos(\omega t)\sin(\theta)- 2 \omega l R \dot{\theta}\sin(\omega t)\cos(\theta) \right) \\ 
+    &- m\left[2 \omega l R \dot{\theta}(\cos (\omega t) \cos (\theta)+\sin (\omega t) \sin (\theta))-l^2 \dot{\theta}^2 \cos (\theta)+g l \sin (\theta)\right] \\
+    0 &= m \left( l^2 \ddot{\theta} + \omega l R\left[ - \omega \sin ( \omega t)\sin (\theta)+\dot{\theta} \cos( \omega t)\cos (\theta)\right]- \omega l R \left[ \omega\cos(\omega t)\cos(\theta) - \dot{\theta}\sin(\omega t)\sin(\theta) \right] \right) \\ 
+    &- m\left[2 \omega l R \dot{\theta}(\cos (\omega t) \cos (\theta)+\sin (\omega t) \sin (\theta))-l^2 \dot{\theta}^2 \cos (\theta)+g l \sin (\theta)\right]
+\end{align*}
+\end{callout}
+\begin{callout}{Solution Attempt \#2:}
+    
+    This is quite horrendous, and no amount of simplifying will get a differential equation that could be solved. 
+    Instead I will try to reframe the problem with a new coordinate system. 
+    If the coordinate system is rotating about the origin $O$ at a rate $\omega$, I should be able to eliminate explicit time dependence. 
+    Kinetic energy has translational and rotational parts:
+    \begin{align*}
+        T &= \frac{1}{2}m \left( l^2\dot{\theta} + R^2 \omega^2 + 2Rl \dot{\theta}\omega \cos(\theta) \right)
+    \end{align*}
+
+\end{callout}
+\end{homeworkProblem}
