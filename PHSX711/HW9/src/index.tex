@@ -6,23 +6,93 @@
     \[ \langle\hat{n}\pm|\boldsymbol{S}|\hat{n}\pm\rangle = \pm(\hat{\theta}/2)(\mathbf{i} \sin \theta \cos \phi + \mathbf{j} \sin \theta \sin \phi + \mathbf{k} \cos \theta) \]
     \[ = \pm(\hbar/2)\hat{\mathbf{n}} \]
 
-    \begin{callout}{Solution:}
+    \begin{callout}{Solution (part 1):}
+
+        \begin{enumerate}[i.]
+            \item Let us say that $\hat{n}$ points in the direction $(\theta,\phi)$, i.e. that 
+                $$\hat{n}_{x}=\sin \theta \cos \phi, \quad \hat{n}_{y} = \sin \theta \sin \phi, \quad \hat{n}_{z}=\cos \theta$$
+                $$\boldsymbol{\sigma} \cdot \hat{\textbf{n}} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\sin\theta\cos\phi + \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}\sin\theta\sin\phi + \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\cos\theta = \begin{pmatrix} \cos\theta & e^{-i\phi}\sin\theta \\ e^{i\phi}\sin\theta & -\cos\theta \end{pmatrix}$$
+            \item The eigenvalues corresponding to this are:
+                \begin{align*}
+                    (\cos\theta - \lambda)(-\cos\theta - \lambda) - \cancel{e^{-i\phi}e^{i\phi}}\sin\theta \sin\theta &= 0 \\ 
+                    -(\cos\theta-\lambda)(\cos\theta+\lambda) - \sin^2\theta &= 0 \\ 
+                    \lambda^2 - 1 &= 0 \\
+                    \lambda &= \pm 1
+                \end{align*}
+            \item The eigenvectors corresponding to this are given by the equations:
+                \begin{align*}
+                    \begin{pmatrix} \cos\theta - 1 & e^{-i\phi}\sin\theta \\ e^{i\phi}\sin\theta & -\cos\theta - 1 \end{pmatrix} \ket{\hat{\textbf{n}}, +} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+                    \begin{pmatrix} \cos\theta + 1 & e^{-i\phi}\sin\theta \\ e^{i\phi}\sin\theta & -\cos\theta + 1 \end{pmatrix} \ket{\hat{\textbf{n}}, -} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+                \end{align*}
+                \begin{align*}
+                    \ket{\hat{\textbf{n}},+} &= \begin{pmatrix} e^{-i\phi}\sin\theta \\ -\cos\theta-1 \end{pmatrix} = \begin{pmatrix}  e^{-i\phi} \cos\theta/2  \\ \sin\theta/2 \end{pmatrix} e^{i \gamma} \stackrel{\gamma = \phi/2}{=} 
+                        \begin{pmatrix}  e^{-i\phi/2} \cos\theta/2  \\ \sin\theta/2 \end{pmatrix} \\
+                    \ket{\hat{\textbf{n}},-} &= \begin{pmatrix} -e^{-i\phi}\sin\theta \\ 1+\cos\theta \end{pmatrix} = \begin{pmatrix} -e^{-i\phi} \sin\theta/2  \\ \cos\theta/2 \end{pmatrix} e^{i \gamma} \stackrel{\gamma = \phi/2}{=} 
+                        \begin{pmatrix} -e^{-i\phi/2} \sin\theta/2  \\ \cos\theta/2 \end{pmatrix}
+                \end{align*}
+        \end{enumerate}
+
+    \end{callout}
+    \begin{callout}{Solution (part 2):}
+
+        We just derived $\ket{\hat{\textbf{n}}, +}$ and $\ket{\hat{\textbf{n}}, -}$, so using $\textbf{S} = \frac{\hbar}{2}\boldsymbol{\sigma}$, we can explicitly calculate the given expectation values. 
+        \begin{align*}
+                    \braket{\hat{n}, + | \textbf{S} | \hat{n}, +} &= 
+                        \begin{pmatrix}  e^{-i\phi/2} \cos\theta/2,~ \sin\theta/2 \end{pmatrix} 
+                        \frac{\hbar}{2}\left\{ \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix},~ \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix},~ \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \right\} 
+                        \begin{pmatrix}  e^{-i\phi/2} \cos\theta/2  \\ \sin\theta/2 \end{pmatrix} \\ 
+                    &= \begin{pmatrix}  e^{-i\phi/2} \cos\theta/2,~ \sin\theta/2 \end{pmatrix} 
+                        \frac{\hbar}{2} \left\{ \begin{pmatrix} \sin\theta/2 \\ e^{-i\phi/2}\cos\theta/2 \end{pmatrix}, \begin{pmatrix} -i\sin\theta/2 \\ ie^{-i\phi/2}\cos\theta/2 \end{pmatrix} \begin{pmatrix}  e^{-i\phi/2} \cos\theta/2  \\ \sin\theta/2 \end{pmatrix} \right\} \\
+                    &= \frac{\hbar}{2}\left\{ \sin(\theta/2)\cos(\theta/2)2\cos\phi,~ \sin(\theta/2)\cos(\theta/2)(2\sin\phi),~ \cos^2(\theta/2)-\sin^2(\theta/2) \right\} \\
+                    &= \frac{\hbar}{2} \left\{ \sin\theta\cos\phi,~ \sin\theta\sin\phi,~ \cos\theta \right\} \\
+                    &= \frac{\hbar}{2} \hat{\textbf{n}}
+        \end{align*}
+        \begin{align*}
+                    \braket{\hat{n}, - | \textbf{S} | \hat{n}, -} &= 
+                        \begin{pmatrix} -e^{-i\phi/2} \sin\theta/2  & \cos\theta/2 \end{pmatrix}
+                        \frac{\hbar}{2}\left\{ \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix},~ \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix},~ \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \right\}
+                        \begin{pmatrix} -e^{-i\phi/2} \sin\theta/2  \\ \cos\theta/2 \end{pmatrix} \\ 
+                    &= \begin{pmatrix} -e^{-i\phi/2} \sin\theta/2  & \cos\theta/2 \end{pmatrix}
+                        \frac{\hbar}{2} \left\{ \begin{pmatrix} \cos\theta/2 \\ e^{-i\phi/2}\sin\theta/2 \end{pmatrix}, \begin{pmatrix} -i\cos\theta/2 \\ ie^{-i\phi/2}\sin\theta/2 \end{pmatrix} \begin{pmatrix}  e^{-i\phi/2} \sin\theta/2  \\ \cos\theta/2 \end{pmatrix} \right\} \\
+                    &= \frac{\hbar}{2}\left\{ -\sin(\theta/2)\cos(\theta/2)2\cos\phi,~ -\sin(\theta/2)\cos(\theta/2)(2\sin\phi),~ \sin^2(\theta/2) - \cos^2(\theta/2) \right\} \\
+                    &= - \frac{\hbar}{2} \left\{ \sin\theta\cos\phi,~ \sin\theta\sin\phi,~ \cos\theta \right\} \\
+                    &= - \braket{\hat{n}, + | \textbf{S} | \hat{n}, +} \\ 
+                    &= - \frac{\hbar}{2} \hat{\textbf{n}}
+        \end{align*}
+
     \end{callout}
 
 \end{homeworkProblem}
 
+\newpage
 \begin{homeworkProblem}
     Exercise 14.3.3 * Using Eqs. (14.3.32) and (14.3.33) show that the Pauli matrices are traceless.
 
     \vspace{1em} Note: for any two matrices A and B, Tr(AB)=Tr(BA).
 
     \begin{align*}
-        [\sigma_i, \sigma_j]_+ &= 0 \quad \text{ or }\quad \sigma_i\sigma_j = -\sigma_j\sigma_i \quad (i\neq j)  \\
-     \sigma_x\sigma_y &= i\sigma_z \text{ and cyclic permutations}  \\
-     \text{Tr }\sigma_i &= 0, \quad i=x,y,z 
+        [\sigma_i, \sigma_j]_+ &= 0 \quad \text{ or }\quad \sigma_i\sigma_j = -\sigma_j\sigma_i \quad (i\neq j) \tag{14.3.32} \\
+        \sigma_x\sigma_y &= i\sigma_z \text{ and cyclic permutations} \tag{14.3.33} \\
+        \text{Tr }\sigma_i &= 0, \quad i=x,y,z \tag{14.3.34}
     \end{align*}
+    \begin{callout}{Solution:}
+        
+        \begin{align*}
+            \textrm{Tr}(\sigma _{z}) &= \textrm{Tr}(-i \sigma_x \sigma_y) \\ 
+            &= - i \textrm{Tr} (\sigma _{x}\sigma _{y}) \\ 
+            &= - i \textrm{Tr}(-\sigma_y \sigma_x) \\ 
+            &= i \textrm{Tr}(\sigma_y \sigma_x ) \\ 
+            &= i \textrm{Tr}(\sigma_x \sigma_y) \\ 
+            &= i \textrm{Tr}(i \sigma_x) \\ 
+            &= - \textrm{Tr}(\sigma_z)
+        \end{align*}
+        For $\textrm{Tr}(\sigma_z) = -\textrm{Tr}(\sigma_z)$, the trace must be zero. This would hold if I had used any three of the Pauli matrices.
+
+
+    \end{callout}
 \end{homeworkProblem}
 
+\newpage
 \begin{homeworkProblem}
     Exercise 14.4.1 * Show that if $H=-\gamma L\cdot\mathbf{B}$, and $\mathbf{B}$ is position independent,
     \[ \frac{d\langle\mathbf{L}\rangle}{dt} = \langle\boldsymbol{\mu}\times\mathbf{B}\rangle = \langle\boldsymbol{\mu}\rangle\times\mathbf{B} \]
@@ -31,9 +101,35 @@
     \[ \frac{d}{dt}\langle \textbf{L} \rangle = -\frac{i}{\hbar}\langle[\textbf{L},H]\rangle \]
 
     And note: $[L_i,B_j]=0$ for any $i$ and $j$ because $\mathbf{B}$ is position independent.
-    It may be easier if you look at one of the components (e.g., $\langle L_z\rangle$) of $\mathbf{L}$ first. Then, generalizes to $\langle L_x\rangle$ and $\langle L_y\rangle$.
+    It may be easier if you look at one of the components (e.g., $\langle L_z\rangle$) of $\mathbf{L}$ first. Then, generalize to $\langle L_x\rangle$ and $\langle L_y\rangle$.
+    \begin{callout}{Solution:}
+        
+        If we are to take Ehrenfest's theorem to be true, then all this is saying is that as with classical mechanics, we should expect the angular momentum of the particle to be proportional the torque.
+        \begin{align*}
+            \frac{d\langle\mathbf{L}\rangle}{dt} = -\frac{i}{\hbar}\langle[\textbf{L},H]\rangle = - \frac{i}{\hbar} \braket{ [\textbf{L}, - \gamma \textbf{L} \cdot \textbf{B}] } &\stackrel{?}{=} \langle\boldsymbol{\mu}\times\mathbf{B}\rangle \\
+             \frac{i}{\hbar} \gamma \braket{ [\textbf{L}, \textbf{L} \cdot \textbf{B}] } &\stackrel{?}{=} \langle\boldsymbol{\mu}\times\mathbf{B}\rangle \\
+             \frac{i}{\hbar} \gamma \braket{ [\textbf{L}, \sum_{\beta} L_{\beta} B_{\beta} ] } &\stackrel{?}{=} \langle\boldsymbol{\mu}\times\mathbf{B}\rangle \\
+             \frac{i}{\hbar} \gamma \braket{ [\sum_{\alpha,\beta} L_{\alpha} L_{\beta} B_{\beta} ] } &\stackrel{?}{=} \langle\boldsymbol{\mu}\times\mathbf{B}\rangle \\
+             \frac{i}{\hbar} \gamma \braket{ \sum_{\alpha,\beta} \underbrace{[L_{\alpha} L_{\beta}]}_{=i\hbar \epsilon_{\alpha \beta \kappa }\hat{L}_{\kappa}} B_{\beta} + L_{\alpha} \underbrace{[L_{\beta} B_{\beta}]}_{=0} } &\stackrel{?}{=} \langle\boldsymbol{\mu}\times\mathbf{B}\rangle \\
+             -\gamma \braket{ \textbf{L} \times \textbf{B} } &\stackrel{?}{=} \langle\boldsymbol{\mu}\times\mathbf{B}\rangle \\
+              \braket{ \underbrace{-\gamma\textbf{L}}_{=\boldsymbol\mu} \times \textbf{B} } &\stackrel{?}{=} \langle\boldsymbol{\mu}\times\mathbf{B}\rangle \\
+        \end{align*}
+        Therefore
+        $$\frac{\partial \braket{\textbf{L}}}{\partial t} = \braket{\boldsymbol{\mu}\times \textbf{B}} = \braket{\boldsymbol{\mu}}\times \textbf{B}$$
+
+    \end{callout}
 \end{homeworkProblem}
 
+\newpage
 \begin{homeworkProblem}
     Exercise 14.4.4. At $t=0$, an electron is in the state with $s_z=\hbar/2$. A steady field $\mathbf{B}=B\hat{\mathbf{j}}$ with $B=100$ G is turned on. How many seconds will it take for the spin to flip?
+    \begin{callout}{Solution:}
+        
+        The state $s_z = \frac{\hbar}{2}$ corresponds to spin up. For it to flip it needs to be in state $s_z = -\frac{\hbar}{2}$, rotating by an angle $\pi$.
+        \begin{gather*}
+            \theta = \omega t, \qquad \omega =\gamma B = \frac{eB}{mc} \\ 
+            t = \frac{\pi m c}{e B} = \frac{10^{-17}}{10^{-8}}\textrm{s} = 2 \cdot 10^{-9}\textrm{s}
+        \end{gather*}
+
+    \end{callout}
 \end{homeworkProblem}
