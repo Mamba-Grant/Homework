@@ -15,10 +15,20 @@ A spherical conductor, of radius $a$, carries a charge $Q$. It is surrounded by 
         \textbf{D} &= \frac{Q}{4\pi r^2} \hat{r}
     \end{align*}
     \textit{Recalling that $\textbf{D}$ is related to susceptibility $\chi_e$ by $\textbf{D}=\epsilon \textbf{E}$, $\epsilon=\epsilon_0(1+\chi_e)$.}
+    Now we can calculate energy:
+    \begin{align*}
+        W &= \frac{1}{2} \int \textbf{D} \cdot \textbf{E} ~d\tau \\ 
+        &= 2\pi \int_{0}^{a} 0 ~dr + 2\pi \int_{a}^{b} \frac{Q}{4\pi r^2} \frac{Q}{4\pi \epsilon r^2} r^2 ~dr + 2\pi \int_{b}^{\infty} \frac{Q}{4\pi r^2}\frac{Q}{4\pi \epsilon_0 r^2} r^2 ~dr\\ 
+        &= \frac{2\pi Q^2}{4\pi^2} \left[ \frac{1}{\epsilon} \int_{a}^{b} \frac{1}{r^2} ~dr + \frac{1}{\epsilon_0} \int_{b}^{\infty} \frac{1}{r^2} ~dr \right] \\ 
+        &= \frac{Q^2}{8\pi} \left[ \frac{1}{\epsilon} \left( \frac{1}{a} - \frac{1}{b} \right) + \frac{1}{\epsilon_0} \left( \frac{1}{b} \right) \right] \\ 
+        &= \frac{Q^2}{8\pi} \left[ \frac{1}{\epsilon_0(1+\chi_e)} \left( \frac{1}{a} - \frac{1}{b} \right) + \frac{1}{\epsilon_0} \left( \frac{1}{b} \right) \right] \\ 
+        &= \frac{Q^2}{8\pi \epsilon_0} \left[ \frac{1}{1+\chi_e} \left( \frac{1}{a} - \frac{1}{b} \right) + \left( \frac{1}{b} \right) \right]
+    \end{align*}
 
 \end{callout}
 \end{homeworkProblem}
 
+\newpage
 \begin{homeworkProblem}
 Two long coaxial cylindrical metal tubes (inner radius $a$, outer radius $b$) stand vertically in a tank of dielectric oil (susceptibility $\chi_e$, mass density $\rho$). The inner one is maintained at a potential $V$ and the outer one is grounded. To what height ($h$) does the oil rise, in the space between the tubes?
 
@@ -26,13 +36,98 @@ Two long coaxial cylindrical metal tubes (inner radius $a$, outer radius $b$) st
   \centering
   \includegraphics[width=0.35\textwidth]{../assets/H11P2F1.png}
 \end{figure}
+\begin{callout}{Solution:}
+
+    Force exerted by a charge configuration is given by $F = - \frac{dw}{dx}$, which we can change into $F=V^2 \frac{dC}{dx}$ when charge is held constant. 
+    If we choose coordinate to be height (since there is cylindrical symmetry) we can arrange for $dh$.
+    
+    \begin{enumerate}[i.]
+        \item Find capacitance using $C \equiv Q/V$. First, finding the potential $V$, there are two regions: space occupied by oil, and space filled with air. 
+            In the region where there is dielectric, the electric displacement is needed. Above, we can just use Gauss's law to calculate $E$.
+            Let the oil region be region $I$ and the vacuum region $II$.
+            \begin{align*}
+                \oint \textbf{D}_{I} \cdot d \textbf{a} &= Q_{f_{enc}} \\ 
+                \textbf{D}_I \cdot 2\pi r L &= \lambda L \\ 
+                \textbf{D}_I &= \frac{\lambda}{2\pi r} \hat{r} \\
+                \textbf{E}_I &= \frac{\lambda}{2\pi r\epsilon} \hat{r} \qquad (\textbf{D} = \epsilon \textbf{E}) \\ 
+                V_I &= \int_{a}^{b} \textbf{E}_{I} ~dr = \frac{\lambda}{2\pi \epsilon} \ln\left( \frac{b}{a} \right)
+            \end{align*}
+            and region II:
+            \begin{align*}
+                \oint \textbf{E}_{II} \cdot d \textbf{a} &= \frac{Q}{\epsilon_0} \\ 
+                \textbf{E}_{II} \cdot 2\pi r L &= \frac{\lambda' L}{\epsilon_0} \\ 
+                \textbf{E}_{II} &= \frac{\lambda'}{2\pi r \epsilon_0} \hat{r} \\
+                V_{II} &= \int_{a}^{b} \textbf{E}_{II} ~dr = \frac{\lambda'}{2\pi \epsilon_0} \ln\left( \frac{b}{a} \right)
+            \end{align*}
+            We are told that the two regions are maintained at the same potential, so 
+            \begin{align*}
+                \frac{\lambda}{\cancel{2\pi} \epsilon} \cancel{\ln\left( \frac{b}{a} \right)} &= \frac{\lambda'}{\cancel{2\pi} \epsilon_0} \cancel{\ln\left( \frac{b}{a} \right)} \\
+                \frac{\lambda}{\epsilon} &= \frac{\lambda'}{\epsilon_0} \\ 
+                \lambda &= \frac{\epsilon}{\epsilon_0} \lambda' \\ 
+                \lambda &= \epsilon_r \lambda'
+            \end{align*}
+            We are just missing Q to calculate work and capacitance. In general, $Q=\lambda L$. In this case we have two line charges, so, 
+            \begin{align*}
+                Q &= \lambda h + \lambda' (L - h) \\ 
+                &= \epsilon_r \lambda' h + \lambda' (L-h) \\ 
+                &= \lambda' (\chi_e h + L)
+            \end{align*}
+            Now with $C=Q/V=\frac{\lambda'(\chi_e h + L)}{\frac{\lambda' \ln(b/a)}{2\pi \epsilon_0}} = 2\pi \epsilon_0 \frac{\chi_e h + L}{\ln(b/a)}$, we can work out force, then add gravitational force to find change in height:
+            \begin{align*}
+                F_e &= \frac{1}{2} V^2 \frac{dC}{dh} &&\text{(force due to electric interactions)}\\ 
+                &= V^2 \pi \epsilon_0 \frac{\chi_e + L}{\ln(b/a)} \\ 
+                F_g &= mg &&\text{(force due to gravity)} \\ 
+                &= \rho \pi (b^2 - a^2)g h 
+            \end{align*}
+            If we say that $ma=0$, 
+            \begin{align*}
+                F_e &= f_g \\ 
+                V^2 \pi \epsilon_0 \frac{\chi_e + L}{\ln(b/a)} &= \rho \pi (b^2 - a^2)g h \\ 
+                h &= \frac{V^2 \pi \epsilon_0(\chi_e + L)}{\rho \pi g (b^2 - a^2)\ln(b/a)} \\ 
+            \end{align*}
+    \end{enumerate}
+
+\end{callout}
 
 \end{homeworkProblem}
 
+\newpage
 \begin{homeworkProblem}
-In 1897 J.J. Thompson "discovered" the electron by measuring the charge-to-mass ratio of "cathode rays" (actually, streams of electrons, with charge $q$ and mass $m$) as follows:
+In 1897 J.J. Thomson "discovered" the electron by measuring the charge-to-mass ratio of "cathode rays" (actually, streams of electrons, with charge $q$ and mass $m$) as follows:
 \begin{enumerate}
     \item First, he passed the beam through uniform crossed electric and magnetic fields $\mathbf{E}$ and $\mathbf{B}$ (mutually perpendicular and both of them are perpendicular to the beam), and adjusted the electric field until he got zero deflection. What, then, was the speed of the particles (in terms of $E$ and $B$)?
+        \begin{callout}{Solution:}
+            
+            \begin{multicols}{2}
+
+                In this configuration, the magnetic field will push the electron beam down, so we need some opposing electric field which balances this downwards force.
+
+                This is to say that we are interested in 
+                \begin{align*}
+                    \textbf{F} &= q [\textbf{E} + (\textbf{v} \times \textbf{B})] = 0 \\
+                    qE &= qvB\sin\theta \\ 
+                    E &= vB \\
+                    v &= \frac{E}{B}
+                \end{align*}
+
+                \columnbreak
+
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.35\textwidth]{../assets/H11P3F2.png}
+                \end{figure}
+            \end{multicols}
+        \end{callout}
     \item Then he turned off the electric field, and measured the radius of curvature $R$, of the beam, as deflected by the magnetic field alone. In terms of $E$, $B$, and $R$, what is the charge-to-mass ratio ($q/m$) of the particles?
+        \begin{callout}{Solution:}
+           
+            The configuration of a uniform magnetic field moving a particle in a circular path is cyclotron motion, which we have already done an example with. We found 
+            \begin{align*}
+                p = mv &= qBR \\ 
+                \frac{q}{m} &= \frac{v}{BR} \\ 
+                &= \frac{E}{B^2 R}
+            \end{align*}
+
+        \end{callout}
 \end{enumerate}
 \end{homeworkProblem}

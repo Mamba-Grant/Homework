@@ -4,7 +4,7 @@
         
         By equation 5.14 and 5.8:
         $$
-        \frac{\mu}{T}=-\left( \frac{\partial S}{\partial N} \right)_{V,P}, \qquad 
+        \frac{\mu}{T}=-\left( \frac{\partial S}{\partial N} \right)_{V,N}, \qquad 
         S_{\text{VDW}} = Nk_B\left[\ln \left(\frac{V-b N}{N}\right)+\frac{3}{2} \ln \left(\frac{2 m \pi}{\beta h^2}\right)+\frac{5}{2}\right]
         $$
 
@@ -48,12 +48,25 @@
 
         \begin{align*}
             \left(\frac{\partial P}{\partial T} \right)_{V} &= \frac{\partial}{\partial T}\left( \frac{Nk_BT}{V-bN} - a \frac{N^2}{V^2} \right) = \frac{Nk_B}{V-bN} \\ 
-            \left(\frac{\partial V}{\partial T} \right)_{P} &= \frac{\partial}{\partial T}\left( \frac{Nk_BT}{P+a \frac{N^2}{V^2}}+bN \right) = \frac{Nk_B}{P+a \frac{N^2}{V^2}} \\ 
+            %\left(\frac{\partial V}{\partial T} \right)_{P} &= \frac{\partial}{\partial T}\left( \frac{Nk_BT}{P+a \frac{N^2}{V^2}}+bN \right) = \frac{Nk_B}{P+a \frac{N^2}{V^2}} \\ 
+        \end{align*}
+        On my first attempt, I incorrectly solved for $V$ algebraically. Doing this the right way would lead to some cubic equation which I am not equipped to differentiate.
+        A bit of research reminded me of implicit differentiation, which I have not used in a few years.
+
+        \vspace{1em} From the VDW equation: $[P + a (N^2/V^2)][V - bN] = Nk_BT$
+        Taking the partial derivative with respect for $T$ for constant $P$ to both sides:
+
+        \begin{align*}
+            \frac{\partial}{\partial T}\left( P+a \frac{N^2}{V^2} \right) (V-bN) + \left(P+a \frac{N^2}{V^2}\right) \frac{\partial}{\partial T} \left( V-bN \right) &= \frac{\partial}{\partial T} (Nk_BT) \\ 
+            (V-bN)\left( -2a \frac{N^2}{V^3} \right) \left( \frac{\partial V}{\partial T} \right)_{P}  + \left(P+a \frac{N^2}{V^2}\right) \left( \frac{\partial V}{\partial T} \right)_{P} &= Nk_B \\ 
+            \left[P+a \frac{N^2}{V^2} -\frac{2N^2a\left(V-bN\right)}{V^3}\right]\left( \frac{\partial V}{\partial T} \right)_{P} &= Nk_B \\
+            \left( \frac{\partial V}{\partial T} \right)_{P} &= \frac{Nk_B}{P+a \frac{N^2}{V^2} -\frac{2N^2a\left(V-bN\right)}{V^3}} \\ 
+            \left( \frac{\partial V}{\partial T} \right)_{P} &= \frac{Nk_BV^3}{PV^3-N^2aV+2N^3ab}
         \end{align*}
 
         \begin{align*}
-            C_P &= \frac{3Nk_B}{2 \beta} + T\left( \frac{Nk_B}{V-bN} \right) \left( \frac{Nk_B}{P+a \frac{N^2}{V^2}} \right) \\
-            &= \frac{3Nk_B}{2 \beta} + \left( \frac{T\left( Nk_B \right)^{2}}{(V-bN)(P+a \frac{N^2}{V^2})} \right) 
+            C_P &= \frac{3}{2}Nk_B + T\left( \frac{Nk_B}{V-bN} \right) \left( \frac{Nk_BV^3}{PV^3-N^2aV+2N^3ab} \right) \\
+            %&= \frac{3Nk_B}{2 \beta} + \left( \frac{T\left( Nk_B \right)^{2}}{(V-bN)(P+a \frac{N^2}{V^2})} \right) 
         \end{align*}
 
     \end{callout}
@@ -84,7 +97,7 @@
             &= A\left( \frac{e}{Nh^{3}} \right)^{N}\left( \frac{2m\pi}{\beta} \right)^{3N/2}\left( \frac{1}{\beta mg} \right)^{N}\left( e^{-\beta mgz}- e^{-\beta mg(z+dz)} \right)^{N}
         \end{align*}
 
-        \textit{Should we do something to simplify the difference in exponentials?}
+        %\textit{Should we do something to simplify the difference in exponentials?}
 
     \end{callout}
 \end{homeworkProblem}
@@ -128,12 +141,12 @@
     5.6: Show that for a gas in \( n \) dimensions, whose single-particle energy is described by \( \epsilon = p^\alpha \), that \( \frac{C_P}{C_V} = 1 + \frac{\alpha}{n} \).
     \begin{callout}{Solution:}
         \begin{align*}
-            Z &= \int \dots \int \exp\left( -\beta p^a \right) ~d^np \\ 
+            Z_T &= \int \dots \int \exp\left( -\beta p^a \right) ~d^np \\ 
             &= \int \dots \int \exp\left( -\beta p^a \right) ~p^{n-1}dp \int d \Omega n \\ 
             E &= - \frac{\partial }{\partial \beta } \ln(Z) \\
             &= \frac{\int_{0}^{\infty} p^{n-1+a} \exp\left( -\beta p^a \right) ~dp}{\int_{0}^{\infty} p^{n-1}\exp(-\beta p^a) ~dp}
         \end{align*}
-        Transforming to n-D spherical coordinates gives $p^{n-1}dp$ times the jacobian. This luckily vanishes when we go from the partition function to energy thanks to it being in the numerator and denominator. If we set $u=-\beta p^\alpha$, this is a ratio of gamma functions, where $\Gamma\left( \frac{n}{a} \right) = \left( \frac{1}{\beta} \right) × \frac{\Gamma\left( \frac{n+a}{a} \right) }{\Gamma \left( \frac{n}{a} \right)}$. Then,
+        Transforming to n-D spherical coordinates gives $p^{n-1}dp$ times the jacobian $(d \Omega n)$. This luckily vanishes when we go from the partition function to energy thanks to it being in the numerator and denominator. If we set $u=-\beta p^\alpha$, this is a ratio of gamma functions, where $\Gamma\left( \frac{n}{a} \right) = \left( \frac{1}{\beta} \right) × \frac{\Gamma\left( \frac{n+a}{a} \right) }{\Gamma \left( \frac{n}{a} \right)}$. Then,
         $$E=k_BT \frac{n}{\alpha}, \quad E_N = Nk_BT \frac{n}{a}$$
         \begin{align*}
             C_V &= \left( \frac{\partial E}{\partial T} \right)_{V} = \frac{nNk_B}{\alpha } \\ 
@@ -150,6 +163,34 @@
             \frac{C_P}{C_V} &= \frac{\frac{nNk_B}{T} + Nk_BT}{\frac{nNk_B}{\alpha}} \\ 
             &= 1+ \frac{\alpha}{n}
         \end{align*}
+
+    \end{callout}
+    \begin{callout}{Equation of State / Explicit Solution:}
+        
+        Halfway in, I use our ideal gas solution, but the solution can be explicitly determined using the parition function to (1) find equation of state, then (2) taking partial derivatives:
+        \begin{enumerate}[(1)]
+            \item Equation of state:
+
+                As with the ideal gas, we need a partition function over space to get volume. Since there is no potential it is just $Z_U=V^N$.
+                \begin{align*}
+                    S &= \ln (Z_TZ_U) + \beta \bar{E}  \\ 
+                    &=  \ln[\Gamma(n/a)] - (n/a)\ln(\beta) +  \ln\left(\int d\Omega_n\right) + \ln(V^N) + N \beta \frac{n}{a}
+                \end{align*}
+                Now, 
+                \begin{align*}
+                    \beta P &= \left( \frac{\partial S}{\partial V} \right)_{E,N} \\
+                    \beta P &= \frac{N}{V}
+                \end{align*}
+
+            \item Partial derivatives \& heat capacity: 
+                \begin{align*}
+                    \left( \frac{\partial P}{\partial T} \right)_{V} &= k_B \frac{N}{V} \\ 
+                    \left( \frac{\partial V}{\partial T} \right)_{P} &= k_B \frac{N}{P} \\ 
+                    C_P &= C_V + Tk_B^2\left( \frac{N}{V} \right) \left( \frac{N}{P} \right) \\ 
+                    &= \frac{nNk_B}{a} + Nk_BT &&(\text{since }VP = N/\beta)
+                \end{align*}
+                Which matches the solution from before.
+        \end{enumerate}
 
     \end{callout}
 \end{homeworkProblem}
