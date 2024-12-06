@@ -89,16 +89,19 @@ This project counts for **20% of your final grade**, and this is part 3/3. Gradi
 
 # ╔═╡ 46b1582a-16e7-47c5-ae9e-6a07802524cc
 md"
-# Part 1. Damped harmonic oscillator.
+# Part 1. (a) Damped harmonic oscillator.
 "
 
 # ╔═╡ 19f3e6bd-e6a9-4371-8c22-d28c0510fb13
 Base.@kwdef mutable struct Newtonian
 	# (constant) actual assignable parameters
 	dt::Float64 = 0.001
+	t::Float64 = 0.0
 	k::Float64 = 1.0
 	m::Float64 = 1.0
 	b::Float64 = 1.0
+	# δ::Float64 = 1.0
+	f₀::Float64 = 0.0
 
 	# (mutable) coordinates; update with step!().
 	x::Float64 = 1.0
@@ -107,13 +110,14 @@ Base.@kwdef mutable struct Newtonian
 
 	# (constant) best to not directly assign (although it would work fine), instead assign the generators k, m, and b so that everything is physically consistent.
 	ω::Float64 = sqrt(k/m)
+	ω_driven::Float64 = sqrt(k/m) # I choose to invent a δ constant to more easily compare between ω and ω_driven, which get initialized using other constants.
 	β::Float64 = b/m
 end
 
 # ╔═╡ 1875f227-82bc-43c3-99c3-608ea8ae594e
 function step!(n::Newtonian)
     # Calculate the current acceleration based on forces and mass
-    ddx = - n.β * n.dx - n.ω^2 * n.x
+    ddx = - n.β * n.dx - n.ω^2 * n.x - n.f₀/n.m * cos(n.ω_driven * n.t)
     # Update position using the previous velocity and acceleration
     n.x = @. n.x + n.dt * n.dx + (n.dt^2) / 2 * n.ddx
     
@@ -121,6 +125,7 @@ function step!(n::Newtonian)
     n.dx = @. n.dx + n.dt / 2 * (ddx + n.ddx)
     # Store the new acceleration
     n.ddx = ddx
+	n.t += n.dt
     return n.x
 end
 
@@ -141,7 +146,7 @@ md"now I initialize my systems:"
 begin
 	no_damping = Newtonian(b=0, dt=dt)
 	underdamping = Newtonian(b=0.2, k=1.0, dt=dt)
-	critical_damping = Newtonian(b=1.0, k=1.0, dt=dt)
+	critical_damping = Newtonian(b=2.0, k=1.0, dt=dt)
 	overdamping = Newtonian(b=4.0, k=1.0, dt=dt)
 
 	systems = [no_damping, underdamping, critical_damping, overdamping]
@@ -167,13 +172,13 @@ for (i, system) in enumerate(systems)
 end
 
 # ╔═╡ 99b33c87-aad2-46e2-9d48-bb689d5bfdac
-layout = @layout [a; b; c; d]
+layout = @layout [a; b; c; d; e]
 
 # ╔═╡ 6538499c-bc07-4cad-b66e-c2e96f672585
 begin
 	plots = [
 	    plot(dt:dt:time_stop, points[1], label="No Damping", color=:blue,
-		legend=:outerright, yrange=[-1,1], title="Comparison of motion"),
+		legend=:outerright, yrange=[-1,1], title="Comparison of motion (damped)"),
 	    plot(dt:dt:time_stop, points[2], label="Underdamping", color=:red,
 		legend=:outerright, yrange=[-1,1]),
 	    plot(dt:dt:time_stop, points[3], label="Critical Damping", color=:green,
@@ -212,6 +217,76 @@ md"
 - The critically damped spring decays as quick as possible with time.
 - The overdamped spring exhibits similar motion to the critically damped spring but it decays far slower.
 "
+
+# ╔═╡ 91d3b40e-d5b8-4dc1-9aa7-2e5fd3a4aa3f
+md"
+# Part 1. (b) Damped driven differential equations
+"
+
+# ╔═╡ 4e02696f-a9e3-4ed7-8cd8-77add6b6d62e
+begin
+	time_stop_driven = 60
+	iterations_driven = 1/dt * time_stop_driven # (conversion * seconds)
+end
+
+# ╔═╡ 35eaa4b5-7fd8-437c-b40e-47a96a168185
+begin
+	ω=2π # everything will have a natural spring frequency of 2π
+	f₀=4 # large driving force to really see the effects
+    # No phase offset - driving frequency matches natural frequency
+    driven_resonant = Newtonian(ω=ω, ω_driven=ω, f₀=f₀, dt=dt)
+
+    # π/32 rad ≈ 5.625° phase offset
+    # Driving frequency slightly higher than natural frequency
+    driven_small = Newtonian(ω=ω, ω_driven=ω*(1+π/32), f₀=f₀, dt=dt)
+
+    # π/16 rad ≈ 11.25° phase offset
+    # Moderate deviation from natural frequency
+    driven_moderate = Newtonian(ω=ω, ω_driven=ω*(1+π/16), f₀=f₀, dt=dt)
+
+    # π/4 rad = 45° phase offset
+    # Significant deviation from natural frequency
+    driven_large = Newtonian(ω=ω, ω_driven=ω*(1+π/4), f₀=f₀, dt=dt)
+
+    # π/2 rad = 90° phase offset
+    # Maximum phase difference before response begins to invert
+    driven_maximum = Newtonian(ω=ω, ω_driven=ω*(1+π/2), f₀=f₀, dt=dt)
+
+    # Collect systems and initialize data storage
+    systems_driven = [
+        driven_resonant,
+        driven_small,
+        driven_moderate,
+        driven_large,
+        driven_maximum
+    ]
+
+	systems_driven = [driven_0, driven_5, driven_15, driven_30, driven_60]
+	points_driven = [Float64[] for system in systems_driven]
+end
+
+# ╔═╡ e4f3c3c3-cc81-4386-bf8b-72a68a7cb87c
+for (i, system) in enumerate(systems_driven)
+    for t in 1:iterations_driven
+        step!(system)
+        push!(points_driven[i], system.x)
+    end
+end
+
+# ╔═╡ 12d6303c-75e7-4bc3-b6d6-bdef2cebc0dd
+begin
+	plots_driven = [
+	    plot(dt:dt:time_stop_driven, points_driven[1], label="0°", color=:blue, legend=:outerright, yrange=[-1,1], title="Comparison of motion (driven)"),
+	    plot(dt:dt:time_stop_driven, points_driven[2], label="5.625°", color=:red, legend=:outerright, yrange=[-1,1]),
+	    plot(dt:dt:time_stop_driven, points_driven[3], label="11.25°", color=:green, legend=:outerright, yrange=[-1,1]),
+	    plot(dt:dt:time_stop_driven, points_driven[4], label="45°", color=:purple,
+		legend=:outerright, yrange=[-1,1]),
+		plot(dt:dt:time_stop_driven, points_driven[5], label="90°", color=:black,
+		legend=:outerright, yrange=[-1,1])
+	]
+	
+	plot(plots_driven..., layout=layout, link=:x)
+end
 
 # ╔═╡ 14eb4017-f99e-43b6-a2b4-4a981d1de295
 md"
@@ -2889,6 +2964,11 @@ version = "1.4.1+1"
 # ╟─d1a104cf-2a16-463b-bc4e-26f04359010d
 # ╠═82edb9c8-9972-4fa4-8bcb-4e0736058b41
 # ╟─fd428937-f865-4484-a7eb-fb5fc4f73c01
+# ╟─91d3b40e-d5b8-4dc1-9aa7-2e5fd3a4aa3f
+# ╠═4e02696f-a9e3-4ed7-8cd8-77add6b6d62e
+# ╠═35eaa4b5-7fd8-437c-b40e-47a96a168185
+# ╠═e4f3c3c3-cc81-4386-bf8b-72a68a7cb87c
+# ╠═12d6303c-75e7-4bc3-b6d6-bdef2cebc0dd
 # ╟─14eb4017-f99e-43b6-a2b4-4a981d1de295
 # ╠═ca5a6cc8-88d2-4b61-b932-d9c605e75e64
 # ╠═bf2ece70-5475-46c0-9085-0320d1c02d82

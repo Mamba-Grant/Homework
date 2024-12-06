@@ -56,7 +56,7 @@ Find and describe the path $y = y(x)$ for which the integral $\int_{x_1}^{x_2} \
     so for the cartesian arclength functional:
 
     $$f_{yy} = f_{y'y} = 0; \quad f_{y'y'} = \frac{1}{(1+y'^2)^{3/2}} > 0$$
-    which implies a convex function assuming smoothness. The aboce theorem then implies the curves which optimize the functional are straight lines.
+    which implies a convex function assuming smoothness. The above theorem then implies the curves which optimize the functional are straight lines.
     
 \end{callout}
 \end{homeworkProblem}
@@ -118,44 +118,41 @@ Figure 7.14 shows a simple pendulum (mass $m$, length $l$) whose point of suppor
   \centering
   \includegraphics[width=0.4\textwidth]{../assets/H7P6F1.png}
 \end{figure}
-\begin{callout}{Solution Attempt \#1:}
-    We have 
-    \begin{align*}
-        T &= \begin{pmatrix} \frac{1}{2}m \frac{d}{dt}\left( R\cos(\omega t ) + l\sin\theta \right)^2 \\ \frac{1}{2}m \frac{d}{dt}\left( R\sin(\omega t ) - l\cos\theta \right)^2 \end{pmatrix}
-            = \begin{pmatrix} \frac{1}{2}m \left( R \omega \cos(\omega t ) + l \dot{\theta}\sin\theta \right)^2 \\ \frac{1}{2}m \left( R \omega \sin(\omega t ) - l \dot{\theta}\cos\theta \right)^2 \end{pmatrix}\\
-        V &= mgh = mg \left( R\sin(\omega t ) - l\cos\theta \right)
-    \end{align*}
-    So then we have a functional with fixed endpoints, and a specified $\theta(t=0) = 0$.
-    \begin{align*}
-        L = 
-        \frac{1}{2}m
-        \begin{pmatrix} 
-            R^2\omega^2\cos^2(\omega t)+2\omega lR \dot{\theta} \cos (\omega t)\sin (\theta)+l^2 \dot{\theta}^2\sin^2(\theta) \\ 
-            R^2\omega^2\sin^2(\omega t)-2\omega lR \dot{\theta} \sin (\omega t)\cos (\theta)+l^2 \dot{\theta}^2\cos^2(\theta)
-        \end{pmatrix}
-        - mg [R\sin(\omega t ) - l\cos\theta] 
-    \end{align*}
-    Really, for kinetic energy, $\textbf{v}^2 = v_x^2 + v_y^2$, despite me writing it out as I did in a vector. This allows us to use our beloved trigonometic identities to simplify.
-    \begin{align*}
-        J &= \int_{t_0}^{t_1} \frac{1}{2}m \left[ R^2 \omega^2 + l^2 \dot{\theta}^2 + 2\omega lR \dot{\theta} \cos (\omega t)\sin (\theta) - 2\omega lR \dot{\theta} \sin (\omega t)\cos (\theta) \right] - mg [R\sin(\omega t ) - l\cos\theta] ~d\theta
-    \end{align*}
-    There are no special cases to be applied, so the ordinary E-L applies:
-\begin{align*}
-    0 &= \frac{m}{2} \frac{d}{dt}\left( 2 l^2 \dot{\theta} + 2 \omega l R \cos(\omega t)\sin(\theta)- 2 \omega l R \dot{\theta}\sin(\omega t)\cos(\theta) \right) \\ 
-    &- m\left[2 \omega l R \dot{\theta}(\cos (\omega t) \cos (\theta)+\sin (\omega t) \sin (\theta))-l^2 \dot{\theta}^2 \cos (\theta)+g l \sin (\theta)\right] \\
-    0 &= m \left( l^2 \ddot{\theta} + \omega l R\left[ - \omega \sin ( \omega t)\sin (\theta)+\dot{\theta} \cos( \omega t)\cos (\theta)\right]- \omega l R \left[ \omega\cos(\omega t)\cos(\theta) - \dot{\theta}\sin(\omega t)\sin(\theta) \right] \right) \\ 
-    &- m\left[2 \omega l R \dot{\theta}(\cos (\omega t) \cos (\theta)+\sin (\omega t) \sin (\theta))-l^2 \dot{\theta}^2 \cos (\theta)+g l \sin (\theta)\right]
-\end{align*}
-\end{callout}
-\begin{callout}{Solution Attempt \#2:}
+
+\begin{callout}{Solution:}
     
-    This is quite horrendous, and no amount of simplifying will get a differential equation that could be solved. 
-    Instead I will try to reframe the problem with a new coordinate system. 
-    If the coordinate system is rotating about the origin $O$ at a rate $\omega$, I should be able to eliminate explicit time dependence. 
-    Kinetic energy has translational and rotational parts:
+    I had trouble working straight from polar coordinates, so I'll give it a shot in terms of $x,y$ first to get $\dot{r}^2=\dot{x}^2+\dot{y}^2$:
+    $$\begin{cases}
+        x = R\cos \omega t + l \sin \phi \\ 
+        y = - R \sin \omega t + l \cos \phi 
+    \end{cases}$$
+    $$\begin{cases}
+        \dot{x} = - R \omega \sin \omega t + l \dot{\phi} \cos \phi \\ 
+        \dot{y} = - R \omega \cos \omega t - l \dot{\phi} \sin \phi
+    \end{cases}$$
+    Squaring and taking the sum, 
+    $$\dot{r}^2 = \dot{x}^2 + \dot{y}^2 = R^2 \omega^2 + l^2\dot{\phi}^2 + 2 R l \omega \dot{\phi}\sin(\phi-\omega t)$$
+    and the potential energy is 
+    $$V = - mgy = -mg (-R \sin \omega t + l \cos \phi)$$
+    
+    So the lagrangian/functional are
     \begin{align*}
-        T &= \frac{1}{2}m \left( l^2\dot{\theta} + R^2 \omega^2 + 2Rl \dot{\theta}\omega \cos(\theta) \right)
+        L &= \frac{1}{2} m [R^2 \omega^2 + l^2\dot{\phi}^2 + 2 R l \omega \dot{\phi}\sin(\phi-\omega t)]
+        + mg (-R \sin \omega t + l \cos \phi) \\ 
+        J &= \int_{\phi_0}^{\phi_1} \frac{1}{2} m [R^2 \omega^2 + l^2\dot{\phi}^2 + 2 R l \omega \dot{\phi}\sin(\phi-\omega t)] + mg (-R \sin \omega t + l \cos \phi) ~dt
     \end{align*}
+    The terms 
+    $$\frac{1}{2}m R^2 \omega^2, \qquad -mgR\sin \omega t$$
+    depend on $t$ alone or are constant, and do not affect the choice of maximal/minimal. Some literature, like Landau, calls them total time derivatives (which I only note because this term confused me today). Consequently I can drop them.
+    $$J = \int_{\theta_0}^{\theta_1} \frac{1}{2}m l^2 \dot{\phi}^2 + m R l \omega \dot{\phi}\sin(\phi-\omega t) + mgl\cos\phi ~dt$$
+    So by the Euler-Lagrange equation, 
+    \begin{align*}
+    \frac{d}{dt}\left( m l^2 \dot{\phi} + \frac{1}{2}mRl \omega \sin(\phi-\omega t) \right) - mgl\sin\phi &= 0 \\ 
+    ml^2 \ddot{\phi} + \frac{1}{2}mRl \dot{\phi} \omega \cos(\phi - \omega t) - \frac{1}{2}mRl \omega^2 \cos(\phi - \omega t) - mgl \sin\phi = 0
+    \end{align*}
+    subject to 
+    $$\phi(t)\bigg|_{t=0} = 0$$
+    This is some evil nonlinear differential equation, so this is the best I can do to solve an equation of motion.
 
 \end{callout}
 \end{homeworkProblem}

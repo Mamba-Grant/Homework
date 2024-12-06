@@ -1,6 +1,6 @@
 \begin{homeworkProblem}
     5.1: Determine an equation for the chemical potential of a Van der Waals gas.
-    \begin{callout}{Solution:}
+    \begin{callout}{Solution Attempt \#2:}
         
         By equation 5.14 and 5.8:
         $$
@@ -11,8 +11,9 @@
             $$-\left( \frac{\partial S}{\partial N} \right)_{V,P} = -\left[\ln \left(\frac{V-b N}{N}\right)+\frac{3}{2} \ln \left(\frac{2 m \pi}{\beta h^2}\right)+\frac{5}{2}\right] + \frac{1}{N}$$
             \begin{align*}
                 \frac{\mu}{T} &= -k_B\left[\ln \left(\frac{V-b N}{N}\right)+\frac{3}{2} \ln \left(\frac{2 m \pi}{h^2} T \right)+\frac{5}{2}\right] + \frac{k_B}{N} \\ 
-                \mu &= \frac{k_BT}{N} - k_BT\ln\left( \frac{V-bN}{N} \right) + \frac{3T}{2} \ln\left( \frac{2m\pi}{h^2}T \right) + \frac{5k_B}{2}
             \end{align*}
+            $$\boxed{\mu = \frac{k_BT}{N} - k_BT\ln\left( \frac{V-bN}{N} \right) + \frac{3T}{2} \ln\left( \frac{2m\pi}{h^2}T \right) + \frac{5k_B}{2}}$$
+
 
     \end{callout}
 \end{homeworkProblem}
@@ -27,7 +28,7 @@
         S_{\text{VDW}} = Nk_B\left[\ln \left(\frac{V-b N}{N}\right)+\frac{3}{2} \ln \left(\frac{2 m \pi}{\beta h^2}\right)+\frac{5}{2}\right]
         $$
 
-        $$-\left( \frac{\partial S}{\partial \beta} \right)_{V} = \frac{3Nk_B}{2 \beta} \implies C_V = \frac{3Nk_B}{2}$$
+        $$-\left( \frac{\partial S}{\partial \beta} \right)_{V} = \frac{3Nk_B}{2 \beta} \implies \boxed{C_V = \frac{3Nk_B}{2}}$$
 
     \end{callout}
 \end{homeworkProblem}
@@ -35,7 +36,7 @@
 \newpage
 \begin{homeworkProblem}
     5.3: Determine an equation for \( C_P \) for a Van der Waals gas.
-    \begin{callout}{Solution:}
+    \begin{callout}{Solution Attempt \#2:}
         
         By equation 5.17 and 5.8:
         $$
@@ -64,10 +65,8 @@
             \left( \frac{\partial V}{\partial T} \right)_{P} &= \frac{Nk_BV^3}{PV^3-N^2aV+2N^3ab}
         \end{align*}
 
-        \begin{align*}
-            C_P &= \frac{3}{2}Nk_B + T\left( \frac{Nk_B}{V-bN} \right) \left( \frac{Nk_BV^3}{PV^3-N^2aV+2N^3ab} \right) \\
+            $$\boxed{C_P = \frac{3}{2}Nk_B + T\left( \frac{Nk_B}{V-bN} \right) \left( \frac{Nk_BV^3}{PV^3-N^2aV+2N^3ab} \right)}$$
             %&= \frac{3Nk_B}{2 \beta} + \left( \frac{T\left( Nk_B \right)^{2}}{(V-bN)(P+a \frac{N^2}{V^2})} \right) 
-        \end{align*}
 
     \end{callout}
 \end{homeworkProblem}
@@ -105,33 +104,64 @@
 \newpage
 \begin{homeworkProblem}
     5.5: A Van der Waals gas is allowed to freely expand into a vacuum under adiabatic conditions. What is the change in the temperature of the gas following the expansion? Express your answer as a relationship between \( dT \) and \( dV \).
-    \begin{callout}{Solution:}
-        
-        Walking through the derivation of heat capacity at constant pressure again, we can arrive at an expression for heat in terms of some relevant variables:
+%    \begin{callout}{Derivation steps for heat capacity at constant pressure:}
+%        \textit{I elect to put this in a separate block since it's basically just notes.} \vspace{1em}
+%
+%        For the sake of review, I'll walk through part of the derivation for heat capacity at constant pressure, so that we can arrive at heat in terms of some relevant variables:
+%        %Walking through the derivation of heat capacity at constant pressure again, we can arrive at an expression for heat in terms of some relevant variables:
+%        \begin{align*}
+%            dE = T dS - P dV &= \left( \frac{\partial E}{\partial V} \right)_{T} dV + \left( \frac{\partial E}{\partial T} \right)_{V}dT \\ 
+%        \end{align*}
+%        We can express $dS$:
+%        \begin{gather*}
+%            dS = \frac{1}{T} \left( \frac{\partial E}{\partial T} \right)_{V} dT + \frac{1}{T} \left[ P + \left( \frac{\partial E}{\partial V} \right)_{T} \right] dV \\ 
+%            \left( \frac{\partial S}{\partial T} \right)_{V} = \frac{1}{T} \left( \frac{\partial E}{\partial T} \right)_{V}, \qquad \left( \frac{\partial S}{\partial V} \right)_{T} = \frac{1}{T} \left[ P + \left( \frac{\partial E}{\partial V} \right)_{T} \right] \\ 
+%            \frac{\partial ^{2} S}{\partial V \partial T} = \frac{\partial ^{2} S}{\partial T \partial V}\quad \to \quad \frac{\partial }{\partial V} \left( \frac{1}{T} \left( \frac{\partial E}{\partial T} \right)_{V} \right) = \frac{\partial }{\partial T} \left(\frac{1}{T}\left[  P+\left( \frac{\partial E}{\partial V} \right)_{T} \right]\right) \\ 
+%            \frac{1}{T} \frac{\partial ^{2}E}{\partial V \partial T} = -\frac{1}{T^2} \left[ P+\left( \frac{\partial E}{\partial V} \right)_{T} \right] + \frac{1}{T} \left[ \left( \frac{\partial P}{\partial V} \right)_{V} + \left( \frac{\partial^2 E}{\partial T \partial V} \right)_{T} \right]
+%        \end{gather*}
+%        And since internal energy is also an exact differential, its cross partial derivatives must be equal
+%        \begin{gather*}
+%            \frac{\partial ^{2}E}{\partial V \partial T} = \frac{\partial ^2 E}{\partial T\partial V} \quad \to \quad 0 = - \frac{1}{T^2} \left[ P + \left( \frac{\partial E}{\partial V} \right)_{T} \right] + \frac{1}{T} \left( \frac{\partial P}{\partial T} \right)_{V} \\ 
+%            P + \left( \frac{\partial E}{\partial V} \right)_{T} = T \left( \frac{\partial P}{\partial T} \right)_{V} \\ 
+%        \end{gather*}
+%    \end{callout}
+%    \begin{callout}{Solution:}
+%
+%        Using the above derivation, we can go back to the previously derived equation for $dS$.
+%        \begin{gather*}
+%            dS = \frac{1}{T} \left( \frac{\partial E}{\partial T} \right)_{V} dT + \frac{1}{T} \left[ P + \left( \frac{\partial E}{\partial V} \right)_{T} \right]dV \\ 
+%            TdS = \left( \frac{\partial E}{\partial T} \right)_{V} dT + \left[ P + \left( \frac{\partial E}{\partial V} \right)_{T} \right]dV \\ 
+%            \bar{d}Q = C_V dT + \left[P + \left( \frac{\partial E}{\partial V} \right)_{T}\right]dV \\
+%            \underbrace{\bar{d}Q}_{=0} = C_V dT + \underbrace{P + \left( \frac{\partial E}{\partial V} \right)_{T}}_{=T\left( \frac{\partial P}{\partial T} \right)_{V}=0} dV \\
+%            0 = C_VdT
+%        \end{gather*}
+%        Adibatic conditions implies that both heat capacity and pressure are zero. As a consequence the pressure differential is also zero. This implies $dT$ must be zero because $C_V$ cannot be zero. Therefore the temperature is constant!
+%
+%    \end{callout}
+
+    \begin{callout}{Solution Attempt \#2:}
+
+        But for an adiabatic system, $Q=0$, so we can use the first law of thermodynamics to say:
+        $$dE = -PdV$$
+        And if I have a way to express $dE$, I could work out an expression for $dV/dT$. 
+        In working with heat capacity, we found:
+        $$dE = T dS - P dV = \left( \frac{\partial E}{\partial V} \right)_{T} dV + \left( \frac{\partial E}{\partial T} \right)_{V}dT $$
+        So,
         \begin{align*}
-            dE = T dS - P dV &= \left( \frac{\partial E}{\partial V} \right)_{T} dV + \left( \frac{\partial E}{\partial T} \right)_{V}dT \\ 
+            \left( \frac{\partial E}{\partial V} \right)_{T} dV + \left( \frac{\partial E}{\partial T} \right)_{V}dT &= -PdV \\ 
+            \left( \frac{\partial E}{\partial T} \right)_{V} \frac{dT}{dV} &= - \left[ \left( \frac{\partial E}{\partial V} \right)_{T} + P \right] \\ 
+            \frac{dV}{dT} &= - \frac{\left( \frac{\partial E}{\partial T} \right)_{V}}{\left( \frac{\partial E}{\partial V} \right)_{T} + P}
         \end{align*}
-        We can express $dS$:
-        \begin{gather*}
-            dS = \frac{1}{T} \left( \frac{\partial E}{\partial T} \right)_{V} dT + \frac{1}{T} \left[ P + \left( \frac{\partial E}{\partial V} \right)_{T} \right] dV \\ 
-            \left( \frac{\partial S}{\partial T} \right)_{V} = \frac{1}{T} \left( \frac{\partial E}{\partial T} \right)_{V}, \qquad \left( \frac{\partial S}{\partial V} \right)_{T} = \frac{1}{T} \left[ P + \left( \frac{\partial E}{\partial V} \right)_{T} \right] \\ 
-            \frac{\partial ^{2} S}{\partial V \partial T} = \frac{\partial ^{2} S}{\partial T \partial V}\quad \to \quad \frac{\partial }{\partial V} \left( \frac{1}{T} \left( \frac{\partial E}{\partial T} \right)_{V} \right) = \frac{\partial }{\partial T} \left(\frac{1}{T}\left[  P+\left( \frac{\partial E}{\partial V} \right)_{T} \right]\right) \\ 
-            \frac{1}{T} \frac{\partial ^{2}E}{\partial V \partial T} = -\frac{1}{T^2} \left[ P+\left( \frac{\partial E}{\partial V} \right)_{T} \right] + \frac{1}{T} \left[ \left( \frac{\partial P}{\partial V} \right)_{V} + \left( \frac{\partial^2 E}{\partial T \partial V} \right)_{T} \right]
-        \end{gather*}
-        And since internal energy is also an exact differential, its cross partial derivatives must be equal
-        \begin{gather*}
-            \frac{\partial ^{2}E}{\partial V \partial T} = \frac{\partial ^2 E}{\partial T\partial V} \quad \to \quad 0 = - \frac{1}{T^2} \left[ P + \left( \frac{\partial E}{\partial V} \right)_{T} \right] + \frac{1}{T} \left( \frac{\partial P}{\partial T} \right)_{V} \\ 
-            P + \left( \frac{\partial E}{\partial V} \right)_{T} = T \left( \frac{\partial P}{\partial T} \right)_{V} \\ 
-        \end{gather*}
-        We’re almost there. Now let’s go back to the previously derived equation for $dS$.
-        \begin{gather*}
-            dS = \frac{1}{T} \left( \frac{\partial E}{\partial T} \right)_{V} dT + \frac{1}{T} \left[ P + \left( \frac{\partial E}{\partial V} \right)_{T} \right]dV \\ 
-            TdS = \left( \frac{\partial E}{\partial T} \right)_{V} dT + \left[ P + \left( \frac{\partial E}{\partial V} \right)_{T} \right]dV \\ 
-            \bar{d}Q = C_V dT + \left[P + \left( \frac{\partial E}{\partial V} \right)_{T}\right]dV \\
-            \underbrace{\bar{d}Q}_{=0} = C_V dT + \underbrace{P + \left( \frac{\partial E}{\partial V} \right)_{T}}_{=T\left( \frac{\partial P}{\partial T} \right)_{V}=0} dV \\
-            0 = C_VdT
-        \end{gather*}
-        Adibatic conditions implies that both heat capacity and pressure are zero. As a consequence the pressure differential is also zero. This implies $dT$ must be zero because $C_V$ cannot be zero. Therefore the temperature is constant!
+        Looking through my notes again, I realize that:
+        $$\left( \frac{\partial E}{\partial T} \right)_{V} = C_V, \qquad \left( \frac{\partial E}{\partial V} \right)_{T} + P = T \left( \frac{\partial P}{\partial T} \right)_{V}$$
+        So, 
+        $$\frac{dV}{dT} = - \frac{C_V}{T\left( \frac{\partial P}{\partial T} \right)_{V}}$$
+        Earlier in problem \#3 I used the equation of state for a VDW gas to find 
+        $$\left(\frac{\partial P}{\partial T} \right)_{V} = \frac{\partial}{\partial T}\left( \frac{Nk_BT}{V-bN} - a \frac{N^2}{V^2} \right) = \frac{Nk_B}{V-bN} $$
+        Which makes the expression $dV/dT$:
+        $$\frac{dV}{dT} = - \frac{C_V}{T \left( \frac{Nk_B}{V-bN} \right)}$$
+        Which can be simplified using $C_V= \frac{3Nk_B}{2}$ and a touch of algebra:
+        $$\boxed{\frac{dV}{dT} = - \frac{(3Nk_B)(V-bN)}{TNk_B}}$$
 
     \end{callout}
 \end{homeworkProblem}
