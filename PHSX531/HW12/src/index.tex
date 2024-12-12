@@ -1,0 +1,103 @@
+\begin{homeworkProblem}
+    (3 pts) Find the magnetic field at the center of a square loop, which carries a current $I$. Let $R$ be the (shortest) distance from the center to side.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{../assets/H12P1F1.png}
+    \end{figure}
+    \begin{callout}{Solution:}
+        
+        Each side has a length $\ell=2R$. 
+        Taking $\hat{x}$ to be the horizontal, $\hat{y}$ to be the vertical, and $\hat{z}$ to be out of the page, 
+        the magnetic field points in the $\hat{z}$ direction (taking the line normal vector to be towards the middle of the loop).
+        \begin{gather*}
+            \rcurs^2=x^2+y^2, \quad \hat{\rcurs} = \frac{x\hat{x} + y\hat{y}}{(x^2+y^2)^{1/2}}, \quad dl \times \hat{\rcurs} = \frac{R}{(x^2+y^2)}~\text{ (regardless of side) } \\ 
+            \frac{\mu_0}{4\pi} I \int_{-R}^{R} \frac{R\hat{z}}{(x^2+y^2)^{3/2}} ~dl
+        \end{gather*}
+        This integral is symmetric over each part, so it would be equivalent to taking 4 times the result of this integral. 
+        The integral over the bottom segment will be: 
+        \begin{align*}
+            \textbf{B} &= \frac{\mu_0 I}{4\pi} \int_{-R}^{R} \frac{R ~dx}{(x^2+R^2)^{3/2}} \hat{z} \\ 
+            &= \frac{\mu_0 I}{4\pi} \int_{\pi/4}^{-\pi/4} \frac{R(R\sec^2\theta)}{(R)^{3/2}(1+\tan^2\theta)} ~d\theta && \begin{matrix} x = R\tan\theta \\ dx = R \sec^2 \theta \end{matrix} \\ 
+                &= \frac{\mu_0 I}{4\pi R} \int_{-\pi/4}^{\pi/4} \frac{sec^2\theta}{sec^3 \theta} ~d\theta \\ 
+                &= \frac{\mu_0 I}{4\pi R} \int_{-\pi}^{\pi} \cos\theta ~d\theta \\ 
+                &= \frac{\mu_0 I}{4\pi R} \left[ \sin(\pi/4) - \sin(-\pi/4) \right] \\ 
+                &= \frac{\sqrt{ 2 } \mu_0 I}{\pi R}
+        \end{align*}
+
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    (3 pts) Find the magnetic field at the center of a circular loop of radius $R$, which carries a counterclockwise current $I$ when looking from "above".
+    \begin{callout}{Solution:}
+        
+        Setting this up in the same way as before ($\hat{z}$ out of the page), magnetic field will be pointing into the page if $\hat{s}$ is towards the middle of the loop.
+        \begin{gather*}
+            dl = R d\phi \hat{\phi}, \qquad \rcurs = s = R, \qquad \hat{\rcurs} = \hat{s}, \qquad dl \times \hat{\rcurs} = R~d\phi \hat{z} \\
+            \textbf{B} = -\frac{\mu_0 I}{4\pi} \int_{0}^{2\pi} \frac{R ~d\phi}{R^2} \hat{z} = \frac{\mu_0 I}{2 R} \hat{z} 
+        \end{gather*}
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    (4 pts) Find the force on a square loop placed near an infinite straight wire. Both the loop and the wire carry a steady current $I$.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\textwidth]{../assets/H12P3F1.png}
+    \end{figure}
+\end{homeworkProblem}
+
+\begin{callout}{Solution:}
+
+    We have magnetic force $\textbf{F} = I \int (d \textbf{l} \times \textbf{B})$.
+    The force due to the magnetic magnetic fields on both sides cancel, since they have the same magnitude and opposite direction.
+    We have already found the magnetic field due to a line of current a few times before, 
+    \begin{align*}
+        \textbf{B}_{\textrm{bottom}} &= \frac{\mu_0 I}{2\pi s} \hat{z} \\ 
+        \textbf{B}_{\textrm{top}} &= -\frac{\mu_0 I}{2\pi (s+a)} \hat{z}
+    \end{align*}
+    This gives magnetic force:
+    \begin{align*}
+        \textbf{F} &= I \int_{0}^{a} \hat{x} \times \frac{\mu_0 I }{2\pi s}\hat{z} ~dx  - I\int_{0}^{a} \hat{x} \times \frac{\mu_0 I}{2\pi (s+a)}\hat{z} ~dx \\ 
+        &= I \int_{0}^{a} \frac{\mu_0 I }{2\pi s}\hat{y} ~dx  - I\int_{0}^{a} \frac{\mu_0 I}{2\pi (s+a)}\hat{y} ~dx \\ 
+        &= \frac{\mu_0 I^2 a}{2\pi s} \hat{y} - \frac{\mu_0 I^2 a}{2\pi (s+a)} \hat{y} \\ 
+        &= \frac{\mu_0 I^2 a}{2\pi} \left( \frac{1}{s} - \frac{1}{s+a} \right)
+    \end{align*}
+
+
+\end{callout}
+
+\begin{homeworkProblem}
+    Extra Credit (4 pts) Suppose you have two infinite straight line charges $\lambda$, a distance $d$ apart, moving along at a constant speed $v$. How great would $v$ have to be in order for the magnetic attraction to balance the electric repulsion? Work out the actual number. Is this a reasonable sort of speed?
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{../assets/H12P4F1.png}
+\end{figure}
+
+\begin{callout}{Solution:}
+    
+    In example 5.5, we found that in this configuration, 
+    $$\textbf{F} = I_2 \left( \frac{\mu_0 I_1}{2\pi d} \right) \int dl $$
+    and per unit length, 
+    $$f = \frac{\mu_0}{2\pi} \frac{I_1I_2}{d}$$
+    The electric field per length due to this configuration is (using $\hat{y}$ up)
+    $$\textbf{E} = \frac{1}{4\pi \epsilon_0} \frac{2\lambda}{y} \hat{y}$$
+    And the charge distribution acting on this is $\lambda$ from the other wire in the same direction. So they are repulsive with force:
+    $$f= \frac{1}{4\pi \epsilon_0} \frac{2 \lambda^2}{d}$$
+    Now equating these, using $I=\lambda v$:
+    \begin{align*}
+        \frac{\mu_0}{2\pi} \frac{\lambda^2 v^2}{d} &= \frac{1}{4\pi \epsilon_0} \frac{2 \lambda^2}{d} \\ 
+        v^2 &= \frac{1}{\mu_0 \epsilon_0}
+    \end{align*}
+    The actual number is 
+    $$( 8.85 \times 10^{-12} 4\pi\times10^{-7})^{-1/2} = 2.998633 \dots \times 10^{8}$$
+    Which is the speed of light. \textit{I wonder if doing this calculation in a different unit system would actually put $c$ there.}
+
+\end{callout}
+
+\end{homeworkProblem}

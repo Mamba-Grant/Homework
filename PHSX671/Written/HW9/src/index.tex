@@ -3,38 +3,200 @@
     \begin{callout}{Solution:}
         
         %Find work done by a change in volume for thermal expansion due to blackbody radiation.
-        The adiabatic condition implies that the entropy before and after remains the sameL
-        $$S_i = S_f$$
-        And the entropy initially is $S_i=\frac{4}{3}aVT^4$. The problem is now to find a way to express work due to the change in temperature and volume.
+        The adiabatic condition implies that the entropy before and after remains the same, and that $Q=0$
+        $$S_i = S_f, \qquad \Delta E = \cancel{Q} - W$$
+        And the entropy initially is $S_i=\frac{4}{3}aVT^3$. 
+        We have already derived mean energy, which saves me a few steps:
+        $$E=aVT^4$$
+        So now the problem is reduced to arranging these things to suitably encompass the effects of thermal expansion.
+        I can start by finding an expression coupling $rV$ and the temperature:
+        \begin{align*}
+            S_i &= S_f \\ 
+            \frac{4}{3}aVT_i^3 &= \frac{4}{3}a(rV)T_f^3 \\ 
+            T_i &= (r)^{1/3}T_f
+        \end{align*}
+        Using the first law of thermodynamics, I can write the final expression for work:
+        \begin{align*}
+            - W &= \Delta E \\ 
+            W &= aVT_i^4 - aVT_f^4 \\
+            W &= aVT_i^4 - aV \frac{T_i^4}{r^{1/3}}
+        \end{align*}
+        $$\boxed{W = aVT_i^4(1 - r^{-1/3}), \qquad a = \frac{4 \sigma}{c} = \frac{4 \pi^2 k_B^4}{60(\hbar c)^3}}$$
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    A Dyson shell is a hypothetical megastructure that was originally described by Freeman Dyson as a uniform solid shell of matter around a star meant to completely encompass the star and thus capture its entire energy output. Such a structure would also provide an immense surface which many envision being used for habitation. If engineers wanted an average temperature on the inner surface of the shell to be 300 K, what must the radius of the shell be? The temperature and radius of the sun are 5800 K and $7 \times 10^{8} \mathrm{~m}$, respectively.
+    \begin{callout}{Solution:}
+
+        \begin{multicols}{2}
+            
+        It is feasible to directly write out mean energy of the blackbody radiation emitted by the sun, and simply say that it is conserved, which allows me to express:
+        $$\bar{E}_{\textrm{sun}} = \bar{E}_{\textrm{dy}}$$
+        We have derived expressions for photon gasses in 3-D, and I get the sense that trying to hand-wavily take the sun to be a blackbody volume and work out average energy for the volume between the sun and dyson sphere would be quite dubious, but just to confirm:
+        \begin{align*}
+            aV_{\textrm{sun}}T_{\textrm{sun}}^4 &= aV_{\textrm{space}}T_{\textrm{dy}}^4 \\ 
+            r^3_{\textrm{sun}}T_{\textrm{sun}}^4 &= r^{3}_{\textrm{dy}}T_{\textrm{dy}}^4 \\ 
+            r_{\textrm{dy}} &= \frac{r_{\textrm{sun}}T^{4/3}_{\textrm{sun}}}{T^{4/3}_{\textrm{dy}}} 
+        \end{align*}
+        $$r_{\textrm{dy}} \approx 3.63\times10^{10} \textrm{~m} = 0.243 \textrm{~au}$$
+
+            \columnbreak
+        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.4\textwidth]{../assets/H9P2F1.png}
+        \end{figure}
+
+        \end{multicols}
+
+        I would assume this to be horribly wrong, since the earth sits at 1 au distance, things would be far, far hotter if the earth was instead 4 times closer to the sun. 
+        Time for me to bite the bullet and derive an expression for surfaces instead of volumes:
+
+        \begin{gather*} 
+            \Gamma(k) = 2 \left( \frac{1}{4} \frac{\pi k^2}{\left( \sfrac{\pi}{L} \right)^2} \right)\, dk = \frac{L^2k^2}{2\pi}\, dk \\ 
+            D(k)\, dk = \frac{L^2 k}{\pi}\, dk \\
+            k = \frac{\omega}{c}, \qquad dk = \frac{d \omega}{c} \\ 
+            D(\omega) d \omega = \frac{A \omega}{\pi c^2}\, d \omega
+         \end{gather*}
+         The partition function is then:
+         \begin{align*}
+             \ln Z &= - \int_{0}^{\infty} \ln(1-e^{-\beta \hbar \omega}) \left( \frac{A \omega}{\pi c^2} \right)\, d \omega \\ 
+             &= - \frac{A}{\pi c^2 (\beta \hbar)^3} \int_{0}^{\infty} x \ln(1-e^{-x}) ~dx, && \begin{matrix} x = \beta \hbar \omega \\ d\omega=\tfrac{dx}{\beta \hbar} \end{matrix} \\ 
+                 &= \frac{\pi^4}{45} \frac{A}{\pi (c \beta \hbar)^2} = \frac{A\pi^3}{45(\beta \hbar c)^2}
+         \end{align*}
+         Mean energy is the derivative with respect to $\beta$, giving:
+         $$\bar{E}= \frac{2A\pi^3}{45(\hbar c)^2\beta^4}$$
+
+         and I'll assign the variable $a$ to simplify:
+         $$\bar{E} = aAT^4, \qquad a = \frac{2\pi^3 k_B^4}{45(\hbar c)^2}$$
+         Now it's pretty straightforward to relate energy emitted by the sun to energy at the surface of the dyson sphere.
+         \begin{align*}
+             r^2_{\textrm{dy}} &= \frac{r_{\textrm{sun}}^2 T^4_{\textrm{sun}}}{T^4_{\textrm{dy}}} \\
+         \end{align*}
+         $$\boxed{r_{\textrm{dy}} \approx 1.75\, \textrm{au}}$$
+         Which seems much more reasonable to me.
+         
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    The molar heat capacity at constant volume of an ideal gas of bosons of mass $m$ at temperature $T$ before the condensation temperature $T_{c}$ is given by
+    $$ C_{V}=2 R\left(\frac{T}{T_{c}}\right)^{\frac{3}{2}} $$
+    \begin{enumerate}[(a)]
+        \item What is the internal energy per mole of this gas as a function of $T$ for $T<T_{c}$?   
+            \begin{callout}{Solution:}
+                
+                Probably the most straightforward way to get to internal energy is using $C_V = \left( \frac{\partial E}{\partial T} \right)_{V}$:
+                \begin{align*}
+                    E &= \int_{0}^{T} 2R \left( \frac{T}{T_c} \right)^{3/2} ~dT \\ 
+                    &= \frac{4R}{5} \frac{T^{5/2}}{T_c^{3/2}}
+                \end{align*}
+                $$\boxed{ E=\frac{4R}{5} T \left( \frac{T}{T_c} \right)^{3/2} }$$
+
+            \end{callout}
+        \item What is the entropy per mole of this gas as a function of $T$ for $T<T_{c}$?
+            \begin{callout}{Solution:}
+                
+                Using the Helmholtz Free Energy, 
+                $$\int_{0}^{S} dS = \int_{0}^{T} \frac{C_V}{T} ~dT$$
+                So, entropy per mole $s$ is:
+                \begin{align*}
+                    s &= 2R \int_{0}^{T} \left( \frac{T}{T_c} \right)^{3/2} \frac{1}{T} ~dT \\
+                    &= \frac{2R}{(T_c)^{3/2}} \int_{0}^{T} T^{1/2} ~dT 
+                \end{align*}
+                $$\boxed{s= \frac{4R}{3}\left(\frac{T}{T_c}\right)^{3/2}}$$
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    What is the chemical potential of a three-dimensional photon gas?
+    \begin{callout}{Solution:}
+        
+        $$\mu = -k_BT \left( \frac{\partial \ln Z}{\partial N} \right)_{T,V},\qquad \ln Z = \frac{V\pi^2}{45(\beta \hbar c)^3}$$
+        $$\boxed{\implies \mu = 0}$$
+        The partial derivative of this is just zero, since there is no dependence on $N$, making $\mu$ equal zero.
+        \textit{In fact, nowhere in any of the equations surrounding photon gas is there an explicit dependence on $N$.}
+        This is a bit strange, though, each photon has an energy, I would have expected it to take energy to add a photon to the system.
+        This is definitely correct though, as a quick google search confirms. 
+        It seems that my notion about how chemical potential works was a bit incorrect, since yes, it is a measure of how energy changes when particles are added or removed from a system, but it is ONLY the act of adding a particle to the system that changes the energy. 
+        Particles can be given energy or momentum separately from adding them to the system. 
+        Yes we can introduce photons with kinetic energy, but the act of giving them momentum is separate from inserting them into the system.
+        Relativity should hint that this is the case, since every particle has some mass-energy, but for the photon this is zero!
 
     \end{callout}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
-    A Dyson shell is a hypothetical megastructure that was originally described by Freeman Dyson as a uniform solid shell of matter around a star meant to completely encompass the star and thus capture its entire energy output. Such a structure would also provide an immense surface which many envision being used for habitation. If engineers wanted an average temperature on the inner surface of the shell to be 300 K, what must the radius of the shell be? The temperature and radius of the sun are 5800 K and $7 \times 10^{8} \mathrm{~m}$, respectively.
-\end{homeworkProblem}
-
-\begin{homeworkProblem}
-    The molar heat capacity at constant volume of an ideal gas of bosons of mass $m$ at temperature $T$ before the condensation temperature $T_{c}$ is given by
-    $$
-    C_{V}=2 R\left(\frac{T}{T_{c}}\right)^{\frac{3}{2}}
-    $$
-    (a) What is the internal energy per mole of this gas as a function of $T$ for $T<T_{c}$?  
-    (b) What is the entropy per mole of this gas as a function of $T$ for $T<T_{c}$?
-\end{homeworkProblem}
-
-\begin{homeworkProblem}
-    What is the chemical potential of a three-dimensional photon gas?
-\end{homeworkProblem}
-
-\begin{homeworkProblem}
     Electromagnetic radiation at temperature $T$ has a volume $V$. How much work is done by the radiation if it expands isothermally to a final volume $r V$?
+    \begin{callout}{Solution:}
+        
+        (Isothermal just referrs to the system being held at a fixed temperature). The first law of thermodynamics lets me say 
+        $$0 = Q-W$$
+        Or, equivalently,
+        $$0 = TdS - PdV$$
+        We've already found that the pressure of a photon gas is $P=\frac{1}{3} \frac{\bar{E}}{V}$, so it's pretty straghtforward to just integrate that:
+        \begin{align*}
+            W &= \frac{1}{3} \int_{V}^{rV} aT^4 ~dV \\ 
+            &= \frac{1}{3}aVT^4(r-1)
+        \end{align*}
+
+    \end{callout}
 \end{homeworkProblem}
 
+\newpage
 \begin{homeworkProblem}
     What is the Fermi energy of a two-dimensional electron gas in terms of the charge density $\sigma$ of the gas?
+    \begin{callout}{Solution:}
+        
+        Quickly reviewing how we got to fermi energy in 3D-- we took $f(\epsilon)$ to be 1 when $T=0$, since all states are occupied up to the fermi energy. No states above the fermi energy are occupied, either.
+        \begin{align*}
+            N &= \int_{0}^{\infty} f(\epsilon) D(\epsilon) ~d \epsilon \\ 
+            &= \int_{0}^{\epsilon_F} \left[ 1 \right]\left[ \left( \frac{V}{2\pi^2} \right)\left( \frac{2m}{\hbar^2} \right)^{3/2}\epsilon^{1/2} \right] ~d \epsilon 
+        \end{align*}
+        Integrating and rearranging for $\epsilon_F$ gave:
+        $$\epsilon_F = \frac{\hbar^2}{2m} \left( \frac{3N\pi^2}{V} \right)^{2/3}$$
+        To take this to 2D, $\sfrac{1}{4}$ of phase space is positive, and the states are a collection of rings accessible, so 
+        \begin{gather*}
+            \Gamma(k) = 2 \left( \frac{1}{4} \right)  \left( \frac{\pi k^2}{\left(\frac{2\pi}{L}\right)^2} \right) = \frac{A k^2}{4\pi} \\ 
+            D(k)\, dk = \frac{Ak}{2\pi}\, dk
+            D(\epsilon) d \epsilon = \frac{A}{2\pi} \sqrt{\frac{2m\epsilon}{\hbar^2}} \cdot \frac{1}{2\sqrt{\epsilon}} \sqrt{\frac{2m}{\hbar^2}} \, d\epsilon \\
+            D(\epsilon) d \epsilon = \frac{A m}{2\pi \hbar^2} \, d\epsilon
+        \end{gather*}
+        Now I can do the same computation with $D(\epsilon)$ in 2D:
+        \begin{align*}
+            N &= \int_{0}^{\epsilon_F} \frac{A m}{2\pi \hbar^2}\, d\epsilon \\ 
+            N &= \frac{Am}{2\pi \hbar^2} \epsilon_F \\
+            \epsilon_F &= \frac{2N\pi \hbar^2}{Am}
+        \end{align*}
+        If some total charge $Q$ is just the sum of total charges $Nq$, charge per area $\sigma$ is given by:
+        $$Q=Nq \implies \frac{Q}{A} = \sigma = \frac{Nq}{A}$$
+        In this case, $q=e$, so 
+        $$N = \frac{\sigma A}{e}$$
+        Therefore, 
+        $$\boxed{\epsilon_F = \frac{2 \sigma \pi \hbar^2 }{m e}, \qquad e = -1.6\times10^{-19}\,\text{coulombs}}$$
+
+    \end{callout}
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
     The universe has a radius of about 14 billion light-years and contains 2.7 K background radiation left over from the Big Bang. Estimate the temperature of the universe when it had a volume of $1 \mathrm{~m}^{3}$. You may assume that all the energy of the present background radiation was in the universe when it had the smaller volume and ignore any coupling to matter.
+    \begin{callout}{Solution:}
+
+        If we consider the temperature of the universe to mostly depend on the energy from radiation, and assume that it expands equally in every direction, then:
+        \begin{align*} 
+            E_i &= E_f \\
+            aV_iT_i^4 &= aV_fT_f^4 \\ 
+            T_i^4 &= \frac{4\pi r_f^3 T_f^4}{3V_i}
+        \end{align*}
+        Taking $r_f=14\times10^9$ light years, $T_f=2.7K$, and $V_i=1$, temperature when the universe had a volume of 1 cubic meter was something on the order of
+        $$\boxed{T_i \approx 1.572 \times 10^8\, \textrm{kelvin}}$$
+
+    \end{callout}
 \end{homeworkProblem}

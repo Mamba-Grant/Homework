@@ -1,0 +1,218 @@
+\begin{homeworkProblem}
+    Exercise 15.1.1 (Shankar) -- 8 points
+
+    Derive Eqs. (15.1.10) and (15.1.11). It might help to use
+    \[ \mathbf{S}_1 \cdot \mathbf{S}_2 = S_{1z}S_{2z} + \frac{1}{2}(S_{1+}S_{2-} + S_{1-}S_{2+}) \tag{15.1.12} \]
+
+    \begin{callout}{Solution, first equation:}
+
+        \begin{enumerate}[(1)]
+            \item We have equations (15.1.10):
+                \begin{equation}
+                    S^2 \underset{\substack{{}\\ \text{ product } \\ \text { basis }}}{\to} 
+                    \hbar^2 \left[\begin{array}{cccc} 2 & 0 & 0 & 0 \\ 0 & 1 & 1 & 0 \\ 0 & 1 & 1 & 0 \\ 0 & 0 & 0 & 2\end{array} \right]
+                    \begin{bmatrix} \ket{+} \otimes \ket{+} \\ \ket{+} \otimes \ket{-} \\ \ket{-} \otimes \ket{+} \\ \ket{-} \otimes \ket{-} \end{bmatrix} 
+                            \tag{15.1.10}
+                    \end{equation}
+
+                    The operator $S^2$ is 
+                    $$ S^2 = (\mathbf{S_1} + \mathbf{S_2}) \cdot (\mathbf{S_1} + \mathbf{S_2}) = S_1^2 + S_2^2 + 2 (\mathbf{S_1} \cdot \mathbf{S_2}) $$
+
+                \item Computing the matrix elements for the squared terms is pretty simple:
+                    $$\begin{aligned}
+                        (S_1^2 + S_2^2)\ket{++} = \left( \frac{3}{4} \hbar^2 + \frac{3}{4} \hbar^2 \right)\ket{++} \\ 
+                        (S_1^2 + S_2^2)\ket{+-} = \left( \frac{3}{4} \hbar^2 + \frac{3}{4} \hbar^2 \right)\ket{+-} \\
+                        (S_1^2 + S_2^2)\ket{-+} = \left( \frac{3}{4} \hbar^2 + \frac{3}{4} \hbar^2 \right)\ket{-+} \\
+                        (S_1^2 + S_2^2)\ket{--} = \left( \frac{3}{4} \hbar^2 + \frac{3}{4} \hbar^2 \right)\ket{--}
+                    \end{aligned} 
+                    \quad \implies \quad (S_1^2+S_2^2) = \frac{3}{2}\hbar^2 \begin{pmatrix} 
+                        1 & 0 & 0 & 0 \\ 
+                        0 & 1 & 0 & 0 \\ 
+                        0 & 0 & 1 & 0 \\ 
+                        0 & 0 & 0 & 1
+                    \end{pmatrix}$$
+
+                \item The dot product can be gotten without too much trouble using the equation hinted at:
+                    $$\mathbf{S_1} + \mathbf{S_2} = S_{1z}S_{2z} + \frac{1}{2}(S_{1+}S_{2-}+S_{1-}S_{2+})$$
+
+                    
+        The matrix elements of $S_{1z}S_{2z}$ are:
+
+        And the matrix elements for the product $S_{1+}S_{2-}$ are:
+        \begin{align*}
+            S_{1+}S_{2-}\ket{++} ~&=~ S_{1+}\ket{+} \otimes S_{2-}\ket{+} ~=~ 0 \otimes \hbar \ket{-} \\
+            S_{1+}S_{2-}\ket{+-} ~&=~ S_{1+}\ket{+} \otimes S_{2-}\ket{-} ~=~ 0 \otimes 0 \ket{-} \\
+            S_{1+}S_{2-}\ket{-+} ~&=~ S_{1+}\ket{-} \otimes S_{2-}\ket{+} ~=~ \hbar \ket{+} \otimes \hbar \ket{-} = \hbar^2 \ket{+-} \\
+            S_{1+}S_{2-}\ket{--} ~&=~ S_{1+}\ket{-} \otimes S_{2-}\ket{-} ~=~ \hbar \ket{+} \otimes 0
+        \end{align*} 
+        $$S_{1+}S_{2-} = \hbar^2 \begin{pmatrix} 
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & 0 
+        \end{pmatrix}$$
+        
+        Similarly the other product $S_{1-}S_{2+}$ has matrix elements 
+            $$S_{1-}S_{2+} =
+            \hbar^2 \begin{pmatrix} 
+                0 & 0 & 0 & 0 \\
+                0 & 1 & 0 & 0 \\
+                0 & 0 & 0 & 0 \\
+                0 & 0 & 0 & 0 \\
+            \end{pmatrix}$$
+
+        And the product $S_{1z}S_{2z}$:
+        \begin{align*}
+            S_{1z}S_{2z}\ket{++} &= S_{1z}\left(\frac{\hbar}{2}\ket{+}\right) \otimes \ket{+} = \left(\frac{\hbar}{2}\right)\left(\frac{\hbar}{2}\right)\ket{++} = \frac{\hbar^2}{4}\ket{++} \\
+            S_{1z}S_{2z}\ket{+-} &= S_{1z}\left(-\frac{\hbar}{2}\ket{+}\right) \otimes \ket{-} = \left(-\frac{\hbar}{2}\right)\left(\frac{\hbar}{2}\right)\ket{+-} = -\frac{\hbar^2}{4}\ket{+-} \\
+            S_{1z}S_{2z}\ket{-+} &= S_{1z}\left(\frac{\hbar}{2}\ket{-}\right) \otimes \ket{+} = \left(-\frac{\hbar}{2}\right)\left(\frac{\hbar}{2}\right)\ket{-+} = -\frac{\hbar^2}{4}\ket{-+} \\
+            S_{1z}S_{2z}\ket{--} &= S_{1z}\left(-\frac{\hbar}{2}\ket{-}\right) \otimes \ket{-} = \left(-\frac{\hbar}{2}\right)\left(-\frac{\hbar}{2}\right)\ket{--} = \frac{\hbar^2}{4}\ket{--}
+        \end{align*}
+        $$ S_{1z}S_{2z} = \frac{\hbar^2}{4} \begin{pmatrix} 
+            1 & 0 & 0 & 0 \\
+            0 & -1 & 0 & 0 \\
+            0 & 0 & -1 & 0 \\
+            0 & 0 & 0 & 1
+        \end{pmatrix} $$
+
+        Combining all these,
+        $$S^2 = \frac{\hbar^2}{4}\begin{pmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & -1 & 2 & 0 \\
+            0 & 2 & -1 & 0 \\
+            0 & 0 & 0 & 1
+        \end{pmatrix}$$
+
+        \item Finally, using 
+            $$\mathbf{S_1} + \mathbf{S_2} = S_{1z}S_{2z} + \frac{1}{2}(S_{1+}S_{2-}+S_{1-}S_{2+})$$
+            The result is 
+            $$\mathbf{S_1} + \mathbf{S_2} = \hbar^2\begin{pmatrix}2&0&0&0\\ 0&1&1&0\\ 0&1&1&0\\ 0&0&0&2\end{pmatrix}$$
+        \end{enumerate}
+    \end{callout}
+
+    \newpage
+    \begin{callout}{Solution, second equation:}
+
+         Equation (15.1.11) says that the eigenstates of the above matrix are: 
+         \begin{equation} \begin{aligned}
+             \frac{\ket{+-}+\ket{-+}}{2^{1/2}} & (s=1) \\ 
+             \frac{\ket{+-}-\ket{-+}}{2^{1/2}} & (s=0) \\ 
+         \end{aligned} \tag{15.1.11} \end{equation}
+
+         Written in matrix form these are:
+         \begin{align*}
+             \frac{1}{\sqrt{ 2 }} \begin{pmatrix} 0 \\ 1 \\ 1 \\ 0 \end{pmatrix} \\
+             \frac{1}{\sqrt{ 2 }} \begin{pmatrix} 0 \\ 1 \\ -1 \\ 0 \end{pmatrix}
+         \end{align*}
+
+         The eigenvalues of our matrix for $S^2$ are $0$ and $2\hbar^2$. The corresponding eigenvectors are indeed what we expect.
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Exercise 15.2.2 -- part 1 only (Shankar) -- 12 points
+
+    Find the CG coefficients of
+    \[ \frac{1}{2} \otimes 1 = \frac{3}{2} \oplus \frac{1}{2} \]
+    \begin{callout}{Solution:}
+
+        \vspace{1em}\textit{(doing this by hand will make me forever grateful of Griffiths for including a table of these in his book)}\vspace{1em}
+
+        $\frac{1}{2} \otimes 1$ implies $j_1 = \frac{1}{2}, j_2 = 1$, and $\frac{3}{2} \oplus \frac{1}{2}$ implies $j \in \left\{ \frac{3}{2}, \frac{1}{2} \right\}$.
+        \[ \begin{array}{c|cc}
+            m & j = \frac{3}{2} & j = \frac{1}{2} \\ \hline
+            \frac{3}{2} & \left| \frac{3}{2}, \frac{3}{2} \right\rangle & \\
+            \frac{1}{2} & \left| \frac{3}{2}, \frac{1}{2} \right\rangle & \left| \frac{1}{2}, \frac{1}{2} \right\rangle \\
+            -\frac{1}{2} & \left| \frac{3}{2}, -\frac{1}{2} \right\rangle & \left| \frac{1}{2}, -\frac{1}{2} \right\rangle \\
+            -\frac{3}{2} & \left| \frac{3}{2}, -\frac{3}{2} \right\rangle & \\
+        \end{array} \]
+
+        To get the coefficients, we can start by finding the topmost state $\ket{s,m}$ for each $j$, and every state below can be accessed using the ladder operator. 
+        The 5th condition allows me to get all negative coefficients using the positive ones:
+        \begin{equation} \braket{j_1 m_1, j_2 m_2 | j m} = (-1)^{j_1 + j_2 - j} \braket{j_1 (-m_1), j_2 (-m_2) | j (-m)} \tag{5} \end{equation}
+        At this point I would like to remind myself that the state is 
+        $$\ket{s,m} = \sum_{m_1+m_2=m} C_{m_1m_2m}^{s_1s_2s} \ket{s_1\, s_2\, m_1\, m_2} $$
+        and that the ladder operators on generalized angular momentum are:
+        $$C_{\pm}(j,m)\ket{j,m\pm 1}, \qquad C_{\pm}(j,m) = \hbar \sqrt{ (j\mp m)(j\pm m+1) }$$
+
+        \textbf{In the following, I have boxed the CG coefficients for readability:}
+        \begin{enumerate}[(1)]
+            \item The $j=3/2$ column:
+                \begin{align*}
+                    \boxed{1}\ket{\tfrac{3}{2}, \tfrac{3}{2}} &= \ket{1, 1, \tfrac{1}{2}, \tfrac{1}{2}} \\
+                    J_-\ket{\tfrac{3}{2}, \tfrac{1}{2}} &= \hbar \sqrt{ 3 } \ket{1\,1,\tfrac{1}{2}\, \tfrac{1}{2}} \\
+                \end{align*} 
+                now, 
+                \begin{align*}
+                    \ket{\tfrac{3}{2}, \tfrac{1}{2}} &= \frac{J_-}{\hbar \sqrt{ 3 }} \ket{\tfrac{3}{2},\tfrac{3}{2}} \\
+                    &= \frac{1}{\hbar \sqrt{ 3 }}(J_{1-}+J_{2-}) \ket{1\,1,\tfrac{1}{2}\, \tfrac{1}{2}} \\
+                    &= \frac{1}{\hbar \sqrt{ 3 }}\left[ \hbar \ket{1\,1, \tfrac{1}{2}\, \tfrac{-1}{2} } + \hbar \sqrt{ 2 } \ket{1\,0, \tfrac{1}{2}\, \tfrac{1}{2} } \right] \\ 
+                    &= \boxed{\frac{1}{\sqrt{ 3 }}} \ket{1\, 1, \tfrac{1}{2}\, \tfrac{-1}{2}} + \boxed{\sqrt{ \frac{2}{3} }} \ket{1\,0, \tfrac{1}{2}\,\tfrac{1}{2}}
+                \end{align*}
+                these are all of the positive terms, so I use condition 5 to knock out the negative terms: 
+                \begin{align*}
+                    \ket{\tfrac{3}{2}, \tfrac{-1}{2}} 
+                    &= \frac{1}{\sqrt{ 3 } }(-1)^{\tfrac{1}{2}+1-\tfrac{3}{2}} \ket{1\,-1, \tfrac{1}{2}\, \tfrac{-1}{2}}
+                    + \frac{2}{3}(-1)^{\tfrac{1}{2}+1-\tfrac{3}{2}} \ket{1\, 0, \tfrac{1}{2}\, \tfrac{-1}{2}} \\
+                    &= \boxed{\frac{1}{\sqrt{ 3 } }} \ket{1\,-1, \tfrac{1}{2}\, \tfrac{-1}{2}}
+                    + \boxed{\frac{2}{3}} \ket{1\, 0, \tfrac{1}{2}\, \tfrac{-1}{2}}  \\ 
+                    \ket{\tfrac{3}{2}, \tfrac{-3}{2}} &= \boxed{1}\ket{1\,(-1), \tfrac{1}{2}\, \tfrac{-1}{2}}
+                \end{align*}
+
+            \item The $j=1/2$ column. The second pair of vectors $\ket{\tfrac{1}{2}, \tfrac{1}{2}}$ must be orthogonal to the state neighboring it $\ket{\tfrac{3}{2}, \tfrac{1}{2}}$, while being normalized. Therefore,
+                \begin{align*}
+                    \ket{\tfrac{1}{2}, \tfrac{1}{2}} &= \boxed{\frac{1}{\sqrt{ 3 }}} \ket{1\, 0, \tfrac{1}{2}\, \tfrac{1}{2}} + \boxed{\left( - \frac{\sqrt{ 2 }}{3} \right)} \ket{1\, 1, \tfrac{1}{2}\, \tfrac{-1}{2}} \\
+                    \ket{\tfrac{1}{2}, \tfrac{-1}{2}} &= \boxed{\left( -\frac{1}{\sqrt{ 3 }} \right)} \ket{1\, 0, \tfrac{1}{2}\, \tfrac{1}{2}} + \boxed{\frac{\sqrt{ 2 }}{3}} \ket{1\, 1, \tfrac{1}{2}\, \tfrac{-1}{2}} \\
+                \end{align*}
+        \end{enumerate}
+
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Exercise 15.2.3 -- 3 points.
+    Argue that $\frac{1}{2} \otimes \frac{1}{2} \otimes \frac{1}{2} = \frac{3}{2} \oplus \frac{1}{2} \oplus \frac{1}{2}$.
+    \begin{callout}{Solution:}
+\begin{align*}
+    \frac{1}{2} \otimes \frac{1}{2} \otimes \frac{1}{2} &=\frac{1}{2} \otimes\left(\frac{1}{2} \otimes \frac{1}{2}\right)  \\
+    &= \frac{1}{2} \otimes(1 \oplus 0)  \\
+    &= \left(\frac{1}{2} \otimes 1\right) \oplus\left(\frac{1}{2} \otimes 0\right)  \\
+    &= \left(\frac{3}{2} \oplus \frac{1}{2}\right) \oplus \frac{1}{2} \\
+& =\frac{3}{2} \oplus \frac{1}{2} \oplus \frac{1}{2} .
+\end{align*}
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Exercise 15.1.2 (Shankar) -- 12 points (Bonus) 
+    Note: For part (1), both proton and electron are spin-1/2 particles.
+    For part (2), you will need: $a_0= \frac{\hbar^2}{me^2}$, Ry=$\frac{me^4}{2\hbar^2}$, $\alpha = \frac{e^2}{\hbar c} \sim \frac{1}{137}$. \vspace{1em}
+
+    In addition to the Coulomb interaction, there exists another, called the hyperfine interaction, between the electron and proton in the hydrogen atom. The Hamiltonian describing this interaction, which is due to the magnetic moments of the two particles is,
+    \[ H_M = A\mathbf{S}_1 \cdot \mathbf{S}_2 \quad (A > 0) \tag{15.1.22} \]
+
+    (This formula assumes the orbital state of the electron is $\ket{1, 0, 0}$.) The total Hamiltonian is thus the Coulomb Hamiltonian plus $H_M$.
+
+    \begin{enumerate}[(1)]
+        \item Show that $H_M$ splits the ground state into two levels:
+            \[ E_+ = -\text{Ry} + \frac{\hbar^2A}{4} \tag{15.1.23a} \]
+            \[ E_- = -\text{Ry} - \frac{3\hbar^2A}{4} \tag{15.1.23b} \]
+
+        \item Try to estimate the frequency of the emitted radiation as the atom jumps from the triplet to the singlet. To do so, you may assume that the electron and proton are two dipoles $\mu_e$ and $\mu_p$ separated by a distance $a_0$, with an interaction energy of the order:
+            \[ \mathcal{H}_M \simeq \frac{\mu_e \cdot \mu_p}{a_0^3} \]
+
+            Show that this implies that the constant in Eq. (15.1.22) is
+            \[ A \sim \frac{2e}{2mc} \frac{(5.6)e}{2Mc} \frac{1}{a_0^3} \]
+            (where 5.6 is the g factor for the proton), and that
+            \[ \Delta E = E_+ - E_- = A\hbar^2 \]
+            is a correction of order $(m/M)\alpha^2$ relative to the ground-state energy. Estimate that the frequency of emitted radiation is a few tens of centimeters, using the mnemonics from Chapter 13. The measured value is 21.4 cm. This radiation, called the 21-cm line, is a way to detect hydrogen in other parts of the universe.
+
+        \item  Estimate the probability ratio P(triplet)/P(singlet) of hydrogen atoms in thermal equilibrium at room temperature.
+    \end{enumerate}
+
+\end{homeworkProblem}
