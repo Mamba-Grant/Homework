@@ -1,0 +1,6 @@
+*mynewnotes
+*.pdf
+*.png
+*.root
+__pycache*
+*.pyc

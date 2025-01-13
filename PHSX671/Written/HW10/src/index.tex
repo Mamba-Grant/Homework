@@ -1,0 +1,29 @@
+\begin{homeworkProblem}
+A brief radiation leak occurs at a nuclear power plant. The radioactive molecules have an average speed of \( 360 \, \mathrm{\frac{m}{s}} \), a mean free path of \( 3 \times 10^{-3} \, \mathrm{m} \), and spread out uniformly from the leak. If the root mean square of the mean free path is \( 1.73 \times 10^{-3} \, \mathrm{m} \), what is the radius of the radioactive cloud after 1 day? You may neglect any turbulence in the air that contributes to the spread of the gas.
+
+\begin{callout}{Solution:}
+    
+    We had originally derived the diffucsion coefficient:
+    $$D = \frac{1}{3} \lambda \bar{v} = 0.36 ~\frac{\textrm{m}^2}{\textrm{s}}$$
+    and say that diffusion obeys fick's law and continuity:
+    $$\vec{\phi} = - D \nabla(\rho), \qquad \frac{d\rho}{dt} = - \nabla \phi$$
+    I'll assume the particles of radiation are brownian and that they are moving in 3-D. Combining the two differential equations gives:
+    $$\frac{\partial \rho}{\partial t} = D \frac{\partial ^2 \rho}{\partial r^2}$$
+    There's no way KU math has done me the service to solve this on my own, and a bit of research tells me that this is Einstein's method to describe brownian motion, (and is related to Langevin's equation) which sensibly says that the density is given by some gaussian in 3-D:
+    $$P(\textbf{r}, t) = \frac{1}{(4\pi Dt)^{3/2}} \exp \left( \frac{\textbf{r}^2}{4 Dt} \right)$$
+    Now this lets me calculate some average distance, although in class we discussed how mean displacement doesn't change, but the spread does, so root mean square displacement is what I want. Cracking open the back cover of my trusty quantum mechanics by David Griffiths, 
+
+    \begin{align*}
+        \langle \textbf{r}^2 \rangle &= \frac{\int \textbf{r}^2 \exp\left( \frac{-\textbf{r}^2}{4Dt} \right) ~dV}{\int \exp \left( \frac{- \textbf{r}^{2}}{4Dt} \right) ~dV}, && dV = 4\pi r^2 \\ 
+        &= \frac{\sqrt{ \pi } \frac{(4)!}{(2)!} \left( \frac{2 \sqrt{ Dt }}{2} \right)^{5}}{\sqrt{ \pi } (2)! \left( \frac{2 \sqrt{ Dt }}{2} \right)^{3}} \\ 
+        &= \frac{12\left(Dt\right)^{\frac{5}{2}}}{2!\left(Dt\right)^{\frac{3}{2}}} \\
+        &= 6Dt
+    \end{align*}
+    So the root mean square (average radius of the cloud) after 86,400 seconds is:
+    $$\sqrt{ \langle r^2 \rangle } = \sqrt{ 6Dt } = 432 \textrm{~m}$$
+    \textit{I did see that typically one would instead find the moment generating function to get these things, however I lack the intellectual finesse to learn such a thing during finals week.}
+
+
+\end{callout}
+
+\end{homeworkProblem}
