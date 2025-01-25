@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+if [ -z "$1" ]; then
+    # Ensure the script is called with an argument
+  echo "Usage: $0 <title>"
+  exit 1
+fi
+
+tectonic -X new
+cat << EOF > src/_preamble.tex
+
+\newcommand{\labTitle}{$1}
+\newcommand{\labClass}{PHSX 531}
+\newcommand{\labAuthorName}{\textbf{Grant Saggars}}
+
+\title{\labTitle}
+\author{
+        \labAuthorName \\\\
+        \labClass
+}
+\date{\today}
+
+\documentclass[12pt]{article}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{appendix}
+\usepackage{xcolor}
+\usepackage[normalem]{ulem}
+
+\usepackage[mathlines]{lineno}
+\linenumbers
+\setlength\linenumbersep{5pt}
+
+\usepackage{float}
+\usepackage{indentfirst}
+
+\begin{document}
+\maketitle
+
+EOF
