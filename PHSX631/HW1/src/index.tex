@@ -1,0 +1,55 @@
+\begin{homeworkProblem}
+    Permanent cylindrical magnet with axial magnetization $M$.
+    \begin{enumerate}[(a)]
+        \item Do Griffith Problem 6.9. Sketch field lines.
+        \item Go beyond Griffiths Problem 6.9 by finding the magnetic field as a function of distance, $z$, along the symmetry axis, and outside the magnet. Assume $L = 2a$. Plot/sketch $B(z)$, $H(z)$, $M(z)$ along the axis. Hint: See Example 5.6 in Griffiths.
+    \end{enumerate}
+
+    \textbf{(Problem 6.9)} A short circular cylinder of radius $a$ and length $L$ carries a "frozen-in" uniform magnetization $\mathbf{M}$ parallel to its axis. Find the bound current, and sketch the magnetic field of the cylinder. (Make three sketches: one for $L \gg a$, one for $L \ll a$, and one for $L \approx a$.) Compare this bar magnet with the bar electret of Prob. 4.11.
+    \begin{callout}{Solution, part (a):}
+
+        We have equations for bound current (volume and surface respectively):
+        $$\mathbf{J_{b}}=\nabla \times \mathbf{M}=0, \qquad  \mathbf{K_{b}}=\mathbf{M}\times \mathbf{\hat{n}}=M\hat{\phi}$$
+        Or equivalently, $\mathbf{K_b}=(-M \sin\phi, M \cos\phi, 0)$.
+        
+        
+    \end{callout}
+
+    \begin{callout}{Solution, part (b):}
+
+        As we have bound current, we can use the Biot-Savart law: 
+        $$\textbf{B}(\textbf{r}) = \frac{\mu_0}{4\pi} \int_{S} \frac{\mathbf{K_b}(\textbf{r})\times \hat{\boldscriptr}}{|\scriptr|^2} ~dA$$
+        We have a point of interest at $(0,0,z)$. The points on the surface of the cylinder are given by $(a\cos\phi', a\sin\phi', z')$.
+        This gives us $\scriptr = (-a\cos\phi', -a\sin\phi', z-z')$ and magnitude $|\scriptr| = (a^2 + (z-z')^2)^{1/2}$.
+        Finally, the cross product is 
+        $$\mathbf{K_b} \times \frac{\scriptr}{|\scriptr|} = \left|\begin{array}{ccc} \hat{\textbf{i}} & \hat{\textbf{j}} & \hat{\textbf{k}} \\ -M\sin\phi & M\cos\phi & 0 \\ \frac{-a\cos\phi}{(a^2 + (z-z')^2)^{1/2}} & \frac{-a\sin\phi}{(a^2 + (z-z')^2)^{1/2}} & \frac{z-z'}{(a^2 + (z-z')^2)^{1/2}} \end{array}\right|$$
+            $$=M\cos\phi \left( \frac{z-z'}{(a^2 + (z-z')^2)^{1/2}} \right) \hat{\textbf{i}} + M\sin\phi \left( \frac{z-z'}{(a^2 + (z-z')^2)^{1/2}} \right) \hat{\textbf{j}} + \frac{Ma}{(a^2 + (z-z')^2)^{1/2}}\hat{\textbf{z}}$$
+        The $x,y$ components of this term leave a sin and cos term in the surface integral. This will integrate to zero, as we'd expect. This means that we only need to worry about the $z$-component for the final result:
+        \begin{align*}
+            \textbf{B}(\textbf{r}) &= \frac{\mu_0}{4\pi} \int_{-a}^{a} \frac{Ma \hat{\textbf{z}}}{\left( a^2 + (z-z')^2 \right)^{3/2}} ~dz'
+        \end{align*}
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Consider a square loop of wire with resistance $R$ and size $a$ by $a$. The surface normal is initially oriented parallel to a uniform magnetic field with magnitude $B_0$ . The loop is then rotated by 90 deg such that the normal vector is perpendicular to the magnetic field. How much charge passes through the circuit during this procedure?
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Do Griffiths problem 7.17
+
+    \textbf{(Problem 7.17)} A long solenoid of radius $a$, carrying $n$ turns per unit length, is looped by a wire with resistance $R$, as shown in Fig. 7.28.
+
+    \begin{figure}[h]
+      \centering
+      \includegraphics[width=0.4\textwidth]{../assets/H1P3F1.png}
+    \end{figure}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    A very long cylindrical sheet of metal with radius $r$ and length $L$ carries a current $K$ per unit length (azimuthal current) (units of A/m). What is the energy stored in the magnetic field in this cylinder in terms of $L$, $R$, and $K$?
+\end{homeworkProblem}
