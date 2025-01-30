@@ -1,4 +1,0 @@
-Found argument list:  Namespace(ngen=1, seed=16)
-NGEN set to 1
-SEED set to 16
-uniform random number 0 u = 0.36152277491407514

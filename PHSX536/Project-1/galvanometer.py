@@ -1,12 +1,12 @@
+import os
+from typing import Any
+from iminuit.util import NDArray
 import numpy as np
+from numpy.typing import ArrayLike
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
-import matplotlib
-matplotlib.use("WebAgg")
 from iminuit import Minuit
 
-# Data preparation
 data = {
     "Index": [999, 946, 893, 841, 788, 736, 683, 631, 578, 526, 473, 420, 368, 315, 263, 210, 157, 105, 52, 0],
     "Resistance_kohm": [5.037, 4.752, 4.494, 4.233, 3.959, 3.751, 3.431, 3.172, 2.902, 2.652, 2.379, 2.108, 1.834, 1.576, 1.321, 1.051, 0.7330, 0.5145, 0.248, 0.002],
@@ -14,25 +14,33 @@ data = {
 }
 df = pd.DataFrame(data)
 
-def line(x, a, b):
+def line(x: ArrayLike, a: float, b: float) -> NDArray[np.floating[Any]]:
     """Linear model function."""
-    return a + x * b
+    return a + np.multiply(x, b)
 
-def chisq_cost(a, b):
+
+def chisq_cost(a: float, b: float) -> float:
     """Chi-square cost function for linear regression."""
     return np.sum(((df['Resistance_kohm'] - line(df['Index'], a, b))**2 / (df['Error_kohm']**2)))
 
 # Perform Minuit minimization
 m = Minuit(chisq_cost, a=0, b=0)
-m.migrad()
-m.hesse()
+_ = m.migrad()
+_ = m.hesse()
+
+print(m)
+
+# Fit Statistics
+chi2 = m.fval  # χ² value
+ndof = len(data["Index"]) - m.nfit  # ndof = N_data - N_parameters
 
 # Create figure with two subplots
-fig, (ax1, ax2) = plt.subplots(2, 1)
+fig, (ax1, ax2) = plt.subplots(1, 2)
 
 # First subplot: Original data with fit
 ax1.errorbar(df['Index'], df['Resistance_kohm'], 
              yerr=df['Error_kohm'], 
+             capsize=5,
              fmt='o', 
              color='darkblue', 
              label='Experimental Data')
@@ -53,7 +61,7 @@ ax1.text(0.05, 0.95,
 ax1.set_title('Galvanometer Resistance Data', fontsize=12)
 ax1.set_xlabel('Index', fontsize=10)
 ax1.set_ylabel('Resistance (kΩ)', fontsize=10)
-ax1.legend()
+ax1.legend(title=f"χ²/ndof = {(chi2/ndof):.2f}")
 
 # Second subplot: Contour plot of fit parameters
 a_range = np.linspace(m.values[0] - 3*m.errors[0], m.values[0] + 3*m.errors[0], 100)

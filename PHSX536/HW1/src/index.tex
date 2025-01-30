@@ -1,0 +1,284 @@
+\begin{homeworkProblem}
+    1.12 (1e: 1.6)
+
+    12. For the circuit in Figure 1.37 above, what is the ratio of $R_2 : R_1$ such that the voltage across $A$ and $B$ is $\frac{1}{2} V_0$? What is the ratio of $R_2 : R_1$ such that the voltage across $A$ and $B$ is $\frac{1}{10} V_0$?
+
+
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.35\textwidth]{../pasted/Fig1.37.png}
+        \caption{The circuit for problems 6 and 12.}
+        \label{fig:1.37}
+    \end{figure}
+
+    \begin{callout}{Solution:}
+
+        \begin{enumerate}[(a)]
+            \item $V_{AB} = \frac{1}{2} V_0$: 
+                \begin{align*}
+                    V_{AB} = \frac{1}{2}V_{0}&=V_{0} \frac{R_{2}}{R_{1}+R_{2}}\\
+                    \frac{1}{2}(R_{1}+R_{2})&=R_{2}\\
+                    \cancel{ \frac{1}{2} }R_{1}&=\cancel{ \frac{1}{2} }R_{2} \\
+                    \frac{R_2}{R_1} &= 1
+                \end{align*}
+
+            \item $V_{AB}=\frac{1}{3}V_0$:
+                \begin{align*}
+                    \frac{1}{3}V_{0}&=V_{0} \frac{R_{2}}{R_{1}+R_{2}} \\
+                    \frac{1}{3}(R_{1}+R_{2})&=R_{2}\\
+                    \frac{1}{3}R_{1}&=\frac{2}{3}R_{2}\\
+                    \frac{1}{2}&=\frac{R_{2}}{R_{1}}
+                \end{align*}
+
+            \item $V_{AB} = \frac{1}{10} V_0$:
+                \begin{align*}
+                    \frac{1}{10}V_{0}&=V_{0} \frac{R_{2}}{R_{1}+R_{2}}\\
+                    \frac{1}{10}R_{1}&=\frac{9}{10} R_{2}\\
+                    \frac{R_{2}}{R_{1}}&=\frac{10}{90}=\frac{1}{9}
+                \end{align*}
+
+        \end{enumerate}
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    1.14 (1e: 1.8)
+
+    14. We now attach two output terminals to the circuit from problem 13. The resulting circuit is shown in Figure 1.39. 
+
+    \begin{centering}
+        \vspace{1cm}
+        \begin{circuitikz}[american, scale=0.8]
+            % Original Circuit
+            \draw (0,0) 
+            to[V, l=$V_0$] (0,4) 
+            to[R, l=$R$] (2,4) 
+            to[R, l=$R$] (4,4)
+            to[short] (4,4) to (6,4) % Point G
+
+            (0,0) to[R, l=$R$] (2,0)
+            to[R, l=$R$] (4,0)
+            to[short] (4,0) to (6,0) % Point H
+            (2,4) to[R, l=$R$] (2,0)
+            (4,4) to[R, l=$R$] (4,0);
+
+            % Label points
+            \node[anchor=east] at (7,4) {G};
+            \node[anchor=east] at (7,0) {H};
+            \node[anchor=south] at (0,4) {A};
+            \node[anchor=south] at (2,4) {B};
+            \node[anchor=south] at (4,4) {C};
+            \node[anchor=north] at (0,0) {F};
+            \node[anchor=north] at (2,0) {E};
+            \node[anchor=north] at (4,0) {D};
+
+            % Add title
+            \node[anchor=south] at (3,5) {Figure 1.39};
+        \end{circuitikz}
+
+    \end{centering}
+
+    \begin{itemize}
+        \item[(a)] What is the voltage between the terminals $G$ and $H$?
+            \begin{callout}{Solution:}
+
+                We get 3 equations: 
+                \begin{align*}
+                    V_{0}-I_{1}R-I_{1}R-I_{1}R+I_{2}R&=0\\
+                    -I_{2}R-I_{2}R-I_{2}R-I_{2}R+I_{1}R&=0\\
+                    V_{GH}&=I_{2}R
+                \end{align*}
+
+                Which can be written in standard form:
+                \begin{align*}
+                    -3I_1R + I_2R &= -V_0 \\
+                    I_1R - 4I_2R &= 0 \\
+                    I_2R &= V_{GH}
+                \end{align*}
+
+                Which are linear, so in matrix form this is:
+
+                \[
+                    \begin{bmatrix}
+                        -3R & R \\
+                        R & -4R \\
+                        0 & R
+                    \end{bmatrix}
+                    \begin{bmatrix}
+                        I_1 \\
+                        I_2
+                    \end{bmatrix}
+                    =
+                    \begin{bmatrix}
+                        -V_0 \\
+                        0 \\
+                        V_{GH}
+                    \end{bmatrix}
+                \]
+
+                Solving the upper two rows gives $I_1R = \frac{4V_0}{11}$ and $I_2R = \frac{V_0}{11}$. By this and the third equation, 
+                $$\boxed{V_{GH}= \frac{1}{11}V_0}$$
+
+            \end{callout}
+
+            \newpage
+        \item[(b)] What current flows from $G$ to $H$?
+
+            \begin{callout}{Solution:}
+
+                The current flowing on this branch is $I_2$, which we solved in part (a) to equal:
+                $$\boxed{I_2 = \frac{1}{11} V_0}$$
+
+            \end{callout}
+
+        \item[(c)] If we connect a wire from $G$ to $H$, what current flows through the wire and what is the voltage between $G$ and $H$?
+
+
+            \begin{callout}{Solution:}
+
+                In this configuration, we have a third loop. Our equations are then:
+
+                \begin{align*}
+                    -3I_1R + I_2R  &= -V_0 \\
+                    I_1R - 4I_2R + I_3R  &= 0 \\
+                    I_3R &= 0 \\
+                \end{align*}
+
+                From these, $I_1R = \frac{5}{14}V_0$, $I_2R = \frac{1}{14}V_0$, and $I_3R = \frac{1}{14}V_0$.
+                The voltage between GH is zero, though, since that part of the circuit now lies on ground- there is no resistor between the two points. 
+            \end{callout}
+
+    \end{itemize}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    1.16 (1e: 1.9)
+
+    16. Replace the circuit from problem 14 with the simpler one shown in Figure 1.40. $V_{th}$ is a voltage source and $R_{th}$ is a new resistance. What are the values of $V_{th}$ and $R_{th}$ such that you get the same answer to the current and voltage questions as in problem 14?
+
+    \begin{center}
+        \includegraphics[width=0.40\textwidth]{../pasted/Fig1.40.png}
+    \end{center}
+
+    \begin{callout}{Solution:}
+
+        In the configuration of Figure 1.39, we would start by replacing the battery with a short circuit. 
+        Then we have resistor AB in parallel with resistor BE, and this is in series with BC:
+        $$\left(\left( \frac{1}{R} + \frac{1}{R} \right)^{-1} + R \right) = \frac{R}{2} + R = \frac{3}{2}R$$
+        Now, this is in parallel with CD, and in series with FE and ED:
+        $$ \left(\frac{2}{3R} + \frac{1}{R}\right)^{-1} + 2R = \frac{5}{3}R + 2R = \frac{11}{3}R $$
+        So,
+        $$\boxed{R_{th}=\frac{11}{3}R}$$
+        %$$R_{th} = \left(\frac{1}{R} + \frac{1}{R}\right)^{-1} + 4R = \boxed{4.5R}$$
+        I already used mesh analysis to find the voltage between G and H, 
+        $$\boxed{V_{th} = \frac{1}{11}V_0}$$
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    1.D.51 (1e: 1.D36)
+
+    51. Your lab partner builds the voltage-divider circuit shown in Figure 1.60 with the resistors shown. These are all $\frac{1}{8}$-Watt resistors which are rated with a $20\%$ tolerance. Explain why this is a poorly designed circuit, giving numerical values for the problems you find.
+
+    \begin{center}
+        \begin{circuitikz}[american]
+            \draw 
+            (0,0) to[V=$25\,\mathrm{V}$] (0,3) % Voltage Source
+            to[R=$440\,\Omega$] (3,3) % First Resistor
+            to[R=$3.34\,\mathrm{k}\Omega$] (3,0) % Second Resistor
+            (3,3) -- (5,3) % Connecting top node
+            (5,3) to[R=$3.34\,\mathrm{k}\Omega$] (5,0) % Third Resistor
+            (3,0) -- (5,0) -- (0,0); % Closing the loop
+        \end{circuitikz}
+    \end{center}
+
+    \begin{callout}{Solution:}
+
+        \begin{enumerate}[1.]
+            \item This is an unusual configuration for a voltage divider, as it has two parallel resistors.
+            \item The equivalent resistance in the parallel resistors is 
+                $$\left(\frac{1}{3.3} + \frac{1}{3.3}\right)^{-1} = 1.65 \mathrm{~k \Omega}$$
+                which is much lower than any of the two resistors on their own in series.
+            \item In this configuration, the voltage divider will give an output voltage of
+                $$V_{out} = 25 \frac{1.65}{0.440+1.65} = 19.7 \textrm{~V}$$
+                which is very close to the input voltage. 
+        \end{enumerate}
+
+    \end{callout}
+
+
+    \begin{center}
+        %\includegraphics[width=0.5\textwidth]{example_image_4.png}
+    \end{center}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Exp. 2 Circuit Problem
+
+    5. For the following circuit, find the Thevenin equivalent circuit as seen by a load across $ab$:
+
+    \begin{center}
+        \begin{circuitikz}[american, scale=0.8]
+            \draw
+            (0,2) to[V=$12\,\mathrm{V}$] (0,0)
+            (0,2) to[R=$220\,\Omega$] (0,4)
+            (0,4) -- (2,4)
+            (2,4) to[R=$100\,\Omega$] (4,4)
+            (4,4) to[R=$100\,\Omega$] (4,0)
+            (2,4) to[R=$220\,\Omega$] (2,0)
+            (0,0) -- (4,0)
+            (6,4) node[right] {a}
+            (6,0) node[right] {b};
+
+            \draw (4,4) -- (6,4);
+            \draw (4,0) -- (6,0);
+        \end{circuitikz}
+
+        %\includegraphics[width=0.5\textwidth]{example_image_5.png}
+    \end{center}
+
+    \begin{callout}{Solution:}
+
+        Replacing the voltage source with a short and calculating the equivalent resistance:
+        \begin{align*}
+            R_{th} &= \left(\left(\left(\frac{1}{220} + \frac{1}{220} \right)^{-1} + 100\right)^{-1} + \frac{1}{100}\right)^{-1} \\
+            R_{th} &= \left( \frac{1}{210} + \frac{1}{100}\right)^{-1} \\  
+        \end{align*}
+        \vspace{-1.1cm} $$\boxed{R_{th} = 67.74 \mathrm{~k \Omega}}$$ \vspace{0.5cm}
+
+        I feel most comfortable with mesh analysis, so I will use this to determine V across ab, which if we make current in the first loop with the voltage source $I_1$, and the second loop $I_2$, then,
+        \begin{align*}
+            -220I_{1}-220I_{1}+220I_{2}&=-12\\
+            -100I_{2}-100I_{2}-220I_{2}+220I_{1}&=0\\
+            V_{ab}&=100I_{2}
+        \end{align*}
+
+        In matrix form:
+        $$\begin{bmatrix}
+            -440 & 220 \\
+            220 & -420
+        \end{bmatrix}\begin{bmatrix}
+            I_{1} \\
+            I_{2}
+        \end{bmatrix}=\begin{bmatrix}
+            -12 \\
+            0
+        \end{bmatrix}$$
+
+        RREF gives $I_1=\frac{63}{1705}$ A and $I_2 = \frac{3}{155}$ A. Therefore 
+        $$\boxed{V_{ab}=1.94 \mathrm{~V}}$$
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\end{document}
