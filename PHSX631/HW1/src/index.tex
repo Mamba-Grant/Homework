@@ -35,6 +35,21 @@
 \newpage
 \begin{homeworkProblem}
     Consider a square loop of wire with resistance $R$ and size $a$ by $a$. The surface normal is initially oriented parallel to a uniform magnetic field with magnitude $B_0$ . The loop is then rotated by 90 deg such that the normal vector is perpendicular to the magnetic field. How much charge passes through the circuit during this procedure?
+   \begin{callout}{Solution:}
+
+        By lenz's law, the sudden magnetic flux flowing through the loop will induce a clockwise current in the loop of wire. The current will reduce as it is rotated until at 90 degrees there is no more current, since there is no flux.
+
+        We obviously need some measure of magnetic flux to work with, so I will compute that:
+        $$\Phi = \int \textbf{B} \cdot d \textbf{a} = B_0 a^2 \cos\theta$$
+
+        From here I can jump to the time derivative of this (EMF) to current using the resistance:
+        $$\varepsilon = \frac{d\Phi}{dt} = B_0 a^2 \frac{d}{dt} \cos\theta$$
+        $$I = \frac{dQ}{dt} = B_0 a^2 \frac{d}{dt}\cos\theta$$
+
+        
+
+
+   \end{callout}
 \end{homeworkProblem}
 
 \newpage
