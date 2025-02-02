@@ -1,5 +1,6 @@
 \begin{homeworkProblem}
     Permanent cylindrical magnet with axial magnetization $M$.
+
     \begin{enumerate}[(a)]
         \item Do Griffith Problem 6.9. Sketch field lines.
         \item Go beyond Griffiths Problem 6.9 by finding the magnetic field as a function of distance, $z$, along the symmetry axis, and outside the magnet. Assume $L = 2a$. Plot/sketch $B(z)$, $H(z)$, $M(z)$ along the axis. Hint: See Example 5.6 in Griffiths.
@@ -11,7 +12,6 @@
         We have equations for bound current (volume and surface respectively):
         $$\mathbf{J_{b}}=\nabla \times \mathbf{M}=0, \qquad  \mathbf{K_{b}}=\mathbf{M}\times \mathbf{\hat{n}}=M\hat{\phi}$$
         Or equivalently, $\mathbf{K_b}=(-M \sin\phi, M \cos\phi, 0)$.
-        
         
     \end{callout}
 
@@ -28,6 +28,7 @@
         \begin{align*}
             \textbf{B}(\textbf{r}) &= \frac{\mu_0}{4\pi} \int_{-a}^{a} \frac{Ma \hat{\textbf{z}}}{\left( a^2 + (z-z')^2 \right)^{3/2}} ~dz'
         \end{align*}
+        If the rotation occurs at a constant angular velocity $\omega$, then $\theta = \omega t$
 
     \end{callout}
 \end{homeworkProblem}
@@ -42,12 +43,16 @@
         We obviously need some measure of magnetic flux to work with, so I will compute that:
         $$\Phi = \int \textbf{B} \cdot d \textbf{a} = B_0 a^2 \cos\theta$$
 
-        From here I can jump to the time derivative of this (EMF) to current using the resistance:
-        $$\varepsilon = \frac{d\Phi}{dt} = B_0 a^2 \frac{d}{dt} \cos\theta$$
-        $$I = \frac{dQ}{dt} = B_0 a^2 \frac{d}{dt}\cos\theta$$
-
-        
-
+        From here I can jump to the time derivative of magnetic flux (EMF), then to current using the resistance.
+        The amount of charge moved depends on how quickly we're rotating the ring, so I will assume that the angle is changing at a constant speed $\omega$.
+       \begin{align*}
+           \varepsilon &= \frac{d\Phi}{dt} = B_0 a^2 \frac{d}{dt} \cos\theta \\
+           I &= -\frac{B_0 a^2}{R} \frac{d\cos\theta}{dt} && \left(\frac{\varepsilon}{R} = I = \frac{dQ}{dt}\right) \\
+           I &= -\frac{B_0 a^2}{R} \frac{d \cos (\omega t)}{dt} && \left( \text{assume $\theta=\omega t$} \right) \\
+           I &= \frac{B_0 a^2}{R}  \omega \sin (\omega t) \\
+       \end{align*}
+      Total charge is then: 
+       $$Q = \int_0^{\pi/(2\omega)} I dt = \frac{B_0 a^2}{R} (1 - \cos(\pi/2)) = \frac{B_0 a^2}{R}$$
 
    \end{callout}
 \end{homeworkProblem}
@@ -62,9 +67,54 @@
       \centering
       \includegraphics[width=0.4\textwidth]{../assets/H1P3F1.png}
     \end{figure}
+
+    \begin{enumerate}[(a)]
+       \item If the current in the solenoid is increasing at a constant rate (dI/dt = k), what current flows in the loop, and which way (left or right) does it pass through the resistor?
+          \begin{callout}{Solution:}
+          
+              The goal is to find the direction of induced current, which using Lenz's law we know would be the direction that opposes changes in magnetic flux.
+              We just need to know how the magnetic field changes (decreasing or increasing) and in which direction. 
+              We are told that it is increasing, and the right hand rule tells us that it is pointed towards the left. 
+              The current must oppose this so it is moving to the right (counterclockwise).
+
+
+          \end{callout}
+       \item If the current I in the solenoid is constant but the solenoid is pulled out of the loop (toward the left, to a place far from the loop), what total charge passes through the resistor?
+          \begin{callout}{Solution:}
+          
+              Same approach as before, use the current to get charge.
+              For a solenoid, $B = \mu_0nI$, so $\phi = (\pi a^2) \mu_0nI$. 
+              $$\varepsilon = - \frac{\partial \Phi_B}{dt} = -(\pi a^2) \mu_0 n \left( \frac{dI}{dt} \right)$$
+              Current is then given by Ohm's law
+              $$\frac{dQ}{dt} = I = -\frac{(\pi a^2) \mu_0 n \left( \frac{dI}{dt} \right)}{R}$$
+              So we would just integrate this over time.
+
+          \end{callout}
+   \end{enumerate}
+
 \end{homeworkProblem}
 
 \newpage
 \begin{homeworkProblem}
     A very long cylindrical sheet of metal with radius $r$ and length $L$ carries a current $K$ per unit length (azimuthal current) (units of A/m). What is the energy stored in the magnetic field in this cylinder in terms of $L$, $R$, and $K$?
+   \begin{callout}{Solution:}
+   
+       We have here some current inducing a magnetic field, which we know to have energy:
+       $$W_{mag}= \frac{1}{2} \int \left( \textbf{A} \cdot \textbf{J} \right)d\tau = \frac{\epsilon_0}{2}\int B^2 d\tau$$
+       Where magnetic vector potential is:
+       $$\textbf{A(r)} = \frac{\mu_0}{4\pi} \int \frac{\textbf{J}(\textbf{r'})}{\scriptr}d\tau'$$
+       It would probably be easiest to apply ampere's law to determine $B$ to get to our solution.
+       Inside, there is no field below the sheet, since there is no current enclosed. 
+       Outside there is a magnetic field:
+       \begin{align*}
+           B(2 \pi s) = \mu_0 K \hat{z}
+       \end{align*}
+       And we can square it and integrate to get the final result (we can account for length in this integration)
+      \begin{align*}
+      W_{mag} &= \frac{1}{2}\int_{a}^{b}\left( \frac{\mu_0 K}{2\pi s}\hat{z} \right)^2s\,ds \int_{0}^L dL \int_0^{2\pi} d\phi \\ 
+          &= \frac{\mu_0 K^2L}{4\pi} \ln \left( \frac{b}{a} \right) \hat{z}
+      \end{align*}
+       
+
+   \end{callout}
 \end{homeworkProblem}

@@ -1,0 +1,77 @@
+\begin{homeworkProblem}
+    If a complex voltage and current are related by the expression 
+    \[ v(t) = (-1 + j\sqrt{3})i(t) \]
+    what is the phase angle in degrees between the voltage and the current? Is the current leading or lagging the voltage?
+
+    \begin{callout}{Solution:}
+
+        $$\theta = \tan^{-1} \left( \frac{\sqrt{3}}{-1} \right) = -60^\circ = 120^\circ$$
+        The current is lagging by 120 degrees.
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    You are given the following data for a potentiometer calibration. (Data file \texttt{potDat.txt} is in the same directory as this \TeX\, file.)
+
+    Perform both linear and quadratic least-squares fits to the data and plot the results. Which function best describes the data? Based on the least-squares analyses, for each fit explain why the functional form is or is not consistent with the data assuming the uncertainties are purely statistical.
+
+    \begin{callout}{Solution:}
+
+        This potentiometer is probably best modeled by the quadratic function. 
+        The linear model has a very high chisq value, indicating that it probably does not have enough parameters to fit the data well considering the uncertainties are purely statistical.
+        If the linear model had fit this data better, the quadratic fit would not be correct since it would be overfitting. 
+        Considering the issues with the linear fit, and that we're seeing a chisq value near 1 with the quadratic model, my intuition tells me that the data is probably quadratic.
+        \vspace{0.5cm}
+
+        \centering
+        \includegraphics[width=0.85\textwidth]{../myfit.png}
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Use LTSpice to explore the transient response of the RC circuit to be studied in Experiment \#3 (see the Week 3 video on BB titled ``LTSpice Time Dependent Sources'').
+
+    \begin{figure}[h!]
+        \centering
+        \begin{circuitikz}[american]
+            \draw (0,0) 
+            to[R] (0,1.5)
+            to[sV, v=$v_s(t)$] (0,3)
+            to[R, l=$R$] (4,3)
+            to (5,3)
+            node[right] {CH2};
+
+            \draw (4,3)
+            node[above] {$V_c$}
+            to[C, l=$C$] (4,1.5)
+            to (4,0) node[ground]{}
+            to (0,0);
+
+            \draw (4,0) -- (5,0);
+
+            \draw (0,3) -- (1, 4) node[above] {CH1};
+
+        \end{circuitikz}
+        \caption{RC Circuit Diagram}
+    \end{figure}
+
+    Assume $v_s(t)$ varies as a step function that changes from -5V to 5V with a period of 10ms. Take $C = 10 \, \mu$F and choose an $R$ value that will result in a reasonable RC time constant for the laboratory measurement. You will want the capacitor to almost fully charge and discharge during one period. 
+
+    Use \textbf{PROBE} to plot the voltage across the capacitor for $0 \leq t \leq 20$ ms. That is, plot the CH2 voltage as a function of time.
+
+    \begin{callout}{Solution:}
+
+        If we are using the oscilloscope, then 500 ohms or less should be okay.
+        \vspace{0.5cm}
+
+        \centering
+        \includegraphics[width=0.85\textwidth]{../RC-Circuit.png}
+    \end{callout}
+
+\end{homeworkProblem}
