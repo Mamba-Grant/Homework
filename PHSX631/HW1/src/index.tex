@@ -12,6 +12,12 @@
         We have equations for bound current (volume and surface respectively):
         $$\mathbf{J_{b}}=\nabla \times \mathbf{M}=0, \qquad  \mathbf{K_{b}}=\mathbf{M}\times \mathbf{\hat{n}}=M\hat{\phi}$$
         Or equivalently, $\mathbf{K_b}=(-M \sin\phi, M \cos\phi, 0)$.
+
+        \begin{center}
+            \includegraphics[width=0.25\textwidth]{../mydrawing1.png}
+            \includegraphics[width=0.25\textwidth]{../mydrawing2.png}
+            \includegraphics[width=0.25\textwidth]{../mydrawing3.png}
+        \end{center}
         
     \end{callout}
 
@@ -26,32 +32,94 @@
             $$=M\cos\phi \left( \frac{z-z'}{(a^2 + (z-z')^2)^{1/2}} \right) \hat{\textbf{i}} + M\sin\phi \left( \frac{z-z'}{(a^2 + (z-z')^2)^{1/2}} \right) \hat{\textbf{j}} + \frac{Ma}{(a^2 + (z-z')^2)^{1/2}}\hat{\textbf{z}}$$
         The $x,y$ components of this term leave a sin and cos term in the surface integral. This will integrate to zero, as we'd expect. This means that we only need to worry about the $z$-component for the final result:
         \begin{align*}
-            \textbf{B}(\textbf{r}) &= \frac{\mu_0}{4\pi} \int_{-a}^{a} \frac{Ma \hat{\textbf{z}}}{\left( a^2 + (z-z')^2 \right)^{3/2}} ~dz'
+            B(z) &= \frac{\mu_0 M a}{4\pi} \int_0^{2\pi} \int_{-L/2}^{L/2} \frac{d\phi' dz'}{(a^2 + (z-z')^2)^{3/2}} \\
+            &= \frac{\mu_0 M a}{2} \int_{-a}^{a} \frac{dz'}{(a^2 + (z-z')^2)^{3/2}} \\ 
+            &= -\frac{\mu_0 Ma}{2}\int_{z-a}^{z+a} \frac{u}{\left( a^2 + u^2 \right)^{3/2}} \,du &&\begin{matrix} u = z-z' \\ du = -dz' \end{matrix} \\ 
+            &= -\frac{\mu_0 Ma}{2}\int_{z-a}^{z+a} \frac{a \sec ^2 \theta }{\left( a^2 \sec^2\theta \right)^{3/2}} \,d\theta &&\begin{matrix} u = a\tan\theta \\ du = a\sec^2\theta \end{matrix} \\
+            &= -\frac{\mu_0 M}{2a}  \left( \sin\theta \right) \bigg|_{z-a}^{z+a} \\ 
+            &= \frac{\mu_0 M}{2a} \left( \frac{z-a}{\sqrt{a^2 + (z-a)^2}} - \frac{z+a}{\sqrt{a^2 + (z+a)^2}}\right) &&\sin\theta = \frac{u}{\sqrt{a^2+u^2}}
         \end{align*}
-        If the rotation occurs at a constant angular velocity $\omega$, then $\theta = \omega t$
+
+        Great, I have $B(z)$. Now $H(z)$ is 
+        $$
+        H(z) = \frac{B}{\mu_0} - M(z) = 
+        \begin{cases}
+            \frac{B(z)}{\mu_0} - M, & -a<z<a \\ 
+            \frac{B(z)}{\mu_0}, & \text{elsewhere.}
+        \end{cases}
+        $$
+        \textit{(Since $M(z) = M$ inside, and 0 outside.)}
+        A plot of this is 
+
+        \begin{center}
+        \begin{tikzpicture}[
+    declare function={
+        B(\z,\a) = 1/2 * ((\z-\a)/(sqrt(\a*\a + (\z-\a)*(\z-\a))) - 
+                          (\z+\a)/(sqrt(\a*\a + (\z+\a)*(\z+\a))));
+        M(\z,\a) = and(\z >= -\a, \z <= \a) * 1;
+        H(\z,\a) = B(\z,\a) - M(\z,\a);
+    }
+]
+    % Axes
+    \begin{axis}[
+        width=12cm,
+        height=8cm,
+        xlabel={$z/a$},
+        ylabel={Normalized Field Strength},
+        xmin=-4,
+        xmax=4,
+        ymin=-2,
+        ymax=2,
+        grid=major,
+        legend pos=north east,
+        legend cell align={left},
+        samples=100,
+        smooth
+    ]
+        % Plot B(z)
+        \addplot[thick, blue] {B(x,1)};
+        \addlegendentry{$B(z)/\mu_0M$}
+        
+        % Plot H(z)
+        \addplot[thick, green!60!black] {H(x,1)};
+        \addlegendentry{$H(z)/M$}
+        
+        % Plot M(z) - using two separate plots for the discontinuity
+        \addplot[thick, red, domain=-1:1] {1};
+        \addplot[thick, red, domain=-4:-1] {0};
+        \addplot[thick, red, domain=1:4] {0};
+        \addlegendentry{$M(z)/M$}
+        
+        % Add vertical lines at z = ±a
+        \addplot[dashed, gray, thick] coordinates {(-1,-3) (-1,3)};
+        \addplot[dashed, gray, thick] coordinates {(1,-3) (1,3)};
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+And I believe this makes sense: the magnetic field should converge to zero at large $z$, and we would expect a higher magnetic field \textit{magnitude} inside the magnetic domain.
 
     \end{callout}
 \end{homeworkProblem}
 
-\newpage
 \begin{homeworkProblem}
     Consider a square loop of wire with resistance $R$ and size $a$ by $a$. The surface normal is initially oriented parallel to a uniform magnetic field with magnitude $B_0$ . The loop is then rotated by 90 deg such that the normal vector is perpendicular to the magnetic field. How much charge passes through the circuit during this procedure?
    \begin{callout}{Solution:}
 
-        By lenz's law, the sudden magnetic flux flowing through the loop will induce a clockwise current in the loop of wire. The current will reduce as it is rotated until at 90 degrees there is no more current, since there is no flux.
+       By lenz's law, the sudden magnetic flux flowing through the loop will induce a clockwise current in the loop of wire. The current will reduce as it is rotated until at 90 degrees there is no more current, since there is no flux.
 
-        We obviously need some measure of magnetic flux to work with, so I will compute that:
-        $$\Phi = \int \textbf{B} \cdot d \textbf{a} = B_0 a^2 \cos\theta$$
+       We obviously need some measure of magnetic flux to work with, so I will compute that:
+       $$\Phi = \int \textbf{B} \cdot d \textbf{a} = B_0 a^2 \cos\theta$$
 
-        From here I can jump to the time derivative of magnetic flux (EMF), then to current using the resistance.
-        The amount of charge moved depends on how quickly we're rotating the ring, so I will assume that the angle is changing at a constant speed $\omega$.
+       From here I can jump to the time derivative of magnetic flux (EMF), then to current using the resistance.
+       The amount of charge moved depends on how quickly we're rotating the ring, so I will assume that the angle is changing at a constant speed $\omega$.
        \begin{align*}
            \varepsilon &= \frac{d\Phi}{dt} = B_0 a^2 \frac{d}{dt} \cos\theta \\
            I &= -\frac{B_0 a^2}{R} \frac{d\cos\theta}{dt} && \left(\frac{\varepsilon}{R} = I = \frac{dQ}{dt}\right) \\
            I &= -\frac{B_0 a^2}{R} \frac{d \cos (\omega t)}{dt} && \left( \text{assume $\theta=\omega t$} \right) \\
            I &= \frac{B_0 a^2}{R}  \omega \sin (\omega t) \\
        \end{align*}
-      Total charge is then: 
+       Total charge is then: 
        $$Q = \int_0^{\pi/(2\omega)} I dt = \frac{B_0 a^2}{R} (1 - \cos(\pi/2)) = \frac{B_0 a^2}{R}$$
 
    \end{callout}
