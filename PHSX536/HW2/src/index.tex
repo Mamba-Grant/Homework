@@ -67,11 +67,28 @@
 
     \begin{callout}{Solution:}
 
-        If we are using the oscilloscope, then 500 ohms or less should be okay.
+
+        We define the $RC$ time constant to be:
+        $$\tau=RC$$
+        \textit{with units time}
+
+        %It's the time it takes for the capacitor to charge to 67\%. 
+        I will choose to wait 5 times this so that it's very nearly fully charged such that 
+        $$5\tau = T$$
+        We will then have $R$ approximately:
+
+       \begin{align*}
+           5\left( R \cdot \left( 10\times10^{-5} \right) \right) &\approx 10\times10^{-3} \\ 
+           R &\approx \frac{10\times10^{-3}}{5\times10^{-5}} = 200 \mathrm{~\Omega}
+       \end{align*}
+
+        I have not measured my power supply's internal resistance, but I expect it to have minimal effect on charging time given the large tolerance I have in my $5\tau$ estimate. I have just set it to something small for simulation purposes.
+
         \vspace{0.5cm}
 
         \centering
         \includegraphics[width=0.85\textwidth]{../RC-Circuit.png}
+        \includegraphics[width=0.85\textwidth]{../Circuit-Schematic.png}
     \end{callout}
 
 \end{homeworkProblem}

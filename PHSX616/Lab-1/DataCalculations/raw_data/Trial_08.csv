@@ -1,0 +1,2 @@
+trial,voltage_V,neutral_fall_seconds,charged_rise_seconds,ionization_seconds,d,rho,g,eta,b,p,room_temp
+8,511.2,21.26,3.94,0.0,0.0076,886,9.8,1.83e-5,0.0082,101520.0,21

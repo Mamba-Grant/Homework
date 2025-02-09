@@ -1,0 +1,295 @@
+\begin{abstract}
+    In this experiment, I investigate the Thevenin resistance \cite{enwiki:1260319611} of a "complex circuit" by experimental means. By modifying the circuit using a potentiometer, I am able to fit values for Thevenin equivalent components with high precision. I then compare results with measurements, simulation, and theoretical predictions for such behavior. My results demonstrate how fitting parameters to a data often results in lower uncertainty than direct measurement, although not necessarily higher accuracy. Furthermore, it is shown that results found using the different techniques provide statistically similar results. 
+\end{abstract}
+
+\section{Introduction}\label{sec:introduction}
+The Thevenin equivalent circuit is an essential introductory concept in circuit design, and in this experiment, I aim to explore it using the circuit shown in figure \ref{fig:circuit-basic}, by determining the Thevenin equivalent resistance $(R_{th})$ and Thevenin equivalent voltage ($V_{th}$) for $R_4$. This was done in four key ways. First, I preform theoretical predictions using the measured properties of my circuit components and propagating error. Second, I measured only $V_{th}$ with a multimeter (Fluke 179). $R_{th}$ could not be measured in this way. Finally, I use a variable resistor in parallel with $R_{4}$, as shown in figure \ref{fig:circuit-potentiometer}, to use the linear relation between current and voltage to fit a line with parameters $R_{th}$ and $V_{th}$. I also preform simulation using the software package "LTSpice," for which I can fit in the same way as I did on measured data to compare.
+
+\subsection{Calculations of Thevenin Equivalent Values}
+Calculating theoretical Thevenin equivalent resistance is rather straightforward. For $R_{th}$, we simply find the equivalent resistance of the circuit, replacing batteries with short circuits. In the case of the circuit shown in figure \ref{fig:circuit-basic}, this is as follows:
+$$R_{th} = \left( \left( \left( \frac{1}{R_1}+\frac{1}{R_3} \right)^{-1} + R_2 \right)^{-1}+\frac{1}{R_4} \right)^{-1}.$$
+
+Meanwhile, Thevenin equivalent voltage is said to be the voltage across the device in question. In the case of this experiment, this is $R_4$, so by mesh analysis I arrive at the following equations for this voltage drop:
+
+\begin{align*}
+    -R_{1}I_{1}-R_{3}I_{1}+R_{3}I_{2}&=V\\
+    -R_{2}I_{2}-R_{4}I_{2}-R_{3}I_{2}+R_{3}I_{1}&=0\\
+    V_{th}&=R_4I_{2}
+\end{align*}
+
+Solving this system (see appendix A) gives
+$$V_{th} = R_4 \cdot \left( \frac{V R_3}{R_1 R_2 + R_1 R_3 + R_1 R_4 + R_2 R_3 + R_3 R_4} \right)$$
+
+\subsection{Fitting of Thevenin Equivalent Values}
+The primary objective of this experiment is to determine precise values for \( V_{th} \) and \( R_{th} \) by fitting a linear model to the measured data. This is achieved by introducing a potentiometer in parallel with \( R_4 \), allowing data collection that follows Ohm’s Law. The circuit's behavior can be described by the linear equation:  
+\[ V = -R_{th} I + V_{th} \]
+
+Wherein the slope corresponds to \( -R_{th} \) and the y-intercept represents \( V_{th} \).
+
+Additionally, it is of note that the power dissipation of the potentiometer is of high concern. The potentiometer available is rated to handle a maximum 0.5 mW power dissipation, so prior to applying a voltage to it, I calculated the power dissipation and concluded that it is impossible to damage a capacitor with this circuit configuration. My calculations for this are included in appendix C.
+
+\newpage
+\section{Experimental Technique}\label{sec:methods}
+Prior to constructing my circuit, I take measurements of all quantities of resistance and voltage and their uncertainties using a Fluke 179 multimeter; the results of which can be found in table \ref{tab:measurements}. Then, on my breadboard, I construct the circuit shown in figure \ref{fig:circuit-basic}. I am able to directly measure voltage across $R_4$, the Thevenin equivalent voltage. 
+
+Fundamental to this experiment is the fitting of data collected by use of a potentiometer, as discussed in section \ref{sec:introduction}. This was done by inserting a potentiometer in parallel, and connecting a voltmeter across $R_4$ and a ammeter in series between $R_2$ and $R_4$ (these are not true voltmeters or ammeters, but rather multimeters in these respective modes). The resulting circuit is shown in figure \ref{fig:circuit-potentiometer}. Following, I carefully collect data from the two multimeters for linearly spaced values in my potentiometer. I observe a weighting of data points in the low current, high voltage region of the plot, so I collect a greater number of data points in the low resistance range. 
+
+Additionally, prior to measurement, the terminals of my potentiometer broke. I found that my new potentiometer varied slightly in resistivity when compared to my previous one. To ensure consistent results in my experiment, I carefully measured resistance using the Fluke 179 multimeter as a function of potentiometer index, and I have included my results in fitting parameters for it in appendix B.
+
+\begin{figure}[H]
+    \centering
+    {\textbf{Schematic of the Base Circuit with Potentiometer Measurements} \par}
+
+    \begin{circuitikz}[american, voltage shift=0.5, scale=0.7]
+        \draw (0,0)
+        to [R=$R_1$] (0,6)
+        to (3,6)
+        to[R=$R_2$] (6,6)
+        to[R=$R_4$] (6,0)
+        to (0,0);
+
+        \draw (3,6)
+        to[R=$R_3$, -] (3,3)
+        to[V=$\textrm{V}$] (3,0);
+
+        \draw (3,0) node[ground] {};
+    \end{circuitikz}
+
+    \caption{The simple circuit used for calculation and measurement of Thevenin equivalent values, including the voltmeter across \(R_4\) and ammeter between \(R_2\) and \(R_4\).}
+    \label{fig:circuit-basic}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+
+    {\textbf{Circuit Modified with\\a Potentiometer} \par}
+
+    \begin{circuitikz}[american, voltage shift=0.5, scale=0.75]
+        \draw (0,0)
+        to [R=$R_1$] (0,6)
+        to (3,6)
+        to[R=$R_2$] (6,6)
+        to (9,6)
+        to[potentiometer, l=$R_x$] (9,0)
+        to (0,0);
+
+        \draw (6,6)
+        to[ammeter] (6,3)
+        to[R=$R_4$] (6,0.5)
+        to (6,0);
+
+        \draw (6,3)
+        to (8, 3)
+        to[voltmeter] (8,0.5)
+        to (6, 0.5);
+
+        \draw (3,6)
+        to[R=$R_3$, -] (3,3)
+        to[V=$\textrm{V}$] (3,0);
+
+    \end{circuitikz}
+    \caption{Circuit diagram illustrating the circuit used to fit current and voltage to determine Thevenin resistance and voltage. It is in parallel with the part of the circuit we intend to find Thevenin equivalent values for. The locations of the ammeter and voltmeter (features on the Fluke 179 multimeter) are inserted as well.}
+    \label{fig:circuit-potentiometer}
+\end{figure}
+
+\begin{figure}[H]
+
+    \begin{center}
+            {\textbf{Photograph of my Circuit Modified with\\a Potentiometer} \par}
+    \end{center}
+
+  \centering
+  \includegraphics[width=0.7\textwidth]{"../../../../../Vault/(1) Classes/(Col 3.2) Spring 2025/PHSX 536/Pasted image 20250130155628.png"}
+    \caption{A photograph of figure \ref{fig:circuit-potentiometer} on my breadboard. Fluke 179 multimeters are shown connected to measure voltage and current as discussed in section \ref{sec:methods}.}
+  \label{fig:real-circuit-potentiometer}
+\end{figure}
+
+\section{Systematic Uncertainty Analysis}
+In the measurements disclosed in table \ref{tab:potentiometer-data}, the multimeter has an associated systematic uncertainty of 0.09\% + 1 least significant digit for DC voltages in these ranges, and an uncertainty of 1.0\% + 3 least significant digits for DC current. This results in rather accurate measurements of data to be used for fitting, calculation, and direct measurement of $V_{th}$, and I argue that systematic uncertainty is extremely low due to the multimeter. For the purposes of my calculations, I propagate my error numerically using Julia's excellent physical measurements library (see the code provided in the same directory as this writeup).
+
+To eliminate the effects of weighting towards high resistances, I resample my data to be equally spaced the current axis. The resulting data is unreliable in uncertainty, due to it not being systematically gathered. Regardless, it serves to reliably demonstrate that my original fitted data describes the underlying parameters well because the error between the two is very small.
+
+I propose that the most significant source of error in this writeup is statistical in nature, and arises as a consequence of tolerance in my potentiometer. Our potentiometer is rated for $\pm 5\%$ tolerance, resulting in very significant fluctuations in measured values, particularly for the low resistance, high current and voltage range. I believe that this deviation at low resistance is the primary reason my results have significant statistical deviation from prediction, measurement, and simulation. It could be eliminated by taking many more samples at low resistance, or by accounting for this uncertainty statistically.
+
+%It is impossible to say which estimation of the parameters $V_{th}$ and $R_{th}$ is the closest to the real value, due to each being very close in value whilst having similarly low error.
+
+%All values lie very close to each other, and it is the relatively small error which enhances the scores. I believe this is because the choice to use theoretical error over-normalizes my data such that very small differences in value result in extremely high standard deviation, as there is no perfect measure of uncertainty from this simulated data.
+
+%My fitted value and measured value for $V_{th}$ are the closest in terms of error, differing by 0.01; and despite the smaller error on the fitted value, the measured value is said to lie closer to the theoretical value by a statistically large amount. I believe that this should not be the case, since this experiment does not consider the tolerance of the potentiometer, which is thought to contribute significantly more to the uncertainty than the multimeter uncertainty.
+
+\section{Results}
+I present data in table 1 which, with low uncertainty, accurately estimates values for $R_{th}$ and $V_{th}$ for several methods of measurement. More detail in the fitting of my Thevenin parameters is also shown in figure \ref{fig:plots}. For most purposes, I find that any of the presented methods for estimating $R_{th}$ and $V_{th}$ produce measurements with very high precision, and it is observed that the fitted results produce the lowest uncertainty. This is not to say that it is the most characteristic of the actual values, as the estimated value is highly dependent on tolerance. Propagation of this to the uncertainty, and the collection of many more data points at low resistances in the potentiometer would certainly reduce the error in this.
+
+To compare my results, I compute z-scores for my fitted data as follows, using measurement error to normalize.
+$$\frac{|R_{\mathrm{th, ~fit}} - R_{\mathrm{th,~theory}}|}{error} = \frac{|66.67-68.58|}{6.237}=0.3062$$
+$$\frac{|V_{\mathrm{th, ~fit}} - V_{\mathrm{th,~theory}}|}{error} = \frac{|1.979-1.964|}{0.010}=1.5$$
+
+And I do the same for the fitted $V_{th}$ and measured $V_{th}$.
+$$\frac{|V_{\mathrm{th, ~fit}} - V_{\mathrm{th,~meas}}|}{error} = \frac{|1.979-1.969|}{0.010}=1.0$$
+
+It is also useful to compare my measured value to the theoretical value, where it is observed that there is extremely low standard deviation between the two.
+$$\frac{|V_{\mathrm{th, ~meas}} - V_{\mathrm{th,~theory}}|}{error} = \frac{|1.969-1.964|}{0.018}=0.28$$
+
+Again, I repeat this for my simulated data, using propagated uncertainty in my calculations as the error.
+$$\frac{|R_{\mathrm{th, ~simulated}} - R_{\mathrm{th,~theory}}|}{error} = \frac{|68.58-68.5|}{0.47}=0.38$$
+$$\frac{|V_{\mathrm{th, ~simulated}} - V_{\mathrm{th,~theory}}|}{error} = \frac{|1.983-1.964|}{0.020}=882.85$$
+
+\begin{table}[h!]
+    \label{tab:results}
+    \centering
+
+    {\textbf{Summary of Data} \par}
+    \vspace{1em}
+
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{|l|l|l|l|l|}
+            \hline
+            \textbf{Parameter} & \textbf{Theoretical Value} & \textbf{Measured Value} & \textbf{Fitted Value} & \textbf{Simulated Value} \\ \hline
+            \textbf{Thevenin Resistance} $R_{th}$ & $68.58 \pm 0.47 ~\Omega$ & N/A & $66.67 \pm 6.23 ~\Omega$ & $68.58 ~\Omega$ \\
+            \textbf{Thevenin Voltage} $V_{th}$ & $1.964 \pm 0.02$ V & $1.969 \pm 0.018$ V & $1.979 \pm 0.010$ V & $1.983$ V \\
+            \hline
+        \end{tabular}
+        }
+        \caption{The results, which demonstrate very similar values in the estimation of $R_{th}$ and $V_{th}$.}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+
+  {\textbf{Fitted Data} \par}
+
+  \includegraphics[width=1.0\textwidth]{../assets/data_analysis_cropped.png}
+  \caption{A comparison between fitted data, a resampled copy of the data on the right, and simulated data in both. Slope is given by $-R_{th}$, and intercept is given by $V_{th}$. The resampled data is shown to demonstrate that the data on the left is independent of the weighting of samples. The fitted results represent the true value of both resistance and voltage with very high accuracy; more so than simulated and directly measured results, and are presumably limited primarily by the tolerances of the film-metal resistors. Such an issue could be alleviated with a greater number of samples to average out the error caused by variance in the readings, or by directly accounting for it in uncertainty.}
+  \label{fig:plots}
+\end{figure}
+
+\section{Summary}
+I present my work on the determination of Thevenin equivalent parameters, $R_{th}$ and $V_{th}$, which are essential to a basic understanding of circuit behavior. I do so by employing several methods, including theory, simulation, direct measurement by multimeter, and by fitting. All methods result in estimations of the parameters which are very precise, with low statistical uncertainty when applicable. I expected the fitted value to have the smallest uncertainty, which is what is observed; however, this does not necessarily imply that it is the most characteristic of the actual parameter. This is due largely to unaccounted for effects of potentiometer tolerance, which result in variation in measurements at low resistances. It can be alleviated in future work by taking more measurements at low resistances, where the effects of resistive tolerance are greatest, or by directly accounting for it in calculation of uncertainty.
+
+\bibliographystyle{plain}
+\bibliography{_citations}
+
+\appendix
+\appendixpage
+
+\section{Mathematical Work}
+
+I have the system of equations, which are solved as follows:
+
+\begin{align*}
+    -R_{1}I_{1}-R_{3}I_{1}+R_{3}I_{2}&=V\\
+    -R_{2}I_{2}-R_{4}I_{2}-R_{3}I_{2}+R_{3}I_{1}&=0\\
+    V_{th}&=R_4I_{2}
+\end{align*}
+
+\begin{align*}
+-R_3I_1 + (R_2+R_4+R_3)I_2 &= 0 \\
+I_2 &= \frac{R_3I_1}{R_2+R_4+R_3} \\
+(R_1+R_3)I_1 - R_3\left(\frac{R_3I_1}{R_2+R_4+R_3}\right) &= V \\
+I_1\left[(R_1+R_3) - \frac{R_3^2}{R_2+R_4+R_3}\right] &= V \\
+I_1 &= \frac{V}{(R_1+R_3) - \frac{R_3^2}{R_2+R_4+R_3}} \\
+I_2 &= \frac{R_3V}{(R_2+R_4+R_3)(R_1+R_3) - R_3^2} \\
+I_2 &= \frac{R_3V}{R_1R_2 + R_1R_4 + R_1R_3 + R_2R_3 + R_3R_4} \\
+V_{th} &= \frac{R_3R_4V}{R_1R_2 + R_1R_3 + R_1R_4 + R_2R_3 + R_3R_4}
+\end{align*}
+
+$$V_{th} = R_4 \cdot \left( \frac{V R_3}{R_1 R_2 + R_1 R_3 + R_1 R_4 + R_2 R_3 + R_3 R_4} \right)$$
+
+
+\section{Potentiometer Fitting}
+It was necessary to fit new values to my potentiometer in this experiment. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../../new_potentiometer_fit.png}
+  %\caption{}
+  \label{fig:new_potentiometer_fit}
+\end{figure}
+
+\section{Verification of Power Dissipation in Potentiometer}
+
+To ensure the safety of the potentiometer, we cannot dissipate more than 0.5mW of power across it. To avoid this, I will calculate what resistance I can go up to before damaging it. We have power dissipated given as:
+$$P = I^2 R $$
+for DC circuits. Since $I$ varies as a function of resistance, we express it as:
+$$I = \frac{V_{th}}{R_{th} + R} $$
+
+Substituting this into the power equation:
+$$P = \left( \frac{V_{th}}{R_{th} + R} \right)^2 R $$
+
+Given that we can only dissipate 0.5 mW, we set up the equation:
+$$0.5 \times 10^{-3} = \frac{V_{th}^2}{(R_{th} + R)^2} R $$
+
+Multiplying both sides by $(R_{th} + R)^2$ to clear the fraction:
+$$0.5 \times 10^{-3} (R_{th} + R)^2 = V_{th}^2 R $$
+
+Expanding and rearranging:
+$$R^2 + 2R_{th} R + R_{th}^2 = \frac{V_{th}^2}{0.5 \times 10^{-3}} R $$
+$$R^2 + (2R_{th} - \frac{V_{th}^2}{0.5 \times 10^{-3}}) R + R_{th}^2 = 0 $$
+
+Solving for $R$ using the quadratic formula:
+$$R = \frac{- (2R_{th}) \pm \sqrt{(2R_{th})^2 - 4 R_{th}^2}}{2} $$
+$$R = R_{th} \pm \sqrt{\frac{V_{th}^2}{0.5 \times 10^{-3}} - R_{th}^2} $$
+
+This gives the maximum resistance $R$ before the power dissipation exceeds 0.5mW. In our configuration, this gives an imaginary value, which implies we could not possibly dissipate this much power. 
+
+\section{Raw Data}
+\begin{table}[H]
+    \centering
+
+    {\textbf{Measurements of Component Values} \par}
+    \vspace{1em}
+
+    \label{tab:measurements}
+
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \textbf{Component}  & \textbf{Measured Value} \\ 
+        \hline
+        PSU Voltage & $12.12 \pm 0.03$ V \\
+        $R_1$ & $219.9 \pm 2.0 ~\Omega$ \\ 
+        $R_2$ & $101.2 \pm 1.0 ~\Omega$ \\ 
+        $R_3$ & $217.8 \pm 2.0 ~\Omega$ \\ 
+        $R_4$ & $101.7 \pm 1.0 ~\Omega$ \\ 
+        $V_{th}$ & $1.969 \pm 0.019$ V \\ 
+        \hline
+    \end{tabular}
+    \caption{Measurements taken from the Fluke 179 multimeter. This is the source data used for all calculations and simulations.}
+\end{table}
+
+\begin{table}[H]
+    \centering
+
+    {\textbf{Measurements of Voltage and Current for Varying Resistance on Potentiometer} \par}
+    \vspace{1em}
+
+    \label{tab:potentiometer-data}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        Index & Current (mA) & Voltage (V) \\
+        \hline
+        999  & -0.47 $\pm$ 0.03  & 1.948 $\pm$ 0.002  \\
+        946  & -0.40 $\pm$ 0.03  & 1.952 $\pm$ 0.002  \\
+        893  & -0.42 $\pm$ 0.03  & 1.950 $\pm$ 0.002  \\
+        841  & -0.45 $\pm$ 0.03  & 1.949 $\pm$ 0.002  \\
+        788  & -0.48 $\pm$ 0.03  & 1.947 $\pm$ 0.002  \\
+        736  & -0.52 $\pm$ 0.04  & 1.944 $\pm$ 0.002  \\
+        683  & -0.55 $\pm$ 0.04  & 1.941 $\pm$ 0.002  \\
+        630  & -0.60 $\pm$ 0.04  & 1.939 $\pm$ 0.002  \\
+        578  & -0.65 $\pm$ 0.04  & 1.935 $\pm$ 0.002  \\
+        525  & -0.71 $\pm$ 0.04  & 1.931 $\pm$ 0.002  \\
+        473  & -0.79 $\pm$ 0.04  & 1.926 $\pm$ 0.002  \\
+        420  & -0.88 $\pm$ 0.04  & 1.920 $\pm$ 0.002  \\
+        368  & -1.01 $\pm$ 0.04  & 1.912 $\pm$ 0.002  \\
+        315  & -1.17 $\pm$ 0.04  & 1.900 $\pm$ 0.002  \\
+        262  & -1.39 $\pm$ 0.04  & 1.886 $\pm$ 0.002  \\
+        210  & -1.69 $\pm$ 0.05  & 1.867 $\pm$ 0.002  \\
+        157  & -2.24 $\pm$ 0.05  & 1.830 $\pm$ 0.002  \\
+        105  & -3.25 $\pm$ 0.06  & 1.763 $\pm$ 0.002  \\
+        52   & -5.70 $\pm$ 0.09  & 1.599 $\pm$ 0.002  \\
+        20   & -10.62 $\pm$ 0.14 & 1.272 $\pm$ 0.001  \\
+        10   & -14.44 $\pm$ 0.17 & 1.016 $\pm$ 0.001  \\
+        0    & -27.84 $\pm$ 0.31 & 0.115 $\pm$ 0.001  \\
+        \hline
+    \end{tabular}
+    \caption{Measured current and voltage values with their respective errors. Data was taken across a range of resistances, designated by the index on the potentiometer. From this, I obtain my fitting results.}
+\end{table}

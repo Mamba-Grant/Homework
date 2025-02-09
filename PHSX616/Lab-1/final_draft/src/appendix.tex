@@ -1,0 +1,113 @@
+\appendix
+
+\section{Discussion of Precision and Uncertainty}\label{sec:uncertainty}
+
+Throughout this work, we use linear propagation theory for the propagation of all errors via the excellent measurements library in Julia. 
+
+We preform several standard statistical assessments of our data, necessary for chi-square testing. First, uncertainty is propagated, although there is a degree of unreliability in this, as there were several values we could not associate a concrete systematic uncertainty with, such as travel distance of the droplets, as we did not have tools available to take such measurements. 
+
+Despite this, statistical uncertainty is a much more pervasive issue in our experimental procedure. We compute statistical uncertainty as 
+$$\sigma = \frac{1}{\sqrt{n}}$$
+where $n$ is the number of measurements taken. Furthermore, there is significant statistical error in human elements of the measurements, namely with reaction time. This could be reduced to quantified systematic uncertainty with the aid of video recording or projector systems for viewing the droplets, however we choose to compensate by filtering data to within 2 standard deviations of the mean.
+
+Our z-scores are given as 
+$$ z = \left( \frac{q}{n} - e \right) \cdot \frac{1}{\sqrt{\sigma_{\textrm{sys}}^2 + \sigma_{\textrm{stat}}^2}} $$
+Where $q$ is droplet charge, $n$ is charges on droplet, $e$ is the commonly held electron charge, $\sigma_{sys}$ is systematic uncertainty, and $\sigma_{stat}$ is statistical uncertainty. Our chi-squared parameter is calculated by taking the sum of z-scores squared.
+
+Comparing our experimental result with the accepted value of the elementary charge \cite{millikan1917electron}, $1.602 \times 10^{-19}$ C, 
+
+\begin{equation}\label{eq:percent-diff}
+    \text{\% error} = \left( \frac{|1.695 - 1.602|}{1.602} \right) \times 100\% \approx 5.8\% 
+\end{equation}
+
+%In the high quality data, we observe that there appears to be a fixed error, as in the higher ranges of charge it is still observed that the number of charges present are multiples of the unit charge. Consequently, we propose that a significant source of error in this work stems from inadequate measurement of other conditions surrounding the measurement; namely, atmospheric pressure $p$ and viscosity of air $\eta$. Local weather data was used in the determination of atmospheric pressure, and our experimental configuration shown in figure \ref{fig:apparatus-diagram} uses a very simple , and  values were used in the estimation of pressure, taken 
+
+\section{Comprehensive Data}
+
+\begin{table}[H]
+    \centering
+    \tiny
+    \renewcommand{\arraystretch}{1.0} % Adjust row height for better readability
+    \begin{tabularx}{0.5\textwidth}{cXXXXX}
+        \toprule
+        Row & Charge (C) & \# Charges & Statistical Uncertainty & Systematic Uncertainty & Z-Score \\
+        \midrule
+        A & $1.695 \times 10^{-19}$ & $1.0 \pm 0.033$ & $3.162 \times 10^{-20}$ & $5.639 \times 10^{-21}$ & $0.29 \pm 0.18$ \\
+        B & $1.146 \times 10^{-18}$ & $6.76 \pm 0.21$ & $3.536 \times 10^{-20}$ & $3.628 \times 10^{-20}$ & $0.18 \pm 0.11$ \\
+        C & $1.167 \times 10^{-18}$ & $6.89 \pm 0.22$ & $3.536 \times 10^{-20}$ & $3.767 \times 10^{-20}$ & $0.18 \pm 0.11$ \\
+        D & $4.903 \times 10^{-19}$ & $2.893 \pm 0.093$ & $4.472 \times 10^{-20}$ & $1.576 \times 10^{-20}$ & $0.2 \pm 0.11$ \\
+        E & $8.033 \times 10^{-19}$ & $4.74 \pm 0.15$ & $3.333 \times 10^{-20}$ & $2.59 \times 10^{-20}$ & $0.22 \pm 0.13$ \\
+        F & $5.955 \times 10^{-19}$ & $3.51 \pm 0.11$ & $3.536 \times 10^{-20}$ & $1.895 \times 10^{-20}$ & $0.23 \pm 0.13$ \\
+        G & $2.82 \times 10^{-19}$ & $1.664 \pm 0.054$ & $1.0 \times 10^{-19}$ & $9.216 \times 10^{-21}$ & $0.092 \pm 0.055$ \\
+        H & $2.422 \times 10^{-19}$ & $1.429 \pm 0.047$ & $1.0 \times 10^{-19}$ & $7.942 \times 10^{-21}$ & $0.093 \pm 0.055$ \\
+        I & $1.24 \times 10^{-18}$ & $7.32 \pm 0.23$ & $1.0 \times 10^{-19}$ & $3.905 \times 10^{-20}$ & $0.086 \pm 0.05$ \\
+        J & $3.389 \times 10^{-19}$ & $2.0 \pm 0.065$ & $1.0 \times 10^{-19}$ & $1.108 \times 10^{-20}$ & $0.092 \pm 0.055$ \\
+        K & $6.326 \times 10^{-19}$ & $3.73 \pm 0.12$ & $1.0 \times 10^{-19}$ & $2.025 \times 10^{-20}$ & $0.091 \pm 0.053$ \\
+        L & $8.313 \times 10^{-19}$ & $4.9 \pm 0.15$ & $1.0 \times 10^{-19}$ & $2.609 \times 10^{-20}$ & $0.09 \pm 0.051$ \\
+        M & $7.709 \times 10^{-19}$ & $4.55 \pm 0.14$ & $1.0 \times 10^{-19}$ & $2.421 \times 10^{-20}$ & $0.09 \pm 0.052$ \\
+        N & $5.7 \times 10^{-19}$ & $3.36 \pm 0.11$ & $1.0 \times 10^{-19}$ & $1.821 \times 10^{-20}$ & $0.091 \pm 0.053$ \\
+        O & $1.277 \times 10^{-18}$ & $7.54 \pm 0.24$ & $1.0 \times 10^{-19}$ & $4.06 \times 10^{-20}$ & $0.086 \pm 0.05$ \\
+        P & $2.577 \times 10^{-18}$ & $15.2 \pm 0.48$ & $1.0 \times 10^{-19}$ & $8.154 \times 10^{-20}$ & $0.072 \pm 0.042$ \\
+        Q & $3.151 \times 10^{-19}$ & $1.859 \pm 0.06$ & $1.0 \times 10^{-19}$ & $1.011 \times 10^{-20}$ & $0.092 \pm 0.054$ \\
+        R & $8.048 \times 10^{-19}$ & $4.75 \pm 0.15$ & $1.0 \times 10^{-19}$ & $2.621 \times 10^{-20}$ & $0.09 \pm 0.053$ \\
+        S & $1.184 \times 10^{-18}$ & $6.99 \pm 0.22$ & $1.0 \times 10^{-19}$ & $3.797 \times 10^{-20}$ & $0.087 \pm 0.051$ \\
+        \bottomrule
+    \end{tabularx}
+    %\caption{}
+    \label{tab:oil_drops_summary}
+\end{table}
+
+%We notice a fixed error in our results such that all measured values are multiples of each other with the same 13\% deviation. This implies the deviation may result from quantities we lacked sufficient means to appropriately measure: namely local atmospheric conditions. Furthermore, rudimentary means were used to time the motion of oil droplets, and we see a significant standard deviation in this degree of freedom.
+
+%\textit{todo: proper uncertainty calculations}
+%To start the appendixes, use the \verb+\appendix+ command.
+%This signals that all following section commands refer to appendixes
+%instead of regular sections. Therefore, the \verb+\appendix+ command
+%should be used only once---to setup the section commands to act as
+%appendixes. Thereafter normal section commands are used. The heading
+%for a section can be left empty. For example,
+%\begin{verbatim}
+%\appendix
+%\section{}
+%\end{verbatim}
+%will produce an appendix heading that says ``APPENDIX A'' and
+%\begin{verbatim}
+%\appendix
+%\section{Background}
+%\end{verbatim}
+%will produce an appendix heading that says ``APPENDIX A: BACKGROUND''
+%(note that the colon is set automatically).
+%
+%If there is only one appendix, then the letter ``A'' should not
+%appear. This is suppressed by using the star version of the appendix
+%command (\verb+\appendix*+ in the place of \verb+\appendix+).
+
+%\section{A little more on appendixes}
+%
+%Observe that this appendix was started by using
+%\begin{verbatim}
+%\section{A little more on appendixes}
+%\end{verbatim}
+%
+%Note the equation number in an appendix:
+%\begin{equation}
+%E=mc^2.
+%\end{equation}
+%
+%\subsection{\label{app:subsec}A subsection in an appendix}
+%
+%You can use a subsection or subsubsection in an appendix. Note the
+%numbering: we are now in Appendix~\ref{app:subsec}.
+%
+%Note the equation numbers in this appendix, produced with the
+%subequations environment:
+%\begin{subequations}
+%\begin{eqnarray}
+%E&=&mc, \label{appa}
+%\\
+%E&=&mc^2, \label{appb}
+%\\
+%E&\agt& mc^3. \label{appc}
+%\end{eqnarray}
+%\end{subequations}
+%They turn out to be Eqs.~(\ref{appa}), (\ref{appb}), and (\ref{appc}).
