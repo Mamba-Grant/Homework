@@ -1,0 +1,354 @@
+\begin{homeworkProblem}
+    \textbf{Griffiths Problem 8.2} Consider the charging capacitor in Prob. 7.34.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{../assets/H2P1F1.png}
+    \end{figure}
+
+    \begin{enumerate}[(a)]
+        \item Find the electric and magnetic fields in the gap, as functions of the distance $s$ from the axis and the time $t$. (Assume the charge is zero at $t = 0$.)
+
+            \begin{callout}{Solution:}
+
+                This problem differs from 7.34, in that that we must find the electric field in addition to the magnetic field, and discuss the time evolution. It would be good to start with a solution to the magnetic field, which would be an exercise in applying ampere's law in integral form:
+                \begin{align*}
+                    \oint_{\partial S} \vec{B} \cdot d\vec{\ell} &= \mu_0 I_{\text{enc}} + \mu_0\epsilon_0 \frac{d}{dt} \int_S \vec{E} \cdot d\vec{A} \quad &\text{(Ampère's law with Maxwell's correction)} \\
+                    &= \mu_0 \epsilon_0 \iint \frac{\partial \textbf{E}}{\partial t} \cdot d \textbf{a}
+                \end{align*}
+
+                Buried in Griffiths, we have already discussed that the electric field between two infinite plates is $2\frac{ \sigma }{2\epsilon_0} \hat{z}$ (the factor of 2 out front due to there being 2 plates). Also, we are able to treat these as infinite plates due to the constraint that $w \ll a$. By taking $\sigma=Q/A$, where $A$ is the area occupied by the charge which equals $\pi a^2$. This is sufficient to differentiate:
+                $$\frac{\partial \textbf{E}}{dt} = \frac{1}{\pi a^2\epsilon_0 } \frac{dQ}{dt}\hat{z} = \frac{I}{\pi a^2 \epsilon_0 } \hat{z}$$
+
+                This is conveniently the electric field quantity we sought (just differentiated once)!
+                $$\boxed{\textbf{E}(s, t) = \frac{It}{\pi a^2 \epsilon_0} \hat{z}}$$
+
+                We are now concerned with integrating this quanitity in a surface between the plates to fully express ampere's law. We can choose both to point in the $\hat{z}$ direction, so we just get that term times the area of a circle:
+                $$\oint_{\partial S} \vec{B} \cdot d\vec{\ell} = \mu_0 \epsilon_0 \frac{I}{a^2 \epsilon_{0}}s^2$$
+
+                I will select my path integral to be a circular ring between the plates with direction $\hat{\phi}$. This gives a resulting magnetic field
+                $$B \cdot 2\pi \cancel{s} = \mu_0 \frac{I}{a^2}s^{\cancel{2}}$$
+                simplifying to:
+                $$\boxed{B(s, t) = \frac{\mu_{0}Is}{2\pi a^2 }\hat{\phi}}$$
+
+
+            \end{callout}
+
+        \item Find the energy density $u_{em}$ and the Poynting vector $\mathbf{S}$ in the gap. Note especially the \textit{direction} of $\mathbf{S}$. Check that Eq. 8.12 is satisfied.
+
+            \begin{callout}{Solution:}
+
+                $u$ is straightforwardly:
+                \begin{align*}
+                    u &= \frac{1}{2} \left( \epsilon_0 E^2 + \frac{1}{\mu_{0}} B^2 \right) \\ 
+                    &= \boxed{\frac{1}{2} \left( \left(\frac{It}{\epsilon_0 \pi a^2} \right)^2 + \left( \frac{Is\mu_{0}}{2\pi a^2} \right)^2 \right)} \\ 
+                \end{align*}
+
+                $\textbf{S}$ is given as:
+                \begin{align*}
+                    \textbf{S} &= \frac{1}{\mu_{0}} \left( \textbf{B} \times \textbf{E} \right) \\
+                    &= \boxed{\left( \frac{It}{\pi a^2 \epsilon_0\mu_{0}} \right) \left( \frac{\mu_{0}Is}{2\pi a^2} \right) \hat{s}} \\ 
+                \end{align*}
+
+                Eq. 8.12 says:
+                $$\frac{du}{dt}=-\nabla \cdot \mathbf{S}$$
+
+                So the first part is:
+                $$\boxed{\frac{du}{dt} = \frac{I^2t}{\epsilon_{0} \pi^2 a^4}}$$
+
+                And the second part is:
+                \begin{gather*}
+                    \nabla \cdot \mathbf{S}=\frac{1}{s} \frac{\partial}{\partial s}\left(s S_s\right) \\
+                    =\frac{1}{s} \frac{\partial}{\partial s}\left(s \frac{I^2 t s}{2 \pi^2 a^4 \epsilon_0}\right) \\
+                    =\frac{1}{s} \frac{\partial}{\partial s}\left(\frac{I^2 t s^2}{2 \pi^2 a^4 \epsilon_0}\right) \\
+                    =\frac{1}{s} \times \frac{2 I^2 t s}{2 \pi^2 a^4 \epsilon_0} \\
+                    =\frac{I^2 t}{\pi^2 a^4 \epsilon_0} \\
+                    \boxed{-\nabla \cdot \mathbf{S}=-\frac{I^2 t}{\pi^2 a^4 \epsilon_0}} 
+                \end{gather*}
+
+                Both are the same with opposite sign, eqn 8.12 checks out!
+
+            \end{callout}
+
+        \item Determine the total energy in the gap, as a function of time. Calculate the total power flowing into the gap, by integrating the Poynting vector over the appropriate surface. Check that the power input is equal to the rate of increase of energy in the gap (Eq. 8.9—in this case $W = 0$, because there is no charge in the gap). [If you’re worried about the fringing fields, do it for a volume of radius $b < a$ well inside the gap.]
+            \begin{callout}{Solution:}
+
+                $u$ by definition is just the energy per unit volume, so I'll interate over the volume between the capacitors:
+                \begin{align*}
+                    U &= \int_{0}^{w}  \int_{0}^{2\pi} \int_{0}^{b} \frac{\mu_{0}I^2}{2\pi^2 a^4} \left( (ct)^2 + \left( \frac{s}{2} \right)^{2} \right)s \,ds \,d\phi \,dz \\
+                    &= \frac{\mu_{0}I ^{2}}{2\pi ^{2} a^4} \int_{0}^{w} dz \int_{0}^{2\pi} d\phi \int_{0}^{b} \left( (ct ^{2}) + \frac{s ^{2}}{4} \right)s \,ds \\
+                    &= \frac{\mu_{0} w I ^{2}}{2\pi a^4} \left( (ct)^{2} b ^{2} + \frac{b^4}{8} \right) \\ 
+                    &= \boxed{ \frac{\mu_{0}wI ^{2} b ^{2}}{2\pi a^4} \left( (ct)^2 + \frac{b^2}{8} \right) }
+                \end{align*}
+
+                Second, power input, $P$ is given by:
+                $$P = -\int \mathbf{S}\cdot d\mathbf{a}$$
+
+                and the surface is just the circle between the plates, giving an integral:
+                \begin{gather*}
+                    P = \int_{0}^{2} \int_{0}^{2\pi} \frac{I ^{2} t}{2\pi ^{2} \epsilon_{0} a^{4}}b\hat{s} \cdot (b\,d\phi\,dz)\hat{s} = 
+                    \boxed{\frac{b^2 I ^{2} wt}{\pi \epsilon_{0} a^{4}}\hat{s}}
+                \end{gather*}
+
+                And the time derivative of total energy goes as:
+               \begin{gather*}
+                   \frac{\partial U}{\partial t} = \frac{\mu_{0}w t c^2}{\pi a ^4}
+               \end{gather*}
+
+                we have $c^2 = \left( \mu_{0}\epsilon_{0} \right)^{-1}$, so this checks out!
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}
+    For Example 8.1 in the text (Electrical current through a cylindrical resistor), find both the Poynting vector $\mathbf{S}$ and $-\mathbf{E} \times \mathbf{J}$, and $\nabla \cdot \mathbf{S}$, as a function of radial distance from the axis and compare them. Assume that the resistor is very long.
+   \begin{callout}{Solution:}
+
+       From problem 8.1, we had 
+       $$S = \frac{1}{\mu_{0}} \frac{V}{L} \frac{\mu_{0}I}{2\pi a} = \frac{VI}{2\pi aL}$$
+
+       Which was done at the surface of the cylinder. The main problem here is to instead express the electric field as a function of $V$, $L$, $I$, and radius $s$. Ohm's law in differential form is the key:
+       $$I=JA = J \pi s^2$$
+
+       We know the current AND electric field is flowing in a single direction in the wire is uniform from example 7.3, so $\textbf{J}$ must be 
+       $$\textbf{J}= \begin{cases}
+           \frac{I}{\pi s^{2}} \boldsymbol{\hat{z}}, & s < a \\ 
+           0, & s>a
+       \end{cases}$$
+
+       Ohm's law again tells me:
+       $$E = \rho J = \frac{V}{L} \frac{I}{\pi s ^{2}} \boldsymbol{\hat{z}}$$
+
+       However this is just inside the wire. Outside there is no current density, but we know there should be an electric field, since there's a voltage drop along the length of the resistor. 
+
+      \begin{align*}
+          \nabla^2 V &= 0 \\ 
+          \frac{d^2V}{dz^2} &= 0 &\text{(no radial dependence)} \\ 
+          V(z) &= Az + B &\text{subject to: } V(0) = V,\, V(L)=0 \\ 
+          & & \implies A = - \frac{V}{L} \\ 
+          V(z) &= V \left( 1 - \frac{z}{L} \right) \\ 
+          E(z) &= \frac{V}{L} \boldsymbol{\hat{z}}
+      \end{align*}
+       \textit{I say there is no radial dependence, this is because it would violate the surface boundary conditions.}
+
+       Therefore we have electric field 
+       $$\boxed{\textbf{E}(z) = \begin{cases}
+           \frac{V}{L} \frac{I}{\pi s ^{2}} \boldsymbol{\hat{z}}, & z<a \\
+           \frac{V}{L} \boldsymbol{\hat{z}}, & s>a
+       \end{cases}}$$
+
+       Ampere's law provides a straightforward way to get a magnetic field from this result:
+      \begin{align*}
+          \oint_{\partial S} \textbf{B} \cdot d\vec{\ell} &= \mu_0 I_{\text{enc}} + \cancel{\mu_0\epsilon_0 \frac{d}{dt} \int_S \vec{E} \cdot d\vec{A}} \quad &\text{(Ampère's law with Maxwell's correction)} \\
+          \textbf{B} \cdot (2\pi s) &= \mu_{0} I\frac{s^2}{a^2} \\ 
+      \end{align*}
+      So we have magnetic field 
+       $$\boxed{\textbf{B} = \begin{cases}
+           \frac{\mu_{0} I s}{2\pi a^2}\boldsymbol{\hat{\phi}}, &\text{s<a}  \\
+            \frac{\mu_{0} I}{2\pi a}\boldsymbol{\hat{\phi}}, &\text{s>a} 
+       \end{cases}}$$
+        
+        Which aligns with example 8.1. This gives sufficient information to express the Poynting vector:
+       \begin{align*}
+           \textbf{S} &= \frac{1}{\mu_{0}} \left( \textbf{E} \times \textbf{B} \right) &\text{(Definition of the Poynting Vector)} \\
+           &= \frac{1}{\mu_{0}} \left( \frac{V}{L} \frac{I}{\pi s ^{2}} \boldsymbol{\hat{z}} \times 
+           \frac{\mu_{0} I s}{2\pi a^2} \boldsymbol{\hat{\phi}} \right) \\ 
+           &= \boxed{\frac{V}{L} \frac{I^2}{2 s \pi^2 a^2 } \boldsymbol{\hat{s}}} &\text{(inside)} \\ 
+       \end{align*}
+
+       \begin{align*}
+           \textbf{S} &= \frac{1}{\mu_{0}} \left( \textbf{E} \times \textbf{B} \right) \\
+           &= \frac{1}{\mu_{0}} \left( \frac{V}{L} \boldsymbol{\hat{z}} \times 
+           \frac{\mu_{0} I}{2\pi a}\boldsymbol{\hat{\phi}} \right) \\
+           &= \boxed{\frac{V}{L}\frac{I}{2\pi a} \boldsymbol{\hat{s}}} &\text{(outside)}
+       \end{align*}
+       And the outside case matches 8.1. Now, $\boxed{-\textbf{E} \times \textbf{J}=0}$, since both are in the same direction.
+       The divergence $\boxed{\nabla \cdot \textbf{S}=0}$ as well, as we should expect. 
+       The physical interpretation of these facts is that (1) no energy is dissipated in the wire, and (2) no \textit{net} energy accumulation occurs, using the cross product and divergence, respectively.
+
+   \end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}
+    Assume a long cylindrical battery (radius $a$ and length $L$), which is supplying a steady current $I$ to some circuit and has a terminal voltage of $V$. What are $\mathbf{S}$ and $-\mathbf{E} \times \mathbf{J}$, and $\nabla \cdot \mathbf{S}$ throughout this battery? Explain what is going on using the Poynting theorem. Also consider these quantities outside the battery.
+    \begin{callout}{Solution:}
+
+        We have defined the Poynting vector:
+        $$\textbf{S} = \frac{1}{\mu_{0}} \left( \textbf{E} \times \textbf{B} \right)$$
+        All that we really care about is the current flowing inside the battery; but, this is what distinguishes this problem from the last: a battery maintains a potential difference between two points. There is no current flowing inside the battery. This means there's no magnetic field due to the battery alone, although this potential difference still produces an electric field. Outside, however, the circuit produces the same magnetic and electric field I derived in the last equation. Inside since there is no current flow, there is no distinction between boundaries, meaning that the exterior field is the same as the interior field. In sum,
+        Therefore we have electric field 
+        $$\textbf{E} = \frac{V}{L} \boldsymbol{\hat{z}}$$
+        $$\textbf{B} = \begin{cases}
+            0 &s<a  \\
+            \frac{\mu_{0} I}{2\pi a}\boldsymbol{\hat{\phi}}, &s>a 
+        \end{cases}$$
+
+        The poynting vector will be the same as the resistor case:
+        $$\textbf{S} = \frac{VI}{2\pi aL}\boldsymbol{\hat{r}}$$
+        This suggests energy flows into the battery in the same way it flows into resistive material.
+        The gradient is similarly zero, since there is no free current density inside the battery, nor is there energy dissipation.
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}
+    For the class example of a current sheet, find the force on the volume by finding the integral of $\mathbf{J} \times \mathbf{B}$ over the volume. If it helps, spread the current over a narrow layer of $\Delta x$. Compare this with the result from the lecture using the Maxwell Stress Tensor.
+   \begin{callout}{Solution:}
+
+       %Imagine a plane in the x-z axis. Charge moves purely in the $\boldsymbol{\hat{z}}$ direction.
+       \centering\textbf{Skip this problem this week, we did not cover it it in class.}
+
+   \end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}
+    A leaky and initially charged ($Q_0$) parallel plate capacitor is slowly discharging via current leakage through the material between the plates (but with dielectric constant $K = 1$). The area of the plates is $A$ and the separation is $d$. The total current between the two plates is assumed to be $I_0$, independent of time. Assume $I$ is small enough that the magnetic field produced is also small. Evaluate all the terms in the Poynting theorem and explain what is happening.
+   \begin{callout}{Solution:}
+
+       As with the last two problems, there is some potential difference due to the charges, which coupled with the current moving from $a$ to $b$ is sufficient to let me derive the electric and magnetic fields. The key consideration in this problem is that there is charge leaking, so the potential and electric field weaken with time, thereby making ampere's law need the time-dependence in electric field. Ordinarily, electric field between capacitor plates is given as:
+       $$E = \frac{\sigma}{\epsilon_{0}} = \frac{Q / A}{\epsilon_{0}}$$
+       Our charge loss is given by the simple diffeq:
+      \begin{align*}
+          I &= - \frac{dQ}{dt} \\ 
+          dQ &= -I_{0} dt \\ 
+          Q &= Q_0 - I_{0} t
+      \end{align*}
+      Now we have a time dependent electric field to feed into Ampere's law:
+     \begin{align*}
+         \oint_{\partial S} \textbf{B} \cdot d\vec{\ell} &= \mu_0 I_{\text{enc}} + \mu_0\epsilon_0 \frac{d}{dt} \int_S \vec{E} \cdot d\vec{A} \quad &\text{(Ampère's law with Maxwell's correction)} \\
+         \oint_{\partial S} \textbf{B} \cdot d\vec{\ell} &= \mu_0 I_{0} + \mu_{0} \epsilon_{0} \left( -\frac{I_{0}}{\epsilon_{0}} \right)\\
+         \oint_{\partial S} \textbf{B} \cdot d\vec{\ell} &= 0
+     \end{align*}
+     There's a constant current so no magnetic field, easy peasy. $\textbf{S}$ will be zero, so the same will be true of the divergence. Electric field is in the same direction as the current, so energy doesn't get dissipated.
+
+   \end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}
+    \textbf{Griffiths Problem 8.17} Picture the electron as a uniformly charged spherical shell, with charge $e$ and radius $R$, spinning at angular velocity $\omega$.
+
+    \begin{enumerate}[(a)]
+        \item Calculate the total energy contained in the electromagnetic fields.
+
+            \begin{callout}{Prerequisite (a), electric field:}
+                We have, by Gauss's law:
+                $$\boxed{\textbf{E} \cdot 4 \pi r ^{2} = \frac{e}{\epsilon_{0}} \hat{r}}$$
+            \end{callout}
+
+        \begin{callout}{Prerequisite (b), magnetic field:}
+            The spinning charge distribution creates a circulating surface current, which in turn generates a magnetic dipole moment. To find the magnetic dipole moment, we start by determining the surface current.
+
+            The magnetic dipole moment is given by:
+            \[
+            \textbf{m} = I \int_{S} d \textbf{a} = I \pi R^2 \sin^2 \theta \hat{z}
+            \]
+            
+            The surface charge density is given by:
+            \[
+            \sigma = \frac{e}{4\pi R^2}
+            \]
+            The charge element on a thin ring at angle $\theta$ is:
+            \begin{align*}
+                dQ &= \sigma (2\pi R \sin\theta)(R\,d\theta)
+            \end{align*}
+            The time period for one full rotation is:
+            \[
+            T = \frac{2\pi}{\omega}
+            \]
+            Therefore, the current associated with this charge element is:
+            \begin{align*}
+                I &= \frac{dQ}{T} = \sigma \omega R^2 \sin\theta\, d\theta
+            \end{align*}
+
+            Now, we integrate to find the total magnetic dipole moment:
+            \begin{align*}
+                % --- Computing the total magnetic dipole moment ---
+                \textbf{m} &= \int_{0}^{\pi} \sigma \omega R^4 \pi \sin^3\theta \,d\theta \hat{z} \\ 
+                % Expanding the integral using trigonometric identity:
+                &= \sigma \omega R^4 \pi \int_{0}^{\pi} \sin\theta (1-\cos^2\theta) \,d\theta \hat{z} \\ 
+                % Splitting the integral into two separate terms:
+                &= \sigma \omega R^4 \pi \left( \int_{0}^{\pi} \sin\theta \,d\theta - \int_{0}^{\pi} \sin\theta \cos^2\theta \,d\theta \right) \hat{z} 
+            \end{align*}
+
+            \begin{align*}
+                % Substituting u = cos(theta), so du = -sin(theta) d(theta):
+                &\begin{matrix} u = \cos\theta \\ du = -\sin\theta\, d\theta \end{matrix} \\
+                    % Evaluating the integral:
+                    &= \sigma \omega R^4 \pi \hat{z} \left( \frac{\cos^3 \theta}{3} - \cos\theta \middle)\right|_{0}^{\pi} \\ 
+                    % Final result for the magnetic dipole moment:
+                    &= \sigma \omega R^4 \frac{4}{3} \pi \hat{z}
+            \end{align*}
+
+            \[ \mathbf{B} = \frac{\mu_0}{4\pi} \frac{1}{r^3} \left[ 3\left( \frac{4}{3} \pi \sigma \omega R^4 \hat{z} \cdot \hat{r} \right) \hat{r} - \frac{4}{3} \pi \sigma \omega R^4 \hat{z} \right] \]
+
+            which simplifies to:
+            \[ \mathbf{B} = \frac{\mu_0}{4\pi} \frac{4 \pi \sigma \omega R^4}{3 r^3} \left[ 3(\hat{z} \cdot \hat{r})\hat{r} - \hat{z} \right] \]
+            
+            In general, the dipole magnetic field in spherical coordinates for a magnetic dipole mm aligned along the z-axis will be: 
+            $$\boxed{B = \frac{\mu_{0}}{4\pi} \frac{m}{r^3} \left( 2\cos\theta \boldsymbol{\hat{r}} + \sin\theta \boldsymbol{\hat{\theta}} \right), \qquad m = \sigma \omega R^4 \frac{4}{3} \pi}$$
+
+
+
+            Thus, the magnetic field outside the sphere behaves like a dipole field.  
+            For a uniformly magnetized sphere (which is equivalent to a spinning charged shell), the **magnetic field inside** is uniform and given by:
+            \[ \mathbf{B}_{\text{inside}} = \frac{2}{3} \mu_0 \mathbf{M} \]
+
+            where:
+            \[ \mathbf{M} = \frac{\mathbf{m}}{\frac{4}{3} \pi R^3} = \frac{3 \mathbf{m}}{4\pi R^3} \]
+
+            Substituting our expression for \(\mathbf{m}\):
+           \begin{align*}
+               \mathbf{B}_{\text{inside}} &= \frac{2}{3} \mu_0 \cdot \frac{3 \cdot \frac{4}{3} \pi \sigma \omega R^4}{4\pi R^3} \hat{z} \\
+               &= \boxed{\frac{2 \mu_0 \sigma \omega R}{3} \hat{z} }
+           \end{align*}
+
+
+        \end{callout}
+
+        \begin{callout}{Solution:}
+
+            That was a lot of work, but with $B$ and $E$ the rest is pretty straightforward! We have energy density given by
+            $$u=\frac{1}{2}\left( \epsilon_{0}E^{2} + \frac{1}{\mu_{0}}B^{2} \right)$$
+
+            The electric term (outside) is given as: (in the same way as example 2.9)
+            $$\boxed{W_E = \frac{1}{2} \frac{e^2}{4\pi R}}$$
+            And the magnetic part inside is (using $\sigma = \frac{e}{4\pi R^2}$) 
+            \begin{align*}
+                W_B &= \frac{1}{2\mu_{0}} \int_{0}^{R} \int_{0}^{2\pi} \int_{0}^{\pi} \left( \frac{2\mu_{0}\omega R}{3} \frac{e}{4\pi R^2} \right)^{2} \, (r \sin\phi\,d\theta \,d\phi \,dr) \\ 
+                &= \frac{1}{2\mu_{0}}  \left( \frac{2\mu_{0}\omega R}{3} \frac{e}{4\pi R^2} \right)^{2} \int_{0}^{R} \int_{0}^{2\pi} \int_{0}^{\pi}\, (r \sin\phi\,d\theta \,d\phi \,dr) \\ 
+                &= \frac{1}{2\mu_{0}}  \left( \frac{2\mu_{0}\omega R}{3} \frac{e}{4\pi R^2} \right)^{2}  \frac{4}{3} \pi R^3 \\ 
+                &= \frac{8\mu_{0}}{3\pi R}\left( \frac{\omega R e}{12} \right)^{2}  \\ 
+                &= \boxed{\frac{\mu_{0}}{54 \pi} e^2 \omega^2 R^2 }
+            \end{align*}
+            Similarly the outside:
+            \begin{align*}
+                W_B &= \frac{1}{2\mu_{0}} \int_{R}^{\infty} \int_{0}^{2\pi} \int_{0}^{\pi} \left( \frac{\mu_{0}}{4\pi} \frac{\sigma \omega R^4 \frac{4}{3}\pi}{r^3} \left( 2\cos\theta + \sin\theta \right) \right)^{2}\, (r^2 \sin\theta\,d\theta \,d\phi \,dr) \\ 
+                &= \frac{1}{2\mu_{0}} \left( \frac{\mu_{0}}{4\pi} \right)^{2} \left( \frac{4 \pi \omega R^4}{3}\frac{e}{4\pi R^2} \right)^{2} \int_{R}^{\infty} \int_{0}^{2\pi} \int_{0}^{\pi} \left( \frac{1}{r^3} \left( 2\cos\theta + \sin\theta \right) \right)^{2}\, (r^2 \sin\theta\,d\theta \,d\phi \,dr) \\ 
+                &= \frac{\mu_{0}}{2\pi^2}\frac{e^2\omega^2 R^4}{144} 
+                \int_{R}^{\infty} \frac{1}{r^4}\,dr 
+                \int_{0}^{\pi} \left( 4\cos^2\theta + 4\cos\theta\sin\theta + \sin^2\theta \right) \sin\theta\,d\theta 
+                \int_{0}^{2\pi} \,d\phi \\
+                &= \frac{\mu_{0}}{2\pi^2}\frac{e^2\omega^2 R^4}{144} 
+                \left( -\frac{1}{3r^3} \middle)\right|_{R}^{\infty}
+                \int_{0}^{\pi} \left( 4\cos^2\theta\sin\theta + 4\cos\theta\sin^2\theta + \sin^3\theta \right) \,d\theta 
+                (2\pi) \\
+                &= \frac{\mu_{0}}{2\pi^2}\frac{e^2\omega^2 R^4}{144} 
+                \left( \frac{1}{3R^3} \right)
+                (4) (2\pi) \\ 
+                &= \boxed{ \frac{\mu_{0}e^2\omega^2 R}{108 \pi} }
+            \end{align*}
+
+            Therefore total energy is then:
+            $$\boxed{U = \frac{1}{2 \epsilon_{0}} \frac{e^2}{4\pi R} + \frac{\mu_{0}}{54 \pi} e^2 \omega^2 R^2 + \frac{\mu_{0} e^2 \omega^2 R}{108 \pi}}$$
+
+        \end{callout}
+
+        \item Calculate the total angular momentum contained in the fields.
+           \begin{callout}{Solution:}
+
+               \centering\textbf{Skip this problem this week, we did not cover it it in class.}
+
+           \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}

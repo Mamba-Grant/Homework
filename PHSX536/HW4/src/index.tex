@@ -1,0 +1,25 @@
+\begin{homeworkProblem}
+Using an AC signal generator $v_s$, a transformer with a 1:1 turns ratio, and a battery $V_B$, sketch a circuit that will generate the output signal $v_{out} = v_s + V_B$.
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Given an ideal transformer with a 1:2 turns ratio and a signal generator with a 50 $\Omega$ output impedance, at what amplitude will you need to set the "no-load" signal generator output (i.e., the signal generator output value without a load; this is NOT the setting for our laboratory signal generators that are calibrated assuming a 50 $\Omega$ load!) in order to achieve a 3 V amplitude signal across a 100 $\Omega$ resistor attached across the secondary of the transformer?
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{LTSpice Problem:}
+
+In LTSpice a transformer is specified by the self-inductance of the primary and secondary coils, and, using a K circuit directive, the coupling coefficient between these coils, where $K$ is typically close to 1. (The K directive is entered in the same manner as .PROBE and .op.) The "dot" convention is followed. If you right-click on an inductor symbol there is an option for showing the dot. For example, an ideal transformer based on inductors $L_1$ and $L_2$ might be specified with the directive, as shown in the figure
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.45\textwidth]{../assets/H4P3F1.png}
+\end{figure}
+
+\[
+K \quad L1 \quad L2 \quad 1.0
+\]
+
+Set up a circuit in LTSpice that is similar to the one shown below. Assume a load resistance of $R_L = 250\Omega$ and a turn ratio for the transformer of 1:1. The impedances for the two coils should be consistent with a specified reactance for each of 600 $\Omega$, as determined at a 3 dB point of 50 Hz. Assume a DC resistance of each coil of 50 $\Omega$ ($RL1$ and $RL2$ in the figure). For these conditions, determine the ratio of the voltages across the primary and secondary coils as the driving frequency varies from 10 to 100000 Hz in octal steps. (Remember that you can plot the ratio of two circuit quantities.)
+\end{homeworkProblem}
