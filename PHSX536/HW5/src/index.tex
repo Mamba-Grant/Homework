@@ -1,0 +1,128 @@
+\begin{homeworkProblem}
+    This problem refers to the circuit shown in figure 4.41, where the resistor R is chosen to be $R=1~\mathrm{k \Omega}$ and the diode has our standard diode-drop voltage of $V_d=0.65$ V. 
+
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.35\textwidth]{../assets/H5P1F1.png}
+    \end{figure}
+
+    \begin{enumerate}[(a)]
+        \item If $\mathrm{V_{in}} = 5\text{ V}$, what are $\mathrm{V_{out}}$ and $\mathrm{I_D}$?
+            \begin{callout}{Solution:}
+
+                We would have the voltage divider given as 
+                $$V_{in} = R(I_D) + V_d \implies I_D = \frac{V_{in} - V_d}{R} = 4.35 ~\textrm{mA}$$
+
+            \end{callout}
+        \item If $\mathrm{V_{in}} = 0.5$ V, what are $\mathrm{V_{out}}$ and $\mathrm{I_{D}}$?
+            \begin{callout}{Solution:}
+
+                The circuit is not conducting through the diode, since the voltage drop across the diode is greater than the input. $I_D=0$ but $V_{in} = V_{out}$, as if the diode was not there. This is the function of a diode, since we've got $V_{\text{in}} < V_d$.
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    What are the currents through each of the two diodes?
+
+    \begin{center}
+    \begin{circuitikz}[american]
+        \draw (8,0) 
+        to[R=$1\mathrm{k \Omega}$] (6,0)
+        to[diode, l=$D_1$] (4,0)
+        to[R=$1\mathrm{k \Omega}$] (0,0) node[ground]{};
+
+        \draw (8,2) to[R=$1\mathrm{k \Omega}$] (6,2)
+        to[diode, l=$D_2$] (4,2)
+        to (3.5,2)
+        to (3.5,0);
+    \end{circuitikz}
+    \end{center}
+
+    \begin{callout}{Solution:}
+
+        We have the equations:
+        \begin{align*}
+            Ri_1 + V_{d1} &= 5 \\ 
+            Ri_2 + V_{d2} &= 3 \\ 
+            i_1 + i_2 &= i_3 \\ 
+            i_{3}R_{3} &= V_d
+        \end{align*}
+        Which mean $i_1$ and $i_2$ are:
+       \begin{align*}
+           i_1 &= \frac{5 - V_{dl}}{R} = 4.35\, \textrm{mA} \\ 
+           i_2 &= \frac{3 - V_{dl}}{R} = 2.35\, \textrm{mA}
+       \end{align*}
+       So $i_3 = 6.70$ mA, and voltage drops follow.
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    A solid-state voltage regulator such as the LM7805 takes an input voltage between 7 V and 30 V and provides a DC output of 5 V . Explain what the output of the circuit in Figure 4.26 would be if we did not use the capacitor, C, in the circuit.
+
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\textwidth]{../assets/H5P3F1.png}
+    \end{figure}
+
+    \begin{callout}{Solution:}
+
+    In essence, we've got a transformer hooked into a rectifier which has a capacitor, regulator, and resistor in parallel. This seems pretty close to a very simple full wave rectifier. The rectifier simply gets a DC voltage for the regulator, and the capacitor takes this and "smooths" the resulting signal. This gives really bad power factor on its own, though. If we didn't have this, we'd just have the absolute value of the sinusoidal input signal from the transformer.
+
+        \vspace{1em} To be a little more precise, the lack of a capacitor would give an unstable voltage output of a full-wave rectified sine function (looks like $|\sin(\omega t-\phi)|$) and varies fully between 0 to peak voltage. With the capacitor, it looks much closer to a DC voltage, however this sends the phase off to some non-ideal value. Much fancier active power electronics are what get used in real applications to my knowledge.
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Use LTSpice to simulate the circuit shown below. Assume a 200 Hz AC driving voltage of 10V amplitude, corresponding to setting one of the laboratory signal generators to 10 V peak-to-peak. A short video on diodes in LTSpice is available. Resistor R should be set to \textbf{[redacted]}. The load resistor should initially be set to the same value, with $R_L = R$. Using a transient analysis, plot the voltage for at least one full period as measured before ($v_b$) and after the diode ($v_a$). Also plot the current as measured through $R_L$. These are all quantities that will be explored in Experiment 6.
+
+    \vspace{1em}
+    \begin{center}
+        \begin{circuitikz}[american, voltage shift=0.5]
+
+        \draw
+        (4, 0)
+        to (0,0)
+        to[sV] ++(0,2)
+        to[R, l=$1\mathrm{k \Omega}$] ++(2,0)
+        to[diode, l=$\mathrm{1N750}$] ++(2,0)
+        to[R, l=$R_L$] ++(0,-2)
+        to ++(0,-0.1)
+        node[ground, below]{};
+    \end{circuitikz}
+
+    \end{center}
+
+    \begin{callout}{Solution:}
+
+        %\begin{multicols}[2]
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.45\textwidth]{../assets/H5P4F2.png}
+            \end{figure}
+        %\end{multicols}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../assets/H5P4F3.png}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.45\textwidth]{../assets/H5P4F4.png}
+\end{figure}
+
+    \end{callout}
+
+\end{homeworkProblem}

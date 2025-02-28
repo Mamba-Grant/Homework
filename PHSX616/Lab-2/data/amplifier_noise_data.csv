@@ -1,4 +1,4 @@
-Rin (Ohm),Gain 2 (HLE),V2 (V),Frequency Range (kHz),,Time Constant (s)
+Rin,SecondaryGain,V2 (V),FrequencyRange,,TimeConstant
 1,1500,0.104,0.1-100,,0.1
 10,1500,0.105,0.1-100,,
 100,1500,0.107,0.1-100,,

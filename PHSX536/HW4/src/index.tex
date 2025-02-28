@@ -1,25 +1,110 @@
 \begin{homeworkProblem}
-Using an AC signal generator $v_s$, a transformer with a 1:1 turns ratio, and a battery $V_B$, sketch a circuit that will generate the output signal $v_{out} = v_s + V_B$.
+    Using an AC signal generator $v_s$, a transformer with a 1:1 turns ratio, and a battery $V_B$, sketch a circuit that will generate the output signal $v_{out} = v_s + V_B$.
+
+    \begin{callout}{Solution:}
+
+        %From the last lecture video, we have the important relation:
+        %$$\frac{L_{P}}{L_{S}}=\left( \frac{N_{P}}{N_{S}} \right)^{2}$$
+        %In essence, to get a 1:1 turns ratio, their inductances will have to be the same. 
+        %This is fine, all that needs to be done is to pick resistances for the circuit mentioned. Let $Z_{V_{B}}, Z_{v_{s}}, Z_{P}, Z_{S}$ be series impedance for the battery, signal generator, primary, and secondary inductors, respectively. The load impedance is $Z_L$.
+        %
+        %The total input resistance is 
+        %$$Z_{\text{in}} = Z_{P} + Z_{v_s} + \left( \frac{N_P}{N_S} \right)^{2} (Z_{L} + Z_{S})$$
+
+        \vspace{1em} \centering
+        \begin{circuitikz}[american, voltage shift=0.5]
+            % Place transformer core in center
+            \draw (0,2) node[transformer core, anchor=base](T){};
+
+            % Add inductor dots
+            \draw[fill=black] (T.A1) circle[radius=0.05];
+            \draw[fill=black] (T.B1) circle[radius=0.05];
+
+            % Primary side with voltage source - left side
+            \draw (T.A2) -- ++(0,-2) node[ground] {}
+            (T.A1) -- ++(-1.5,0)
+            to[sV, l=$v_s$] ++(0,-3) node[ground] {};
+
+            % Secondary side - right side
+            \draw (T.B1) -- ++(1.5,0)
+            to[R, l=$R_L$] ++(0,-3) node[ground] {}
+            (T.B2) to[V, l=$V_B$] ++(0,-2) node[ground] {};
+
+        \end{circuitikz}
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Given an ideal transformer with a 1:2 turns ratio and a signal generator with a 50 $\Omega$ output impedance, at what amplitude will you need to set the "no-load" signal generator output (i.e., the signal generator output value without a load; this is NOT the setting for our laboratory signal generators that are calibrated assuming a 50 $\Omega$ load!) in order to achieve a 3 V amplitude signal across a 100 $\Omega$ resistor attached across the secondary of the transformer?
+    \begin{callout}{Solution:}
+
+        I will begin by writing out all the information I can to dissect the system
+       \begin{align}
+                   Z_{P} &= \left( \frac{N_P}{N_S} \right)^{2} (Z_{L}) \\ 
+        \frac{V_P}{V_S} &= \frac{N_P}{N_S} \implies \frac{V_P}{2} = V_S
+       \end{align}
+
+        So, around the first loop:
+        $$v_s - iZ_{v_s} - iZ_P = 0$$
+
+        We want to see $Z_L$ recieve 3 V, so using (2) $V_P$ should see 1.5V.
+       \begin{align*}
+           1.5 &= iZ_P \\ 
+           \frac{1.5}{\left( 1 / 4 \right) Z_L} &= i \\ 
+           0.06 &= i
+       \end{align*}
+       Now, the amplitude is straightforwardly:
+        $$(0.06)(50) + 1.5 = 4.5$$
+        Testing this in LTSpice, I see that this is correct:
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{../assets/H4P2F1.png}
+        \end{figure}
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.8\textwidth]{../assets/H4P2F2.png}
+        \end{figure}
+    \end{callout}
+
 \end{homeworkProblem}
 
 \begin{homeworkProblem}
-Given an ideal transformer with a 1:2 turns ratio and a signal generator with a 50 $\Omega$ output impedance, at what amplitude will you need to set the "no-load" signal generator output (i.e., the signal generator output value without a load; this is NOT the setting for our laboratory signal generators that are calibrated assuming a 50 $\Omega$ load!) in order to achieve a 3 V amplitude signal across a 100 $\Omega$ resistor attached across the secondary of the transformer?
-\end{homeworkProblem}
+    \textbf{LTSpice Problem:}
 
-\begin{homeworkProblem}
-\textbf{LTSpice Problem:}
+    In LTSpice a transformer is specified by the self-inductance of the primary and secondary coils, and, using a K circuit directive, the coupling coefficient between these coils, where $K$ is typically close to 1. (The K directive is entered in the same manner as .PROBE and .op.) The "dot" convention is followed. If you right-click on an inductor symbol there is an option for showing the dot. For example, an ideal transformer based on inductors $L_1$ and $L_2$ might be specified with the directive, as shown in the figure
 
-In LTSpice a transformer is specified by the self-inductance of the primary and secondary coils, and, using a K circuit directive, the coupling coefficient between these coils, where $K$ is typically close to 1. (The K directive is entered in the same manner as .PROBE and .op.) The "dot" convention is followed. If you right-click on an inductor symbol there is an option for showing the dot. For example, an ideal transformer based on inductors $L_1$ and $L_2$ might be specified with the directive, as shown in the figure
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.7\textwidth]{../assets/H4P3F2.png}
+    \end{figure}
+
+    \[
+        K \quad L1 \quad L2 \quad 1.0
+    \]
+
+    Set up a circuit in LTSpice that is similar to the one shown below. Assume a load resistance of $R_L = 250\Omega$ and a turn ratio for the transformer of 1:1. The impedances for the two coils should be consistent with a specified reactance for each of 600 $\Omega$, as determined at a 3 dB point of 50 Hz. Assume a DC resistance of each coil of 50 $\Omega$ ($RL1$ and $RL2$ in the figure). For these conditions, determine the ratio of the voltages across the primary and secondary coils as the driving frequency varies from 10 to 100000 Hz in octal steps. (Remember that you can plot the ratio of two circuit quantities.)
+    \begin{callout}{Solution:}
+
+    The only non-explicitly specified thing here is the inductances, where using the reactance relation for inductors I need to work out the inductances. 
+        $$X_L = 2\pi f L \implies L = \frac{600 \mathrm{~\Omega}}{2 \cdot \pi \cdot 50 \text{ Hz}} \approx 1.91\, \mathrm{\frac{\Omega}{Hz}} = \mathrm{1.91\, H}$$
+
 
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.45\textwidth]{../assets/H4P3F1.png}
+  \includegraphics[width=0.8\textwidth]{../assets/H4P3F1.png}
 \end{figure}
 
-\[
-K \quad L1 \quad L2 \quad 1.0
-\]
 
-Set up a circuit in LTSpice that is similar to the one shown below. Assume a load resistance of $R_L = 250\Omega$ and a turn ratio for the transformer of 1:1. The impedances for the two coils should be consistent with a specified reactance for each of 600 $\Omega$, as determined at a 3 dB point of 50 Hz. Assume a DC resistance of each coil of 50 $\Omega$ ($RL1$ and $RL2$ in the figure). For these conditions, determine the ratio of the voltages across the primary and secondary coils as the driving frequency varies from 10 to 100000 Hz in octal steps. (Remember that you can plot the ratio of two circuit quantities.)
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../assets/H4P3F3.png}
+\end{figure}
+
+    \end{callout}
 \end{homeworkProblem}

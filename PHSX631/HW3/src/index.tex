@@ -1,0 +1,222 @@
+
+\begin{homeworkProblem}
+    Griffiths Problem 9.10
+    The intensity of sunlight hitting the earth is about $1300\, \mathrm{W/m^2}$. If sunlight strikes a perfect absorber, what pressure does it exert? How about a perfect reflector? What fraction of atmospheric pressure does this amount to?
+    \begin{callout}{Solution:}
+
+        Quoting Griffiths on this: When light falls (at normal incidence) on a perfect absorber, it delivers its momentum to the surface. In a time $\Delta t$, the momentum transfer is (Fig. 9.12) $\Delta p = \braket{\mathbf{g}} Ac \Delta t$ so the radiation pressure (average force per unit area) is 
+        $$P = \frac{1}{A} \frac{\Delta p}{\Delta t} = \frac{1}{2} \epsilon_{0} E_{0}^{2} = \frac{I}{c}$$
+        On a perfect reflector the pressure is twice as great, because the momentum switches direction, instead of simply being absorbed.
+
+        \begin{align*}
+            P_{\mathrm{abs}} &= \frac{1300\, \mathrm{W / m^2}}{c} \approx 4.33\times10^{-6}\, \text{Pa} = 4.28 \times 10^{-11}\, \text{atm} \\ 
+            P_{\mathrm{ref}} &= 2 \frac{1300\, \mathrm{W / m^2}}{c} \approx 8.67\times10^{-6}\, \text{Pa} = 8.56 \times 10^{-11}\, \text{atm}
+        \end{align*}
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Consider EM plane waves in free space propagating in the $z$-direction with wave vector $\mathbf{k} = k\mathbf{\hat{z}}$ and frequency $\omega$. The wave amplitude is $E_0$ and the wave polarization vector is given by: $\mathbf{\hat{n}} = \mathbf{\hat{x}} + i\mathbf{\hat{y}}$. This is complex. Find the electric and magnetic fields versus $z$ and $t$ (the real fields). Sketch $\mathbf{E}(z,0)$ and $\mathbf{B}(z,0)$ components as functions of $z$. What is the Poynting vector and the intensity for this wave?
+    \begin{callout}{Solution:}
+
+        We derived fields for EM plane waves and found that:
+        \begin{align*}
+            \mathbf{E}(\mathbf{r},t)&=E_{0}e^{i(\mathbf{k\cdot r}-\omega t)\mathbf{\hat{n}}}\\
+            \mathbf{B}(\mathbf{r},t)&=\frac{1}{c}E_{0}e^{i(\mathbf{k\cdot r}-\omega t)} (\mathbf{\hat{k}\times \hat{n}})=\frac{1}{c}\mathbf{k}\times \mathbf{E}
+        \end{align*}
+        I will just take the real component for the final field. In the case of the magnetic field, there will be a $\mathbf{\hat{k}} \times \mathbf{\hat{n}}$ term which is given as:
+
+        \begin{align*}
+            \left|\begin{array}{ccc}
+                \mathbf{\hat{x}} & \mathbf{\hat{y}} & \mathbf{\hat{z}} \\ 
+                1 & i & 0 \\ 
+                0 & 0 & 1
+            \end{array}\right| = i \mathbf{\hat{x}} + \mathbf{\hat{y}}
+        \end{align*}
+
+        \begin{align*}
+            \textbf{E}(\textbf{r}, t) &= E_{0} [\cos \left( kz - \omega t \right) + i\sin \left( kz - \omega t \right)] \mathbf{\hat{z}} \\ 
+            &\underset{\text{Re}}{\to} E_{0} \cos \left( kz - \omega t \right) \mathbf{\hat{z}} \\ 
+            \textbf{B}(\textbf{r}, t) &= 
+            \frac{E_{0}}{c} \left[ \cos \left( kz - \omega t \right) + i \sin \left( kz - \omega t \right) \right] \left( i \mathbf{\hat{x}} + \mathbf{\hat{y}} \right) \\ 
+            &= \frac{E_{0}}{c} \left[ (i\cos(kz - \omega t) - \sin(kz - \omega t)) \mathbf{\hat{x}} + (\cos(kz - \omega t) + i\sin(kz - \omega t)) \mathbf{\hat{y}} \right]\\
+            &\underset{\text{Re}}{\to} \frac{E_{0}}{c} \left[ \cos \left( kz - \omega t \right)\mathbf{\hat{y}} - \sin \left( kz - \omega t \right) \mathbf{\hat{x}} \right] 
+        \end{align*}
+
+        Since we have a lot of terms in the parenthesis flying around, let $\alpha = kz-\omega t$. The corresponding Poynting vector is 
+        \begin{align*}
+            \textbf{S} &= \frac{1}{\mu_{0}} \left( \textbf{E} \times \textbf{B} \right) \\ 
+            &= \frac{E_{0}^2}{\mu_{0}c} 
+            (\cos^2 \alpha \mathbf{\hat{x}} + \cos \alpha \sin \alpha \mathbf{\hat{y}})
+        \end{align*}
+
+        Interpreting these though, we get a very nice helical shape out of the magnetic fields that (appears to) propagate down the z-axis.
+
+        \begin{center}
+            \begin{tikzpicture}
+                % Define axes
+                \draw[->] (-3.5,0) -- (3.5,0) node[right] {\large$z$};
+                \draw[->] (0,-2) -- (0,2) node[above] {\large$E_z$};
+
+                % Plot E field (cosine wave)
+                \draw[blue, thick, domain=-3.2:3.2, samples=100] 
+                plot (\x,{cos(deg(1.5*\x))});
+
+                % Add annotation inside the plot area
+                \node[blue, text width=3cm, align=left] at (2,1.5) {\large$E_z = E_0 \cos(kz)$};
+            \end{tikzpicture}
+
+            \vspace{0.8cm}
+
+            \begin{tikzpicture}
+                % Define axes
+                \draw[->] (-3.5,0) -- (3.5,0) node[right] {\large$z$};
+                \draw[->] (0,-2) -- (0,2) node[above] {\large$B_y$};
+
+                % Plot By field (cosine wave)
+                \draw[red, thick, domain=-3.2:3.2, samples=100] 
+                plot (\x,{cos(deg(1.5*\x))});
+
+                % Add annotation inside the plot area
+                \node[red, text width=4cm, align=left] at (2,1.5) {\large$B_y = \frac{E_0}{c} \cos(kz)$};
+            \end{tikzpicture}
+
+            \vspace{0.8cm}
+
+            \begin{tikzpicture}
+                % Define axes
+                \draw[->] (-3.5,0) -- (3.5,0) node[right] {\large$z$};
+                \draw[->] (0,-2) -- (0,2) node[above] {\large$B_x$};
+
+                % Plot Bx field (-sine wave)
+                \draw[purple, thick, domain=-3.2:3.2, samples=100] 
+                plot (\x,{-sin(deg(1.5*\x))});
+
+                % Add annotation inside the plot area
+                \node[purple, text width=4cm, align=left] at (2,1.5) {\large$B_x = -\frac{E_0}{c} \sin(kz)$};
+            \end{tikzpicture}
+        \end{center}
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    What are the units of momentum density? Units of Poynting vector $\mathbf{S}$? Units of Maxwell stress tensor $\mathbf{T}$? Demonstrate that the units of each term of the Poynting theorem and the momentum balance relation (with $\mathbf{T}$) are consistent.
+    \begin{callout}{Solution:}
+
+        \begin{enumerate}[1.]
+            \item Momentum density: $\text{kg}/(\text{m}^2 \cdot \text{s})$
+            \item Poynting vector: $\text{W}/\text{m}^2$ or $\text{J}/(\text{m}^2 \cdot \text{s})$
+            \item Maxwell stress tensor: $\text{N}/\text{m}^2$ or $\text{J}/\text{m}^3$
+        \end{enumerate}
+
+Poynting theorem tells us that we
+   will have units 
+        $$[\text{J}/(\text{m}^2 \cdot \text{s})]/\text{m} + \text{J}/(\text{m}^3 \cdot \text{s}) = (\text{A}/\text{m}^2) \cdot (\text{V}/\text{m}) = \text{J}/(\text{m}^3 \cdot \text{s})$$
+
+Momentum balance equation:
+   $$\frac{\partial \vec{p}}{\partial t} + \nabla \cdot \mathbf{T} = \vec{f}$$
+
+   will have units
+   $$[\text{kg}/(\text{m}^2 \cdot \text{s})]/\text{s} + [\text{N}/\text{m}^2]/\text{m} = \text{N}/\text{m}^3 = \text{kg}/(\text{m}^2 \cdot \text{s}^2)$$
+
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    A physical quantity, $y(x,t)$, is a function of distance $x$ and time $t$, and also obeys the wave equation:
+    \[ \frac{\partial^2 y}{\partial t^2} - c^2 \frac{\partial^2 y}{\partial x^2} = 0. \]
+    where $c$ is a wave speed.
+
+    \begin{enumerate}[(a)]
+        \item What is a general solution to this wave equation?
+            \begin{callout}{Solution:}
+
+                The wave equation is a classic example of a separable linear PDE. We suppose $u(x,t) = v(x)w(t)$. Then, 
+                \begin{equation} \label{eq:product-rule}
+                u_{tt} = v(x)w''(t), \qquad u_{xx} = v''(x)w(t)
+                \end{equation}
+                so 
+                $$u_{tt} = c^2 u_{xx}$$
+                I can rewrite this using the relations in equation \ref{eq:product-rule}, and separate my equations:
+                $$\frac{w''}{w} = c^2 \frac{v''}{v} = \lambda$$
+                This is equivalent of the two separate equations:
+               \begin{align*}
+                   w'' &= \lambda w \\ 
+                   v'' &= \frac{\lambda}{c^2} v
+               \end{align*}
+
+                In the case $\lambda=0$, 
+                $$w(t) = A + Bt; \qquad v(x) = C + Dx$$
+                The linear combination of all solutions is in itself a solution. Now, there's also the case that $\lambda > 0$, and here $\lambda = \omega^2 > 0$, netting exponential solutions 
+                $$w(t)=Ae^{\pm \omega t}; \qquad v(x) = Be^{\pm \frac{\omega}{c} x}$$
+                And finally there exist solutions where $\lambda = \omega^2 < 0$, corresponding to cos \& sin equations:
+                $$w(t) = A \cos \omega t + B \sin \omega t; \qquad v(t) = C\cos \frac{\omega}{c} x + D \sin \frac{\omega}{c} x$$
+                So to summarize, depending on the $\lambda$, we either get linear, exponential, or sinusoidal functions. The product of $w$ and $v$ are the complete wave equation. Any combination of these solutions is valid, and just like the harmonic solutions this is a sum over all possible solutions thanks to superposition which we constrain to fit the physics. Usually we start by writing the equation as a sum of backwards and forwards travelling wave components. Formally writing the general solution:
+                $$u(x, t) = f (x + ct) + g(x - ct)$$
+
+            \end{callout}
+        \item The initial conditions on the $y$ variable are given by the functions:
+            \[ y(x,t=0) = \cos(2x) \quad \text{for} \quad -\pi/4 < x < +\pi/4; \]
+            and $y=0$ for other $x$ values.
+    \end{enumerate}
+
+    and
+    \[ \frac{dy}{dt}(x,t=0) = 0. \]
+
+    What is the wave solution, $y(x,t)$? Sketch $y(x,t)$ at a few times.
+    \begin{callout}{Solution:}
+
+        \textit{I reference Strauss's PDE book as I work through this, as it is my first time working with such PDEs.} I'd like to derive the general solution to the boundary value problem with the wave equations. Let the boundary conditions be 
+
+        $$u(x,0) = \phi(x), \qquad u_t(x,0) = \psi(x)$$
+        We can start by analyzing the stationary problem, at time $t=0$, where 
+        $$\phi(x)=f(x)+g(x), \qquad \psi(x) = cf'(x)-cg(x)$$
+        equivalently,
+        $$\phi' = f'+g', \qquad \psi' = f'-g'$$
+        adding and subtracting these, we arrive at 
+        $$f' = \frac{1}{2} \left( \phi' + \frac{\psi'}{c} \right), \qquad g'= \frac{1}{2} (\phi' - \frac{\psi'}{c})$$
+        integrating gives 
+        $$f(s) = \frac{1}{2} \phi(s) + \frac{1}{2c} \int_{0}^{s} \phi + A$$
+        $$g(s) = \frac{1}{2} \phi(s) + \frac{1}{2c} \int_{0}^{s} \phi + B$$
+        substituting gives 
+        $$u(x,t) = \frac{1}{2} \phi (x + ct) + \frac{1}{2c} \int_{0}^{x+ct} \psi + \frac{1}{2}\phi(x-ct) - \frac{1}{2c} \int_{0}^{x-ct} \psi$$
+        simplifies
+        $$u(x,t) = \frac{1}{2} [\phi(x+ct)+\phi(x-ct)] + \frac{1}{2c} \int_{x-ct}^{x+ct} \psi(s) \,ds$$
+        This is the solution formula for the initial-value problem, due to d’Alembert in 1746.
+        In our case, $\phi=\cos(2x)$ and $\psi=0$, and this solution is simply:
+        $$u(x,t) = \frac{1}{2} [ \cos(2x + 2ct) + \cos(2x - 2ct) ]$$
+        And this represents a stationary wave.
+
+        \centering
+        \begin{tikzpicture}
+    \begin{groupplot}[
+        group style={group size=1 by 5, horizontal sep=1.5cm, vertical sep=1.5cm},
+        width=6cm, height=4cm,
+        xlabel={$x$}, ylabel={$u(x,t)$},
+        xmin=-2, xmax=2, ymin=-1, ymax=1,
+        samples=100, domain=-2:2,
+        legend pos=north east
+    ]
+
+    \nextgroupplot[title={$t = -\pi/4$}]
+    \addplot[blue, thick] {0.5*(cos(deg(2*x - 2*pi/4)) + cos(deg(2*x + 2*pi/4)))};
+    % Time t = -pi/8
+    \nextgroupplot[title={$t = -\pi/8$}]
+    \addplot[blue, thick] {0.5*(cos(deg(2*x - 2*pi/8)) + cos(deg(2*x + 2*pi/8)))};
+    % Time t = 0
+    \nextgroupplot[title={$t = 0$}]
+    \addplot[blue, thick] {0.5*(cos(deg(2*x + 0)) + cos(deg(2*x - 0)))};
+    % Time t = pi/8
+    \nextgroupplot[title={$t = \pi/8$}]
+        \addplot[blue, thick] {0.5*(cos(deg(2*x + 2*pi/8)) + cos(deg(2*x - 2*pi/8)))};
+    % Time t = pi/4
+    \nextgroupplot[title={$t = \pi/4$}]
+        \addplot[blue, thick] {0.5*(cos(deg(2*x + 2*pi/4)) + cos(deg(2*x - 2*pi/4)))};
+
+    \end{groupplot}
+\end{tikzpicture}
+
+    \end{callout}
+\end{homeworkProblem}
