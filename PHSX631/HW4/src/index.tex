@@ -1,0 +1,130 @@
+\begin{homeworkProblem}
+    Photons are quanta of the EM field with energy \( E_n = h f \) where \( h \) is Planck’s constant and \( f \) is the frequency. What is the momentum of such a photon? If the density of photons in space, all traveling in the \( x \)-direction and all with the same energy, is \( n \) (with units of \( \text{m}^{-3} \)), then express the energy density, Poynting vector, intensity, and momentum density of the EM field in terms of this number density. If a beam of such photons is absorbed by a sheet of area \( A \), what is the radiation force on this sheet in terms of the photon density?
+
+    \begin{callout}{Solution:}
+
+        \textit{Let $U_n=E_n$, to avoid confusion with fields.} We could go with De Broglie's relation that $p = \frac{hf}{c}$, but that feels a little hand-wavey. Who are we to trust this without proving it- I think it makes a bit more sense to go about this in a statistical-mechanicish way; where, 
+        $$U_n  = hf, \qquad u = \frac{1}{2} \left( \epsilon_{0} E^{2} + \frac{1}{\mu_{0}} B^{2} \right) = \epsilon_{0} E^2$$
+        In our previous work, we've used this $u$ to get to a Poynting vector as follows 
+        $$\mathbf{S} = \frac{1}{\mu_{0}} \left( \mathbf{E} \times \mathbf{B} \right)$$
+        Which for the monochromatic plane wave it reduces to 
+        $$\mathbf{S} = cu \mathbf{\hat{x}}$$
+
+        and we argue that $\mathbf{g} = \mathbf{S}/c^2$. 
+We could imagine for ourselves a photon gas of density $n$ and with volume $\frac{1}{n}$.
+        If we imagine it is occupied in this case by a photon, then $U = u$. If we look at the \textit{total} momentum associated with the fields, we'd see that
+        $$\mathbf{G} = \frac{U_n}{c}$$
+
+        So if indeed we have a photon with energy $U_n$, we extract momentum that we'd expect!
+        $$\boxed{\mathbf{G} = \frac{hf}{c}}$$
+
+        In this process we kind of get to the idea of energy density, poynting vector, and momentum density, just for a single photon. If we ignore the whole density of states and energy distributions that would come from the quantum mechanics, and take the whole gas to be of energy $U_n$, then the energy of the whole gas just emerges as the sum of the energy due to each particle such that $u = nU_n$.
+        \newpage
+        $$\boxed{\begin{aligned}
+            U_{\text{gas}} &= nU_n \\ 
+            \mathbf{S}_{\text{gas}} &= nchf \mathbf{\hat{x}} \\ 
+            I_{\text{gas}} &= \langle S \rangle = nc\frac{hf}{2} \\
+            \mathbf{g}_{\text{gas}} &= \frac{nhf}{c} \\
+            P_{\text{gas$\to$A}} &= \frac{IA}{c} = \frac{nhfA}{c^2}
+        \end{aligned}}$$
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Do Griffiths problem 9.18 (parallel or \( p \) polarization case), but with relative permittivity \( \varepsilon_r = 3.5 \). Use Excel or some other software to produce plots.
+    
+    \vspace{1em} Problem 9.18 The index of refraction of diamond is 2.42. Construct the graph analogous to Fig. 9.16 for the air/diamond interface. (Assume $\mu_1=\mu_2=\mu_0$.) In particular, calculate (a) the amplitudes at normal incidence, (b) Brewster's angle, and (c) the "crossover" angle, at which the reflected and transmitted amplitudes are equal.
+    \begin{callout}{Solution:}
+
+        Figure 9.16 plots $I_{0_R} / I_{0_T}$ and $I_{0_T} / I_{0_R}$, so I'll do that too.
+        We know:
+        $$
+        \frac{E_{0_R}}{E_{0_I}} = \frac{\alpha - \beta}{\alpha + \beta}, \qquad
+        \frac{E_{0_T}}{E_{0_I}} = \frac{2}{\alpha+\beta}, \qquad 
+        \tan{\theta_B} = \frac{n_{2}}{n_{1}}
+        $$
+        where 
+        $$
+        \alpha = \frac{\sqrt{1 - (\frac{n_{1}}{n_{2}} \sin \theta_{I})^{2}}}{\cos \theta_I}, \qquad
+        \beta = \frac{\mu_{1}n_{2}}{\mu_{2} n_{1}}, \qquad 
+        \epsilon_r = \frac{\epsilon}{\epsilon_{0}}
+        $$
+        \begin{enumerate}[(a)]
+            \item Normal incidence occurs at $\theta_I = 0$, so we just throw this at a calculator, which spits out 
+                $$
+                \alpha = 1, 
+                \qquad \beta = 3.5, 
+                \qquad \frac{E_{0_R}}{E_{0_I}} = -0.555\dots,
+                \qquad \frac{E_{0_T}}{E_{0_I}} = 0.444\dots
+                $$
+
+            \item Brewster's angle pretty simple:
+                $$\theta_B = 74.05\dots$$
+
+            \item The crossover angle occurs when $E_{0_T} = E_{0_R}$, 
+                Equating the fractions and eliminating $E_{0_I}$ gives
+                \begin{align*}
+                    \alpha - \beta &= 2 \\ 
+                    \alpha &= 5.5
+                \end{align*}
+                \begin{align*}
+                    (5.5)^{2}\cos^{2} \theta &= 1 - \sin^{2} \theta / (3.5)^{2} \\
+                    30.25(1 - \sin^2 \theta) &= 1 - \sin^2 \theta / 12.25  \\
+                    30.25 - 30.25\sin^2 \theta &= 1 - \sin^2 \theta / 12.25 \\
+                    30.25 - 1 &= 30.25\sin^2 \theta - \sin^2 \theta / 12.25 \\
+                    29.25 &= \sin^2 \theta(30.25 - 1/12.25) \\
+                    29.25 &= \sin^2 \theta(30.25 - 0.0816) \\
+                    29.25 &= \sin^2 \theta(30.1684) \\
+                    \sin^2 \theta &= 29.25/30.1684 \\
+                    \sin^2 \theta &= 0.9696\dots \\
+                    \sin \theta &= \sqrt{0.9696} \approx 0.9847\dots \\ 
+                    \theta &= 79.9753\dots
+                \end{align*}
+                In the plot this is the intersection of the lines.
+                \input{../test.tikz}
+        \end{enumerate}
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    This is a qualitative essay question requiring several sentences plus maybe a cartoon. Sometimes at night, when there is a thermal inversion (i.e., higher temperatures at higher altitudes, but colder near the ground), sounds from long distances away can be heard. Explain this phenomenon, knowing how the speed of sound varies with temperature and knowing that something like Snell’s law should apply to sound waves as well as EM waves.
+\begin{callout}{Solution:}
+
+In the same light as electromagnetic waves, sound waves could be imagined to be plane waves, in some kind of approximation at least. Then, we can re-use the same logic we've already been working with. In class we said that the speed of sound is as follows:
+    $$\frac{\omega}{k} = C_s = \sqrt{\frac{\gamma p_0}{\rho_0}} = \sqrt{\gamma R T} = \sqrt{ \gamma \frac{k_b}{m} T}$$
+
+    I'm told the temperature of the atmosphere increases as you get higher up, thereby increasing the speed of the wave, giving us a gradient! This is similar to changing the material light is propagating through continuously, so if conditions are right it should be easy to get some reflection.  I believe this is analogous to people we do certain kinds of transmissions here on earth: by bouncing our wave off the upper atmosphere.
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Derive, with details, expressions (9.111) and (9.112) in the textbook for Brewster’s angle.
+    \begin{callout}{Solution:}
+
+        Taken from Griffiths, we're interested in the special case that there is no reflected wave. For this to happen, we see that either there must be no incident light or that $\alpha = \beta$:
+        \begin{align*}
+            \tilde{E}_{0R} = \left( \frac{\alpha - \beta}{\alpha + \beta} \right) \tilde{E}_{0I}, \quad \tilde{E}_{0T} = \left( \frac{2}{\alpha + \beta} \right) \tilde{E}_{0I}.
+        \end{align*}
+        \begin{align*}
+            \alpha = \frac{\sqrt{1- \sin^{2}\theta_T}}{\cos \theta_I} &= \beta &\text{(Definition of Brewster's Angle)} \\
+            \frac{\sqrt{1 - \sin^2 \theta_T}}{\sqrt{1 - \sin^2 \theta_I}} &= \beta &\text{($\cos^2 \theta = 1-\sin^{2} \theta$)} \\
+            \frac{\sqrt{1 - 1 / \beta^2 \sin^2 \theta_I}}{\sqrt{1 - \sin^2 \theta_I}} &= \beta &(\sin^{2} \theta_T = \frac{1}{\beta} \sin^{2} \theta_I) \\
+            \frac{1 - 1 / \beta^2 \sin^2 \theta_I}{1 - \sin^2 \theta_I} &= \beta^2 &\text{(Algebraic Manipulations Follow)} \\
+            1 - 1 / \beta^2 \sin^2 \theta_I &= \beta^2 (1 - \sin^2 \theta_I) \\
+            1 &= \beta^2 - \beta^{2} \sin^2 \theta_I + 1 / \beta^2 \sin^2 \theta_I \\
+            1-\beta^2 &= \sin^2 \theta_I[(1 / \beta^{2}) - \beta^{2}] \\
+            \sin^{2} \theta_B &= \frac{1 - \beta^{2}}{(1 / \beta)^{2} - \beta^{2}} &\text{(Eqn. 9.111)}
+        \end{align*}
+        As in Griffiths, "For the typical case $\mu_{1} \approx \mu_{2}$, so $\beta \approx \frac{n_{2}}{n_{1}}$, $\sin^{2} \theta_B \approx \frac{\beta^{2}}{1+\beta^{2}}$" Which gives the equation for Brewster's angle one might see on Wikipedia,
+        
+        \begin{align*}
+            \tan \theta_B &\approx \frac{n_2}{n_1} && \text{(Eqn 9.112)}
+        \end{align*}
+
+    \end{callout}
+\end{homeworkProblem}

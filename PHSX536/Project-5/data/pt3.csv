@@ -1,4 +1,4 @@
-Vs (mV),Freq,FreqErr,P2P1,P2P2,Phase,PhaseErr,Potentiometer
+Vs,Freq,FreqErr,P2P1,P2P2,Phase,PhaseErr,Potentiometer
 250,2000000,10000,100,24,-0.0045,0.00001,0
 250,2000000,10000,96,64,-123,1,1
 250,2000000,10000,96,72,-146,1,2

@@ -1,0 +1,79 @@
+Use LTSpice to simulate the Zener diode regulated power supply circuit shown below. Assume a 1:1 transformer configuration with an effective impedance of the (primary circuit + transformer) (Rthev in the figure) set to the value that you determined in Experiment 5. Plot, as a function of the load resistance, with $R_L$ varying between 10 $\Omega$ and 5000 $\Omega$ in octave steps, the voltage across the load both with and without the Zener diode in place. Determine the Thevenin equivalent values for your circuit when the Zener is NOT present. The results from this simulation are to be compared to your subsequent experimental results.
+
+\begin{callout}{Solution \#1, Without Zener:}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../assets/H6P1F4.png}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../assets/H6P1F5.png}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../assets/H6P1F6.png}
+\end{figure}
+
+\end{callout}
+
+\newpage
+\begin{callout}{Solution \#2, With Zener:}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../assets/H6P1F1.png}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../assets/H6P1F2.png}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../assets/H6P1F3.png}
+\end{figure}
+
+\end{callout}
+
+\begin{callout}{Discussion of Circuits and Rthev:}
+
+    Comparing the peak to peak and RMS curves, we can tell the zener introduces a "kink" in PP and RMS curves, and helps achieve better passive stabilization in the resulting signal. It is a little difficult to tell using LTSpice's default axes labels, but with a keen eye it's clear that "VPP" converges significantly faster beyond the 500 $\Omega$ resistance regime. The RMS also goes from a logarithmic curve to something which appears to flatten at load resistances beyond 500 $\Omega$ due to the nature of voltage drops across diodes. \vspace{1em}
+
+
+    Without attempting to simplify anything, I'll just attack the voltage throughout the secodndary, where $V$ is the voltage output on the secondary, and $V_d$ is the drop across the diodes in the rectifier.
+    \begin{align*}
+        V &= 2V_d + i_1 R_2 + i_{1}Z_C - i_{2}Z_C \\ 
+        0 &= i_{2} Z_C - i_{1}Z_C + i_{2}R_L \\ 
+        V_{th} &= i_{2} R_L
+    \end{align*}
+    \begin{align*}
+        0 &= \frac{V_{th}}{R_L} Z_C - i_1 Z_C + \frac{V_{th}}{R_L} R_L \\
+        0 &= \frac{V_{th}Z_C}{R_L} - i_1 Z_C + V_{th} \\
+        i_1 &= \frac{V_{th}Z_C}{R_L Z_C} + \frac{V_{th}}{Z_C} = V_{th}(\frac{1}{R_L} + \frac{1}{Z_C}) \\
+        V &= 2V_d + V_{th}(\frac{1}{R_L} + \frac{1}{Z_C}) R_2 + V_{th}(\frac{1}{R_L} + \frac{1}{Z_C})Z_C - \frac{V_{th}}{R_L}Z_C \\
+        V &= 2V_d + V_{th}[\frac{R_2}{R_L} + \frac{R_2}{Z_C} + \frac{Z_C}{R_L} + 1 - \frac{Z_C}{R_L}] \\
+        V &= 2V_d + V_{th}[\frac{R_2}{R_L} + \frac{R_2}{Z_C} + 1] \\
+        V_{th} &= \frac{V - 2V_d}{\frac{R_2}{R_L} + \frac{R_2}{Z_C} + 1} \\
+        V_{th} &= \frac{(V - 2V_d)R_L Z_C}{R_2 Z_C + R_2 R_L + R_L Z_C}
+    \end{align*}
+
+
+And to determine the thevenin equivalent in the secondary, replacing the rectifier and additional diode D5 with shorts, we'd have a resistance given as 
+\begin{align*}
+    Z_S = R_{th} &= R + \frac{R_L Z_C}{Z_C + R_L} \\
+    &= R + \frac{R_L (1 / j \omega C)}{(1 / j \omega C) + R_L} \\ 
+    &= R + \frac{ (R_L / j \omega C)}{(1+ R_L j \omega C) / j \omega C} \\ 
+    &= R + \frac{R_L}{1 + R_L j \omega C} \\ 
+    &= R + \frac{R_L}{1 + R_L j \omega C} \frac{1- R_L j \omega C}{1-R_L j \omega C} \\ 
+    &= R + \frac{R_L - R_L j \omega C}{1 + (R_L \omega C)^2} \\ 
+    &= R + \frac{R_L }{1 + (R_L \omega C)^2} - j\frac{R_L \omega C}{1 + (R_L \omega C)^2}\\ 
+\end{align*}
+    And we know that $\left( \frac{N_S}{N_P} \right)^{2} = \frac{Z_S}{Z_P}$, so in this case we should expect $Z_P=Z_S$ for an optimal configuration.
+
+    \vspace{1em} \textit{As a note to myself on the confusing and poorly documented nature of LTSpice, to produce plots with measured values, one must open the log (ctrl+L) and right click to access this separate plotting interface.}
+
+\end{callout}
