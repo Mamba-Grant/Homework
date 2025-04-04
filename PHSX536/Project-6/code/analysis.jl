@@ -2,7 +2,7 @@ using Measurements, Unitful, DataFrames, CSV, Plots
 import Measurements: value
 import Measurements: uncertainty
 default(dpi=800)
-theme(:wong2)
+theme(:vibrant)
 
 dfs::Vector{DataFrame} = CSV.read.(readdir("../data/", join=true), DataFrame;)
 dfs .= [rename(df[:, [4, 5, 10, 11]], [:t_CH1, :V_CH1, :t_CH2, :V_CH2]) for df in dfs] # grab only the columns needed
@@ -24,25 +24,26 @@ transform!(sim,
 ) # assign units and errors to data all at once
 
 plots = map(dfs) do df 
-    CH1 = plot(uconvert.(u"ms", df.t_CH1), value.(df.V_CH1), ribbon=ustrip.(uncertainty.(df.t_CH1)), label="CH. 1")
-    CH2 = plot!(uconvert.(u"ms", df.t_CH2), value.(df.V_CH2), ribbon=ustrip.(uncertainty.(df.t_CH2)), label="CH. 2")
+    CH1 = scatter(uconvert.(u"ms", df.t_CH1), (df.V_CH1), label="CH. 1", ms=1)
+    CH2 = scatter!(uconvert.(u"ms", df.t_CH2), (df.V_CH2), label="CH. 2", ms=1)
 end
 
-plot!.(plots[2:4], Ref(uconvert.(u"ms", sim.time)), Ref(sim."V(ch1)"), label="Sim. CH1", seriestype=:line)
-plot!(plots[2], uconvert.(u"ms", sim.time), sim."V(n003)", label="Sim. CH2", seriestype=:line)
-plot!(plots[3], uconvert.(u"ms", sim.time), sim."V(n001)", label="Sim. n001", seriestype=:line)
-plot!(plots[4], uconvert.(u"ms", sim.time), sim."V(ch2)", label="Sim. n003", seriestype=:line)
+plot!.(plots[2:4], Ref(uconvert.(u"ms", sim.time)), Ref(sim."V(ch1)"), label="Sim. CH1", seriestype=:line, ms=2)
+plot!(plots[2], uconvert.(u"ms", sim.time), sim."V(n003)", label="Sim. CH2", seriestype=:line, ms=2)
+plot!(plots[3], uconvert.(u"ms", sim.time), sim."V(n001)", label="Sim. n001", seriestype=:line, ms=2)
+plot!(plots[4], uconvert.(u"ms", sim.time), sim."V(ch2)", label="Sim. n003", seriestype=:line, ms=2)
 
-plotnames = ["Part 1: Zener", "Part 2: Va", "Part 2: Vb", "Part 3: Vc"]
+plotnames = ["Part 1: Zener", "Part 2: Va", "Part 2: Vb", "Part 2: Vc"]
 p = plot(
-    plot(plots[1], title=plotnames[1],),
-    plot(plots[2], title=plotnames[2],),
-    plot(plots[3], title=plotnames[3],),
-    plot(plots[4], title=plotnames[4],)
+    plot(plots[1], title=plotnames[1]),
+    plot(plots[2], title=plotnames[2]),
+    plot(plots[3], title=plotnames[3]),
+    plot(plots[4], title=plotnames[4]),
+    dpi=600
 )
 
 peaks = DataFrame(
-    type = ["Zener", "Va", "Vb", "Vc"],
+    type = ["Zener", "Va (Half Wave)", "Vb (Half Wave)", "Vc (Full Wave)"],
     max_V_CH1 = [maximum(df.V_CH1) for df in dfs],
     min_V_CH1 = [minimum(df.V_CH1) for df in dfs],
     max_V_CH2 = [maximum(df.V_CH2) for df in dfs],

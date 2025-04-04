@@ -1,0 +1,128 @@
+\begin{homeworkProblem}
+Consider the circuit shown in Figure 6.34, which is built from four resistors and an op-amp. 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.35\textwidth]{../assets/H9P1F1.png}
+  \label{fig:h9p1f1}
+\end{figure}
+\begin{enumerate}[(a)]
+    \item In terms of $v_{in}$, $v_{out}$, $R_1$ and $R_2$, what is the voltage at the non-inverting input to the op-amp ($v_+$)? 
+        \begin{callout}{Solution:}
+
+            Writing the loop equations, I find
+        \begin{align}
+            v_{in} - v_{out} &= i_{1} (R_{1} + R_{2}) \\ 
+            v_{in} - i_{1}R_{1} &= v_{-} \\ 
+            v_{out} &= i_{2} (R_{1} + R_{1}) \\
+            v_{out} - i_{2} R_{1} &= v_{+} \\ 
+            v_- &= v_+
+        \end{align}
+            To eliminate $i_{2}$, I'll substitute in $i_{2} = \frac{v_{out}}{R_{1}+R_{1}}$ from equation (3) into equation (4).
+            \begin{align*}
+                v_+ &= v_{out} \left( 1 - \frac{R_{1}}{R_{1}+R_{1}} \right) = v_{out} \left( 1 - \frac{1}{2} \right) = \frac{1}{2}v_{out}
+            \end{align*}
+
+        \end{callout}
+
+        \newpage \item In terms of $v_{in}$, $v_{out}$, $R_1$ and $R_2$, what is input current to the circuit (the current coming in through $R_1$)? 
+        \begin{callout}{Solution:}
+
+            We're looking for $i_{1}$, which is given by
+            \begin{align*}
+                v_{in} &= i_{1} R_{1} - v_- &&\text{Equation (2)} \\ 
+                i_{1} &= \frac{v_{in} - v_-}{R_{1}} \\ 
+                i_{1} &= \frac{v_{in} - \frac{1}{2}v_{out}}{R_{1}} &&\text{Equation (5)} \\ 
+            \end{align*}
+
+        \end{callout}
+    \item In terms of $v_{in}$, $R_1$ and $R_2$, what is the output voltage ($v_{out}$) of the circuit?
+        \begin{callout}{Solution:}
+            \begin{align*}
+                v_{out} &= v_{in} - i_{1}(R_{1}+R_{2}) &&\text{Equation (1)} \\ 
+                v_{out} &= v_{in} - \frac{v_{in} - \frac{1}{2}v_{out}}{R_{1}} (R_{1}+R_{2}) \\ 
+                v_{out}R_{1}&=v_{in}R_{1}-\left(v_{in}-\frac{1}{2}v_{out}\right)\left(R_{1}+R_{2}\right) \\
+                v_{out}R_{1}&=-v_{in}R_{2}+\frac{v_{out}R_{1}}{2}+\frac{v_{out}R_{2}}{2} \\
+                v_{out}R_{1}-v_{out}R_{2}&=-2v_{in}R_{2} \\
+                v_{out}\left(R_{1}-R_{2}\right)&=-2v_{in}R_{2} \\
+                v_{out}&=-\frac{2v_{in}R_{2}}{R_{1}-R_{2}}
+            \end{align*}
+        \end{callout}
+
+\end{enumerate}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}
+(16.5) The op-amp circuit shown in Figure 6.36 has an input resistor, $R_i$, and a feedback impedance, $Z_F$, built from a resistor, $R_f$, in parallel with a capacitor, $C_f$. The circuit has an
+input voltage $v_{in}(t)$, and an output voltage $v_{out}(t)$. You may assume that the op-amp is correctly biased with the appropriate DC voltage such that it is \textit{on}. 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../assets/H9P2F1.png}
+\end{figure}
+
+\begin{enumerate}[(a)]
+    \item The resistor, $R_f$, and capacitor, $C_f$, in the feedback loop are in parallel with each other. Which one will dominate in the limit of low frequencies and which will dominate in the limit of high frequencies? 
+        \begin{callout}{Solution:}
+
+            Impedance of a capacitor is inversely proportional to frequency, so at low frequencies it will have high impedance, while at high frequencies it will have low resistance. This means that the resistor dominates at low frequency and the capacitor at high frequency.
+
+        \end{callout}
+    \item Write the impedance of the parallel pair, $Z_f$, as $R_f$ times a dimensionless quantity. 
+        \begin{callout}{Solution:}
+
+        \begin{align*}
+            Z_f &= \frac{R_f Z_{C_f}}{R_f + Z_{C_f}} \\ 
+            &= \frac{R_f (1 / j \omega C_f)}{R_f + (1 / j \omega C_f)} \\ 
+            &= \frac{R_f (1 / j \omega C_f)}{R_f + (1 / j \omega C_f)} \frac{j \omega C_f}{j \omega C_f} \\ 
+            &= \frac{R_f}{R_f (j \omega C_f) + 1} \\ 
+        \end{align*}
+
+        \end{callout}
+    \newpage \item What is the gain, $G$, of the circuit in the low-frequency regime? 
+        \begin{callout}{Solution:}
+
+            This is a multiplier op-amp where $v_{out} = i (R_{i} + Z_f)$, and $i=\frac{v_{in}}{R_{i}}$, so 
+            \begin{align*}
+                v_{out} &= \underbrace{\left( 1 + \frac{Z_f}{R_{i}} \right)}_{=\text{ gain}} v_{in} \\ 
+            \end{align*}
+
+            For a low frequency, $\underset{\omega \to 0}{\lim} (Z_f) = R_f$, so the gain will be 
+            $$G = 1 + \frac{R_f}{R_i}$$
+
+        \end{callout}
+    \item What is the gain, $G$, of the circuit in the high-frequency regime? 
+        \begin{callout}{Solution:}
+
+        At $\underset{\omega \to \infty}{\lim} (Z_f) = 0$, so gain is 
+            $$G=1 + \frac{0}{R_i} = 1$$
+
+        \end{callout}
+    \newpage \item Assume that $R_f = 100R_i$ and using your results from (c) and (d), plot the gain, $|G(f)|$, as a function of $\omega/\omega_{RC}$ on a log-log plot, where $\omega_{RC} = 1/R_fC_f$. 
+        \begin{callout}{Solution:}
+
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=0.9\textwidth]{../assets/gain.pdf}
+            \end{figure}
+
+        \end{callout}
+    \item For an arbitrary time-dependent input voltage, $v_{in}(t)$, what will the input current, $i_i(t)$, be? 
+        \begin{callout}{Solution:}
+
+        \begin{align*}
+            i_i(t) &= \frac{v_{in}}{R_i} \\ 
+        \end{align*}
+
+        \end{callout}
+    \item What will be the current in the feedback loop (through the parallel $R$-$C$ pair)?
+        \begin{callout}{Solution:}
+
+            %The inverting input draws no current due to high internal resistance, so it is the same as in (f).
+            \begin{align*}
+                i_f &= \frac{v_{out}}{Z_f} = \frac{1+v_{in}(Z_f / R_i)}{Z_f}
+            \end{align*}
+
+        \end{callout}
+\end{enumerate}
+
+\end{homeworkProblem}

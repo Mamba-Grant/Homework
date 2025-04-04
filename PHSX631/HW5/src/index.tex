@@ -1,0 +1,254 @@
+\begin{homeworkProblem}
+    The time-dependent Schr\"odinger equation in 1D is:
+
+    \begin{equation}
+        i\hbar \frac{\partial \Psi}{\partial t} = - \frac{\hbar^2}{2m} \frac{\partial^2 \Psi}{\partial x^2} + V \Psi.
+    \end{equation}
+
+    Assume plane wave solutions in free space ($V=0$) of the form:
+    \begin{equation}
+        \Psi(x,t) = \Psi_0 \exp\{i(kx - \omega t)\}.
+    \end{equation}
+    where $\omega(k)$ is a function of $k$; that is, the dispersion relation.
+
+    \begin{enumerate}
+        \item[(a)] Find the dispersion relation $\omega(k)$.
+            \begin{callout}{Solution:}
+
+                The dispersion relation is just obtained by getting the full wave solution, and solving for $\omega$ algebraically. We're given a \textit{particular} solution, which we can take to the full solution by differentiating and substituting.
+                \begin{align*}
+                    \frac{\partial \Psi(x,t)}{\partial t} &= -i\omega \Psi_{0} e^{i(kx-\omega t)} = -i \omega \Psi \\
+                    \frac{\partial^{2} \Psi(x,t)}{\partial x^2} &= -\left( k \right)^2\Psi_{0} e^{i(kx-\omega t)} = -k^{2} \Psi
+                \end{align*}
+                Together, these imply
+                \begin{align*}
+                    i \hbar \left( -i \omega \Psi \right) &= - \frac{\hbar^{2}}{2m} \left( -k^{2} \Psi \right) + V \Psi \\ 
+                    \hbar \omega \cancel{\Psi} &= \frac{\hbar^{2}}{2m} \left( k^{2} \cancel{\Psi} \right) + V \cancel{\Psi} \\ 
+                    \omega(k) &= \frac{k^{2} \hbar}{2m} + \frac{V}{\hbar} \\ 
+                \end{align*}
+                Of course, the $V$ term vanishes in free space.
+
+            \end{callout}
+        \newpage \item[(b)] From $\omega(k)$, find the phase and group velocities of the wave.
+            \begin{callout}{Solution:}
+
+                We have two definitions of velocity: phase and group velocity, which are respectively:
+                \begin{align*}
+                    v &= \frac{\omega}{k} = \frac{ \hbar k}{2m} + \frac{V}{\hbar k} \\
+                    v_g &= \frac{d\omega}{dk} = \frac{ \hbar k}{m} \\
+                \end{align*}
+                Of course, the $V$ term vanishes in free space.
+
+            \end{callout}
+        \item[(c)] Assuming this wavefunction represents a free particle, what is its speed? What is its momentum?
+            \begin{callout}{Solution:}
+
+                Classically, $p=mv$, and the group velocity term corresponds to the classical velocity. I will suggest the de Broglie relationship holds, such that: 
+                $$p = \hbar k = \frac{mv}{\hbar}$$
+
+            \end{callout}
+        \item[(d)] Now assume that the particle can be represented by a wavepacket. The Fourier transform of the wave function is given by 
+            \begin{equation}
+                A(k) = \Delta k^{-1} \operatorname{rect}(k_0 - \Delta k),
+            \end{equation}
+            where $\Delta k \ll k_0$. This is a square function. Find $\Psi(x,t)$ for this case. Describe it. What are the uncertainties in momentum and space (i.e., $x$)? That is, does Heisenberg’s uncertainty principle hold?
+            \begin{callout}{Solution:}
+
+            The inversion theorem for Fourier transformations states:
+                $$\phi(z) = \int_{-\infty}^{\infty} \mathbf{\Phi}(k) e^{ikz} \,dk \leftrightarrow \mathbf{\Phi}(k) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \phi(z) e^{-ikz} \,dz$$
+                Where in this case, $A(k)=\mathbf{\Phi}(k)$, and $\Psi(x)$ will become:
+                $$\Psi(x, t=0) = \int_{-\infty}^{\infty} \frac{1}{\Delta k} \text{rect}(k_{0}-\Delta k)e^{ikz} \,dk$$
+                Wikipedia tells me the fourier transformation of the rectangular function is a sinc function, given by the following integral:
+                $$\Psi(x, t=0) = \frac{1}{\Delta k} \int_{k_{0} + \Delta k / 2}^{k_{0} - \Delta k / 2} e^{ikx} \,dk = \frac{ 2 \sin(\Delta k x / 2)}{\Delta k} \Delta k e^{ik_{0} x} = \Delta k e^{i k_{0} x} \text{sinc}(\Delta k x / 2)$$
+                Cracking open my quantum mechanics book, the propagator in the x-basis is 
+                $$U=\left( \frac{m}{2\pi \hbar i t} \right)^{\frac{1}{2}} e^{im (x-x')^{2}/2\hbar t}$$
+                and the time-dependent wave function is given as the integral
+                $$\Psi(x,t) = \int_{-\infty}^{\infty} U'(x,t; x', t') \Psi(x, t=0) \,dx'$$
+                Stopping for a moment, I think it would be good to look at the momentum and space distribution and uncertainty. 
+                The Fourier transform of the wave function represents the momentum space, and it is possible to directly calculate $\Delta p$ as 
+                $A(k)$ is not normalized, so the momentum space wave function is instead $\int_{-\infty}^{\infty} A^2(k) \,dk = 1 \implies A(k) \to \frac{1}{\sqrt{\Delta k}} \text{rect}(k_{0}-\Delta k)$.
+                \begin{align*}
+                    \langle p \rangle &= \hbar \braket{A(k)|k|A(k)} \\ 
+                    &= \hbar \int_{-\infty}^{\infty} k A(k)A(k) \,dk \\
+                    &= \frac{\hbar}{\Delta k}\int_{k_{0} - \Delta k / 2}^{k_{0} + \Delta k / 2} k \,dk \\
+                    &= \frac{\hbar}{\Delta k} \left[ \frac{1}{2} (k_{0} + \Delta k / 2)^{2} - \frac{1}{2} (k_{0} - \Delta k / 2)^{2} \right] \\
+                    &= \frac{\hbar}{2 \Delta k} \left[ \cancel{k_{0}^{2}} + k_{0}\Delta k + \cancel{\Delta k^{2}} - \cancel{k_{0}^{2}} + k_{0}\Delta k - \cancel{\Delta k^{2}} \right] \\
+                    &= \frac{\hbar k_{0} \Delta k}{\Delta k} \\
+                    &= \hbar k_{0}
+                \end{align*}
+                A similar integral gives $\langle p^{2} \rangle$
+                \begin{align*}
+                    \langle p^{2} \rangle &= \frac{\hbar^2}{\Delta k} \int_{k_{0}-\Delta k / 2}^{k_{0}+\Delta k / 2} k^{2} \,dk \\ 
+                    &= \frac{\hbar^2}{3 \Delta k} \left( k_{0} + \Delta k / 2\right)^{3} - \left( k_{0} - \Delta k / 2 \right)^{3} \\
+                    &= \frac{\hbar^2}{3 \Delta k} \frac{\Delta k\left(12k_{0}^2+ \Delta k^2\right)}{4} \\ 
+                    &= \hbar^2 k_{0}^2+ \hbar^2 \frac{1}{12}\Delta k^2
+                \end{align*}
+                uncertainty is therefore
+                \begin{align*}
+                    \Delta p ^{2} = \left( \hbar^2 k_{0}^2 + \frac{\hbar^2}{12}\Delta k^2 \right) - \left( \hbar k_{0} \right)^{2} = \frac{\hbar^2}{12} \Delta k^{2}
+                \end{align*}
+
+                When doing these calculations, the complex conjugate thankfully eliminates the exponential. By symmetry, $\langle x \rangle=0$ for the sinc function. Before doing the other, it must be normalized such that 
+                \begin{align*}
+                    1 &= A \int_{-\infty}^{\infty} \Delta k \text{sinc}^{2}(x \Delta k / 2) \,dx \\ 
+                    \implies A &= \frac{1}{\sqrt{2\pi \Delta k}}
+                \end{align*}
+                Now, $\langle x^{2} \rangle$ is given by:
+                \begin{align*}
+                    \frac{\left( \Delta k \right) ^{2}}{{2\pi \Delta k}} \int_{-\infty}^{\infty} x^{2} \text{sinc}^{2}(x \Delta k / 2) \,dx \\
+                    \frac{\Delta k}{2\pi} \frac{\pi}{2(\Delta k / 2)^{3}} = \frac{4}{(\Delta k)^{2}}
+                \end{align*}
+                Finally this gives uncertainty:
+                $$(\Delta x)^{2} = \frac{4}{\left( \Delta k \right)^{2}} - 0^{2} \qquad \implies \qquad \Delta x = \frac{2}{\Delta k}$$
+
+                Now comparing with the uncertainty principle:
+                \begin{align*}
+                    \Delta p \Delta x &\stackrel{?}{\geq} \frac{\hbar}{2} \\ 
+                    \left( \frac{\hbar \cdot \Delta k}{\sqrt{12}} \right) \left( \frac{2}{\Delta k} \right) = \frac{2\hbar}{\sqrt{12}} &\geq \frac{\hbar}{2}
+                \end{align*}
+
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    \textbf{Griffiths Problem 10.15} A particle of charge $q$ moves in a circle of radius $a$ at constant angular velocity $\omega$. (Assume that the circle lies in the $xy$ plane, centered at the origin, and at time $t = 0$ the charge is at $(a,0)$, on the positive $x$ axis.) Find the Liénard-Wiechert potentials for points on the $z$ axis.
+    \begin{callout}{Solution:}
+
+        The goal is to apply equations 10.46 and 10.47:
+        \begin{align*}
+            V(\mathbf{r},t)&=\frac{1}{4\pi\epsilon_{0}} \frac{qc}{\rcurs c-\bcurs \cdot \mathbf{v}} \tag{10.46} \\
+            \mathbf{A}(\mathbf{r},t)&= \frac{\mu_{0}}{4\pi} \frac{qc \mathbf{v}}{\rcurs c-\bcurs \cdot \mathbf{v}} = \frac{\mathbf{v}}{c^{2}}V(\mathbf{r},t) \tag{10.47}
+        \end{align*}
+
+        We know $\mathbf{w}(t) = \omega \mathbf{v}$, so step 1 of our algorithm is to define the path and velocity of the particle on the path so that I can take the difference between this and $z$:
+        $$\bcurs = z \mathbf{\hat{z}} - a \left[ \cos \left( \omega t_r \right)\mathbf{\hat{x}} + \sin \left( \omega t_r \right)\mathbf{\hat{y}} \right], \qquad \rcurs^2 = a^2 + z^2$$
+        $$\mathbf{v} = \omega \mathbf{w}(t) = a \omega \left[ -\sin \left( \omega t_r \right)\mathbf{\hat{x}} + \cos \left( \omega t_r \right)\mathbf{\hat{y}} \right]$$
+        For all $\theta \in [0,2\pi)$. With the above information calculated, doing the dot products is very straightforward
+        $$\bcurs \cdot \mathbf{v} = \omega a^2 \left[ \cos \left( \omega t_r \right)\mathbf{\hat{x}} + \sin \left( \omega t_r \right)\mathbf{\hat{y}} \right] \left[ -\sin(\omega t_r) \mathbf{\hat{x}} + \cos(\omega t_r) \mathbf{\hat{y}} \right] = 0$$
+        So the potentials are straightforwardly
+        \begin{align*}
+            V(\mathbf{r}, t) &= \frac{1}{4\pi \epsilon_{0}} \frac{q}{\sqrt{a^2+z^2}} \\ 
+            \mathbf{A}(\mathbf{r}, t) &= \frac{\mu_{0}}{4\pi} \frac{q a \omega}{\sqrt{a^2+z^2}} \left[ -\sin \left( \omega t_r \right)\mathbf{\hat{x}} + \cos \left( \omega t_r \right)\mathbf{\hat{y}} \right]
+        \end{align*}
+
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Consider an infinitely long straight wire carrying a steady current $I$ in the $z$-direction. The vector potential can be written in cylindrical coordinates as:
+    \begin{equation}
+        \mathbf{A}(s, \phi, z) = \left(A_0 + \frac{\mu_0 I}{2\pi} \ln(s/s_0)\right) \hat{z} + A_{00} \hat{s}
+    \end{equation}
+    where $s$ is the radial distance vector away from the wire, $A_0$ and $A_{00}$ are constants, as is $s_0$.
+
+    Note that $\nabla \cdot \mathbf{A} \neq 0$.
+
+    \begin{enumerate}
+        \item[(a)] Demonstrate that $\mathbf{B} = \nabla \times \mathbf{A}$ gives the correct magnetic field for this case.
+            \begin{callout}{Solution:}
+
+                \begin{enumerate}[(a)]
+                    \item \textbf{Magnetic field from Maxwell's Equations:}
+                        \begin{align*}
+                            B \cdot (2\pi s) &= \mu_{0} I &&\text{(outside the wire)} \\
+                            B &= \frac{\mu_{0} I}{2\pi s} {\hat{\phi}} &&\text{(Right hand rule)}
+                        \end{align*}
+            \item \textbf{Magnetic field from curl of potential:}
+                \[
+                    \nabla \times \mathbf{A} =
+                    \begin{vmatrix}
+                        \hat{s} & \hat{\phi} & \hat{z} \\
+                        \frac{\partial}{\partial s} & \frac{1}{s} \frac{\partial}{\partial \phi} & \frac{\partial}{\partial z} \\
+                        A_s & A_{\phi} & A_z
+                    \end{vmatrix}
+                \]
+
+                \begin{align*}
+                \nabla \times \mathbf{A} &=
+                \cancelto{0}{\left( \frac{1}{s} \frac{\partial A_z}{\partial \phi} - \frac{\partial A_{\phi}}{\partial z} \right) \hat{s}} 
+                - \left( \frac{\partial A_s}{\partial z} - \frac{\partial A_z}{\partial s} \right) \hat{\phi} 
+                + \frac{1}{s} \left( \frac{\partial (s A_{\phi})}{\partial s} - \frac{\partial A_s}{\partial \phi} \right) \hat{z} \\ 
+                    &= \frac{\mu_{0} I}{2\pi s} \hat{\phi}
+                \end{align*}
+                \end{enumerate}
+
+            \end{callout}
+        \item[(b)] Find a different $\mathbf{A'}$ that satisfies the Coulomb Gauge ($\nabla \cdot \mathbf{A'} = 0$).
+            \begin{callout}{Solution:}
+
+            From equation 10.7, 
+                \begin{align*}
+                    \begin{cases}
+                    \mathbf{A'} = \mathbf{A} + \nabla \lambda \\ 
+                        V = V - \frac{\partial \lambda}{\partial t}
+                    \end{cases} \tag{10.7}
+                \end{align*}
+                
+                This makes the plan pretty simple, take $\nabla \cdot \mathbf{A}$ and then whatever is left lets me choose a term to differentiate, call it $\nabla \lambda$ that I can subtract off, such that $\nabla^2 \lambda = - \nabla \cdot \mathbf{A}$
+
+                \begin{align*}
+                    \nabla \cdot \mathbf{A} &= \frac{1}{s}\frac{\partial (sA_s)}{\partial s} + \frac{1}{s}\frac{\partial A_\phi}{\partial \phi} + \frac{\partial A_z}{\partial z} \\ 
+                    &= \frac{1}{s} \left( \frac{\partial (s A_{00})}{\partial} \right) = \frac{A_{00}}{s}
+                \end{align*}
+
+                Now it's possible to choose a function that satisfies the equation I wrote above.
+                
+In cylindrical coordinates for a function that depends only on s:
+\begin{align*}
+ \frac{1}{s}\frac{d}{ds}\left(s\frac{d\lambda}{ds}\right) &= -\frac{A_{00}}{s} \\
+ \frac{d}{ds}\left(s\frac{d\lambda}{ds}\right) &= -A_{00} \\
+ s\frac{d\lambda}{ds} &= -A_{00}s + C_1 \\
+ \frac{d\lambda}{ds} &= -A_{00} + \frac{C_1}{s} \\
+ \lambda(s) &= -A_{00}s + C_1\ln(s) + C_2 \\
+ \lambda(s) &= -A_{00}s
+\end{align*}
+
+Therefore:
+
+ $$\mathbf{A'} = \mathbf{A} + \nabla \lambda = \left(A_0 + \frac{\mu_0 I}{2\pi}\ln(s/s_0)\right)\hat{z} + A_{00}\hat{s} + (-A_{00})\hat{s} = \left(A_0 + \frac{\mu_0 I}{2\pi}\ln(s/s_0)\right)\hat{z}$$
+
+            \end{callout}
+        \item[(c)] Find the gauge transformation function $\lambda(r,t)$ that accomplishes part (b).
+            \begin{callout}{Solution:}
+
+                The gauge transformation involves a function $\lambda$ such that 
+                $$\nabla^{2}\lambda = - \nabla \cdot \mathbf{A}$$
+                Which I solve above.
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Demonstrate that the following spherically symmetric time-dependent function for the scalar potential is a solution of the homogeneous (i.e., source-free) wave equation if $\omega = kc$:
+    \begin{equation}
+        V(r, t) = \frac{A}{r} \exp\{i(kr - \omega t)\},
+    \end{equation}
+    where $A$ is a constant with the correct units (V·m).
+    \begin{callout}{Solution:}
+
+    The homogeneous wave equation, as discussed in chapter 10, takes the form:
+        \begin{align*}
+            \nabla^{2}V + \frac{1}{c^{2}} \frac{\partial^{2} V}{\partial t^{2}} &= 0
+        \end{align*}
+
+        \begin{align*}
+            \nabla^{2}V \underset{\text{spherical}}{\to} \frac{1}{r}\nabla^2(rV)  &= -k^{2} \frac{A}{r} e^{i(kr - \omega t)} \\
+            %\nabla \left( ik \frac{A}{r} e^{i(kr - \omega t)} - \frac{A}{r^{2}} e^{i(kr - \omega t)} \right) \\ 
+            %&= -k \frac{A}{r} e^{i(kr - \omega t)} - \cancel{ik \frac{A}{r^{2}} e^{i(kr - \omega t)} + ik \frac{A}{r^{2}} e^{i(kr - \omega t)}} + \frac{2A}{r^{3}} e^{i(kr - \omega t)} \\ 
+            \frac{1}{c^{2}}\frac{\partial^{2} V}{\partial t^{2}} &= \frac{1}{c^{2}} \frac{\partial V}{\partial t} \left( -i \omega \frac{A}{r} e^{i(kr - \omega t)} \right) \\ 
+            &= \frac{\omega^{2}}{c^{2}} \frac{A}{r} e^{i(kr - \omega t)}
+        \end{align*}
+        Now the differential equation becomes:
+        \begin{align*}
+                    -k^{2} \left( \cancel{\frac{A}{r}e^{i(kr-\omega t)}} \right) + \frac{\omega^{2}}{c^{2}} \left( \cancel{\frac{A}{r}e^{i(kr-\omega t)}} \right) &= 0 \\
+                    -k^{2} + \frac{\omega^{2}}{c^{2}} &= 0
+        \end{align*}
+        Which is clearly satistfied when $k^{2} = \frac{\omega^{2}}{c^{2}}$.
+
+    \end{callout}
+\end{homeworkProblem}
+
+\end{document}

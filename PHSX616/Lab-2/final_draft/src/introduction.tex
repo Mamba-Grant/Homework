@@ -1,0 +1,26 @@
+\section{\label{sec:level1}INTRODUCTION}
+
+    It has been widely observed that there exists approximately white noise as electronic fluctuations within resistive materials. Amplifier technicians in the early 20th century first noticed that a small fraction of noise persisted independently of the then-called "tube noise." Johnson first experimentally measured this quantity in 1926, where it was found that it is proportional to both resistance and frequency. This experiment also provides a delightful way to measure Boltzmann's constant, despite Johnson's original work scraping by with a 13\% error on this for the time \cite{1928PhRv...32...97J}. It is predicted that Johnson noise is proportional to total frequency bandwidth and resistance, given by:
+    $$
+    V_{\text{RMS}} = \sqrt{4 k_B T \Delta F}
+    $$
+
+    
+    Johnson noise is typically in the regime of $1\times10^{-6} \mathrm{~V}$. To measure noise on such small scales, I repeat the method of Johnson's original work, using TeachSpin's "Noise Fundamentals" equipment \cite{TeachSpinNoiseFundamentals}. In the same light as the original work, a pre and post amplifier, coupled with a squarer on the voltage output, shown in figure \ref{fig:schematic}. Bandwidth and resistance dependence are reviewed, and results used to compute Boltzmann's constant.
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{../assets/Schematic.png}
+  \caption{Schematic of the instrumentation. Sample resistance can be controlled in the preamplifier stage, where a fixed gain of 600x is applied. This is fed into two filters, high and low pass effectively forming a band-pass. This is fed through a primary gain, which is configured to minimize clipping in measurement. Finally, this is passed through an analog squarer and output filter, which takes a time-average.}
+  \label{fig:schematic}
+\end{figure}
+
+    The nature of Johnson and amplifier noise is approximately white; in that the time average for all but terahertz frequencies is zero \cite{1928PhRv...32...97J}. Consequently, we employ an analog voltage squarer, which has advantages in 
+    The output of the amplification stage introduces amplifier noise several orders larger magnitude than Johnson noise of the system, however it is possible to separate the two as a consequence of the squarer, where in a time averaged regime, uncorrelated voltage sources (noise) with gain $G$ can be superimposed as in equation \ref{eq:gain-separation}. This establishes the RMS amplifier noise, which is then subtracted off.
+
+    \begin{equation}\label{eq:gain-separation}
+        \langle V^2_{\text{out}} \rangle 
+        = G^2 \left[ \langle{V_J}\rangle + \langle{V_N}\rangle \right]^2
+        = G^2 \left[ \langle{V_J^2}\rangle + \langle{V_N^2}\rangle \right]
+    \end{equation}

@@ -52,6 +52,8 @@ stat_σ_relative = stat_σ .* value.(df.Voltage)
 df.Voltage = @. value(df.Voltage) ± sqrt(Measurements.uncertainty(df.Voltage)^2 + value.(stat_σ_relative)^2)
 
 p = scatter(
+    titlefont = font(12,"Computer Modern"),
+    legendfont = font(8, "Computer Modern"),
     ustrip.(df.δF), 
     ustrip.(df.Voltage),
     title="Frequency-Dependent Johnson Noise",
@@ -70,3 +72,12 @@ plot!(
     label="Theoretical Johnson Noise"
 )
 
+measured_vj2 = value.(df.Voltage)
+theoretical_vj2 = value.(johnson_noise_theoretical.(df.δF, df.Ri))
+uncertainties_measured = (uncertainty.(df.Voltage))
+uncertainties_theory = uncertainty.(johnson_noise_theoretical.(df.δF, df.Ri))
+
+z = (((df.Voltage .- theoretical_vj2)) ./ sqrt.(uncertainties_measured.^2 .+ uncertainties_theory.^2))
+chi_squared = sum(z.^2)
+ndf = length(measured_vj2) - 1  # Degrees of freedom
+chi_squared_reduced = chi_squared / ndf  # Reduced chi-square

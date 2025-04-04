@@ -1,0 +1,156 @@
+\begin{homeworkProblem}
+An npn transistor will be used in a circuit where its nominal base voltage is $V_B=2.0~V$. If a resistor $R_E$ connects the emitter to ground, what should be chosen for the value of $R_E$ if the nominal value of the current $I_E$ should be 10 $mA$?
+\begin{callout}{Solution:}
+
+    Let $V_{BE}$ be the voltage drop across the transistor from base to emitter. 
+    Normal operation of the transistor will occur when the base-emitter junction is forward biased,
+    Our textbook assumes $V_{BE}=0.65$, so I will do my final calculation with this.
+
+\begin{align*}
+    V_B - V_{BE} - I_E R_E &= 0 \\ 
+    R_E &= \frac{V_B - V_{BE}}{I_E} = 135~\Omega
+\end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+The transistor in problem 1 is connected to an external supply of voltage $V_C = 10~V$. How much power is dissipated in the transistor at its normal operating point?
+\begin{callout}{Solution:}
+
+\begin{align*}
+    P &= I_C \cdot V_{CE} \\ 
+    &\approx I_E \cdot (V_C - V_E) = 93.5~\text{mW}
+\end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+An npn transistor is operating with a nominal base current of $I_B = 10~\mu A$ and a nominal emitter current of $I_E = 1~mA$. What are $\beta$ and $\alpha$ for the transistor?
+\begin{callout}{Solution:}
+
+    We have defined 
+    $$I_C = \beta I_B, \qquad I_C = \alpha I_E$$
+    where $\alpha$ and $\beta$ are related by:
+    $$\alpha = \frac{\beta}{1+\beta}, \qquad \beta = \frac{\alpha}{1-\alpha}$$
+    So it is possible to equate everything:
+    $$\begin{cases}
+        \alpha I_E = \left( \frac{\alpha}{1-\alpha} \right) I_B \\ 
+        \beta I_B = \left( \frac{\beta}{1+\beta} \right) I_E
+    \end{cases}$$
+    And these reduce to 
+    $$\begin{cases}
+        \alpha = 1 - \frac{I_B}{I_E} = 0.99 \\ 
+        \beta = \frac{I_E}{I_B} - 1 = 99
+    \end{cases}$$
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+An npn transistor has a nominal operating point of $I_C = 100~mA$. What is the value of internal emitter resistance $r_E$ at room temperature? What is $r_E$ if the transistor heats up to $50^\circ~C$?
+\begin{callout}{Solution:}
+
+\begin{align*}
+    r_E = \frac{V_T}{I_E} &= \frac{k_BT}{e I_E} &&\text{(eq. 5.17)} \\ 
+    &\approx \frac{k_BT}{e I_C} &&(I_C \approx I_E) \\ 
+\end{align*}
+\begin{enumerate}[(a)]
+    \item At room temperature, $T=294.15$ K. 
+        $$r_E = 0.253~\Omega$$
+    \item At $T = 50^\circ$ C, 
+        $$r_E = 0.278~\Omega$$
+\end{enumerate}
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+An npn transistor has a nominal operating point of $I_C = 1~mA$. What is the value of internal
+emitter resistance $r_E$ at room temperature? What is $r_E$ if the transistor heats up to $50^\circ~C$?
+\begin{callout}{Solution:}
+
+Using the same equations as in the previous problem, 
+\begin{enumerate}[(a)]
+    \item At $T=294.15$ K, 
+        $$r_E = \frac{k_BT}{e I_C} = 25.3~\Omega$$
+    \item At $T=50^\circ$ C, 
+        $$r_E = \frac{k_BT}{e I_C} = 27.8~\Omega$$
+\end{enumerate}
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+A common-emitter amplifier is built with $R_E = 100~\Omega$ and $R_C = 1.5~k\Omega$. What is the gain of the amplifier?
+\begin{callout}{Solution:}
+
+A common-emitter amplifier is built with an input at the base and output at the collector. Assuming the schematic in the book, which does not include the voltage divider and capacitor on the output, we find 
+    $$V_C = V_{CC} - I_C R_C$$
+    \begin{align*}
+        V_C &= - R_C \cdot i_C \\ 
+    \end{align*}
+    The current flowing through the emitter is
+    \begin{align*}
+        i_E &= \frac{v_E}{R_E} \\ 
+        i_E \approx i_C &= \frac{v_b}{R_E} \\ 
+    \end{align*}
+    Which allows us to get an expression for gain 
+    $$ V_C = - R_C \cdot \frac{v_b}{R_E}$$
+    Numerically,
+    $$\boxed{G = \frac{1.5~\mathrm{k \Omega}}{100~\mathrm{\Omega}} = 15}$$
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+%\begin{figure}[h]
+%  \centering
+%  \includegraphics[width=0.35\textwidth]{../assets/H7P7F1.png}
+%\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.35\textwidth]{../assets/H7P7F2.png}
+\end{figure}
+
+You have a transistor of constant $\beta=100$ is connected to an external DC voltage $V_{C C}$ through several resistors as shown in the circuit in Figure 5.55. You are told that $V_{C C}=9 \mathrm{~V}, R_1=2 \mathrm{k} \Omega$, $R_2=1 \mathrm{k} \Omega$ and $R_E=0.50 \mathrm{k} \Omega$. Answer the following question about this circuit. 
+\begin{enumerate}[(a)]
+    \item Assuming that the voltage divider is not loaded down by the transistor circuit, what are the voltages at the base, collector and emitter of the transistor? 
+        \begin{callout}{Solution:}
+
+            %In general, we want to choose $R_1 || R_2$ is small in comparison to $\beta R_E \approx 50 \mathrm{~k\Omega}$, however in this case they are given values.
+        \begin{align*}
+            V_B &= \frac{R_{2}}{R_{1} + R_{2}} V_{CC} = 3~\text{V}\\ 
+            %V_C &= -V_B \cdot \frac{R_C}{R_E} = ~\text{V}\\ 
+            V_C &= V_{CC} = \mathrm{9~V} \\
+            V_E &= V_B - V_{BE} = \mathrm{2.35~V}
+        \end{align*}
+
+        \end{callout}
+    \item Do you expect the actual voltage at the base of the transistor to be equal to, more than or less than your answer to part (a)? 
+        \begin{callout}{Solution:}
+
+        In approximating $i_E \approx i_C$, we can properly state 
+            $$i_C = \frac{\beta}{\beta + 1} i_E$$
+            And $i_C$ is slightly larger than $i_E$, but this is irrelevant in this case since there is no $R_C$ (see the previous problem). Also, we assumed no loading in this problem, which means that we approximate $I_B$ to be small enough to not affect $V_B$. Instead the real value of $V_B$ will be smaller.
+            
+        \end{callout}
+
+        \newpage
+    \item How much current flows out of the emitter, $I_E$, and how much flows into both the collector, $I_C$ and the base, $I_B$?
+        \begin{callout}{Solution:}
+
+        \begin{align*}
+            i_E &= \frac{V_E}{R_E} = 4.7~\text{mA} \\ 
+            i_C &= \frac{\beta}{\beta + 1} i_E = 4.65~\text{mA} \\ 
+            i_B &= \frac{i_E}{\beta + 1} = 4.65~\text{mA}
+        \end{align*}
+
+        \end{callout}
+\end{enumerate}
+
+\end{homeworkProblem}

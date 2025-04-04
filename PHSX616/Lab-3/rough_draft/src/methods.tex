@@ -1,0 +1,171 @@
+\section{\label{sec:level1}CHARACTERIZATION OF BRAGG PEAKS}
+
+
+It is essential to accurately characterize the peaks in the resulting powder diffraction spectra. We accomplish this by fitting a standard gaussian function in the domain of candidate peaks. This alone is surprisingly challenging for the $5^{\text{th}}$ order diffraction peaks where there is severe noise in the region neighboring the $K_\beta$ and $K_\gamma$ peaks. Several options exist to reduce noise, namely using wider slit sizes to increase flux (results in lower resolution), and using a longer counting time (results in lower signal to noise ratio). With a similar motivation to the latter, we choose to take several scans of our sample. Because background noise is approximately white, the average between scans will result in curves that overlap about the peaks but have no discernible trend. This allows us to easily fit our peaks without the need for sophisticated techniques to isolate the background \cite{enwiki:1249349269}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.45\textwidth]{../../code/curves.pdf}
+  \caption{}
+  \label{fig:data}
+\end{figure}
+
+\section{\label{sec:level1}LATTICE RECONSTRUCTION}
+
+\textit{I would like to talk about how now we could use this reference to reconstruct a crystal lattice using Bragg diffraction, and prepare a figure of the lattice of NaCl using literature lattice spacing, or alternatively do a scan of another crystal.}
+
+%\begin{table}[H]
+%    \centering
+%    \begin{tabular}{lccc}
+%        \toprule
+%        & \textit{E} (keV) & \textit{$\lambda$} (pm) & Relative proportion \\
+%        \midrule
+%        K$_{\alpha}$ & 17.44 & 71.08 & 1.000 \\
+%        K$_{\beta}$  & 19.60 & 63.26 & 0.170 \\
+%        K$_{\gamma}$ & 19.97 & 62.09 & 0.027 \\
+%        Doublet K$_{\beta}$ + K$_{\gamma}$ & 19.65 & 63.09 & \\
+%        \bottomrule
+%    \end{tabular}
+%    \caption{Transition energies \textit{E}, wavelengths $\lambda$, and relative components of the characteristic K$_{\alpha}$, K$_{\beta}$, and K$_{\gamma}$ lines of molybdenum (weighted mean values according to [1]).}
+%    \label{tab:molybdenum-transitions}
+%\end{table}
+
+%
+%\subsection{Experimental Setup}
+%
+%In the resistance dependency measurements, we take measurements using octave scale resistors provided by TeachSpin manufacturers, from 1 $\Omega$ to 100 $k \Omega$ (tolerance 0.1\%). This is supplemented with metal film resistors (tolerance 0.1\%) which can be directly measured using a Fluke 179 Multimeter. We label these BEXT and CEXT, and have corresponding resistances which can be found in table \ref{tab:resistors}.
+%%make this table an appendix reference instead maybe
+%Our configuration uses a preamplifier, filter, secondary amplifier, squarer, and time-averager. The first stage in the pre-amp has a set gain of $g=1+R_f / R_1$, where $R_f=1~k \Omega$ and $R_1 = 200~\Omega$. This is fed through a hard-wired amplifier with gain 100 HLE, set by a similar ratio of resistor values. Our filters are a separately configurable high and low pass filter, approximated well by the Butterworth response, with damping parameter $\gamma = \frac{1}{2Q}$. These considerations are significant in the determination of frequency dependence in Johnson noise. For more information about the equivalent bandwidths, see \ref{tab:bandwidths}
+%This is then fed through the secondary amplifier, which we configure to eliminate signal clipping while providing a sufficient boost in signal, and follow the same uncertainty as with the preamplifier. Output is passed to a squarer, which is subject to zero-offsets; however, the static squaring accuracy is claimed to be about 0.2\% with a bandwidth that extends to 3 MHz. The time-average of this is fed through to a Fluke 179 multimeter. We opt for a time constant of $\tau = 0.1$ s.
+%
+%\subsection{Separation of Noise \& Resistance-Correlation of Johnson Noise}
+%
+%Johnson predicts his noise is proportional to resistance, and to confirm this we systematically fix the bandwidth while varying resistance. We selected 100 Hz on the high pass filter, and 10 kHz on the low pass filter for an effective bandwidth of 10,996 Hz (see appendix \ref{sec:effective-bandwidth} for more information on this). We then vary the resistor by switching between 1 $\Omega$ to 100 $k \Omega$ in octave steps.
+%
+%The noise induced by our amplifier is many times larger than the Johnson noise, and must therefore be separated from the signal. This can be done because the mean-square voltages from uncorrelated sources are additive. We accomplish this by extrapolating to the zero resistance regime by fitting a linear curve, wherein only amplifier noise is measured, shown in figure \ref{fig:amp-noise}. 
+%
+%We collected two datasets at different gain, and determined that there is a substantial error at higher gain. We compensate for this by using data at 6000 HLE gain only for resistances below 0.1 $k \Omega$. Gain of 1500 HLE was used in all other ranges, which sacrifices in precision at low resistances, but does not suffer from clipping at high resistance. 
+%
+%\begin{figure}[H]
+%  \centering
+%  \includegraphics[width=0.4\textwidth]{../../code/amp-noise.pdf}
+%    \caption{Plot of the output collected from the time-averager, shown in blue is fit to a linear curve to extrapolate in the $R\to0$ regime such that amplifier noise can be extracted. The resulting data, $\langle V_J^2 \rangle$, is plotted in green, and the theoretical prediction made by Johnson's model overlaid in yellow.}
+%  \label{fig:amp-noise}
+%\end{figure}
+%
+%Figure \ref{fig:amp-noise} shows that resistance-dependence in Johnson noise is is fit exceptionally well by Johnson's model. We find a chi-squared value per degree of freedom of 0.11, which is to say that the observed scatter is less than that predicted by the analytical uncertainties.
+%
+%\subsection{Bandwidth-Correlation of Johnson Noise}
+%Johnson's model also predicts a proportionality to bandwidth in the magnitude of noise. Following the separation of amplifier noise from Johnson noise, we can directly subtract off the amplifier noise from the value measured out of the time-averager (time constant of 0.1 s). In doing so, we can now vary the bandwidth while letting resistance remain at a fixed 10 $k\Omega$. We systematically adjust the high and low pass filter to the values seen in table \ref{tab:bandwidths-table}. 
+%
+%In our analysis of the data, we found it incredibly important to model the frequency rolloff of the gain function. Amplifier gain is not constant across frequencies, and it typically follows a transfer function, such as:
+%$$G(f) = G_{0} \cdot H(f)$$
+%In our case, the transfer function is modelled well as 
+%$$\label{eq:transfer-function}
+%H(f) = \frac{1}{\sqrt{1 + \left( \frac{f}{f_c} \right)^{4}}}$$
+%
+%Previously, our gain was said to be the product of preamp and primary gain. This was an acceptable approximation in the previous sections, because the difference in theoretical cutoff frequency was very close to the actual cutoff frequency, making this a very small correction term; however, this is not necessarily the case in our assessment of frequency-correlated measurements, particularly in the larger bandwidths.
+%
+%Because we chose to separate amplifier noise at a particular bandwidth in the resistance-correlated measurements, we cannot reuse the amplifier noise measurement as it depends on parameters in the high and low pass filters. Instead, we fit our frequency-correlated dataset to the zero-bandwidth regime to equivalently separate amplifier noise in the same fashion. 
+%
+%\begin{table}[h]
+%    \centering
+%    \begin{tabular}{c|c|c|c|c|c|c|c}
+%        \toprule
+%         & 0.33 kHz & 1 kHz & 3.3 kHz & 10 kHz & 33 kHz & 100 kHz \\
+%        \midrule
+%        10 Hz & 355.0 & 1100 & 3654 & 11096 & 36643 & 111061 \\
+%        30 Hz & 333.0 & 1077 & 3632 & 11074 & 36620 & 111039 \\
+%        100 Hz & 258.0 & 1000 & 3554 & 10996 & 36543 & 110961 \\
+%        300 Hz & 105.0 & 784 & 3332 & 10774 & 36321 & 110739 \\
+%        1000 Hz & 9.0 & 278 & 2576 & 9997 & 35543 & 109961 \\
+%        3000 Hz & 0.4 & 28 & 1051 & 7839 & 33324 & 107740 \\
+%        \bottomrule
+%    \end{tabular}
+%    \label{tab:bandwidths-table}
+%    \caption{Effective bandwidths from the high pass (leftmost column) and low pass (upper row) parameters.}
+%\end{table}
+%
+%
+%\begin{figure}[h]
+%  \centering
+%  \includegraphics[width=0.45\textwidth]{../../code/freq-noise.pdf}
+%    \caption{Plot of frequency dependent data, taken in the bandwidths shown in table \ref{tab:bandwidths-table}. A $1~\Omega$ resistor was used so as to minimize clipping error in the large bandwidth regime. \textit{This plot needs some work; remove title, make axes labels consistent.}}
+%  \label{fig:freq-noise}
+%\end{figure}
+%
+%\subsection{Noise Density}
+%
+%In the previous sections, we found a linear correlation in frequency and resistance for Johnson noise. Using these relations, we define a noise density in frequency, $\langle V^2_J \rangle / \Delta f$. This allows us to parameterize noise density with a single value, $R$. Doing so provides a complete summary of our results, shown in figure \ref{fig:noise-density}.
+%
+%
+%\begin{figure}[h]
+%  \centering
+%  \includegraphics[width=0.4\textwidth]{../../code/noise_density.pdf}
+%  \caption{Temporary figure. More analysis needs to be done, particularly due to clipping outliers, which are very prevalent in the other data points not shown. Data should be tightly grouped, like y2, and y1 is an example of a point that is giving a huge skew in the fit. Right now this is giving $k_B \propto 1  \times 10^{-18}$. }
+%  \label{fig:noise-density}
+%\end{figure}
+%
+%%We select Squibb \#5597 Mineral Oil which has density 886 $\mathrm{kg}/\mathrm{m}^3$, provided by the manufacturer. Additionally, we use weather data in the determination of air pressure, $101\pm1$ kPa, which has caveats discussed in \ref{sec:uncertainty}. Furthermore, we used an antique power supply of unknown specification provided graciously by the University of Kansas physics department. The supply had unstable output, which we compensated for by regularly using a Fluke 179 Voltmeter to accurately measure voltage across our plates. Additionally, our capacitor featured an air-plate separation of $7.6\pm0.1$ mm.
+%%
+%%With the capacitor connected to the DC power supply with $500\pm0.5V$, we manipulated the electric field in the viewing chamber by selectively switching between ground and charged modes. With the plates grounded, we introduce oil droplets between the plates through a port above. Then, we isolate droplets which we perceive to be of low charge and record their rise and fall velocity with plates charged and grounded, respectively. By carefully controlling the conditions within the viewing chamber, we then record the time using a stopwatch for the oil droplets to move between the $0.5\pm0.1$ mm markings in the viewing chamber. Droplets we tracked were chosen based on consistency in behavior such that they maintained their charge throughout the measurement process and did not leave the field of focus.
+%%
+%%To eliminate uncertainty about the effects of the oil droplet on the motion in the electric field, we manipulate the charge on our oil droplets by means of ionization. An alpha source, Thorium-232, is placed near the drop and can be toggled using a lever on the side of the apparatus (figure \ref{fig:apparatus-diagram}). Using this, we were able to modify the charge on an oil droplet to assess the effects of changes in charge on the oil droplets. This procedure was done for droplets B and C in table \ref{tab:oil-drops-hq}. This table also serves to demonstrate the quantized nature of charge. I let charge A be the unit charge, since it is the smallest which appears in the dataset. Then, I normalize the charge on each droplet by this charge, where it can be observed that the number of charges on each droplet are round multiples of this unit charge. 
+%%
+%%We faced difficulty in dealing with statistical uncertainty in our data. Measurements were taken using a stopwatch and human observation, meaning only a single droplet at a time could be tracked. Issues with droplets leaving the focus field were of concern, so it was difficult to obtain more than 10 measurements before the droplet dissipated. This meant that it took two days to observe 5 droplets with accuracy, and we did not have sufficient data to provide statistical evidence for our measurement of charge. Therefore we were driven to take low-precision, single sample data to strengthen our results. Using this, we are able to use the high-precision population to test our theory that charge is quantized in nature, and to provide an accurate measure of electron charge, while the low-precision population serves to provide sufficient statistical data to test our measurement of electron charge using a chi-squared test.
+%%
+%%\begin{table}[h]
+%%    \centering
+%%    \renewcommand{\arraystretch}{1.0} % Adjust row height for better readability
+%%    \begin{tabularx}{0.5\textwidth}{lXXXXX}
+%%        \toprule
+%%           & Charge (C) & \# Charges & Statistical Uncertainty & Systematic Uncertainty \\
+%%        \midrule
+%%        A & $1.695 \times 10^{-19}$ & $1.0 \pm 0.033$ & $3.162 \times 10^{-20}$ & $5.639 \times 10^{-21}$    \\
+%%        B & $1.146 \times 10^{-18}$ & $6.76 \pm 0.21$ & $3.536 \times 10^{-20}$ & $3.628 \times 10^{-20}$    \\
+%%        C & $1.167 \times 10^{-18}$ & $6.89 \pm 0.22$ & $3.536 \times 10^{-20}$ & $3.767 \times 10^{-20}$    \\
+%%        D & $4.903 \times 10^{-19}$ & $2.893 \pm 0.093$ & $4.472 \times 10^{-20}$ & $1.576 \times 10^{-20}$  \\
+%%        E & $8.033 \times 10^{-19}$ & $4.74 \pm 0.15$ & $3.333 \times 10^{-20}$ & $2.59 \times 10^{-20}$     \\
+%%        F & $5.955 \times 10^{-19}$ & $3.51 \pm 0.11$ & $3.536 \times 10^{-20}$ & $1.895 \times 10^{-20}$    \\
+%%        \bottomrule
+%%    \end{tabularx}
+%%    \caption{High-precision data, collected by taking many samples of the same droplet. The corresponding statistical uncertainty associated with these are listed in the rightmost column. All droplets are round multiples (within statistical deviation) of the smallest charge in the dataset, A.}
+%%    \label{tab:oil-drops-hq}
+%%\end{table}
+%%
+%%\begin{table}[h]
+%%    \centering
+%%    \renewcommand{\arraystretch}{1.0} % Adjust row height for better readability
+%%    \begin{tabularx}{0.5\textwidth}{lXXXXX}
+%%        \toprule
+%%           & Charge (C) & \# Charges & Statistical Uncertainty & Systematic Uncertainty \\
+%%        \midrule
+%%        G & $2.82 \times 10^{-19}$ & $1.664 \pm 0.054$ & $1.0 \times 10^{-19}$ & $9.216 \times 10^{-21}$ \\
+%%        H & $2.422 \times 10^{-19}$ & $1.429 \pm 0.047$ & $1.0 \times 10^{-19}$ & $7.942 \times 10^{-21}$\\
+%%        I & $1.24 \times 10^{-18}$ & $7.32 \pm 0.23$ & $1.0 \times 10^{-19}$ & $3.905 \times 10^{-20}$   \\
+%%        J & $3.389 \times 10^{-19}$ & $2.0 \pm 0.065$ & $1.0 \times 10^{-19}$ & $1.108 \times 10^{-20}$  \\
+%%        K & $6.326 \times 10^{-19}$ & $3.73 \pm 0.12$ & $1.0 \times 10^{-19}$ & $2.025 \times 10^{-20}$  \\
+%%        L & $8.313 \times 10^{-19}$ & $4.9 \pm 0.15$ & $1.0 \times 10^{-19}$ & $2.609 \times 10^{-20}$   \\
+%%        M & $7.709 \times 10^{-19}$ & $4.55 \pm 0.14$ & $1.0 \times 10^{-19}$ & $2.421 \times 10^{-20}$  \\
+%%        N & $5.7 \times 10^{-19}$ & $3.36 \pm 0.11$ & $1.0 \times 10^{-19}$ & $1.821 \times 10^{-20}$    \\
+%%        O & $1.277 \times 10^{-18}$ & $7.54 \pm 0.24$ & $1.0 \times 10^{-19}$ & $4.06 \times 10^{-20}$   \\
+%%        P & $2.577 \times 10^{-18}$ & $15.2 \pm 0.48$ & $1.0 \times 10^{-19}$ & $8.154 \times 10^{-20}$  \\
+%%        Q & $3.151 \times 10^{-19}$ & $1.859 \pm 0.06$ & $1.0 \times 10^{-19}$ & $1.011 \times 10^{-20}$ \\
+%%        R & $8.048 \times 10^{-19}$ & $4.75 \pm 0.15$ & $1.0 \times 10^{-19}$ & $2.621 \times 10^{-20}$  \\
+%%        S & $1.184 \times 10^{-18}$ & $6.99 \pm 0.22$ & $1.0 \times 10^{-19}$ & $3.797 \times 10^{-20}$  \\
+%%        \bottomrule
+%%    \end{tabularx}
+%%    \caption{Low-precision data, collected by sampling many droplets single times. The purpose of this data is to primarily provide statistical motivation to my results, however there is very large statistical uncertainty associated with these.}
+%%    \label{tab:oil-drops-lq}
+%%\end{table}
+%%
+%%%\begin{figure}[H]
+%%%  \centering
+%%%  \includegraphics[width=0.45\textwidth]{../../DataCalculations/output_plot.png}
+%%%    \caption{A plot of the high-precision, low-precision data, and the commonly accepted values for electron charge. Units are plotted in relative charges, (elementary charge), such that multiples of charge can be easily assessed. The data shown has a chi-squared value of 0.39, overly low due to excessive statistical uncertainty. However, this still serves to justify our estimation of the electron charge $e=1.695\times10^{-19}\pm1.035\times10^{-19}$ C as we have collected data on 19 droplets.}
+%%%  \label{fig:output-plot}
+%%%\end{figure}
+%%
+%%\subsection{Results}
+%%
+%%Table \ref{tab:oil-drops-hq} effectively demonstrates the quantized nature of electron charge, which is the same conclusion also found in other publications on the matter\cite{millikan1917electron}. Crucially, we also observe a unit electron charge of $e=1.695\times10^{-19} \pm 1.035\times10^{-19}$ coulombs. This is within 5.8\% of the commonly accepted value (see \ref{eq:percent-diff}). In the comprehensive data, we find a chi-squared parameter $\chi^2 = 0.39$, indicating that uncertainties are indeed very large. This is also clear in \ref{fig:output-plot}, where a summary of the data can be seen with the associated uncertainty.

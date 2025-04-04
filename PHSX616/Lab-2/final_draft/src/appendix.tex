@@ -1,0 +1,51 @@
+\appendix
+
+\section{Discussion of Precision and Uncertainty}\label{sec:uncertainty}
+Throughout this work, we use linear propagation theory for the propagation of all errors via the excellent measurements library in Julia \cite{Measurements.jl-2016}.
+
+We perform several standard statistical assessments of our data, necessary for chi-square testing. First, uncertainty is propagated. For a comparison of systematic uncertainties, see table \ref{tab:uncertainty}. Statistical uncertainty originates exclusively from the time-averager. We select a time constant ($\tau$) of 0.1 s and a period of 10 s. Number of samples is effectively given as:
+$$N = \frac{T}{\pi \tau}$$
+
+Given that Johnson noise is white (unbiased) in nature, we consider a standard deviation from this to be:
+$$\sigma_{\text{stat}} = \frac{1}{\sqrt{N}}$$
+
+The squares of systematic and statistical uncertainty may be added. We found a chi-square value for resistance-correlation and frequency-correlation measurements in the standard fashion:
+$$\frac{\chi^2}{\text{NDOF}} = \frac{1}{\text{NDOF}} \sum \frac{V^2_{\text{meas}}- V^2_{\text{theoretical}}}{\sigma^2}$$
+
+Where NDOF is the quantity of resistance data points minus one. A summary of results can be found in table \ref{tab:chi-square}. We found low chi-squared values for all except the frequency dependent regime, which suggest larger errors than theoretically predicted. The frequency-dependent regime is unique, in that there is substantial variation in low bandwidth values as a result of large variation in output in electronic components. It may be beneficial to wait longer between measurements using the same time constant, as this can reduce uncertainty significantly for high resistance, much more than even order of magnitude changes would do to improve results. Our data would be most improved by repeated rounds of measurements so that a better idea of the spread of our data could be qualified.
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2} % Adjust row spacing
+    \begin{tabular}{p{4cm} p{2cm}}
+        \toprule
+        \textbf{Fit} & \textbf{$\boldsymbol{\chi^2}$/NDOF} \\
+        \midrule
+         Resistance-Dependent Johnson Noise & 0.1598 \\
+         Frequency-Dependent Johnson Noise & 11.20 \\ 
+         Boltzmann's Constant & 0.08774 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Chi-squared values for each fit.}
+    \label{tab:chi-square}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.2} % Adjust row spacing
+    \begin{tabular}{p{4cm} p{5cm}}
+        \toprule
+        \textbf{Component} & \textbf{Uncertainty} \\
+        \midrule
+        Octave Resistor Values & $0.3\%+\mathrm{1~LSD}$ \\
+        BEXT, CEXT & $0.9\% +\mathrm{1~LSD}$ \\
+        Total Bandwidth & $0.02\%$ \\
+        Preamplifier Gain ($G_{1}$) & \makecell[l]{Computed as a ratio of resistances \\ with $0.3\%+\mathrm{1~LSD}$} \\
+        Primary Gain ($G_{2}$) & $0.01\%$ \\
+        Squarer Output & $0.02\%$ \\
+        Fluke 179 $V^2$ Reading & $0.09\% +1\mathrm{~LSD}$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Uncertainty of equipment used.}
+    \label{tab:uncertainty}
+\end{table}

@@ -1,0 +1,96 @@
+\appendix
+
+\section{Discussion of Precision and Uncertainty}\label{sec:uncertainty}
+Throughout this work, we use linear propagation theory for the propagation of error via the excellent measurements Julia library \cite{Measurements.jl-2016}.
+
+Furthermore, fitting is done using iMinuit and underlying algorithms \cite{James:1975dr}.
+
+We preform several standard statistical assessments of our data, necessary for chi-square testing. \textit{note: information related to detector uncertainty is not yet available at the time of writing.} Goodness of fit (chi-square) parameters can be found in table \ref{tab:}. 
+
+\textit{Chi-square values cannot be computed accurately until full uncertainty is understood and characterized.}
+
+%First, uncertainty is propagated. For a comparison of systematic uncertainties, see table \ref{tab:uncertainty}. Statistical uncertainty originates exclusively from the time-averager. We select a time constant ($\tau$) of 0.1 s and a period of 10 s. Number of samples is effectively given as:
+%$$N = \frac{T}{\pi \tau}$$
+%
+%Given that Johnson noise is white (unbiased) in nature, we consider a standard deviation from this to be:
+%$$\sigma_{\text{stat}} = \frac{1}{\sqrt{N}}$$
+
+%The squares of systematic and statistical uncertainty may be added. We found a chi-square value for resistance-correlation and frequency-correlation measurements in the standard fashion:
+%$$\frac{\chi^2}{\text{NDOF}} = \frac{1}{\text{NDOF}} \sum \frac{V^2_{\text{meas}}- V^2_{\text{theoretical}}}{\sigma^2}$$
+%
+%Where NDOF is the quantity of resistance data points minus one. We found low chi-squared values, which suggest larger errors than theoretically predicted. It may be beneficial to wait longer between measurements using the same time constant, as this can reduce uncertainty significantly for high resistance, much more than even order of magnitude changes would do to improve results. Our data would be most improved by repeated rounds of measurements so that a better idea of the spread of our data could be qualified.
+%
+%\begin{table}[h]
+%    \centering
+%    \renewcommand{\arraystretch}{1.2} % Adjust row spacing
+%    \begin{tabular}{p{1.5cm} p{2.5cm}}
+%        \toprule
+%        \textbf{Peak} & \textbf{Chi-Squared} \\
+%        \midrule
+%        $K_{\beta}$    & WIP \\
+%        $K_{\alpha}$   & WIP \\
+%        $K_{\alpha-1}$ & WIP \\
+%        $K_{\beta}$    & WIP \\
+%        $K_{\gamma}$   & WIP \\
+%        \bottomrule
+%    \end{tabular}
+%    \caption{Chi-squared parameters for fits.}
+%    \label{tab:uncertainty}
+%\end{table}
+%
+%%\section{Data}
+%
+%%
+%%
+%%Uncertainty is frequency dependent, due to the nature of filtering circuits. The -3dB point given for the high and low pass circuitry is stated to be in the megahertz regime. Data collected was not in any regime greater than 0.1 MHz, therefore we consider uncertainty to be relatively constant. Furthermore, the calibration on the signal amplification and filtering equipment is very precise, with uncertainty in the realm of 0.1-0.3\% at most. Gain induced by the low and high pass filters is 1 within a 0.1\% tolerance, and is accounted for.
+%%
+%%We preform several standard statistical assessments of our data, necessary for chi-square testing. First, uncertainty is propagated, although there is a degree of unreliability in this, as there were several values we could not associate a concrete systematic uncertainty with, such as travel distance of the droplets, as we did not have tools available to take such measurements. 
+%%
+%%Despite this, statistical uncertainty is a much more pervasive issue in our experimental procedure. We compute statistical uncertainty as 
+%%$$\sigma = \frac{1}{\sqrt{n}}$$
+%%where $n$ is the number of measurements taken. Furthermore, there is significant statistical error in human elements of the measurements, namely with reaction time. This could be reduced to quantified systematic uncertainty with the aid of video recording or projector systems for viewing the droplets, however we choose to compensate by filtering data to within 2 standard deviations of the mean.
+%%
+%%Our z-scores are given as 
+%%$$ z = \left( \frac{q}{n} - e \right) \cdot \frac{1}{\sqrt{\sigma_{\textrm{sys}}^2 + \sigma_{\textrm{stat}}^2}} $$
+%%Where $q$ is droplet charge, $n$ is charges on droplet, $e$ is the commonly held electron charge, $\sigma_{sys}$ is systematic uncertainty, and $\sigma_{stat}$ is statistical uncertainty. Our chi-squared parameter is calculated by taking the sum of z-scores squared.
+%%
+%%Comparing our experimental result with the accepted value of the elementary charge \cite{millikan1917electron}, $1.602 \times 10^{-19}$ C, 
+%%
+%%\begin{equation}\label{eq:percent-diff}
+%%    \text{\% error} = \left( \frac{|1.695 - 1.602|}{1.602} \right) \times 100\% \approx 5.8\% 
+%%\end{equation}
+%%
+%%%\section{Comprehensive Data}
+%%%
+%%%\begin{table}[H]
+%%%    \centering
+%%%    \tiny
+%%%    \renewcommand{\arraystretch}{1.0} % Adjust row height for better readability
+%%%    \begin{tabularx}{0.5\textwidth}{cXXXXX}
+%%%        \toprule
+%%%        Row & Charge (C) & \# Charges & Statistical Uncertainty & Systematic Uncertainty & Z-Score \\
+%%%        \midrule
+%%%        A & $1.695 \times 10^{-19}$ & $1.0 \pm 0.033$ & $3.162 \times 10^{-20}$ & $5.639 \times 10^{-21}$ & $0.29 \pm 0.18$ \\
+%%%        B & $1.146 \times 10^{-18}$ & $6.76 \pm 0.21$ & $3.536 \times 10^{-20}$ & $3.628 \times 10^{-20}$ & $0.18 \pm 0.11$ \\
+%%%        C & $1.167 \times 10^{-18}$ & $6.89 \pm 0.22$ & $3.536 \times 10^{-20}$ & $3.767 \times 10^{-20}$ & $0.18 \pm 0.11$ \\
+%%%        D & $4.903 \times 10^{-19}$ & $2.893 \pm 0.093$ & $4.472 \times 10^{-20}$ & $1.576 \times 10^{-20}$ & $0.2 \pm 0.11$ \\
+%%%        E & $8.033 \times 10^{-19}$ & $4.74 \pm 0.15$ & $3.333 \times 10^{-20}$ & $2.59 \times 10^{-20}$ & $0.22 \pm 0.13$ \\
+%%%        F & $5.955 \times 10^{-19}$ & $3.51 \pm 0.11$ & $3.536 \times 10^{-20}$ & $1.895 \times 10^{-20}$ & $0.23 \pm 0.13$ \\
+%%%        G & $2.82 \times 10^{-19}$ & $1.664 \pm 0.054$ & $1.0 \times 10^{-19}$ & $9.216 \times 10^{-21}$ & $0.092 \pm 0.055$ \\
+%%%        H & $2.422 \times 10^{-19}$ & $1.429 \pm 0.047$ & $1.0 \times 10^{-19}$ & $7.942 \times 10^{-21}$ & $0.093 \pm 0.055$ \\
+%%%        I & $1.24 \times 10^{-18}$ & $7.32 \pm 0.23$ & $1.0 \times 10^{-19}$ & $3.905 \times 10^{-20}$ & $0.086 \pm 0.05$ \\
+%%%        J & $3.389 \times 10^{-19}$ & $2.0 \pm 0.065$ & $1.0 \times 10^{-19}$ & $1.108 \times 10^{-20}$ & $0.092 \pm 0.055$ \\
+%%%        K & $6.326 \times 10^{-19}$ & $3.73 \pm 0.12$ & $1.0 \times 10^{-19}$ & $2.025 \times 10^{-20}$ & $0.091 \pm 0.053$ \\
+%%%        L & $8.313 \times 10^{-19}$ & $4.9 \pm 0.15$ & $1.0 \times 10^{-19}$ & $2.609 \times 10^{-20}$ & $0.09 \pm 0.051$ \\
+%%%        M & $7.709 \times 10^{-19}$ & $4.55 \pm 0.14$ & $1.0 \times 10^{-19}$ & $2.421 \times 10^{-20}$ & $0.09 \pm 0.052$ \\
+%%%        N & $5.7 \times 10^{-19}$ & $3.36 \pm 0.11$ & $1.0 \times 10^{-19}$ & $1.821 \times 10^{-20}$ & $0.091 \pm 0.053$ \\
+%%%        O & $1.277 \times 10^{-18}$ & $7.54 \pm 0.24$ & $1.0 \times 10^{-19}$ & $4.06 \times 10^{-20}$ & $0.086 \pm 0.05$ \\
+%%%        P & $2.577 \times 10^{-18}$ & $15.2 \pm 0.48$ & $1.0 \times 10^{-19}$ & $8.154 \times 10^{-20}$ & $0.072 \pm 0.042$ \\
+%%%        Q & $3.151 \times 10^{-19}$ & $1.859 \pm 0.06$ & $1.0 \times 10^{-19}$ & $1.011 \times 10^{-20}$ & $0.092 \pm 0.054$ \\
+%%%        R & $8.048 \times 10^{-19}$ & $4.75 \pm 0.15$ & $1.0 \times 10^{-19}$ & $2.621 \times 10^{-20}$ & $0.09 \pm 0.053$ \\
+%%%        S & $1.184 \times 10^{-18}$ & $6.99 \pm 0.22$ & $1.0 \times 10^{-19}$ & $3.797 \times 10^{-20}$ & $0.087 \pm 0.051$ \\
+%%%        \bottomrule
+%%%    \end{tabularx}
+%%%    %\caption{}
+%%%    \label{tab:oil_drops_summary}
+%%%\end{table}

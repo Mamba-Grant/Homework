@@ -1,6 +1,9 @@
 using DataFrames, CSV, Plots, Measurements, CurveFit, LaTeXStrings, Unitful
+using Unitful: Latexify
+using UnitfulLatexify, Latexify
 import Measurements: value
-theme(:bright)
+import Measurements: uncertainty
+theme(:wong)
 
 df_resistance = DataFrame(CSV.File("../data/amplifier_noise_data.csv"))
 df_resistance = df_resistance[!, Not("Column5", "TimeConstant")]
@@ -26,7 +29,7 @@ df_resistance.SecondaryGain = @. df_resistance.SecondaryGain ± (df_resistance.S
 df_resistance.δF .= (10996 ± (10996 * 0.05)) * u"Hz"
 df_resistance = df_resistance[value.(df_resistance.SecondaryGain) .== 1500, :]
 
-df_resistance = df_resistance[value.(df_resistance.Rin) .<= 5e3u"Ω", :]
+# df_resistance = df_resistance[value.(df_resistance.Rin) .<= 5e3u"Ω", :]
 
 gain_factor = @. (1+((1e3 ± 9)u"Ω"/(200 ± 2)u"Ω")) * (100 ± 0.0001) * (df_resistance.SecondaryGain)
 gain_adjusted_voltage = @. 10 * df_resistance[!, "V2 (V)"] / gain_factor^2
@@ -47,12 +50,14 @@ stat_σ_relative = stat_σ .* value.(df_resistance.VJ2)
 df_resistance.VJ2 = measurement.(value.(df_resistance.VJ2), sqrt.(Measurements.uncertainty.(df_resistance.VJ2).^2 + value.(stat_σ_relative.^2)))
 gain_adjusted_voltage = measurement.(value.(gain_adjusted_voltage), sqrt.(Measurements.uncertainty.(gain_adjusted_voltage).^2 + value.(stat_σ_relative.^2)))
 
-np = scatter(1e-3.*ustrip.(df_resistance.Rin), ustrip.(uconvert.(u"μV^2", gain_adjusted_voltage)), 
+np = scatter(title="Resistance-Dependent Johnson Noise", 1e-3.*ustrip.(df_resistance.Rin), ustrip.(uconvert.(u"μV^2", gain_adjusted_voltage)), 
              size=(400, 250), ms = 3, label=L"\langle V_J^2 + V_N^2 \rangle", 
+             titlefont = font(12,"Computer Modern"),
+             legendfont = font(8,"Computer Modern"),
              xlabel=L"k\Omega", ylabel=L"\mu V^2",)
              # title="(a)", titlelocation=:left)  # Moves title to top-left
 
-resistance_range = 0:100:maximum(resistance_values)
+resistance_range = 0:10e3:100e3
 plot!(1e-3 .* ustrip.(resistance_range), ustrip.(uconvert.(u"μV^2", (linear_fit.(ustrip.(resistance_range)) .* u"V^2"))), 
       ribbon=Measurements.uncertainty.(linear_fit.(ustrip.(resistance_range))),
       label="Linear Fit")
@@ -66,11 +71,12 @@ plot!(1e-3 .* ustrip.(resistance_range), ustrip.(1e12 .* value.(johnson_noise_th
       ribbon=ustrip.(1e12 .* Measurements.uncertainty.(johnson_noise_theoretical.(bandwidth, resistance_range))),
       label="Theoretical Johnson Noise")
 
-# sp = scatter(1e-3 .* ustrip.(df_resistance.Rin), 1e12 .* ustrip.(df_resistance.VJ2), 
-#              ms = 3, label=L"\langle V_J^2 \rangle",
-#              xlabel=L"k\Omega", ylabel=L"\mu V^2",
-#              title="(b)", titlelocation=:left)  # Moves title to top-left
-#
+sp = scatter(1e-3 .* ustrip.(df_resistance.Rin), 1e12 .* ustrip.(df_resistance.VJ2), 
+             ms = 3, label=L"\langle V_J^2 \rangle",
+             xlabel=L"k\Omega", ylabel=L"\mu V^2",
+             title="(b)", titlelocation=:left)  # Moves title to top-left
+
+
 # plot!(1e-3 .* ustrip.(resistance_range), ustrip.(1e12 .* value.(johnson_noise_theoretical.(bandwidth, resistance_range)));
 #       ribbon=ustrip.(1e12 .* Measurements.uncertainty.(johnson_noise_theoretical.(bandwidth, resistance_range))),
 #       label="Theoretical Johnson Noise")

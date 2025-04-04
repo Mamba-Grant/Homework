@@ -1,0 +1,102 @@
+\begin{homeworkProblem}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.35\textwidth]{../assets/H8P1F1.png}
+    \end{figure}
+
+    Consider the circuit shown in Figure 6.37 , which is built from four resistors and an op-amp. 
+    \begin{enumerate}[(a)]
+        \item In terms of $v_{\text {in }}, v_{\text {out }}$ and $R_1$, what is the voltage at the non-inverting input to the op-amp $\left(v_{+}\right)$? 
+            \begin{callout}{Solution:}
+
+                $$v_+ = \frac{R_{1}}{R_{1}+2R_{1}} v_{out} = \frac{1}{3}v_{out}$$
+
+            \end{callout}
+        \item In terms of $v_{\text {in }}, v_{\text {out }}$ and $R_1$, what is input current to the circuit? 
+            \begin{callout}{Solution:}
+
+                \textit{No current flows into the inputs of an op-amp.} As far as the whole circuit is concerned, 
+                $$i_{in} = \frac{v_{in}-v_{-}}{R_{1}} = \frac{v_{in} - \frac{1}{3}v_{out}}{R_{1}}$$
+
+            \end{callout}
+            \newpage 
+        \item In terms of $v_{\text {in }}$ and $R_1$, what is the output voltage, $v_{\text {out }}$, of the circuit?
+            \begin{callout}{Solution:}
+
+                $$v_{-} = \frac{2R_{1}}{R_{1}+2R_{1}}v_{in} + \frac{R_{1}}{R_{1}+2R_{1}}v_{out} = \frac{2}{3}v_{in} + \frac{1}{3}v_{out}$$
+                and $v_{+} = v_{-}$, so 
+                \begin{align*}
+                    \frac{1}{3} v_{out} &= \frac{2}{3}v_{in} + \frac{1}{3} v_{out} \\ 
+                    v_{out} &= v_{in}
+                \end{align*}
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Design a common emitter amplifier that will take a 1V amplitude sinusoidal signal at a frequency of 1000 Hz and produce a 3 V amplitude signal across a $220~\Omega$ resistor. The signal generator has an output impedance of $50~\Omega$. Decoupling the transistor biases from the signal generator and load needs to be accomplished using two $10~\mu \mathrm{F}$ capacitors. Your design is to use a 2N2222 transistor with bias being supplied by a Vcc $=+12 \mathrm{~V}$ supply. No clipping or saturation is allowed on the output signal. The HW problem does NOT require an LTSpice simulation. However, you will need this simulation for the experiment being done this week.
+    \begin{callout}{Solution:}
+
+        For my own convenience, I will use the value of $\beta$ which I measured in experiment \#8 to be ~250.
+
+        The key considerations for designing a CEA are:
+        \begin{itemize}
+            \item $G=\frac{R_C}{R_E}$
+            \item $Z_{\text{in}} = \beta R_E$ 
+            \item $Z_{\text{out}} = R_C$ 
+            \item $Z_{\text{C in}}$ and $Z_{\text{C out}}$ should be small 
+            \item $R_1, R_2 \gg \beta R_E$
+        \end{itemize}
+
+        In this case, I need to pick resistors \textit{alone} for a common emitter amplifier circuit, having no bypass capacitor, resembling the following:
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.35\textwidth]{../assets/H8P2F1.png}
+        \end{figure}
+
+        Output from this is described by:
+        \begin{align*}
+            V_{CC} - i_C R_C &= V_{out} \\ 
+            - \frac{R_C}{R_E}V_B &= V_{out} &&\text{(Equation 5.28)} \\ 
+            - \frac{R_C}{R_E}V_B 
+            &= V' \frac{R_L}{R_L + R_C} &&\left( V_{out} = V' \frac{R_L}{R_C + R_L} \right)
+        \end{align*}
+
+        Where $V'=G\cdot V_{\text{in}} \cdot \left( \frac{Z_\text{in}}{Z_{\text{in}} + R_E} \right)$.
+
+
+        \begin{enumerate}[i.]
+            \item \textbf{Choosing $R_E$ and $R_C$:} 
+
+                I will choose $R_E=20~\Omega$. Quickly,
+                $$Z_{\text{C in}} = \beta R_E = 250\cdot 20~\Omega = 5000~\Omega$$
+                Then, $G = \frac{R_C}{R_E} = 3$, This alone doesn't let me choose $R_C$, though, since this doesn't consider the effects of the load. To do so, I can look at the full expression for output voltage:
+                \begin{align*}
+                    \frac{R_C}{R_E} (V_\text{in}) \left( \frac{Z_\text{in}}{Z_{\text{in}} + R_E} \right) \left( \frac{R_L}{R_L+R_C} \right) &= 3
+                \end{align*}
+                Throwing that at a calculator gives $R_C=\frac{33264}{401}=82.96~\Omega$.
+
+            \item \textbf{Choosing $R_1$ and $R_2$:} 
+
+                To avoid clipping, I'll choose $V_C$ at the midpoint, $\frac{V_{CC}}{2} = 6~\text{V}$. This provides a swing of 6 V + 3 V = 9 V to 6 V - 3 V = 3 V, and gives collector current:
+                $$I_C = \frac{V_C}{R_C} = 72.0~\text{mA}$$
+                We can find voltages at the emitter and base:
+                $$V_E = I_C R_E = (72.0~\text{mA})(20~\Omega) = 1.447~\text{V}$$
+                $$V_B = V_E + V_BE~\text{V} = 1.447 + 0.9 = 2.347 ~\text{V}$$
+                Where $V_BE$ is the forward voltage drop in the transistor, which should be between 0.6 and 1.2 V according to the 2N2222 manual.
+
+                Bipolar junction transistors are current controlled, so I have to worry about current at each part:
+                $$I_B = \frac{I_C}{\beta} = \frac{72~\text{mA}}{250}  = 0.289~\text{mA}$$
+                Equivalent impedance between $R_{2}$ and $R_L$ is 
+                $$R_{eq} = \frac{R_{2} (\beta R_E)}{R_{2}+\beta R_E} = 4~k\Omega$$
+                Choosing $R_2=20~k\Omega$, so I can solve for $R_1$ 
+                $$V_B = \frac{R_{eq}}{R_1 + R_{eq}}V_{CC} \implies R_1=\frac{R_{eq}V_{CC}}{V_B}-R_{eq} = 48.500~\mathrm{k\Omega}$$
+        \end{enumerate}
+
+        It is not necessary, but I confirmed my work by looking at LTSpice, and there appears to be some slight clipping on the peaks as a result of one of two things: (1) the forward bias used is greater than 0.9V, or (2) the value of $\beta$ used is smaller. In experiment 8, I confirmed that my actual transistor exhibits a larger beta parameter than LTSpice predicts, so in reality I hope to see no clipping, but I may need to lower $R_1$ compared to theory to prevent clipping for experiment 9.
+
+    \end{callout}
+\end{homeworkProblem}
