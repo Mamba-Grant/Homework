@@ -1,0 +1,136 @@
+\begin{abstract}
+    In this experiment, I aim to construct and study the characteristics of a common emitter amplifier by experimental means \cite{enwiki:1265071958}. I discuss the design choices which went into the final design, and modify the load to apply the Thevenin Equivalent model. My work demonstrates the theory and design choices needed to achieve a fixed gain with zero clipping. 
+\end{abstract}
+
+\section{Introduction}\label{sec:introduction}
+
+A common emitter amplifier (CEA) utilizes a bipolar junction transistor with a secondary DC voltage source to achieve a controlled gain. In this case I aim to achieve a fixed amplification of $|G|=3$. Signal clipping is a key consideration, as there are tight constraints on the currents at each terminal of the transistor which must be carefully worked around to achieve an acceptable output. To achieve sufficient control over current at the emitter, base, and collector, I incorporate the circuit design shown in figure \ref{fig:circuit}.  
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{../assets/fig:circuit.png}
+    \input
+    \caption{The circuit schematic used.}
+    \label{fig:circuit}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../assets/real.png}
+  \caption{The circuit on the actual breadboard.}
+  \label{fig:real}
+\end{figure}
+
+\newpage
+I intend to design an amplifying CEA with a gain of 3 over a load resistance of $220.3 \Omega$ using 10$\mu$F capacitors, a 2N2222 bipolar junction transistor (BJT), $\mathrm{V_{CC}}=12~V$ and a sinusoidal input voltage with a peak-to-peak of 1 V. This leaves freedom in choosing resistor values $\mathrm{R_{1},\, R_{2},\, R_C,\, R_E}$. Some key considerations I have chosen to take into consideration to avoid signal clipping are: $G=\frac{R_C}{R_E}$, $Z_{\text{in}} = \beta R_E$, $Z_{\text{out}} = R_C$, $Z_{\text{C in}}$ \& $Z_{\text{C out}}$ should be small, and $R_1, R_2 \gg \beta R_E$. Output from this CEA is described by:
+\begin{align*}
+    V_{CC} - i_C R_C &= V_{out} \\ 
+    - \frac{R_C}{R_E}V_B &= V_{out} \\ 
+    - \frac{R_C}{R_E}V_B 
+    &= V' \frac{R_L}{R_L + R_C} &&\left( V_{out} = V' \frac{R_L}{R_C + R_L} \right)
+\end{align*}
+
+Where $V'=G\cdot V_{\text{in}} \cdot \left( \frac{Z_\text{in}}{Z_{\text{in}} + R_E} \right)$.
+
+This means that we must separately choose $\mathrm{R_C,~R_E}$ and $\mathrm{R_{1},~R_{2}}$.
+
+\subsection{Choosing $R_E$ and $R_C$}
+
+I will choose $R_E=22~\Omega$ nominal. The real, measured value is $\mathrm{22.1 \pm 0.3~\Omega}$ We then have:
+$$Z_{\text{C in}} = \beta R_E$$
+Then, $G = \frac{R_C}{R_E} = 3$, This alone doesn't let me choose $R_C$, though, since this doesn't consider the effects of the load. To do so, I can look at the full expression for output voltage:
+\begin{align*}
+    \frac{R_C}{R_E} (V_\text{in}) \left( \frac{Z_\text{in}}{Z_{\text{in}} + R_E} \right) \left( \frac{R_L}{R_L+R_C} \right) &= 3
+\end{align*}
+In turn giving $R_C=95.3 \pm 1.9 \Omega$.
+
+\subsection{Choosing $R_1$ and $R_2$}
+
+To avoid clipping, it is important to choose $\mathrm{V_B < V_C < V_{CC}}$. In my first iteration, I chose $\frac{V_{CC}}{2} = 6~\text{V}$ at the midpoint, however this is not ideal as there may be clipping when considering the amplitude of the signals. The adjusted, ideal location for $\mathrm{V_C}$ would instead be slightly higher. It happened that I was lucky with my first design, so assuming $\frac{V_{CC}}{2} = 6~\text{V}$. This gives collector current:
+$$I_C = \frac{V_C}{R_C}$$
+We can find voltages at the emitter and base:
+$$V_E = I_C R_E$$
+$$V_B = V_E + V_BE~\text{V}$$
+Where $V_BE$ is the forward voltage drop in the transistor, which should be between 0.6 and 1.2 V according to the 2N2222 manual.
+
+Bipolar junction transistors are current controlled, so I have to worry about current at each part:
+$$I_B = \frac{I_C}{\beta}$$
+Equivalent impedance between $R_{2}$ and $R_L$ is 
+$$R_{eq} = \frac{R_{2} (\beta R_E)}{R_{2}+\beta R_E}$$
+We need $R_{2}$ large, so I will select $R_2=100~k\Omega$ nominal, $100.5\pm1.1~k\Omega$, so I can solve for $R_1$:
+$$V_B = \frac{R_{eq}}{R_1 + R_{eq}}V_{CC} \implies R_1=\frac{R_{eq}V_{CC}}{V_B}-R_{eq}$$
+
+For a table of these values, see Table \ref{tab:resistors}.
+
+\subsection{Thevenin Equivalent Model}\label{sec:intro-thev}
+
+It is also of interest to see how well a Thevenin equivalent model describes this. We should expect a remarkably linear dependence in load, since to the load it merely seems as though we're providing a different load which should have no bearing on the rest of the circuit.
+
+\section{Experimental Technique}\label{sec:methods}
+Prior to constructing my circuit, I take measurements of all quantities of resistance and voltage and their uncertainties using a Fluke 179 multimeter; the results of which can be found in Table \ref{tab:resistors}. The circuit, given in Figure \ref{fig:circuit} and in Figure \ref{fig:real}, is recreated on a breadboard. While not considered in the theory, the impedance associated with the signal generator is also measured to be $50.9 \pm 0.6 ~\Omega$. Signal readings are taken using a Tektronix TDS2000 Oscilloscope over the load and at each output of the transistor to observe the behavior and biases at the collector, emitter, and base. This provides the observations shown in Figure \ref{fig:data}.
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Resistor} & \textbf{Value} & \textbf{Nominal} \\
+        \hline
+        RE & $22.1 \pm 0.3~\Omega$ & 22 $\Omega$ \\
+        RC & $95.3 \pm 1.9~\Omega$ & 100 $\Omega$ \\
+        R1 & $68,500.0 \pm 1700.0~\Omega$ & 68,000 $\Omega$ \\
+        R2 & $100,500.0 \pm 1100.0~\Omega$ & 100,000 $\Omega$ \\
+        \hline
+    \end{tabular}
+    \caption{Resistor values chosen such that they are close to the theoretically ideal values. }
+    \label{tab:resistors}
+\end{table}
+
+Fundamental to this experiment is the fitting of data collected by use of a potentiometer, as discussed in section \ref{sec:introduction}. This was done by inserting a potentiometer in parallel, and connecting a voltmeter across $R_4$ and a ammeter in series between $R_2$ and $R_4$ (these are not true voltmeters or ammeters, but rather multimeters in these respective modes). The resulting circuit is shown in Figure \ref{fig:circuit-potentiometer}. Following, I carefully collect data from the two multimeters for linearly spaced values in my potentiometer. I observe a weighting of data points in the low current, high voltage region of the plot, so I collect a greater number of data points in the low resistance range.
+
+\section{Systematic Uncertainty Analysis}
+All measurements of voltage have an associated error of 3\% + 1 LSD. Resistances have an associated error of 0.09\% + 1 LSD. I propagate my error numerically using Julia's excellent physical measurements library (see the code provided in the same directory as this writeup).
+
+Experimentally, the most significant source of error stems from the Oscilloscope voltage (3\% uncertainty), resulting in overly low chi-squared values in the Thevenin equivalent model. Nonetheless, the magnitude of uncertainty is satisfyingly low given the scope of this work.
+
+\section{Results}
+
+I present data in Figure \ref{fig:data}, showcasing the input and output signals. Thevenin equivalent parameters and fits can be seen in Table \ref{tab:thevenin} and Figure \ref{fig:thevenin-equivalent}, respectively. Using the physically measured resistor values, the amplitude of the signal is expected to be $3.22 \pm 0.11$ V. The signal I measure on the scope has an amplitude of $2.88 \pm 0.061$ V, significantly lower than the theoretical value. To confirm whether this is a reasonable result, I do chi-squared statistical analysis in equation \ref{eq:chisq}.
+
+$$\frac{(2.88 - 3.22)^{2}}{\sqrt{0.11^{2} + 0.61^{2}}} \approx 0.92\sigma \label{eq:chisq}$$
+
+Given the errors, my result is within a standard deviation of expectation, indicating strongly that the theoretical prediction agrees with experiment.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../../code/data.pdf}
+  \caption{Resulting signals at base, emitter, and collector of the transistor above, and input and output signals. Both simulated and physical data is shown. The importance of measuring beta in a real transistor is evident, as clipping is visible in the simulated data, but the real data looks good.}
+  \label{fig:data}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../../code/thevenin-equivalent.pdf}
+  \caption{The plot of Thevenin equivalent parameters for this circuit. A strong linear correlation is observed, which is to be expected from an amplifying circuit.}
+  \label{fig:thevenin-equivalent}
+\end{figure}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Parameter} & \textbf{Value} \\
+        \hline
+        $a$ (V) & $-96.03 \pm 6.37$ \\
+        $b$ (Ω) & $8.28 \pm 0.09$ \\
+        $\chi^2/\text{ndof}$ & 0.0345 \\
+        \hline
+    \end{tabular}
+    \caption{Thevenin equivalent parameters from the Minuit fit.}
+    \label{tab:thevenin}
+\end{table}
+
+\section{Summary}
+I present my work on the design of a CEA circuit and find that theoretical predictions model the behavior of the circuit well, such that the intended gain can be reliably designed for. The chi-squared value comparing the theoretical amplitude and the measured amplitude indicates that the theory holds, within error.
+
+\bibliographystyle{plain}
+\bibliography{_citations}

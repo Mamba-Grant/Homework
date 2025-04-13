@@ -36,11 +36,19 @@ hline!(p1, [(2.223 ± 0.011)*u"V"], ls=:dash, c=1, label="Theoretical (2.223 ± 
 scatter!(p1, uconvert.(u"ms", df.t_VE), df.VE, ms=1, label="VE (Mean: $(round(ustrip.(mean(df.VE)), digits=3)) V)", c=2);
 # hline!(p1, [mean(df.VB)], c=2, label="")
 hline!(p1, [(1.623 ± 0.011)*u"V"], ls=:dash, c=2, label="Theoretical (1.623 ± 0.011)")
-scatter!(p1, uconvert.(u"ms", df.t_VC), df.VC, ms=1, label="VC (Mean: $(round(ustrip.(mean(df.VC)), digits=3)) V)", c=3);
+scatter!(p1, uconvert.(u"ms", -df.t_VC), df.VC, ms=1, label="VC (Mean: $(round(ustrip.(mean(df.VC)), digits=3)) V)", c=3);
 # hline!(p1, [mean(df.VC)], c=3, label="")
 hline!(p1, [(7 ± 0.011)*u"V"], ls=:dash, c=3, label="Theoretical (7 ± 0.011)")
 scatter!(p2, uconvert.(u"ms", df.t_Vin), df.Vin, ms=1, label="Input (Amplitude: $((maximum(df.Vin)-minimum(df.Vin))/2))", c=4);
 scatter!(p2, uconvert.(u"ms", df.t_Vout), df.Vout, ms=1, label="Output (Amplitude: $((maximum(df.Vout)-minimum(df.Vout))/2))", c=5);
+
+df4::DataFrame = CSV.read.("../data/exp9.txt", DataFrame;)
+df4.time = @. df4.time * 1e3 - 2.02
+plot!(p1, df4.time, df4."V(vb)", label="Simulated VB")
+plot!(p1, df4.time, df4."V(ve)", label="Simulated VE")
+plot!(p1, df4.time, df4."V(vc)", label="Simulated VC")
+plot!(p2, df4.time, df4."V(vin)", label="Simulated Input")
+plot!(p2, df4.time, df4."V(vout)", label="Simulated Output")
 
 include("theory2.jl")
 

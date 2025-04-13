@@ -1,0 +1,98 @@
+\begin{homeworkProblem}
+    Q1. Prob. 7.16 (1e: 7.11) Determine the truth table for the circuit below
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.6\textwidth]{../assets/H10P1F1.png}
+    \end{figure}
+    \begin{callout}{Solution:}
+
+        I will label "X" the line out of the OR gate.
+        \center
+        \begin{tabular}{|c|c|c|c|}
+            \hline
+            A & B & X & O \\
+            \hline
+            0 & 0 & 0 & 0 \\
+            0 & 1 & 1 & 1 \\
+            1 & 0 & 1 & 0 \\
+            1 & 1 & 1 & 1 \\
+            \hline
+            1 & 0 & 1 & 0 \\
+        \end{tabular}
+
+
+    \end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Q2 Prob. 7.17 (1e: 7.12) Determine the truth table for the circuit below
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.6\textwidth]{../assets/H10P2F1.png}
+    \end{figure}
+
+    \begin{callout}{Solution:}
+
+        I will label "X" the line out of the NAND gate.
+        \center
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        A & B & X & O \\
+        \hline
+        0 & 0 & 1 & 1 \\
+        0 & 1 & 1 & 1 \\
+        1 & 0 & 1 & 1 \\
+        1 & 1 & 0 & 1 \\
+        \hline
+    \end{tabular}
+
+
+    \end{callout}
+
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Simulate the circuit shown below and answer the following questions.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{../assets/H10P3F1.png}
+\end{figure}
+
+    \begin{enumerate}[(a)]
+        \item Vary the input voltage between 0 and 5 V and verify that the circuit is consistent with the standard TTL logic
+
+            \begin{callout}{Solution:}
+
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.6\textwidth]{../assets/H10P3F3.png}
+                \end{figure}
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.8\textwidth]{../assets/H10P3F2.png}
+                \end{figure}
+                We can see from this that the output is an inverted high/low signal, consistent with the intended logic.
+
+            \end{callout}
+
+        \item Determine whether current is entering or leaving the Q1 transistor
+            \begin{callout}{Solution:}
+
+                I have included the current through the base of the indicated transistor in the previous figure, where from 0 to 5 ms we can see low current (entering) and high current (leaving) from 5 to 10ms when there is a high input.
+
+            \end{callout}
+        \item Remove the connection to the emitter of the Q1 transistor, which allows the gate input to “float”. Determine whether such an input corresponds to a logical low or high? Explain.
+            \begin{callout}{Solution:}
+
+            This seems to produce a constant high output.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../assets/H10P3F4.png}
+\end{figure}
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}

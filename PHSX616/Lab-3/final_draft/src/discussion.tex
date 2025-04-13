@@ -1,0 +1,42 @@
+\section{\label{sec:level1}RESULTS \& DISCUSSION}\label{sec:discussion}
+
+%In this paper, we demonstrate the linear correlation in frequency and resistance for Johnson noise, and in doing so we fit a value for Boltzmann's constant, $k_B$. 
+%\textit{I will have to work on this more before commenting on the quality of my work.}
+%
+%The experimental results could be most greatly improved taking rounds of measurements so that a better idea of the spread of our data could be quantified. \textit{More to be written once I finish my data.}
+
+In this paper, we directly measure the x-ray emission spectra of a molybdenum anode and demonstrate how it is possible to use this characteristic spectra to determine lattice parameters in unknown materials. Our parameters are found to be within 1.7\% for first-order diffraction, and within 6.29\% for fifth-order diffraction, when compared to literature values \cite{https://doi.org/10.1118/1.594620}, shown in table \ref{tab:results}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.49\textwidth]{../../code/curves.pdf}
+    \caption{Bragg spectra collected by the x-ray diffraction equipment. Gaussian fits are drawn over locations of peaks. In the first-order data, peaks are well estimated to be $K_{\beta}+ K_\gamma$=64.16, and $K_\alpha=72.147$. At the higher diffraction order, lattice impurities become much more significant, resulting in a substantial shift in the mean, $\mu$ of the peaks.}
+  \label{fig:data}
+\end{figure}
+
+Literature notes an additional $K_{\alpha2}$ peak neighboring the fifth-order $K_{\alpha1}$ peak. Due to the angular resolution limitations, we were unable to image this peak, instead we observe the smearing between $K_{\alpha1}$ and $K_{\alpha2}$ peak (see Appendix A for more details). Future work on the subject would benefit from sub 0.1$^\circ$ angular resolution, as well as a narrower collimator and longer counting times in this very narrow band.
+
+It is apparent from our results that there is a significant shift in the peak locations when compared to literature, and we attribute this to strain and thermal contraction in our sample invoking a shift in path length. 
+
+\begin{table}[h]
+\vspace{0.2cm}
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        Type & $\mu~(\mathrm{\frac{\lambda}{pm}})$ & $\mu$ (Literature Value) & Order \\
+        \hline
+          $K_{\beta}+ K_{\gamma}$ & 64.16$\pm$0.1  & 63.09 & 1 \\
+          $K_{\alpha}$ & 72.147$\pm$0.031 & 71.08 & 1 \\
+          $K_{\gamma}$ & 64.9   $\pm$0.29     & 62.09 & 5 \\
+          $K_{\beta}$ & 66.21  $\pm$0.21    & 63.26 & 5 \\
+          $K_{\alpha1}$ & 75.553 $\pm$0.024   & 70.93 & 5 \\
+          $K_{\alpha2}$ & N/A   & 71.36 & 5 \\
+        \hline
+    \end{tabular}
+    \caption{Location of exact emission peaks obtained from gaussian fits compared with literature values \cite{https://doi.org/10.1118/1.594620}.}
+    \label{tab:results}
+\end{table}
+
+%In this paper, we demonstrate the capability to measure the charge on a microscopic drop of oil. From this, we demonstrate that charge is atomically quantized, given the results in high quality data, seen in table \ref{tab:oil-drops-hq} We express charge as a function of atmospheric pressure, air viscosity, and capacitor field. We then observe the motion of the droplets to measure velocity, allowing us to calculate the charge on each droplet. The experimental observations point to the quantized nature of charge. Our results have very large uncertainty due primarily to statistical sources; despite this, our values appear to be similar to the commonly accepted value for electron charge, deviating by approximately 5.8\% as discussed in \ref{sec:uncertainty}.
+%
+%The experimental results could be most greatly improved by (1) directly measuring conditions during measurement instead of relying on provided data and (2) more samples for high-quality data. Instrumentation was not available to accurately determine air pressure, measure capacitor separation, and many other parameters. The relative uncertainty from these systematic sources is nonetheless smaller than statistical uncertainty, however more precise measurements here would certainly provide better results than in the esteemed Robert Millikan's work \cite{MillikanOilDropManual}. Due to the time-constraints of the publication process, we suggest the modification of the apparatus as discussed in the manufacturer manual for the use of a projector and/or recording software. We faced very high standard deviation in our measurements of droplet velocity due to the antiquated method of stopwatch measurement. The ability to acquire precise data from video would undoubtedly enable the observation of many droplets in parallel with lower systematic uncertainty.
