@@ -1,0 +1,115 @@
+\begin{abstract}
+    In this paper, I present the background, theory, and design considerations for a resonant filter which implements voltage control by use of a diode ladder. The theoretical background to understand resonance and voltage control are explored, and experimentally determined configurations are presented which optimize performance characteristics suitable for audio synthesis applications.
+\end{abstract}
+
+\section{Introduction}\label{sec:introduction}
+
+Active filters are an essential and classic ingredient in an audio engineer's toolkit. The walls of knobs and dials commonly associated with synthesizers and studios are really some massive array of such devices which may be tuned by an artist to produce some of our favorite sounds in music. Audio engineering is one of the realms in which such analog devices still flourish in tandem with digital equipment, and in this project I aim to explore the mechanisms of voltage-controlled amplification and resonance in one such active filter.
+
+Throughout this course, we have dealt with amplification and impedance matching via op-amps. This a key element in basic resonant filter design, allowing us to maintain control over cutoff and create a circuit which can operate in a huge range of input signal types. I incorporate seven op-amp devices in this circuit, which will be discussed further in the following sections.
+
+The mechanism by which a signal is shaped to have a particular sound is through the addition of resonance to a waveform. Non-resonant filters can be thought of as a precise and controlled filter, typically strongly cutting off an output frequency or voltage after a certain point. Resonant filters, on the other hand are capable of emphasizing certain frequencies near the cutoff point, an example of which is shown in Figure \ref{fig:resonance}. It is through the emphasis of certain frequencies this mechanism that an input signal can be shaped to have a sound quality, from a bass to a drum.
+
+We describe the operation of a resonant filter by the overshooting and undershooting phases introduced, in this case by op-amps. As resonance is raised, it appears as though the filter takes longer to settle on its frequency, much like a damped oscillator which we are controlling the damping rate. Furthermore, as cutoff is lowered, the waveform additionally remains in over and undershooting phases for longer, akin to adjusting the mass of a damped oscillator. Such behavior can be seen in Figure \ref{fig:resonance}.
+
+\subsection{Basic Resonant Filters}
+
+The simplest resonant filter, shown in Figure \ref{fig:simple-filter} operates on the principle of negative feedback introduced by a combination of followers and capacitors. Consider the input to be a square wave rising from 0 to 5 volts. At the instant the signal goes high, the first capacitor fills and follower begins to raise the voltage at its output to match the non-inverting input signal, soon after filling the second capacitor and raising the voltage after the second follower. Something unusual happens now, and because of the first capacitor the voltage going into the first follower continues to rise past 5 V. Because of the first resistor, the resistor acts like an equalizing valve, dissipating some of this additional charge on the capacitor after some time, bringing the voltage back down, below 5 V. At this point, the first capacitor is not fully empty, repeating the overshooting phase with a smaller peak, which causes an undershooting phase afterwards. This cycle repeats again and again until after some time the circuit stabilizes at 5 V. 
+
+\input{./simple-filter.tex}
+
+\subsection{Fully Resonant Filters}\label{sec:fully-resonant-LPF}
+
+This is great, but we have no control over this circuit without directly replacing components. We can fix this by introducing a potentiometer to vary the resistance at the bottom line of Figure \ref{fig:simple-filter}. This is fed through an op amp configured to provide a stable current. This circuit is susceptible to clipping as the cutoff is raised as the output can easily exceed the 12 V maximum of the TL074 OP-Amps, so I add a 10\% voltage divider and AC Coupling with a follower to stabilize current at the input. This is an improvement over the basic resonant filter, however we still lack key features of cutoff control that is necessary for a voltage controlled filter.
+
+\input{./fully-resonant-LPF.tex}
+
+\subsection{Diodes as Voltage Controlled Resistors}\label{sec:diode-resistor}
+
+One way to achieve cutoff control is via diodes. From this course, it is well understood that diodes have a fixed drop. This is a useful fact, as this gives a different perceived resistance of the component depending on the voltage it receives. See Figure \ref{fig:voltage-resistor} for a demonstration of this effect.
+
+\input{./voltage-controlled-resistor.tex}
+\subsection{Multi-Pole Diode Ladder}\label{sec:diode-ladder}
+
+To apply this principle, we integrate diodes in a ladder, shown in Figure \ref{fig:multi-pole-diode-ladder}. This creates a copy of our input signal at some high and low offset, shown in figure \ref{fig:square-waves-annotated}, from which we can take at the center of the ladder to the output stage. Modulation of the separation difference allows us to modulate cutoff.
+
+A degree of control we may engineer here is the number of poles of the ladder, which is qualitatively responsible for the sound quality coming out of the instrument. 5 are chosen in this instance, but adding more will further increase the separation, and fewer decrease it. Too few or too many may limit the functionality of the instrument as clipping can be a concern depending on resonance.
+
+\input{./ladder-diode-bits.tex}
+
+\subsection{Input Stage}\label{sec:input-stage}
+
+To drive this diode ladder, one might imagine they wish to produce some DC offset which can be added or subtracted from the input waveform. This is a simple application of an inverter and adder; however, it would benefit us to use fewer op-amps as this sequence of operation could be simplified. Furthermore, we must also maintain the small oscillation size and clipping control implemented in Section \ref{sec:fully-resonant-LPF}. This prompts us to implement a new driver, shown in Figure \ref{fig:ladder-input-stage}.
+
+\input{./ladder-input-stage.tex}
+
+%It's clear several aspects of these simple designs make it into the design which is built in this project, shown in Figure \ref{fig:ladder-filter}; namely, the input stage is identical, only with adjustments in resistance. It may seem different, but the negative-feedback driver for resonance shown in Figure \ref{fig:fully-resonant-LPF} makes its way into this design as well, only with the addition of some diodes to linearise the exponential response.
+
+\subsection{Resonance}\label{sec:resonance}
+
+Resonance in the circuit is introduced in the same fashion of Section \ref{sec:fully-resonant-LPF} by means of routing the output from the diode ladder through a follower and potentiometer through an amplifying op-amp back into the filter's upper AND lower points to preserve symmetry. Additional diodes are added to the amplifying op-amp to introduce a necessary non-linearity in its operation. Ordinarily, an op-amp in a multiplying configuration produce a constant gain which will quickly overpower the bias current and cause the diode ladder to shut down. Using the same principles as in Section \ref{sec:diode-resistor}, we know that diodes act as exponential resistors in response to voltage, and implementing them in this fashion gives an exponentially decaying gain. A comparison is available in Figure \ref{fig:gains}
+
+\input{./ladder-resonant-bits.tex}
+
+\section{Experimental Technique}
+
+\subsection{Fabrication}
+Our voltage-controlled, diode ladder-based resonant filter is implemented on breadboard, shown in Figure \ref{fig:breadboard}. The components used are listed in Figure \ref{fig:parts}.
+
+Simulated data is used to compare with reality or model the behavior of certain components in this work. Falstad is used for the final circuit simulation, as LTSpice was unable to solve the system. Instead LTSpice is used to make small-scale simulation, such as for the diode-amplifier in Figure 6.
+
+\begin{figure}[H]
+    \centering
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Category} & \textbf{Components} \\
+        \hline
+        Semiconductors & 11x 1N4148 diode \\
+        \hline
+        Capacitors & 2x 1$\mu$F capacitor \\
+        & 5x 1nF capacitor \\
+        \hline
+        ICs & 2x TL074 \\
+        \hline
+        Resistors & 2x 200k resistor \\
+        & 2x 100k resistor \\
+        & 1x 47k resistor \\
+        & 8x 33k resistor \\
+        & 2x 10k resistor \\
+        & 1x 2k7 resistor \\
+        & 2x 2k resistor \\
+        & 1x 1k resistor \\
+        & 1x 330 resistor \\
+        \hline
+        Potentiometers & 2x 100k linear mono potentiometer \\
+        \hline
+        Misc & 3x audio jack socket \\
+        \hline
+    \end{tabular}
+    \caption{Parts list for the electronics assembly}
+    \label{fig:parts}
+\end{figure}
+
+\subsection{Characterization}
+The equipment used in characterization are standard Agilent/Keysight 33220A 20 MHz Waveform Generators and a Tektronix TDS2000 Oscilloscope.
+
+As this is a filter, I aim to employ the techniques of this class to create a bode plot by sweeping input frequency and capturing input and output scope traces. A standard fourier transform and cross correlation algorithm is used to compute phase, as opposed to the measured value on the scope. This is done both to improve data collection speed and due to the uncertainty of the scope at phase near 180$^\circ$. Inherently, phase is an incomplete statistic in resonant filters, as the introduction of resonance inherently disrupts the waveform, as discussed in Section \ref{sec:results}
+
+\section{Systematic Uncertainty Analysis}
+Uncertainty in scope traces are 3\% + 2 LSD, provided by the manufacturer, Tektronix. Throughout this project, the excellent Measurements library, which implements linear error propagation in Julia is used to seamlessly propagate measurement errors in the creation of bode plots \cite{Measurements.jl-2016}.
+
+\section{Summary}\label{sec:results}
+
+In this work, I have demonstrated the design, implementation, and characterization of a voltage-controlled filter based on a 5-pole diode ladder, optimized for audio synthesis applications. The experimental measurements confirm the theoretical principles of using diodes as voltage-controlled resistors while revealing several key performance characteristics.
+
+The filter demonstrates a remarkably wide tunable cutoff frequency range of approximately 100 Hz to 12.6 kHz, controlled by varying the input voltage between 0.1V and 10.0V (Figures 9c-9d). This range spans most of the human hearing spectrum, making the filter highly versatile for audio applications.
+
+The implementation of exponentially decaying gain in the resonance circuit, using the diode-based approach described in Section 1.6, successfully prevented signal clipping even at high resonance settings—a common limitation in traditional filter designs. This is evidenced by the clean waveforms observed across the full range of cutoff and resonance settings (Figure 9b). The resonance control provides a smooth transition from subtle emphasis at the cutoff frequency to pronounced oscillation, giving this filter its distinctive character.
+
+My results demonstrate that the diode ladder topology provides a versatile approach to voltage-controlled filtering with performance characteristics suitable for audio synthesis applications. The agreement between theoretical behavior and measured performance validates our design choices and confirms the underlying principles of diode-based voltage control in filter circuits.
+
+\input{./breadboard.tex}
+\input{./ladder-filter.tex}
+
+\bibliographystyle{plain}  % or another style like 'alpha', 'unsrt', etc.
+\bibliography{./_citations.bib}

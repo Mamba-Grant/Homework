@@ -1,0 +1,28 @@
+\begin{figure}[H]
+    \par\noindent\rule{\textwidth}{0.4pt}
+    \centering
+    \hspace{1em} 
+    \begin{subfigure}{0.3\textwidth}
+        \vspace{2em}
+        \captionsetup{labelformat=empty}
+        \begin{picture}(0,0)
+            \put(0,-5){\small\textbf{(a)}}
+        \end{picture}
+        \includegraphics[width=\textwidth,valign=t]{../../assets/resonance.png}
+        \caption{}
+        \label{fig:resonance}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.65\textwidth}
+        \captionsetup{labelformat=empty}
+        \begin{picture}(0,0)
+            \put(0,15){\small\textbf{(b)}}
+        \end{picture}
+        \includegraphics[width=\textwidth,valign=t]{../../assets/gains.pdf}
+        \caption{}
+        \label{fig:gains}
+    \end{subfigure}
+    \caption{\textbf{(a)} A sub-schematic of the op-amp configurations responsible for resonance. The amplifier outputs to the diode ladder's beginning and end poles. Output is taken from the center pole of the ladder and fed through a potentiometer to the non-inverting input, producing resonance. \textbf{(b)} Demonstration of the effect on output from introducing diodes on the amplifier. Data is simulated in LTSpice, where an approximately constant gain (or linear output voltage) is produced when there are no diodes in the circuit. By introducing diodes, there is exponential loss in gain (or exponential decay in output voltage).}
+    \label{fig:combined}
+    \par\noindent\rule{\textwidth}{0.4pt}
+\end{figure}

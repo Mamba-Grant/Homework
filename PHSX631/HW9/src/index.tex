@@ -1,0 +1,247 @@
+\begin{homeworkProblem}
+Explicitly demonstrate (write it ALL out – it should take several lines of detailed math) that \( p^\mu p_\mu \) is a Lorentz invariant by \textit{explicitly} applying the Lorentz transform. \( p^\mu \) is the 4-momentum. Use the x-direction for the relative frame motion.
+\begin{callout}{Solution:}
+
+    \textit{I work this in imaginary time notation, since I found it interesting and I think it makes this math easier.}
+
+    We have the 4-velocity defined to be 
+    $$\vec{U} = \frac{d \vec{r}}{d\tau} = \gamma(u) \left( \frac{d \mathbf{r}}{t}, ic \right) = \gamma(u) (\mathbf{u}, ic) \equiv (\mathbf{U}, U_4)$$
+    And the 4-momentum defined to be 
+    $$\vec{p} = m \vec{U} = m(\mathbf{U}, U_4) = (\mathbf{p}, i \gamma / c)$$
+    This definition inherently obeys the dot product on minowski space, given in Griffiths without the need to separately write contravariant and covariant forms. It follows that
+    $$\vec{U} \cdot \vec{U} = \mathbf{U} \cdot \mathbf{U} + U_4^{2} = \frac{\mathbf{u} \cdot \mathbf{u} - c^{2}}{1 - u^{2} / c^{2}} = - c^{2}$$
+    Finally we can reintroduce the mass term 
+    $$\vec{p} \cdot \vec{p} = - m^{2} c^{2}$$
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+An energetic particle with the rest mass of a neutron \( M_n = 937 \, \text{MeV}/c^2 \) and a kinetic energy of \( 5 \times 937 \, \text{MeV} \) collides with a particle at rest that has a rest mass of \( 2 M_n \). A composite particle is created in this collision. What is the rest mass and the kinetic energy of the new composite particle? What is its speed?
+\begin{callout}{Solution:}
+
+%Conservation of momentum is simple: 
+%$$\vec{M_n \gamma(u) ()}$$
+
+    \begin{enumerate}[1.]
+        \item Particle 1 will have momentum and energy defined by: 
+            \begin{align*}
+                M_n c^{2} &= 937 \mathrm{~MeV} \\
+                T = 5 M_n c^{2} \mathrm{~MeV} &= 4185 \mathrm{~MeV} \\
+                E^{2} = (T + M_n c^2)^2 &= p^{2}c^{2} + M_n^{2} c^{4}
+            \end{align*}
+
+            This gives 
+            \begin{align*}
+                E &= 5622 \mathrm{~MeV} \\ 
+                p &=  5543 \mathrm{~MeV / c}
+            \end{align*}
+
+        \item Particle 2 will just have rest energy, no momentum: 
+            \begin{align*}
+                E = 2M_n c^2 = 1874 \mathrm{~MeV}
+            \end{align*}
+
+        \item The composite particle will have conserved quanities,
+
+            \begin{align*}
+                p &= 5543 \mathrm{~MeV / c} \\ 
+                E &= 5622 + 1874 = 7496 \mathrm{~MeV}
+            \end{align*}
+
+        \item Rest mass is given by 
+            \begin{align*}
+                E^{2} = p^{2}c^{2} + m^{2}c^{4} \implies m^{2} = \frac{E^{2} - p^{2}c^{2}}{c^{4}}
+            \end{align*}
+            Substituting values gives $m=5046 \mathrm{~\frac{MeV}{c^2}}$
+            
+        \item No potential, so we can just subtract off rest mass to obtain kinetic energy 
+            $$T = E - 3mc^2 = 7096 \mathrm{~{MeV}} - 5046 \mathrm{~{MeV}} = 2450 \mathrm{~{MeV}}$$
+
+        \item The speed of the composite particle is 
+            $$\frac{v}{c} = \frac{p}{E} = \frac{5543}{7496} \approx 0.739$$
+
+    \end{enumerate}
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+A charge is released from rest at the origin, in the presence of a uniform electric field \( \mathbf{E} = E_0 \hat{z} \) and a uniform magnetic field \( \mathbf{B} = B_0 \hat{x} \). Find the trajectory of the particle by transforming to a frame in which \( \mathbf{E} = 0 \), finding the path in that frame and then transforming back to the original frame. Assume that \( E_0 < c B_0 \).
+\begin{callout}{Solution:}
+
+We seek a reference frame moving perpendicular to both fields with velocity given by
+$$\mathbf{v} = \frac{\mathbf{E\times B}}{B^{2}} = \frac{E_{0}}{B_{0}}\mathbf{\hat{y}}$$
+
+The transformed fields will be 
+\begin{align*}
+    \mathbf{B} = \gamma \left( \mathbf{B} - \frac{\mathbf{v \times E}}{c^{2}} \right)
+    = \gamma \left( B_{0} - \frac{vE_{0}}{c^{2}} \right) \mathbf{\hat{x}}
+    = \gamma B_{0} \left( 1 - \frac{E_{0}^{2}}{B_{0}^{2}c^{2}} \right) \mathbf{\hat{x}}
+\end{align*}
+
+    The particle is at rest in the lab frame, so it will have velocity $-\mathbf{v}=-\frac{E_{0}}{B_{0}}\mathbf{\hat{y}}$ in the transformed frame. This just represents a particle moving in a magnetic field, so we get cyclotron motion 
+    \begin{align*}
+        y'(t') &= r' \sin \left(\frac{q B_{0}'}{m} t'\right) \\ 
+        z'(t') &= -r \cos \left(\frac{q B_{0}'}{m} t'\right) 
+    \end{align*}
+
+    Lorentz transform to get back to the lab frame
+
+    \begin{align*}
+        y&=\gamma\left(y^{\prime}+v t^{\prime}\right) \\
+        t&=\gamma\left(t^{\prime}+\frac{v y^{\prime}}{c^2}\right) \\
+        z&=z^{\prime}
+    \end{align*}
+
+    Substituting,
+    \begin{align*}
+        y\left(t^{\prime}\right) &= \gamma\left[r^{\prime} \sin \left(\omega_c^{\prime} t^{\prime}\right)+v t^{\prime}\right] \\
+        z\left(t^{\prime}\right) &= -r^{\prime} \cos \left(\omega_c^{\prime} t^{\prime}\right)+r^{\prime}
+    \end{align*}
+
+    Which are parameterized by t'.
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+Field problem.
+\begin{itemize}
+    \item[(a)] What are expressions for the scalar and vector potentials for a point charge \( q \) at rest at the origin. Consider this the frame K.
+        \begin{callout}{Option \#1, Scalar:}
+
+        We can write a scalar potential and no vector potential such that 
+            $$\begin{cases}
+            V = \frac{1}{4\pi \epsilon_{0}} \frac{q}{r} \\ 
+            \mathbf{A} = 0
+            \end{cases}$$
+
+        \end{callout}
+        \begin{callout}{Option \#2, Vector:}
+
+        We can write a vector potential and no scalar potential such that
+        $$\begin{cases}
+            V = 0 \\
+            \mathbf{A} = \frac{1}{4\pi \epsilon_{0}} \frac{qt}{r}
+        \end{cases}$$
+
+        \end{callout}
+    \item[(b)] What are expressions for the electric and magnetic fields from part (a)?
+        \begin{callout}{Solution:}
+
+        Both cases return field functions:
+        $$\begin{cases}
+            \mathbf{E} = -\frac{1}{4\pi \epsilon_{0}} \frac{q}{r^{2}} \\
+            \mathbf{B} = 0
+        \end{cases}$$
+
+        \end{callout}
+    \item[(c)] An inertial frame K’ is moving at speed \( v \) in the x-direction with respect to frame K. What are expressions (in K’ coordinates) for the scalar and vector potentials in the K’ frame in terms of \( x’, y’, z’, t’ \).
+        \begin{callout}{Solution:}
+
+            Note, the 4-potential $\mathbf{A}$ in frame $K$ is chosen to be 
+            $$A^{\mu} = \left( \frac{V}{c}, 0, 0, 0 \right)$$
+    
+            $$\begin{cases}
+                \mathbf{A}^{\mu} \equiv \left( \frac{V}{c}, \mathbf{A} \right) \\
+                V^{\mu} \equiv \gamma V
+            \end{cases}$$
+
+            Calculating $\mathbf{A}$,
+            \begin{align*}
+                {A^{0}} &= \gamma \left( A^{0} - \frac{v}{c}A^{1} \right) = \gamma\frac{V}{c} \\ 
+                {A^{1}} &= \gamma \left( A^{1} - \frac{v}{c}A^{0} \right) = \gamma \left( \frac{V}{c} \cdot \frac{v}{c} \right)
+            \end{align*}
+
+            \begin{align*}
+                V^{\mu}&=c A^{0}=\gamma V=\frac{\gamma q}{4 \pi \varepsilon_0 R}\\
+                \mathbf{A}^{\mu}&=\left(A^{ 1}, 0,0\right)=\left(-\gamma \frac{v}{c^2} V, 0,0\right)
+            \end{align*}
+
+            Where,
+            $$R \equiv \left[ \gamma^{2}(x'+vt')^{2} + y'^{2} +z'^{2} \right]$$
+
+            Since, 
+            $$ \left[\begin{array}{c}
+                c t \\
+                x \\
+                y \\
+                z
+            \end{array}\right]=\left[\begin{array}{cccc}
+                \gamma & -\beta \gamma & 0 & 0 \\
+                -\beta \gamma & \gamma & 0 & 0 \\
+                0 & 0 & 1 & 0 \\
+                0 & 0 & 0 & 1
+            \end{array}\right]\left[\begin{array}{c}
+                c t^{\prime} \\
+                x^{\prime} \\
+                y^{\prime} \\
+                z^{\prime}
+            \end{array}\right] $$
+
+        \end{callout}
+    \item[(d)] What are expressions for the electric and magnetic fields from part (c) in terms of \( x’, y’, z’, t’ \).
+        \begin{callout}{Solution:}
+
+            \begin{align*}
+                V^{\mu}&=\gamma V=\frac{\gamma q}{4 \pi \varepsilon_0 \sqrt{\gamma^{2}(x'+vt)^{2} + y'^{2}+ z'^{2}}}\\
+                \mathbf{A}^{\prime}&=\left(-\gamma \frac{v}{c^2} V, 0,0\right)
+            \end{align*}
+
+
+        \end{callout}
+    \item[(e)] Using results from the earlier parts of this problem, demonstrate that the quantity \( \left( B^2 - \frac{E^2}{c^2} \right) \) is a Lorentz invariant.
+        \begin{callout}{Solution:}
+
+        From these equations, we may recover fields:
+            \begin{align*}
+                %\mathbf{B'} &\equiv \nabla \times \mathbf{A'} \\ 
+                \mathbf{B^{\mu}} &\nabla^{\prime} \times \mathbf{A}^{\prime}=\left(\frac{\partial A_x^{\prime}}{\partial y^{\prime}} \hat{z}-\frac{\partial A_x^{\prime}}{\partial z^{\prime}} \hat{y}\right) \\
+                \mathbf{E^{\mu}} &\equiv -\nabla V^{\mu} - \frac{\partial \mathbf{A^{\mu}}}{\partial t}
+            \end{align*}
+
+            \begin{align*}
+                \frac{\partial A_x^{\prime}}{\partial y^{\prime}} &=
+                - \frac{\gamma^{2}qv}{4\pi \epsilon_{0} c^{2}} \frac{\partial}{\partial y'} \frac{1}{R} \\
+                &= - \frac{\gamma^{2}qv}{4\pi \epsilon_{0} c^{2}} \frac{1}{R^{2}} \frac{\partial R}{\partial y'} \\
+                &= - \frac{\gamma^{2}qv}{4\pi \epsilon_{0} c^{2}} \frac{1}{R^{2}} \frac{1}{2R} \frac{\partial}{\partial y'}(R^{2}) \\
+                &= - \frac{\gamma^{2}qv}{4\pi \epsilon_{0} c^{2}} \frac{1}{R^{2}} \left( \frac{1}{R} y' \right) \\
+                &= - \frac{\gamma^{2}qv}{4\pi \epsilon_{0} c^{2} R^{3}} y'
+            \end{align*}
+
+            Similarly,
+            \begin{align*}
+                \frac{\partial A_x^{\prime}}{\partial z^{\prime}} &= 
+                - \frac{\gamma^{2}qv}{4\pi \epsilon_{0} c^{2}} \frac{\partial}{\partial z'} \frac{1}{R} \\
+                &= - \frac{\gamma^{2}qv}{4\pi \epsilon_{0} c^{2}} \frac{1}{R^{2}} \frac{\partial R}{\partial z'} \\
+                &= - \frac{\gamma^{2}qv}{4\pi \epsilon_{0} c^{2}} \frac{1}{R^{2}} \frac{1}{2R} \frac{\partial}{\partial z'}(R^{2}) \\
+                &= - \frac{\gamma^{2}qv}{4\pi \epsilon_{0} c^{2}} \frac{1}{R^{2}} \left( \frac{1}{R} z' \right) \\
+                &= - \frac{\gamma^{2}qv}{4\pi \epsilon_{0} c^{2} R^{3}} z'
+            \end{align*}
+
+            So, 
+            \begin{align*}
+                \mathbf{B'} &= 
+                - \frac{\gamma^{2}qv}{4\pi c^{2} \epsilon_{0} R^{3}}\left( y'\hat{z} - z'\hat{y} \right)
+            \end{align*}
+
+            for $\mathbf{E'}$, the time derivative portion is zero, so we will have a gradient
+            \begin{align*}
+                -\nabla V &= 
+                -\frac{\gamma q}{4\pi \epsilon_{0}c^{2}} \cdot \nabla \frac{1}{R} \\
+                &= - \frac{\gamma q}{4\pi \epsilon_{0}c^{2}} \frac{1}{R^{2}} \left( \frac{\partial R}{\partial x'} + \frac{\partial R}{\partial y'} + \frac{\partial R}{\partial z'} \right)  \\ 
+                &= - \frac{\gamma^{2}q}{4\pi \epsilon_{0} c^{2} R^{3}} (x'+vt') + y'+z'
+            \end{align*}
+
+            Finally I confirm invariance, where we're looking to see 
+            \begin{align*}
+                B'^{2} - \frac{E'^{2}}{c^{2}} = - \left( \frac{q}{4\pi \epsilon_{0}R^{3}} \right)^{2} \left( \gamma^{2}(x'+vt')^{2} + y'^{2} + z'^{2} + \frac{v^{2}}{c^{2}}\left( y'^{2}-z'^{2} \right) \right)
+            \end{align*}
+
+        \end{callout}
+\end{itemize}
+\end{homeworkProblem}

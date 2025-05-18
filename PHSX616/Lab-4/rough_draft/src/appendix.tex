@@ -1,0 +1,13 @@
+\appendix
+
+\section{Discussion of Precision and Uncertainty}\label{sec:uncertainty}
+Throughout this work, we use linear propagation theory for the propagation of all errors via the excellent measurements library in Julia \cite{Measurements.jl-2016}.
+
+Our oscilloscope has an uncertainty of 3\% + 2 LSD, which is propagated throughout our measurements. There is also some uncertainty associated with fitting high resolution data to the low resolution initial scan, discussed in Section \ref{sec:analysis}. We obtain large reduced chi-squared values, discussed in Figure \ref{fig:fitted_peaks}. Ordinarily this would suggest a statistical discrepancy, however, in fitting high resolution data to low resolution data, do not consider side effects of display settings, where the oscilloscope display does not directly match data collected. Instead, there is some level of anti-aliasing and widening to make the trace human-readable which broadens the trace, obfuscating the valleys and peaks of the data when we take the mean in the y-direction to obtain a curve.We inherently understand that we are measuring the same underlying population, and therefore argue that statistical uncertainty here may be disregarded to a certain degree.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.45\textwidth]{../../code/fitted_peaks.pdf}
+  \caption{Higher resolution scans, fitted to the baseline spectrum. In this work, we neglect to fit the rightmost grouping of peaks as it was unclear at the time of data collection what this object was. In fitting these, we apply a chi-squared statistical model, and find chi-squared values of 4.78$\sigma$ and 11.1$\sigma$, for the left and right respectively.}
+  \label{fig:fitted_peaks}
+\end{figure}

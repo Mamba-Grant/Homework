@@ -1,0 +1,245 @@
+\begin{figure}[H]
+    \par\noindent\rule{\textwidth}{0.4pt}
+    \centering
+    
+    % Create a 2x2 grid layout
+    \begin{minipage}[t]{0.48\textwidth}
+        % First column - subfigures (a) and (b)
+        \begin{subfigure}{\textwidth}
+            \vspace*{2em}
+            \captionsetup{labelformat=empty}
+            \begin{picture}(0,0)
+                \put(-90,-10){\small\textbf{(a)}}
+            \end{picture}
+            \centering
+            \resizebox{\textwidth}{!}{%
+                \begin{circuitikz}
+                    \tikzstyle{every node}=[font=\large]
+                    \draw (8.25,14.25) node[op amp,scale=1, yscale=-1] (opamp2) {};
+                    \draw (opamp2.+) to[short] (6.75,14.75);
+                    \draw (opamp2.-) to[short] (6.75,13.75);
+                    \draw (9.45,14.25) to[short](9.75,14.25);
+                    \draw (0.75,14.25) to[C,l=$1\,\mu\text{F}$] (-1.25,14.25);
+                    \draw (1.75,14.25) to[R,l=$33\,\text{k}\Omega$] (3.5,14.25);
+                    \draw (6.75,13.75) to[short] (6.75,12.75);
+                    \draw (6.75,12.75) to[short] (9.75,12.75);
+                    \draw (9.75,12.75) to[short] (9.75,14.25);
+                    \node at (4,14.25) [circ] {};
+                    \draw (5.75,14.25) to[short] (5.75,14.75);
+                    \draw (5.75,14.75) to[short] (6.75,14.75);
+                    \draw (3.5,14.25) to[short] (4,14.25);
+                    \draw (4,14.25) to[short] (5.75,14.25);
+                    \draw (0.75,14.25) to[short] (1.75,14.25);
+                    \node at (9.75,14.25) [circ] {};
+                    \draw (-1.25,14.25) to[short, -o] (-2,14.25) node[above] {In};
+                    \draw (0.75,14.25) to[R,l=$200\,\text{k}\Omega$] (0.75,11.75);
+                    \draw (0.75,11.75) to (0.75,11.25) node[ground]{};
+                    \draw (4,14.25) to[R,l=$330\,\text{k}\Omega$] (4,11.75);
+                    \draw (4,11.75) to (4,11.25) node[ground]{};
+                    \draw (8,6) node[op amp,scale=1, yscale=-1] (opamp2) {};
+                    \draw (opamp2.+) to[short] (6.5,6.5);
+                    \draw (opamp2.-) to[short] (6.5,5.5);
+                    \draw (9.2,6) to[short](9.5,6);
+                    \draw (1.5,6) to[R,l=$33\,\text{k}\Omega$] (3.25,6);
+                    \draw (6.5,5.5) to[short] (6.5,4.5);
+                    \draw (6.5,4.5) to[short] (9.5,4.5);
+                    \draw (9.5,4.5) to[short] (9.5,6);
+                    \node at (3.75,6) [circ] {};
+                    \draw (5.5,6) to[short] (5.5,6.5);
+                    \draw (5.5,6.5) to[short] (6.5,6.5);
+                    \draw (3.25,6) to[short] (3.75,6);
+                    \draw (3.75,6) to[short] (5.5,6);
+                    \draw (0.5,6) to[short] (1.5,6);
+                    \node at (9.5,6) [circ] {};
+                    \draw (0.5,6) to[R,l=$10\,\text{k}\Omega$] (0.5,3.5);
+                    \draw (0.5,3.5) to (0.5,3) node[ground]{};
+                    \draw (3.75,6) to[D] (3.75,4);
+                    \draw (3.75,4) to[D] (3.75,2);
+                    \draw (3.75,2) to[D] (3.75,0);
+                    \draw (3.75,0) to (5.75,0) node[ground]{};
+                    \draw (0.5,6) to[R,l=$100\,\text{k}\Omega$] (-2.5,6);
+                    \draw (0.5,8) to[R,l=$100\,\text{k}\Omega$] (-2.5,8);
+                    \draw (0.5,6) to[short] (0.5,8);
+                    \draw (-5.75,11.25) to[potentiometer] (-5.75,7.75);
+                    \draw (-5.25,9.5) to[short] (-2.5,9.5);
+                    \draw (-2.5,9.5) to[short] (-2.5,8);
+                    \draw (-2.5,6) to[short] (-5.75,6);
+                    \node [font=\large] at (-6.75,8) {-12V};
+                    \node [font=\large] at (-6.75,11) {+12V};
+                    \node [font=\large] at (-6,6.5) {+5.2V};
+                    \draw (17.5,6) to[short] (17.5,6.5);
+                    \draw (17.5,6) to[short] (18.5,6);
+                    \draw (15.75,6) to[short] (17.5,6);
+                    \draw (15.75,6) to[R,l=$33\,\text{k}\Omega$] (13.25,6);
+                    \draw (13.25,6) to[short] (9.5,6);
+                    \draw (20,5.5) node[op amp,scale=1] (opamp3) {};
+                    \draw (opamp3.+) to[short] (18.5,5);
+                    \draw (opamp3.-) to[short] (18.5,6);
+                    \draw (21.2,5.5) to[short](21.5,5.5);
+                    \draw (18.5,5) to (18.5,3.75) node[ground]{};
+                    \draw (17.5,6.5) to[short] (17.5,7.25);
+                    \draw (21.5,7.25) to[R,l=$2\,\text{k}\Omega$] (21.5,5.5);
+                    \draw (18.25,7.75) to[R,l=$33\,\text{k}\Omega$] (20.5,7.75);
+                    \draw (18.25,7.75) to[short] (17.5,7.75);
+                    \draw (17.5,7.75) to[short] (17.5,7.25);
+                    \draw (21.5,7.25) to[short] (21.5,7.75);
+                    \draw (21.5,7.75) to[short] (20.5,7.75);
+                    \draw (17.5,7.75) to[short] (15.5,7.75);
+                    \draw (13.5,7.75) to[R,l=$33\,\text{k}\Omega$] (15.5,7.75);
+                    \draw (13.5,7.75) to[short] (12.75,7.75);
+                    \draw (12.75,7.75) to[short] (12.75,14.25);
+                    \draw (19.25,13.75) node[op amp,scale=1] (opamp4) {};
+                    \draw (opamp4.+) to[short] (17.75,13.25);
+                    \draw (opamp4.-) to[short] (17.75,14.25);
+                    \draw (20.45,13.75) to[short](20.75,13.75);
+                    \draw (17.75,13.25) to[R,l=$33\,\text{k}\Omega$] (17.75,11.5);
+                    \draw (15.75,13.25) to[R,l=$33\,\text{k}\Omega$] (17.75,13.25);
+                    \draw (14.25,14.25) to[R,l=$33\,\text{k}\Omega$] (16.25,14.25);
+                    \draw (16.25,14.25) to[short] (17.75,14.25);
+                    \draw (15.75,13.25) to[short] (12.75,13.25);
+                    \draw (10.75,6) to[short] (10.75,13.25);
+                    \draw (10.75,13.25) to[short] (12.75,13.25);
+                    \draw (9.75,14.25) to[short] (14.25,14.25);
+                    \draw (17.75,11.5) to (17.75,10.5) node[ground]{};
+                    \draw (20.75,13.75) to[R,l=$10\,\text{k}\Omega$] (20.75,15.5);
+                    \draw (20.25,16) to[R,l=$10\,\text{k}\Omega$] (17.75,16);
+                    \draw (17.75,16) to[short] (17.75,14.25);
+                    \draw (20.25,16) to[short] (20.75,16);
+                    \draw (20.75,16) to[short] (20.75,15.5);
+                    \draw (20.75,16) to[short] (27.25,16);
+                    \draw (21.5,7.75) to[short] (27.25,7.75);
+                    \draw (27.25,15.5) to[D] (27.25,14.25);
+                    \draw (27.25,14.25) to[D] (27.25,13);
+                    \draw (27.25,13) to[D] (27.25,12);
+                    \draw (27.25,12) to[D] (27.25,10.75);
+                    \draw (27.25,10.75) to[D] (27.25,9.5);
+                    \draw (27.25,9.5) to[D] (27.25,8.25);
+                    \draw (27.25,7.75) to[short] (27.25,8.25);
+                    \draw (27.25,15.5) to[short] (27.25,16);
+                    \draw (27.25,14.25) to[C] (25,14.25);
+                    \draw (27.25,13) to[C] (25,13);
+                    \draw (27.25,12) to[C] (25,12);
+                    \draw (27.25,10.75) to[C] (25,10.75);
+                    \draw (27.25,9.5) to[C] (25,9.5);
+                    \draw (25,10.75) to (24.75,10.75) node[ground]{};
+                    \draw (25,12) to (24.75,12) node[ground]{};
+                    \draw (25,13) to (24.75,13) node[ground]{};
+                    \draw (25,14.25) to[short] (23.25,14.25);
+                    \draw (23.25,14.25) to[short] (23.25,9.5);
+                    \draw (23.25,9.5) to[short] (25,9.5);
+                    \draw (27.25,12) to[short] (29.5,12);
+                    \draw (31,11.5) node[op amp,scale=1, yscale=-1] (opamp5) {};
+                    \draw (opamp5.+) to[short] (29.5,12);
+                    \draw (opamp5.-) to[short] (29.5,11);
+                    \draw (32.2,11.5) to[short](32.5,11.5);
+                    \draw (29.5,11) to[short] (29.5,9.75);
+                    \draw (29.5,9.75) to[short] (32.5,9.75);
+                    \draw (32.5,11.5) to[short] (32.5,9.75);
+                    \draw (32.5,11.5) to[R,l=$1\,\text{k}\Omega$] (34.5,11.5);
+                    \draw (36,11) node[op amp,scale=1] (opamp6) {};
+                    \draw (opamp6.+) to[short] (34.5,10.5);
+                    \draw (opamp6.-) to[short] (34.5,11.5);
+                    \draw (37.2,11) to[short](37.5,11);
+                    \draw (34.5,10.5) to (33.75,10.5) node[ground]{};
+                    \draw (34.5,11.5) to[short] (34.5,13);
+                    \draw (35,13) to[R,l=$47\,\text{k}\Omega$] (37,13);
+                    \draw (37,13) to[short] (37.5,13);
+                    \draw (37.5,13) to[short] (37.5,11);
+                    \draw (35,13) to[short] (34.5,13);
+                    \draw (37.5,11) to[C,l=$1\,\mu\text{F}$] (39.5,11);
+                    \draw (39.5,11) to[R,l=$200\,\text{k}\Omega$] (39.5,8.5);
+                    \draw (39.5,8.5) to (39.5,8) node[ground]{};
+                    \draw (23.25,14.25) to[short] (23.25,18.5);
+                    \draw (27,18.5) node[op amp,scale=1, xscale=-1] (opamp7) {};
+                    \draw (opamp7.+) to[short] (28.5,18);
+                    \draw (opamp7.-) to[short] (28.5,19);
+                    \draw (25.8,18.5) to[short](25.5,18.5);
+                    \draw (28.5,19) to[short] (28.5,20.5);
+                    \draw (25.5,18.5) to[short] (25.5,20.5);
+                    \draw (25.5,20.5) to[R,l=$10\,\text{k}\Omega$] (28.5,20.5);
+                    \draw (28.5,21.75) to[D] (25.5,21.75);
+                    \draw (25.5,20.5) to[short] (25.5,21.75);
+                    \draw (28.5,20.5) to[short] (28.5,23.25);
+                    \draw (25.5,21.75) to[short] (25.5,23.25);
+                    \draw (25.5,23.25) to[D] (28.5,23.25);
+                    \draw (28.5,23.25) to[R,l=$2.7\,\text{k}\Omega$] (28.5,25.75);
+                    \draw (28.5,25.75) to (29.75,25.75) node[ground]{};
+                    \draw (25.5,18.5) to[short] (23.25,18.5);
+                    \draw (29.5,16.75) to[potentiometer] (29.5,19.25);
+                    \draw (29.5,17) to[short] (29.5,12);
+                    \draw (29,18) to[short] (28.5,18);
+                    \draw (29.5,19.25) to (30.75,19.25) node[ground]{};
+                    \draw (39.5,11) to[short, -o] (43.25,11) node[right] {Out};
+                    \node at (39.5,11) [circ] {};
+                    \node at (37.5,11) [circ] {};
+                    \node at (34.5,11.5) [circ] {};
+                    \node at (32.5,11.5) [circ] {};
+                    \node at (29.5,12) [circ] {};
+                    \node at (25.5,18.5) [circ] {};
+                    \node at (25.5,20.5) [circ] {};
+                    \node at (25.5,21.75) [circ] {};
+                    \node at (28.5,21.75) [circ] {};
+                    \node at (28.5,20.5) [circ] {};
+                    \node at (28.5,23.25) [circ] {};
+                    \node at (27.25,9.5) [circ] {};
+                    \node at (27.25,10.75) [circ] {};
+                    \node at (27.25,12) [circ] {};
+                    \node at (27.25,13) [circ] {};
+                    \node at (27.25,14.25) [circ] {};
+                    \node at (21.5,7.75) [circ] {};
+                    \node at (17.5,7.75) [circ] {};
+                    \node at (17.5,6) [circ] {};
+                    \node at (17.75,13.25) [circ] {};
+                    \node at (20.75,16) [circ] {};
+                    \node at (17.75,14.25) [circ] {};
+                    \node at (12.75,14.25) [circ] {};
+                    \node at (10.75,6) [circ] {};
+                    \node at (0.5,6) [circ] {};
+                \end{circuitikz}
+            }
+            \label{fig:circuit}
+        \end{subfigure}
+        
+        \vspace{2em}
+        
+        \begin{subfigure}{\textwidth}
+            \captionsetup{labelformat=empty}
+            \begin{picture}(0,0)
+                \put(-90,15){\small\textbf{(b)}}
+            \end{picture}
+            \centering
+            \includegraphics[width=\textwidth]{../../code/filter_output.pdf}
+            \label{fig:output}
+        \end{subfigure}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        % Second column - subfigures (c) and (d)
+        \begin{subfigure}{\textwidth}
+            \captionsetup{labelformat=empty}
+            \begin{picture}(0,0)
+                \put(-110,-20){\small\textbf{(c)}}
+            \end{picture}
+            \centering
+            \includegraphics[width=\textwidth]{../../code/bode_plot.pdf}
+            \label{fig:bode}
+        \end{subfigure}
+        
+        \vspace{2em}
+        
+        \begin{subfigure}{\textwidth}
+            \captionsetup{labelformat=empty}
+            \begin{picture}(0,0)
+                \put(-90,15){\small\textbf{(d)}}
+            \end{picture}
+            \centering
+            \includegraphics[width=\textwidth]{../../code/voltage_sweep.pdf}
+            \label{fig:voltage-sweep}
+        \end{subfigure}
+    \end{minipage}
+    
+    \caption{\textbf{(a)} The completed circuit schematic, combining all previous parts. \textbf{(b)} The input signal (red) versus the output signal with moderate resonance and cutoff (blue). \textbf{(c)} Bode plot showing the bode frequency response of the circuit. This circuit is a low-pass filter which operates well within the human range of hearing. The 3 dB point for this circuit is also located at 12.65 kHz, and is accompianied by a decaying output until the MHz regime. The phase is an incomplete descriptor of the circuit, as resonance acts as a third parameter which results in unusual phenomena. This does, however, provide insight into the behavior of resonance as a function of frequency. The input signal is dominated by resonance at the $<10^2$ Hz regime, producing a sinusoidal wave. This vanishes between the $10^2-10^4$ Hz regime, where we see ideal operation at the parameters set, similar to (b). After this point, the signal again is overtaken by resonance. The sharp transition at $10^5$ Hz is likely associated with a final unique phase of the circuit, as the frequency is so massive that the waveform becomes approximately flat as the negative feedback the circuit operates on is no longer able to keep up with the input signal. \textbf{(d)} Voltage sweep analysis showing the circuit's response to varying input voltages. Due to the amplification stages of the circuit, resonance intensity is proportional to input voltage, shown in the legend. Furthermore, resonance is clearly defined at all but the smallest (millivolt) input voltages due to noise overtaking the signal.}
+    \label{fig:circuit-combined}
+    
+    \par\noindent\rule{\textwidth}{0.4pt}
+\end{figure}

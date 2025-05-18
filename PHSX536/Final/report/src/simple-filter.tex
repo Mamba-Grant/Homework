@@ -1,0 +1,77 @@
+\begin{figure}[H]
+    \par\noindent\rule{\textwidth}{0.4pt} \vspace{4em}
+    \centering
+    \begin{subfigure}[b]{1\textwidth}
+        \vspace{2em}
+        \captionsetup{labelformat=empty}
+        \begin{picture}(0,0)
+            \put(-10,90){\small\textbf{(a)}}
+        \end{picture}
+        \centering
+        \resizebox{0.85\textwidth}{!}{%
+            \begin{circuitikz}
+                \tikzstyle{every node}=[font=\LARGE]
+                \draw (8.25,16) node[op amp,scale=1, yscale=-1 ] (opamp2) {};
+                \draw (opamp2.+) to[short] (6.75,16.5);
+                \draw  (opamp2.-) to[short] (6.75,15.5);
+                \draw (9.45,16) to[short](9.75,16);
+                \draw (0.75,16) to[short, -o] (-0.25,16) node[above] {In};
+                \draw (1.75,16) to[R,l={ \LARGE 100 k$\Omega$}] (3.5,16);
+                \draw (4,16) to[short] (4,14.5);
+                \draw (4,13.75) to[C,l={ \LARGE 10 nF}] (4,13);
+                \draw (6.75,15.5) to[short] (6.75,14.5);
+                \draw (6.75,14.5) to[short] (9.75,14.5);
+                \draw (9.75,14.5) to[short] (9.75,16);
+                \draw (9.75,16) to[R,l={ \LARGE 100 k$\Omega$}] (12.25,16);
+                \node at (4,16) [circ] {};
+                \draw (12.25,16) to[short] (12.25,14);
+                \draw (12.25,14) to[C,l={ \LARGE 10 nF}] (12.25,13.25);
+                \draw (12.25,13.25) to (12.25,13) node[ground]{};
+                \draw (5.75,16) to[short] (5.75,16.5);
+                \draw (5.75,16.5) to[short] (6.75,16.5);
+                \draw (18,14.5) to[short] (18,16);
+                \draw (16.5,16) node[op amp,scale=1, yscale=-1 ] (opamp2) {};
+                \draw (opamp2.+) to[short] (15,16.5);
+                \draw  (opamp2.-) to[short] (15,15.5);
+                \draw (17.7,16) to[short](18,16);
+                \draw (15,14.5) to[short] (18,14.5);
+                \draw (14,16) to[short] (14,16.5);
+                \draw (14,16.5) to[short] (15,16.5);
+                \draw (13.5,16) to[short] (14,16);
+                \draw (12.75,16) to[short] (13.5,16);
+                \draw (3.5,16) to[short] (4,16);
+                \draw (4,16) to[short] (5.75,16);
+                \draw (12.25,16) to[short] (12.75,16);
+                \draw (15,14.5) to[short] (15,15.5);
+                \draw (19.75,16) to[short] (19.75,11.5);
+                \draw (4,11.5) to[short] (19.75,11.5);
+                \draw (19.75,16) to[short, -o] (21.75,16) node[above] {Out};
+                \draw (19.75,16) to[short] (18,16);
+                \draw (4,11.5) to[short] (4,13);
+                \draw (4,13.75) to[short] (4,14.5);
+                \draw (0.75,16) to[short] (1.75,16);
+                \node at (12.25,16) [circ] {};
+                \node at (19.75,16) [circ] {};
+                \node at (18,16) [circ] {};
+                \node at (9.75,16) [circ] {};
+            \end{circuitikz}
+            }
+            \caption{}
+            \label{fig:simple-filter}
+    \end{subfigure}
+    % Second subfigure: Output image
+    \begin{subfigure}[b]{0.85\textwidth}
+        \vspace{-3em}
+        \captionsetup{labelformat=empty}
+        \begin{picture}(0,0)
+            \put(-10,20){\small\textbf{(b)}}
+        \end{picture}
+        \includegraphics[width=\textwidth,valign=t]{../assets/simple-filter-output.png}
+        \caption{}
+        \label{fig:simple-filter-output}
+    \end{subfigure}
+
+    \caption{\textbf{(a)} Simple resonant filter driven by a combination of capacitors, resistors, and op-amps. As the waveform goes high at the input, the capacitor is filled and the first op-amp, in follower configuration, begins to raise the voltage. Due to the resistor, current flows backwards, causing the output of the first op-amp to overshoot and form the first crest of the resonant output. The capacitor then discharges and the follower "catches up" and begins lowering the output voltage. Again, this overshoots, and we reach the bottom of the first valley. The capacitor is still partially filled, and will begin to overshoot once more, reaching a lower peak than before. This cycle repeats until the signal goes low. \textbf{(b)} The input (left) and output (right) signals, simulated using falstad.} 
+    \label{fig:combined-filter}
+    \par\noindent\rule{\textwidth}{0.4pt}
+\end{figure}

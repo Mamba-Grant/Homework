@@ -1,0 +1,78 @@
+%\begin{figure}[!ht]
+%    \centering
+%
+%    % First subfigure: Circuit diagram
+%    \begin{subfigure}[b]{0.45\textwidth}
+%    \centering
+%    \resizebox{\textwidth}{!}{%
+%    \begin{circuitikz}
+%    \tikzstyle{every node}=[font=\LARGE]
+%    \draw (2.25,15.5) to[D] (2.25,14.25);
+%    \draw (2.25,14.25) to[D] (2.25,13);
+%    \draw (2.25,13.25) to[D] (2.25,12);
+%    \draw (2.25,12) to[D] (2.25,10.75);
+%    \draw (2.25,10.75) to[D] (2.25,9.5);
+%    \draw (2.25,9.5) to[D] (2.25,8.25);
+%    \draw (2.25,7.75) to[short] (2.25,8.5);
+%    \draw (2.25,15.5) to[short] (2.25,16);
+%    \draw (2.25,14.25) to[C] (0,14.25);
+%    \draw (2.25,13.25) to[C] (0,13.25);
+%    \draw (2.25,12) to[C] (0,12);
+%    \draw (2.25,10.75) to[C] (0,10.75);
+%    \draw (2.25,9.5) to[C] (0,9.5);
+%    \draw (0,10.75) to (-0.25,10.75) node[ground]{};
+%    \draw (0,12) to (-0.25,12) node[ground]{};
+%    \draw (0,13.25) to (-0.25,13.25) node[ground]{};
+%    \node at (2.25,9.75) [circ] {};
+%    \node at (2.25,10.75) [circ] {};
+%    \node at (2.25,12) [circ] {};
+%    \node at (2.25,13.25) [circ] {};
+%    \end{circuitikz}
+%    }
+%    \caption{Centered schematic}
+%    \label{fig:circuit_schematic}
+%    \end{subfigure}
+%    \hfill
+%     %Second subfigure: Image
+%    %\begin{subfigure}[b]{0.45\textwidth}
+%    %\centering
+%    %\includegraphics[width=\textwidth]{../../assets/square_waves.png}
+%    %\caption{Annotated Square Waves}
+%    %\label{fig:square-waves}
+%    %\end{subfigure}
+%
+%    \caption{Overview of the circuit and signal behavior}
+%    \label{fig:combined_figure}
+%\end{figure}
+
+\begin{figure}[H]
+    \par\noindent\rule{\textwidth}{0.4pt} \vspace{3em}
+    \hspace{2em} 
+    \begin{subfigure}[b]{0.2\textwidth}
+        \vspace{3em}
+        \centering
+        \captionsetup{labelformat=empty}
+        \begin{picture}(0,0)
+            \put(-55,-10){\small\textbf{(a)}}
+        \end{picture}
+        \includegraphics[width=\textwidth,valign=t]{../../assets/multi_pole_diode_ladder.png}
+        \caption{}
+        \label{fig:multi-pole-diode-ladder}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \captionsetup{labelformat=empty}
+        \begin{picture}(0,0)
+            \put(0,20){\small\textbf{(b)}}
+        \end{picture}
+        \includegraphics[width=\textwidth,valign=t]{../../assets/square_waves_annotated.png}
+        \vspace{0.5cm}
+        \caption{}
+        \label{fig:square-waves-annotated}
+    \end{subfigure}
+    \hspace{2em} 
+    \vspace{-3em}
+    \caption{\textbf{(a)} A sub-schematic of the diode ladder. a high and low signal copy are passed into the beginning and end of the ladder, respectively. Output is taken from the middlemost pole and fed through to produce resonance. The output of the amplification stage is then fed back into the diode ladder through the capacitors on the left. \textbf{(b)} Signals seen by different poles of the diode ladder. Separation is voltage controlled due to the mechanism discussed in Section 1.3.}
+    \label{fig:diode-ladder-bits}
+    \par\noindent\rule{\textwidth}{0.4pt}
+\end{figure}

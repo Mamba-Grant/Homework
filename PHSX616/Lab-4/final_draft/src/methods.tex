@@ -1,0 +1,29 @@
+\section{\label{sec:level1}EQUIPMENT CONFIGURATION AND FOURIER ANALYSIS}
+\subsection{Experimental Setup}
+
+In this experiment, instrumentation is provided by TeachSpin, however all that is required is a sufficient way to control the speaker output and a way to monitor input from the microphone. There are several analog systems in the equipment used, however this experiment would be made much simpler and more accurate using digital controls. See Figure \ref{fig:schematic} for the connections and Figure \ref{fig:physical_setup} for an example configuration of apertures and tubes. In this work, we use 8x 75mm tubes and 7x apertures with a diameter of 16mm.
+
+A noise-free room is advised to reduce acoustic noise. The nature of this experiment is educational, so this may be taken to whatever extreme available. In our work, we close doors between rooms, lay acoustic dampening foam beside cracks, and collect data when nobody is present. Do note, the microphone itself is only so sensitive, and in many cases acoustic noise is a mild source of uncertainty. Low frequency signals tend to penetrate better than high frequencies, so this experiment will best be done with fewer people in the room to avoid sounds of closing doors, moving chairs, or talking.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.45\textwidth]{../assets/Schematic.png}
+  \caption{Schematic of the instrumentation. SINE WAVE INPUT is connected to a signal generator, set to sweep frequency, and output from SPEAKER OUTPUT is passed to the speaker, at one end of the tube. MICROPHONE INPUT is connected to the microphone, located at the other end of the tube. The signal goes through an amplification stage, and output is taken from DC OUTPUT. DC OFFSET is tuned to get a non-clipped signal to display on the oscilloscope in X-Y mode.}
+  \label{fig:schematic}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.45\textwidth]{../assets/physical_setup.png}
+    \caption{An example configuration of tubes and apertures, courtesy of TeachSpin.}
+  \label{fig:physical_setup}
+\end{figure}
+
+Our signal generator is set to sweep the maximum frequency range allowable by the speaker, in this case 100-10k Hz, at at a fixed voltage. The microphone goes through an AC-DC conversion process, where the amplitude of the signal corresponds to frequency. Using this, we are able to preform simple Fourier analysis by collecting a complete spectra from the constructive and destructive interference of the standing wave. It is worth noting that the first peaks in the spectrum are the resonances of the speaker and microphone, and not the sound wave.
+
+\subsection{Analysis}\label{sec:analysis}
+Here, our equipment is largely analog, and extremely limited in resolution. In particular, our oscilloscope has 256 points alone that can be collected in the x-y channels. Furthermore, we are unable to directly export data in this format, nor with swept data. To combat the latter, we export an image of the scope trace in image format, and process it as a bitmap. Specifically, at each x-value, we average the pixels y-direction, giving a trace in digital data format. 
+
+Our signal resolution is very limited due to the 256x256 pixel screen size, so we take take several scans, first over the whole spectra, then zoomed in on the peaks. We map the low resolution, full sweep from relative to absolute units on the x-axis by means of a simple linear transformation. The high resolution scans are then matched to their location on full sweep scan using another linear transformation with parameters determined by fitting, results of which are described in appendix \ref{appendix:analysis}.
+
+Peaks still suffer from smearing, and accurately identifying their center is not well done by fitting techniques, as many peaks are ill defined from their neighbors. Instead we take the approach of directly computing the derivative, and selecting points between positive-negative concavity changes, due to the smearing giving ill-defined transitions between maxima. Discrete, measured data is always susceptible to noise, and traditional finite differences calculations will give results with dramatically larger noise. Instead, we apply a noise-resistant technique called Total Variation Regularized Numerical Differentiation \cite{https://doi.org/10.5402/2011/164564}. 

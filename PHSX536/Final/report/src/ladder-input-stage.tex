@@ -1,0 +1,8 @@
+\begin{figure}[H]
+    \par\noindent\rule{\textwidth}{0.4pt}
+    \centering
+    \includegraphics[width=0.8\textwidth]{../../assets/input_stage.png}
+    \caption{Input stage, handling input signal, subtracting and adding the cutoff value, and feeding this into the diode ladder's first and last poles. The input (top left) is adapted from the fully resonant filter, wherein a signal is AC coupled, passes through a 10\% voltage divider, and follower to stabilize current. The cutoff control (bottom left) implements two control methods: potentiometer and voltage control. This passes through a 0.2\% voltage divider and an additional resistor before encountering a string of three diodes. These are implemented to avoid large bias at the non-inverting input, as it is experimentally determined that voltages exceeding 1.4 V introduce clipping at the diode ladder.}
+    \label{fig:ladder-input-stage}
+    \par\noindent\rule{\textwidth}{0.4pt}
+\end{figure}

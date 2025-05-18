@@ -13,3 +13,5 @@ transform!(df,
            "V+12" => ByRow(x -> (x ± x*0.03)*u"V") => "V+12",
            "V-12" => ByRow(x -> (x ± x*0.03)*u"V") => "V-12",
 )
+
+df."Vout (theoretical)" = @. - df.Rf/df.R1 * df.V1 - df.Rf/df.R2 * df.V2 - df.Rf/df.R3 * df.V3

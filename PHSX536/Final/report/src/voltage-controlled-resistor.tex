@@ -1,0 +1,74 @@
+\begin{figure}[H]
+    \centering
+    \par\noindent\rule{\textwidth}{0.4pt} \vspace{4em}
+    \hfill\hspace{1em}
+    \begin{subfigure}[b]{0.22\textwidth}
+        \vspace{1em}
+        \centering
+        \resizebox{\textwidth}{!}{%
+            \begin{circuitikz}
+                \tikzstyle{every node}=[font=\large]
+                \draw (13.75,14.5) to[R,l={ \large 200 k$\Omega$}] (13.75,11.5);
+                \draw (11.25,14.5) to[D] (11.25,11.5);
+                \draw (11.25,11.5) to (11.25,11.25) node[ground]{};
+                \draw (13.75,11.5) to (13.75,11.25) node[ground]{};
+                \draw (11.25,14.5) to[short] (13.75,14.5);
+                \draw (12.5,14.5) to[short, -o] (12.5,15.75) node[above] {300 mV};
+                \node at (12.5,14.5) [circ] {};
+                \node [font=\large] at (12.5,12.5) {1.5 $\mu A$};
+                \draw [dashed] (12.5,14) -- (12.5,13);
+                \draw [->, >=Stealth, dashed] (12.5,12) -- (12.5,11);
+            \end{circuitikz}
+            }
+            %\caption{R = 200 k$\Omega$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.22\textwidth}
+        \vspace{1em}
+        \centering
+        \resizebox{\textwidth}{!}{%
+            \begin{circuitikz}
+                \tikzstyle{every node}=[font=\large]
+                \draw (13.75,14.5) to[R,l={ \large 1 k$\Omega$}] (13.75,11.5);
+                \draw (11.25,14.5) to[D] (11.25,11.5);
+                \draw (11.25,11.5) to (11.25,11.25) node[ground]{};
+                \draw (13.75,11.5) to (13.75,11.25) node[ground]{};
+                \draw (11.25,14.5) to[short] (13.75,14.5);
+                \draw (12.5,14.5) to[short, -o] (12.5,15.75) node[above] {600 mV};
+                \node at (12.5,14.5) [circ] {};
+                \node [font=\large] at (12.5,12.5) {580 $\mu A$};
+                \draw [dashed] (12.5,14) -- (12.5,13);
+                \draw [->, >=Stealth, dashed] (12.5,12) -- (12.5,11);
+            \end{circuitikz}
+            }
+            %\caption{R = 1 k$\Omega$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.22\textwidth}
+        \vspace{1em}
+        \centering
+        \resizebox{\textwidth}{!}{%
+            \begin{circuitikz}
+                \tikzstyle{every node}=[font=\large]
+                \draw (13.75,14.5) to[R,l={ \large 5 k$\Omega$}] (13.75,11.5);
+                \draw (11.25,14.5) to[D] (11.25,11.5);
+                \draw (11.25,11.5) to (11.25,11.25) node[ground]{};
+                \draw (13.75,11.5) to (13.75,11.25) node[ground]{};
+                \draw (11.25,14.5) to[short] (13.75,14.5);
+                \draw (12.5,14.5) to[short, -o] (12.5,15.75) node[above] {500 mV};
+                \node at (12.5,14.5) [circ] {};
+                \node [font=\large] at (12.5,12.5) {90 $\mu A$};
+                \draw [dashed] (12.5,14) -- (12.5,13);
+                \draw [->, >=Stealth, dashed] (12.5,12) -- (12.5,11);
+            \end{circuitikz}
+            }
+            %\caption{R = 5 k$\Omega$}
+    \end{subfigure}
+    \hfill\hspace{1em}
+
+    \vspace{-3em}
+    \caption{\textbf{(a)} A diode receiving 300 mV at its input drops by a constant voltage so we see 1.5 $\mu A$ across which is analagous to a 200 k$\Omega$ resistor. \textbf{(b)} If a diode instead receives 600 mV and we see 580 $\mu A$ across, analagous to 1 k$\Omega$. \textbf{(c)} Again, if we apply 500 mV and get a 90 $\mu A$ current, this is analagous to a 5 k$\Omega$ resistor. It appears as though the input voltage controls the output voltage.}
+    \label{fig:voltage-resistor}
+    \par\noindent\rule{\textwidth}{0.4pt}
+\end{figure}
+

@@ -1,0 +1,100 @@
+
+\begin{homeworkProblem}
+A rocket leaves Earth at a speed of $0.95c$. When a clock on the rocket says that $1.5$ hour has elapsed, the rocket sends a light signal back to Earth.
+    \begin{enumerate}
+        \item[(a)] According to Earth clocks, when was the signal sent?
+            \begin{callout}{Solution:}
+
+            We have a Lorentz transformation matrix given as 
+            $$
+            \Lambda=\left(\begin{array}{cccc}
+                \gamma & -\gamma \beta & 0 & 0 \\
+                -\gamma \beta & \gamma & 0 & 0 \\
+                0 & 0 & 1 & 0 \\
+                0 & 0 & 0 & 1
+            \end{array}\right), \qquad
+            X=\left(\begin{array}{c}
+                c t \\
+                x \\
+                y \\
+                z
+            \end{array}\right), \qquad 
+                X' = \Lambda X
+            $$
+                Let the rocket be in reference frame $X'$. Let the stationary Earthen reference frame be $X$. $\beta=0.95$ and $\gamma\approx3.2$. For the fun of it I'll leave my units in hours, so $c=60^2 \cdot 3\times10^{8} \mathrm{\frac{m}{hour}}$.
+                $$ct' = \gamma (ct - \cancelto{0}{\beta x}) \implies t = 4.8 \mathrm{~hours}$$
+
+            \end{callout}
+        \item[(b)] According to Earth clocks, how long after the rocket left, did the signal arrive back on Earth?
+            \begin{callout}{Solution:}
+
+                In frame X', the rocket travels $d' = 0.95c \cdot 1.5 \mathrm{~hours}$. In frame X, the rocket travels $d = 0.95c \cdot 4.8 \mathrm{~hours}$. We want $d$, not $d'$, so the return time is 
+                $$\frac{d}{c} = d = \frac{0.95c \cdot 4.8}{c} \mathrm{~hours} = 4.56 \mathrm{~hours}$$
+                The signal arrives back at $4.8+4.56=9.36$ hours.
+
+            \end{callout}
+        \item[(c)] According to the rocket observer, how long after the rocket left did the signal arrive back at Earth?
+            \begin{callout}{Solution:}
+
+                According to the rocket observer, the signal takes time $\frac{d'}{c} = 1.425 ~\mathrm{hours}$ to return for a total of $1.425 + 1.5 = 2.925$ hours.
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Event A happens at point $(x=5, y=3, z=0)$ and at time given by $ct=15$.
+
+    Event B occurs at $(10, 8, 0)$ and $ct=5$. Both are specified in reference frame $K$.
+    \begin{enumerate}[(i)]
+        \item What is the invariant interval (in Minkowski space) between events A and B?
+            \begin{callout}{Solution:}
+
+            $$ s^2=-\left(c t_B-c t_A\right)^2+\left(x_B-x_A\right)^2+\left(y_B-y_A\right)^2+\left(z_B-z_A\right)^2 = -50 $$
+            This is a timelike interval.
+
+            \end{callout}
+        \item Is there an inertial reference frame, $K'$, in which events A and B occur simultaneously? \\
+            If so, find the velocity difference (speed and direction) between $K'$ and $K$.
+            \begin{callout}{Solution:}
+
+                There exist only imaginary reference frames in which this is the case, evident from part (i).
+
+            \end{callout}
+        \item Is there an inertial reference frame, $K'$, in which events A and B occur at the same spatial point? \\
+            If so, find the velocity difference (speed and direction) between $K'$ and $K$.
+            \begin{callout}{Solution:}
+
+            We are asking the question:
+            \begin{align*}
+                x'_B &\stackrel{?}{=} x'_A \\ 
+                \gamma (x_B - v t_B) &\stackrel{?}{=} \gamma (x_A - v t_A) \\ 
+                v &\stackrel{?}{=} \frac{x_B - x_A}{t_B - t_A} \\ 
+                v &= -0.5
+            \end{align*}
+
+                Correcting units, we'd have 
+                $$v = -0.5c$$
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+A rocket is moving away from Earth at speed $0.97c$ and a gun on that rocket shoots a bullet at a speed of $0.75c$ in the same direction. What does an observer on Earth see the speed as?
+\begin{callout}{Solution:}
+
+Addition in the relativistic frame is defined as 
+$$u = \frac{u' + v}{1 + \frac{u'v}{c^{2}}} \approx 0.9967c$$
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Two spacecraft are moving directly towards each other at a speed of $0.80c$, as seen by someone on a planet at rest. At what speed does one ship see the other move towards it?
+\begin{callout}{Solution:}
+
+$$u = \frac{u' + v}{1 + \frac{u'v}{c^{2}}} \approx 0.976c$$
+
+\end{callout}
+\end{homeworkProblem}

@@ -1,0 +1,63 @@
+\section{\label{sec:level1}INTRODUCTION}
+The goal of this work is to model a wave (in this case, sound) confined to a chain of regions it may occupy. These regions are formed from several lengths of tubing, separated by irises with circular slits in the center. This is analogous to the 1-D tight binding model, an introductory model to discuss electron transport in crystalline materials \cite{simon2013oxford}.
+
+\section{\label{sec:level2}TIGHT BINDING MODEL}
+
+\textit{Please see the excellent notes by Prof. David Tong for more on this topic \cite{tong2017solidstate}}
+
+Consider a periodic array of identical potential wells separated by barriers. Electrons in isolated atoms occupy discrete energy levels. When atoms are brought into proximity, their wave functions overlap, violating the orthogonality condition, also called the Bragg condition. This necessitates the formation of bands, when 
+\begin{equation}
+n \lambda = 2a
+\end{equation}
+where $a$ is the distance of the reflecting planes.
+
+Let the electron wave function in an isolated atom centered at position $\mathbf{R}_n$ be $\phi(\mathbf{r} - \mathbf{R}_n)$. When atoms form a crystal, the total wave function must be a Bloch function:
+
+\begin{equation}
+\psi_{\mathbf{k}}(\mathbf{r}) = \sum_n e^{i\mathbf{k}\cdot\mathbf{R}_n}\phi(\mathbf{r} - \mathbf{R}_n)
+\end{equation}
+
+Which will have eigenstates 
+\begin{equation}
+    E(k) = E_{0} - 2 t \cos k a 
+\end{equation}
+
+\section{\label{sec:level3}ACOUSTIC ANALOGY}
+
+Sound waves show a linear dispersion with a slope proportional to sound velocity.
+\begin{equation}
+    f(k) = \frac{c}{2\pi} k
+\end{equation}
+
+Electrons, however, have a parabolic dispersion.
+\begin{equation}
+    E(k) = \frac{\hbar^{2}}{2m}k^{2}
+\end{equation}
+
+This work does not delve deeply into scattering, however, modifications of this so called free-electrion like dispersion are observed when electrons have a wavelength that is comparable to twice the lattice constant, $a$ of the solid. In this case, the electrons are scattered effectively by the periodic lattice.
+
+In the acoustic analog, we introduce periodic scattering centers separated by a distance, $a$, that is comparable to half the wavelength of sound \cite{teachspin_quantum_analogs}. 
+
+The acoustic system consists of a sequence of cylindrical cavities connected by apertures. This creates a periodic modulation of the acoustic impedance analogous to a periodic potential in the electronic case.
+
+\section{\label{sec:level5}SPECTRAL ANALYSIS}
+The transmission spectrum reveals resonances corresponding to the eigenmodes of the system. These resonances form bands separated by gaps, analogous to electronic band structure.
+
+For an $N$-cavity system, each band contains $N$ distinct peaks. The frequencies of these peaks can be mapped to wave vectors using:
+
+\begin{equation}
+k_n = \frac{n\pi}{(N+1)a}, \quad n = 1, 2, \ldots, N
+\end{equation}
+
+The dispersion relation extracted from experimental data should approximate:
+
+\begin{equation}
+\omega(k) = \omega_0\sqrt{1 + \beta\cos(ka)}
+\end{equation}
+
+where $\omega_0$ is the resonant frequency of an isolated cavity and $\beta$ is a coupling parameter determined by the aperture geometry.
+
+\section{\label{sec:level6}CONSTRUCTION OF WAVE VECTOR}
+
+We identify each resonant peak within a band, $\omega_1, \omega_2, \ldots, \omega_N$, and in ascending order, assign wave vectors according to 
+$$k_n = \frac{n \pi}{a}, \quad n = 1,2,\dots,N$$

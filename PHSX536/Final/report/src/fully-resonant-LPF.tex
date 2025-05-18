@@ -1,0 +1,84 @@
+\begin{figure}[H]
+    \par\noindent\rule{\textwidth}{0.4pt} \vspace{4em}
+    \centering
+    \resizebox{1\textwidth}{!}{%
+        \begin{circuitikz}
+            \tikzstyle{every node}=[font=\Large]
+            \draw (8.25,16) node[op amp,scale=1, yscale=-1] (opamp1) {};
+            \draw (opamp1.+) to[short] (6.75,16.5);
+            \draw (opamp1.-) to[short] (6.75,15.5);
+            \draw (opamp1.out) to[short] (9.75,16);
+            \draw (1.75,16) to[R,l=$100~\text{k}\Omega$] (3.5,16);
+            \draw (6.75,15.5) to[short] (6.75,14.5);
+            \draw (6.75,14.5) to[short] (9.75,14.5);
+            \draw (9.75,14.5) to[short] (9.75,16);
+            \node at (4,16) [circ] {};
+            \draw (12.25,16) to[short] (12.25,15);
+            \draw (12.25,15) to[C,l=$10~\text{nF}$] (12.25,14.25);
+            \draw (5.75,16) to[short] (5.75,16.5);
+            \draw (5.75,16.5) to[short] (6.75,16.5);
+            \draw (3.5,16) to[short] (4,16);
+            \draw (4,16) to[short] (5.75,16);
+            \draw (0.75,16) to[short] (1.75,16);
+            \node at (12.25,16) [circ] {};
+            \node at (9.75,16) [circ] {};
+            \draw (0.75,16) to[C,l=$1~\mu\text{F}$] (-1.25,16);
+            \draw (-1.25,16) to[short, -o] (-2,16) node[above] {In};
+            \draw (0.75,16) to[R,l=$200~\text{k}\Omega$] (0.75,13.5);
+            \draw (0.75,13.5) to (0.75,13) node[ground]{};
+            \draw (4,16) to[R,l=$33~\text{k}\Omega$] (4,13.5);
+            \draw (4,13.5) to (4,13) node[ground]{};
+            \draw (9.75,16) to[potentiometer,l=$100~\text{k}\Omega$] (12.25,16);
+            \draw (14.5,11.75) node[op amp,scale=1, xscale=-1, yscale=-1] (opamp2) {};
+            \draw (opamp2.+) to[short] (16,12.25);
+            \draw (opamp2.-) to[short] (16,11.25);
+            \draw (opamp2.out) to[short] (13,11.75);
+            \draw (13.5,9) to[R,l=$10~\text{k}\Omega$] (15.5,9);
+            \draw (13,11.75) to[short] (13,9);
+            \draw (16,11.25) to[short] (16,9);
+            \draw (16,9) to[short] (15.5,9);
+            \draw (13,9) to[short] (13.5,9);
+            \draw (13,11.75) to[short] (12.25,11.75);
+            \draw (12.25,11.75) to[short] (12.25,14.25);
+            \draw (15.5,9) to[R,l=$60~\text{k}\Omega$] (15.5,6.25);
+            \draw (15.5,6.25) to (15.5,5.75) node[ground]{};
+            \draw (16.5,16) node[op amp,scale=1, yscale=-1] (opamp3) {};
+            \draw (opamp3.+) to[short] (15,16.5);
+            \draw (opamp3.-) to[short] (15,15.5);
+            \draw (opamp3.out) to[short] (18,16);
+            \draw (15,15.5) to[short] (15,14.5);
+            \draw (15,14.5) to[short] (18,14.5);
+            \draw (14,16) to[short] (14,16.5);
+            \draw (14,16.5) to[short] (15,16.5);
+            \draw (12.25,16) to[short] (14,16);
+            \draw (18,14.5) to[short] (18,16);
+            \draw (18,16) to[potentiometer,l=$100~\text{k}\Omega$] (20.5,16);
+            \draw (20.5,16) to[C,l=$10~\text{nF}$] (20.5,13.5);
+            \draw (20.5,13.5) to (20.5,13.25) node[ground]{};
+            \draw (24.75,16) node[op amp,scale=1, yscale=-1] (opamp4) {};
+            \draw (opamp4.+) to[short] (23.25,16.5);
+            \draw (opamp4.-) to[short] (23.25,15.5);
+            \draw (opamp4.out) to[short] (26.25,16);
+            \draw (23.25,15.5) to[short] (23.25,14.5);
+            \draw (23.25,14.5) to[short] (26.25,14.5);
+            \draw (22.25,16) to[short] (22.25,16.5);
+            \draw (22.25,16.5) to[short] (23.25,16.5);
+            \draw (20.5,16) to[short] (22.25,16);
+            \draw (26.25,14.5) to[short] (26.25,16);
+            \draw (26.25,16) to[short] (27.25,16);
+            \draw (27.25,16) to[short] (27.25,13.5);
+            %\draw (27.25,11) to[potentiometer,l=$100~\text{k}\Omega$] (27.25,13.5);
+            \draw (27.25,11) to[potentiometer,] (27.25,13.5);
+            \draw (16,12.25) to[short] (26.75,12.25);
+            \draw (27.25,11) to (27.25,10) node[ground]{};
+            \draw (27.25,16) to[C,l=$1~\mu\text{F}$] (28.5,16);
+            \draw (28.5,16) to[R,l=$200~\text{k}\Omega$] (28.5,14.25);
+            \draw (28.5,14.25) to (28.5,13.75) node[ground]{};
+            \draw (28.5,16) to[short, -o] (30.5,16) node[above] {Out};
+        \end{circuitikz}
+        }%
+        \vspace{-3em}
+        \caption{A diagram of a fully resonant LPF. Two adjustments are made from the basic resonant filter: (1) a potentiometer and op-amp in amplifier configuration are added after the first capacitor to allow adjustment of potential on this line, allowing operators to adjust resonance intensity, or how "high" the oscillations get. (2) A sequence of AC coupling and a 25\% voltage divider fed through a follower are added to the input line to scale down the input to avoid clipping.}
+        \label{fig:fully-resonant-LPF}
+        \par\noindent\rule{\textwidth}{0.4pt}
+    \end{figure}

@@ -1,0 +1,70 @@
+\begin{homeworkProblem}
+Bremsstrahlung Radiation and Coulomb scattering. Consider a non-relativistic positron with kinetic energy $T$ directly (head-on) scattering off an oxygen nucleus (ignore the orbital electrons). The maximum radiation power should occur at closest approach of the positron to the nucleus. Find an expression for this power. As part of your answer, what is the distance of closest approach? What is the value of the closest approach and power for $T = 10$ keV? 
+\begin{callout}{Solution:}
+
+    I can write the potential due to the atom's nucleus as:
+    \begin{align*}
+        U(r) &= \frac{1}{4\pi \epsilon_{0}} \frac{eZ e}{r} \\ 
+        U(r) &= \frac{1}{4\pi \epsilon_{0}} \frac{e 8 e}{r_{\text{min}}} = T(r) &&U(r) = T(r)\text{ at } r_{\text{min}}
+    \end{align*}
+    This gives a minimum distance:
+    $$r_{\text{min}} = \frac{8 e^{2}}{4\pi T \epsilon_{0}} \approx 1.44\mathrm{~pm}$$
+
+    The goal is to use this expression for power which we had derived by finding the Lienard-Wiechert fields. This should be familiar, since this is the derivation of the Larmor equation.
+    $$P = \frac{cR^{2}}{4\pi} \oint \mathbf{\hat{r}} \cdot [\mathbf{E}(\mathbf{r}, t) \times \mathbf{B}(\mathbf{r}, t)] \,d \mathbf{a}$$
+    \begin{align*}
+        \mathbf{E}(\mathbf{r},t) &= \frac{q}{4\pi \epsilon_{0}} \frac{\rcurs}{(\bcurs \cdot \mathbf{u})^{3}}\left[ (c^{2}-v^{2})\mathbf{u} + \bcurs \times (\mathbf{u} \times \mathbf{a}) \right] \\ 
+        \mathbf{B}(\mathbf{r},t) &= \frac{1}{c} \hat{\bcurs} \times \mathbf{E}(\mathbf{r}, t)
+    \end{align*}
+    We find in equation 11.69 there is a poynting vector:
+    $$\mathbf{S}_{\text{rad}} = \frac{1}{\mu_{0}c} \left( \frac{\mu_{0}q a}{4\pi \rcurs} \right)^{2} \frac{\sin^{2}\theta}{\rcurs ^{2}}\hat{\bcurs}$$
+    So by integrating over the surface of the sphere, we find 
+    $$P=\frac{\mu_{0} q^{2} a^{2}}{6\pi c}$$
+
+    Now, the Newtonian force is straightforwardly:
+    \begin{align*}
+    ma &= \frac{1}{4\pi \epsilon_{0}} \frac{8e^{2}}{r^{2}} \\
+        P &= \frac{\mu_{0} q^{2}}{6\pi c} \left( \frac{1}{4\pi \epsilon_{0}} \frac{8e^{2}}{mr^{2}} \right)^{2} &&\text{(Substitute into Power)} \\ 
+        &= \frac{\mu_{0} q^{2}}{6\pi c} \left( \frac{1}{4\pi \epsilon_{0}} \frac{8e^{2}}{m(\frac{8 e^{2}}{4\pi T \epsilon_{0}})^{2}} \right)^{2} &&\text{(Substitute $r_{\text{min}}$)}\\ 
+    \end{align*}
+
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Consider a linear accelerator for electrons with a potential drop of 10 kV and a length of 5 m. What is the radiative power emitted by the electron as a function of time (before it hits the other side)?
+\begin{callout}{Solution:}
+
+    We can take the same idea as before: we have a charged particle and we want power, so we can just use the Larmor equation without having to do any fancy integrals. We need the equation of motion, so assuming a uniform electric field (plate capacitor style accelerator), 
+    $$E = \frac{\mathrm{10~kV}}{\mathrm{5~m}} = 2 \mathrm{\frac{kV}{m}}$$
+    So the particle experiences a uniform acceleration:
+    $$m a = e E$$
+    and is not explicitly time-dependent. This gives power:
+    $$P = \frac{\mu_{0} e^{2} (eE / m_e)^{2}}{6\pi c} \approx 7\times10^{-31} \mathrm{W}$$
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+Cyclotron Radiation. A non-relativistic electron with kinetic energy $T$ is gyrating in a uniform magnetic field ($B$). What is the radiated power? Give numbers for $T = 20$ keV and $B = 2.0$ T. 
+\begin{callout}{Solution:}
+
+    For cyclotron motion, have
+    \begin{align*}
+        evB &= \frac{mv^{2}}{R} \\ 
+        m_ev^2 &= 2T = 40 \mathrm{~keV} \implies v = \sqrt{\frac{40}{m_e} \mathrm{~\frac{keV}{kg}}} \approx 8.4 \times 10^7 \mathrm{~\frac{m}{s}}
+    \end{align*}
+
+    It is a little tangential, but this implies a radius of:
+    $$R = \frac{m_e v^{2}}{evB} \approx 0.24 \mathrm{~mm}$$
+
+    Newtonian acceleration is what we're looking for though:
+    $$m_ea = evB \approx 2.9\times10^{19} \mathrm{~\frac{m}{s^2}}$$
+
+    Again we can get ourselves a power from Larmor's equation
+    $$P = \frac{\mu_{0} e^{2} (e v B / m_e)}{6\pi c} \approx 1.82 \mathrm{~\mu W}$$
+
+\end{callout}
+\end{homeworkProblem}
