@@ -1,0 +1,83 @@
+\begin{homeworkProblem}
+Consider a terminated, lossless \textbf{transmission line}:
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{../assets/h8p1f1.png}
+\end{figure}
+
+The wave \textbf{reflected from load} $Z_L$ has the form:
+\[ V^-(z) = -2 e^{+j\beta z} \]
+
+And the load voltage is:
+\[ V_L = 4.0 \]
+
+Determine the value of load $Z_L$.
+\begin{callout}{Solution:}
+
+The load establishes the boundary conditions on the right, such that 
+$$V_L \equiv V_{0}, \quad I_L = I_{0}$$
+
+And we could claim
+$$Z_L = \frac{V_{0}}{I_{0}}$$
+
+By our definition of characteristic impedance we can express $I_{0}$:
+\begin{align*}
+    I(z, \omega) &= \frac{V^{+}}{Z_{0}}e^{-j \beta z} - \frac{V^{-}}{Z_{0}} e^{+j \beta z} \\
+    I(z=0, \omega)\equiv I_{0}&= \frac{V^{+}}{Z_{0}} - \frac{V^{-}}{Z_{0}} \\ 
+    I_{0}&= \frac{V_L - V_{0}^{-}}{Z_{0}} - \frac{V_{0}^{-}}{Z_{0}} &&\text{(because $V(z) \equiv V^{+}(z) + V^{-}(z)$)}
+\end{align*}
+
+Therefore, 
+\begin{align*}
+    Z_{L} &= \frac{V_{L}}{\frac{V_L - V_{0}^{-}}{Z_{0}} - \frac{V_{0}^{-}}{Z_{0}}} \\ 
+    &= \frac{V_{L}}{\frac{V_L - 2 V_{0}^{-}}{Z_{0}}} \\ 
+    &= \frac{ \mathrm{4~V~} \mathrm{Z_{0}~\Omega} }{\mathrm{4+2+2~V}} \\
+    &= 25 ~\Omega
+\end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{../assets/h8p2f1.png}
+\end{figure}
+
+The total voltage at location $z = 0$ is:
+\[ V(z=0) = j \, 2.0 \, V \]
+
+Determine the value of the \textbf{reflected voltage wave} at location $z=0$ (i.e., $V^-(z=0)$).
+\begin{callout}{Solution:}
+
+We have a convenient expression for:
+\begin{equation}
+\Gamma_{0} = \frac{Z_L - Z_{0}}{Z_L + Z_{0}}
+\end{equation}
+
+Where, 
+\begin{equation}
+\Gamma_0 = \frac{V_{0}^-}{V_{0}^+}
+\end{equation}
+
+Substituting this into the complete wave solution I can solve for $V^+$
+\begin{align*}
+    V(z, \omega) &\equiv V^+(z, \omega) + V^-(z, \omega) \\
+    V_{0} &= V_{0}^{+} + \Gamma_{0} V_{0}^{+} &&\left( V_{0}^{-} = \Gamma V_{0}^{+} \right) \\ 
+    V_{0} &= V_{0}^{+} \left( 1 + \Gamma_{0} \right) &&\text{(Algebra)} \\ 
+    V_{0}^{+} &= \frac{V_{0}}{1+\Gamma_{0}} \tag{3}
+\end{align*}
+
+Using (3) I can eliminate $V_{0}^+$ from (2):
+\begin{align*}
+    V_{0}^- &= \frac{\Gamma_{0}V_{0}}{1+\Gamma_{0}} \\ 
+    V_{0}^- &= \frac{\frac{Z_L - Z_{0}}{Z_L + Z_{0}} V_{0}}{1+\frac{Z_L - Z_{0}}{Z_L + Z_{0}}} \\ 
+    V_{0}^- &= \frac{(-1 / 3) (j 2)}{1+ (- 1 / 3)} \\ 
+    V_{0}^- &= - \frac{j}{2} \mathrm{~V}
+\end{align*}
+
+\end{callout}
+\end{homeworkProblem}

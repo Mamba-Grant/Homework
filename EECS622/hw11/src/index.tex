@@ -1,0 +1,161 @@
+\begin{homeworkProblem}
+Carefully—\textit{very carefully}—consider the circuit below.
+
+\vspace{1em}
+The length $\ell$ of the transmission line is \textbf{not zero} (i.e., $\ell \ne 0$).
+
+\vspace{1em}
+Otherwise, the length $\ell$ of the transmission line is both \textbf{unknown} and \textbf{unknowable} (i.e., don't attempt to determine $\ell$)!
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{../assets/h11p1f1.png}
+\end{figure}
+
+\vspace{1em}
+\noindent Determine the \textbf{power absorbed (in mW)} by the 200~$\Omega$ load.
+\begin{callout}{Solution:}
+
+When $Z_{g}=Z_{0}$, we will have $V_{0}^{+}=\frac{V_{g}}{2}e^{-j\beta \ell}$, so, 
+$$V^{+}(z)=\frac{V_{g}}{2}e^{-j\beta (z+\ell)}$$
+Then
+$$P^{inc}= \frac{1}{2Z_{0}} \left| \frac{V_{g}}{2}e^{-j\beta(z+\ell)} \right|^{2}=\frac{|V_{g}|^{2}}{8Z_{0}}= \frac{1}{400} = P_{g}^{avl}$$
+
+We can also readily calculate the reflection coefficient $\Gamma_0$
+$$\Gamma_0 = \frac{Z_L - Z_{0}}{Z_L + Z_{0}} = \frac{200-50}{200+50} = 0.6$$
+
+Since the transmission line is \textit{lossless}, we know that $P_L^{abs} = P_g^{del}$, which is given by the following:
+\begin{align*}
+    \hspace{1cm}P_g^{del} = P_L^{abs} &= P^{inc} - P^{ref} \\ 
+                          &= P^{inc} - |\Gamma_{0}^2| P^{inc} &&\left(\text{since}\quad \frac{P^{ref}}{P^{inc}} = |\Gamma_{0}|^{2} \right)\hspace{1cm} \\ 
+                          &= P^{inc} \left( 1 - |\Gamma_{0}^2| \right) \\ 
+    &= \frac{1}{625} \mathrm{\frac{J}{s}} = 1.6 \mathrm{~mW}
+\end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+A lossless 2-port network has been inserted between a source and a transmission line.
+
+The transmission line is terminated in a \textbf{matched load}.
+
+The network has been designed such that \textbf{all the available power from the source is delivered to the load!!!!}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{../assets/h11p2f1.png}
+\end{figure}
+
+\begin{enumerate}[1.]
+    \item Say we cut the circuit into \textbf{two pieces}, right where the lossless network connects to the transmission line.
+        The left side is thus a \textbf{source}:
+
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=0.35\textwidth]{../assets/h11p2f2.png}
+        \end{figure}
+
+        This source has a \textbf{Thevenin's equivalent}, defined with source voltage $V_{out1}$ and source impedance $Z_{out1}$:
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{../assets/h11p2f3.png}
+\end{figure}
+
+    \item Now, say we instead split the circuit in a \textbf{different place}, between the source and the lossless network. The one-port circuit to the right is now \textbf{load}:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{../assets/h11p2f4.png}
+\end{figure}
+
+        We find that \textbf{this load} has an input impedance $Z_{in2}$:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{../assets/h11p2f5.png}
+\end{figure}
+
+    \item Finally, we can split the circuit just \textbf{before the matched load}. The circuit to the left is likewise a \textbf{source}:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{../assets/h11p2f6.png}
+\end{figure}
+        The \textbf{available power} at the output of this source is $P_{av3}$.
+\end{enumerate}
+
+Determine:
+
+\begin{enumerate}[A.]
+    \item The source impedance $Z_{out1}$.
+        \begin{callout}{Solution:}
+
+            $Z_{out1}$ is the impedance seen at the input to the transmission line. For all available power to be delivered, the resulting output impedance must be numerically equal to the transmission line characteristic impedance such that $Z_{out1} = Z_{0} = 50~\Omega$.
+
+            \vspace{1em} This is confirmed by checking that the reflection coefficient is indeed zero.
+
+        \end{callout}
+    \item The input impedance $Z_{in2}$.
+        \begin{callout}{Solution:}
+
+        For all available power to be delivered from a source to any load, there must be a \textit{conjugate} match such that 
+        $Z_{in2} = Z_g^* = 12.5 - j 6 ~\Omega$.
+
+        \end{callout}
+    \item The available power $P_{avl3}$.
+        \begin{callout}{Solution:}
+
+            Because the previous two parts established that this is a lossless, matched network, with a reflection coefficient of zero, we know that the incident power is equal to the available power, which is equal to the power at the source:
+            $$P_{avl3} = P^{inc} = \frac{|V_g|^2}{8 Z_{0}} = \frac{|3|^2}{8*12.5} = \mathrm{90~mW}$$
+
+        \end{callout}
+\end{enumerate}
+
+Determining these values is not particularly difficult.
+
+\vspace{1em}
+\colorbox{yellow}{\parbox{0.9\textwidth}{However, you must provide \textbf{explicit, complete}, and \textbf{detailed rationale} for your answers.}}
+
+\vspace{1em}
+\textit{I'm more interested in whether you know \textbf{WHY} your answer is correct, and less interested in whether you have the correct answer!}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Carefully---\textbf{very carefully}---consider the circuit below.
+
+\vspace{1em}
+The length $\ell$ of the transmission line is \textbf{not zero} (i.e., $\ell \neq 0$).
+
+\vspace{1em}
+Otherwise, the length $\ell$ of the transmission line is both \textbf{unknown} and \textbf{unknowable} (i.e., don't attempt to determine $\ell$)!
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{../assets/h11p3f1.png}
+\end{figure}
+
+\vspace{1em}
+Determine the \textbf{power delivered} (in mW) by source.
+
+\begin{callout}{Solution:}
+
+We have a matched source but not a matched load, just like problem 1. Following the same derivations, 
+\begin{align*}
+    P^{inc} &= \frac{|V_g|^{2}}{8Z_{0}} = \frac{9}{200} \\ 
+    \Gamma_{0} &= \frac{Z_L - Z_{0}}{Z_L + Z_{0}} = -\frac{2}{3}
+\end{align*}
+
+Because the transmission line is \textit{lossless}, we know that $P_L^{abs} = P_g^{del}$, so 
+\begin{align*}
+    P_g^{del} &= P^{inc} - P^{ref} \\ 
+    &= P^{inc} (1- |\Gamma_{0}|^{2}) \\ 
+    &= 25\mathrm{~mW}
+\end{align*}
+
+\end{callout}
+\end{homeworkProblem}

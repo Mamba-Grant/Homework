@@ -1,0 +1,145 @@
+\begin{homeworkProblem}
+    We start with an ideal current source, and then connect it to a two-port device with impedance matrix:
+
+    \[
+        \mathbf{Z} =
+        \begin{bmatrix}
+            20 & 40 + j30 \\
+            40 + j30 & 10
+        \end{bmatrix} \; \Omega
+    \]
+
+    We have thus created a \textbf{new source} (it’s \textit{not} an ideal current source anymore!)
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{../assets/h2p1f1.png}
+    \end{figure}
+
+
+    \[
+        \begin{array}{c}
+            \text{Determine the Thevenin’s equivalent (i.e., $V_{\text{out}}$ and $Z_{\text{out}}$) of this new source, along with its available power.}
+        \end{array}
+    \]
+
+    \begin{callout}{Solution: Deriving $V_{out}$}
+
+        \input{h2p1f1.tex}
+        The goal is to create an equivalent circuit as shown above. This is as simple as determining the Thevenin equivalent. The voltage seen by the load is $V_2=V_{out}$. Meanwhile the resistance seen by the load is the total resistance, which may be calculated by shorting the load and expressing the current. 
+
+        \vspace{1em} To find $V_{out}$ for the thevenin equivalent, we need to find $V_{2}$ when there is an open circuit:
+        $$\begin{cases}
+            V_1 &= Z_{11}I_1 + Z_{12}I_2 \\
+            V_2 &= Z_{21}I_1 + Z_{22}I_2
+        \end{cases}$$
+
+        subject to:
+        $$\begin{cases}
+            I_1 = \frac{V_s - V_1}{Z_g} \\
+            I_2 = 0
+        \end{cases}$$
+
+        It is possible to then solve for $V_{2}$:
+        \begin{align*}
+            I_1 &= \frac{V_g - Z_{11}I_1}{Z_g} \\
+            I_1 Z_g &= V_g - Z_{11}I_1 \\
+            I_1(Z_g + Z_{11}) &= V_g \\
+            I_1 &= \frac{V_g}{Z_g + Z_{11}} \\
+            V_2 &= \frac{Z_{21}V_g}{Z_g + Z_{11}}
+        \end{align*}
+
+        Therefore, $$\boxed{V_{out} = \frac{Z_{21}V_g}{Z_g + Z_{11}}}$$
+    \end{callout}
+
+    \begin{callout}{Solution: Deriving $Z_{out}$}
+
+        We will have a the equations for a short circuit on $V_{2}$
+        $$\begin{cases}
+            V_1 &= Z_{11}I_1 + Z_{12}I_2 \\
+            V_2 &= Z_{21}I_1 + Z_{22}I_2
+        \end{cases}$$
+
+        Subject to:
+        $$\begin{cases}
+            V_{2} = 0 \\ 
+            I_{1} = \frac{V_g - V_{1}}{Z_g}
+        \end{cases}$$
+
+        Then $I_{2}$ will be:
+        \begin{align*}
+            I_{2} = - \frac{Z_{21}}{Z_{22}} I_{1} = - \frac{Z_{21}}{Z_{22}} \frac{V_g}{Z_g + Z_{11} \frac{Z_{12}Z_{21}}{Z_{22}}}
+        \end{align*}
+
+        These are identical to what we have derived in class, so this is good. We will have an output impedance given as (negative sign due to definition of $I_{2}$):
+        $$\boxed{Z_{out} = \frac{V_{2}}{-I_{2}} = \left(\frac{Z_{21}}{Z_{11} + Z_s}\right)\left(\frac{Z_{22}}{Z_{21}}(Z_{11} + Z_s) - Z_{12}\right) = Z_{22} - \frac{Z_{21}Z_{12}}{Z_{11} + Z_g}}$$
+
+    \end{callout}
+V    \newpage
+    \begin{callout}{Solution: Deriving Power}
+
+        Beginning by substituting derived expressions into our expression for absolute power:
+        \begin{align*}
+            p_{\text{out}}^{\text{avl}} &= \frac{|Z_{21}|^2|V_g|^2}{8|Z_g + Z_{11}|^2 \text{Re}\left\{Z_{22} - \frac{Z_{21}Z_{12}}{Z_{11} + Z_g}\right\}} \\
+                          &= \frac{2500|V_g|^2}{8|Z_g + 20|^2 \text{Re}\left\{10 - \frac{(40 + j30)^2}{20 + Z_g}\right\}} &&\text{(Substitute given values)} \\
+                          &= \frac{2500|V_g|^2}{8(Z_g + 20)^2 \left(10 - \frac{2500}{20 + Z_g}\right)} &&\text{(Real part only, } |Z_g + 20|^2 = (Z_g + 20)^2\text{)} \\
+                          &= \frac{2500|V_g|^2}{8(Z_g + 20)^2 \cdot \frac{10(20 + Z_g) - 2500}{20 + Z_g}} &&\text{(Combine fractions in denominator)} \\
+                          &= \frac{2500|V_g|^2}{8(Z_g + 20)(10(20 + Z_g) - 2500)} &&\text{(Cancel common factor)} \\
+                          &= \frac{2500|V_g|^2}{8(Z_g + 20)(200 + 10Z_g - 2500)} &&\text{(Expand numerator)} \\
+                          &= \frac{2500|V_g|^2}{8(Z_g + 20)(10Z_g - 2300)} &&\text{(Simplify)} \\
+                          &= \frac{2500|V_g|^2}{80(Z_g + 20)(Z_g - 230)} &&\text{(Factor out 10)} \\
+                          &= \frac{125|V_g|^2}{4(Z_g + 20)(Z_g - 230)} &&\text{(Simplify coefficients)}
+        \end{align*}
+
+        Therefore,
+        $$\boxed{P_{\text{out}}^{\text{avl}} = \frac{125|V_g|^2}{4(Z_g + 20)(Z_g - 230)}}$$
+
+    \end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    In the circuit below, the 2-port device is characterized by the impedance matrix:
+
+    \[
+        \mathbf{Z} =
+        \begin{bmatrix}
+            40 & -30 \\
+            -30 & 20
+        \end{bmatrix} \; \Omega
+    \]
+
+    The voltage across \textbf{port 1} is 50 Volts, while current flowing into \textbf{port 2} is 1 Amp.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.6\textwidth]{../assets/h2p2f1.png}
+    \end{figure}
+
+    Determine the values of impedances $Z_g$ and $Z_L$.
+    \begin{callout}{Solution:}
+
+        My initial thoughts were to make the full Thevenin equivalent transformation, however, there is actually enough information given to derive numeric values from the trans-impedance parameters:
+
+    \begin{align}
+        V_1&=Z_{11} I_1+Z_{12} I_2 \\
+        V_2&=Z_{21} I_1+Z_{22} I_2 \\
+        I_1&=\frac{V_g-V_1}{Z_g} \\
+        I_{2} &\equiv 1 \mathrm{~A}
+    \end{align}
+
+        I will rearrange (1) for $I_{1}$:
+        $$I_{1} = \frac{V_{1} - Z_{12} I_{2}}{Z_{11}} = \frac{50-(-30)(1)}{40} = 2$$
+
+        Then, we can use (3) to extract $Z_g$
+        $$\boxed{Z_g = \left( \frac{Z_{11}}{V_{1} - Z_{12} I_{2}} \right)(V_g - V_{1}) = \left( \frac{40}{50-(-30)(1)} \right)(60e^{j0}-50) = 5 ~\Omega}$$
+
+        Now, I will want $V_{2}$ from (2) to determine $Z_L$ by ohm's law:
+        $$V_{2} = Z_{21}I_{1} + Z_{22}I_{2} = (-30)(2)+(20)(1) = -40 \mathrm{~V}$$
+
+        The actual current passing through $Z_L$ is in the opposite direction of $I_{2}$, so we will have:
+        $$\boxed{Z_L = \frac{-40}{-1} = 40 \mathrm{~\Omega}}$$
+
+    \end{callout}
+\end{homeworkProblem}

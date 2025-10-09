@@ -1,0 +1,99 @@
+\begin{homeworkProblem}
+A lossless matching network was properly constructed to match a source with parameters $V_g$ and $Z_g$ to a load $Z_L$ :
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{../assets/h1p1f1.png}
+\end{figure}
+
+If we disconnect the load from the matching network, we find that we have a new equivalent source (the original source followed by the matching network), with parameters $V_{\text {out }}=j 3.0 \mathrm{~V}$ and $Z_{\text {out }}=20-j 30 \Omega$ :
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{../assets/h3p1f2.png}
+\end{figure}
+
+Likewise, if we disconnect the source from the matching network, we find an input impedance (the matching network followed by the load) of $Z_{\text {in }}=40+j 10 \Omega$ (turn the page!!):
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{../assets/h3p1f3.png}
+\end{figure}
+
+\begin{enumerate}[(a)]
+    \newpage
+    \item Determine the impedance values $Z_L$ and $Z_g$.
+        \begin{callout}{Solution:}
+
+            In general, we would need to look at the system to express a relation between $Z_g, Z_L, Z_{in}, Z_{out}$. Indeed, for the case of the matching network, we design it for the express purpose of setting the following relationship
+            $$\begin{cases}
+                Z_g = Z_{in}^* = 40 - j10 ~\Omega \\ 
+                Z_L = Z_{out}^* = 20 + j30 ~\Omega
+            \end{cases}$$
+
+
+        \end{callout}
+    \item Determine the available power of the original (i.e., $V_g$ and $Z_g$ ) source.
+        \begin{callout}{Solution:}
+
+            By definition, a lossless component will have invariant (available) power:
+            \begin{equation}
+                P_{g}^{avl} = P_{out}^{avl} \tag{1}
+            \end{equation}
+
+            The right hand side of this equation is:
+            \begin{align*}
+                P_{g}^{avl} &= P_{out}^{avl} &&\text{(1)} \\ 
+                            &= \frac{|V_{out}|^{2}}{8 \mathrm{Re}\{ Z_{out} \}} &&\text{(Substitute known expression)} \\ 
+                            &= \frac{|j3|^{2}}{8 (20)} &&\text{(Substitute numeric values)} \\ 
+                            &= \frac{9}{160} \approx 0.05625
+            \end{align*}
+
+            Now the problem is effectively solved, but I will continue to extract $V_g$ as an exercise:
+            \begin{align*}
+                P_g^{avl} &= \frac{|V_{g}|^{2}}{8 \mathrm{Re}\{ Z_g \}} \\ 
+                &= \frac{|V_{g}|^{2}}{8 (40)} \\ 
+                &= \frac{|V_{g}|^{2}}{320} \mathrm{~\frac{J}{s}}
+            \end{align*}
+
+            Using (1),
+            $$\frac{|V_{g}|^{2}}{320} = \frac{9}{160} \implies V_g = 3\sqrt{2} \mathrm{~V}$$
+
+        \end{callout}
+\end{enumerate}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    A lossless matching network was properly constructed to match a source with parameters:
+    $$ V_g=j 8.0 \mathrm{~V} \quad \text { and } \quad Z_g=10-j 15 \Omega $$
+    to a load with impedance:
+    $$ Z_L=40 \Omega $$
+
+    Determine the rate at which energy is absorbed by load $Z_L$.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{../assets/h3p2f1.png}
+    \end{figure}
+
+    \begin{callout}{Solution:}
+
+            If and only if we have a \textit{lossless} matching network (as we do), the following boundary condition holds:
+            \begin{equation}
+                P_g^{del} = P_g^{avl} = P_L^{abs} \tag{2}
+            \end{equation}
+
+            In the same fashion as problem \#1, we may compute the absorbed power without even knowing anything about the load, since all available power is absorbed
+        \begin{align*}
+            P_{L}^{abs} &= P_g^{avl} &&\text{(2)} \\ 
+                       &= \frac{|V_g|^{2}}{8R_g} &&\text{(Substitute known expression)} \\ 
+                       &= \frac{64}{8(10)} &&\text{(Substitute numeric values)} \\ 
+                       &= \frac{4}{5} \mathrm{~\frac{J}{s}}
+        \end{align*}
+
+    \end{callout}
+
+\end{homeworkProblem}

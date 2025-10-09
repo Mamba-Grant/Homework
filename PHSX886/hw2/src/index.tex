@@ -1,0 +1,303 @@
+\textit{These 4 questions are from the "Elements of X-ray diffraction" book.}
+
+\begin{homeworkProblem}
+    3-1 A transmission Laue pattern is made of a cubic crystal having a lattice parameter of $4.00 \text{\AA}$. The x-ray beam is horizontal. The $[0 \overline{1} 0]$ axis of the crystal points along the beam towards the x-ray tube, the [100] axis points vertically upward, and the [001] axis is horizontal and parallel to the photographic film. The film is 5.00 cm from the crystal.
+
+    \begin{enumerate}[a)]
+        \item What is the wavelength of the radiation diffracted from the ( 310 ) planes?
+            \begin{callout}{Solution:}
+
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.4\textwidth]{../assets/h2p1f1.png}
+                \end{figure}
+
+                The (310) plane has normal in the direction of [3,1,0] and intercepts at $(\frac{1}{3}, 1, 0)$, at an angle $\tan^{-1} \left( \frac{1/3}{1} \right) = 18.4^\circ$ below the horizontal.
+
+                The distance between planes is given by 
+                $$d_{hkl} = \frac{d}{\sqrt{h^2+k^2+l^2}} = \frac{4.0}{\sqrt{3^2+1^2}} = \frac{4}{\sqrt{10}}$$
+
+                I don't need to do anything complicated here, just apply the Bragg diffraction relation:
+                \begin{align*}
+                    n\lambda &= 2d\sin \theta \\ 
+                    n \lambda &= 2 \left( \frac{4}{\sqrt{10}} \right) \sin (18.4^{\circ}) \\ 
+                    n \lambda &\approx  0.526\text{\AA} 
+                \end{align*}
+
+            \end{callout}
+            \newpage
+        \item Where will the 310 reflection strike the film?
+            \begin{callout}{Solution:}
+
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.4\textwidth]{../assets/h2p1f2.png}
+                \end{figure}
+                The outgoing angle is always $2 \theta$, confirmed graphically in the figure in (a).
+                We will just want the distance $d' = 5 \cdot \tan{24^\circ} \approx 2.2 \mathrm{~cm}$
+
+            \end{callout}
+    \end{enumerate}
+
+
+    For b), you can show it graphically and calculate the angle between the incident and diffracted beam.
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+    3-3 Determine, and list in order of increasing angle, the values of $2 \theta$ and ( $h k l$ ) for the first three lines (those of lowest $2 \theta$ values) on the powder patterns of substances with the following structures, the incident radiation being $\mathrm{Cu} K \alpha$ :
+
+    \begin{enumerate}[a)]
+        \item simple cubic $(a=3.00 \text{\AA})$,
+            \begin{callout}{Solution:}
+
+                We know,
+                \begin{align*}
+                    \lambda &= 2d \sin \theta \\ 
+                    \theta &= \arcsin \left( \frac{\lambda}{2d} \right)
+                \end{align*}
+
+                So we may have a set of lines with $d_{hkl}$ given by 
+                $$\frac{1}{d^2} = \frac{(h^2+k^2+\ell^2)}{a^2}$$
+
+                A table of the first few values is:
+                \begin{table}[H]
+                    \centering
+                    \begin{tabular}{c|c}
+                        \hline
+                        $(hkl)$ & $d_{hkl}$ \\
+                        \hline
+                        (100) & 3.0 \\
+                        (110) & 2.121 \\
+                        (111) & 1.732 \\
+                        \hline
+                    \end{tabular}
+                \end{table}
+
+                \newpage
+                Which will net the following numeric solutions:
+                \begin{table}[H]
+                    \centering
+                    \begin{tabular}{c|c}
+                        \hline
+                        $(hkl)$ & $2\theta$ \\
+                        \hline
+                        (100) & 29.7 \\
+                        (110) & 42.6 \\
+                        (111) & 52.8 \\
+                        \hline
+                    \end{tabular}
+                \end{table}
+
+            \end{callout}
+        \item simple tetragonal $(a=2.00 \text{\AA}, c=3.00 \text{\AA})$,
+            \begin{callout}{Solution:}
+
+                We will simply have different $d_{hkl}$ for a tetragonal system:
+                $$ d_{h k \ell}=\frac{1}{\sqrt{\frac{h^2+k^2}{a^2}+\frac{\ell^2}{c^2}}} $$
+
+                \begin{table}[H]
+                    \centering
+                    \begin{tabular}{c|c|c}
+                        \hline
+                        $(hkl)$ & $d_{hkl}$ & $2\theta$ \\
+                        \hline
+                        (100) & 2.0   & 45.3  \\
+                        (110) & 1.41  & 65.9  \\
+                        (111) & 1.28  & 73.9  \\
+                        (200) & 1.0   & 101.0 \\
+                        (210) & 0.894 & 119.0 \\
+                        \hline
+                    \end{tabular}
+                \end{table}
+
+            \end{callout}
+        \item simple tetragonal $(a=3.00 \text{\AA}, c=2.00 \text{\AA})$,
+            \begin{callout}{Solution:}
+
+                As in (b):
+                \begin{table}[H]
+                    \centering
+                    \begin{tabular}{c|c|c}
+                        \hline
+                        $(hkl)$ & $d_{hkl}$ & $2\theta$ \\
+                        \hline
+                        (100) & 3.0   &  29.7 \\
+                        (110) & 2.121 &  42.6 \\
+                        (111) & 1.455 &  64.2 \\
+                        (200) & 1.5   &  61.9 \\
+                        (210) & 1.342 &  69.9 \\
+                        \hline
+                    \end{tabular}
+                \end{table}
+
+            \end{callout}
+    \end{enumerate}
+
+
+    Note: Take the wavelength for $\mathrm{Cu} \mathrm{K} \alpha$ radiation to be $1.54 \text{\AA}$.
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    4-5 A certain tetragonal crystal has four atoms of the same kind per unit cell, located at $0 \frac{1}{2} \frac{1}{4}, \frac{1}{2} 0 \frac{1}{4}, \frac{1}{2} 0 \frac{3}{4}, 0 \frac{1}{2} \frac{3}{4}$. (Do not change axes.)
+
+    \begin{enumerate}[(a)]
+        \item Derive simplified expressions for $F^2$.
+            \begin{callout}{Solution:}
+
+                The resultant wave scattered by all the atoms of the unit cell is called the \textit{structure factor} and is designated by the symbol \(F\). It is obtained by simply adding together all the waves scattered by the individual atoms. In general, this equation is given by:
+                $$
+                F_{h k l}=\sum_1^N f_n e^{2 \pi \imath\left(h u_n+k v_n+\ell w_n\right)}
+                $$
+
+                Which in the case given simplifies to
+                \begin{align*}
+                    F &= f \left( e^{2 \pi i (0+ \frac{k}{2} + \frac{\ell}{4} )} \right) = f \left( e^{\pi i (k + \frac{\ell}{2} )} \right) &&\text{(Atom 1)} \\
+                    F &= f \left( e^{2 \pi i (\frac{h}{2}+ 0 + \frac{\ell}{4} )} \right) = f \left( e^{\pi i (h+ \frac{\ell}{2} )} \right)  &&\text{(Atom 2)} \\
+                    F &= f \left( e^{2 \pi i (\frac{h}{2}+ 0 + \frac{3\ell}{4} )} \right) = f \left( e^{\pi i (h+ \frac{3\ell}{2} )} \right) &&\text{(Atom 3)} \\
+                    F &= f \left( e^{2 \pi i (0+ \frac{k}{2} + \frac{3\ell}{4} )} \right) = f \left( e^{\pi i (k + \frac{3\ell}{2} )} \right) &&\text{(Atom 4)}
+                \end{align*}
+
+                The sum of these is then the actual wave scattered:
+                $$
+                F=f\left[e^{\pi i\left(k+\frac{\ell}{2}\right)}+e^{\pi i\left(h+\frac{\ell}{2}\right)}+e^{\pi i\left(h+\frac{3 \ell}{2}\right)}+e^{\pi i\left(k+\frac{3 \ell}{2}\right)}\right]
+                $$
+
+                This may be factored a bit to get a nicer complex conjugate
+                \begin{align*}
+&F=f \cdot e^{\pi i \ell / 2}\left[e^{\pi i k}+e^{\pi i h}+e^{\pi i h} \cdot e^{\pi i \ell}+e^{\pi i k} \cdot e^{\pi i \ell}\right]\\
+&F=f \cdot e^{\pi i \ell / 2}\left[e^{\pi i k}\left(1+e^{\pi i \ell}\right)+e^{\pi i h}\left(1+e^{\pi i \ell}\right)\right]\\
+&F=f \cdot e^{\pi i \ell / 2}\left(1+e^{\pi i \ell}\right)\left[e^{\pi i k}+e^{\pi i h}\right]
+                \end{align*}
+
+                And the magnitude will be this times the complex conjugate, which is 
+                $$
+                |F|^2=f^2 \cdot\left|1+e^{\pi i \ell}\right|^2 \cdot\left|e^{\pi i k}+e^{\pi i h}\right|^2
+                $$
+
+                As an exercise, I'll also write this in terms of sinusoidal functions:
+
+                Let $x=\pi \ell$.
+                $$
+                \begin{aligned}
+                    \left|1+e^{i x}\right|^2 & =\left(1+e^{i x}\right)\left(1+e^{-i x}\right) \\
+                    =1 & +e^{i x}+e^{-i x}+1 \\
+                       & =2+2 \cos x \\
+                       & =4 \cos ^2\left(\frac{x}{2}\right)
+                \end{aligned}
+                $$
+                because $1+\cos x=2 \cos ^2(x / 2)$.
+
+                So
+                $$
+                \left|1+e^{\pi i \ell}\right|^2=4 \cos ^2\left(\frac{\pi \ell}{2}\right)
+                $$
+
+                For the other term,
+                $$
+                \begin{aligned}
+&\text { Let } a=\pi k, b=\pi h \text {. }\\
+&\begin{gathered}
+    \left|e^{i a}+e^{i b}\right|^2=\left(e^{i a}+e^{i b}\right)\left(e^{-i a}+e^{-i b}\right) \\
+    =2+e^{i(a-b)}+e^{-i(a-b)} \\
+    =2+2 \cos (a-b) \\
+    =4 \cos ^2\left(\frac{a-b}{2}\right) \\
+    =4 \cos ^2\left(\frac{\pi(k-h)}{2}\right)
+\end{gathered}
+                \end{aligned}
+                $$
+
+                The product will then be
+                $$
+                |F|^2=16 f^2 \cos ^2\left(\frac{\pi \ell}{2}\right) \cos ^2\left(\frac{\pi(k-h)}{2}\right)
+                $$
+            \end{callout}
+        \item What is the Bravais lattice of this crystals?
+            \begin{callout}{Solution:}
+
+                Carefully inspecting the basis vectors reveals there is a translation symmetry by a factor of 1/2, which implies the atoms can be centered in the cell. This is graphically confirmed in the below figure
+                \begin{figure}[H]
+                    \centering
+                    \includegraphics[width=0.5\textwidth]{../assets/h2p3f1.png}
+                \end{figure}
+
+            \end{callout}
+        \item What are the values of $F^2$ for the $100,002,111$, and 011 reflections?
+            \begin{callout}{Solution:}
+
+                \begin{table}[H]
+                    \centering
+                    \begin{tabular}{c|c}
+                        \hline
+                        $(hkl)$ & $|F|^2$ \\
+                        \hline
+                        (100) & $0$ \\
+                        (002) & $16f^2$ \\
+                        (111) & $0$ \\
+                        (011) & $0$ \\
+                        \hline
+                    \end{tabular}
+                \end{table}
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    4-6 Derive simplified expressions for $F^2$ for the wurtzite form of ZnS , including the rules governing observed reflections. This crystal is hexagorial and contains 2 ZnS per unit cell, located in the following positions:
+    \[
+        \begin{aligned}
+            \text{Zn:} & \quad 0\,0\,0,\; \tfrac{1}{3}\;\tfrac{2}{3}\;\tfrac{1}{2}, \\
+            \text{S:}  & \quad 0\,0\,\tfrac{3}{8},\; \tfrac{1}{3}\;\tfrac{2}{3}\;\tfrac{7}{8}
+        \end{aligned}
+    \]
+
+    Note that these positions involve a common translation, which may be factored out of the structure-factor equation.
+    \begin{callout}{Solution:}
+
+        As before, the structure factor will be the sum of all scattered waves:
+        \begin{align*}
+            F_{1} &= f_{\mathrm{Zn}} \\ 
+            F_{2} &= f_{\mathrm{Zn}} e^{2 \pi i \left( \frac{h}{3} + \frac{2k}{3} + \frac{\ell}{2} \right)} &&= f_{\mathrm{Zn}} e^{\pi i \left( \frac{2h}{3} + \frac{4k}{3} + \ell \right)} \\
+            F_{3} &= f_{\mathrm{S}} e^{2 \pi i \left( \frac{3\ell}{8} \right)} &&= f_{\mathrm{S}} e^{\pi i \left( \frac{3\ell}{4} \right)} \\ 
+            \hspace{5cm}F_{4} &= f_{\mathrm{S}} e^{2 \pi i \left( \frac{h}{3} + \frac{2k}{3} + \frac{7\ell}{8} \right)} &&= f_{\mathrm{S}} e^{\pi i \left( \frac{2h}{3} + \frac{4k}{3} + \frac{7\ell}{4} \right)}\hspace{5cm}
+        \end{align*}
+
+        Then, we will have a sum:
+        \begin{align*}
+            F &= f_{\mathrm{Zn}} \left( 1 + e^{\pi i \left( \frac{2h}{3} + \frac{4k}{3} + \ell \right)} \right) + f_{\mathrm{S}} \left( e^{\pi i \left( \frac{3\ell}{4} \right)} + e^{\pi i \left( \frac{2h}{3} + \frac{4k}{3} + \frac{7\ell}{4} \right)} \right) \\ 
+              &= f_{\mathrm{Zn}}\left(1+\xi e^{\pi i \ell}\right)+f_{\mathrm{S}}\left(e^{\frac{3 \pi i \ell}{4}}+\xi e^{\frac{7 \pi i \ell}{4}}\right) &&\xi \equiv e^{\frac{2 \pi i }{3}(h + k)} \\
+              &= f_{\mathrm{Zn}}\left(1+\xi e^{\pi i \ell}\right)+f_{\mathrm{S}} e^{\frac{3 \pi \ell}{4}}\left(1+\xi e^{\pi i \ell}\right)\\
+              &= \left(1+\xi e^{\pi i \ell}\right)\left(f_{\mathrm{Zn}}+f_{\mathrm{S}} e^{\frac{3 \pi i \ell}{4}}\right)
+        \end{align*}
+
+        Magnitude will then be:
+        $$|F|^2 = \left|1+\xi e^{\pi i \ell}\right|^2\left|f_{\mathrm{Zn}}+f_{\mathrm{S}} e^{\frac{3 \pi i \ell}{4}}\right|^2, \qquad \xi\equiv e^{\frac{2 \pi i }{3}(h + k)}$$
+
+        There will be no reflections when $|F|^2$ is zero, i.e. when $|1+e^{\frac{2\pi i}{3}(h+k)}e^{\pi i \ell}|^2 = - 1 = e^{n \pi i}$ for any odd integer $n$. Inspection of the exponential terms reveals we specifically require:
+        $$\frac{2}{3}(h+k) + \ell = \text{odd integer}$$
+
+        All other cases will give some intensity of reflected wave, the textbook goes into detail on all cases:
+
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{l|l|l}
+                \hline
+                $h + 2k$      & 1                                   & $F^2$ \\ \hline
+                $3n$          & $2p + 1$ (as $1,3,5,7,\ldots$)       & 0 \\ \hline
+                $3n$          & $8p$ (as $8,16,24,\ldots$)          & $4\left(f_{\mathrm{Zn}} + f_{\mathrm{S}}\right)^{2}$ \\ \hline
+                $3n$          & $4(2p + 1)$ (as $4,12,20,28,\ldots$) & $4\left(f_{\mathrm{Zn}} - f_{\mathrm{S}}\right)^{2}$ \\ \hline
+                $3n$          & $2(2p + 1)$ (as $2,6,10,14,\ldots$)  & $4\left(f_{\mathrm{Zn}}^{2} + f_{\mathrm{S}}^{2}\right)$ \\ \hline
+                $3n \pm 1$    & $8p \pm 1$ (as $1,7,9,15,17,\ldots$) & $3\left(f_{\mathrm{Zn}}^{2} + f_{\mathrm{S}}^{2} - \sqrt{2}\,f_{\mathrm{Zn}} f_{\mathrm{S}}\right)$ \\ \hline
+                $3n \pm 1$    & $4(2p + 1) \pm 1$ (as $3,5,11,13,\ldots$) & $3\left(f_{\mathrm{Zn}}^{2} + f_{\mathrm{S}}^{2} + \sqrt{2}\,f_{\mathrm{Zn}} f_{\mathrm{S}}\right)$ \\ \hline
+                $3n \pm 1$    & $8p$                                & $\left(f_{\mathrm{Zn}} + f_{\mathrm{S}}\right)^{2}$ \\ \hline
+                $3n \pm 1$    & $4(2p + 1)$                          & $\left(f_{\mathrm{Zn}} - f_{\mathrm{S}}\right)^{2}$ \\ \hline
+                $3n \pm 1$    & $2(2p + 1)$                          & $f_{\mathrm{Zn}}^{2} + f_{\mathrm{S}}^{2}$ \\ \hline
+            \end{tabular}
+        \end{table}
+        $n$ and $p$ are any integers, including zero.
+
+
+    \end{callout}
+\end{homeworkProblem}

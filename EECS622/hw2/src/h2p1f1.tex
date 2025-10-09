@@ -1,0 +1,20 @@
+\begin{figure}[H]
+\centering
+\resizebox{0.25\textwidth}{!}{%
+\begin{circuitikz}
+\tikzstyle{every node}=[font=\normalsize]
+\draw (8.5,14.75) to[R,l={ \normalsize $Z_{out}$}] (11.75,14.75);
+\draw (8.5,13) to[short] (12.25,13);
+\draw (11.75,14.75) to[short] (12.25,14.75);
+\node at (12.25,14.75) [circ] {};
+\node at (12.25,13) [circ] {};
+\node [font=\large] at (12,14.25) {+};
+\node [font=\large] at (12,13.25) {-};
+\draw (8.5,14.75) to[american voltage source,l={ \normalsize $V_{out}$}] (8.5,13);
+\draw [->, >=Stealth] (12.25,15.5) -- (11,15.5)node[pos=0.5, fill=white]{$I_2$};
+\node [font=\normalsize] at (12,13.75) {$V_2$};
+\end{circuitikz}
+}%
+
+\label{fig:my_label}
+\end{figure}

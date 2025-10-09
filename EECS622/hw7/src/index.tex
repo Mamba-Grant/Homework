@@ -1,0 +1,84 @@
+\begin{homeworkProblem}
+The total voltage along a transmission line is:
+
+$$V(z) = 14 e^{-j(\pi/2)z} + 2 e^{j(\pi/2)z}$$
+
+The line impedance at location $z = 1$ on this same line is:
+
+$$Z(z = 1) = 7.5 \Omega$$
+
+Determine the value of total current at transmission line location $z = 1$.
+
+In other words, determine the value $I(z = 1)$.
+\begin{callout}{Solution:}
+
+    \begin{equation} \label{eq:line_impedance}
+        Z(z, \omega) \equiv \frac{V(z, \omega)}{I(z, \omega)}
+    \end{equation}
+
+    Using (\ref{eq:line_impedance}), 
+
+    \begin{align*}
+        I(z=1,\omega) &= \frac{V(z=1, \omega)}{Z(z=1, \omega)} \\
+        &= \frac{-14j + 2j}{7.5} \\ 
+        &= -1.6j \mathrm{~A}
+    \end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+A certain transmission line has $\beta = \pi/2$ (radians/m).
+
+We know that the reflection coefficient function at location $z = 1$ is:
+
+$$\Gamma(z = 1) = -0.5$$
+
+and the line impedance at location $z = 0$ is:
+
+$$Z(z = 0) = 120 \Omega$$
+
+and the total voltage at location $z = -1$ is:
+
+$$V(z = -1) = j4 \text{ V}$$
+
+Determine the function $I(z)$ that describes the time-harmonic current along this transmission line.
+
+\begin{callout}{Solution:}
+
+    \setcounter{equation}{0}
+I just need to fit boundary conditions to the wave equations. 
+\begin{align}
+    Z(z, \omega) &\equiv \frac{V(z, \omega)}{I(z, \omega)} = Z_{0} \left( \frac{e^{-j \beta z}+ \Gamma_{0} e^{+j \beta z}}{e^{-j \beta z} - \Gamma_{0} e^{+j \beta z}} \right)\\ 
+    \Gamma &\equiv \Gamma_{0} e^{+j2 \beta z} \\ 
+    \Gamma_{0} &\equiv \frac{V_{0}^-}{V_{0}^+} \\
+    I(z, \omega) &= \frac{V^+}{Z_{0}} e^{-j \beta z} - \frac{V^-}{Z_{0}} e^{+j \beta z}
+\end{align}
+
+It's possible to find $\Gamma_{0}$ using (2):
+$$\Gamma_{0} = 0.5{e^{j \pi (0-1)}} = 0.5$$
+
+Then, with (3) the components can be related by a scalar:
+$$0.5 = \frac{V_{0}^-}{V_{0}^+} \implies 0.5 V_{0}^+ = V_{0}^-$$
+
+This lets me derive $V^+, V^-$ components by substituting for one in the definition of $V$:
+\begin{align*}
+    V(z=-1) &= V^+e^{-j (\pi / 2) (-1)} + V^-e^{j (\pi / 2) (-1)} \\
+    j4 &= V^+e^{-j (\pi / 2) (-1)} + 0.5 V^+ e^{j (\pi / 2) (-1)} \\
+    j4 &= jV^+ - 0.5j V^+ \\
+    j 4 &= 0.5 j V^+ \\
+    V^+ &= 8 \mathrm{~V}
+\end{align*}
+
+Consequently, $V^- = 4 \mathrm{~V}$. $Z(z=0) \neq Z_{0}$, and it is instead given by (1):
+ \begin{align*}
+     120 &= \frac{1+\Gamma_{0}}{1-\Gamma_{0}} = 3Z_{0}
+ \end{align*} 
+
+ Finally, (4) gives the solution we wanted:
+ \begin{align*}
+     I(z, \omega) &= \frac{8}{40} e^{-j \pi z / 2} - \frac{4}{40} e^{j \pi z / 2} \mathrm{~A}
+ \end{align*}
+
+\end{callout}
+\end{homeworkProblem}

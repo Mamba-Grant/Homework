@@ -1,0 +1,96 @@
+\begin{homeworkProblem}
+    Consider a terminated, lossless \textbf{transmission line}:
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{../assets/h9p1f1.png}
+    \end{figure}
+
+    \[
+        Z_0 = 50 \, \Omega, \quad Z_L = 25 \, \Omega
+    \]
+
+    The wave \textbf{reflected} from load $Z_L$ has the form:
+
+    \[
+        V^-(z) = j e^{+j \beta z}
+    \]
+
+    \[
+        \textbf{Determine the current flowing through load } Z_L.
+    \]
+    \begin{callout}{Solution:}
+
+        By ohm's law, we have a constraint
+        $$V_L = I_L Z_L$$
+
+        By exploiting the reflection constraint, we may extract $V_L$:
+        \begin{align*}
+            V(z, \omega) &= V^{+}(z, \omega) + V^{-}(z, \omega) \\ 
+                         &= V^{-}(z, \omega) \left( 1 + \frac{1}{\Gamma_{0}} \right) &&\left( \Gamma_{0}(\omega) = \frac{V_{0}^{-}}{V_{0}^{+}} \right)
+        \end{align*}
+
+        $\Gamma_{0}$ we derived from ohm's law,
+        $$\Gamma_{0} = \frac{Z_L - Z_{0}}{Z_L + Z_{0}} = - \frac{1}{3}$$
+
+        The current flowing through load $Z_L$ is then,
+        \begin{align*}
+            I_L = \frac{V^{-}(z, \omega) \left( 1 + \frac{1}{\Gamma_{0}} \right)}{Z_L} \Bigg|_{z=0} = -\frac{2j}{25} \mathrm{~A}
+        \end{align*}
+
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Consider this \textbf{lossless}, terminated transmission line:
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\textwidth]{../assets/h9p2f1.png}
+    \end{figure}
+
+    \[
+        Z_0 = 50 \, \Omega, \quad I_L = 0.32 \, A
+    \]
+
+    The \textbf{plus-wave voltage} along this line is:
+
+    \[
+        V^+(z) = 12 e^{-j \beta z} \, V
+    \]
+
+    and the load current is:
+
+    \[
+        I_L = 0.32 \, A
+    \]
+
+    \[
+        \textbf{Determine the value of unknown load impedance } Z_L.
+    \]
+    \begin{callout}{Solution:}
+
+        By ohm's law, we have a constraint
+        $$V_L = I_L Z_L$$
+
+        The definition of current, taken from the derivative of the voltage can be used to express $\Gamma_{0}$ in terms of known values
+        \begin{align*}
+            I(z, \omega) &= \frac{V^{+}(z, \omega)}{Z_{0}} - \frac{V^{-}(z, \omega)}{Z_{0}} \\ 
+            I(z, \omega) &= \frac{V^{+}(z, \omega)}{Z_{0}} \left( 1 - \Gamma_{0} \right) \\
+            1-\Gamma_{0} &= \frac{I(z, \omega)Z_{0}}{V^{+}(z, \omega)} \\ 
+            \Gamma_{0} &= 1-\frac{I(z, \omega)Z_{0}}{V^{+}(z, \omega)} \\ 
+        \end{align*}
+
+        $Z_{L}$ we derived from ohm's law,
+        \begin{align*}
+            Z_{L} &= Z_{0}\frac{1+\Gamma_{0}}{1-\Gamma_{0}} \\ 
+            Z_L &= Z_{0} \frac{1 + \left(1 - \tfrac{I(z,\omega)Z_{0}}{V^{+}(z,\omega)}\right)}{1 - \left(1 - \tfrac{I(z,\omega)Z_{0}}{V^{+}(z,\omega)}\right)} \\
+            Z_L &= Z_0 \frac{2 - \tfrac{I(z,\omega)Z_0}{V^+(z,\omega)}}{\tfrac{I(z,\omega)Z_0}{V^+(z,\omega)}} \\
+            Z_L &= \frac{2V^+(z,\omega)}{I(z,\omega)} - Z_0.
+        \end{align*}
+
+        Substitution of numeric values nets:
+        $$Z_L = 25 ~\Omega$$
+
+    \end{callout}
+\end{homeworkProblem}

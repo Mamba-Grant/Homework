@@ -1,0 +1,86 @@
+Two lossless networks have been inserted between an unknown source and a load. The networks have been designed such that all the available power from the source is delivered to the load!!!!!
+
+\vspace{1em} 1. Say we cut the circuit into two pieces, right where the two lossless networks connect to each other.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{../assets/h5p1f1.png}
+\end{figure}
+
+The left side is thus a source:
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{../assets/h5p1f2.png}
+\end{figure}
+
+We find that the Thevenin's equivalent of this source has $V_{\text {out }}=j 8.0$ :
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{../assets/h5p1f3.png}
+\end{figure}
+
+The right side of the circuit is therefore a load:
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{../assets/h5p1f4.png}
+\end{figure}
+
+We find that this load has an input impedance $Z_{\text {ins }}=80+j 20 \Omega$ :
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{../assets/h5p1f5.png}
+\end{figure}
+
+2. Now, say we instead split the circuit in a different place, between the source and the first lossless network. The circuit to the right is now a load:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{../assets/h5p1f6.png}
+\end{figure}
+
+We find that this load has an input impedance $Z_{\text {ind }}=20+j 30 \Omega$ :
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.4\textwidth]{../assets/h5p1f7.png}
+\end{figure}
+
+\newpage
+Determine (providing explicit rationale):
+\begin{enumerate}[A]
+    \item The source impedance $Z_g$.
+        \begin{callout}{Solution:}
+
+            We may exploit the fact that this is both lossless and matched somewhere in the network (as all available power is delivered) to conclude that 
+            $$Z_g = Z_{inA}^* = 20 - j30 ~\Omega$$
+
+        \end{callout}
+    \item The magnitude(!) of the source voltage $V_g$.
+        \begin{callout}{Solution:}
+
+        Because this is a lossless network, 
+        $$P_g^{avl} = P_L^{avl}$$
+
+        Further, because this is matched, all available power is absorbed, such that the right hand side becomes:
+        $$P_g^{avl} = P_L^{abs}$$
+
+        Now, the issue comes with determining load impedance. 
+        \begin{align*}
+            P_g^{avl} &= P_{out}^{avl} \\ 
+            \frac{|V_g|^{2}}{8R_g} &= \frac{|V_{out}|^{2}}{8R_{out}} &&\text{(Substitute known equations)} \\
+            \frac{|V_g|^{2}}{8R_g} &= \frac{|V_{out}|^{2}}{8R_{inB}} &&\text{(Matched; $R_{out} = R_{inB}$)} \\
+            |V_g| &= |V_{out}|\sqrt{\frac{R_g}{R_{inB}}} \\ 
+            |V_g| &= 8 \sqrt{\frac{1}{4}} = 4 ~\mathrm{V}
+        \end{align*}
+
+        \end{callout}
+\end{enumerate}
+

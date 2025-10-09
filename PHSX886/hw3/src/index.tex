@@ -1,0 +1,99 @@
+\begin{homeworkProblem}
+Consider a body-centered tetragonal crystal. Its lattice vectors are given by:
+\[
+\vec{a_1} = a\hat{x}; \qquad \vec{a_2} = a\hat{y}; \qquad \vec{a_3} = c\hat{z}
+\]
+There are two basis atoms at positions $(0, 0, 0)$ and $(1/2, 1/2, 1/2)$. (Note, these coordinates are written in terms of the lattice vectors, $a_1$, $a_2$, and $a_3$).
+
+\begin{enumerate}[a)]
+    \item If we align the c-axis of this crystal, i.e. the $[0\ 0\ 1]$ direction, parallel to the incident beam direction in a TEM. Sketch how the diffraction pattern should look like. To support your drawing, please also provide the structural factor for a body-centered tetragonal crystal.
+        \begin{callout}{Solution:}
+
+        In real-space we will have unit cells which look like:
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.4\textwidth]{../assets/h3p1f1.png}
+        \end{figure}
+
+        $$\mathbf{G} = \frac{1}{a} \sqrt{\frac{h^2+k^2}{a} + \frac{\ell^2}{c}}$$
+        For the [0 0 1] zone, $\mathbf{G}$ must lie perpendicular, so $\ell=0$, and the reciprocal lattice vector becomes purely a function of $h, k$. If we imagine the diffraction pattern on the screen to be the reciprocal lattice, then we should immediately intuit that we lose structural information in the $\mathbf{a_{3}}$-direction (in the case of the Zero-Order Lauie Zone).
+
+        Given that $I\propto |F|^2$, I can express the structure factor in the same light as homework \#2.
+        \begin{align*}
+            F &= \sum f_n e^{2 \pi i (h u_n + k v_n + \ell w_n)} \\
+            &= f + f e^{2 \pi i (\frac{h}{2} + \frac{k}{2} + \frac{\ell}{2})} \\
+            |F|^{2} &= f^{2}\left|1 + e^{2 \pi i (\frac{h}{2} + \frac{k}{2} + \frac{\ell}{2})}\right|^{2} \\
+        \end{align*}
+
+        Clearly, odd $h+k+\ell$ produce an odd exponent, sending the whole intensity to zero. Even are permitted. Given the orientation, this further constrains that $h+k$ be even.
+
+        \end{callout}
+\item By just looking at this diffraction pattern, would one tell whether the crystal is tetragonal or cubic? Explain.
+    \begin{callout}{Solution:}
+
+    The ZOLZ spots only give information for the $h, k$ planes, as mentioned in (a). The HOLZ ring, though, would let one calculate the spacing between layers in the $c$-direction. More explicitly, if we look at what happens to the reciprocal lattice vectors,
+
+    $$|\mathbf{G}_{hk0}| = \frac{2\pi}{a}\sqrt{h^2 + k^2}$$
+
+    We can see this expression depends only on $a$, so we could not extract information regarding $c$.
+
+    \end{callout}
+\item One can also collect the diffraction pattern with a different zone axis. Pick a zone that can allow you to distinguish whether the crystal is tetragonal or cubic.
+    \begin{callout}{Solution:}
+
+        One zone that ought to work is the [1 0 1] zone, which is on the diagonal edge.
+
+    \end{callout}
+\item To move to the new zone that you pick (from the $[001]$ zone), how should you rotate the crystal? In your answer, please tell me 1) the angle between your new zone axis and the $[001]$ zone axis, and 2) the direction of the rotation axis.
+
+    \begin{callout}{Solution:}
+
+        % To get to [1 0 1], rotate by $45^\circ$ in the a-c plane from the original orientation [0 0 1].
+        To get to [101], rotate about [010] by:
+        $$\cos\theta = \frac{[001]\cdot[101]}{|[001]||[101]|} = \frac{c}{\sqrt{a^2 + c^2}}$$
+
+        Which would be $45^\circ$ in a cubic, and something else for a tetragonal structure. Even if this was not perfectly [101], there would be a nonzero $\ell$ component which is what we desire.
+
+    \end{callout}
+
+\end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+Read the following paper:
+
+https://www.nature.com/articles/s41467-021-21363-5
+
+"Direct imaging and electronic structure modulation of moir\'e superlattices at the 2D/3D interface"
+
+Discuss how one can use a STEM to image a moir\'e pattern.
+
+To aid your explanation, you may copy and paste some figures from the paper to your answer. You need to explain, in your word, how the experimental results (e.g. those results shown in Fig. 2 -- 4) are interpreted and the underlying imaging mechanism.
+
+Your answer can be concise and short as long as you provide the key points in understanding those data.
+\begin{callout}{Solution:}
+
+    \begin{enumerate}[1.]
+        \item The correct STEM/TEM method must be chosen. HRTEM \& STEM deceptively appear to achieve the desired result, but do not actually resolve the moir\'e as they cannot consider the effects of multiple layers. Instead, this paper uses integrated differential phase contrast (iDPC) STEM imaging, which gives small contrast changes due to electronic effects. This can be seen visually in Figure \ref{fig:side-by-side}.
+        \item Knowing what kind of Moir\'e pattern is in the sample is a challenging task. This paper employs an elegant analytical method, in which the authors can look at the most probable configurations produced by the convolution of the fourier transformation $F$ of the top $t$ and bottom $b$ lattice functions:
+            $$F\{ t \times b \} = F\{t\} \otimes F\{b\}$$
+        \item Virtual annular dark field (4D STEM) is used to reconstruct an image using only certain selected diffraction spots. The selected diffraction spots chosen are the weaker reflections observed in the $\mathrm{1^{st}}$ step.
+    \end{enumerate}
+
+    \begin{center}
+        \textit{"iDPC STEM measures the phase of the sample transmission function, enabling direct interpretation as the projected electrostatic potential in thin  samples."}
+
+        \vspace{1em}
+        \textit{"4D STEM is a rapidly developing technique in which a pixelated array detector is used to collect a convergent beam electron diffraction (CBED) pattern at each probe position in the STEM image. The resulting 4D dataset can be filtered post-acquisition to produce reconstructions such as bright field, annular bright field, annular dark field (ADF), ptychography, and iDPC."}
+    \end{center}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.90\textwidth]{../assets/side-by-side.png}
+  \caption{(e) The HRTEM image. (f) The iDPC image. Notice the weak contrast spots on the lattice which are not visible in (e).}
+  \label{fig:side-by-side}
+\end{figure}
+
+\end{callout}
+\end{homeworkProblem}

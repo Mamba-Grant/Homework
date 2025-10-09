@@ -1,0 +1,144 @@
+\begin{homeworkProblem}
+
+Consider the circuit:
+\input{h1p1f1.tex}
+
+Given the values of $V_g$ and $Z_g$, determine:
+
+\begin{enumerate}[(a)]
+    \item The value of load impedance $Z_L$ that will maximize the power source delivered by this source.
+        \begin{callout}{Solution:}
+
+        A load impedance with value:
+        $$Z_L = Z_g^*$$
+        will maximize the power delivered by the source. Therefore, we should choose $Z_L$ equal:
+        $$\boxed{Z_L = 40 + j40~\Omega}$$
+
+        \end{callout}
+    \newpage
+    \item The value of this maximum power.
+        \begin{callout}{Solution:}
+
+        Numerically, we will have 
+        \begin{align*}
+            P_g^{del}\bigg|_{Z_L = Z_g^{*}} &= \frac{1}{2} I_{RMS}I_{RMS}^*R &&\text{(Definition of Power for a Sinusoidal Source)} \\ 
+                                            &= \frac{R_g}{2} \left( \frac{V_g}{Z_L + Z_g} \right) \left( \frac{V_g^{*}}{Z_L^{*} + Z_g^{*}} \right)\bigg|_{Z_L = Z_g^{*}} &&\text{(Substitute $I$ and $R$)} \\
+                                            &= \frac{R_g}{2} \left( \frac{VV^{*}}{Z_LZ_L^* + Z_L Z_g^* + Z_L^*Z_g + Z_gZ_g^*} \right) \bigg|_{Z_L = Z_g^{*}}  &&\text{(Expand)} \\ 
+                                            &= \frac{R_g}{2} \left( \frac{VV^{*}}{Z_gZ_g^* + Z_g Z_g^* + Z_g^*Z_g + Z_gZ_g^*} \right) &&\text{(Apply Boundary)} \\ 
+                                            &= \frac{VV^{*}}{8} \left( \frac{R_g}{Z_gZ_g^*} \right) &&\text{(Algebra)} \\ 
+                                            &= \frac{VV^{*}}{8R_g} &&\text{($Z_gZ_g^*=|R_g|^2$)} \\ 
+        \end{align*}
+
+        This just shows that we have the same circuit as in the lecture. $R_g$ is simply $\mathrm{Re}\{Z_g\}=40~\Omega$. Maximum power is then:
+        $$\boxed{P_g^{del} = \frac{(4+j8)(4-j8)}{8 \cdot 40} = 0.25 \mathrm{~\frac{J}{s}}}$$
+
+        \end{callout}
+\end{enumerate}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+
+Now consider the circuit:
+
+\input{h1p2f1.tex}
+
+Given the values of $V_g$ and $Z_g$, determine:
+
+\begin{enumerate}[(a)]
+    \item The value of source impedance $Z_g$ that will maximize the power absorbed by load $Z_L$.
+        \begin{callout}{Solution:}
+
+It can be shown that the value of source impedance $Z_g$ that maximizes the power absorbed by the load $Z_L$ is-in fact-purely reactive, with value:
+$$
+\boxed{Z_g = -j X_L}
+$$
+
+Therefore, $Z_g = -j40~\Omega$ to maximize the power absorbed by the load.
+
+        \end{callout}
+    \item The value of this maximum power.
+        \begin{callout}{Solution:}
+
+            With a purely reactive $Z_g$, we should expect total resistance to just be $R_L$:
+        \begin{align*}
+            Z_{total} = Z_g + Z_L &= (-j X_L) + (R_L + j X_L) \\ 
+            &= R_L + (j X_L - jX_L) \\ 
+            &= R_L
+        \end{align*}
+        Great, I can derive the power for this in the same way:
+        \begin{align*}
+            P_L^{abs} &= \frac{1}{2} I_{RMS}I_{RMS}^{*} R &&\text{(Definition of Power for a Sinusoidal Source)} \\ 
+                      &= \frac{V_gV_g^{*}}{2} \left( \frac{R_L}{R_{total}^{2}} \right) &&\text{(Substitute I and R)} \\
+                      &= \frac{V_gV_g^{*}}{2} \left( \frac{R_L}{|R_L|^{2}} \right) &&(Z_{total}=R_L) \\
+                      &= \frac{V_gV_g^{*}}{2 R_L}
+        \end{align*}
+        Again, what we got in class. Power delivered is then just:
+        $$\boxed{P_L^{abs} = \frac{(4+8i)(4-8i)}{2 \cdot 40} = 1 \mathrm{~ \frac{J}{s}}}$$
+
+        \end{callout}
+\end{enumerate}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+$$
+\mathcal{Z}=\left[\begin{array}{lll}
+1 & j & 1 \\
+j & 2 & 2 \\
+1 & 2 & 3
+\end{array}\right] ~\mathrm{k \Omega}
+$$
+
+I will define $I$ pointed into $Z$. Determine both the complex current vector I, and the complex voltage vector V.
+
+\input{h1p3f1.tex}
+\begin{callout}{Solution:}
+
+We will have a system of 6 equations:
+\begin{align}
+    V_{1} &= I_{1}+jI_{2}+I_{3} \\ 
+    V_{2} &= jI_{1}+2I_{2}+2I_{3} \\ 
+    V_{3} &= I_{1}+2I_{2}+3I_{3} \\ 
+    I_{1} &= -e^{j0} \\ 
+    V_{2} &= 0 \\ 
+    V_{3} &= -2I_{3}
+\end{align}
+
+Equations 1-3 are given by the impedance matrix. Equations 4-6 are boundary conditions describing the circuit attached to the terminals. The algebra is as follows:
+\begin{align*}
+    &\begin{cases}
+        V_{1} = -e^{j0} + jI_{2} + I_{3} \\
+        0 = -je^{j0} + 2I_{2}+ 2I_{3} \\
+        -2 I_{3} = -e^{j0} + 2I_{2} + 3I_{3}
+    \end{cases} &&\text{(Substite 4-6 into 1-3)} \\ 
+    &\begin{cases}
+        V_{1} = -1 + jI_{2} + I_{3} \\
+        j = 2I_{2}+ 2I_{3} \\
+        1-5 I_{3} = 2I_{2}
+    \end{cases} &&\text{(Simplify)} \\ 
+    &\begin{cases}
+        V_{1} = -1 + jI_{2} + I_{3} \\
+        \frac{1}{3} - \frac{j}{3} = I_{3} \\
+        1-5 I_{3} = 2I_{2}
+    \end{cases} &&\text{(Simplify eqn. 2)} \\ 
+    &\begin{cases}
+        V_{1} = -1 + jI_{2} + I_{3} \\
+        \frac{1}{3} - \frac{j}{3} = I_{3} \\
+        -\frac{1}{3}+\frac{5}{6}j = I_{2}
+    \end{cases} &&\text{(Substite eqn. 2 into 3)} \\ 
+    &\begin{cases}
+        -\frac{3}{2}-\frac{2}{3}j = V_{1} \\
+        \frac{1}{3} - \frac{j}{3} = I_{3} \\
+        -\frac{1}{3}+\frac{5}{6}j = I_{2}
+    \end{cases} &&\text{(Substite all into eqn. 1)} \\ 
+\end{align*}
+
+To summarize:
+\begin{gather*}
+    V_{1} = -\frac{3}{2}-\frac{2}{3}j \qquad V_{2} = 0 \qquad V_{3} = -\frac{2}{3} + \frac{2}{3}j \\ 
+    I_{1} = -1 \qquad I_{2} = -\frac{1}{3}+\frac{5}{6}j \qquad I_{3} = \frac{1}{3} - \frac{j}{3} 
+\end{gather*}
+
+\end{callout}
+\end{homeworkProblem}

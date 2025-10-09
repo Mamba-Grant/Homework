@@ -1,0 +1,23 @@
+\begin{figure}[!ht]
+\centering
+\resizebox{0.5\textwidth}{!}{%
+\begin{circuitikz}
+\tikzstyle{every node}=[font=\LARGE]
+\draw (5.5,15.25) to[american voltage source] (5.5,14);
+\draw (6.25,16) to[R] (7.75,16);
+\draw (5.5,15.25) to[short] (5.5,16);
+\draw (5.5,16) to[short] (6.25,16);
+\draw (9,15.75) to[R,l={ \LARGE $Z_L = ??$}] (9,14.25);
+\draw (5.5,14) to[short] (9,14);
+\draw (9,14) to[short] (9,14.5);
+\draw (9,16) to[short] (7.5,16);
+\draw (9,16) to[short] (9,15.5);
+\node [font=\LARGE] at (8.75,16.75) {$Z_g = 40 - j40\Omega$};
+\node at (8,16) [circ] {};
+\node at (8,14) [circ] {};
+\node [font=\LARGE] at (2.75,14.5) {$V_g = 4 + j8V$};
+\end{circuitikz}
+}%
+
+\label{fig:my_label}
+\end{figure}

@@ -1,0 +1,39 @@
+\begin{figure}[!ht]
+\centering
+\resizebox{0.5\textwidth}{!}{%
+\begin{circuitikz}
+\tikzstyle{every node}=[font=\huge]
+\draw (6,12.25) to[american current source,l={ \LARGE $e^{j0} mA $}] (6,14);
+\draw (6,14) to[short] (9.75,14);
+\draw (6,12.25) to[short] (9.75,12.25);
+\draw [ color={rgb,255:red,26; green,95; blue,180} , line width=1.7pt ] (9.75,11.5) rectangle (13.25,15);
+\draw [short] (13.25,14) -- (15.25,14);
+\draw [short] (13.25,12.25) -- (15.25,12.25);
+\draw [short] (15.25,12.25) -- (15.25,14);
+\draw [short] (10.25,11.5) -- (10.25,8.75);
+\draw [short] (12.75,11.5) -- (12.75,8.75);
+\node [font=\large] at (7.25,13.75) {+};
+\node [font=\large] at (7.25,12.5) {-};
+\node [font=\large] at (7.25,13) {$V_1$};
+\node [font=\large] at (9,13) {port 1};
+\node [font=\large] at (14,13) {port 2};
+\node [font=\large] at (11.5,11) {port 3};
+\draw (12.75,8.75) to[R,l={ \LARGE $Z_{L3} = 2.0 k\Omega$}] (10.25,8.75);
+\node [font=\large] at (15,13.75) {+};
+\node [font=\large] at (15,13) {$V_2$};
+\node [font=\large] at (15,12.5) {-};
+\node [font=\large] at (10.5,9.5) {+};
+\node [font=\large] at (11.5,9.5) {$V_3$};
+\node [font=\large] at (12.5,9.5) {-};
+\node [font=\huge] at (11.5,13.25) {$Z$};
+\node at (7.25,12.25) [circ] {};
+\node at (7.25,14) [circ] {};
+\node at (15,14) [circ] {};
+\node at (15,12.25) [circ] {};
+\node at (12.75,9.5) [circ] {};
+\node at (10.25,9.5) [circ] {};
+\end{circuitikz}
+}%
+
+\label{fig:my_label}
+\end{figure}

@@ -1,0 +1,119 @@
+\begin{homeworkProblem}
+A lossless matching network was properly constructed to match a source with parameters $V_g$ and $Z_g=10-j 15 \Omega$ to a load $Z_L=40 \Omega$ :
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{../assets/h4p1f1.png}
+\end{figure}
+
+If we disconnect the load from the matching network, we find that we have a new equivalent source (the original source followed by the matching network), with parameters $V_{\text {out }}$ and $Z_{\text {out }}$ :
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{../assets/h4p1f2.png}
+\end{figure}
+
+Likewise, if we disconnect the source from the matching network, we find an input impedance (the matching network followed by the load) of $Z_{\text {in }}$ (turn the page!!):
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{../assets/h4p1f3.png}
+\end{figure}
+
+\begin{enumerate}[1.]
+\item Determine the impedance values $Z_{\text {in }}$ and $Z_{\text {out }}$.
+    \begin{callout}{Solution:}
+
+        We design a matching network for the express purpose of setting the following relationship,
+        $$\begin{cases}
+            Z_g = Z_{\text{in}}^* = 10+j15 ~\Omega \\ 
+            Z_L = Z_{\text{out}}^* = 40 ~\Omega
+        \end{cases}$$
+
+
+    \end{callout}
+\item Say the load $Z_L$ absorbs energy at a rate of 800 mW . Determine then the value $\left|V_g\right|$.
+    \begin{callout}{Solution:}
+
+    Because this is a \textit{lossless} matching network, we may exploit the following invariance to determine the magnitude $|V_g|$.
+
+    \begin{align*}
+        P_g^{avl} &= P_L^{abs} &&\text{(Lossless)} \\
+        \frac{|V_g|^{2}}{8R_g} &= P_L^{abs} &&\text{(Known expression for $P^{avl}$)} \\ 
+        |V_g| &= \sqrt{(8 R_g) P_L^{abs}} &&\text{(Algebra)} \\ 
+        |V_g| &= 8 \mathrm{~V}
+    \end{align*}
+
+    Note: $1 ~\Omega = 1 \frac{V^2}{W}$.
+
+    \end{callout}
+\end{enumerate}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+A promising young engineer has designed a lossless matching network.
+
+The design matches a specific source (with $Z_g=100 \Omega$ ) to a specific load impedance $Z_L=9+j 10 \Omega$.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{../assets/h4p2f1.png}
+\end{figure}
+
+The engineer tests the design in the lab, by measuring the power absorbed by the load $Z_L$.
+
+The engineer is very happy, because the design worked perfectly-the power absorbed by the load is equal to the power available from the source.
+
+The engineer is so happy with the design that the engineer gives the matching network a name-Rachael.
+
+Now, the engineer removes the source, and replaces it with a completely new one (i.e., $V_s \neq j 6$ and $Z_s=25 \Omega$ ) :
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.5\textwidth]{../assets/h4p2f2.png}
+\end{figure}
+
+Note however, that both the load $Z_L=9+j 10 \Omega$, and the lossless network "Rachael", remain completely unchanged.
+
+The engineer now measures the power absorbed by the load $Z_L=9+j 10 \Omega$, and finds that it is 320 mW .
+
+Determine the magnitude $\left|V_s\right|$ of this new source.
+
+Provide explicit justification for your answer.
+\begin{callout}{Solution:}
+
+    Because power on the load side was not changed, we are fortunate to have the same $Z_{in}$ which is notably not a conjugate match.
+
+        $$I = \frac{V_{s}}{Z_{g} + Z_{in}} = \frac{V_s}{125}$$
+
+        Power is simply:
+        \begin{align*}
+            P_{\text{in, rms}} &= \frac{1}{2} |I|^{2} Z_{in} = \frac{|V_s|^{2} \cdot 100}{2(125)^{2}} \\ 
+        \end{align*}
+        Since it is lossless, this is also the power absorbed, and I can therefore express $|V_s|$:
+        \begin{align*}
+            P_{abs} = 0.320 &= \frac{2|V_s|^{2}}{625} \implies |V_s| = 10
+        \end{align*}
+
+    % From the first scenario, it's possible to know $Z_{out} = 100 ~\Omega$ and $Z_{in} = 9-j10 ~\Omega$. From these, we have the relationships:
+    % $$ \left\{
+    %     \begin{aligned}
+    %         Z_g^* = Z_{in} &= jX_{11} + \frac{(X_{12})^2}{jX_{22}+Z_L} &&\text{(Design equation)} \\
+    %         Z_L^* = Z_{out} &= jX_{22} + \frac{(X_{12})^2}{jX_{11}+Z_g} &&\text{(Design equation)} \\
+    %         \mathrm{Im}\left( \frac{(X_{12})^2}{jX_{22}+Z_L} \right) &= 0 &&\text{(Real-valued $Z_g$)}
+    %     \end{aligned}
+    % \right. $$
+    %
+    % \begin{align*}
+    %     Z_g^* &= jX_{11} + \frac{(X_{12})^{2}}{jX_{22} + Z_L} \\ 
+    %     &= jX_{11} + \frac{(X_{12})^{2}}{jX_{22} + Z_L} \frac{jX_{22} - Z_L}{jX_{22} - Z_L} \\
+    %     &= jX_{11} + \frac{(X_{12})^{2} (jX_{22} - Z_L)}{-X_{22}^{2} + jX_{22}Z_L + Z_L^{2}} \\
+    %     &= jX_{11} + \frac{(X_{12})^{2} (jX_{22} - Z_L)}{181 - X_{22}^{2} + j18X_{22}}
+    % \end{align*}
+
+\end{callout}
+
+\end{homeworkProblem}

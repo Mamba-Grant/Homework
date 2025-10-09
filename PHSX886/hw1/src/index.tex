@@ -1,0 +1,130 @@
+\begin{homeworkProblem}
+
+    Show that the $\bar{6}$m2 point group symmetry can be represented by the following stereographic projection:
+
+\begin{center}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.2\textwidth]{../assets/h1p1f1.png}
+\end{figure}
+\end{center}
+
+\vspace{-0.9cm}
+In your answer, please begin with a single direction (one of the dots on the above figure). Then, show how each symmetry operation can produce other equivalent directions in the figure.
+
+\vspace{1em}(Note: the 6 axis is along the out-of-plane (z) direction; the m represents mirror plane perpendicular to the x, y, u directions; the "2" represents 2-fold rotation axis along the $\langle 1 1 0 \rangle$ type direction).
+
+\begin{callout}{Solution:}
+
+
+\begin{enumerate}[1.]
+    \item Begin with a point at a single, arbitrary direction in a stereographic projection, such as $\braket{1 0 1}$ (assume any cell shape).
+    \item We can reach the nearest neighbor point on the circle with a rotation by 60$^{\circ}$ along the axis into the paper. This is then inverted under the transformation $r\to-r$.
+    \item This is repeated 6 times total, such that we arrive back at the starting point.
+    \item Finally, this is mirred across the 2-fold rotation axis in the $\braket{110}$ direction.
+\end{enumerate}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../assets/h1p1f2.png}
+  \label{fig:h1p1f2}
+\end{figure}
+
+\end{callout}
+
+\end{homeworkProblem}
+
+
+\begin{homeworkProblem}
+
+
+\begin{center}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.4\textwidth]{../assets/h1p2f1.png}
+\end{figure}
+\end{center}
+
+Which symmetry element can produce a left-handed version of the above structure?
+
+In your answer, please show/explain, step-by-step, how the symmetry you stated can produce left-handed spiral structure.
+
+\begin{callout}{Solution:}
+
+    If we were to construct a right-handed structure, given above, we would use $\mathrm{P6_1}$. Each step, going around the circle would be at: $\{ 0, 1/6, 2/6, 3/6, 4/6, 5/6 \}$. 
+
+    \vspace{1em}The right-handed structure is instead given by $\mathrm{P6_5}$, producing steps at: $\{ 0, 5/6, 4/6, 3/6, 2/6, 1/6 \}$. 
+
+    \vspace{1em}These are related to each other by a mirror transformation across a plane, such as $(x,y,z) \to (x,-y,z)$.
+
+\end{callout}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Prove that the interplanar distance for a tetragonal crystal can be written as:
+
+$$d(hk\ell) = \frac{1}{\sqrt{\frac{h^2 + k^2}{a^2} + \frac{\ell^2}{c^2}}}$$
+
+In this equation, h, k, $\ell$ are the Miller indices for the (hk$\ell$) plane.
+\begin{callout}{Solution:}
+
+    In a tetragonal cell, we have $|\vec{a}_{1}|=|\vec{a}_{2}|\neq|\vec{a}_{3}|$. 
+    Let $a=|\vec{a}_{1}|=|\vec{a}_{2}|$, and $b=|\vec{a}_3|$.
+    Then, $\vec{g}_{hk\ell}$ will simplify to:
+
+    $$\vec{g}_{hk\ell} = \frac{1}{a} \left( h\hat{x} + j\hat{k} \right) + \frac{1}{\ell} \left( k \hat{z} \right) $$
+
+    $d_{hk\ell}$ is related to $\vec{g}_{hk\ell}$ by:
+    \begin{align*}
+        d_{hl\ell} &= \frac{1}{|\vec{g}_{hk\ell}|} \\
+        &= \frac{1}{\sqrt{\frac{h^{2}+k^{2}}{a^{2}} + \frac{\ell^{2}}{c^{2}}}}
+    \end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+You can search online or from literature to find out how the MoS₂ crystal structure looks like and complete this question.
+
+\begin{enumerate}[(a)]
+    \item Draw the unit cell for the monolayer MoS₂ structure. Define a valid set of lattice vectors and basis atoms.
+        \begin{callout}{Solution:}
+
+            $\mathrm{MoS_2}$ has a $\mathrm{P\bar{6}m2}$ structure. This indicates that it is hexagonal with $\alpha=90^\circ,\, \beta=90^\circ, \gamma=120^\circ$. 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{../assets/h1p4f1.png}
+\end{figure}
+
+I will choose a basis:
+$$(\vec{a}_1 = 3.12 \hat{x}, \vec{a}_2 = -1.6\hat{x} + 2.8\hat{y}, \vec{a_3} = 18.1\hat{z})$$
+
+        \end{callout}
+    \item Monolayer MoS₂ has a $\mathrm{P\bar{6}m2}$ space group (see also question 1). Does the crystal contain any inversion center? Hint: you can look at the figure in question 1, or the monolayer MoS₂ crystal itself.
+        \begin{callout}{Solution:}
+
+            There is a rotoinversion symmetry for monolayer $\mathrm{MoS_2}$, but there is no inversion center. The presence of the lone Mo atom inside the cell breaks this symmetry.
+
+        \end{callout}
+    \item Does bilayer MoS₂ (the 2H phase) have an inversion symmetry? Draw the top and side view of the bilayer MoS₂ crystal and indicate where the inversion center is located.
+        \begin{callout}{Solution:}
+
+            Bilayer $\mathrm{MoS_2}$ is inversion symmetric. When adding the second layer to the structure, symmetry is restored by the addition of the extra Mo atom and the mirror perpendicular to the c-axis. The inversion center sits between the two layers.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{../assets/h2p4f2.png}
+\end{figure}
+
+        \end{callout}
+
+\end{enumerate}
+
+(FYI, bilayer and bulk MoS₂ has a space group symmetry of P6₃/mmc – No. 194)
+
+\textbf{Note:} The presence or absence of inversion center can lead to drastic change in non-linear optical properties when one changes the number of layers. See e.g.,
+
+Phys. Rev. B 87 161403(R), 2013 (Research done in Prof. Zhao's group at KU.)
+\end{homeworkProblem}

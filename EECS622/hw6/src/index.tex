@@ -1,0 +1,86 @@
+\begin{homeworkProblem}
+The \textbf{reflection coefficient function} along a transmission line is:
+\[
+\Gamma(z) = j\,0.5 e^{+j(\pi) z}
+\]
+
+At $z=1$ on this same line, the minus-wave voltage is:
+\[
+V^-(z=1) = 2.0\,\mathrm{V}
+\]
+
+\noindent
+Determine the value of the \textbf{plus-wave voltage}, at transmission line location $z=1$.
+
+In other words, determine the value $V^+(z=1)$.
+\begin{callout}{Solution:}
+
+We have some relations between the decomposed wave components and reflection function:
+$$\Gamma(z, \omega) = \frac{V^{-}(z, \omega)}{V^+(z, \omega)} \qquad V(z, \omega) = V(z,\omega)^++V(z, \omega)^-$$
+
+The reflection coefficient makes this straightforward, 
+$$V^+(z, \omega) = \frac{2.0 e^{j0}}{j0.5e^{+j\pi}} = \frac{2}{0.5 j} = 4j \mathrm{~V}$$
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+For a certain transmission line, $\beta = \pi/2 \,\text{(radians/m)}$ and $Z_0 = 50 \,\Omega$.
+
+We know that the total voltage at location $z=-1 \,\text{m}$ on this transmission line is:
+\[
+V(z=-1) = j\,6 \,\mathrm{V}
+\]
+
+The reflection coefficient function at location $z=1 \,\text{m}$ is likewise:
+\[
+\Gamma(z=1) = -0.25
+\]
+
+\noindent
+Determine the total current at location $z=0$ (i.e., $I(z=0)$) on this transmission line.
+\begin{callout}{Solution:}
+
+Starting with the same relations:
+\begin{align}
+    \Gamma(z, \omega) = \frac{V^{-}(z, \omega)}{V^+(z, \omega)} \\
+    V(z, \omega) = V(z,\omega)^++V(z, \omega)^- \\
+    Z_{0} = \frac{V^+(z, \omega)}{I^+(z, \omega)} \\
+    -Z_{0} = \frac{V^-(z, \omega)}{I^-(z, \omega)}
+\end{align}
+
+And $\beta$ is sufficient to make the additional relations:
+\begin{align}
+    V^{+}(z,\omega) &= V_{0}^{+}(\omega) e^{-j\beta z} &\qquad V^{-}(z,\omega) &= V_{0}^{-}(\omega) e^{+j\beta z} \\
+    I^{+}(z,\omega) &= I_{0}^{+}(\omega) e^{-j\beta z} &\qquad I^{-}(z,\omega) &= I_{0}^{-}(\omega) e^{+j\beta z}
+\end{align}
+
+
+It is most convenient to start with some relations since we know $\beta$
+\begin{align*}
+    V_{0}^+ &= \frac{V^+}{e^{+j \pi / 2}} = jV^+ & V_{0}^- &= \frac{V^-}{e^{-j \pi / 2}} = -jV^- \\ 
+\end{align*}
+
+Use (1-2) extract components for a fixed $z=1$:
+\begin{align*}
+    &\begin{cases}
+    -j 0.25 V_0^+(z=1, \omega) = -jV_0^-(z=1, \omega) \\
+    j6 \mathrm{~V} = j\left(V_0^+(z=1, \omega) - V_0^-(z=1, \omega)\right)
+    \end{cases}
+    \qquad \text{(At z=-1)} \\ 
+    \implies &\begin{cases}
+        V_0^+(z=1, \omega) = 8 \mathrm{V} \\ 
+        V_0^-(z=1, \omega) = 2 \mathrm{V}
+    \end{cases}
+\end{align*}
+
+Current falls out of (3):
+\begin{align*}
+    I_{0}^+ &= \frac{V^+}{Z_{0}} = - \frac{8}{50} = 0.16 \mathrm{~A} & I_{0}^- &= -\frac{V^-}{Z_{0}} = \frac{2}{50} = 0.04 \mathrm{~A}
+\end{align*}
+
+Total current $I$ is given as the sum:
+$$I(z=0, \omega) = I_{0}^{+} + I_{0}^{-} = 0.20 \mathrm{~A}$$
+
+\end{callout}
+\end{homeworkProblem}

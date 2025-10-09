@@ -1,0 +1,70 @@
+\begin{homeworkProblem}
+In the circuit below, the power associated with the \textbf{wave incident} on the load is \textbf{50 mW}.
+
+\[
+Z_0 = 50 \, \Omega, \quad P_{\text{inc}} = 50 \,\text{mJ/s}, \quad Z_L = 200 \, \Omega
+\]
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../assets/h10p1f1.png}
+\end{figure}
+
+Determine the \textbf{power delivered} by the source (it's \textbf{not} 50 mW!).
+\begin{callout}{Solution:}
+
+    $P^{del}$ is given by the difference of $P^{inc}$ and $P^{ref}$. We may know the reflected power by the reflection coefficient:
+    $$\Gamma_{0} = \frac{Z_L - Z_{0}}{Z_L+Z_{0}} = 0.6$$
+
+    The two are related by:
+    $$P^{ref} = |\Gamma_{0}|^2 P^{inc} = \mathrm{18~mJ / s}$$
+
+    The actual delivered power is then the difference:
+    $$\mathrm{50~mJ/s - 18~mJ/s = 32~mJ/s}$$
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+
+\begin{homeworkProblem}
+In the circuit below, \textbf{all the available power from the source is delivered to the load}.
+
+The power of the wave incident on the load is \textbf{20 mW}.
+
+The magnitude-squared of the load reflection coefficient is
+
+\[
+|\Gamma_L|^2 = 0.375.
+\]
+
+The length $\ell$ of the transmission line is \textbf{not zero} (i.e., $\ell \neq 0$).
+
+Otherwise, the length $\ell$ of the transmission line is both \textbf{unknown and unknowable} (i.e., don't attempt to determine $\ell$).
+
+\[
+Z_g = 90 - j30 \, \Omega, \quad Z_0 = 50 \, \Omega
+\]
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.8\textwidth]{../assets/h10p2f1.png}
+\end{figure}
+
+Determine the magnitude of the voltage source (i.e., find $|V_g|$).
+\begin{callout}{Solution:}
+
+    We know
+    $$P_g^{avl} = P_g^{del} = P_L^{abs} \qquad \mathrm{if} \qquad Z_{in} = Z_{g}^*$$
+
+    Since all power is delivered, $\Gamma_{0}=0$, and the power absorbed on the load $P^{abs} = P_L^{inc} (1-|\Gamma_L|^2) = 12.5 \mathrm{~mW}$
+
+    \begin{align*}
+        P_g^{avl} &= \frac{|V_g|^{2}}{8~\mathrm{Re}(Z_g)} \\ 
+        |V_g|^{2} &= \mathrm{12.5~mW} \cdot 8(90 ~\Omega) \\
+        |V_g| &= 3~\mathrm{V}
+    \end{align*}
+
+\end{callout}
+\end{homeworkProblem}
