@@ -20,12 +20,32 @@
 
     \begin{enumerate}[A.]
         \item Determine the \textbf{power absorbed} by the $30\,\Omega$ load.
+            \begin{callout}{Solution:}
+
+                The fact that this is lossless ensure that power delivered equals power absorbed. The fact that this is matched ensures that all available power is absorbed. The existence of the load-side matching network also guarantees there are no reflections. Therefore;
+                \begin{align*}
+                    P_{g}^{avl} = P_L^{del} = P_L^{abs}
+                \end{align*}
+
+                Where,
+                \begin{align*}
+                    P_g^{avl} &= \frac{|V_g|^{2}}{8 \cdot R_g} = \frac{|j4|^{2}}{8 \cdot 20} = 10 \mathrm{~mW}
+                \end{align*}
+
+            \end{callout}
+            \newpage
         \item Determine the \textbf{input impedance} $Z_{\text{in1}}$ of this part of the circuit:
 
             \begin{figure}[H]
                 \centering
                 \includegraphics[width=0.7\textwidth]{../assets/h12p1f2.png}
             \end{figure}
+            \begin{callout}{Solution:}
+
+                If $Z_{in1}$ is the equivalent resistance seen by the source side lossless matching network, we know that it must be matched to the line characteristic impedance, so 
+                $$Z_{in1} = Z_{0} = 50~\Omega$$
+
+            \end{callout}
 
         \item Determine the \textbf{input impedance} $Z_{\text{in2}}$ of this part of the circuit.
 
@@ -34,13 +54,28 @@
                 \includegraphics[width=0.7\textwidth]{../assets/h12p1f3.png}
             \end{figure}
 
-        \item Determine the \textbf{output impedance} $Z_{\text{out1}}$ of the Thevenin’s equivalent for this part of the circuit.
+            \begin{callout}{Solution:}
 
+                If we look at the input impedance seen by the source, including the lossless matching network, we know that this must equal 
+                $$Z_{in2} = Z_g^* = 20+j 80~\Omega$$
+
+                Because there must be a conjugate match everywhere to guarantee maximum power transfer.
+
+            \end{callout}
+
+            \newpage
+        \item Determine the \textbf{output impedance} $Z_{\text{out1}}$ of the Thevenin’s equivalent for this part of the circuit.
 
             \begin{figure}[H]
                 \centering
                 \includegraphics[width=0.7\textwidth]{../assets/h12p1f4.png}
             \end{figure}
+            \begin{callout}{Solution:}
+
+                The load side matching network will match to the transmission line characteristic impedance $Z_{0}$, so this will have 
+                $$Z_{out1} = Z_{0} = 50~\Omega$$ 
+
+            \end{callout}
 
         \item Determine the \textbf{output impedance} $Z_{\text{out2}}$ of the Thevenin’s equivalent for this part of the circuit.
 
@@ -48,9 +83,16 @@
                 \centering
                 \includegraphics[width=0.7\textwidth]{../assets/h12p1f5.png}
             \end{figure}
+            \begin{callout}{Solution:}
+
+            Similarly to C., there must be a conjugate match between all of the components in the figure and the load impedance in order to guarantee maximum power delivery. Therefore,
+            $$Z_{out2} = Z_L^* = 30 ~\Omega$$
+
+            \end{callout}
     \end{enumerate}
 \end{homeworkProblem}
 
+\newpage
 \begin{homeworkProblem}
     \noindent
     In the circuit below, the \textbf{source delivers} energy at a rate equal to its \textbf{available power.}
@@ -77,4 +119,21 @@
             Provide \textbf{explicit and detailed justification} for your answer.\\
             Your grade will \textbf{primarily} depend on this justification.
     }}
+    \begin{callout}{Solution:}
+
+    Because the source is lossless, all available power is delivered. We clearly do not have a matched load, since $\Gamma_L \neq 0$. We can however express this as:
+    \begin{align*}
+        P^{del} &= P^{inc} - P^{ref} \\ 
+        P^{del} &= P^{inc} \left( 1-|\Gamma_L|^{2} \right) \\ 
+        P^{inc} &= \frac{P^{inc}}{1-|\Gamma_L|^{2}}
+    \end{align*}
+
+    Now, we know that $P_g^{avl}=P_g^{del}$, so we can complete this:
+    \begin{align*}
+        P^{inc} &= \frac{1}{1-|\Gamma_L|^{2}} \frac{|V_g|^{2}}{8 \cdot R_g} &&\text{(since $P_g^{avl}=\tfrac{|V_g|^{2}}{8R_g}$)} \\
+        P^{inc} &= \frac{1}{1-|0.375|^{2}} \frac{|j3|^{2}}{8 \cdot 9} \\
+        P^{inc} &\approx 14.5 \mathrm{~mW}
+    \end{align*}
+
+    \end{callout}
 \end{homeworkProblem}
