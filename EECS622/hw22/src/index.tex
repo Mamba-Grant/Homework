@@ -1,0 +1,78 @@
+\begin{homeworkProblem}
+At the LO port of a mixer is a single time-harmonic signal with a frequency of 120 MHz .
+
+At the RF port of the mixer is likewise a single time-harmonic signal with a frequency of 100 MHz .
+
+Determine the frequencies of all time-harmonic signals created at the IF port of this mixer, including all first, second, and third-order spurious signals.
+
+\begin{callout}{Solution:}
+
+    For each incoming RF frequency, we will have a series of spurs,
+
+\begin{enumerate}[(a)]
+    \item Carrier frequencies:
+        \begin{gather}
+            |\omega_{RF} - \omega_{LO}|=20\mathrm{~MHz},\\ |\omega_{RF} + \omega_{LO}|=\mathrm{220~MHz}
+        \end{gather}
+    \item First order: 
+        \begin{gather}
+            \omega_{RF}=\mathrm{120~MHz},\\ \omega_{LO}=\mathrm{100~MHz}
+        \end{gather}
+    \item Second order:
+        \begin{gather}
+            2\omega_{RF}=\mathrm{240~MHz}, \\
+            2\omega_{LO}=\mathrm{200~MHz}, \\
+            |\omega_{RF}-\omega_{LO}|=\mathrm{20~MHz}, \quad \text{(same as carrier)} \\
+            (\omega_{RF}+\omega_{LO}=\mathrm{220~MHz}), \quad \text{(same as carrier)}
+        \end{gather}
+    \item Third order:
+        \begin{gather}
+            |2\omega_{RF}-\omega_{LO}|=\mathrm{140~MHz},\\
+            |2\omega_{LO}-\omega_{RF}|=\mathrm{80~MHz},\\
+            3\omega_{RF}=\mathrm{360~MHz},\\
+            3\omega_{LO}=\mathrm{300~MHz},\\
+            (2\omega_{RF}+\omega_{LO})=\mathrm{340~MHz},\\
+            (\omega_{RF}+2\omega_{LO})=\mathrm{320~MHz}
+        \end{gather}
+\end{enumerate}
+
+\end{callout}
+
+\newpage
+\begin{callout}{Re-derivation for this taylor expansion}
+
+For my own sake, I would find it helpful to write down the entire taylor expansion from which we get the first 10 spurious signals in a mixer:
+
+We can begin by considering the Shockley diode equation, it is simply a model for the I-V curve of a pn junction diode in terms of 1) saturation current $I_s$, 2) diode voltage $v_D$, 3) ideality $n$, 4) and thermal voltage $V_T$. 
+$$i_D = I_s \left( e^{\frac{v_D}{n V_T}} - 1 \right)$$
+
+We may consider the exponential term, call it $f$ to be that which we want to expand. The expansion of any exponential is of form:
+\begin{align*}
+    e^{ax} = \sum_{k=0}^{\infty} \frac{(ax)^{k}}{k!}
+\end{align*}
+
+So, the function will look like:
+\begin{align*}
+    i_D = I_s \left( 
+        \cancel{1 +} 
+        \underbrace{\left[ \frac{a}{1! (n V_T)} \right]}_{c_{1}} v_D +
+        \underbrace{\left[ \frac{a^{2}}{2! (n V_T)^{2}} \right]}_{c_{2}} v_D^{2} +
+        \underbrace{\left[ \frac{a^{3}}{3! (n V_T)^{3}} \right]}_{c_{3}} v_D^{3} +
+        \dots
+        \cancel{- 1} 
+\right)
+\end{align*}
+
+We may then let $v_D$ be a sinusoidal function, such that:
+$$\begin{aligned}
+    i_D \approx I_s \Bigg( 
+        &c_{1}\bigg[ \beta_{\mathrm{RF}} \cos\{ \omega_{\mathrm{RF}} t + \theta_{\mathrm{RF}} \} + \beta_{\mathrm{LO}} \cos\{ \omega_{\mathrm{LO}} t + \theta_{\mathrm{LO}} \} \bigg] \\
+        &+ c_{2}\bigg[ \beta_{\mathrm{RF}} \cos\{ \omega_{\mathrm{RF}} t + \theta_{\mathrm{RF}} \} + \beta_{\mathrm{LO}} \cos\{ \omega_{\mathrm{LO}} t + \theta_{\mathrm{LO}} \} \bigg]^2 \\
+        &+ c_{3}\bigg[ \beta_{\mathrm{RF}} \cos\{ \omega_{\mathrm{RF}} t + \theta_{\mathrm{RF}} \} + \beta_{\mathrm{LO}} \cos\{ \omega_{\mathrm{LO}} t + \theta_{\mathrm{LO}} \} \bigg]^3
+    \Bigg)
+\end{aligned}$$
+
+And we may readily expand higher order terms, which gives the result we attained in class.
+
+\end{callout}
+\end{homeworkProblem}

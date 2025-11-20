@@ -1,0 +1,60 @@
+\begin{homeworkProblem}
+The output of a lossless microwave filter is terminated in a matched load.
+
+The input impedance of the filter can be expressed as a reflection coefficient :
+$$
+\Gamma_{\text{in}}(\omega)=\frac{2+j 2 \omega}{j \omega^2-3}
+$$
+
+Say a matched source with and available power of 1 mW is connected to the filter input. This source generates a linear eigen function with frequency $\omega=1$.
+
+Determine the power of the wave absorbed by the matched load at the filter output.
+
+\begin{callout}{Solution:}
+
+For this, the goal is to model the transmitted power through a filter. We should expect that for any filter power is nearly delivered in maximum or reflected from the load.
+$$\Gamma_{\text{in}}(\omega)\bigg|_{\omega=1} = -0.4-0.8j$$
+
+We know from the lecture "microwave filter design" that a lossless filter can be described in terms of its power reflection coefficient:
+\begin{align*}
+    |\Gamma_{\text{in}}|^2 &= 1 - T(\omega) \\ 
+    (-0.4-0.8j)(-0.4+0.8j) &= 1 - \frac{P_{\text{L}}^{\text{abs}}}{P_{\text{g}}^{\text{avl}}} \\ 
+    \frac{P_{\text{L}}^{\text{abs}}}{P_{\text{g}}^{\text{avl}}} &= 0.2 \approx 7 \mathrm{~dB}
+\end{align*}
+
+Since the whole system is matched and made of lossless components, it can be taken that all power produced by the source reaches the filter, so this problem is solved:
+$$\boxed{P_{\text{L}}^{\text{abs}} = 0.2 \cdot P_{\text{g}}^{\text{avl}} = 0.2 \mathrm{~mW}\approx7\mathrm{~dBm}}$$
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+The complex transfer function for a certain microwave filter has the form:
+$$
+H(\omega)=\frac{10^7}{10^7+\omega^2} e^{-j[\omega(0.002+A \omega)+B]}
+$$
+where $A$ and $B$ are some unknown constants.
+
+But, it is know that the phase delay of this filter at frequency $\omega=100$ is 0.004 seconds.
+
+Determine precisely (i.e., without any unknowns!) the phase delay of the filter at $\omega=200$.
+\begin{callout}{Solution:}
+
+It seems we have two boundary conditions, $A$ and $B$ but one constraint.
+    It seems most productive to me to start by expressing the delay $\tau$: 
+    \begin{align*}
+        \tau(\omega) = -\frac{\partial~\mathrm{arg}[H(\omega)]}{\partial \omega} = \frac{\partial}{\partial \omega} \big[ \omega (0.002 + A \omega) + B \big] = 0.002+ 2A \omega
+    \end{align*}
+
+    It is fortunate that this is independent of $B$, we can determine $A$ from the boundary condition given:
+    \begin{align*}
+        0.004 = \left[0.002 + 2A (100)\right] \implies A = 10 \times 10^{-6}
+    \end{align*}
+
+    This makes computing $\tau(\omega=200)$ trivial:
+    \begin{align*}
+        \tau(\omega=200) = 0.002~\mathrm{s} + 20\times10^{-6} \mathrm{\frac{s}{rad}} ~(200\mathrm{~rad}) = \boxed{6\mathrm{~ms}}
+    \end{align*}
+
+\end{callout}
+\end{homeworkProblem}

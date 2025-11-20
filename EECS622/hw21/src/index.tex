@@ -1,0 +1,64 @@
+\begin{homeworkProblem}
+    A mixer with a conversion loss of $6 d B$ has a signal at its RF port of $-15 d B m:$
+    $$
+    d B m\left[P_{R F}\right]=-15
+    $$
+    \begin{enumerate}[A.]
+        \item What is the power of the signal at the IF port, provided that the LO power equals the mixer drive power?
+            \begin{callout}{Solution:}
+
+            This implies the mixer is in switch mode, so it ideally just has a conversion loss of 6 dB.
+
+            \end{callout}
+
+        \item Say the LO power now drops to a value 10 dB below the mixer drive power (but the RF power remains -15 dBm as before). Determine the IF signal power now.
+            \begin{callout}{Solution:}
+
+                There is no longer enough power to keep the mixer in switch mode since the LO is not delivering enough power. We know that "if the LO power drops below the required mixer drive power, the conversion loss will increase proportionately—1 dB per dB", i.e. that the \textit{conversion loss will increase by the amount which it is below drive power in dB}, approximately 10 dB. Therefore the conversion loss is 16 dB.
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+I have named the three ports of my mixer Larry, Moe, and Curly.
+I am using this mixer to accomplish down-conversion of a time harmonic signal. It turns out that:
+*Into port Larry, energy is flowing at a rate of $P_L$, where:
+$$
+d B m\left[P_L\right]=+13.0
+$$
+* Out of port Moe, energy is flowing at a rate of $P_M$, where:
+$$
+d B m\left[P_M\right]=-30.0
+$$
+${ }^{\star}$ Into port Curly, energy is flowing at a rate of of $P_c$, where:
+$$
+d B m\left[P_c\right]=-25.0
+$$
+\begin{enumerate}[(a)]
+        \item Which port (Larry, Moe, or Curly) is most likely the RF port, and why?
+            \begin{callout}{Solution:}
+
+            For any given mixer, energy flows into a RF port (typically at a low power in microwave systems), energy flows out of the IF port, and a large power is driven into the LO port. It is most likely then that port curly is the RF port, since energy is flowing into the mixer and carries little power.
+
+            \end{callout}
+        \item Which port is most likely the LO port, and why?
+\begin{callout}{Solution:}
+
+Following the same reasoning that LO ports must be driven by a large power flowing in, port Larry is probably the LO port - the other ports carry power on the order of milliwatts, so no reasonable engineer would power their mixer this way.
+
+\end{callout}
+
+        \item What is the conversion loss of this mixer?
+            \begin{callout}{Solution:}
+
+            To begin, the remaining port (or really the only port which has power flowing out), Moe, must be the IF port. We developed the idea of conversion loss by taking a mixer to be a two port device, so that we can consider the gain (loss) across it. Since we are in dB, the difference is the loss:
+            \begin{align*}
+                \text{Conversion Loss} = 10 \log \left( \frac{P_{RF}}{P_{IF}} \right) = \mathrm{dBm}[P_{RF}] - \mathrm{dBm}[P_{IF}] = 5 \mathrm{~dB}
+            \end{align*}
+
+            We found the ideal case to be 4 dB, so this seems like a good mixer.
+
+            \end{callout}
+\end{enumerate}
+\end{homeworkProblem}

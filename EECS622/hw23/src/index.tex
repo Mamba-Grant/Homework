@@ -1,0 +1,45 @@
+\begin{homeworkProblem}
+A signal at the RF port of a mixer has a frequency of 100 MHz, and we wish to down convert this signal to an IF frequency of 30 MHz.
+
+Determine the two local oscillator frequencies that can be used to accomplish this.
+\begin{callout}{Solution:}
+
+    We know that a downconversion produces a carrier frequency at the difference between RF and LO frequencies. We may simply solve for our LO frequency:
+\begin{align*}
+    \omega_{IF} &= |\omega_{RF}-\omega_{LO}| &&\text{(downconversion constraint on frequency)}\\
+    \mathrm{30~MHz} &= |\mathrm{100~MHz} - \omega_{LO}| &&\text{(substitute values)} \\ 
+    \omega_{LO} &= \{\mathrm{70~MHz},\,\mathrm{130~MHz}\}
+\end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+Incident on the RF port of a mixer is one time-harmonic signal, with unknown frequency $f_{R F}$.
+
+Incident on the LO port of this mixer is also one time-harmonic signal, with frequency $f_{\text {LO }}=100 \mathrm{MHz}$.
+
+Exiting the IF port is a number of time-harmonic signals!
+One of these signals is a spurious third-order product whose frequency is 30 MHz .
+
+Determine all possible positive values (i.e., $f_{R F}>0$ ) of frequency $f_{R F}$.
+\begin{callout}{Solution:}
+
+    Our spurrious $3^{\mathrm{rd}}$ order signals, which I derived in homework \#22 (and in class) are given as:
+        \begin{align}
+            |2\omega_{RF}-\omega_{LO}| &= \mathrm{30~MHz} \\
+            |2\omega_{LO}-\omega_{RF}| &= \mathrm{30~MHz} \\
+            3\omega_{RF} &= \mathrm{30~MHz} \\
+            3\omega_{LO} &= \mathrm{30~MHz} \\
+            (2\omega_{RF}+\omega_{LO}) &= \mathrm{30~MHz} \\
+            (\omega_{RF}+2\omega_{LO}) &= \mathrm{30~MHz}
+        \end{align}
+
+        So there are only 5 possible values of $\omega_{RF}$, since the absolute values give an extra solution for (1-2), but (4) is independent of $\omega_{RF}$, and (5-6) will give negative frequencies.
+        \begin{align*}
+            \{ \text{65 MHz, 35 MHz, 170 MHz, 230 MHz, 10 MHz} \}
+        \end{align*}
+
+\end{callout}
+\end{homeworkProblem}

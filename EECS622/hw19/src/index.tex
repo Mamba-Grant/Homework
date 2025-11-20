@@ -1,0 +1,56 @@
+\begin{homeworkProblem}
+Carefully consider a phase modulated signal of the form:
+$$
+v_o(t)=1.0 \cos \left[2 \pi t\left(4000+B t+A t^2\right)\right]
+$$
+
+Where $A$ and $B$ are some unknown constants.
+But, the total frequency of this signal is known to be:
+$$
+\omega(t)=8000 \pi+2 \pi t+\pi t^2
+$$
+
+Determine precisely (i.e., without any unknowns!) the relative phase $\varphi_r(t)$, and carrier frequency $\omega_0$ of this signal.
+\begin{callout}{Solution:}
+
+    The total phase is contained as the parameter of the cosine function:
+    $$\theta(t) = 2\pi t (4000 + Bt+At^2)$$
+    And we have the constraint between total phase and total frequency:
+
+    $$\omega(t)=\frac{d\theta(t)}{dt} = \underbrace{ \omega_{0} }_{ \text{carrier freq.} }+\underbrace{ \omega_{r}(t) }_{ \text{relative freq.} }$$
+
+    Which is sufficient to eliminate a term:
+    \begin{align*}
+        8000 \pi+2 \pi t+\pi t^2
+        &= \frac{d |2\pi t (4000 + Bt+At^2)|}{dt} &&\left(\text{since}\quad \omega(t)=\frac{d\theta(t)}{dt} \right) \\
+        2\pi \left[ 4000+ t+\frac{1}{2} t^2 \right]
+        &= 2\pi \left[ 4000 + 2Bt+3At^{2} \right] \\
+        t+\frac{1}{2} t^2
+        &= 2Bt+3At^{2} \\
+    \end{align*}
+
+    Clearly, $B=1/2$ and $A=1/6$. The total phase consists of the linear carrier phase and the time-varying relative phase, and a constant carrier frequency and a time-varying relative frequency, which are both related by an integral/derivative as above:
+    \begin{align*}
+        \theta(t) &=  8000\pi t + \pi t^{2} + \frac{\pi}{3} t^{3}, &&\theta_{0} = 8000 \pi t &&\theta_r = \pi t^{2} + \frac{\pi}{3}t^{3} \\
+        \omega(t) &= 8000\pi + \pi t + \pi t ^{2} &&\omega_{0}=8000\pi &&\omega_r = \pi t + \pi t ^{2}
+    \end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+An oscillator produces a sine wave with a carrier frequency of $f_0=6 \mathrm{GHz}$.
+
+Due to long-term instability, this carrier frequency can "drift" as much as $\pm 300 \mathrm{kHz}$.
+
+Specify the accuracy of this oscillator in parts-per-million (ppm).
+\begin{callout}{Solution:}
+
+We have defined,
+$$\mathrm{ppm}(\Delta f_{r})\equiv 10^{6}\left( \frac{\Delta f_{r}(\mathrm{Hz})}{f_{0}(\mathrm{Hz})} \right)=\frac{\Delta f_{r}(\mathrm{Hz})}{f_{0}(\mathrm{MHz})}$$
+
+So,
+$$\mathrm{ppm(\pm 300~kHz)} = 10^6 \frac{\mathrm{6\times10^5~Hz}}{\mathrm{6\times10^9~Hz}}=100$$
+
+\end{callout}
+\end{homeworkProblem}

@@ -1,0 +1,82 @@
+\begin{homeworkProblem}
+A microwave filter has the transfer function:
+$$
+H(\omega)=\left(\frac{4 \pi^2 \times 10^{12}}{\omega^2+4 \pi^2 \times 10^{12}}\right)^{1 / 2} e^{-j\left(10^{-10} \omega^2+10^{-6} \omega\right)}
+$$
+
+Determine the phase delay of this filter at signal frequency $\omega=10^4 \mathrm{rad} / \mathrm{sec}$.
+
+\begin{callout}{Solution:}
+
+    \begin{align*}
+	H(\omega)=\frac{V_{out}(\omega)}{V_{in}(\omega)
+} 
+\hspace{10em}\text{(Filter Response)}\\
+\mathrm{arg}[V_{out}(\omega)] = \mathrm{arg}[H(\omega)] + \mathrm{arg}[V_{in}(\omega)] 
+\hspace{10em}\text{(Phase)}
+    \end{align*}
+
+    In an ideal filter, filter phase will be of delay $\tau$ and frequency $\omega$, however in general $\tau$ is frequency-dependent due to dispersive effects, so we instead use:
+    $$\tau(\omega)=- \frac{\partial~\mathrm{arg}[H(\omega)]}{\partial \omega}$$
+
+    Given the exponential form provided, 
+    $$\mathrm{arg}[H(\omega)] = -10^{-10}\omega ^2 - 10^{-6} \omega$$
+
+    Therefore delay will be,
+    \begin{align*}
+        \tau = - \frac{\partial~\mathrm{arg}[H(\omega)]}{\partial \omega}\Bigg|_{\omega=10^4} &= \left( 2\cdot10^{-10} \omega + 10^{-6} \right)\Bigg|_{\omega=10^4}
+    \end{align*}
+
+    There's some unit weirdness going on here, so I want to stop and consider it for a second. $\omega$ is given in rad/sec, while there are dimensions $\frac{\partial~\mathrm{arg}[H(\omega)]}{\partial \omega} = \frac{\text{unitless}}{\mathrm{rad / sec}}$. We then have
+    \begin{align*}
+        \tau &= \left( 2 \cdot 10^{-10}~ \mathrm{\frac{sec^{2}}{rad^{2}}} \right) \left( 10^4~ \mathrm{\frac{rad}{sec}} \right) + 10^{-6}~ \mathrm{\frac{sec}{rad}} \\ 
+             &= \boxed{3 ~\mathrm{\frac{\mu s}{rad}}}
+    \end{align*}
+
+    I suppose that angular units are sort of unitless depending on who is asked, so I could see someone giving this units $\mathrm{\mu s}$, but I think this is a neat result.
+
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+The output of a low-pass microwave filter is terminated in a matched load.
+
+The reflection coefficient resulting from this filter's input impedance is then:
+$$
+\Gamma_{\text {in }}(\omega)=\frac{1}{1+j\left(\frac{\omega}{1000}\right)}
+$$
+
+A matched source creates a time-harmonic (i.e., sinusoidal) signal with frequency $\omega$.
+
+\vspace{1em}
+This matched source has an available power of 10 mW.
+This matched source is connected to the input of the filter.
+As a result, the matched load at the filter output absorbs energy at a rate of 9.0 mW.
+
+\vspace{1em}
+Determine the value of signal frequency $w$.
+
+\begin{callout}{Solution:}
+
+    In our previous work we have used the relation:
+    \begin{align*}
+        P_{\mathrm{del}} &= P_{\mathrm{avl}} \left( 1-|\Gamma_{\mathrm{in}}|^{2} \right) \\ 
+        |\Gamma_{\mathrm{in}}|^{2} &= 1-\frac{P_{\mathrm{del}}}{P_{\mathrm{avl}}} = 0.1 \mathrm{~mW}
+    \end{align*}
+    Then we can simply plug in our given expression and solve:
+    \begin{align*}
+        0.1 &= \frac{1}{1+j \left( \frac{\omega}{1000} \right)} \frac{1}{1-j \left( \frac{\omega}{1000} \right)} \\ 
+            &= \frac{1}{1 \cancel{-j \left( \frac{\omega}{1000} \right)} + \cancel{j \left( \frac{\omega}{1000} \right)} + \left( \frac{\omega}{1000} \right)^{2}} \\ 
+        0.1 \cdot \left[ 1 + \left( \frac{\omega}{1000} \right)^{2} \right] &= 1 \\
+        0.1 &= \frac{1}{1 + \left( \frac{\omega}{1000} \right)^2}\\
+        0.1 \left[1 + \left( \frac{\omega}{1000} \right)^2\right] &= 1\\ 
+        1 + \left( \frac{\omega}{1000} \right)^2 &= 10\\     
+        \left( \frac{\omega}{1000} \right)^2 &= 9\\     
+        \omega &= 3000 \text{ rad/s}\\ 
+    \end{align*}
+
+\end{callout}
+
+\end{homeworkProblem}

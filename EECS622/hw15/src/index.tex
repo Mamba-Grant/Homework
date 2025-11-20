@@ -1,0 +1,92 @@
+\begin{homeworkProblem}
+    Say you require a filter with a center frequency $f_0=1.0 \mathrm{GHz}$, and bandwidth $\Delta f=100 \mathrm{MHz}$.
+
+    You need this filter to attenuate a signal with frequency $f=1.1 \mathrm{GHz}$ by at least $\mathbf{4 0 d B}$.
+    \begin{enumerate}[1.]
+        \item Determine the lowest filter order value that will achieve this requirement (i.e., 40 dB attenuation at $f=1.1 \mathrm{GHz}$ ) for:
+            \begin{enumerate}[a)]
+                \item a Butterworth Filter
+                    \begin{callout}{Solution:}
+
+                        Before anything, we will want a normalized frequency domain. 
+                        \begin{align*}
+                            \alpha(f) &= \left| \frac{f_{0}}{f_H-f_L} \left( \frac{f}{f_{0}} - \frac{f_{0}}{f} \right)\right| - 1 \\ 
+                                      &= \left| \frac{\mathrm{1.0~GHz}}{\mathrm{100~MHz}} \left( \frac{f}{\mathrm{1.0~GHz}} - \frac{\mathrm{1.0~GHz}}{f} \right) \right| - 1 \\
+                            \alpha(\mathrm{1.1~GHz}) &= 0.9090\dots
+                        \end{align*}
+
+                        Using the normalized transmission chart from the lecture, it seems as though we could potentially get away with $N=6$, but $N=7$ will probably be better.
+                        \begin{figure}[H]
+                            \centering
+                            \includegraphics[width=0.8\textwidth]{../assets/h15p1f1.png}
+                        \end{figure}
+
+
+                    \end{callout}
+                \item a Chebychev with 0.5 dB passband ripple.
+                    \begin{callout}{Solution:}
+
+                        We will use the same $\alpha$ as in (a). We can potentially use $N=5$, however $N=6$ is guaranteed to achieve the desired attenuation.
+                        \begin{figure}[H]
+                            \centering
+                            \includegraphics[width=0.8\textwidth]{../assets/h15p1f2.png}
+                        \end{figure}
+
+                    \end{callout}
+                \item a Chebychev with 3.0 dB passband ripple.
+                    \begin{callout}{Solution:}
+
+                        We will use the same $\alpha$ as in (a). $N=5$ will safely work well to achieve the desired attenuation.
+                        \begin{figure}[H]
+                            \centering
+                            \includegraphics[width=0.8\textwidth]{../assets/h15p1f3.png}
+                        \end{figure}
+
+                    \end{callout}
+            \end{enumerate}
+        \item Using the filter orders found in part 1, determine the filter attenuation of a signal at $f=930 \mathrm{MHz}$, for each of the three filter designs.
+            \begin{callout}{Solution:}
+
+                We will have $\alpha(\mathrm{930~MHz})=0.45$. 
+                \begin{enumerate}[(a)]
+                    \item \textbf{Butterworth:} $N=6$ will attenuate by -20 dB; $N=7$ will attenuate by about -22.5 dB.
+                    \item \textbf{Chebychev 0.5 dB Passband Ripple:} $N=5$ will attenuate by -25 dB; $n=6$ will attenuate by about -26.5 dB
+                    \item \textbf{Chebychev 3.0 dB Passband Ripple:} $N=5$ will attenuate by -34 dB.
+                \end{enumerate}
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    The output of a low-pass microwave filter is terminated in a matched load.
+
+    The reflection coefficient resulting from this filter's input impedance is:
+    $$
+    \Gamma_{\text {in }}(\omega)=\frac{25 \times 10^3}{25 \times 10^3+j\left(\frac{\omega}{400}\right)}
+    $$
+
+    Determine the 3dB cutoff frequency of this low-pass filter
+    \begin{callout}{Solution:}
+
+        The 3 dB cutoff frequency is the point at which ${P_\text{L}^\text{abs}} \approx 0.5 \cdot {P_\text{g}^\text{avl}}$, or $V_\text{L}^\text{abs} \approx \frac{V_\text{g}^\text{avl}}{\sqrt{2}}$. We can rewrite this statement in terms of power \textit{transmission}:
+
+        $$[T]\bigg|_{\mathrm{3dB}} = 
+        \left[ \frac{P_{\text{L}}^{\text{abs}}}{P_{\text{g}}^{\text{avl}}} \middle]\right|_{\mathrm{3dB}} 
+            \approx 0.5$$
+
+            Moreover, from our lesson on microwave filter design, we have derived:
+            $$|\Gamma_{\mathrm{in}}(\omega)|^2 = 1 - T(\omega) \implies \Gamma_{\mathrm{in}}(\omega) = \frac{\sqrt{2}}{2}$$
+
+            at the 3 dB point for any microwave filter. It's very straightforward to solve for $\omega_{c}$ to satisfy this:
+            \begin{align*}
+                \left|\frac{25 \times 10^3}{25 \times 10^3+j\left(\frac{\omega_{c}}{400}\right)}\right|\left|\frac{25 \times 10^3}{25 \times 10^3-j\left(\frac{\omega_{c}}{400}\right)}\right| &= \frac{\sqrt{2}}{2} \\
+                \frac{(25 \times 10^3)^2}{(25 \times 10^3)^2 + \left(\frac{\omega_{c}}{400}\right)^2} &= \frac{1}{2} \\
+                2 \times 625 \times 10^6 = 625 \times 10^6 + \frac{\omega_{c}^2}{160000} \\
+                625 \times 10^6 = \frac{\omega_{c}^2}{160000} \\
+                \omega_{c}^2 = 625 \times 10^6 \times 160000 = 10^{14} \\
+                \omega_{c} = 10^7 \text{ rad/s} \approx 1.6~\mathrm{MHz} \\
+            \end{align*}
+
+        \end{callout}
+    \end{homeworkProblem}

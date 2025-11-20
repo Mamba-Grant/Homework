@@ -1,0 +1,62 @@
+\begin{homeworkProblem}
+Consider two different rates of energy flow-power $P_1$ and power $P_2$.
+It is known that:
+$$
+d B m\left[P_1\right]=0
+$$
+
+And, it is also known that the difference between the two values (i.e., $P_1-P_2$ ) is:
+$$
+d B m\left[P_2-P_1\right]=0
+$$
+
+Determine the value of $d B m\left[P_2\right]$.
+\begin{callout}{Solution:}
+
+We simply have the set of equations:
+\begin{align*}
+    -10 \log_{10} \left[ \frac{P_{1}}{\mathrm{1~mW}} \right] &= 0 \\ 
+    -10 \log_{10} \left[\frac{P_{2}}{\mathrm{1~mW}} - \frac{P_{1}}{\mathrm{1~mW}} \right] &= 0 \\ 
+\end{align*}
+
+From the properties of logarithms, we know that $\log_{10}(1) = 0$. Therefore, $P_{1}=\mathrm{1~mW}$. This must also make $P_{2}=\mathrm{2~mW}$, since $\log_{10} \left[ 2 - 1 \right] = 0$. Then the final solution will be:
+\begin{align*}
+    \mathrm{dBm[2]}=-10 \log_{10} [2] = 3\mathrm{~dB}
+\end{align*}
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+An ideal oscillator produces an output of the form:
+$$
+v_o(t)=1.0 \cos [2 \pi(1000) t]
+$$
+
+This oscillator is now phase modulated, such that its output now has the form:
+$$
+v_o(t)=1.0 \cos \left[2 \pi\left(2 t^2+1000 t-0.2\right)\right]
+$$
+
+Determine an expression for the relative phase and relative frequency of this output signal.
+\begin{callout}{Solution:}
+
+    Relative phase is just the difference:
+    \begin{align*}
+        \Delta\theta(t) &= [2\pi \left( 2t^{2}+1000t-0.2 \right)] -  [ 2\pi(1000t) ] \\ 
+        &= 2 \pi \left( 2t^{2} - 0.2 \right)
+    \end{align*}
+
+    I want to note for myself that absolute (instantaneous) frequency is the time derivative of the phase of the modulated signal:
+    \begin{align*}
+        \omega(t)&= \frac{d|\omega_{0}t+\phi_{n}(t)|}{dt} \\
+        &= 2\pi \left( 4t + 1000 \right)
+    \end{align*}
+
+    And instead, relative frequency is the time derivative of the relative phase:
+    \begin{align*}
+        \Delta\omega(t) = 8\pi t
+    \end{align*}
+
+\end{callout}
+\end{homeworkProblem}

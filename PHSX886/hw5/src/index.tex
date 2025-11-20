@@ -1,0 +1,53 @@
+\begin{homeworkProblem}
+    \begin{enumerate}[(a)]
+        \item In a angle-resolved photoemission spectroscopy (ARPES) measurment, both the energy, and the momentum parallel to the surface needs to be conserved, i.e.
+            $$
+            \begin{aligned}
+                E_k & =\hbar \omega-\Phi-\left|E_B\right| \\
+                k_{\|} & =\sqrt{\frac{2 m E_k}{\hbar^2}} \sin \theta
+            \end{aligned}
+            $$
+
+            Here, $E_k$ is the kinetic energy of the emitted electron, $\theta$ is the emission angle, $m$ is the electron mass, $\Phi$ is the workfunction, $\hbar \omega$ is the photon energy, and $E_B$ is the binding energy of the electron relative to the Fermi level.
+
+            Now, we consider a simple cubic crystal with a lattice parameter of $5 \AA$. For an electronic band near the Fermi level (i.e., you can take $E_B=0$ ), what is the minimum photon energy needed in order to probe the full Brillouin zone.
+
+            You can assume the maximum detectable angle $\theta$ is $90^{\circ}$, and $\Phi=4.5 \mathrm{eV}$.
+            \begin{callout}{Solution:}
+
+                Since it will be relevant, the reciprocal lattice vectors are:
+                \begin{align*}
+                    \vec{g} = \frac{1}{a} \left[ h\hat{x}+k\hat{y}+\ell \hat{z} \right]
+                \end{align*}
+
+                The maximum $\vec{k}$ is just the zone boundary, i.e. the magnitude of this:
+                $$\vec{k}_{max} = \frac{1}{a} = 1/5 \times 10^{-10}$$
+
+                The band structure of this material will be approximated by that of free electrons so that we can write the following equations for the initial and final state energies:
+                $$ \begin{aligned}
+                    & E_i(\mathbf{k})=\frac{\hbar^2}{2 m} \mathbf{k}^2 \\
+                    & E_f(\mathbf{k})=\frac{\hbar^2}{2 m}(\mathbf{k}+\mathbf{G})^2
+                \end{aligned} $$
+                
+                We are only worried about the initial state since we want to determine the minimum energy to excite it. The perpendicular case (observed in 2D materials) has an additional $\sin\theta$ term, as discussed in class. At the maximum angle this term vanishes, and we may rearrange and find the energy associated with $\vec{k}_{max}$:
+                $$E_k = \frac{\hbar^2}{2m}\left( \frac{1}{a^2} \right)$$
+
+                Electrons with highest energy are located at fermi level $E_{f}$. You need some minimum energy above this, given by the work function $\Phi=4.5\mathrm{~eV}$ to emit a photoelectron from the fermi level.
+
+                The binding energy relative to the fermi level ($E_B=0$) is given as:
+                \begin{align*}
+                    \hbar \omega  &= E_k + \Phi = \frac{\hbar^2}{2m}\left( \frac{1}{a^2} \right) + \Phi = 10.516 \mathrm{~eV}
+                \end{align*}
+
+            \end{callout}
+        \item Now, consider a different scenario in which photons with a high energy is used (e.g., X-ray). In this case, assume $E_k=1000 \mathrm{eV}$. For the same crystal discussed in (a), the signal from the full $1^{\text {st }}$ Brillouin zone will fall within which emission angle ( $\theta$ )?
+            \begin{callout}{Solution:}
+
+            \begin{align*}
+                \sin^{2} \theta &=\frac{\hbar^2 \vec{k}^2}{2 m E_k} \implies \theta \approx 0.0776\mathrm{~rad} \approx 4.45^{\circ} \\
+            \end{align*}
+
+            \end{callout}
+
+    \end{enumerate}
+\end{homeworkProblem}

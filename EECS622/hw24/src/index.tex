@@ -1,0 +1,57 @@
+\begin{homeworkProblem}
+A receiver is designed to down-convert an RF signal at 10 GHz , to an IF signal at $\mathbf{2 ~ G H z}$.
+
+This receiver uses high-side tuning.
+This receiver implements an IF filter with a center frequency of 2 GHz (of course), and a bandwidth of 6 MHz .
+
+It is your job to write the spec for the Local Oscillator of this receiver!
+
+The oscillator must work well for this receiver design, but you also want to minimize cost.
+
+In other words, it should work just "good-enough"-anything better would unnecessarily increase the cost.
+
+At issue is oscillator stability (i.e., accuracy). It should be just stable enough to be effective in the receiver design, but no better than that.
+
+Determine the stability specification for this oscillator, expressed in parts-per-million.
+
+\begin{callout}{Solution:}
+
+The stability of a signal in parts-per-million is given as:
+\begin{align}
+    \text{ppm}[\Delta f] \equiv 10^{6} \left( \frac{\pm \Delta f(\mathrm{Hz})}{f(\mathrm{Hz})} \right)
+\end{align}
+
+Also, a high-side signal is constrained such that 
+\begin{align}
+    f_{LO}=f_{RF}^{s}+f_{0}^{IF}
+\end{align}
+
+Thinking about what the IF filter constraints mean, we want to use a filter which can pass signals between $2 - \frac{6 \times10^{-3}}{2} = 1.997$ GHz and $2 + \frac{6\times10^{-3}}{2} = 2.003$ GHz.
+
+If we suppose there is some perturbation in $f_{LO}$, $f_{IF}$ will become:
+$$f'_{IF} = [f_{LO} + \delta]-f_{RF} = f_{IF}+\delta \implies \Delta f_{IF} = \Delta f_{LO}$$
+
+This just means that the permissible $\Delta f_{LO}$ is the same as what the IF filter can receive. This makes sense, since all that the mixer does is shift the frequency, not scale or transform it in any other way. Equivalently,
+
+    $$11.997 < f_{LO} < 12.003$$
+
+Now, equations (1-2) can be used to solve for the stability in ppm:
+
+\begin{align*}
+    \text{ppm}[\Delta f_{LO}] \equiv 10^{6} \left( \frac{6\times10^{6}}{10\times10^9 + 2\times10^9} \right) = 250\mathrm{~ppm}
+\end{align*}
+
+\end{callout}
+
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+You are designing a microwave receiver with an RF band from 10-11 $\mathbf{G H z}$. You have decided to use an IF center frequency of $\mathbf{2 ~ G H z}$.
+
+Determine:
+\begin{enumerate}[a)]
+    \item the Local Oscillator frequencies required to tune to any signal within the RF bandwidth, for both high-side and low-side tuning.
+    \item the percentage bandwidth required for each LO tuning option.
+    \item the image bandwidth for each LO tuning option.
+\end{enumerate}
+\end{homeworkProblem}

@@ -1,0 +1,117 @@
+\begin{homeworkProblem}
+    The power available at the input of a two-port matched device is:
+    $$
+    d B m\left[P_{a v l}\right]=-50.0
+    $$
+    while the power absorbed by a matched load at its output is:
+    $$
+    d B w\left[P_{a b s}\right]=-60.0
+    $$
+
+    Express the power gain of this device in decibels.
+    \begin{callout}{Solution:}
+
+        These need to be of the same scaling, I'll choose set both in dBm. Power absorbed is then -30 dBm, since dBm scales the same as dBw with an offset of 30 dB. Gain is defined as:
+        \begin{align*}
+            G \equiv \frac{P_{abs}}{P_{avl}}
+        \end{align*}
+
+        In logarithmic scaling, this is instead division;
+        \begin{align*}
+            G = -30+50 = 20 \mathrm{~dB}
+        \end{align*}
+
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    An oscillator generates an output signal of 100 mW .
+
+    Unfortunately, it also produces a 50 micro-Watt spurious signal.
+
+    Express the spurious signal power:
+    \begin{enumerate}[A.]
+        \item with the dBw operator.
+            \begin{callout}{Solution:}
+
+                dBw normalizes to 1 W.
+
+                \begin{align*}
+                    50 \mathrm{\mu W} = -10 \log_{10} \left( \frac{50 ~\mathrm{\mu W}}{1 ~\mathrm{W}} \right) = 43 \mathrm{~dBw}
+                \end{align*}
+
+            \end{callout}
+        \item with the dBm operator.
+            \begin{callout}{Solution:}
+
+                dBm normalizes to 1 mW.
+
+                \begin{align*}
+                    50 \mathrm{\mu W} = -10 \log_{10} \left( \frac{50 ~\mathrm{\mu W}}{1 ~\mathrm{mW}} \right) = 13 \mathrm{~dBm}
+                \end{align*}
+
+            \end{callout}
+        \item with the dBc operator.
+            \begin{callout}{Solution:}
+
+                dBc normalizes to the output signal power.
+
+                \begin{align*}
+                    50 \mathrm{\mu W} = -10 \log_{10} \left( \frac{50\mathrm{~\mu W}}{100 \mathrm{~mW}} \right) = 33 \mathrm{~dBc}
+                \end{align*}
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+
+An oscillator generates an output carrier signal with power:
+$$
+d B m\left[P_{\text {out }}\right]=10.0
+$$
+
+Unfortunately, it also produces a first harmonic with power of -40 $d B m$, and a second harmonic at $-50 d B m$.
+
+Express:
+\begin{enumerate}[A.]
+    \item the power of the first harmonic in $d B c$.
+        \begin{callout}{Solution:}
+
+            This is normalized to the fundamental:
+            \begin{gather*}
+                \mathrm{-40~dBm} = 10^{-40/10} \mathrm{~mW} = 0.1 \mathrm{\mu W} \\
+                \mathrm{10~dBm} = 10 \mathrm{~mW} = 10 \mathrm{~mW}
+            \end{gather*}
+            Then the first harmonic will have a value normalized to the fundamental:
+            \begin{align*}
+                -10 \log_{10} \left( \mathrm{\frac{0.1 \mathrm{~\mu W}}{10~mW}} \right) = -50 \mathrm{~dBc}
+            \end{align*}
+
+        \end{callout}
+        \newpage
+    \item the power of the second harmonic in $d B W$.
+        \begin{callout}{Solution:}
+
+            Similarly
+        \begin{align*}
+            -50 \mathrm{~dBm} = 0.01\mathrm{~\mu W}
+        \end{align*}
+
+        \begin{align*}
+            -10 \log_{10}\left( \frac{0.01 \mathrm{~\mu W}}{1 \mathrm{~W}} \right) = 80 \mathrm{dBw}
+        \end{align*}
+
+
+        \end{callout}
+    \item the total harmonic power (i.e., the combined power of the two harmonics) in dBm.
+        \begin{callout}{Solution:}
+
+        I already went through the effort to get these in $\mu W$, where they can be added before applying the dBm operator.
+        \begin{align*}
+            \mathrm{0.1~\mu W + 0.01 \mu W} = \mathrm{0.11~\mu W} = -10 \log \left( \frac{0.11 \mathrm{~\mu W}}{\mathrm{1~mW}} \right) = 39.59 \mathrm{~dBm}
+        \end{align*}
+
+        \end{callout}
+\end{enumerate}
+
+

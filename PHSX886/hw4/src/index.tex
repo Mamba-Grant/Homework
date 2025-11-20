@@ -10,4 +10,38 @@ In the class, we discussed that the EELS in STEM can be used to measure the exci
 In your essay, feel free to use figures from literature as needed (as long as you provide the citation). You may want to search and read some papers on this topic first before you write the essay.
 
 \newpage
+\begin{multicols}{2}
+A versatile spectrometer is required for any kind of EELS and has several key requirements [1]. The first is variable energy resolution on the incoming beam (achieved with a monochromator and optimization of the energy selection slit). For valence band excitations, literature recommends $\Delta E \leq 0.2\mathrm{~eV}$. For core excitations, $\Delta E \geq 1\mathrm{~eV}$ is advised. Similarly, such control is useful for momentum measurements and is determined by the spectrometer entrance aperture. In the case of valence excitations, a high resolution of $\Delta Q_{1 / 2} \leq 0.1 ~\AA^{-1}$ is needed, while for core-level excitations $\Delta Q_{1 / 2} \geq 0.1 ~\AA^{-1}$ is recommended. For valence studies today, commercial detectors are widely available with $\Delta E \sim 40 \mathrm{~meV}$, $\Delta q \sim 0.025~\AA^{-1}$ [2]. The third requirement is that the sample be on ground potential so that sample changing can be done without shutting down the high voltage. Fourth, ultra-high vacuum is typically required so that non-sample interactions can be avoided. Fifth, in the case of bulk measurements, high energy measurements are desirable to avoid multiple-scattering, unless this is the target. In a TEM configuration, this also grants the ability to image diffraction patterns, which is ideal for identifying high-symmetry crystal directions for subsequent exciton dispersion studies [3]. 
+
+\vspace{1em}
+The application of electron scattering to probe the full excitonic dispersion in a crystal dates back to at least 2007, (although it has been proposed much earlier, to my understanding) where prior effort focused on plasmons, interband excitations, or the identification of excitonic peaks as opposed to dispersion [3–5]. EELS is ideal for the measurement of exciton dispersion for three reasons: that it is easier to build high-sensitivity detectors, that transmission EELS is capable of studies in monolayer crystals, and that a TEM configuration grants spatial resolution high enough to handle structures containing defects and impurities  [2]. Such a configuration is commonly known as momentum (q) resolved EELS (q-EELS). A schematic of this configuration is shown in figure 1. In this case, electrons are typically collected by a detector on-axis in the back-focal plane. Today we have sophisticated detectors which are capable of this and much more by default. The earliest work on the subject utilized (170 keV) electrons, high enough that only singlet excitations are possible, but low enough to only study the valence band [3]. This remains typical for dispersion studies today [2]. 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{../assets/2025-10-19-12-02-33.png}
+  \caption{A figure taken showing the early configuration of an EELS system. [1]}
+  \label{fig:2025-10-19-12-02-33}
+\end{figure}
+
+\vspace{1em}
+When an electron scatters in a q-EELS configuration, some energy is lost by the incident electron, exciting the sample electron to a higher band, leaving a hole. It is important to distinguish this as the mechanism occurring in q-EELS, as similar techniques such as angle-resolved photoelectron spectroscopy do not measure exciton energy specifically. What is then measured is a q-E diagram, which typically has an x-axis of momentum, y-axis of energy loss, and color of intensity for a given high-symmetry direction. As mentioned, it is necessary to select a known high-symmetry direction ($\Gamma$-K, $\Gamma$-M for a hexagonal crystal) using diffraction mode in the microscope. This is not directly the exciton dispersion, and peaks must be determined to create the actual band structure. Excitons give an extremely weak signal, so data processing is relatively deep and interesting. Typical work on mapping exciton dispersion in 2D materials utilizes fitting the Voigt function to extract both peak position and signal intensity. Zero loss peak (ZLP) is usually removed before fitting [2]. This is then sufficient to calculate exciton dispersion.
+
+\vspace{1em}
+EELS is uniquely advantaged in studying exciton dispersion. In my description of the technique, I suggested that other techniques are very useful for certain other dispersions, such as ARPES or momentum microscopy, but do not directly measure exciton excitations. In the case of such photoelectron microscopies, electrons are ejected from the material, which instead gives information about the valence or conduction band structure. Excitons, in contrast, are neutral quasiparticles. There do exist, however, several other scattering techniques which can measure exciton dispersion, namely inelastic x-ray and neutron scattering [6]. There are drawbacks to both, namely restrictions in sample selection, sensor capability, and spatial resolution. Both x-ray and neutron scattering require bulk samples with millimeter size [2]. Moreover, neither are charged particles, so it is a greater challenge to create sensors with the same resolution that is available in electron microscopy. Additionally, the resolving power of a TEM/STEM is unmatched by both, due to the difficulty in manufacturing neutron lenses (it is quite amazing this exists, actually!) and the diffraction limit of light. Beyond this, the nature of being able to switch between dark field imaging of diffraction patterns and the high-voltage EELS modes is a tremendous advantage in sample alignment. Two-photon Photoemission spectroscopy (2PPE) is a third option for measuring exciton dispersion and is uniquely advantaged in being time-resolved. This is, however, not a direct measurement and is limited to large samples and small momenta. Also, the discussed ease-of-alignment with an electron microscope is a very nice advantage.
+
+\vspace{5em}
+[1]	J. Fink, Recent Developments in Energy-Loss Spectroscopy*, in Advances in Electronics and Electron Physics, edited by P. W. Hawkes, Vol. 75 (Academic Press, 1989), pp. 121–232.
+
+[2]	J. Hong, R. Senga, T. Pichler, and K. Suenaga, Probing Exciton Dispersions of Freestanding Monolayer WSe 2 by Momentum-Resolved Electron Energy-Loss Spectroscopy, Phys. Rev. Lett. 124, 087401 (2020).
+
+[3]	R. Schuster, M. Knupfer, and H. Berger, Exciton Band Structure of Pentacene Molecular Solids: Breakdown of the Frenkel Exciton Model, Phys. Rev. Lett. 98, 037402 (2007).
+
+[4]	C. Colliex, From early to present and future achievements of EELS in the TEM, Eur. Phys. J. Appl. Phys. 97, 38 (2022).
+
+[5]	Y. Y. Wang, S. C. Cheng, and V. P. Dravid, Momentum-Resolved Low-Loss Electron Energy Loss Spectroscopy in Oxide Superconductor: Proceedings of the 52nd Annual Meeting of the Microscopy Society of America, in (1994), pp. 988–989.
+
+[6]	H. Tornatzky, R. Gillen, H. Uchiyama, and J. Maultzsch, Phonon dispersion in ${\mathrm{MoS}}_{2}$, Phys. Rev. B 99, 144309 (2019).
+
+\end{multicols}
+
 \end{homeworkProblem}

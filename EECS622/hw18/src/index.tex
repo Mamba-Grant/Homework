@@ -1,0 +1,74 @@
+\begin{homeworkProblem}
+Consider this phase modulated signal:
+$$
+v_o(t)=\cos \left[\omega_0\left(10^{-6} t^2+t\right)\right]
+$$
+
+Determine the relative phase and total frequency of this signal.
+\begin{callout}{Solution:}
+
+    \begin{enumerate}[(a)]
+        \item If there were no modulation, we would have a signal $v'(t) = \cos[\omega_{0}t]$. The total phase of the modulated signal and unmodulated signal are, respectively:
+        \begin{align*}
+            \begin{cases}
+                    \omega_{0}(10^{-6}t^{2}+t) \\ 
+                    \omega_{0}t
+            \end{cases}
+        \end{align*}
+
+        Which have a difference that is the relative phase (phase noise):
+        \begin{align*}
+            \varphi_n(t) = \omega_{0}(10^{-6}t^{2} + t) - \omega_{0}t = \omega_{0}10^{-6}t^{2}
+        \end{align*}
+
+        Which also checks out, since for most values of $t$, $\varphi_n(t) \ll 1$.
+
+    \item Now, the total frequency is the time derivative of the total phase.
+        \begin{align*}
+            \omega &= \frac{d |\omega_{0}(10^{-6}t^{2}+t)| }{dt} = \omega_{0}(2\times10^{-6}t + 1)
+        \end{align*}
+    \end{enumerate}
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+Consider two different rates of energy flow-power $P_1$ and power $P_2$.
+
+It is known that the sum of the two values $\left[P_2+P_1\right]$, when expressed with the $d B m$ operator, is :
+$$
+d B m\left[P_2+P_1\right]=0
+$$
+
+And, the difference between the two values $\left[P_2-P_1\right]$ is, when expressed with the $d B m$ operator, is :
+$$
+d B m\left[P_2-P_1\right]=-7
+$$
+
+Determine the value $d B m\left[P_1\right]$
+\begin{callout}{Solution:}
+
+This time I will choose to express these algebraically. We have the system of equations:
+\begin{align*}
+    \begin{cases}
+        -10 \log_{10} \left[ \frac{\left( P_{2} + P_{1} \right) \cdot \cancel{\mathrm{1~mW}}}{\cancel{\mathrm{1~mW}}} \right] &= 0 \\
+        -10 \log_{10} \left[ \frac{\left( P_{2} - P_{1} \right) \cdot \cancel{\mathrm{1~mW}}}{\cancel{\mathrm{1~mW}}} \right] &= -7
+    \end{cases} \\
+   \begin{cases}
+       P_{2} + P_{1} &= 10^0 \\
+       P_{2} - P_{1} &= 10^{0.7} 
+   \end{cases} \\
+   \left[ \begin{array}{cc|c} 1 & 1 & 10^0 \\ -1 & 1 & 10^{0.7} \end{array} \right] \\
+   \left[ \begin{array}{cc|c} 1 & 1 & 10^0 \\ 0 & 1 & \frac{1}{2} (10^{0.7} + 1) \end{array} \right] \\
+   \left[ \begin{array}{cc|c} 1 & 0 & 10^0 - \frac{1}{2} (10^{0.7} + 1) \\ 0 & 1 & \frac{1}{2} (10^{0.7} + 1) \end{array} \right]
+\end{align*}
+
+We get $P_{1}\approx-2, P_{2}\approx3$. Applying the dBm operator to these gives the final result:
+\begin{align*}
+    \mathrm{dBm}[P_{1}] = -10 \log_{10} [|-2|] = 3
+\end{align*}
+
+\end{callout}
+
+\end{homeworkProblem}

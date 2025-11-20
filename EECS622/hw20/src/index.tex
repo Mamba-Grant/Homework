@@ -1,0 +1,36 @@
+\begin{homeworkProblem}
+A microwave switch has three ports, arbitrarily named larry, moe, and curly.
+
+Each port has signal power both incident on ( $P^{+}$), and exiting from ( $P^{-}$) each port, with values (in milli-Watts) shown below:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{../assets/h20p1f1.png}
+\end{figure}
+
+Determine:
+\begin{enumerate}[1.]
+    \item the insertion loss (in $d B$ ) of the switch.
+    \item the isolation (in $d B$ ) of the switch.
+\end{enumerate}
+\begin{callout}{Solution:}
+
+    We have defined:
+\begin{align*}
+    \mathrm{dB}[\mathrm{IL}]&=-10\log_{10}\left[ \frac{P_{out}^{-}}{P_{in}^{+}} \right]=10\log_{10}\left[ \frac{P_{in}^{+}}{P_{out}^{-}} \right]\\
+    \mathrm{dB}[\mathrm{Isolation}]&= -10\log_{10}\left[ \frac{P_{iso}^{-}}{P_{in}^{-}} \right] = 10\log_{10}\left[ \frac{P_{in}^{-}}{P_{iso}^{-}} \right]
+\end{align*}
+
+The system is one three port device, where power is incident on Curly and output through Larry and Moe. We may take Curly to be the input port, since it is the only port which a source could be connected. It is plausible that Larry is the output port, and Moe the isolation port, given the magnitude of their output power. Then, 
+\begin{align*}
+    P_c^{+} &= P_{in}^{+}, & P_I^{-} = P_{out}^{-} && P_m^{-}=P_{iso}^{-}
+\end{align*}
+
+Numerically, this gives:
+\begin{align*}
+\mathrm{dB}[\mathrm{IL}]&=-10\log_{10}\left[ \frac{9}{10} \right] \approx 0.458 \\
+    \mathrm{dB}[\mathrm{Isolation}]&= -10\log_{10}\left[ \frac{0.01}{10} \right] \approx 30
+\end{align*}
+
+\end{callout}
+\end{homeworkProblem}
