@@ -1,0 +1,87 @@
+\documentclass[11pt]{article}
+
+% --- Packages ---
+\usepackage[margin=0.75in, top=0.8in, bottom=1in]{geometry}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{booktabs}
+\usepackage{tcolorbox}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+% \setlength{\parskip}{1em}
+
+% --- Color definitions ---
+\definecolor{tiblue}{RGB}{204,0,0}
+\definecolor{headerblue}{RGB}{0,51,102}
+\definecolor{lightgray}{RGB}{242,242,242}
+\definecolor{medgray}{RGB}{230,230,230}
+
+% --- Professional section formatting ---
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{headerblue}}
+  {\thesection}{1em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{headerblue}}
+  {\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{10pt}{4pt}
+
+% --- Header/Footer ---
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+\fancyhead[L]{\small\textbf{Receiver Design Project}}
+\fancyhead[C]{\small Superheterodyne Receiver}
+\fancyhead[R]{\small\textbf{Grant Saggars}}
+
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{\small\textbf{Page \thepage}}
+
+% --- Title page header ---
+\fancypagestyle{firstpage}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyfoot[L]{}
+  \fancyfoot[C]{}
+  \fancyfoot[R]{\small\textbf{Page \thepage}}
+}
+
+% --- Feature boxes ---
+\tcbset{
+  featureBox/.style={
+    colback=lightgray,
+    colframe=headerblue,
+    boxrule=1pt,
+    arc=2pt,
+    left=8pt,right=8pt,top=8pt,bottom=8pt,
+    fonttitle=\bfseries\large,
+  },
+  specBox/.style={
+    colback=white,
+    colframe=black!40,
+    boxrule=0.5pt,
+    arc=1pt,
+    left=6pt,right=6pt,top=6pt,bottom=6pt,
+  }
+}
+
+% --- Custom table styles ---
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\begin{document}

@@ -27,20 +27,17 @@ Also, a high-side signal is constrained such that
 \end{align}
 
 Thinking about what the IF filter constraints mean, we want to use a filter which can pass signals between $2 - \frac{6 \times10^{-3}}{2} = 1.997$ GHz and $2 + \frac{6\times10^{-3}}{2} = 2.003$ GHz.
-
 If we suppose there is some perturbation in $f_{LO}$, $f_{IF}$ will become:
 $$f'_{IF} = [f_{LO} + \delta]-f_{RF} = f_{IF}+\delta \implies \Delta f_{IF} = \Delta f_{LO}$$
 
-This just means that the permissible $\Delta f_{LO}$ is the same as what the IF filter can receive. This makes sense, since all that the mixer does is shift the frequency, not scale or transform it in any other way. Equivalently,
+This just means that the permissible $\Delta f_{LO}$ is the same as what the IF filter can receive. This makes sense, since all that the mixer does is shift the frequency without scaling, such that $\frac{\partial f_{IF}}{\partial f_{LO}} = 1$.
 
+Now, it follows that if we restrict the IF bandwidth to $\pm6$ MHz, then the LO bandwidth must be bounded such that:
     $$11.997 < f_{LO} < 12.003$$
-
 Now, equations (1-2) can be used to solve for the stability in ppm:
-
 \begin{align*}
-    \text{ppm}[\Delta f_{LO}] \equiv 10^{6} \left( \frac{6\times10^{6}}{10\times10^9 + 2\times10^9} \right) = 250\mathrm{~ppm}
+    \text{ppm}[\Delta f_{LO}] \equiv 10^{6} \left( \frac{\pm 3\times10^{6}}{10\times10^9 + 2\times10^9} \right) = \pm 250\mathrm{~ppm}
 \end{align*}
-
 \end{callout}
 
 \end{homeworkProblem}
@@ -51,7 +48,49 @@ You are designing a microwave receiver with an RF band from 10-11 $\mathbf{G H z
 Determine:
 \begin{enumerate}[a)]
     \item the Local Oscillator frequencies required to tune to any signal within the RF bandwidth, for both high-side and low-side tuning.
+        \begin{callout}{Solution:}
+
+        \begin{enumerate}[(a)]
+            \item For high-side tuning, 
+                $$f_{LO} = f_{RF}^s+f_{0}^{IF}$$
+                Which can be anything between 12-13 GHz.
+
+            \item For low-side tuning,
+                $$f_{LO} = f_{RF}^s-f_{0}^{IF}$$
+                Which can be anything between 8-9 GHz.
+        \end{enumerate}
+
+        \end{callout}
     \item the percentage bandwidth required for each LO tuning option.
+        \begin{callout}{Solution:}
+
+        Using the bandwidths described in part (a), 
+        \begin{enumerate}[(a)]
+            \item For high-side tuning,
+                $$\mathrm{Percent~Bandwidth} = \frac{2 \cdot (13-12)}{13+12}\times100\% = 8\%$$
+
+            \item For low-side tuning,
+                $$\mathrm{Percent~Bandwidth} = \frac{2 \cdot (9-8)}{9+8}\times100\% = 11.8\%$$
+        \end{enumerate}
+
+        \end{callout}
     \item the image bandwidth for each LO tuning option.
+        \begin{callout}{Solution:}
+
+        Image frequency satisfies 
+        $$\left|f_{\text {image }}-f_{L O}\right|=\left|f_{R F}-f_{L O}\right|=f_{I F}$$
+        meaning both the desired RF and the image frequency down-convert to the same IF. This nets solutions of the form:
+
+        $$f_{RF} = f_{RF}\pm (f_{0}^{IF} \pm f_{0}^{IF}) \implies f_{RF}=\{ f_{RF}^{s},\, f_{RF}^{s}\pm 2f_{0}^{IF} \}$$
+
+        \begin{enumerate}[(a)]
+            \item For high side tuning, we take the sum solution:
+                $$\mathrm{14~GHz < f_{image} < 15 ~GHz}$$
+
+            \item For low side tuning, we take the difference solution:
+                $$\mathrm{6~GHz < f_{image} < 7 ~GHz}$$
+        \end{enumerate}
+
+        \end{callout}
 \end{enumerate}
 \end{homeworkProblem}

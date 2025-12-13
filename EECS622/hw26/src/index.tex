@@ -1,0 +1,172 @@
+\begin{homeworkProblem}
+    A receiver uses high-side tuning, and an Intermediate Frequency filter centered at $\mathbf{1 0 0 ~ M H z}$.
+
+    The local oscillator of this receiver is tuned to 1 GHz .
+
+    Determine:
+    \begin{enumerate}[a)]
+        \item the frequency of the desired RF signal to which the receiver is tuned.
+            \begin{callout}{Solution:}
+
+            For high-side tuning, 
+            \begin{align*}
+                f_{LO}=f_{RF}^{s}+f_{0}^{IF} \implies f_{RF}^{s} = 900\mathrm{~MHz}
+            \end{align*}
+
+            \end{callout}
+        \item the frequencies of all other RF signals (up to and including $3{ }^{\text {rd }}$ order products) that could also pass through this Intermediate Frequency filter.
+            \begin{callout}{Solution:}
+
+            There are potentially RF signals which produce images and spurs that can pass through the IF filter,
+            \begin{align*}
+                |f_{RF}^{s}-f_{RF}^{image}|&=2f_{0}^{IF} \implies f_{RF}^{image} = \{ 700~\mathrm{MHz},\,\mathrm{1100~MHz} \} \\
+            \end{align*}
+
+            In homework \#25, I showed the general form of RF signals which produce spurs at the IF center are given by:
+            \begin{align}
+                \label{eq:general}
+                f_{RF} &=  \frac{|f_{spur} \mp nf_{LO}|}{m} \qquad \text{where,} \qquad m,\,n \in \{ 1, 2, 3, \dots \}
+            \end{align}
+
+            In class though, we said the most energetically important of these frequencies are at the 7 murphy frequencies:
+
+            \begin{align*}
+                f_{R F}=f_{3 a}^m&=\frac{f_0^{I F}}{3} = 33.3\bar{3}\mathrm{~MHz} \\
+                f_{R F}=f_{3 b}^m&=\frac{f_{L O}+f_0^{I F}}{2} = 550\mathrm{~MHz} \\
+                f_{R F}=f_{3 c}^m&=\frac{\left|f_0^{I F}-f_{L O}\right|}{2} = 450\mathrm{~MHz} \\
+                f_{R F}=f_{3 d}^m&=2 f_{L O}+f_0^{I F} = 2100 \mathrm{~MHz} \\
+                f_{R F}=f_{3 e}^m&=\left|2 f_{L O}-f_0^{I F}\right| = 1900\mathrm{~MHz} \\
+                f_{R F}=f_{2 a}^m&=\frac{f_0^{I F}}{2} = 50\mathrm{~MHz} \\
+                f_{R F}=f_{1 a}^m&=f_0^{I F} = 100 \mathrm{~MHz}
+            \end{align*}
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    You are designing a super-heterodyne receiver to receive RF signals from 90 to 140 MHz.
+
+    You only other design requirement is at 30 dB of image rejection.
+    Your preselector filter is a $3^{\text {rd }}$-order Butterworth filter.
+
+    Determine:
+    \begin{enumerate}[1.]
+        \item the lowest possible Intermediate Frequency ( $f_0^{I F}$ ) for this design, as well as the required LO frequencies, if high-side tuning is used.
+            \begin{callout}{Solution:}
+
+            A third-order butterworth has 30 dB of rejection at $\alpha=5$. For high side tuning, the image band is above the RF band, given by:
+            \begin{align*}
+                |f_{RF}^{s}-f_{RF}^{image}|=2f_{0}^{IF}
+            \end{align*}
+
+            Thus the lowest edge will map to the closest side. The goal is to get this edge at least 5$\alpha$ away from the RF band.
+
+            \begin{align*}
+                f_{RF}^{image,\,closest} = 90~\mathrm{MHz}+2f_{IF}
+            \end{align*}
+
+            So, based on the RF specification, 5$\alpha$ will occur at
+            \begin{align*}
+                f_{RF}^{image,\,closest}&=
+\frac{\sqrt{90~\mathrm{MHz} \cdot 140~\mathrm{MHz}}}{2}\Bigg(\sqrt{\left(\frac{140~\mathrm{MHz}-90~\mathrm{MHz}}{\sqrt{90~\mathrm{MHz} \cdot 140~\mathrm{MHz}}}\right)^2(5+1)^2+4} \\ 
+                                        &\hspace{4cm}\pm \frac{140~\mathrm{MHz}-90~\mathrm{MHz}}{\sqrt{90~\mathrm{MHz} \cdot 140~\mathrm{MHz}}}(5+1)\Bigg) \\
+                                        &\approx 337~\mathrm{MHz} \quad \text{(For the sum solution)}
+            \end{align*}
+
+            Using this, the minimum IF frequency will be:
+            \begin{align*}
+                f_{IF} &= \frac{|90\mathrm{~MHz}-337~\mathrm{MHz}|}{2} = 123\mathrm{~MHz}
+            \end{align*}
+
+            Which also maps to an LO frequency,
+            $$f_{LO} = f_{RF}^s + f_{IF} \implies 213\mathrm{~MHz} < f_{LO} < 263\mathrm{~MHz}$$
+
+            \end{callout}
+        \item the lowest possible Intermediate Frequency ( $f_0{ }^{I F}$ ) for this design, as well as the required LO frequencies, if low-side tuning is used.
+            \begin{callout}{Solution:}
+
+            Same thing, except it will be below the RF band and we must consider the high edge, along with some sign changes.
+
+            \begin{align*}
+                f_{RF}^{image,\,closest} = 140~\mathrm{MHz}-2f_{IF}
+            \end{align*}
+
+            The amount of attenuation required remains the same, so the nearest image must appear at:
+            \begin{align*}
+                f_{RF}^{image,\,closest}&=\frac{\sqrt{90~\mathrm{MHz} \cdot 140~\mathrm{MHz}}}{2}\Bigg(\sqrt{\left(\frac{140~\mathrm{MHz}-90~\mathrm{MHz}}{\sqrt{90~\mathrm{MHz} \cdot 140~\mathrm{MHz}}}\right)^2(5+1)^2+4} \\ 
+                                        &\hspace{4cm}\pm \frac{140~\mathrm{MHz}-90~\mathrm{MHz}}{\sqrt{90~\mathrm{MHz} \cdot 140~\mathrm{MHz}}}(5+1)\Bigg) \\
+                                        &\approx 37~\mathrm{MHz} \quad \text{(For the difference solution)}
+            \end{align*}
+            So the IF center will be at:
+            \begin{align*}
+                f_{IF} &= \frac{|140\mathrm{~MHz}-37\mathrm{~MHz}|}{2}  = 51\mathrm{~MHz}
+            \end{align*}
+
+            and maps to an LO frequency,
+            $$f_{LO} = f_{RF}^s - f_{IF} \implies \mathrm{39~MHz} < f_{LO} < \mathrm{89~MHz}$$
+
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+
+    Homer has managed to design an excellent mixer.
+
+    It generates at its IF port one ideal switch-mode mixer product:
+    $$
+    f_{I F}=f_{I F}^{\Delta}=\left|f_{L O}-f_{R F}\right|
+    $$
+
+    But, his most excellent mixer does not generate and $1^{\text {st }}, 2^{\text {nd }}$, or $3^{\text {rd }}$ order spurious signals (none!).
+
+    However, Homer's mixer does energetically create these two fourthorder products (but no other fourth-order products):
+    $$
+    \begin{aligned}
+& \text { Product A: } \quad f_{I F}=f_{4 a}^{\text {spur }}=\left|3 f_{L O}-f_{R F}\right| \\
+& \text { Product B: } \quad f_{I F}=f_{4 b}^{\text {spur }}=\left|f_{L O}-3 f_{R F}\right|
+    \end{aligned}
+    $$
+
+    Homer has used this mixer to design a receiver to listen to his favorite radio station; a station at a frequency of 4.0 GHz .
+
+    Homer's design implements high-side tuning to down-convert his favorite station (using the ideal second-order product) to an IF at 1.0 GHz.
+
+    \begin{enumerate}[a)]
+        \item Determine the Murphy Spectrum for Homer's receiver when tuned to his favorite station (the one at 4.0 GHz ).
+ 
+            In other words, determine the RF frequencies of all other radio stations that could also appear at the demodulator. Remember, he uses his special new mixer in this receiver!!!
+
+            \begin{callout}{Solution:}
+
+                We know what the IF center is, so we just need to work out what RF signals produce 4th order products at that center. This mixer is unique in that only products for $n,\,m \in \{1, 3\}$ with $n+m=4$ exist (eq. \ref{eq:general}) - e.g. the two products above. Starting with the general form:
+                \begin{align*}
+                    f_{spur} &= | mf_{RF} \pm nf_{LO} | \\
+                    mf_{RF} &=  \pm f_{spur} \mp nf_{LO} \\
+                    f_{RF} &=  \frac{|f_{spur} \mp nf_{LO}|}{m}
+                \end{align*}
+
+                Since $f_{LO}= f_{RF}^s + f_{0}^{IF} = 5\mathrm{~GHz}$, and we are looking for spurs at the IF center $f_{spur}=f_{IF}$, this implies 
+                \begin{align*}
+                    f_{RF} &= \frac{|\mathrm{1.0~GHz} \mp 5\mathrm{~GHz}|}{3} 
+                    \quad \text{or} \quad
+                    |\mathrm{1.0~GHz} \mp 15\mathrm{~GHz}| 
+                \end{align*}
+
+                i.e.,
+                $$f_{RF} = \{ 1.333, 2, 14, 16 \}\mathrm{~GHz}$$
+
+            \end{callout}
+
+        \item Which of the two fourth-order terms (product A or product B) potentially causes the worst problems for Homer's receiver design (give justification!)?
+            \begin{callout}{Solution:}
+
+            Product B, which has murphy frequencies at 1.667 and 2 GHz, is probably much worse as they are close spectrally to Homer's station - i.e. there may be RF signals in this band. Product A's terms are at least 8 GHz away from the station, so while there may be RF sources in this part of the spectrum they are likely quite weak.
+
+            \end{callout}
+    \end{enumerate}
+
+\end{homeworkProblem}

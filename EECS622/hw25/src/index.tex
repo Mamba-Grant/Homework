@@ -1,0 +1,106 @@
+\begin{homeworkProblem}
+    A receiver is built with a narrowband IF filter at $\mathbf{2 0 0 ~ M H z}$.
+    The local oscillator is tuned to $\mathbf{8 0 0 ~ M H z}$.
+
+    The receiver has no preselector filter.
+    \begin{enumerate}[A.]
+        \item Say just a single signal appears at the receiver input, at a frequency of $\mathbf{1 8 0 0} \mathbf{~ M H z}$. Considering up to and including $3^{\text {rd }}$ order products, determine the frequencies of all signals that appear at the IF output of the mixer. Which of these signals will also appear at the detector?
+            \begin{callout}{Solution:}
+
+                There are the mixing products and its spurs which appear at this IF output. \textit{If there were more incoming singals, there would be an image and murphy spectrum which have spurs that could appear too.}
+
+                \begin{align}
+                    f_{IF}= |f_{RF} - f_{LO}| &= \mathrm{1000~MHz} \\
+                    f_{IF}= |f_{RF} + f_{LO}| &= \mathrm{2600~MHz}
+                \end{align}
+                \begin{align}
+                    f_{1a}^{spur} &= f_{RF} = 1800 \mathrm{~MHz} \\
+                    f_{1b}^{spur} &= f_{LO} = 800 \mathrm{~MHz} \\
+                    f_{2a}^{spur} &= 2f_{RF} = 3600 \mathrm{~MHz} \\
+                    f_{2b}^{spur} &= 2f_{LO} = 1600 \mathrm{~MHz} \\
+                    f_{3a}^{spur} &= 3f_{RF} = 5400 \mathrm{~MHz} \\
+                    f_{3b}^{spur} &= |2f_{RF}-f_{LO}| = 2800 \mathrm{~MHz} \\
+                    f_{3d}^{spur} &= 2f_{RF}+f_{LO} = 4400 \mathrm{~MHz} \\
+                    f_{3e}^{spur} &= |f_{RF}-2f_{LO}| = \boxed{200} \mathrm{~MHz} \\
+                    f_{3f}^{spur} &= f_{RF}+2f_{LO} = 4400 \mathrm{~MHz} \\
+                    f_{3g}^{spur} &= 3f_{LO} = 2400 \mathrm{~MHz}
+                \end{align}
+
+                The filter kills off any signal not at 200 MHz, so we just get the spur through it. Everything else appears just before the filter.
+
+            \end{callout}
+            \newpage
+        \item Now determine the frequency of any and all signals at the receiver input that will result in some signal power reaching the detector. Consider products up to and including $3^{\text {rd }}$ order.
+            \begin{callout}{Solution:}
+
+                We know that there will definitely be an image signal:
+                \begin{align*}
+                    |f_{RF}^{s}-f_{RF}^{image}|&=2f_{0}^{IF} \\ 
+                    f_{RF}^{image}&= f_{RF} \pm 2f_{0}^{IF} \\ 
+                    f_{RF}^{image}&= \{ \mathrm{1600~MHz, 2000~MHz} \} 
+                \end{align*}
+
+                And some RF signals will produce spurs at the IF frequency. Solving for $f_{RF}$, starting with the general form of spurrious signals which we have derived,
+                \begin{align*}
+                    f_{spur} &= | mf_{RF} \pm nf_{LO} | \\
+                    mf_{RF} &=  \pm f_{spur} \mp nf_{LO} \\
+                    f_{RF} &=  \frac{|f_{spur} \mp nf_{LO}|}{m} \\
+                    f_{RF} &=  \frac{|\mathrm{200~MHz} \mp n\mathrm{(800~MHz)}|}{m}
+                \end{align*}
+                Third order products exist for all $n,m \in \{ 0,1,2,3 \}$. In no particular order, the resulting values are: 
+                \begin{gather*}
+                    \{ 66.67, 100.0, 200.0, 300.0, 333.33, 466.67, 500.0, 600.0, 700.0, 733.33, 866.67,\\ 900.0, 1000.0, 1100.0, 1300.0, 1400.0, 1800.0, 2200.0, 2600.0 \}~\mathrm{MHz}
+                \end{gather*}
+
+                And, all of these should be the murphy spectrum signals.
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    An engineer is designing a single-conversion receiver to work over an RF bandwidth between 1.0 GHz and 1.1 GHz .
+
+    This designer uses a single preselector filter, and a single IF filter.
+    This preselector filter provides more than 50 dB of attenuation to all signals with frequencies greater than 1.5 GHz .
+
+    This preselector filter likewise provides more than 50 dB of attenuation to all signals with frequencies less than 0.5 GHz .
+
+    The receiver designer must achieve at least 50 dB of image rejection.
+
+    Determine:
+    \begin{enumerate}[1.]
+        \item the lowest possible Intermediate Frequency ( $f_0{ }^{I F}$ ) for this design, as well as the required LO frequencies, if high-side tuning is used.
+            \begin{callout}{Solution:}
+
+                We need to bring our image band below 0.5 GHz, so that it is attenuated. Our image bandwidth is related to our choice in IF, such that:
+
+                \begin{align*}
+                    |f_{RF}^{s} - f_{RF}^{image}| &= 2f_{0}^{IF} \\
+            \end{align*}
+
+            We may simply set the image to 0.5 GHz for the largest RF signal to determine the IF,
+
+            \begin{align*}
+                f_{0}^{IF} = \tfrac{1}{2}|1.1 - 0.5| &= 0.3\mathrm{~GHz} \\
+            \end{align*}
+
+            Where, the required LO frequencies (for high-side tuning) will be:
+            \begin{align*}
+                1.0 + 0.3 \mathrm{~GHz} \leq &f_{LO}\leq 1.1 + 0.3 \mathrm{~GHz} &&\text{(since $f_{LO}=f_{RF}^{s}+f_{0}^{IF}$ for high-side)} \\
+                1.3\mathrm{~GHz} \leq &f_{LO}\leq 1.4\mathrm{~GHz}
+            \end{align*}
+
+        \end{callout}
+    \item the lowest possible Intermediate Frequency ( $f_0{ }^{\text {IF }}$ ) for this design, as well as the required LO frequencies, if low-side tuning is used.
+        \begin{callout}{Solution:}
+
+            IF frequency will remain the same, but LO frequency will become:
+            \begin{align*}
+                1.0-0.3\mathrm{~GHz} \leq &f_{LO}\leq 1.1-0.3\mathrm{~GHz} &&\text{(since $f_{LO}=f_{RF}^{s}-f_{0}^{IF}$ for low-side)} \\
+                0.7\mathrm{~GHz} \leq &f_{LO}\leq 0.8\mathrm{~GHz}
+            \end{align*}
+
+        \end{callout}
+\end{enumerate}
+\end{homeworkProblem}
