@@ -1,0 +1,120 @@
+\begin{homeworkProblem}
+\textbf{Practice with calculations in Fock Space}
+
+Assume $a_\sigma^\dagger$ and $a_\sigma$ are creation and annihilation operators for particles with a CSCO labeled by $\sigma$, while $b_\alpha^\dagger$ and $b_\alpha$ are the creation and annihilation operators for the same particles labeled with a CSCO $\alpha$, such that $\langle 0|b_\alpha a_\sigma^\dagger|0\rangle = U_{\alpha,\sigma}$ is the unitary transformation for the basis change.
+
+\begin{enumerate}
+\item[(a)] Show that
+\begin{align*}
+\langle 0|a_{\sigma_1} a_{\sigma_2} a_{\sigma_3} a_{\sigma_3'}^\dagger a_{\sigma_2'}^\dagger a_{\sigma_1'}^\dagger|0\rangle
+&= \delta_{\sigma_1,\sigma_1'}\delta_{\sigma_2,\sigma_2'}\delta_{\sigma_3,\sigma_3'}
++ \delta_{\sigma_1,\sigma_2'}\delta_{\sigma_2,\sigma_3'}\delta_{\sigma_3,\sigma_1'}
++ \delta_{\sigma_1,\sigma_3'}\delta_{\sigma_2,\sigma_1'}\delta_{\sigma_3,\sigma_2'} \\
+&\quad \pm\, \delta_{\sigma_1,\sigma_1'}\delta_{\sigma_2,\sigma_3'}\delta_{\sigma_3,\sigma_2'}
+\pm \delta_{\sigma_1,\sigma_3'}\delta_{\sigma_2,\sigma_2'}\delta_{\sigma_3,\sigma_1'}
+\pm \delta_{\sigma_1,\sigma_2'}\delta_{\sigma_2,\sigma_1'}\delta_{\sigma_3,\sigma_3'}
+\end{align*}
+where the negative signs are for fermions.
+
+\item[(b)] For fermions show that
+\[
+\langle 0|b_{\alpha_1} b_{\alpha_2} b_{\alpha_3} a_{\sigma_3}^\dagger a_{\sigma_2}^\dagger a_{\sigma_1}^\dagger|0\rangle
+=
+\begin{vmatrix}
+U_{\alpha_1,\sigma_1} & U_{\alpha_1,\sigma_2} & U_{\alpha_1,\sigma_3} \\
+U_{\alpha_2,\sigma_1} & U_{\alpha_2,\sigma_2} & U_{\alpha_2,\sigma_3} \\
+U_{\alpha_3,\sigma_1} & U_{\alpha_3,\sigma_2} & U_{\alpha_3,\sigma_3}
+\end{vmatrix}
+\]
+where the right hand side is the determinant of the $3\times 3$ matrix. This is usually called a Slater determinant in the literature.
+
+\item[(c)] Let $A = a_\sigma^\dagger A_{\sigma,\sigma'} a_{\sigma'}$ and $B = a_\sigma^\dagger B_{\sigma,\sigma'} a_{\sigma'}$ where we will assume that the repeated indices $\sigma$ and $\sigma'$ are summed up. Note that $A$ and $B$ are matrices made up of complex numbers. Then show that
+\[
+[A,B] = a_\sigma^\dagger \big[A,B\big]_{\sigma,\sigma'} a_{\sigma'}
+\]
+for both bosons and fermions.
+\end{enumerate}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}
+Consider the Fock space Hamilton operator
+\[
+H_0 = \varepsilon\Big(c_1^\dagger c_2 + c_2^\dagger c_1 + c_1^\dagger c_3 + c_3^\dagger c_1 + c_2^\dagger c_3 + c_3^\dagger c_2\Big)
+\]
+where $c_i$'s and $c_i^\dagger$'s are fermionic annihilation and creation operators. Let $|0\rangle$ be the Fock vacuum. Find all the energy eigenvalues of $H_0$. Identify the ground state energy and the corresponding energy eigenstate. Express your answer for the last part in terms of the Fock vacuum and appropriate creation operators.
+\begin{callout}{Solution:}
+
+    I will select an occupation number basis. I'll label it by annihilation in $y$ and creation in $x$. 
+    \begin{align*}
+        H_{0}\ket{0} = \epsilon \begin{pmatrix}  0 & 1 & 1 \\ 1 & 0 & 1 \\ 1 & 1 & 0 \end{pmatrix}
+    \end{align*}
+
+    Eigenvalues:
+    \begin{align*}
+        - \lambda (\lambda^{2} - 1) - 1(-\lambda - 1) + 1(1+\lambda) &= 0 \\ 
+        \implies \lambda &= \{ -1, -1, 2 \}
+    \end{align*}
+
+    Eigenvectors:
+    \begin{align*}
+        \begin{pmatrix} 1&1&1\\1&1&1\\1&1&1 \end{pmatrix} \ket{c_{1}^{\dagger},c_{2}^{\dagger},c_{3}^{\dagger}}  &= \ket{\vec{0}}\\ 
+                          \implies& z=x-y \\ 
+                          \begin{pmatrix} -2&1&1\\1&-2&1\\1&1&-2 \end{pmatrix}\ket{c_{1}^{\dagger},c_{2}^{\dagger},c_{3}^{\dagger}} &= \ket{\vec{0}} \\ 
+                          \implies& x=y=z
+    \end{align*}
+
+    then, there's a basis for $\lambda=-1$:
+    \begin{align*}
+    b_{1}^{\dagger} = A_{1}(c_1^{\dagger}-c_{3}^{\dagger}), \quad
+    b_{2}^{\dagger} = A_{2}(c_{2}^{\dagger} - c_{3}^{\dagger})
+    \end{align*}
+
+    "Basis" for $\lambda=2$:
+    \begin{align*}
+        b_{2}^{\dagger} = A_{3}(c_{1}^{\dagger} + c_{2}^{\dagger} + c_{3}^{\dagger})
+    \end{align*}
+    Where I've left these non-normalized with $A_i$ being a normalization factor for each.
+
+    Eigenenergies:
+        $$\{ -\epsilon,\, -\epsilon, 2\epsilon \}$$
+
+    Ground state being $-\epsilon$.
+
+\end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}
+\textbf{* Hardcore Bosons.} Consider the above problem but now replace $c_i$'s and $c_i^\dagger$'s with $a_i$'s and $a_i^\dagger$'s that are bosonic annihilation and creation operators. Also assume the Hamilton operator is modified to $H = H_0 + H_{\text{int}}$ where
+\[
+H_{\text{int}} = U\Big(n_1(n_1-1) + n_2(n_2-1) + n_3(n_3-1)\Big),
+\]
+and $n_i = a_i^\dagger a_i$ is the bosonic number operator. In the limit $U \to \infty$ we obtain the hard core boson Hamiltonian. For hardcore bosons, find all finite energy eigenvalues of $H$. Hint: Once you impose the hardcore boson constraint in the Hilbert space, you can ignore $H_{\text{int}}$ and $H = H_0$ like in the fermionic case.
+\begin{callout}{Solution:}
+
+    Jordan-Wigner mapping:
+$$a_i^\dagger = c_i^\dagger \prod_{j < i} (-1)^{n_j}, \quad a_i = \left(\prod_{j < i} (-1)^{n_j}\right) c_i$$
+
+$$H_{\text{eff}} = \varepsilon \sum_{i \neq j} c_i^\dagger c_j
+= 2\varepsilon\, c_1^\dagger c_1 - \varepsilon\, c_2^\dagger c_2 - \varepsilon\, c_3^\dagger c_3$$
+
+Where these chained $c_i^\dagger c_i=n_i$ (i.e. it's the number operator). The linear combination of all eigenenergies for each occupation number (being 0 or 1) are the new eigenenergies of this system under the JW transformation.
+
+$$E = 2 \epsilon n_{1} - \epsilon n_{2} - \epsilon n_{3}$$
+\begin{align*}
+    0,0,0 &\implies E=0
+    \\ 1,0,0 &\implies E=2 \epsilon
+    \\ 0,1,0 &\implies E=-\epsilon
+    \\ 0,0,1 &\implies E=-\epsilon
+    \\ 1,1,0 &\implies E=\epsilon
+    \\ 1,0,1 &\implies E=\epsilon
+    \\ 0,1,1 &\implies E=-2\epsilon
+    \\ 1,1,1 &\implies E=0
+\end{align*}
+
+Where this new ground state is in the 2-particle basis, $-2 \epsilon$.
+\end{callout}
+\end{homeworkProblem}
+
+\newpage \begin{homeworkProblem}
+Note that the Hilbert space in problems 2 and 3 have the same dimension. Also the Hamiltonians also look the same in the hardcore boson limit. Yet the two problems are different. Explain!
+\end{homeworkProblem}

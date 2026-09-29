@@ -1,0 +1,252 @@
+\begin{homeworkProblem}
+    Consider identical spin-half particles and assume them to be bosons. Let $a_{\uparrow}^{\dagger}$ and $a_{\downarrow}^{\dagger}$ be the creation operators of these particles at one lattice site in space. The total spin operator in Fock space at that site is given by
+    $$
+    \mathbf{S}=\frac{1}{2} \sum_{\alpha, \beta} a_\alpha^{\dagger} \boldsymbol{\sigma}_{\alpha, \beta} a_\beta .
+    $$
+    and can used to find the spin angular momentum of any Fock space state.
+    \begin{itemize}
+        \item[(a)] Show that S satisfy the angular momentum commutation relations.
+            \begin{callout}{Solution:}
+
+                I infer $\boldsymbol{\sigma}_{\alpha,\beta}$ to be pauli matrices,
+                \begin{align*}
+                    \boldsymbol{\sigma}_{\alpha,\beta} = \braket{\alpha|\hat{\sigma}|\beta}
+                \end{align*}
+
+                Starting with z, after much mental back and forth I feel the best way to think of this is to expand the sum as every combination of $\alpha$ and $\beta$ bases. An important note is that the number $\sigma_{z;\alpha, \beta}=\braket{\alpha|\hat{\sigma}|\beta}$, is defined as the amplitude for going from state $\beta$ to $\alpha$ under the effect of $\hat{\sigma}$. In Fock space, this is represented by annihilating in $\beta$ then creating in $\alpha$ under the effects of $\hat{\sigma}$, I think? The consequence of this is that the labels of the ladder operators must match under the sum.
+
+                \begin{align*}
+                    S_z &= \frac{1}{2} \sum_{\alpha,\beta} a_{\alpha}^{\dagger} \sigma_{z;\alpha,\beta} a_{\beta} \\
+                        &= \frac{1}{2} \left( a_{\alpha}^{\dagger} \sigma_{z;\alpha,\alpha}\, a_{\alpha} \;+\; a_{\alpha}^{\dagger} \sigma_{z;\alpha,\beta}\, a_{\beta} \;+\; a_{\beta}^{\dagger} \sigma_{z;\beta,\alpha}\, a_{\alpha} \;+\; a_{\beta}^{\dagger} \sigma_{z;\beta,\beta}\, a_{\beta}\right)
+                \end{align*}
+
+                The pauli matrix is labeled as
+                \begin{align*}
+                    \sigma_z = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix} = \begin{bmatrix} \sigma_{z;\alpha\alpha} & \sigma_{z;\alpha\beta} \\ \sigma_{z;\beta\alpha} & \sigma_{z;\beta\beta} \end{bmatrix}
+                \end{align*}
+
+                so,
+                \begin{align*}
+                    S_z &= \frac{1}{2} \left( a_{\alpha}^{\dagger} (1)\, a_{\alpha} \;+\; a_{\alpha}^{\dagger} (0)\, a_{\beta} \;+\; a_{\beta}^{\dagger} (0)\, a_{\alpha} \;+\; a_{\beta}^{\dagger} (-1)\, a_{\beta}\right) \\
+                        &= \frac{1}{2} \left( a_{\alpha}^{\dagger} a_{\alpha} \;-\; a_{\beta}^{\dagger} a_{\beta}\right)
+                \end{align*}
+
+                I can repeat this for the x and y parts:
+                \begin{align*}
+                    S_x &= \frac{1}{2} \sum_{a,b} a_{\alpha}^{\dagger} \sigma_{x;\alpha,\beta} a_{\beta} \\
+                    &= \frac{1}{2} \left( a_{\alpha}^{\dagger} (0) a_{\beta} + a_{\alpha}^{\dagger} (1) a_{\beta} + a_{\beta}^{\dagger} (1) a_{\alpha} + a_{\beta}^{\dagger} (0) a_{\beta} \right) \\
+                    &= \frac{1}{2} \left( a_{\alpha}^{\dagger}a_{\beta} + a_{\beta}^{\dagger}a_{\alpha} \right)
+                \end{align*}
+
+                \begin{align*}
+                    S_y &= \frac{1}{2} \sum_{a,b} a_{\alpha}^{\dagger} \sigma_{x;\alpha,\beta} a_{\beta} \\
+                    &= \frac{1}{2} \left( a_{\alpha}^{\dagger} (0) a_{\beta} + a_{\alpha}^{\dagger} (-i) a_{\beta} + a_{\beta}^{\dagger} (i) a_{\alpha} + a_{\beta}^{\dagger} (0) a_{\beta} \right) \\
+                    &= \frac{1}{2} \left( -ia_{\alpha}^{\dagger} a_{\beta} + ia_{\beta}^{\dagger} a_{\alpha} \right) \\
+                \end{align*}
+
+                As a reminder, the angular momentum commutation relations are:
+                \begin{align*}
+                    \begin{array}{llll}
+                        (1)~[\hat{L}_{x},\hat{L}_{y}] = i\hbar\hat{L}_{z} & (4)~[\hat{L}^{2}, \hat{L}_{i}] = 0 & (7)~[\hat{L}^{2}, \hat{L}_{\pm} ] = 0 \\
+                        (2)~[\hat{L}_{y},\hat{L}_{z}] = i\hbar\hat{L}_{x} & (5)~\hat{L}_{\pm} = L_{x} \pm i\hat{L}_{y} & (8)~[\hat{L}_{z}, \hat{L}_{\pm}] = \pm \hbar L_{\pm} \\
+                        (3)~[\hat{L}_{z},\hat{L}_{x}] = i\hbar\hat{L}_{y} & (6)~\hat{L}_{+} = \hat{L}_{-}^{\dagger} & (9)~[\hat{L}_{+}, \hat{L}_{-}]=2\hat{L}_{z}
+                    \end{array}
+                \end{align*}
+
+                I'm assuming this problem is interested in (1-3), so it's easy to check:
+                \begin{enumerate}[(1)]
+                    \item 
+                        \begin{align*}
+                            [S_x,S_y] &= S_xS_y - S_yS_x \\ 
+                                      &= \frac{1}{2} \left[ \left( a_{\alpha}^{\dagger}a_{\beta} + a_{\beta}^{\dagger} a_{\alpha} \right)\left( -i a_{\alpha}^{\dagger}a_{\beta} + ia_{\beta}^{\dagger} a_{\alpha} \right) - \left( -i a_{\alpha}^{\dagger}a_{\beta} + ia_{\beta}^{\dagger} a_{\alpha} \right)\left( a_{\alpha}^{\dagger}a_{\beta} + a_{\beta}^{\dagger} a_{\alpha} \right) \right] \\
+                               &= \frac{1}{2} \left[ \left( u + v \right)\left( -i u + iv \right) - \left( -i u + iv \right)\left( u + v \right) \right], \qquad u = a_{\alpha}^{\dagger}a_{\beta}, \qquad v = a_{\beta}^{\dagger} a_{\alpha}\\
+                               &= \frac{1}{2} \Big( \left[ (u)(-iu) + (v)(-iu) + (u)(iv) + (v)(iv) \right]\\ &\quad- [(-iu)(u) + (-iu)(v) + (iv)(u) + (iv)(v)] \Big) \\
+                               &= \frac{1}{2} \Big( \left[ -iu^{2} - ivu + iuv + iv^{2} \right] - [-iu^{2} -iuv + ivu + iv^{2}] \Big) \\
+                               &= \frac{1}{2} \Big( - 2ivu + 2iuv \Big) \\
+                               &= i\Big( uv - vu \Big) \\
+                               &= i[u,v] \\
+                        \end{align*}
+
+                        and this seems to check out! (minus a factor of $\hbar$, but perhaps it's that I've copied from a different textbook) It's 11:55 before the due date so I will stop this here, but the other two are the same thing.
+                    %     We know from the lecture three notes how the ladder operators commute,
+                    %     \begin{align*}
+                    %         \{ a_{\{\sigma\}} a_{\{\sigma'\}} \} &= 0 \\
+                    % \{ a_{\{\sigma\}} a_{\{\sigma'\}}^{\dagger} \} &= \delta_{\{\sigma\}\{\sigma'\}} \implies a_{\{\sigma\}} a_{\{\sigma'\}}^{\dagger} = 1-n_{\{\sigma\}}
+                    %     \end{align*}
+                    %
+                    %     using 
+                    %     \begin{align*}
+                    %         uv &= u_{\alpha}^{\dagger}a_{\beta} a_{\beta}^{\dagger}a_{\alpha} = u_{\alpha}^{\dagger}(1-n_{\beta})a_{\alpha} = n_{\alpha}-a_{\alpha}^{\dagger} n_{\beta} a_{\alpha} = n_{\alpha} - n_{\alpha}n_{\beta} \\
+                    %         vu &= n_{\beta} - n_{\beta}n_{\alpha}
+                    %     \end{align*}
+                    %
+                    %     so 
+                    %     \begin{align*}
+                    %         [S_x,S_y] = i(n_{\alpha} - n_{\beta})
+                    %     \end{align*}
+
+                \end{enumerate}
+
+            \end{callout}
+        \item[(b)] Construct all two particle states in the bosonic Fock space and match them with their counter parts in two particle quantum mechanics of identical bosonic particles. What is the dimension of this subspace of the Fock space?
+        \item[(c)] Construct two particle states in the Fock space with specific total spin $s$ and $S_z$ eigenvalues $m$. Explain why you do not see both $s=0$ and $s=1$ states.
+        \item[(d)] Repeat parts (b) and (c) for three particle states. Explain why you only see the $s=3 / 2$ states?
+    \end{itemize}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+Let $\left|\sigma_i\right\rangle, i=1,2 \ldots, N$ label a complete orthonormal basis of one particle states in QM. Let $a_{\sigma_i}^{\dagger}$ and $a_{\sigma_i}$ be the creation and annihilation operators associated with this basis. They satisfy either the bosonic commutation relations or the fermionic anti-commutation relations. Let $\left|\alpha_i\right\rangle, i=1,2 \ldots, N$ be another complete orthonormal basis of one particle states which are related to $\left|\sigma_i\right\rangle$ by the unitary transformation
+$$ \left|\alpha_i\right\rangle=\sum_{j=1}^N U_{\alpha_i \sigma_j}\left|\sigma_j\right\rangle $$
+We can then also define the creation and annihilation operators associated with the $\left|\alpha_i\right\rangle$ basis through the relations
+\begin{align*}
+    b_{\alpha_i}^{\dagger}=\sum_j U_{\alpha_i \sigma_j} a_{\sigma_j}^{\dagger}, \quad b_{\alpha_i}=\sum_j U_{\alpha_i \sigma_j}^* a_{\sigma_j} \tag{1}
+\end{align*}
+\begin{itemize}
+    \item[(a)] Show that $b_{\alpha_i}^{\dagger}, b_{\alpha_i}$ also satisfy the same commutation or anti-commutation relations as $a_{\sigma_i}^{\dagger}, a_{\sigma_i}$.
+    \item[(b)] As an application of the above unitary transformation to spaces with continuous indices, consider spinless particles on a circle. We can either choose the position basis $|\phi\rangle, 0 \leq \phi<2 \pi$ or the angular momentum basis $|k\rangle, k=0, \pm 1, \pm 2, \ldots$ with angular momentum eigenvalues $\hbar k$. Find the relation between the creation operators $a^{\dagger}(\phi)$ and $b_k^{\dagger}$. Show that if one set of operators satisfy the usual commutation or anti-commutation relations the same is also true for the other set of operators.
+    \item[(c)] Let $a^{\dagger}(\mathbf{r})$ and $a(\mathbf{r})$ be the creation and annihilation operators for particles in a periodic cubical box of size $L$ that satisfy the usual canonical commutation for either bosons or fermions. Define new operators $b_{\mathbf{k}}$ and $b_{\mathbf{k}}^{\dagger}$ through the relations
+        \begin{equation*}
+            b_{\mathbf{k}}^{\dagger}=\frac{1}{\sqrt{L^3}} \int_{L^3} d^3 \mathbf{r} \mathrm{e}^{i 2 \pi \mathbf{k} \cdot \mathbf{r} / L} a^{\dagger}(\mathbf{r}), \quad b_{\mathbf{k}}=\frac{1}{\sqrt{L^3}} \int_{L^3} d^3 \mathbf{r} \mathrm{e}^{-i 2 \pi \mathbf{k} \cdot \mathbf{r} / L} a(\mathbf{r}), \tag{2}
+        \end{equation*}
+        where $\mathbf{k}=\left(k_x, k_y, k_z\right), k_x, k_y, k_z=0, \pm 1, \pm 2, \ldots$ is an integer vector. Find the corresponding canonical commutation (or anti-commutation) relations for $b_{\mathbf{k}}$ and $b_{\mathbf{k}}^{\dagger}$ if the particles are bosons or fermions. You should show the important steps in your derivation.
+\end{itemize}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    * Consider identical free bosons moving in a periodic cubical box of size $L$. The Fock space approach to this problem would be to define $a(\mathbf{r})$ and $a^{\dagger}(\mathbf{r})$ where $\mathbf{r}$ is the position of the particle. The Hamiltonian of the problem would be
+    $$
+    H=\int d^3 \mathbf{r} a^{\dagger}(\mathbf{r})\left(-\frac{\hbar^2}{2 m} \nabla^2\right) a(\mathbf{r})
+    $$
+    \begin{itemize}
+        \item[(a)] Show that the eigenvectors of $H$ in the Fock space are the occupation number states $|\{n(\mathbf{k})\}\rangle$ in the momentum space, constructed with creation and annihilation operators
+            $$
+            b_{\mathbf{k}}^{\dagger}=\int_{L^3} d^3 \mathbf{r} \frac{1}{\sqrt{L^3}} e^{i \mathbf{k} \cdot \mathbf{r}} a^{\dagger}(\mathbf{r}),
+            \qquad 
+            b_{\mathbf{k}}=\int_{L^3} d^3 \mathbf{r} \frac{1}{\sqrt{L^3}} e^{-i \mathbf{k} \cdot \mathbf{r}} a(\mathbf{r})
+            $$
+            where $\mathbf{k}=\left(k_x, k_y, k_z\right)$ with $k_x, k_y, k_z=(0, \pm 1, \pm 2, \ldots)(2 \pi / L)$. Find the corresponding energy eigenvalues $E(\{n(\mathbf{k})\})$.
+
+            \begin{callout}{Solution:}
+
+                Any Hamiltonian that is non-interacting can be written in fock space as:
+                $$H_{0}=\sum_{\{ \sigma,\sigma' \}}\braket{ \{ \sigma  \}| \hat{H}|\{ \sigma' \}}a^{\dagger}_{\{ \sigma \}}a_{\{ \sigma' \}}$$
+
+                I will specifically choose the eigenbasis $\{ \mathbf{k} \}$. By definition of an eigenbasis,
+                \begin{align*}
+                    \braket{ \{ \mathbf{k} \} | \hat{H} |\{ \mathbf{k}' \}} &=\epsilon \delta_{\{ \mathbf{k} \},\{ \mathbf{k}' \}}
+                \end{align*}
+
+                I will also specifically say that the ladder operators associated with this free boson fock space are $b_{\{\mathbf{k}\}}^\dagger$ and $b_{\{\mathbf{k}\}}$.
+                \begin{align*}
+                    H_{0}&=\sum_{\{ \mathbf{k},\mathbf{k}' \}} \epsilon_{\mathbf{k}} \delta_{\{ \mathbf{k} \},\{ \mathbf{k}' \}} b_{\{\mathbf{k}\}}^\dagger b_{\{\mathbf{k}'\}} \\
+                         &=\sum_{\{ \mathbf{k} \}} \epsilon_{\mathbf{k}} b_{\{\mathbf{k}\}}^\dagger b_{\{\mathbf{k}'\}}
+                \end{align*}
+
+                Plane waves are eigenfunctions of the given $\hat{H}= - \frac{\hbar^2}{2m}\nabla^2$,
+                \begin{align*}
+                    - \frac{\hbar^{2}}{2m}\nabla^{2} \left( \frac{1}{\sqrt{L^{3}}} e^{i \mathbf{k} \cdot \mathbf{r}}  \right) = \frac{\hbar^{2} k^{2}}{2m} \left( \frac{1}{\sqrt{L^{3}}} e^{i \mathbf{k}\cdot \mathbf{r}}  \right)
+                \end{align*}
+
+                So eigenvalues are 
+                \begin{align*}
+                    \epsilon_{\mathbf{k}} = \frac{\hbar^{2} k^{2}}{2m}
+                \end{align*}
+
+                The same conclusion could be met by making an inverse transformation. A change of basis in Fock space is accomplished by 
+                \begin{align*}
+                    b^{\dagger}_{\{\alpha\}}= \sum_{\{\sigma\}} f(\{\alpha\}, \{\sigma\}) a^{\dagger}_{\{\sigma\}}
+                     &&b_{\{\alpha\}}= \sum_{\{\sigma\}} f^{*}(\{\alpha\}, \{\sigma\}) a^{\dagger}_{\{\sigma\}}
+                \end{align*}
+
+                And in the position-momentum case this looks like
+                \begin{align*}
+                    a(\mathbf r) = \sum_{\mathbf k} \phi_{\mathbf k}^*(\mathbf r)\, b_{\mathbf k}^\dagger, 
+                    &&a^\dagger(\mathbf r) = \sum_{\mathbf k} \phi_{\mathbf k}(\mathbf r)\, b_{\mathbf k}
+                \end{align*}
+
+                So,
+                \begin{align*}
+                    H &= \int d^3 \mathbf{r}\, a^{\dagger}(\mathbf{r})\left(-\frac{\hbar^2}{2 m} \nabla^2\right) a(\mathbf{r})\\
+                      &= \int d^3 \mathbf{r}\, \sum_{\mathbf k} \phi_{\mathbf k}(\mathbf r) b_{\mathbf k}
+                    \left(-\frac{\hbar^2}{2 m} \nabla^2\right) 
+                    \sum_{\mathbf k'} \phi_{\mathbf k'}^*(\mathbf r)\, b_{\mathbf k'}^{\dagger} \\
+                      &= \sum_{\mathbf k, \mathbf k'} \epsilon_{\mathbf k} b_{\mathbf k}b_{\mathbf k'}^\dagger 
+                    \int d^3 \mathbf{r}\, \phi_{\mathbf k}(\mathbf r)\, \phi_{\mathbf k'}^*(\mathbf r) \\
+                      &= \sum_{\mathbf k} \epsilon_{\mathbf k} b_{\mathbf k}b_{\mathbf k'}^\dagger \delta_{kk'} 
+                \end{align*}
+
+                For any fock space of non-interacting particles,
+                $$H\ket{ \{ n_{\{ \lambda \}} \}} =E(\{ n_{\{ \lambda \}} \})\ket{n_{\{ \lambda \}}} $$
+
+                Where $E(\{ n_{\{ \lambda \}} \})$ is the total energy, and is described by a sum over single particle energies:
+                $$E(\{ n_{\{ \lambda \}} \}) = \sum_{\{ \lambda \}}\epsilon_{\{ \lambda \}}n_{\{ \lambda \}}$$
+
+                So for this case we're taking $\epsilon_{\mathbf{k}}$ to be for plane waves whic makes total energy a sum 
+                \begin{align*}
+                    E(\{ n_{\mathbf{k}} \}) = \sum_{\mathbf{k}} \frac{\hbar^{2}k^{2}}{2m} n(\mathbf{k})
+                \end{align*}
+
+            \end{callout}
+
+        \newpage
+        \item[(b)] Find the statistical thermal average occupation number
+            $$ \langle n(\mathbf{k})\rangle=\operatorname{Tr}\left(b_{\mathbf{k}}^{\dagger} b_{\mathbf{k}} e^{-\beta H}\right) / \operatorname{Tr}\left(e^{-\beta H}\right) $$
+            Do you recognize the answer from statistical mechanics?
+            \begin{callout}{Solution:}
+
+                The trace, in this case, refers to summing over diagonal elements which is the same as summing over all the elements,
+                \begin{align*}
+                    \text{Tr} \left( b_{\mathbf k}^{\dagger} b_{\mathbf k} e^{-\beta H} \right) &= \sum_{n(\mathbf{k})} b_{\mathbf k}^{\dagger} b_{\mathbf k} e^{-\beta H} \\
+                    \text{Tr} \left( e^{-\beta H} \right) &= \sum_{n(\mathbf{k})} e^{-\beta H}
+                \end{align*}
+
+                remembering that for any fock space of non-interacting particles (lecture 4),
+                $$H\ket{ \{ n_{\{ \lambda \}} \}} =\epsilon(\{ n_{\{ \lambda \}} \})\ket{n_{\{ \lambda \}}} $$
+
+                The treatment of chained ladder operators is also handled by (lecture 3):
+                \begin{align*}
+                    a_{\sigma}^{\dagger}a_{\sigma}\ket{n} = n\ket n
+                \end{align*}
+
+                it is possible to write this exponential term as
+                \begin{align*}
+                    e^{-\beta H} &= e^{-\beta \sum_{\mathbf{k}}\epsilon_{\mathbf{k}}{n(\mathbf{k})}} \\ 
+                                 &= e^{-\beta \left[
+                                         \big( \epsilon_{\mathbf{k}=1}{n(\mathbf{k}=1)} \big) 
+                                         + \big( \epsilon_{\mathbf{k}=2}{n(\mathbf{k}=2)} \big) 
+                                         + \big( \epsilon_{\mathbf{k}=3}{n(\mathbf{k}=3)} \big) 
+                                         + \dots
+                                 \right] } \\
+                                 &= \prod_{\mathbf{k}} e^{-\beta \epsilon_{\mathbf{k}} {n(\mathbf{k})}}
+                \end{align*}
+
+                so the expression becomes
+                \begin{align*}
+                    \braket{n(\mathbf{k})} &= \frac{\sum_{n(\mathbf{k})} b_{\mathbf k}^{\dagger} b_{\mathbf k} e^{-\beta H}} {\sum_{n(\mathbf{k})} e^{-\beta H}} \\ 
+                                           &= \frac{\sum_{n(\mathbf{k})} \prod_{\mathbf{k}} n e^{-\beta \epsilon_{\mathbf k}n(\mathbf{k})} }{\sum_{n(\mathbf{k})} \prod_{\mathbf{k}} e^{-\beta \epsilon_{\mathbf k}n(\mathbf{k})} } \\ 
+                                           &= \frac{\sum_{n(\mathbf{k})} n e^{-\beta \epsilon_{\mathbf k}n(\mathbf{k})} }{\sum_{n(\mathbf{k})} e^{-\beta \epsilon_{\mathbf k}n(\mathbf{k})} } \\ 
+                                           &= \frac{d}{dx} \ln (1-e^{-x}) &&x=\beta \epsilon_{\mathbf{k}} \\
+                                           &= \frac{1}{e^{\beta \epsilon_{\mathbf{k}}}-1}
+                \end{align*}
+
+                This is the bose-einstein distribution.
+
+            \end{callout}
+        \item[(c)] Repeat parts (a) and (b) of the problem if the particles were free fermions.
+            \begin{callout}{Solution:}
+
+                (a) should remain the same, I believe? Fermions cap bound the sum because $n\in\{0,1\}$. 
+                so the expression becomes
+                \begin{align*}
+                    \braket{n(\mathbf{k})} &= \frac{\sum_{n(\mathbf{k})} b_{\mathbf k}^{\dagger} b_{\mathbf k} e^{-\beta H}} {\sum_{n(\mathbf{k})} e^{-\beta H}} \\ 
+                                           &= \frac{\sum_{n(\mathbf{k})} \prod_{\mathbf{k}} n e^{-\beta \epsilon_{\mathbf k}n(\mathbf{k})} }{\sum_{n(\mathbf{k})} \prod_{\mathbf{k}} e^{-\beta \epsilon_{\mathbf k}n(\mathbf{k})} } \\ 
+                                           &= \frac{\sum_{n(\mathbf{k})=0}^{1} n e^{-\beta \epsilon_{\mathbf k}n(\mathbf{k})} }{\sum_{n(\mathbf{k})=0}^{1} e^{-\beta \epsilon_{\mathbf k}n(\mathbf{k})} } \\ 
+                                           &= \frac{0 + e^{-\beta \epsilon_{\mathbf{k}}}}{1 + e^{-\beta \epsilon_{\mathbf{k}}}} \\
+                                           &= \frac{1}{e^{\beta \epsilon_{\mathbf{k}}}+1}
+                \end{align*}
+                
+                and this is the fermi-dirac distribution.
+
+            \end{callout}
+    \end{itemize}
+\end{homeworkProblem}

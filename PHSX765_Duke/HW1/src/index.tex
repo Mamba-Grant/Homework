@@ -1,0 +1,570 @@
+\begin{homeworkProblem}
+    \textbf{Unitary transformations: Position vs. Momentum basis.}
+
+    Constructing unitary transformations between position and momentum spaces.
+
+    \begin{enumerate}[(a)]
+        \item Consider a particle on a circle of length $L$. Define the particle's position eigenstates as $|x\rangle$ ($-L/2 < x \leq L/2$) and assume they form a complete orthonormal basis, i.e.,
+            \[ \langle x|x'\rangle = \delta(x-x'), \]
+            \[ \int_{-L/2}^{L/2} |x\rangle\langle x|\, \mathrm{d}x = I. \]
+
+            Construct the complete orthonormal basis of discrete momentum eigenstates,
+            \[ |p_k\rangle = \int_{-L/2}^{L/2} \mathrm{d}x\, U(p_k,x)|x\rangle, \]
+
+            where
+            \[ p_k = \frac{2\pi k\hbar}{L}, \qquad k=0,\pm1,\pm2,\ldots, \]
+
+            such that
+            \[ \langle p_k|p_{k'}\rangle = \delta_{k,k'}. \]
+
+            The "matrix" $U(p_k,x)$ can be viewed as the unitary transformation that implements the change of basis. Also find the inverse transformation $V(x,p_k)$ such that
+            \[ |x\rangle = \sum_k V(x,p_k)|p_k\rangle. \]
+
+            \begin{callout}{Solution:}
+
+                If any discrete basis $\{ \ket{n} \}$ is orthonormal and complete, any state can be reached by:
+                \begin{align*}
+                    \ket{\psi} = \sum_n c_n \ket{n}, \qquad c_n = \braket{n|\psi}
+                \end{align*}
+
+                \begin{itemize}
+                    \item And I will note as a reminder to myself that orthonormality is $\braket{n|n'}=\delta_nn'$, and completeness is $\sum_n \ket{n}\bra{n} = I$.
+                    \item As another note to myself, this is the same as projection $\ket{\psi} = \sum_n \ket{n}\braket{n|\psi}$.
+                    \item It's well known that $\braket{x|\hat{p}|\psi} = -i\hbar \frac{\partial}{\partial x} \braket{x|\psi}$
+                \end{itemize}
+                \textit{(Of course, for continuous states it's an integral instead of sum)}
+
+                It follows that we want to express
+                \begin{align*}
+                    U(p_k, x) = \braket{x|p_k}, \qquad V(x, p_k) = \braket{p_k|x}
+                \end{align*}
+
+                for $\ket{p_k}$ to be a momentum eigenstate, we must have
+                \begin{align*}
+                    \hat{p} \ket{p_k} &= p_k\ket{p_k} \\
+                    \braket{x|\hat{p}|p_k} &= p_k\braket{x|p_k} \\
+                    \hat{p}\underbrace{\braket{x|p_k}}_{=U(p_k, x)} &= p_k\underbrace{\braket{x|p_k}}_{=U(p_k, x)} \\
+                    -i \hbar \frac{\partial U(p_k, x)}{\partial x} &= p_k U(p_k, x) \\
+                    U(p_k, x) &= \frac{1}{\sqrt{A}} e^{i p_k x / \hbar}
+                \end{align*}
+                \textit{Where, $A$ is something like $\braket{p_k|p_k'}$}
+
+                And the normalization constant is 
+                \begin{align*}
+                    \braket{p_k | p_k'} &= \int_{-\frac{L}{2}}^{\frac{L}{2}}  \int_{-\frac{L}{2}}^{\frac{L}{2}}\,dx\,dx'
+                    \, U^*(p_k, x)U(p_k', x) \\
+                                        &= \frac{1}{A} \int_{-\frac{L}{2}}^{\frac{L}{2}}  \int_{-\frac{L}{2}}^{\frac{L}{2}}\,dx\,dx'
+                                        \, e^{ip_k x / \hbar} e^{-ip_k' x / \hbar} \braket{x|x'} \\
+                                        &= \frac{1}{A} \int_{-\frac{L}{2}}^{\frac{L}{2}} \,dx
+                                        \, e^{i(p_k-p_k') x / \hbar} \\
+                \end{align*}
+                The normalization condition is $p_k - p_k' = 0$, otherwise the integral blows up. When it's zero, normalization is fulfilled by $A=L$.
+
+                The problem says when this is normalized, but I'd like to be explicit for the sake of review:
+                \begin{align*}
+                &= \frac{1}{A} \frac{e^{i(p_k-p_k') x / \hbar}}{i(p_k - p'_k) / \hbar}\Bigg|_{x = - L / 2}^{x = L / 2}\\
+                &= \frac{1}{A} \frac{e^{i(p_k-p_k') (L / 2) / \hbar} - e^{i(p_k-p_k') (- L / 2) / \hbar}}{i(p_k - p'_k) / \hbar} \\
+                &= \frac{L}{A} \text{sinc} \left( \frac{(p_k - p_k')L}{2\hbar} \right)
+                \end{align*}
+
+                And this vanishes when:
+                \begin{align*}
+                    \frac{(p_k-p_k')L}{2\hbar} = n\pi
+                \end{align*}
+
+                so, 
+                \begin{align*}
+                    p_k-p_k' = \frac{2\pi\hbar n}{L}
+                \end{align*}
+
+                In summary,
+                $$\boxed{U(p_k, x) = \frac{1}{\sqrt{L}} e^{ip_k x / \hbar}, \qquad V(p_k, x) = U(p_k, x)^* = \frac{1}{\sqrt{L}} e^{-ip_k x / \hbar}}$$
+
+
+            \end{callout}
+
+        \item Consider a particle on an infinite lattice whose positions are labeled by $x_n=na$. Assume the corresponding position eigenkets $|n\rangle$ form a complete orthonormal basis, i.e.,
+            \[ \langle n|n'\rangle = \delta_{n,n'}, \]
+            \[ \sum_n |n\rangle\langle n| = I. \]
+
+            Construct the complete orthonormal basis of momentum eigenstates,
+            \[ |p\rangle = \sum_n U(p,n)|n\rangle, \]
+
+            where
+            \[ -\frac{\pi\hbar}{a} < p \leq \frac{\pi\hbar}{a} \]
+
+            such that
+            \[ \langle p|p'\rangle = \delta(p-p'). \]
+
+            The "matrix" $U(p,n)$ can be viewed as the unitary transformation that implements the change of basis. Also find the inverse transformation $V(n,p)$ such that
+            \[ |n\rangle = \int_{-\pi\hbar/a}^{\pi\hbar/a} \mathrm{d}p\, V(n,p)|p\rangle. \]
+            \begin{callout}{Solution:}
+
+                This is slightly different than (a) in the sense that it's periodic in a zone and not over a length $L$. We'd get a similar $U$, now just replacing $x\to n a$. 
+                $$\boxed{U(p, n) = \frac{1}{\sqrt{A}} e^{ip n a / \hbar}}$$
+
+           The other important distinction is that $n$ is discrete so $\ket{p}$ must be written as a sum normalized when,
+                \begin{align*}
+                    A &= \braket{p|p'} \\
+                      &= \sum_{n=-\infty}^{\infty} \sum_{n'=-\infty}^{\infty}
+                    e^{ip n a / \hbar} e^{-ip' n a / \hbar} \braket{n|n'} \\
+                    &= \sum_{n=-\infty}^{\infty} 
+                    e^{i (p-p') n a / \hbar}
+                \end{align*}
+
+                I think that switching $V=U^\dagger$ to get an integral and evaluate $\ket{n}$ instead of $\ket{k}$ is not valid, since that's doing unknown things to the bounds if we weren't told this. Some googling tells me this is the Poisson sum which is obviously well known since there is such a thing as the discrete Fourier transform. This also interestingly nets the Dirac comb.
+                \begin{align*}
+                    \sum_{n=-\infty}^{\infty} e^{iqn} = 2\pi \sum_{m=-\infty}^{\infty} \delta(q-2\pi m), \qquad q \equiv \frac{(p'-p)a}{\hbar}
+                \end{align*}
+
+                Because 
+                \begin{align*}
+                    - \frac{\pi \hbar}{a}< p \leq \frac{\pi \hbar}{a}
+                \end{align*}
+
+                only $m=0$ need be considered. Thus, it's normalized by
+                $$A = \frac{2\pi a}{\hbar}$$
+
+                Practically speaking we can jump between conjugate spaces by a fourier transform, but more rigorously,
+                $$\braket{n|p} = \braket{p|n}^* \implies \boxed{V(n,p) = \sqrt{\frac{a}{2\pi\hbar}} e^{-ipna / \hbar}}$$
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+
+\newpage
+\begin{homeworkProblem}
+    \textbf{Particle on a circular lattice}
+
+    Let $|\phi_n\rangle$, $n=0,1,2,\ldots,N-1$ define the position eigenstates of a particle on a circle where
+    \[
+        \phi_n = \frac{2\pi n}{N}
+    \]
+    label the angles the particle can be located at. Assume these states form a complete orthonormal basis.
+
+    \begin{enumerate}[(a)]
+        \item Define the lattice translation operator
+            \[
+                T|\phi_n\rangle = |\phi_{n+1}\rangle, \qquad T|\phi_{N-1}\rangle = |\phi_0\rangle,
+            \]
+            which is the natural definition if the wave-functions are periodic. Show that
+            \[
+                |k\rangle = \frac{1}{\sqrt{N}} \sum_n e^{-i\phi_n k}|\phi_n\rangle
+            \]
+            are eigenkets of $T$. Show that the corresponding eigenvalues can be expressed as $\exp(-ip_k)$ where $p_k$ can be defined as the lattice momentum. Find the allowed values of $p_k$.
+            \begin{callout}{Solution:}
+
+                This is the same as being asked to prove that the translation operator is still the infinitesimal generator of the momentum operator on the lattice.
+
+                \begin{align*}
+                    T\ket{k} &= \frac{1}{\sqrt{N}} \sum_n^{N-1} e^{-i\phi_n k } T\ket{\phi_n} \\ 
+                             &= \frac{1}{\sqrt{N}} \sum_n^{N-1} e^{-i\cancelto{2\pi n / N}{\phi_n} k } \ket{\phi_{n+1}} \\ 
+                             &= \frac{1}{\sqrt{N}} \sum_{n'=0}^{N-1} e^{-i 2 \pi (n'-1) k / N } \ket{\phi_{n'}} &&\text{(Let $n'=n+1$)} \\ 
+                             &= \left( e^{i 2 \pi k / N } \right)\left( \frac{1}{\sqrt{N}} \right) \sum_{n'=0}^{N-1} e^{-i 2 \pi n' k / N } \ket{\phi_{n'}} \\ 
+                             &=  e^{i 2 \pi k / N } \ket{k}
+                \end{align*}
+
+                So, $\ket{k}$ is an eigenket of $T$ with eigenvalue $e^{2\pi i k / N}=e^{-ip_k}$ if 
+                \begin{align*}
+                    \boxed{p_k=-\frac{2\pi k}{N}}
+                \end{align*}
+
+                To continue and find the allowed $k$, it's good to remember that the normalization condition $\braket{k|k'}=$ should be something finite, which is a constraint. Let $n'$ now represent a dummy index:
+                \begin{align*}
+                    S &= \sum_n \sum_n' e^{-i\phi_n k} e^{i\phi_n' k} \braket{\phi_n|\phi_n'} \\
+                      &= \sum_n e^{-i(\phi_n-\phi_n') k} \\
+                      &= \sum_n e^{-2\pi i(n-n') k / N} \\
+                \end{align*}
+
+                So values ought to be integers, but it's also obvious that there's a wraparound, given the circular nature,
+                \begin{align*}
+                    e^{-2i\pi n (k+N) / N} = e^{-2i\pi nk / N} e^{-2i\pi n} = e^{-2 i \pi n k}
+                \end{align*}
+
+                So,
+                $$p_k = \text{exp}\left( \frac{i2\pi k}{N} \right); \qquad k=0,1,2,\dots,N-1$$
+            \end{callout}
+
+        \item Show that while $T$ is not Hermitian, it is unitary. What are the eigenvalues and eigenkets of $T^\dagger$, which can be viewed as a backward translation operator?
+
+            \begin{callout}{Solution:}
+
+                A unitary operator is one that satisfies:
+                \begin{align*}
+                    UU^\dagger = U^\dagger U = I
+                \end{align*}
+
+                Or equivalently
+                \begin{align*}
+                    UU^{-1} = I
+                \end{align*}
+
+                We can expect that $T^\dagger$ will act in the other direction, given the nature of the translation operator:
+                $$T^\dagger\ket{\phi_n} = \ket{\phi_{n-1}}$$
+
+                Then,
+                \begin{align*}
+                    \braket{\phi_n|TT^\dagger|\phi_n'} &\stackrel{?}{=} \braket{\phi_n|T^\dagger T|\phi_n'} \\
+                    \braket{\phi_n|T|\phi_{n-1}'} &\stackrel{?}{=} \braket{\phi_nT^\dagger|\phi_{n+1}'} \\
+                    \braket{\phi_n|\phi_{n}'} &= \braket{\phi_n|\phi_{n}'}
+                \end{align*}
+
+                And because $TT^\dagger\ket{\phi_n} = \ket{\phi_n}$, and $\ket{\phi_n}$ diagonalizes a matrix, the translation operator is unitary and not just normal. Since it's unitary it will have the same eigenkets and eigenvalues with conjugate sign:
+                \begin{align*}
+                    \boxed{p_k = \text{exp}{\left(- \frac{i2\pi k}{N} \right)}
+}
+                \end{align*}
+
+                \textit{One could also just say both chains return to the original state.}
+
+            \end{callout}
+
+            \newpage
+        \item Redefine the translation operator as
+            \[
+                T|\phi_n\rangle = |\phi_{n+1}\rangle, \qquad T|\phi_{N-1}\rangle = -|\phi_0\rangle,
+            \]
+            which is the natural definition with anti-periodic boundary conditions. Find the eigenstates and eigenvalues of $T$ in this case. Find the allowed lattice momentum $p_k$.
+            \begin{callout}{Solution:}
+
+                I would imagine the correct way to go about this is to consider what happens to the summation limits first. For all $n$ except $N-1$, we could get the same answer as (a). This necessitates writing a sum plus the last term. If I'm thinking in terms of the matrix, it's like the last diagonal term has a flipped sign.
+                \begin{align*}
+                    T\ket{k} &= \frac{1}{\sqrt{N}} \sum_n^{N-1} e^{-i\phi_nk}T\ket{\phi_n} \\
+                    \sqrt{N} T\ket{k} &= \left[\sum_n^{N-2} e^{-i\phi_nk}T\ket{\phi_n} \right] + e^{-i\phi_{N-1}k}T\ket{\phi_{N-1}} \\
+                                      &= \left[\sum_n^{N-2} e^{-i\phi_{n}k}\ket{\phi_{n+1}} \right] - e^{-i\phi_{N-1}k}\ket{\phi_{0}}
+                \end{align*}
+
+                % In the case $n'=n+1$
+                % \begin{align*}
+                %     \sqrt{N} T \ket{k} &= \sum_n^{N-2} e^{-i\phi_{n-1}k}\ket{\phi_{n'}} - e^{-i\phi_{N-1}k}\ket{\phi_{0}} \\
+                %   \sqrt{N} T \ket{k} &= (e^{2\pi i k / N}) \sum_{n'=0}^{N-2} e^{-2i\pi n' k / N}\ket{\phi_{n'}} - e^{-i\phi_{N-1}k}\ket{\phi_{0}} \\
+                %   \sqrt{N} T \ket{k} &= (e^{2\pi i k / N}) \sum_{n'=0}^{N-2} e^{-2i\pi n' k / N}\ket{\phi_{n'}} - e^{-i\phi_{N-1}k}\ket{\phi_{0}} \\
+                %   T \ket{k} &= e^{2\pi i k / N} \ket{k}
+                % \end{align*}
+
+                In the case $n=0$
+                \begin{align*}
+                  &= e^{-i\phi_{0}k}\ket{\phi_{1}} - e^{-i\phi_{N-1}k}\ket{\phi_{0}} \\
+                  &= \cancel{e^{-i (2\pi (0) ) k / N}\ket{\phi_{1}}} - e^{-i\phi_{N-1}k}\ket{\phi_{0}} \\
+                  &= - e^{-i 2\pi (N-1) k / N}\ket{\phi_{0}}
+                \end{align*}
+
+                We know this must be the same as the other end,
+                \begin{align*}
+                    e^{2 i \pi k / N} &= - e^{-i 2\pi k} e^{i 2\pi k / N} &&\text{(First and last terms)} \\
+                    \implies -1 &= e^{-2 i \pi k} 
+                \end{align*}
+
+                $k$ that satisfy this are $k=m+ \frac{1}{2}$ for $m=0,1,2,3,\dots$.
+
+                Thus, $p_k$ are:
+                \begin{align*}
+                    \boxed{- \frac{2\pi k}{N}, \qquad k=m+\frac{1}{2}}
+                \end{align*}
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    \textbf{Free Particle on a Circular Lattice}
+
+    We learned that the Hamilton operator of a free particle on a circular lattice with periodic boundary conditions can be described through the Hamilton operator
+    \[
+        H_{n',n} = \epsilon \left( 2\delta_{n',n} - \delta_{n'+1,n} - \delta_{n'-1,n} \right),
+    \]
+    where
+    \[
+        \epsilon = \frac{N^2\hbar^2}{8\pi^2mR^2}
+    \]
+    and $n,n' = 0,1,2,\ldots,N-1$ such that $n,n'=N$ is the same site as $n,n'=0$.
+
+    \begin{enumerate}[(a)]
+        \item Compute numerically (using Mathematica or another convenient tool) the eigenvalues and eigenvectors of $H$ for $N=10$ (i.e., a $10\times10$ matrix). Note that the eigenvalues are obtained from solving the eigenvalue equation:
+            \[
+                \sum_n H_{n',n}\psi_n^{(k)} = \epsilon_k^L\psi_{n'}^{(k)}.
+            \]
+            Verify these are correct after solving part (b) below.
+
+            \begin{callout}{Solution:}
+
+                \footnotesize{
+                    $$\epsilon_k^L = \epsilon\begin{bmatrix} 0.0000 & 0.3820 & 0.3820 & 1.3820 & 1.3820 & 2.6180 & 2.6180 & 3.6180 & 3.6180 & 4.0000 \end{bmatrix}^T$$
+
+                    $$\ket{\psi_n^{(k)}} = \epsilon\begin{bmatrix}
+                        0.3162 & -0.4423 & 0.0663 & -0.4472 & 0.0000 & 0.4472 & 0.0053 & 0.0019 & 0.4472 & 0.3162 \\
+                        0.3162 & -0.3968 & -0.2064 & -0.1382 & 0.4253 & -0.1331 & -0.4269 & 0.2614 & -0.3629 & -0.3162 \\
+                        0.3162 & -0.1997 & -0.4002 & 0.3618 & 0.2629 & -0.3649 & 0.2586 & -0.4247 & 0.1400 & 0.3162 \\
+                        0.3162 & 0.0736 & -0.4411 & 0.3618 & -0.2628 & 0.3587 & 0.2671 & 0.4259 & 0.1364 & -0.3162 \\
+                        0.3162 & 0.3189 & -0.3136 & -0.1382 & -0.4253 & 0.1432 & -0.4237 & -0.2644 & -0.3607 & 0.3162 \\
+                        0.3162 & 0.4423 & -0.0663 & -0.4472 & 0.0000 & -0.4472 & -0.0053 & 0.0019 & 0.4472 & -0.3162 \\
+                        0.3162 & 0.3968 & 0.2064 & -0.1382 & 0.4253 & 0.1331 & 0.4269 & 0.2614 & -0.3629 & 0.3162 \\
+                        0.3162 & 0.1997 & 0.4002 & 0.3618 & 0.2629 & 0.3649 & -0.2586 & -0.4247 & 0.1400 & -0.3162 \\
+                        0.3162 & -0.0736 & 0.4411 & 0.3618 & -0.2628 & -0.3587 & -0.2671 & 0.4259 & 0.1364 & 0.3162 \\
+                        0.3162 & -0.3189 & 0.3136 & -0.1382 & -0.4253 & -0.1432 & 0.4237 & -0.2644 & -0.3607 & -0.3162
+                \end{bmatrix}$$}
+
+                \end{callout}
+
+                \newpage
+            \item By noting that
+                \[
+                    H \equiv \epsilon\left(2 - T^\dagger - T\right),
+                \]
+                where $T$ is the translation operator defined earlier, solve for the eigenvalues $\epsilon_k^L$ and eigenfunctions $\psi_n^{(k)}$ so that the eigenkets are defined by
+                \[
+                    |\epsilon_k^L\rangle = \sum_n \psi_n^{(k)}|\phi_n\rangle
+                \]
+                for an arbitrary $N$.
+                \begin{callout}{Solution:}
+
+                    \begin{align*}
+                        H\ket{\epsilon_k^{L}} &= \epsilon \sum_n (2 - T^\dagger - T) \psi_n^{(k)}\ket{\phi_n} \\
+                                              &= \epsilon \sum_n 
+                                              \left( 2\psi_n^{(k)}\ket{\phi_n} \right)
+                                              - \left( T^\dagger\psi_n^{(k)}\ket{\phi_n} \right) 
+                                              - \left( T\psi_n^{(k)}\ket{\phi_n} \right) \\
+                                              &= \epsilon \sum_n\left(2 \psi_n^{(k)}-\psi_{n+1}^{(k)}-\psi_{n-1}^{(k)}\right)\ket{\phi_n}
+                    \end{align*}
+
+                    Before I justified the form of the eigenket for a particle on a circle, 
+                    $$\psi_n^{k} = e^{-2\pi i n k / N}$$
+
+                    so,
+                    \begin{align*}
+                        &= 2\psi_n^{(k)} - e^{-i 2 \pi k (n+1) / N } - e^{-i 2 \pi k (n-1) /N} \\
+                        &= 2\psi_n^{(k)} - e^{-i 2 \pi k / N }e^{-i 2 \pi k n / N } - e^{i 2 \pi k /N}e^{-i 2 \pi k n /N} \\
+                        &= 2\psi_n^{(k)} - e^{-i 2 \pi k / N }\psi_n^{(k)} - e^{i 2 \pi k /N}\psi_n^{(k)} \\ 
+                        &= \psi_n^{(k)} \left( 2 - e^{-i 2 \pi k / N } - e^{i 2 \pi k /N} \right)
+                    \end{align*}
+
+                    The eigenvalue problem becomes:
+                    \begin{align*}
+                        H\ket{\epsilon_k^{L}} = \epsilon \sum_n \left( 2 - e^{-i 2 \pi k / N } - e^{i 2 \pi k /N} \right) \psi_n^{(k)}\ket{\phi_n} \\
+                        H\ket{\epsilon_k^{L}} = \epsilon\left( 2 - e^{-i 2 \pi k / N } - e^{i 2 \pi k /N} \right) \sum_n \psi_n^{(k)}\ket{\phi_n} \\
+                        H\ket{\epsilon_k^{L}} = \epsilon\left( 2 - e^{-i 2 \pi k / N } - e^{i 2 \pi k /N} \right) \ket{\epsilon_k^{L}} \\
+                    \end{align*}
+
+                    So the energy eigenvalues are the constant term 
+                    \begin{align*}
+                        \epsilon_k^{L} &= \epsilon \left( 2 - e^{ip_x} - e^{-ip_x} \right) \\
+                                       &= \epsilon (2 - 2\cos p_k)
+                    \end{align*}
+
+                    and has computed values:
+                    \footnotesize{
+                        $$\epsilon_k^{L} = \epsilon \begin{bmatrix} 0.0 & 0.3820 & 0.3820 & 1.3820 & 1.3820 & 2.6180 & 2.6180 & 3.6180 & 3.6180 & 4.0 \end{bmatrix}^T$$
+                    }
+
+
+                \end{callout}
+        \end{enumerate}
+    \end{homeworkProblem}
+
+
+    \newpage
+    \begin{homeworkProblem}
+        \textbf{Particle in a Potential on a Circle}
+
+        Consider the Hamilton operator of a particle on a circle given by
+        \[
+            H = \frac{L_{\phi_1}^2}{2mR^2} + m\omega^2R^2(1-\cos\phi).
+        \]
+
+        Using lattice regularization, compute numerically the lowest three eigenvalues (up to 1\% accuracy) when
+        \[
+            \lambda = \frac{m\omega R^2}{\hbar} = 1,\;10,\;50.
+        \]
+
+        What do you expect your answers will converge to in the limit $\lambda \to \infty$?
+        \begin{callout}{Solution:}
+
+            Rightmost term can be parametrized as $\phi \to n \Delta \phi$, remembering that $\Delta \phi \equiv \frac{2\pi}{N}$ and $n=0,1,2,\dots,N-1$.
+
+            I'll label the left and right of the sum $\hat{U}$ and $\hat{V}$, respectively
+            $$H = \underbrace{\frac{L_{\phi_1}^2}{2mR^2}}_{\hat{U}} + \underbrace{m\omega^2R^2(1-\cos\phi)}_{\hat{V}}$$
+
+            Easy enough to write as a matrix:
+            \begin{align*}
+                \braket{\phi_n | \hat{V} | \phi_n'} &= m \omega^{2} R^{2}(1-\cos\phi) \delta(\phi-\phi') \\ 
+                                                    &= \hbar \lambda \left( 1 - \cos \left[ \frac{2\pi n}{N} \right] \right) \delta(\phi-\phi')
+            \end{align*}
+
+            Result:
+            $$ \lambda = 1 \implies \begin{bmatrix} 0.46491035 & 1.34325956 & 1.85353102 \end{bmatrix} $$
+            $$ \lambda = 10 \implies \begin{bmatrix} 0.49655291 & 1.48270779 & 2.45486992 \end{bmatrix} $$
+            $$ \lambda = 50 \implies \begin{bmatrix} 0.49783372 & 1.48917185 & 2.47185580 \end{bmatrix} $$
+
+            Appears to converge to $\frac{n}{2}$, where $n=1, 3, 5, \dots$.
+
+            \vspace{1em}
+
+        \end{callout}
+    \end{homeworkProblem}
+
+
+    \newpage
+    \begin{homeworkProblem}
+        \textbf{Two interacting particles on a circle}
+
+        Consider the Hamilton operator for two distinguishable particles on a circle given by
+        \[
+            H = \frac{L_{\phi_1}^2}{2mR^2} + \frac{L_{\phi_2}^2}{mR^2} + m\omega^2R^2 \left( (1-\cos\phi_1) + (1-\cos\phi_2) + (1-\cos(\phi_1-\phi_2)) \right).
+        \]
+
+        Using lattice regularization, compute numerically the ground state (up to 1\% accuracy) when
+        \[
+            \frac{m\omega R^2}{\hbar} = 1.
+        \]
+        \begin{callout}{Solution:}
+
+            $$\hat{U_{\phi_1}} + 2 \hat{U_{\phi_2}} + \hat{V}_{\phi_1} + \hat{V}_{\phi_2} + \text{cross term}$$
+            This cross term is diagonal (imagine evaluating it in a bracket, the outer products would be delta functions) with terms like
+            $$1-\cos(\phi_1 - \phi_2) \delta_{nn'}\delta_{mm'}$$
+
+            The decoupled terms are quite easy to generate, since I can simply do:
+            \begin{align*}
+                \hat{U_{\phi_1}}\otimes I + I\otimes 2 \hat{U_{\phi_2}} + \hat{V}_{\phi_1}\otimes I + I \otimes \hat{V}_{\phi_2}
+            \end{align*}
+
+            Where $\otimes$ is just \verb|np.kron()| and $I$ is \verb|np.eye(N)|. Some of the unique values are:
+            $$\epsilon_k^L = \begin{bmatrix} 1.4812 & 4.9763 & 6.8505 & 8.2675 & 9.554 & 10.7886 & 12.0882 & 13.6508 & 14.5719 & 16.4355 \end{bmatrix}^T$$
+
+            Seems like the ground state is $1.4812$ (my poor laptop takes ~3 minutes to do this calculation with N=100). 
+
+            \vspace{1em}
+            \textit{Note, I can't really run a more precise computation on my laptop in a reasonable time. If I were to check the accuracy I could perhaps write an iterative solver or compare the delta between matrices of size $N$ and $N-1$.}
+
+        \end{callout}
+    \end{homeworkProblem}
+
+    \newpage
+    \begin{callout}{Code for 3a:}
+
+        \begin{lstlisting}[language=Python]
+import numpy as np
+
+s = 10
+
+# generate some off-axis diagonal ones
+lower = np.zeros((s,s),dtype=np.float64)
+upper = np.zeros((s,s),dtype=np.float64)
+np.fill_diagonal(lower, -1, wrap=False)
+np.fill_diagonal(upper, -1, wrap=False)
+lower = np.roll(lower, -1, axis=1)
+upper = np.roll(upper, 1, axis=1)
+
+H = np.zeros((s,s), dtype=np.float64)
+H = lower + upper
+
+# on-axis ones
+np.fill_diagonal(H, 2, wrap=False)
+
+print(np.linalg.eigh(H).eigenvalues)
+print()
+print(np.linalg.eigh(H).eigenvectors)
+        \end{lstlisting}
+
+    \end{callout}
+
+    \begin{callout}{Code for 3b:}
+
+        \begin{lstlisting}[language=Python]
+import numpy as np 
+
+N = 10
+k = np.arange(0, 10)
+pk = (2 * np.pi * k) / N
+
+a_res = np.sort(2 * (1 - np.cos(pk)))
+
+print(a_res)
+        \end{lstlisting}
+
+    \end{callout}
+
+\newpage
+\begin{callout}{Code for 4:}
+
+        \begin{lstlisting}[language=Python]
+import numpy as np
+
+N = 200
+def hamiltonian(lam):
+    eps = N**2 / (8 * np.pi**2 * lam)
+
+    lower = np.zeros((N, N), dtype=np.float64)
+    upper = np.zeros((N, N), dtype=np.float64)
+    np.fill_diagonal(lower, -1)
+    np.fill_diagonal(upper, -1)
+    lower = np.roll(lower, -1, axis=1)
+    upper = np.roll(upper, 1, axis=1)
+    U = lower + upper
+    np.fill_diagonal(U, 2)
+    U *= eps
+
+    n = np.arange(N)
+    phi_n = 2 * np.pi * n / N
+    V = lam * np.diag(1 - np.cos(phi_n))
+
+    return U + V
+
+for lam in [1, 10, 50]:
+    H = hamiltonian(lam)
+    eigvals = np.linalg.eigvalsh(H)
+    print(f"eigvals = {np.round(eigvals[:3], 4)}")
+        \end{lstlisting}
+
+\end{callout}
+
+\newpage
+\begin{callout}{Code for 5:}
+
+        \begin{lstlisting}[language=Python]
+import numpy as np
+
+N = 100
+
+lam = 1
+eps = N**2 / (8 * np.pi**2 * lam)
+
+lower = np.zeros((N, N), dtype=np.float64)
+upper = np.zeros((N, N), dtype=np.float64)
+np.fill_diagonal(lower, -1)
+np.fill_diagonal(upper, -1)
+lower = np.roll(lower, -1, axis=1)
+upper = np.roll(upper, 1, axis=1)
+
+U = lower + upper
+np.fill_diagonal(U, 2)
+U *= eps
+
+n = np.arange(N)
+phi_n = 2 * np.pi * n / N
+V = lam * np.diag(1 - np.cos(phi_n))
+
+# --- 
+
+I = np.eye(N)
+
+U1 = np.kron(U, I)
+U2 = np.kron(I, 2*U)
+V1 = np.kron(V, I)
+V2 = np.kron(I, V)
+
+# cross terms are generated by "brute force" instead of an otimes  
+phi1_grid, phi2_grid = np.meshgrid(phi_n, phi_n, indexing='ij')
+V12 = lam * (1 - np.cos(phi1_grid - phi2_grid))
+V12 = np.diag(V12.flatten()) # fix the shape
+
+# ---
+
+H = (U1 + U2) + (V1 + V2) + V12
+eigvals = np.linalg.eigvalsh(H)
+print(f"eigvals = {np.round(eigvals[0::N], 4)}") # N degeneracy?!
+        \end{lstlisting}
+
+    \end{callout}
+

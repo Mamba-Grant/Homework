@@ -1,0 +1,306 @@
+\begin{homeworkProblem}
+\textbf{*Lattice Quantum Spin-half Systems}
+
+Consider a lattice described by $N$ lattice sites $i = 0, 1, 2, \ldots, N-1$. A lattice quantum spin-half system is described by a direct product Hilbert space of $N$ spin-half particles, one on each site.
+\[
+V^{N}_{\mathrm{spin-1/2}} = V_{\mathrm{spin-1/2}} \otimes V_{\mathrm{spin-1/2}} \otimes \cdots \otimes V_{\mathrm{spin-1/2}},
+\]
+where there are $N$ factors of $V_{\mathrm{spin-1/2}}$ on the right hand side. For such a system we can define $\mathbf{S}_i$ as the spin-half operator related to the spin-half particle on the site $i$, but it acts on the full Hilbert space of $V^{N}_{\mathrm{spin-1/2}}$.
+
+\begin{enumerate}[a.]
+    \item What is the dimension of $V^{N}_{\mathrm{spin-1/2}}$.
+        \begin{callout}{Solution:}
+
+        The space of a spin is a spinor, being up or down. When constrained to a lattice, this is just counting the number of configurations the system can be in. For 2 configurations at $N$ sites, this is $2^N$.
+
+        \end{callout}
+    
+    \item For $N = 4$ find all the eigenvalues of the Hamiltonian
+    \[
+    H = J\left(\mathbf{S}_1 \cdot \mathbf{S}_2 + \mathbf{S}_2 \cdot \mathbf{S}_3 + \mathbf{S}_3 \cdot \mathbf{S}_4 + \mathbf{S}_4 \cdot \mathbf{S}_1\right)
+    \]
+    where you can assume $J > 0$.
+    \begin{callout}{Solution:}
+
+        I think it's perhaps useful to begin by talking about the space. The basis should be something like $\ket{s_{0}} \otimes \ket{s_{1}} \otimes \ket{s_{2}} \otimes\dots \otimes\ket{s_{N-1}}$, and operators that exist here might be $S_{i}=\uparrow, \downarrow$, and $S_{\vec{r}}^{x},S_{\vec{r}}^{y},S_{\vec{r}}^z$, and $\vec{r}=0,1,2,\dots,N-1$.
+
+    It is known that the total spin operator in fock space at a particular site can be written as the following (c.f. homework \#2, problem \#1):
+    \begin{align*}
+        \mathbf{S} = \frac{1}{2} \sum_{\alpha, \beta} a^\dagger_{\alpha} \boldsymbol{\sigma}_{\alpha,\beta}a_{\beta}, &\boldsymbol{\sigma}_{\alpha,\beta} = \braket{\alpha|\hat{\sigma}|\beta}
+    \end{align*}
+
+    Where, $\hat{\sigma}$ are pauli matrices, and $\alpha$ and $\beta$ might refer to spin configurations $\uparrow$ and $\downarrow$. The form of the total spin operators is known (c.f. homework \#2, problem \#1), and by pure inspection of the hamiltonian I think we can get a little further. The hamiltonian will expand to 
+    \begin{align*}
+        H &= J([{S}_{1}^x{S}_{2}^x + {S}_{1}^y{S}_{2}^y + {S}_{1}^z{S}_{2}^z] + \dots)
+    \end{align*}
+
+    $x$, $y$, and $z$ components take the form,
+    $$
+    S^x = \frac{1}{2} \left( a^\dagger_{\alpha} a_{\beta} + a^\dagger_{\beta}a_{\alpha} \right) \qquad
+    S^y = \frac{i}{2} \left( a^\dagger_{\beta} a_{\alpha} - a^\dagger_{\alpha}a_{\beta} \right) \qquad
+    S^z = \frac{1}{2} \left( a^\dagger_{\alpha} a_{\alpha} - a^\dagger_{\beta}a_{\beta} \right)
+    $$
+
+    For simplicitly, let me think about the product of just the $z$ components. 
+    \begin{align*}
+        S^{z}_1 S^{z}_2 &= \frac{1}{2} \left( a^\dagger_{\alpha1} a_{\alpha1} - a^\dagger_{\beta1}a_{\beta1} \right) \cdot \frac{1}{2} \left( a^\dagger_{\alpha2} a_{\alpha2} - a^\dagger_{\beta2}a_{\beta2} \right) \\ 
+                        &= \frac{1}{2} \left( u_{1}-v_{1} \right) \cdot \frac{1}{2} \left( u_{2}-v_{2} \right) , &u_i\equiv a_{\alpha}^{\dagger}a_{\alpha}, \quad v_i\equiv a_{\beta}^{\dagger}a_{\beta} \\ 
+                        &= \frac{1}{4} u_{1}u_{2} - u_{1}v_{2} - u_{2}v_{1} + v_{1}v_{2} \\
+    \end{align*}
+
+    I don't see anything helpful in this direction, I had been hoping there might be some terms that could drop out using our commutator relations, but I am getting the sense this will be a massive headache to analyze further. 
+Looking at $H$ again, I can factor the expression:
+$$
+\mathbf{S}_1 \cdot \mathbf{S}_2 + \mathbf{S}_2 \cdot \mathbf{S}_3 + \mathbf{S}_3 \cdot \mathbf{S}_4 + \mathbf{S}_4 \cdot \mathbf{S}_1
+= \underbrace{(\mathbf{S}_1 + \mathbf{S}_3)}_{\mathbf A}\cdot\underbrace{(\mathbf{S}_2 + \mathbf{S}_4)}_{\mathbf B}
+$$
+                                                                                                                                                                                                                                                                                
+Considering total spin $\mathbf S = \mathbf S_1+\mathbf S_2+\mathbf S_3+\mathbf S_4 = \mathbf A + \mathbf B$:
+$$
+\mathbf{S}^{2}=(\mathbf A+\mathbf B)\cdot(\mathbf A+\mathbf B) = \mathbf A^{2}+\mathbf B^{2}+2\,\mathbf A\cdot \mathbf B
+$$
+                                                                                                                                                                                                                                                                                
+The Hamiltonian is $H = J\,\mathbf A\cdot \mathbf B$, so
+$$
+\mathbf A \cdot \mathbf B = \frac{1}{2} \left( \mathbf{S}^{2} - \mathbf A^{2} - \mathbf B^{2} \right)
+\quad\Longrightarrow\quad
+E = \frac{J}{2} \left( S(S+1) - A(A+1) - B(B+1) \right)
+$$
+                                                                                                                                                                                                                                                                                
+% Since $\mathbf A=\mathbf S_1+\mathbf S_3$ is built from two spin-1/2's, $A\in\{0,1\}$ (not $-1,0,1$ — the values $\pm1,0$ are the possible $m_A$ *projections* when $A=1$, plus $m_A=0$ when $A=0$; the quantum number $A$ itself only takes $0$ or $1$). Same for $\mathbf B$.
+%  $S=A+B$ so it can take on the set $\{ (-1,-1),\,(-1,0),\,(0,-1),\,(0,0)\,(1,0)\,(0,1)\,(1,1) \}$. 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{cccccccc}
+\hline
+$A$ & $B$ & $S$ & $S(S+1)$ & {$\frac{J}{2}[S(S+1)-A(A+1)-B(B+1)]$} \\
+\hline
+0 & 0 & 0  & 0 & $0$    \\
+0 & 1 & 1  & 2 & $0$    \\
+1 & 0 & 1  & 2 & $0$    \\
+1 & 1 & 0  & 0 & $-2J$  \\
+1 & 1 & 1  & 2 & $-J$   \\
+1 & 1 & 2  & 6 & $J$    \\
+\hline
+\end{tabular}
+\end{table}
+\end{callout}
+    
+    \item Construct the ground state eigenvector in the basis $|m_1, m_2, m_3, m_4\rangle$ of eigenstates of $S_i^z$.
+        \begin{callout}{Solution:}
+
+            On the topic of bases, what I had done for part b was to make some change of variables that diagonalized the Hamiltonian. This took the $\ket{m_{1},m_{2},m_{3},m_{4}} \to \ket{S, A, B}$. Because I have the ground state in that basis ($A=1,\,B=1,\,S=0$), I could perhaps transform back to the $\ket{m_{1},m_{2},m_{3},m_{4}}$ basis. I think I am having trouble imagining the diagonal basis so I should address that first. 
+
+            % $\mathbf{A} = \mathbf{S}_1 + \mathbf{S}_3$, viewed purely as a change of variables. Logically, the combination of spins that $\mathbf{A}$ can reach are the combinations of $\mathbf{S}_1$ and $\mathbf{S}_3$,
+            % \begin{align*}
+            %     \{
+            %         \ket{\uparrow\uparrow}_{13},
+            %         \ket{\uparrow\downarrow}_{13},
+            %         \ket{\downarrow\uparrow}_{13},
+            %         \ket{\downarrow\downarrow}_{13}
+            %     \}
+            % \end{align*}
+
+            We'd want a change of basis matrix from $\ket{A,m_A}$ to $\ket{m_s}$ that satisfies:
+            \begin{align*}
+                \begin{pmatrix} \ket{1, 1} \\ \ket{1, 0} \\ \ket{0, 0} \\ \ket{1, -1} \end{pmatrix} =\begin{pmatrix} ? & ? & ? & ? \\ ? & ? & ? & ? \\ ? & ? & ? & ? \\ ? & ? & ? & ? \end{pmatrix}\begin{pmatrix} \ket{\uparrow\uparrow}_{13} \\ \ket{\uparrow\downarrow}_{13} \\ \ket{\downarrow\uparrow}_{13} \\ \ket{\downarrow\downarrow}_{13} \end{pmatrix}
+            \end{align*}
+
+            The only configurations of $\ket{m_s}$ that can reach $m_A=1$ are $1/2 + 1/2$ and $-1/2 - 1/2$
+
+            \begin{align*}
+                \mathbf{S}_1 \cdot \mathbf{S}_3 &= S_1^{z}S_3^{z} + S_1^{x}S_3^{x} + S_1^{y}S_3^{y}
+            \end{align*}
+            \begin{align*}
+                S^{x} &= \frac{S^{+} + S^{-}}{2} \implies  S_{1}^{x}S_{3}^{x} = \frac{1}{4}\left(S^{+}_1 S^{+}_3 + S^{+}_1 S^{-}_3 + S^{-}_1 S^{+}_3 + S^{-}_1 S^{-}_3 \right) \\
+                S^{y} &= \frac{S^{+}-S^{-}}{2i} \implies  S_{1}^{y}S_{3}^{y} = -\frac{1}{4}\left(S^{+}_1 S^{+}_3 - S^{+}_1 S^{-}_3 - S^{-}_1 S^{+}_3 + S^{-}_1 S^{-}_3 \right)
+            \end{align*}
+            \begin{align*}
+                \mathbf{S}_1 \cdot \mathbf{S}_3 &= S_1^{z}S_3^{z} + \frac{1}{4}\left(\cancel{ S^{+}_1 S^{+}_3  }+ S^{+}_1 S^{-}_3 + S^{-}_1 S^{+}_3 + \cancel{ S^{-}_1 S^{-}_3 } \right) - \frac{1}{4}\left(\cancel{ S^{+}_1 S^{+}_3 } - S^{+}_1 S^{-}_3 - S^{-}_1 S^{+}_3 + \cancel{ S^{-}_1 S^{-}_3 } \right) \\
+                &= S_1^{z}S_3^{z} + \frac{1}{4}\left(S^{+}_1 S^{-}_3 + S^{-}_1 S^{+}_3 \right) + \frac{1}{4}\left(S^{+}_1 S^{-}_3 + S^{-}_1 S^{+}_3 \right) \\
+                &= S_1^{z}S_3^{z} + \frac{1}{2}\left(S^{+}_1 S^{-}_3 + S^{-}_1 S^{+}_3 \right)
+            \end{align*}
+            Acting these on each basis vector nets:
+
+            \begin{align*}
+                \ket{\uparrow\uparrow}_{13}:\qquad& S_1^{z}S_3^{z}\ket{\uparrow\uparrow} + \frac{1}{2}\left(S^{+}_1 S^{-}_3 + S^{-}_1 S^{+}_3 \right)\ket{\uparrow\uparrow} \\
+                                                  &= \left( \frac{1}{2} \right)\left(\frac{1}{2} \right)\ket{\uparrow\uparrow} + \frac{1}{2}\left(0 + 0 \right) \\
+                                                  &= \frac{1}{4}\ket{\uparrow\uparrow} \\
+                \ket{\uparrow\downarrow}_{13}:\qquad& S_1^{z}S_3^{z}\ket{\uparrow\downarrow} + \frac{1}{2}\left(S^{+}_1 S^{-}_3 + S^{-}_1 S^{+}_3 \right)\ket{\uparrow\downarrow} \\
+                                                    &= \left( \frac{1}{2} \right)\left( -\frac{1}{2} \right)\ket{\uparrow\downarrow} + \frac{1}{2}\left(0 + 1\ket{\downarrow\uparrow} \right) \\
+                                                    &= -\frac{1}{4} \ket{\uparrow\downarrow} + \frac{1}{2}\ket{\downarrow\uparrow} \\
+                \ket{\downarrow\uparrow}_{13}:\qquad& S_1^{z}S_3^{z}\ket{\downarrow\uparrow} + \frac{1}{2}\left(S^{+}_1 S^{-}_3 + S^{-}_1 S^{+}_3 \right)\ket{\downarrow\uparrow} \\
+                                                    &= \left( \frac{1}{2} \right)\left( -\frac{1}{2} \right)\ket{\downarrow\uparrow} + \frac{1}{2}\left( 1\ket{\uparrow\downarrow} + 0 \right) \\
+                                                    &= -\frac{1}{4} \ket{\downarrow\uparrow} + \frac{1}{2}\ket{\uparrow\downarrow} \\
+                \ket{\downarrow\downarrow}_{13}:\qquad& S_1^{z}S_3^{z}\ket{\downarrow\downarrow} + \frac{1}{2}\left(S^{+}_1 S^{-}_3 + S^{-}_1 S^{+}_3 \right)\ket{\downarrow\downarrow} \\
+                                                  &= \left( -\frac{1}{2} \right)\left( -\frac{1}{2} \right)\ket{\downarrow\downarrow} + \frac{1}{2}\left(0 + 0 \right) \\
+                                                  &= \frac{1}{4}\ket{\downarrow\downarrow} \\
+            \end{align*}
+
+            Evidently,
+            \begin{align*}
+                \mathbf{S}_2 \cdot \mathbf{S}_4 &= S_2^{z}S_4^{z} + \frac{1}{2}\left(S^{+}_2 S^{-}_4 + S^{-}_2 S^{+}_4 \right) \\
+                % \mathbf{S} = \mathbf{A} + \mathbf{B} = \mathbf{S}_1 \cdot \mathbf{S}_3 + \mathbf{S}_2 \cdot \mathbf{S}_4 &= 
+                % S_1^{z}S_3^{z} + \frac{1}{2}\left(S^{+}_1 S^{-}_3 + S^{-}_1 S^{+}_3 \right) + 
+                % S_2^{z}S_4^{z} + \frac{1}{2}\left(S^{+}_2 S^{-}_4 + S^{-}_2 S^{+}_4 \right)
+            \end{align*}
+
+            so,
+            \begin{align*}
+                M_A = M_B &=
+                \begin{pmatrix} \frac{1}{4} & 0 & 0 & 0 \\ 0 & -\frac{1}{4} & \frac{1}{2} & 0 \\ 0 & \frac{1}{2} & -\frac{1}{4} & 0 \\ 0 & 0 & 0 & \frac{1}{4} \end{pmatrix} \\
+            \end{align*}
+
+            I am not sure exactly how to continue. 
+
+        \end{callout}
+\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{Hardcore bosons on a lattice}
+
+Consider a lattice described by $N$ lattice sites $i = 0, 1, 2, \ldots, N-1$. Construct a bosonic Fock space through a Fock vacuum $|0\rangle$ and bosonic particle creation and annihilation operators for spinless bosons $a_i^{\dagger}$ and $a_i$.
+
+\begin{enumerate}[a.]
+    \item Let $V^{N}_{n}$ be the subspace of the above Fock space that contains $n$ identical bosons. Find its dimension.
+        \begin{callout}{Solution:}
+
+            If we are imagining a lattice which we can put any number of indistinguishable particles on using ladder operators, and that these things have no spin, then it is just the number of particles and their state which is identical. Given $n$ particles and $N$ sites, we know how many ways we could arrange the particles onto the sites,
+            $$\begin{pmatrix} n+N-1 \\ N-1 \end{pmatrix} = \frac{(n+N-1)!}{(N-1)!((n+N-1)-(N-1))!}$$
+
+        \end{callout}
+    
+        
+    \item A hardcore boson subspace $V^{N}_{n,h}$ with $n$ identical bosons is defined as the subspace of $V^{N}_{n}$ with the further constraint that no lattice site will contain more than one particle. What is the dimension of $V^{N}_{n,h}$.
+        \begin{callout}{Solution:}
+
+            A site can only have an occupation number $n_{\vec{r}}=\{0,1\}$. This is just $N$ bins to fit $n$ particles, i.e. 
+            \begin{align*}
+               \begin{pmatrix} N \\ n \end{pmatrix} = \frac{N!}{n!(N-n)!}
+            \end{align*}
+            % so it is identical to the spin half fermion lattice in terms of dimension, $2^N$
+
+        \end{callout}
+    
+    \item If $V^{N}_{h}$ is the hardcore boson subspace but without constraining the particle number $n$, then argue that $V^{N}_{h} \equiv V^{N}_{\mathrm{spin-1/2}}$, i.e., the Fock space of hardcore bosons on a lattice can be mapped to lattice quantum spin-half systems.
+        \begin{callout}{Solution:}
+
+        This is more like the treament of two vector spaces in general. If they are of the same dimension, then there is a unitary transformation to do a change of basis.
+
+        \end{callout}
+\end{enumerate}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{Jordan-Wigner Transformation}
+
+Consider a finite lattice with $N$ lattice points labeled as $i = 0, 1, 2, \ldots, N-1$. Construct a fermionic Fock space $V^{N}_{f}$, using a Fock vacuum $|0\rangle$ and fermionic creation annihilation operators $c_i^{\dagger}$ and $c_i$ for each lattice site. Note that the dimension of $V^{N}_{f}$ is $2^N$ which is the same as the dimension of the lattice quantum spin-half system $V^{N}_{\mathrm{spin-1/2}}$. Two finite dimensional vector spaces are identical if their dimensions match. This implies that we should be able to construct operators in $V^{N}_{f}$ as operators in $V^{N}_{\mathrm{spin-1/2}}$. Let $\sigma_i^x, \sigma_i^y, \sigma_i^z$ be Pauli matrices associated to lattice sites $i$ in $V^{N}_{\mathrm{spin-1/2}}$. We can define $\sigma_i^{\pm} = (\sigma_i^x \pm i \sigma_i^y)/2$. Show that if we define $c_0^{\dagger} \equiv \sigma_0^{+}$ and
+\[
+c_i^{\dagger} \equiv \left( \prod_{j=0}^{i-1} \sigma_j^z \right) \sigma_i^{+}, \qquad i = 1, 2, \ldots, N-1,
+\]
+we can recover the canonical anti-commutation relations for $c_i^{\dagger}$ and $c_i$. This mapping between lattice fermions and lattice quantum spin-half system is referred to as the Jordan-Wigner transformation.
+\begin{callout}{Solution:}
+
+Todo: show:
+$$ \left\{c_i, c_j\right\}=0, \quad\left\{c_i^{\dagger}, c_j^{\dagger}\right\}=0, \quad\left\{c_i, c_j^{\dagger}\right\}=\delta_{i j} $$
+
+\begin{gather*}
+    \ket{0} \equiv \text{Fock Vacuum} \\
+    a^{\dagger}_{i} \equiv \sigma_{i}^+ \equiv \text{creation operator of a particle at $i$} \\
+    a_{i} \equiv \sigma_{i}^- \equiv \text{annihilation operator of a particle}
+\end{gather*}
+
+\begin{align*}
+    c_i^{\dagger} &= (\sigma_1^{z})(\sigma_2^{z})(\dots)(\sigma_i^{z})\sigma_{i-1}^{+} \\
+    c_i &= (\sigma_1^{z})(\sigma_2^{z})(\dots)(\sigma_i^{z})\sigma_{i-1}^{-}
+\end{align*}
+
+\begin{gather*}
+    [a_i,a_{i'}] = 0 \qquad [a_i,a^\dagger_{i'}] = \delta_{ii'} \qquad [a,b]\equiv ab-ba \\
+    \{a_i,a_{i'}\} = 0 \qquad \{a_i,a^\dagger_{i'}\} = \delta_{ii'} \qquad \{a,b\} \equiv ab+ba
+\end{gather*}
+
+$c^\dagger$ is required to obey the fermionic commutation rules, 
+\begin{align*}
+    c_1^{\dagger} \ket{0} \otimes c_2^{\dagger} \ket{0} &= - c_{2}^{\dagger}\ket{0} \otimes c_{1}^{\dagger}\ket{0} \\
+    c_{1}^{\dagger}c_{2}^{\dagger}\ket{00} &= - c_{2}^{\dagger}c_{1}^{\dagger}\ket{00}
+\end{align*}
+
+I can imagine in my mind that the spin operator works the same, since it is either assigning an up or down instead of raising or lowering the number (which in this case both are binary states). On the same site the spin ladder operator acts like:
+$$\sigma^+= \frac{1}{2}(\sigma_x + i \sigma_y) =\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} \qquad \sigma^-= \frac{1}{2}(\sigma_x - i \sigma_y) =\begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}$$
+\begin{align*}
+    \sigma^{+} \sigma^{-} + \sigma^{-}\sigma^{+} &=\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix} +\begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix} = I
+\end{align*}
+
+If they are on the same sites, then they anticommute, (textbook)
+$$\sigma_{i}\sigma_{i}=-\sigma_{i}\sigma_{i}$$
+
+The following operator can be written too
+$$\sigma_z = 2 \sigma_j^+ \sigma_j - I$$
+
+for the same sites,
+\begin{align*}
+    \{ \sigma_i^{z}, \sigma_i^+ \} = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} + \begin{pmatrix} 0 & -1 \\ 0 & 0 \end{pmatrix} = 0\quad \text{on the same site} \\ 
+    \{ \sigma_i^{z}, \sigma_i^- \} = \begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix} + \begin{pmatrix} 0 & 0 \\ -1 & 0 \end{pmatrix} = 0\quad \text{on the same site} \\ 
+\end{align*}
+
+If they are not on the same site, suppose $i<j$,
+\begin{align*}
+    (\sigma_1^{z})(\sigma_2^{z})(\dots)(\sigma_{i-1}^{z})\sigma_{i}^{+}
+    (\sigma_1^{z})(\sigma_2^{z})(\dots)(\sigma_{j-1}^{z})\sigma_{j}^{+}
+    \ket{n_{0},\dots, n_i,\dots n_j, \dots,}
+\end{align*}
+
+Normally when applying just one there is no collision between $\sigma^z$ and $\sigma^+_i$, since z-components range from $0\to i-1$. Chaining the two causes there to be a $\sigma_{j=i}^z$ and $\sigma_{i}^+$ - therefore the interesting interaction is at site $i$ which obeys the anticommutator relation
+\begin{align*}
+    \sigma_{j=i}^{z} \sigma^+_i + \sigma^+_i \sigma_{j=i}^{z} = 0
+\end{align*}
+
+So both indeed obey anti-commutation relations. Interactions at all other sites $\neq i$ do not affect the sign, as $\sigma^+\ket{-}=\ket{+}$, $\sigma^+\ket{+}=0$, $\sigma^-\ket{-}=0$, $\sigma^-\ket{+}=\ket{-}$, $\sigma^z\ket{+}= \frac{1}{2} \ket{+}$, $\sigma^z\ket{-}=-\frac{1}{2}\ket -$. The last spin-z operator is fine as there are an equal number of times they are applied if it's acting before or after the ladder operator, it's the one site difference that matters.
+
+
+It's straightforward to see that for the second relation,
+\begin{align*}
+    \left\{c_i, c_j\right\}&=0
+\end{align*}
+Acts the same at $j=i$, as 
+\begin{align*}
+    \sigma^z_{j=i}\sigma^-_i + \sigma^-_i\sigma^z_{j=i} = 0
+\end{align*}
+And treatment of the remaining terms is the same.
+
+The third term is also straightforward. If $i = j$
+$$\{c_i, c_i^\dagger\} = c_i c_i^\dagger + c_i^\dagger c_i$$
+$$\{c_i, c_i^\dagger\} = \sigma_i^- \sigma_i^+ + \sigma_i^+ \sigma_i^- = \{\sigma_i^-, \sigma_i^+\} = I = 1$$
+
+If $i < j$, $c_i c_j^\dagger$ will be:
+$$c_i c_j^\dagger = -\sigma_i^z \sigma_i^- \left( \prod_{l=i+1}^{j-1} \sigma_l^z \right) \sigma_j^+$$
+
+$c_j^\dagger c_i$ will be:
+$$c_j^\dagger c_i = \sigma_i^z \sigma_i^- \left( \prod_{l=i+1}^{j-1} \sigma_l^z \right) \sigma_j^+$$
+
+Adding the two yields:
+$$\{c_i, c_j^\dagger\} = c_i c_j^\dagger + c_j^\dagger c_i = 0 \quad (i \neq j)$$
+
+Thus, $\{c_i, c_j^\dagger\} = \delta_{ij}$.
+
+\end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+\textbf{Application of the Jordan-Wigner Transformation}
+
+Use the Jordan-Wigner transformation to map the spin-half lattice Hamiltonian
+\[
+H = \sum_{i=0}^{N-2} \left( \sigma_i^{+} \sigma_{i+1}^{-} + \sigma_i^{-} \sigma_{i+1}^{+} \right)
+\]
+in one spatial dimension into a model of free fermions. Use this mapping to compute the ground state energy density $E_0/N$. You can use a computer to solve the problem if necessary.
+
+\begin{callout}{Solution:}
+
+
+
+\end{callout}
+\end{homeworkProblem}

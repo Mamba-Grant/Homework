@@ -1,0 +1,446 @@
+\begin{homeworkProblem}
+    (One-dimensional Tonks gas - partition function) Consider a one-dimensional gas of $N$
+    perfectly rigid rods each of length $a$, in a region $0 < x < L$. The interparticle potential can be
+    written as $\phi(|x_i - x_j|) = \infty$ for $|x_i - x_j| < a$, and $\phi(|x_i - x_j|) = 0$ otherwise. Since the rods cannot
+    overlap, the centers must be ordered such that $x_1 < x_2 < \ldots < x_N$.
+
+    \begin{enumerate}
+        \item[(a)] Integrate out the kinetic energy terms in the expression for the partition function to obtain:
+            \[
+                Z(N, L, \tau) = \frac{A(\tau)}{N!} \int_0^L dx_1 \cdots \int_0^L dx_N \exp\left\{ -\frac{1}{\tau} \sum_{i<j} \phi(|x_i - x_j|) \right\}
+            \]
+            where you should express $A(\tau)$ in terms of the thermal de Broglie wavelength,
+            \[
+                \lambda = \sqrt{\frac{2\pi\hbar^2}{m\tau}}
+            \]
+            \begin{callout}{Solution:}
+
+                We'd say the hamiltonian of a rigid rod is 
+                \begin{align*}
+                    H = \frac{p^{2}}{2m}
+                \end{align*}
+
+                The single particle partition function is 
+                \begin{align*}
+                    Z_1 &= \frac{1}{h} \iint \exp(-H \beta) dp dq \\
+                        &= \frac{1}{h} \int_0^{L} \int_{-\infty}^{\infty} \exp(-\beta p^{2}/2m ) dp dq  \\
+                        &= \frac{1}{h} \sqrt{2\pi m / \beta} \int_0^{L} dq
+                \end{align*}
+
+                The term outside the integral can be rearranged, 
+                $$
+                \frac{1}{h} \sqrt{\frac{2 \pi m}{\beta}}=\frac{1}{2 \pi \hbar} \sqrt{2 \pi m \tau}=\frac{1}{\sqrt{2 \pi \hbar^2 /(m \tau)}}=\frac{1}{\lambda}
+                $$
+
+                if $1/\tau = \beta$.
+
+                For $N$ particles, it's:
+                \begin{align*}
+                    \frac{1}{\lambda^{N}N!} \int_{0}^{L} \phi\, dx_1 \dots \int_{0}^{L} \phi\, dx_N
+                \end{align*}
+
+                Where I've implied that there is this interaction term acting over all particles as a spatial function. While working this problem I hadn't realized there was a term for this so I apologize if this is a bit sloppy.
+
+            \end{callout}
+
+        \item[(b)] Evaluate the remaining integrals in part (a) and show that the partition function can be written as:
+            \[
+                Z(N, L, \tau) = \frac{(L - Na)^N}{\lambda^N N!}.
+            \]
+            Hint: consider integrations over the restricted region $x_1 < x_2 < x_3 < \cdots < x_N$. How many equivalent
+            such regions are there?
+            \begin{callout}{Solution:}
+                Clearly we just want to consider adding non-overlapping particles so that the exponential term vanishes.
+
+                This interaction term seems to prevent two rods from overlapping such that the rods have a radius $\frac{a}{2}$, but the region they exclude is $a$. The region accessible by each particle added to the system becomes $L-na$, where $n=1,2,3,\dots$ (index starts at 1 since even one rod excludes a/2 from either edge).
+
+                Another way to put this is that for each particle added, 
+                $$x_{i+1}-x_i > a$$
+                \begin{align*}
+                    x_{i+1} - ia = u_{i+1} \quad &\implies \quad x_{i+1} = u_{i+1} + ia \\
+                    x_i - (i - 1)a = u_i \quad &\implies \quad x_i = u_i + (i-1)a
+                \end{align*}
+                $$u_{i+1} - u_{i} > 0$$
+
+                $$\int_{0}^{L-Na}du_{N-1} \int_{0}^{u_{N-1}}du_{N-2}\dots \int_{0}^{u_{2}}du_{1}$$
+                Working this will go like,
+                \begin{align*}
+                    \int_{0}^{u_{2}} du_{1} &= u_{2} \\
+                    \int_{0}^{u_{3}} u_{2} du_{2} &= \frac{u_{3}^{2}}{2} \\
+                    \int_{0}^{u_{4}} u_{3} du_{3} &= \frac{u_{4}^{3}}{6} \\
+                    \dots \\
+                    \int_{0}^{L-Na} \frac{u_{N-1}^{N-1}}{(N-1)!} du_{N-1} &= \frac{\left( L-Na \right)^{N}}{N!}
+                \end{align*}
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    (One-dimensional Tonks gas - free energy, entropy, equation of state).
+
+    \begin{enumerate}
+        \item[(a)] Using the partition function from the preceding problem, compute the free energy per particle. How does your result compare with the free energy of the standard ideal gas in three dimensions?
+            \begin{callout}{Solution:}
+
+            I'm interpreting free energy to be helmholtz free energy, $A=U-TS=-\frac{1}{\beta}\ln Z$, where the internal energy $U$ is $U=TS-PV+\mu N$.
+
+            \begin{align*}
+                A &= -\frac{1}{\beta} \ln Z \\ 
+                  &= \frac{1}{\beta}[N\ln (L-Na)-N\ln (\lambda)-\ln \left(N!\right)]
+            \end{align*}
+
+            Number of particles is, a fixed $N$, so 
+            \begin{align*}
+                \frac{A}{N} &= \frac{1}{\beta}\left( \ln \left(L-Na\right)-\ln \left(\lambda\right)- \frac{1}{N}\ln \left(N!\right) \right)\\
+            \end{align*}
+
+            Ideal gas has, 
+            \begin{align*}
+                Z &= \frac{V^N}{N!}\left(\frac{2 \pi m}{h^2 \beta}\right)^{3N / 2}\\ 
+                A &= -\frac{1}{\beta} \left[N\ln V - \ln N! + \left( \frac{3N}{2} \right) [\ln (2\pi m) - 2 \ln h - \ln \beta] \right]\\
+                \frac{A}{N} &= -\frac{1}{\beta} \left[\ln V - \frac{1}{N}\ln N! + \left( \frac{3}{2} \right) [\ln (2\pi m) - 2 \ln h - \ln \beta] \right]
+            \end{align*}
+
+            \end{callout}
+
+        \item[(b)] Find an expression for the entropy per particle. Again, compare your result with that for the standard ideal gas in three dimensions.
+            \begin{callout}{Solution:}
+
+                I'm biased towards using $\beta$, so I'll write this partial derivative in terms of it,
+            \begin{align*}
+                S = \ln Z - \beta \left( \frac{\partial \ln Z}{\partial \beta} \right) = - \frac{\partial A}{\partial T} = - \frac{\partial A}{\partial \beta} \frac{\partial \beta}{\partial T} = - \left( \frac{\partial A}{\partial \beta} \right) \frac{\partial}{\partial T} \left( \frac{1}{k T} \right) ={k\beta^{2}} \left( \frac{\partial A}{\partial \beta} \right)
+            \end{align*}
+
+            Great, now,
+            \begin{align*}
+                S &= k[N\ln (L-Na)-N\ln (\lambda)-\ln \left(N!\right)] \\ 
+                \frac{S}{N} &= k[\ln (L-Na)- \frac{1}{2 \beta} - \frac{1}{N}\ln \left(N!\right)]
+            \end{align*}
+
+            For the ideal gas,
+            \begin{align*}
+            A &= \frac{k}{\beta} \left[\ln V - \frac{1}{N}\ln N! + \left( \frac{3}{2} \right) [\ln (2\pi m) - 2 \ln h - \ln \beta] \right]
+            \end{align*}
+
+
+            \end{callout}
+
+        \item[(c)] Find an expression for the equation of state of the repulsive one-dimensional gas. Discuss and compare your result with the ideal gas equation of state and the van der Waals equation of state, i.e., $\left(P + \dfrac{a}{V^2}\right)(V - b) = nRT$.
+            \begin{callout}{Solution:}
+
+            I believe this is asking for 
+            \begin{align*}
+                \frac{\partial A}{\partial L} = \frac{1}{\beta}\left[\frac{N}{L-Na}\right]
+            \end{align*}
+
+            Rearranging, 
+            \begin{align*}
+                n k T &= L-Na
+            \end{align*}
+
+            Which is like a 1D version of the same with $a=0$
+
+            \end{callout}
+    \end{enumerate}
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Pathria Beale (PB) 3.4: Verify that the quantity $(k / \mathcal{N}) \ln \Gamma$, where
+$$
+\Gamma(\mathcal{N}, U)=\sum_{\left\{n_r\right\}}{}'\, W\left\{n_r\right\},
+$$
+is equal to the (mean) entropy of the given system. Show that this leads to essentially the same result for $\ln \Gamma$ if we take, in the foregoing summation, only the largest term of the sum, namely the term $W\left\{n_r^*\right\}$ that corresponds to the most probable distribution set.
+[Surprised? Well, note the following example:
+
+For all $N$, the summation over the binomial coefficients ${ }^N C_r=N!/[r!(N-r!)]$ gives
+$$
+\sum_{r=0}^N{ }^N C_r=2^N
+$$
+therefore,
+\begin{equation*}
+\ln \left\{\sum_{r=0}^N{ }^N C_r\right\}=N \ln 2 . \tag{a}
+\end{equation*}
+Now, the largest term in this sum corresponds to $r \simeq N / 2$; so, for large $N$, the logarithm of the largest term is very nearly equal to
+\begin{align*}
+& \ln \{N!\}-2 \ln \{(N / 2)!\} \\
+\approx & N \ln N-2 \frac{N}{2} \ln \frac{N}{2}=N \ln 2, \tag{b}
+\end{align*}
+which agrees with (a).]
+\begin{callout}{Solution:}
+
+Apparently, what is meant by mean entropy is entropy per ensemble member. I interpret $W$ to be a weight function, $r$ to be a particular microstate, and $n_r$ the number of states in that microstate. The number of ways to distribute the elements, and therefore recover the weight function is,
+\begin{align*}
+    W\{n_r\} &= \frac{N!}{\prod n_r!} \\ 
+    \ln W\{n_r\} &\approx N\ln N - \cancel{N} - \sum n_r \ln n_r - \cancel{n_r} 
+\end{align*}
+
+Let $K$ be the terms aside from the maximum, and $W^\text{max}$ be the largest weight.
+\begin{align*}
+    \ln W^{\text{max}} \leq
+    \ln \Gamma \leq
+    \ln \left( W^{\text{max}}\cdot K \right)
+\end{align*}
+
+The average is 
+\begin{align*}
+    \frac{1}{N}\ln W^{\text{max}} \leq
+    \frac{1}{N}\ln \Gamma \leq
+    \frac{1}{N}\ln \left( W^{\text{max}}\cdot K \right)
+\end{align*}
+
+These all converge to 0 for large $N$, so they must equal the same exact thing (in the limit).
+
+
+\end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Pathria Beale (PB) 4.3: A vessel of volume $V^{(0)}$ contains $N^{(0)}$ molecules. Assuming that there is no correlation whatsoever between the locations of the various molecules, calculate the probability, $P(N, V)$, that a region of volume $V$ (located anywhere in the vessel) contains exactly $N$ molecules.
+    \begin{itemize}
+        \item[(a)] Show that $\bar{N}=N^{(0)} p$ and $(\Delta N)_{\text {r.m.s. }}=\left\{N^{(0)} p(1-p)\right\}^{1 / 2}$, where $p=V / V^{(0)}$.
+            \begin{callout}{Solution:}
+                The probability of a particle being inside the sub-volume, given the constraints is just $V /V^{(0)}$. It can be in a binomial state (inside or outside the sub-volume).
+
+                $$P(N,V) = \binom{N^{(0)}}{N} p^N(1-p)^{N^{(0)}-N} $$
+
+                Wikipedia has a nice table of the moments:
+                $$ \begin{aligned}
+&\text { The first } 6 \text { central moments, defined as } \mu_c=\mathrm{E}\left[(X-\mathrm{E}[X])^c\right] \text {, are given by }\\
+&\begin{aligned}
+& \mu_1=0 \\
+& \mu_2=n p(1-p) \\
+& \mu_3=n p(1-p)(1-2 p) \\
+& \mu_4=n p(1-p)[1+(3 n-6) p(1-p)] \\
+& \mu_5=n p(1-p)(1-2 p)[1+(10 n-12) p(1-p)] \\
+& \mu_6=n p(1-p)\left[1-30 p(1-p)[1-4 p(1-p)]+5 n p(1-p)[5-26 p(1-p)]+15 n^2 p^2(1-p)^2\right]
+\end{aligned}
+                \end{aligned}
+                $$
+
+                $$
+                \begin{aligned}
+&\text { The non-central moments satisfy }\\
+&\begin{aligned}
+    \mathrm{E}[X] & =n p, \\
+    \mathrm{E}\left[X^2\right] & =n p(1-p)+n^2 p^2
+\end{aligned}
+                \end{aligned}
+                $$
+
+                It's clear that the expected value of is 
+                $$\bar{N} = E[X] = N^{(0)}p$$
+
+                And the RMS is 
+                $$\sqrt{\mu_{2}} = \sqrt{N^{(0)}p(1-p)}$$
+
+
+            \end{callout}
+            \newpage
+        \item[(b)] Show that if both $N^{(0)} p$ and $N^{(0)}(1-p)$ are large numbers, the function $P(N, V)$ assumes a Gaussian form.
+            \begin{callout}{Solution:}
+
+                I'll have to expand the log to separate the numerator and denominator of the binomial term
+                \begin{align*}
+                    \ln P(N,V) &= \ln P(N, V)\Bigg|_{N=\bar{N}} 
+                    + \frac{\partial \ln P(N,V)}{\partial N} (N-\bar{N})\Bigg|_{N=\bar{N}}
+                \end{align*}
+
+                Note, $$\bar N = N^{(0)}p,\ \ N^{(0)}-\bar N = N^{(0)}q,\ \ q = 1-p$$
+
+First order term is:
+\begin{align*}
+    \ln P(N,V)&= \ln \left(\frac{N^{(0)}!}{N!(N^{(0)}-N)!}p^{N}(1-p)^{N^{(0)}-N}\right)\Bigg|_{N=\bar{N}} \\ 
+              &= \left( \ln[N^{(0)}!]-\ln[N!]-\ln[(N^{(0)}-N)!] \cdot N\ln [p] \cdot (N^{(0)}-N) \ln [p(1-p)] \right)\Bigg|_{N=\bar{N}} \\ 
+              &= \Big( N^{(0)}\ln[N^{(0)}] - N^{(0)} - N\ln[N] - N -(N^{(0)}-N)\ln[(N^{(0)}-N)] - (N^{(0)}-N)\\& \cdot N\ln [p] \cdot (N^{(0)}-N) \ln [p(1-p)] \Big)\Bigg|_{N=\bar{N}} \\
+              &= \Big( N^{(0)}\ln[N^{(0)}]- N\ln[N] - \ln[(N^{(0)}-N)] - (N^{(0)}-N) \\ & \cdot N\ln [p] \cdot (N^{(0)}-N) \ln [p(1-p)] \Big)\Bigg|_{N=\bar{N}} \\
+              &= N^{(0)}\ln[N^{(0)}]- N^{(0)}p\ln[N^{(0)}p] - \ln[N^{(0)}q] - (N^{(0)}q) \cdot N^{(0)}p\ln [p] \cdot (N^{(0)}q) \ln [pq]
+\end{align*}
+
+Higher orders:
+\begin{align*}
+    \frac{\partial \ln P}{\partial N} &= -\ln N + \ln(N^{(0)}-N) + \ln p - \ln q \\
+    \frac{\partial^2 \ln P}{\partial N^2} &= \frac{\partial}{\partial N}\Big[-\ln N + \ln(N^{(0)}-N) + \ln p - \ln q\Big] \\
+    &= -\frac{1}{N} + \frac{\partial}{\partial N}\ln(N^{(0)}-N) \\
+    &= -\frac{1}{N} - \frac{1}{N^{(0)}-N} \\[4pt]
+    \left.\frac{\partial^2 \ln P}{\partial N^2}\right|_{N=\bar N} 
+        &= -\frac{1}{N^{(0)}p} - \frac{1}{N^{(0)}(1-p)}  \\
+    &= -\frac{1}{N^{(0)}}\left(\frac{1}{p}+\frac{1}{q}\right) \\
+    &= -\frac{1}{N^{(0)}}\cdot\frac{p+q}{pq} \\
+    &= -\frac{1}{N^{(0)}pq} \\
+\end{align*}
+
+\begin{align*}
+        \ln P(N,V) &\approx \ln P(\bar{N},V) - \frac{(N-\bar{N})^2}{2N^{(0)}pq}
+    \end{align*}
+            \end{callout}
+        \item[(c)] Further, if $p \ll 1$ and $N \ll N^{(0)}$, show that the function $P(N, V)$ assumes the form of a Poisson distribution:
+            $$ P(N)=e^{-\bar{N}} \frac{(\bar{N})^N}{N!} . $$
+            \begin{callout}{Solution:}
+
+                Starting again from the binomial distribution with $p = \bar{N}/N^{(0)}$:
+                \begin{align*}
+                    P(N,V) &= \frac{N^{(0)}!}{N!(N^{(0)}-N)!} \left(\frac{\bar{N}}{N^{(0)}}\right)^N \left(1 - \frac{\bar{N}}{N^{(0)}}\right)^{N^{(0)}-N}
+                \end{align*}
+
+                Using the condition $N \ll N^{(0)}$, the ratio of factorials simplifies to:
+                \[
+                    \frac{N^{(0)}!}{(N^{(0)}-N)!} = N^{(0)}(N^{(0)}-1)\cdots(N^{(0)}-N+1) \approx (N^{(0)})^N
+                \]
+
+                Furthermore, for $p \ll 1$ and $N \ll N^{(0)}$, the last factor reduces via the exponential limit:
+                \[
+                    \left(1 - \frac{\bar{N}}{N^{(0)}}\right)^{N^{(0)}-N} \approx \left(1 - \frac{\bar{N}}{N^{(0)}}\right)^{N^{(0)}} \approx e^{-\bar{N}}
+                \]
+
+                Combining these approximations gives the Poisson distribution:
+                \[
+                    P(N) = e^{-\bar{N}} \frac{(\bar{N})^N}{N!}
+                \]
+
+            \end{callout}
+    \end{itemize}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Pathria Beale (PB) 4.21: Near room temperature, the classical Helmholtz free energy of $N$ diatomic gas molecules in a container of volume $V$ is given by
+$$
+A(N, V, T)=-N k T \ln \left(\frac{V}{N \lambda^3}\left(\frac{2 I k T}{\hbar^2}\right)\right)-N k T,
+$$
+where $\lambda=h / \sqrt{2 \pi m k T}$ is the thermal de Broglie wavelength, $m=m_1+m_2$ is the mass of the molecule, $I=\mu a^2$ is the moment of inertia, $\mu=m_1 m_2 /\left(m_1+m_2\right)$ is the reduced mass, and $a$ is the bond length. The molecules are attracted to the walls of the container by van der Waals forces with binding energy $\varepsilon$. If they are otherwise free to move and rotate about one axis, the surface Helmholtz free energy of $N_s$ molecules on surface area $A$ is given by
+$$
+A_{\mathrm{S}}\left(N_S, A, T\right)=-N_S \varepsilon-N_S k T \ln \left(\frac{A}{N_S \lambda^2} \sqrt{\frac{2 \pi I k T}{\hbar^2}}\right)-N_S k T
+$$
+see Problem 6.35. Calculate the equilibrium surface number density $N_s / A$. Estimate the number of nitrogen and oxygen molecules in the bulk and on the surface of a spherical 1 liter vacuum chamber at room temperature and 1 atm for surface binding energy $\varepsilon / k \approx 1000 \mathrm{~K}$. As the vacuum chamber is pumped down, the molecules trapped on the walls only very slowly unbind. Show that this interferes with maintaining an ultrahigh vacuum below about $10^{-7}$ pascal if the vacuum chamber is simply pumped down starting from 1 atm. What experimental method might one use to achieve low pressures by reducing the number of molecules trapped on the walls?
+\begin{callout}{Solution:}
+
+I quite like this problem, in the lab we might bake the UHV system. Chemical potentials for either system are, 
+\begin{align*}
+    \mu &= \left(\frac{\partial A}{\partial N}\right)_{V,T} = -kT \ln \left(\frac{V}{N \lambda^3} \frac{2 I k T}{\hbar^2}\right) \\ 
+    \mu_S &= \left(\frac{\partial A_S}{\partial N_S}\right)_{A,T} = -\varepsilon - kT \ln \left(\frac{A}{N_S \lambda^2} \sqrt{\frac{2 \pi I k T}{\hbar^2}}\right)
+\end{align*}
+
+At equilibrium, they're equal, 
+\begin{align*}
+    % \mu_S &= \mu \\
+    % -\frac{\epsilon}{k T}-\ln (X)&=\ln (Y), \\
+    % \ln (X)&=-\frac{\epsilon}{k T}-\ln (Y) \\
+    % X&=\frac{e^{-\epsilon / k T}}{Y} \\
+    -\frac{\varepsilon}{kT} - \ln\left(\frac{A}{N_S \lambda^2} \sqrt{\frac{2 \pi I k T}{\hbar^2}}\right) &= -\ln\left(\frac{V}{N \lambda^3} \frac{2 I k T}{\hbar^2}\right) \\
+\frac{N_S}{A} &= \left(\frac{N}{V}\right) \lambda \sqrt{\frac{\pi \hbar^2}{2 I k T}} e^{\varepsilon / kT}
+\end{align*}
+
+With the conditions described, I run the following code (hopefully the constants are reasonably accurate)
+\begin{verbatim}
+# State parameters
+T = 300.0u"K"
+P = 1.0u"atm"
+V = 1.0u"L"
+
+# Ideal gas bulk density N/V = P / (k_B * T)
+n_bulk = P / (k_B * T)
+N = n_bulk * V
+
+# Molecular properties for N₂
+m = 28.014u"u"
+a = 1.10u"Å"
+
+\mu_mass = m / 4.0
+
+I = \mu_mass * a^2
+\epsilon = 1000.0u"K" * k_B
+\lambda = h / sqrt(2\pi * m * k_B * T)
+Ns_A = n_bulk * \lambda * sqrt(\pi * ħ^2 / (2 * I * k_B * T)) * exp(\epsilon / (k_B * T))
+
+uconvert(u"m^-2", Ns_A)
+\end{verbatim}
+
+$$ 2.260846589761214\times10^{15} \mathrm{~m^{-2}} $$
+
+\end{callout}
+
+\end{homeworkProblem}
+
+\newpage
+\begin{homeworkProblem}
+    Pathria Beale (PB) 7.24: Calculate the photon number density, entropy density, and energy density of the 2.725K cosmic
+    microwave background.
+
+    \begin{callout}{(a) Photon Number Density}
+
+        Important quantities:
+        $$
+        \sigma=\frac{c}{4} a \quad \rightarrow \quad \sigma=\frac{\pi^2 k_B^4}{60 \hbar^3 c^2}
+        $$
+        $$
+        \begin{gathered}
+            \ln Z=\frac{a V T^3}{3 k_B} \rightarrow A=-\frac{1}{3} a V T^4 \\
+            S=-\left(\frac{\partial A}{\partial T}\right)_V=\frac{4}{3} a V T^3
+        \end{gathered}
+        $$
+        $A$ being the helmholtz free energy $A=U-TS$.
+
+        Number of particles in each energy state is
+        \begin{align*}
+            n_i = -\frac{1}{\beta} \frac{\partial}{\partial \epsilon_i} \ln Z = \frac{1}{e^{\beta \epsilon_i}-1}
+        \end{align*}
+
+        Number density is 
+        \begin{align*}
+            \frac{\sum_i n_i}{V}
+        \end{align*}
+
+        The change in number of particles with respect to a small change in $\omega$ is 
+        \begin{align*}
+            dN_{\omega} &= \frac{1}{e^{\beta\hbar \omega}-1} \frac{V \omega^{2}}{\pi^{2}c^{3}}d \omega
+        \end{align*}
+
+        Googling the integral tells me it is a bose integral,
+        $$ \frac{N}{V}=\frac{2 \zeta(3)}{\pi^2}\left(\frac{k_B T}{\hbar c}\right)^3 $$
+
+        For cosmic microwave background, 
+        \begin{align*}
+            \frac{N}{V} = 4.1050084269444734 \times \mathrm{10^{8}\, m^{-3}}
+        \end{align*}
+
+    \end{callout}
+    \begin{callout}{(b) Entropy Density}
+
+        Using $S$ written above, 
+        \begin{align*}
+            \frac{S}{V} = \frac{4}{3} a T^{3}
+        \end{align*}
+
+        Numerically it's $1.5\times10^9$.
+    \end{callout}
+    \newpage
+    \begin{callout}{(c) Energy Density}
+
+        \begin{align*}
+            E &= -\frac{\partial \ln Z}{\partial \beta} \\ 
+            E(\omega) d \omega &= \frac{V \hbar}{\pi^{2}c^{3}}\int_{0}^{\infty} \frac{\omega^{3}}{^{-\beta \hbar \omega}-1} \,d \omega \\
+                               &= \frac{V \hbar}{\pi^{2}c^{3}} \int_{0}^{\infty} \frac{x^{3}}{e^{x}-1} \,dx &x\equiv \beta\hbar \omega \\
+                               &= \frac{V \hbar}{\pi^{2}c^{3}} \frac{\pi^{4}}{15} \\ 
+            \implies \frac{E}{V} &= \frac{\pi^{2}k^{4}}{15 \hbar^{3}c^{3}}T^{4}
+        \end{align*}
+
+        For $T=2.725\,\mathrm{K}$, 
+        $$\frac{E}{V} = 2.0460095321782957\times10^{-7} \mathrm{~J \cdot m^{-3}}$$
+
+    \end{callout}
+\end{homeworkProblem}
+
+\begin{homeworkProblem}
+    Pathria Beale (PB) 7.32
+    \begin{callout}{Solution:}
+
+        Skip for this week.
+
+    \end{callout}
+\end{homeworkProblem}
